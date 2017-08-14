@@ -1,6 +1,6 @@
 package com.ex.books;
 
-import com.ex.genres.Genre;
+import genres.Genre;
 
 /*
  * Inheritance using extends from a Genre

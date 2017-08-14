@@ -1,7 +1,8 @@
 package com.ex.tests;
 
 import com.ex.books.Book;
-import com.ex.genres.Genre;
+
+import genres.Genre;
 
 public class Test {
 
