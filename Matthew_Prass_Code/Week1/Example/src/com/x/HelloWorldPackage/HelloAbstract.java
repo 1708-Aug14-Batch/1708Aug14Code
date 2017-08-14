@@ -1,0 +1,11 @@
+package com.x.HelloWorldPackage;
+
+public abstract class HelloAbstract {
+	
+	public abstract int math(int a, int b);
+	
+	public void doThings()
+	{
+		System.out.println("hello");
+	}
+}
