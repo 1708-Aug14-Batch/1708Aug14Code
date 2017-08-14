@@ -1,0 +1,13 @@
+package com.revature.HelloWorldPackage;
+
+public class HelloWorld implements HelloWorldInterface{
+	public static void main(String args) 
+	{
+		
+	}
+	
+	public void printHelloWorld()
+	{
+		System.out.println("Hello world!");
+	}
+}
