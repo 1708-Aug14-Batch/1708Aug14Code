@@ -1,0 +1,6 @@
+package com.ex.books;
+
+public abstract class Book implements Readable{
+	
+	
+}

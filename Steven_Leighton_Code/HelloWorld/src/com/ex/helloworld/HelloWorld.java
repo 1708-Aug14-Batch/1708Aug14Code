@@ -2,6 +2,9 @@ package com.ex.helloworld;
 
 import javax.print.attribute.standard.PrinterLocation;
 
+import com.ex.pojos.Honda;
+import com.ex.vehicles.Car;
+
 public class HelloWorld {
 	/*
 	 * Access modifiers:
@@ -30,9 +33,16 @@ public class HelloWorld {
 		
 		a = d;
 		
-		System.out.println("int a: " + a);
-		System.out.println("char d: " + d);
-		System.out.println("char e: " + e);
-		System.out.println("char c: " + f);
+//		System.out.println("int a: " + a);
+//		System.out.println("char d: " + d);
+//		System.out.println("char e: " + e);
+//		System.out.println("char c: " + f);
+		
+		Car car = new Honda(); //polymorphism, can be Car or Driveable
+							   //Honda -> Car -> Driveable
+		car.stop(50);//in Car and Honda
+		car.steer(); //in Driveable
+		car.start(); //in Driveable
+		
 	}
 }

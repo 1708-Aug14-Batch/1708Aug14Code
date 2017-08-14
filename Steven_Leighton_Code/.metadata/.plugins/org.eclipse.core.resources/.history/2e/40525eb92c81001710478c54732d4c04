@@ -1,0 +1,25 @@
+package com.ex.vehicles;
+
+import com.ex.interfaces.Driveable;
+
+public abstract class Car implements Driveable {
+
+	@Override
+	public void steer() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public double stop(double mph) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+
+	}
+
+}
