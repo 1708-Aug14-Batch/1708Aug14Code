@@ -1,2 +1,1 @@
-Batch class code
-echo "Firstname Lastname's code"
+"Firstname Lastname's code" 
