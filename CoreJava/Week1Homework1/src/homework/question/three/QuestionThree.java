@@ -14,6 +14,7 @@ public class QuestionThree {
 		for (int i = 0; i < input.length(); i++) {
 			input = input.substring(1, input.length() - i) + input.substring(0, 1)
 					+ input.substring(input.length() - i, input.length());
+
 		}
 
 		return input;
