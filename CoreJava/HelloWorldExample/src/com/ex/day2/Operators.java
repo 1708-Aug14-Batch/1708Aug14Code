@@ -22,6 +22,11 @@ public class Operators {
 		
 		Arrays ar3 = new Arrays();
 		System.out.println(ar3.num);
+		
+	}
+	
+	static {
+		 String h = "hello again";
 	}
 
 }
