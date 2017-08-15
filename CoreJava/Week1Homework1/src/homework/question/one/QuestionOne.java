@@ -1,4 +1,4 @@
-package homework.one;
+package homework.question.one;
 
 public class QuestionOne {
 
