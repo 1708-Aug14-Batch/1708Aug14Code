@@ -42,6 +42,8 @@ public class HelloWorld {
 		//System.out.println("Hello World");
 		Car car = new Honda();
 		car.stop(10);
+		car.steer();
+		car.start();
 	}
 
 }
