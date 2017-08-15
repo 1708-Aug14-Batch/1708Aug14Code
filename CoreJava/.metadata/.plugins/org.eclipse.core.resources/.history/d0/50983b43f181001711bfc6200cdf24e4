@@ -3,7 +3,7 @@ package com.example.fileio;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.security.Timestamp;
 
 public class FileIO {
 	
@@ -13,9 +13,8 @@ public class FileIO {
 		
 		try (
 				BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME, true));
-				) {
-			Timestamp ts = new Timestamp(System.currentTimeMillis());
-			bw.write(ts.toString() + ": " + message + '\n');
+				)
+			bw.write(new Timestamp(System.currentTimeMillis()) + message + '\n');
 		}		
 		catch (IOException e) {
 			e.printStackTrace();

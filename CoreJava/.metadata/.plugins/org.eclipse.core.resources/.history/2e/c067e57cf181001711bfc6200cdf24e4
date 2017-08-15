@@ -14,8 +14,7 @@ public class FileIO {
 		try (
 				BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME, true));
 				) {
-			Timestamp ts = new Timestamp(System.currentTimeMillis());
-			bw.write(ts.toString() + ": " + message + '\n');
+			bw.write(new Timestamp(System.currentTimeMillis()) + ' ' + message + '\n');
 		}		
 		catch (IOException e) {
 			e.printStackTrace();
