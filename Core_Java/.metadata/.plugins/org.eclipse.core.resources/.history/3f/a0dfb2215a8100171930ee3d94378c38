@@ -1,0 +1,29 @@
+package fourOOPPrinciples;
+
+public class Lizard extends Animal {
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void grow() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reproduce() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void eat() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,18 @@
+package question9;
+
+import java.util.ArrayList;
+
+/*
+ * Q9. Create an ArrayList which stores numbers from 1 to 100 and prints
+ * out all the prime numbers to the console
+ */
+
+public class PrimeFinder {
+	
+	public static void main(String[] args) {
+		
+		ArrayList<int> numbers = new ArrayList<>();
+		
+	}
+
+}

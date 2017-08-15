@@ -1,0 +1,14 @@
+package fourOOPPrinciples;
+
+public abstract class Animal implements Living {
+	
+	protected String species;
+	protected int averageLifespan;		// measured in years
+	
+	protected abstract void eat();
+	
+	protected void breathe(String name) {
+		System.out.println("The " + name + " breathes deeply");
+	};
+
+}

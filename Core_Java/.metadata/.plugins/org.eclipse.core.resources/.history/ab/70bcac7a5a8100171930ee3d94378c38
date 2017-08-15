@@ -1,0 +1,34 @@
+package fourOOPPrinciples;
+
+public class Lizard extends Animal {
+
+	protected int energy = 100;
+	
+	@Override
+	public void move() {
+		
+		if (energy > 0) {
+			energy--;
+			System.out.println("The lizard moves");
+		} else System.out.println("The lizard is too tired to move");
+	}
+
+	@Override
+	public void grow() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reproduce() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void eat() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

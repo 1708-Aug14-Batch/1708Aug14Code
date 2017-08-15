@@ -1,0 +1,29 @@
+package fourOOPPrinciples;
+
+public class Dragon extends Lizard implements Flying, FireBreathing {
+
+	@Override
+	public void breatheFire() {
+		// TODO Auto-generated method stub
+		species = "Draco";
+	}
+
+	@Override
+	public void beAwesome() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fly() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void land() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

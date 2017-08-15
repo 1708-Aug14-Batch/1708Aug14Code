@@ -1,0 +1,11 @@
+package fourOOPPrinciples;
+
+public interface Living {
+	
+	private static String species;
+	
+	void move();
+	void grow();
+	void reproduce();
+
+}

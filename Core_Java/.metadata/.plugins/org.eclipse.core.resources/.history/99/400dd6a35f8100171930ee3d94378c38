@@ -1,0 +1,17 @@
+package question7;
+
+/*
+ * Q7. Sort two employees based on their name, department, and
+ * age using the Comparator interface.
+ */
+
+public class Driver {
+	
+	public static void main(String[] args) {
+		
+		Employee emp1 = new Employee("", 42, Department.HUMAN_RESOURCES);
+		Employee emp2 = new Employee("", 30, Department.TRAINING);
+		
+	}
+
+}
