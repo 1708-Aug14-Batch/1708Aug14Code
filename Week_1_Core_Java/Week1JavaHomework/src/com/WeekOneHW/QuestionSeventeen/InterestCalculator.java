@@ -2,7 +2,7 @@ package com.WeekOneHW.QuestionSeventeen;
 
 import java.util.*; //Importing in Java.util for the scanner
 
-public class Main {
+public class InterestCalculator {
 
 	public static void main(String[] args) {
 		int years; //Establishing the years as an int as it won't ever been a decimal number

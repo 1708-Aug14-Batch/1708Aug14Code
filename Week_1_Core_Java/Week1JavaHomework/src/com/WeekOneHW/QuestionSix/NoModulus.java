@@ -2,7 +2,7 @@ package com.WeekOneHW.QuestionSix;
 
 import java.util.*; //Importing in Java.util to get the scanner
 
-public class Main {
+public class NoModulus {
 
 	public static void main(String[] args) {
 		int x; //This is the variable that we will use to determine if even or not.

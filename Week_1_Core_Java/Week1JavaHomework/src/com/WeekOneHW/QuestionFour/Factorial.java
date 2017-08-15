@@ -2,7 +2,7 @@ package com.WeekOneHW.QuestionFour;
 
 import java.util.*; //Importing Java.util so that the Scanner can be used for user input
 
-public class Main {
+public class Factorial {
 
 	public static void main(String[] args) { //Main function
 		
