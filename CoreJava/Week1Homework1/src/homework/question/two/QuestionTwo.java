@@ -19,6 +19,7 @@ public class QuestionTwo {
 			fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
 		}
 
+		System.out.println("Displaying first 25 numbers in Fibbonacci's sequence");
 		for (int i = 0; i < fibonacci.length; i++) {
 			System.out.print(fibonacci[i] + " ");
 		}
