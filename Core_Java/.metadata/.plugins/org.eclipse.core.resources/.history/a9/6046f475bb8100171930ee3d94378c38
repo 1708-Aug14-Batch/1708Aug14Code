@@ -1,0 +1,30 @@
+package question15;
+
+/*
+ * Create a class that implements the interface and provides appropriate
+ * functionality to carry out the required operations. 
+ */
+
+public class Calculator implements Calculatable {
+
+	@Override
+	public C addition(C a, C b) {
+		return a + b;
+	}
+
+	@Override
+	public C subtraction(C a, C b) {
+		return a - b;
+	}
+
+	@Override
+	public C multiplication(C a, C b) {
+		return a * b;
+	}
+
+	@Override
+	public C division(C a, C b) {
+		return a / b;
+	}
+
+}

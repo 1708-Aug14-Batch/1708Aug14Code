@@ -1,0 +1,31 @@
+package com.ex.day2;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileIO {
+	
+	static String filename = "src/com/ex/files/log.txt";
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+	static void writeMessage(String message) {
+		
+		// try with resources block
+		try(BufferedWriter bw = new BufferedWriter(
+				new FileWriter(filename, true))) {
+			
+			bw.write(message + "\n");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

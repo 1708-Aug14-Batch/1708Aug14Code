@@ -1,0 +1,10 @@
+package com.ex.day2;
+
+public class StringBuilderAndBuffer {
+	
+	public static void main(String[] args) {
+		String str = "hello";
+		StringBuffer buff = "hello";
+	}
+
+}

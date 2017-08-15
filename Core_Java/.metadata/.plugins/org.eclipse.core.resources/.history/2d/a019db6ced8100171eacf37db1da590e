@@ -1,0 +1,17 @@
+package com.ex.day2;
+
+public class FileIO {
+	
+	static String filename = "src/com/ex/files/log.txt";
+	
+	public static void main(String[] args) {
+		
+		
+		
+	}
+	
+	static void writeMessage(String message) {
+		
+	}
+
+}

@@ -1,0 +1,12 @@
+package question11;
+
+import question10.FindMin;
+
+public class FloatAccessor {
+	
+	public static void main(String[] args) {
+		float1 = 4.2;
+		float2 = 2.4;
+	}
+
+}

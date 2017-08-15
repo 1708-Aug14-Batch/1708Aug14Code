@@ -1,0 +1,22 @@
+package question11;
+
+/*
+ * Q11. Write a program that would access two float-variables from a class
+ * that exists in another package. Note, you will need to create two
+ * packages to demonstrate the solution.
+ */
+
+import question10.FindMin;
+
+public class FloatAccessor {
+	
+	public void doStruff() {
+		System.out.println(float1);
+	}
+	
+	public static void main(String[] args) {
+		float1 = 4.2;
+		float2 = 2.4;
+	}
+
+}

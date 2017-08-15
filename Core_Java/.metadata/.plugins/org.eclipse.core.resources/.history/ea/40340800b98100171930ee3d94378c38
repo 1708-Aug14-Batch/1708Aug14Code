@@ -1,0 +1,41 @@
+package question14;
+
+import java.util.Scanner;
+
+public class SwitchDemonstration {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		try {
+			System.out.println("Enter a number from 1-3 inclusive");
+			String numString = scan.next();
+			int num = Integer.parseInt(numString);
+
+			switch(num) {
+			case 1:
+
+				break;
+			case 2:
+
+				break;
+			case 3:
+
+				break;
+
+			default:
+				System.out.println("That was not a valid choice");
+				break;
+			}
+
+		} catch (NumberFormatException e) {
+			System.out.println("That is not a number");
+		}
+
+
+		scan.close();
+
+	}
+
+}

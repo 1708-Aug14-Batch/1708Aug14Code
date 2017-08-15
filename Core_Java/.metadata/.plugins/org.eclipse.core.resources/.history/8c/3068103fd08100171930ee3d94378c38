@@ -1,0 +1,17 @@
+package question15;
+
+/*
+ * Write a program that defines an interface having the following methods:
+ * 		addition, subtraction, multiplication, and division.  
+ */
+
+// This uses the Jave generic
+// A class implementing this interface can use 
+public interface Calculatable<C> {
+	
+	C addition(C a, C b);
+	C subtraction(C a, C b);
+	C multiplication(C a, C b);
+	C division(C a, C b);
+
+}

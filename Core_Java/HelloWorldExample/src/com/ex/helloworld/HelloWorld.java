@@ -2,7 +2,6 @@ package com.ex.helloworld;
 
 import com.ex.interfaces.Drivable;
 import com.ex.pojos.Honda;
-import com.ex.vehicles.Car;
 
 public class HelloWorld {
 
@@ -41,6 +40,7 @@ public class HelloWorld {
 		a = d;
 		
 		System.out.println("int a: " + a);
+		System.out.println("Integer aa: " + aa);
 		System.out.println("char d: " + d);
 		System.out.println("char e: " + e);
 		System.out.println("char c: " + c);

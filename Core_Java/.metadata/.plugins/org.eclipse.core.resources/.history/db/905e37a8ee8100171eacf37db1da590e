@@ -1,0 +1,36 @@
+package com.ex.day2;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
+
+public class FileIO {
+	
+	// NOTE: while the package name is "ex.files.log" it is entered
+	// in this string as "ex/files/log" because that is how the filename
+	// is read
+	static String filename = "src/com/ex/files/log.txt";
+	
+	public static void main(String[] args) {
+		
+		writeMessage("" + new Date());
+		writeMessage("Good morning world! The stars say hello");
+		
+	}
+	
+	static void writeMessage(String message) {
+		
+		// try with resources block
+		try(BufferedWriter bw = new BufferedWriter(
+				new FileWriter(filename, true))) {
+			
+			bw.write(message + "\n");
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}

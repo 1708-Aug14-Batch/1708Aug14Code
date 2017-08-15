@@ -1,0 +1,10 @@
+package question15;
+
+/*
+ * Create a class that implements the interface and provides appropriate
+ * functionality to carry out the required operations. 
+ */
+
+public class Calculator implements Calculatable {
+
+}

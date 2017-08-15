@@ -1,0 +1,23 @@
+package question16;
+
+/*
+ * Q16. Write a program to display the number of characters for a
+ * string input. The string should be entered as a command line
+ * argument using (String [ ] args).
+ */
+
+public class NumCharsFinder {
+	
+	public static void main(String[] args) {
+		
+		try {
+			args[0];
+			System.out.println("The following is the entered string: ");
+			System.out.println(args[0]);
+			System.out.println("This string has " + args[0].length() + " characters in it");
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Error: This program requires a string input given through the command line");
+		}
+	}
+
+}
