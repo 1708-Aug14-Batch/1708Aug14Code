@@ -1,0 +1,23 @@
+package Q4;
+
+import java.math.BigInteger;
+
+public class Factorial {
+	
+	private static BigInteger doFactorial(BigInteger fac, int n) {
+		// 
+		if (n == 0) return fac;
+		return doFactorial(fac.multiply(BigInteger.valueOf(n)), n-1);
+	}
+	
+	public static BigInteger factorial(int n) {
+		return doFactorial(BigInteger.ONE, n);
+	}
+	
+	public static void main(String[] args) {
+		
+		// Print 50!
+		System.out.println(factorial(50));
+	}
+
+}

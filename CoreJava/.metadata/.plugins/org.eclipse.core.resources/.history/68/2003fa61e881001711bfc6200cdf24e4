@@ -1,0 +1,22 @@
+package Q5;
+
+public class Substring {
+	
+	
+	public static String substring(String str, int i) {
+		if (str.length() <= i) return str;
+		
+		char[] ret = new char[i];
+		for (int j = 0; j < i; j++) {
+			ret[j] = str.toCharArray()[j];
+		}
+		return new String(ret);
+	}
+	
+	public static void main(String[] args) {
+		
+		String str = "0000000000x";
+		System.out.println(substring(str, 12));
+	}
+
+}

@@ -1,0 +1,31 @@
+package homework1;
+
+public class Chicken extends Bird implements Edible {
+	
+	public Chicken() {
+		species = "Chicken";
+	}
+
+	public void cook(double temp) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public double eat() {
+		System.out.println("You ate the " + getSpecies());
+		return getSize();
+	}
+
+	@Override
+	public void makeNoise() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

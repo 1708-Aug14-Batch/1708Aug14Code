@@ -1,0 +1,15 @@
+package Q4;
+
+public class Factorial {
+	
+	public static void factorial(int n) {
+		doFactorial(long sum, int n);
+	}
+	
+	public static void main(String[] args) {
+		
+		// Print 25!
+		factorial(25);
+	}
+
+}

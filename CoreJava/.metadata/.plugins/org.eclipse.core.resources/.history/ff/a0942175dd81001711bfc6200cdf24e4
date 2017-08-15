@@ -1,0 +1,29 @@
+package Q2;
+
+public class Fibonacci {
+	
+	/**
+	 * Prints the first n numbers of the Fibonacci sequence
+	 * @param n
+	 */
+	public static void firstNFib(int n) {
+		doFib(0, 1, n);
+	}
+
+	private static void doFib(int start, int next, int n) {
+		// Return after n Fibonacci numbers
+		if (n == 0) return;
+		
+		// Print the current Fibonacci number
+		System.out.print(start + ", ");
+
+		// Recursively 
+		doFib(next, start + next, n-1);
+	}
+	
+	public static void main(String[] args) {
+		
+		// Print first 25 numbers in the Fibonacci sequence
+		firstNFib(25);		
+	}
+}

@@ -1,0 +1,16 @@
+package Q3;
+
+public class Reverse {
+	
+	
+	public static void main(String[] args) {
+		String s = ".esrever ni si sihT";
+		
+		System.out.println(s);
+		
+		reverse(s);
+		
+		System.out.println(s);
+	}
+
+}

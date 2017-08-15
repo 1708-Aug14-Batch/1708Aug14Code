@@ -1,0 +1,12 @@
+package Q5;
+
+public class Substring {
+	
+	
+	public static void main(String[] args) {
+		
+		String str = "xx000000000000xxxx";
+		System.out.println(substring(str, 2, 12));
+	}
+
+}

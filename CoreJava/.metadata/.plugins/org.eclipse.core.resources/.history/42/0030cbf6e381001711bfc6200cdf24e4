@@ -1,0 +1,22 @@
+package Q4;
+
+import java.math.BigInteger;
+
+public class Factorial {
+	
+	private static BigInteger doFactorial(BigInteger fac, int n) throws IllegalArgumentException {		
+		if (n == 0) return fac;
+		return doFactorial(fac.multiply(n), n-1);
+	}
+	
+	public static BigInteger factorial(int n) throws IllegalArgumentException {
+		return doFactorial(1, n);
+	}
+	
+	public static void main(String[] args) {
+		
+		// Print 20!
+		System.out.println(factorial(20));
+	}
+
+}

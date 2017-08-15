@@ -1,0 +1,15 @@
+package homework1;
+
+public class Cow implements Edible {
+
+	public void cook(double temp) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public double eat() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

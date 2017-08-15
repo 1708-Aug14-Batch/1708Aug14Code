@@ -1,0 +1,17 @@
+package com.example.pojos;
+
+import com.example.vehicles.Car;
+
+public class Honda extends Car {
+
+	public void steer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void accelerate(double rate) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.example.helloworld;
+
+public interface Drivable {
+
+	public void steer();
+	
+	public void accelerate(double rate);
+	
+	public double stop(double mph);
+	
+}

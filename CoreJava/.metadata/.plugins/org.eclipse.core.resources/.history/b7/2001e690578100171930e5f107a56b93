@@ -1,0 +1,13 @@
+package homework1;
+
+public class Dog {
+	
+	public void makeNoise() {
+		System.out.println("*roof*");
+	}
+	
+	public void move() {
+		
+	}
+
+}

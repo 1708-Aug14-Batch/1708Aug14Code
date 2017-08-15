@@ -1,0 +1,12 @@
+package Q6;
+
+public class IsEven {
+
+	public static void main(String[] args) {
+		
+		System.out.println("0 is even = " + isEven(0));
+		System.out.println("1 is even = " + isEven(1));
+		System.out.println("100 is even = " + isEven(100));
+		System.out.println("255 is even = " + isEven(255));
+	}
+}

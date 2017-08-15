@@ -1,0 +1,28 @@
+package Q4;
+
+import java.math.BigInteger;
+
+public class Factorial {
+	
+	private static BigInteger doFactorial(BigInteger fac, int num) {
+		// Base case
+		if (num == 0) return fac;
+		// Recursively find factorial through multiplication
+		return doFactorial(fac.multiply(BigInteger.valueOf(num)), num-1);
+	}
+	
+	/**
+	 * Calculate n factorial
+	 * @param num 
+	 * @return n!
+	 */
+	public static BigInteger factorial(int num) {
+		return doFactorial(BigInteger.ONE, num);
+	}
+	
+	public static void main(String[] args) {
+		
+		System.out.println(factorial(50));
+	}
+
+}

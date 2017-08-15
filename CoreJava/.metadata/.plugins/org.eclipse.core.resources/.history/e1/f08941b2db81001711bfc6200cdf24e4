@@ -1,0 +1,23 @@
+package Q2;
+
+public class Fibonacci {
+
+	public static void firstNFib(int last, int start, int n) {
+		if (n == 0) return;
+		
+		if (last == 0) {
+			System.out.print(last + ", " + start + ", ");
+		}
+		else {
+			System.out.print(start + ", ");
+		}
+
+		firstNFib(start, last + start, n-1);
+	}
+	
+	public static void main(String[] args) {
+		
+		// Print first 25 numbers in the Fibonacci sequence
+		firstNFib(0, 1, 25);		
+	}
+}

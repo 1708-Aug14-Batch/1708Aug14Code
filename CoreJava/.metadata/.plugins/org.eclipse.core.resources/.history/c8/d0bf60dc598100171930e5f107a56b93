@@ -1,0 +1,19 @@
+package homework1;
+
+public abstract class Bird extends Animal {
+	
+	private String species;
+	
+	public String getSpecies() {
+		return species;
+	}
+	
+	public void setSpecies(String species) {
+		this.species = species;
+	}
+	
+	public void fly(double dist) {
+		System.out.println("The " + species + " flew " + dist + " feet.");
+	}
+	
+}

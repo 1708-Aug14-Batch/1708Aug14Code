@@ -1,0 +1,7 @@
+package com.example.fileio;
+
+public class FileIO {
+	
+	public static final FILENAME = "src/com/example/fileio/log.txt";
+
+}

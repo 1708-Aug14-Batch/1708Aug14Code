@@ -1,0 +1,21 @@
+package Q4;
+
+public class Factorial {
+	
+	private static long doFactorial(long fac, int n) throws IllegalArgumentException {
+		if (Long.MAX_VALUE / n < fac) throw new IllegalArgumentException();
+		if (n == 0) return fac;
+		return doFactorial(fac*n, n-1);
+	}
+	
+	public static long factorial(int n) {
+		return doFactorial(1, n);
+	}
+	
+	public static void main(String[] args) {
+		
+		// Print 20!
+		System.out.println(factorial(20));
+	}
+
+}

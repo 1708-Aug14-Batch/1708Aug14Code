@@ -1,0 +1,13 @@
+package Q7;
+
+public class Employee {
+	private String name;
+	private short age;
+	private String department;
+	
+	public Employee(String name, short age, String department) {
+		this.name = name;
+		this.age = age;
+		this.department = department;
+	}
+}

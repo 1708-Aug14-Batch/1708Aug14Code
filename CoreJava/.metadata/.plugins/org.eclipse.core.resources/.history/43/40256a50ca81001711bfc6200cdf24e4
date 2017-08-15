@@ -1,0 +1,10 @@
+package Q1;
+
+public class BubbleSort {
+	
+	public static int[] bubbleSort (int[] list) {
+		
+		return list;		
+	}
+
+}

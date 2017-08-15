@@ -1,0 +1,21 @@
+package Q3;
+
+public class Reverse {
+	
+	public static String reverse(CharSequence str) {
+		
+		
+		return null;
+	}
+	
+	public static void main(String[] args) {
+		String s = ".esrever ni si sihT";
+		
+		System.out.println(s);
+		
+		s = reverse(s);
+		
+		System.out.println(s);
+	}
+
+}
