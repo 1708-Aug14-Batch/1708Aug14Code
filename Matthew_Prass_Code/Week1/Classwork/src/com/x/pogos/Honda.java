@@ -1,8 +1,10 @@
 package com.x.pogos;
 
+import java.io.Serializable;
+
 import com.x.vehicles.Car;
 
-public class Honda extends Car
+public class Honda extends Car implements Serializable
 {
 	public int h = 100;
 	private String model;

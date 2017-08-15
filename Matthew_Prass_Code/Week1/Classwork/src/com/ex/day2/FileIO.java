@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FileIO {
@@ -32,8 +33,9 @@ public class FileIO {
 		
 	}
 	
-	static void readMessage()
+	static ArrayList<String> readMessage()
 	{
+		ArrayList<String> messages = new ArrayList<String>();
 		try(BufferedReader br = new BufferedReader(new FileReader(filename)))
 		{
 			String temp = "";
@@ -43,7 +45,7 @@ public class FileIO {
 			e.printStackTrace();
 		}
 		
-				
+		return null;
 		
 	}
 
