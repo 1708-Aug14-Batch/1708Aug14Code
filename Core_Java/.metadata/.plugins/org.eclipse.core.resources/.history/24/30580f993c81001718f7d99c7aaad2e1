@@ -1,0 +1,21 @@
+package question6;
+
+/*
+ * Q6. Write a program to determine if an integer is even without using the
+ * modulus operator (%)
+ */
+
+public class EvenDeterminer {
+
+	public static void main(String[] args) {
+		System.out.println("Enter a number");
+		
+		System.out.println("That number is even");
+		System.out.println("That number is odd");
+		
+	}
+	
+	public boolean determineEvenValue(int num) {
+		
+	}
+}

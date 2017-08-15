@@ -1,0 +1,33 @@
+package com.ex.helloworld;
+
+public class HelloWorld {
+
+	/*
+	 * Access modifiers:
+	 * 	public			-Everyone has access
+	 * 	private			-Only this class has access
+	 * 	protected		-Package and subclass access
+	 * 	package/default	-Package access
+	 */
+	
+	public static void main(String[] args) {
+		/*
+		 * primitive data types - associated wrapper class:
+		 * 	char	- 
+		 * 	int		- Integer
+		 * 	short	- 
+		 * 	long	- 
+		 * 	byte	- 
+		 * 	float	- 
+		 * 	double	- 
+		 * 	boolean	- 
+		 */
+		
+		int a = 0;
+		Integer aa = a;
+		char c = 'c';
+		char d = 97;
+		
+		System.out.println("Hello World!");
+	}
+}

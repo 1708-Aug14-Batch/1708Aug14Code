@@ -1,0 +1,10 @@
+package com.ex.vehicles;
+
+public abstract class Car implements Drivable {
+
+	public double stop(double mph) {
+		double time = Math.sqrt(mph);
+		
+		return 0;
+	}
+}

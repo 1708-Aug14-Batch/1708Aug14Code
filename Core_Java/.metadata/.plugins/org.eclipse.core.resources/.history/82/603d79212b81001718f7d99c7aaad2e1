@@ -1,0 +1,26 @@
+package com.ex.pojos;
+
+import com.ex.vehicles.Car;
+
+public class Honda extends Car {
+	
+	private String model;
+	private int mpg;
+	private String description;
+	
+	public Honda(){}
+	
+	public Honda(String model, int mpg, String description) {
+		super();
+		this.model = model;
+		this.mpg = mpg;
+		this.description = description;
+	}
+
+	@Override
+	public void steer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

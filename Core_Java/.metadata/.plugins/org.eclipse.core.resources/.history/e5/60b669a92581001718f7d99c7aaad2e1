@@ -1,0 +1,18 @@
+package question10;
+
+/*
+ * This program prints the first 25 numbers of the Fibonacci sequence
+ */
+
+public class FibonacciNumbers {
+	
+	private static final int NUMBERS = 25;
+	
+	public static void main(String[] args) {
+		System.out.println(Fibonacci(NUMBERS);
+	}
+
+	private static String Fibonacci(int num) {
+		return "";	// FIXME method stub
+	}
+}

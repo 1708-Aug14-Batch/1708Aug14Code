@@ -1,0 +1,35 @@
+package question4;
+
+import java.util.Scanner;
+
+/*
+ * Q4. Write a program to compute N factorial.
+ */
+
+public class ComputeFactorial {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		String str = scan.next();
+
+		try {
+			
+			int N = Integer.parseInt(str);
+
+			System.out.println(computeFactorial(N));
+
+		} catch (NumberFormatException e) {
+			System.out.println("That is not a number");
+		}
+
+
+
+		scan.close();
+	}
+
+	private static int computeFactorial(int factorial) {
+		return 0;	// FIXME method stub
+	}
+}
