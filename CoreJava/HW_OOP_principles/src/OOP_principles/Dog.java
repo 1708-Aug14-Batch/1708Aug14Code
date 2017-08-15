@@ -1,6 +1,11 @@
 package OOP_principles;
 
-public class Dog extends Animal implements Domestic {
+public class Dog extends Animal implements Domestic
+// extends and implements are key words for inheritance
+// Animal is parent of Dog
+// Domestic is parent of Dog
+{ 
+	//encapsulation
 	private String breed;
 	
 	Dog() {
@@ -12,10 +17,12 @@ public class Dog extends Animal implements Domestic {
 		this.breed = breed;
 	}
 
+	//encapsulation
 	public String getBreed() {
 		return breed;
 	}
 
+	//encapsulation
 	public void setBreed(String breed) {
 		this.breed = breed;
 	}

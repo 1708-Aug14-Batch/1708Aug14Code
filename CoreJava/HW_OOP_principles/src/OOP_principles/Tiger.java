@@ -6,11 +6,13 @@ public class Tiger extends Cat {
 		noOfLegs = 4;
 	}
 	
+	//polymorphism
 	@Override
 	public boolean isPet() {
 		return false;
 	}
 
+	//polymorphism
 	@Override
 	public boolean isTame() {
 		return false;
