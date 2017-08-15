@@ -1,7 +1,5 @@
 package com.example.pojos;
 
-import java.io.Serializable;
-
 import com.example.vehicles.Car;
 
 public class Honda extends Car implements Serializable {
@@ -26,9 +24,5 @@ public class Honda extends Car implements Serializable {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public String toString() {
-		return model + ", " + mpg + " mpg, " + description;
-	}
+
 }

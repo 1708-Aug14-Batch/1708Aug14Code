@@ -26,9 +26,5 @@ public class Honda extends Car implements Serializable {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	@Override
-	public String toString() {
-		return model + ", " + mpg + " mpg, " + description;
-	}
+
 }
