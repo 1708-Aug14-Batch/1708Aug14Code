@@ -4,7 +4,7 @@ import java.util.*;
 
 public class QuestionFive {
 	public static void main(String[] args) {
-		
+
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		System.out.println(
@@ -16,15 +16,20 @@ public class QuestionFive {
 		System.out.println(retrieveSubstring(input, substringPosition));
 	}
 
-	public static String retrieveSubstring(String input, int position) throws IndexOutOfBoundsException {
+	public static String retrieveSubstring(String input, int position) {
 
-		String inputSubstring = "";
+		try {
+			String inputSubstring = "";
 
-		for (int i = 0; i < position; i++) {
-			inputSubstring += input.charAt(i);
+			for (int i = 0; i < position; i++) {
+				inputSubstring += input.charAt(i);
+			}
+
+			return inputSubstring;
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
 		}
-
-		return inputSubstring;
+		return null;
 
 	}
 }
