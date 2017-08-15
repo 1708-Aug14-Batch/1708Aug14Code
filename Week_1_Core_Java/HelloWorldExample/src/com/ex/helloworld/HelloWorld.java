@@ -1,5 +1,9 @@
 package com.ex.helloworld;
 
+import com.ex.interfaces.Driveable;
+import com.ex.pojos.Honda;
+import com.ex.vehicles.Car;
+
 public class HelloWorld {
 	/*
 	 * Access modifiers:
@@ -40,10 +44,19 @@ public class HelloWorld {
 		a = d;
 		
 		//Strings are a series of characters. is an object.
-		System.out.println("int a: " + a);
-		System.out.println("char d: " + d);
-		System.out.println("char e : " + e);
-		System.out.println("char c: " + c);
+//		System.out.println("int a: " + a);
+//		System.out.println("char d: " + d);
+//		System.out.println("char e : " + e);
+//		System.out.println("char c: " + c);
+		
+		//Driveable drive = new Driveable(); //Can't instantiate interfaces
+		Car car = new Honda();
+		System.out.println("car h " + car.h);
+		Honda honda = (Honda) car;
+		System.out.println("honda h " + honda.h);
+		System.out.println(car.getClass());
+		
+		//shadowing
 	}
 	
 }
