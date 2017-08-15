@@ -1,0 +1,34 @@
+package com.revature.pojos;
+
+import com.revature.vehicles.Car;
+
+public class Honda extends Car {
+	
+	private String model;
+	private double mpg;
+	private String description;
+	
+	public Honda() {
+		
+	}
+	
+	public Honda(String model, double mpg, String description) {
+		this.model = model;
+		this.mpg = mpg;
+		this.description = description;
+	}
+
+	@Override
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void steer() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}

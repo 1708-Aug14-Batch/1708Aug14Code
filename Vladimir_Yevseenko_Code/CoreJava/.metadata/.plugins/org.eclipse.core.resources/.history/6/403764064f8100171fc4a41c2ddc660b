@@ -1,0 +1,9 @@
+package com.revature.oop_principles;
+
+public class Burger {
+	/*
+	 * private variables for encapsulation
+	 */
+	private String meat;
+	
+}

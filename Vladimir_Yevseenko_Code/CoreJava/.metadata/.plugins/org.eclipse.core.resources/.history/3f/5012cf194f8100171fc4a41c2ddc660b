@@ -1,0 +1,10 @@
+package com.revature.oop_principles;
+
+public class Burger extends Food {
+	/*
+	 * private variables for encapsulation
+	 */
+	private String meat;
+	private boolean pickles;
+	
+}

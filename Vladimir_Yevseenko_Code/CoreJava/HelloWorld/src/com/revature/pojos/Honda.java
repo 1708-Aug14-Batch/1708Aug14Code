@@ -1,9 +1,20 @@
 package com.revature.pojos;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import com.revature.vehicles.Car;
 
-public class Honda extends Car {
+public class Honda extends Car implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8020593938552833565L;
 	private String model;
 	private double mpg;
 	private String description;
@@ -61,6 +72,29 @@ public class Honda extends Car {
 		for (double i=mph; i > 0; i--)
 			System.out.println(i);
 		return super.stop(mph);
+	}
+	
+	public void serialize(String file) {
+		try (ObjectOutputStream out = 
+				new ObjectOutputStream(
+						new FileOutputStream(file))) {
+			out.writeObject(this);
+		} catch(IOException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	public static Honda deserialize(String file) {
+		try (ObjectInputStream in =
+				new ObjectInputStream(
+						new FileInputStream(file))) {
+			return (Honda) in.readObject();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+		return null;
 	}
 	
 }

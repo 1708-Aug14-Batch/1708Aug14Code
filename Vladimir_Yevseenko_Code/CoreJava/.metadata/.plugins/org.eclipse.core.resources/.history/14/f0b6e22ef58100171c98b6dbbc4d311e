@@ -1,0 +1,15 @@
+import java.io.Serializable;
+
+public class Serialization implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3198535478734749960L;
+	
+	public static void main(String[] args) {
+		Serialization s = new Serialization();
+		s.main([]);
+	}
+	
+}

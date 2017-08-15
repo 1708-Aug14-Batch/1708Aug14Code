@@ -1,0 +1,29 @@
+package com.revature.oop_principles;
+
+public class Burger extends Food {
+	/*
+	 * private variables for encapsulation
+	 */
+	private String meat;
+	private boolean pickles;
+	
+	public Burger(String meat, boolean pickles) {
+		this.meat = meat;
+		this.pickles = pickles;
+		setTastiness(calculateTastiness());
+	}
+	
+	public void eat() {
+		System.out.println("Mmmm, a " + meat  + " burger " +
+				(pickles ? "with pickles on it." : "."));
+	}
+	
+	public int calculateTastiness() {
+		int tastiness;
+		switch (meat.toLowerCase()) {
+		case "beef": tastiness = 7; break;
+		case "chicken": tastiness = 5; break;
+		case "pork": tastiness = 3; break;
+		}
+	}
+}

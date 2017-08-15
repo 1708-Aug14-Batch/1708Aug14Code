@@ -1,0 +1,7 @@
+package com.revature.pojos;
+
+import com.revature.vehicles.Car;
+
+public class Honda extends Car {
+
+}

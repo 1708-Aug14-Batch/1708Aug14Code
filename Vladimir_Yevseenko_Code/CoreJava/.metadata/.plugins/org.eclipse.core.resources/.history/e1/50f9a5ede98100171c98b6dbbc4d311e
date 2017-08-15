@@ -1,0 +1,19 @@
+package com.revature.exceptions;
+
+public class UnderstandingExceptions {
+	public static void main(String[] args) throws Exception {
+		int arr[] = new int[4];
+		String s = null;
+		arr[0] = 1;
+		try {
+			arr[4] = 50;
+			s.codePoints();
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("ArrayIndexOutOfBoundsException caught");
+		} catch (NullPointerException e) {
+			System.out.println("NullPointerException caught");
+		} finally {
+			System.err.println("Finally despite returning in catch");
+		}
+	}
+}

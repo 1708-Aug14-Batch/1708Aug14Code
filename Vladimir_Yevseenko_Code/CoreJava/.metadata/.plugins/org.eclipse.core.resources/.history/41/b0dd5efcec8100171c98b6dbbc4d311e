@@ -1,0 +1,15 @@
+package com.revature.fileio;
+
+import java.io.BufferedWriter;
+
+public class FileIO {
+	public static void main(String[] args) {
+		String file = "src\\com\\revature\\files\\foo";
+	}
+	
+	public static void writeMsg(String file) {
+		try (BufferedWriter w = new BufferedWriter(new FileWriter(file))) {
+			
+		}
+	}
+}

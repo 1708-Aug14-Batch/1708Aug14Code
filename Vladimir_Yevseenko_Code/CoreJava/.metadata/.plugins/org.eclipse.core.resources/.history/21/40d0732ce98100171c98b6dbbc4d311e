@@ -1,0 +1,17 @@
+package com.revature.exceptions;
+
+public class UnderstandingExceptions {
+	public static void main(String[] args) throws Exception {
+		int arr[] = new int[4];
+		arr[0] = 1;
+		try {
+			arr[4] = 50;
+		} catch (Error e) {
+			System.err.println("arr[4] inaccessible");
+			System.err.println(e.getMessage());
+			throw new Exception();
+		} finally {
+			System.err.println("Finally despite returning in catch");
+		}
+	}
+}

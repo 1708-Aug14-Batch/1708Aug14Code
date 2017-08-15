@@ -1,0 +1,10 @@
+package com.revature.interfaces;
+
+public interface Driveable {
+	
+	void start();
+	
+	public double stop();
+	
+	void steer();
+}

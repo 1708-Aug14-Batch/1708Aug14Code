@@ -1,0 +1,20 @@
+package com.revature.fileio;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class FileIO {
+	public static void main(String[] args) {
+		String file = "src\\com\\revature\\files\\foo";
+		writeMsg(file, "Hello World");
+	}
+	
+	public static void writeMsg(String file, String msg) {
+		try (BufferedWriter w = new BufferedWriter(new FileWriter(file))) {
+			w.write(msg);
+		} catch (IOException e) {
+			System.out.println("Error opening " + file);
+		}
+	}
+}

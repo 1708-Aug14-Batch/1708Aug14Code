@@ -1,0 +1,5 @@
+package com.revature.vehicles;
+
+public abstract class Car implements Driveable {
+
+}

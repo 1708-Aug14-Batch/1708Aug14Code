@@ -1,0 +1,18 @@
+package com.revature.abstraction;
+
+/*
+ * The Food class abstracts common properties of
+ * different types of food into some shared properties
+ * and behaviors
+ * Food itself is not something concrete so this is an abstract
+ * class
+ */
+public abstract class Food implements Edible {
+	
+	/*
+	 * The usage of private variables encapsulates
+	 * the instance variables of Food
+	 */
+	private int tastiness; /* 0 to 10 */
+	private 
+}
