@@ -4,6 +4,7 @@ import com.ex.shapes.*;
 
 public class Figures extends Shapes{
 	
+	// encapsulated data fields containing features of a figure
 	private short numSides;
 	private short height;
 	private short width;
@@ -12,6 +13,7 @@ public class Figures extends Shapes{
 	private Boolean isThreeDimensional;
 	private Boolean hasRadius;
 	
+	// general constructor
 	public Figures(short sides , short h, short w, short l, short r, Boolean threeDimensional, Boolean isRound) {
 		this.setNumSides(sides);
 		this.setHeight(h);
@@ -21,10 +23,13 @@ public class Figures extends Shapes{
 		this.setIsThreeDimensional(threeDimensional);
 		this.setHasRadius(isRound);
 	}
+	
+	// getters and setters below for each of the encapsulated data
 	public short getNumSides() {
 		return this.numSides;
 	}
 	
+	// Override the extended method from Shapes
 	@Override
 	public void setNumSides(Short sides) {
 		this.numSides = sides;
