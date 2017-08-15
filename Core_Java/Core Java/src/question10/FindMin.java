@@ -8,29 +8,35 @@ import java.util.Scanner;
 
 public class FindMin {
 
+	// NOTE: These two variables are not used in FindMin.java
+	// Rather they  are used in package question11 which has to access
+	// two float variables found in another package
+	public static float float1, float2;
+	
 	public static void main(String[] args) {
 
 		try {
+			// Take in two numbers from user input
 			Scanner scan = new Scanner(System.in);
 
 			System.out.println("Enter a number: ");
 			String strA = scan.next();
 			int numA = Integer.parseInt(strA);
 			
-			System.out.println("Enter a number with a different value: ");
+			System.out.println("Enter another number: ");
 			String strB = scan.next();
 			int numB = Integer.parseInt(strB);
 
-			if (numA == numB) {
-				System.out.println("Invalid input: The two numbers are the same");
-				return;
-			}
-
-			int result = (numA < numB)? -1 : 1;
+			// Ternary operators
+			int result = (numA - numB) >= 0 ?
+					(numA - numB) == 0 ?
+							0 : 1 : -1;
 
 			if (result == -1)
 				System.out.println(numA + " is smaller");
-			else System.out.println(numB + " is smaller");
+			else if (result == 1)
+				System.out.println(numB + " is smaller");
+			else System.out.println("The two numbers are the same");
 
 			scan.close();
 		} catch (NumberFormatException e) {

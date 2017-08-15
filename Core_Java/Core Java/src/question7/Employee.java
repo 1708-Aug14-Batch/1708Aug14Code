@@ -1,6 +1,7 @@
 package question7;
 
-public class Employee implements Comparable {
+// Simple employee class
+public class Employee implements Comparable<Object> {
 	
 	private String name;
 	private Department department;
@@ -13,6 +14,7 @@ public class Employee implements Comparable {
 		this.age = age;
 	}
 
+	// Compares employees first by name, then by age, then by department
 	@Override
 	public int compareTo(Object arg0) {
 		

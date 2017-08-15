@@ -32,6 +32,8 @@ public class PalindromeFinder {
 			
 	}
 
+	// Returns true if str is a palindrome
+	// Checks characters two at a time for equality from both the front and back
 	private static boolean isPalindrome(String str) {
 		
 		for (int i = 0; i < str.length()/2; i++)

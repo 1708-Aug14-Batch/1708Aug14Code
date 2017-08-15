@@ -13,6 +13,7 @@ public class SubstringBuilder {
 
 	public static void main(String[] args) {
 
+		// Take input from the user
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("Enter a string to be substringed: ");
@@ -20,6 +21,7 @@ public class SubstringBuilder {
 		System.out.println("Enter an index for the substringing: ");
 		String index = scan.nextLine();
 
+		// Attempt to cast to an integer
 		try {
 			int idx = Integer.parseInt(index);
 
@@ -33,9 +35,11 @@ public class SubstringBuilder {
 		scan.close();
 	}
 
+	// Returns a substring of str from index 0 to idx-1
 	private static String subStringer(String str, int idx) {
 		String result = "";
 
+		// Keep each char up to idx-1
 		for (int i = 0; i < idx; i++)
 			result += str.charAt(i);
 

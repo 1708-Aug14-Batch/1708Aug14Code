@@ -1,5 +1,6 @@
 package question7;
 
+// List of departments possibly found in an organization
 public enum Department {
 	HUMAN_RESOURCES,
 	MARKETING,

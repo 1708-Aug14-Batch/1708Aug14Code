@@ -11,11 +11,12 @@ public class PrimeFinder {
 	
 	public static void main(String[] args) {
 		
+		// List of numbers from 1 to 100 inclusive
 		ArrayList<Integer> numbers = new ArrayList<>();
-		
 		for (int i = 0; i <= 100; i++)
 			numbers.add(i);
 		
+		// Prints out prime numbers
 		for (int num : numbers)
 			if (isPrime(num))
 				System.out.println(num);
@@ -25,9 +26,9 @@ public class PrimeFinder {
 	/*
 	 * A prime number's only factors are itself and 1
 	 * So this method skips those two values and looks for
-	 * any factors remaining
+	 * any remaining factors
 	 */
-	private static boolean isPrime(int num) {
+	public static boolean isPrime(int num) {
 		
 		if (num <= 1)
 			return false;

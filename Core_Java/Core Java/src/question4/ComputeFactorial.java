@@ -35,10 +35,13 @@ public class ComputeFactorial {
 		
 	}
 
+	// Return the factorial of int factorial
 	private static int computeFactorial(int factorial) {
-		// FIXME add comments
+		
+		// Default value is 1 since multiplication by 1 makes no change
 		int runningTotal = 1;
 		
+		// Compute factorial with one multiplication at a  time
 		while (factorial > 1) {
 			runningTotal = runningTotal * factorial;
 			
