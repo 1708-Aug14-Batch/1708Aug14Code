@@ -1,0 +1,6 @@
+package com.ex.Helloworld;
+
+public class Driveable {
+	public abstract void steer();
+
+}
