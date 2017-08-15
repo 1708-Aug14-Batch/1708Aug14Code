@@ -1,0 +1,16 @@
+*/Servers/*
+/bin/
+*/RemoteSystemsTempFiles/*
+
+.settings
+/
+target/
+
+build/
+
+*/.metadata/*	
+.metadata
+.recommenders
+*/.plugins/*
+*_Code
+*_code
