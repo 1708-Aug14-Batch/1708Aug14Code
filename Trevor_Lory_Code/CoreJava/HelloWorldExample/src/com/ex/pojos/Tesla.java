@@ -1,8 +1,10 @@
 package com.ex.pojos;
 
+import java.io.Serializable;
+
 import com.ex.vehicles.Car;
 
-public class Tesla extends Car{
+public class Tesla extends Car implements Serializable {
 
 	private String model;
 	private int mpg;
