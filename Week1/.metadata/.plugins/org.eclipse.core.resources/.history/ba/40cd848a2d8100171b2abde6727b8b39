@@ -1,0 +1,8 @@
+package com.ex.vehicles;
+
+import com.ex.interfaces.Driveable;
+
+public abstract class Car implements Driveable { 
+	
+
+}

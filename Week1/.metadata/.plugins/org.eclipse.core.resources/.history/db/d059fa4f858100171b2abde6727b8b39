@@ -1,0 +1,32 @@
+package com.ex.Aug14HW;
+
+public class Alcoholic extends Beverage{
+	private int size;
+	private double amt_alc;
+	
+	public Alcoholic(){}
+	
+	public Alcoholic(int size, double amt_acl){
+		super();
+		this.size = size;
+		this.amt_alc = amt_acl;
+	}
+
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public double getAmt_alc() {
+		return amt_alc;
+	}
+
+	public void setAmt_alc(double amt_alc) {
+		this.amt_alc = amt_alc;
+	}
+	
+
+}

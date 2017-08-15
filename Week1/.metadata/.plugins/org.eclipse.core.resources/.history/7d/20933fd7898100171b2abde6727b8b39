@@ -1,0 +1,15 @@
+package com.ex.Aug14HW;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Alcoholic beer = new Alcoholic();
+		Alcoholic rum = new Alcoholic("750ml", 40.0);
+		beer.purchase();
+		rum.purchase();
+		// TODO Auto-generated method stub
+
+	}
+
+	
+}

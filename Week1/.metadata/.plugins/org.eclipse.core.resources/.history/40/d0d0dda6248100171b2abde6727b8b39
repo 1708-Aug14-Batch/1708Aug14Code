@@ -1,0 +1,42 @@
+package com.ex.HelloWorld;
+
+public class HelloWorld {
+	/*
+	 * Access modifiers:
+	 * 		public
+	 * 		private
+	 * 		protected
+	 * 		package/default
+	 */
+	public static void main(String[] args) {
+		/*
+		 * Primitive data type:
+		 * int - Integer
+		 * byte - Byte
+		 * char - Character
+		 * boolean - Boolean
+		 * short
+		 * long
+		 * float
+		 * double
+		 */
+		int a = 0;
+		Integer aa = a;
+		char c ='c';
+		char d = 50;
+		char e = '\u0000';
+		
+		int f =100000;
+		
+		c = (char) a;
+		c = (char) f;
+		
+		System.out.println("int a:" +a);
+		System.out.println("char d:" + d);
+		System.out.println("char c:" + a);
+		
+		
+		System.out.println("Hello World");
+	}
+
+}
