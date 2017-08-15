@@ -1,0 +1,24 @@
+package com.ex.day2;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class fileIO {
+static String filename = "src/com/ex/Files/log.txt";
+	public static void main(String[] args) {
+		writeMessage("Hello World");
+		
+
+	}
+	
+	static void writeMessage(String message){
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));){
+			bw.write(message +"\n");
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+
+}
