@@ -1,9 +1,11 @@
 package com.ex.pojos;
 
+import java.io.Serializable;
+
 import com.ex.vehicles.Car;
 
 
-public class Honda extends Car{
+public class Honda extends Car implements Serializable{
 
 	private String model;
 	private int mpg;
