@@ -34,7 +34,7 @@ static int stat = 10;
 		buffThings(buff);
 		buildThings(build);
 		
-		
+		//edit
 		
 	}
 	static String doThings(String s) {

@@ -41,7 +41,7 @@ public class Arrays {
 		default:
 			System.out.println("default");
 		}
-		
+		//something something something
 		while(input > 10) {
 			System.out.println(input);
 			input--;
