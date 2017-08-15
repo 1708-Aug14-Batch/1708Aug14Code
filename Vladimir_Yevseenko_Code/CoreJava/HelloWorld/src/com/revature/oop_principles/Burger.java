@@ -37,7 +37,7 @@ public class Burger extends Food {
 			case "beef": tastiness = 7; break;
 			case "chicken": tastiness = 5; break;
 			case "pork": tastiness = 3; break;
-			default: tastiness = 2;
+			default: tastiness = 3;
 		}
 		if (pickles)
 			tastiness++;
