@@ -28,7 +28,7 @@ public class FileIO {
 		String str = "";
 		try (Scanner scan = new Scanner(new FileReader(FILENAME))) {
 			while (scan.hasNext()) {
-				str += scan.nextLine() + '\n';
+				str += scan.nextLine();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -39,7 +39,5 @@ public class FileIO {
 	
 	public static void main(String[] args) {
 		writeMessage("Hello Nathan!");
-		
-		System.out.println(readFile());
 	}
 }

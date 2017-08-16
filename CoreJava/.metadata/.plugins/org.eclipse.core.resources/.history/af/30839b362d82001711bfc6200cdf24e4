@@ -28,7 +28,7 @@ public class FileIO {
 		String str = "";
 		try (Scanner scan = new Scanner(new FileReader(FILENAME))) {
 			while (scan.hasNext()) {
-				str += scan.nextLine() + '\n';
+				str += scan.nextLine();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

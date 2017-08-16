@@ -25,21 +25,17 @@ public class FileIO {
 	}
 	
 	static String readFile() {
-		String str = "";
+		String str;
 		try (Scanner scan = new Scanner(new FileReader(FILENAME))) {
 			while (scan.hasNext()) {
-				str += scan.nextLine() + '\n';
+				str += scan.nextLine();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return str;
 	}
 	
 	public static void main(String[] args) {
 		writeMessage("Hello Nathan!");
-		
-		System.out.println(readFile());
 	}
 }
