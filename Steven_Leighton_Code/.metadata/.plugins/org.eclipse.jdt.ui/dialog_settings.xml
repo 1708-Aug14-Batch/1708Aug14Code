@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="C:\Users\steve\my_git_repos\1708Aug14Code\Steven_Leighton_Code\HelloWorld\src\com\ex\pojos\Honda.java" key="org.eclipse.jdt.ui.lastuserlibrary"/>
+	<item value="480,510" key="UserLibraryLoadSaveDialog.size"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="renameSubpackages"/>
 		<item value="false" key="updateQualifiedNames"/>
@@ -65,6 +67,9 @@
 		<item value="false" key="Comments"/>
 		<item value="1" key="VisibilityModifier"/>
 		<item value="false" key="FinalModifier"/>
+	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item value="8" key="index"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>

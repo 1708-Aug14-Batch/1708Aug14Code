@@ -16,7 +16,7 @@ public class Reverse {
 	public static String reverse(String str){
 		char[] arr = str.toCharArray();
 		char[] reverseArr = new char[arr.length];
-		for(int i = 0; i < arr.length; i++){
+		for(int i = 0; i < arr.length-1; i++){
 			reverseArr[i] = arr[arr.length-i-1]; //take correct element from back of arr
 		}
 		
