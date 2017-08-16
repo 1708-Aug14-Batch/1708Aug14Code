@@ -46,4 +46,23 @@ public class StudentIO {
 		}
 		return list;
 	}
+	
+//	public void deleteStudent(Student student) {
+//		ArrayList<Student> list = new ArrayList<>();
+//		Scanner scan = new Scanner();
+//		
+//		try(BufferedReader br = new BufferedReader(new FileReader(filename));) {
+//			Student temp
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 }
+
+
+
+
+
+

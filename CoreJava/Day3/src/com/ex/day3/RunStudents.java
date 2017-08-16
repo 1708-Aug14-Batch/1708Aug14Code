@@ -8,8 +8,9 @@ public class RunStudents {
 	static StudentIO io = new StudentIO();
 
 	public static void main(String[] args) {
-		addStudent();
-		getStudents();
+//		addStudent();
+//		getStudents();
+		deleteStudent();
 	}
 	
 	public static void addStudent() {
@@ -34,6 +35,22 @@ public class RunStudents {
 		ArrayList<Student> students = io.readStudents();
 		for(Student s: students) {
 			System.out.println(s.toString());
+		}
+	}
+	
+	public static void deleteStudent() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("please enter first name to delete");
+		String fn = scan.nextLine().trim();
+
+		System.out.println("please enter last name to delete");
+		String ln = scan.nextLine().trim();
+
+		io = new StudentIO();
+		ArrayList<Student> students = io.readStudents();
+		for(Student s: students) {
+			System.out.println("check for student to delete");
 		}
 	}
 }
