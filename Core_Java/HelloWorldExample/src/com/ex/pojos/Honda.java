@@ -2,9 +2,16 @@ package com.ex.pojos;
 
 import static java.lang.Math.sqrt;
 
+import java.io.Serializable;
+
 import com.ex.vehicles.Car;
 
-public class Honda extends Car {
+public class Honda extends Car implements Serializable {
+	
+	/**
+	 * Auto-generated
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private String model;
 	private int mpg;
@@ -66,6 +73,10 @@ public class Honda extends Car {
 			System.out.println(i);
 		
 		return seconds/2;
+	}
+	
+	public String toString() {
+		return "Honda: " + model + ", mpg: " + mpg + ", description: " + description;
 	}
 
 }
