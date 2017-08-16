@@ -20,15 +20,12 @@ public class Problem4 {
 		
 	}
 	
-	//Recursive function for factorial
-	
-	public static int factorialRec(int x) {
-		if(x-1 == 0) {
-			return x;
-		}
-		else {
-			return (x * (x-1));
-		}
+	//function for factorial
+
+	public static int factorialRec(int n) {
+		if(n == 1) return 1;
+		
+		return n * factorialRec(n-1);
 	}
 
 }

@@ -8,10 +8,12 @@ public class Problem1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int intArr[] = {1,0,5,6,3,2,3,7,9,8,4};
+		//int intArr[] = {1,0,5,6,3,2,3,7,9,8,4};
+	}
+
+	public int[] bubbleSort(int intArr[]) {
 		
-		System.out.println(Arrays.toString(intArr));
-		
+
 		// Loop through the array
 		for(int i = 0; i < intArr.length; i++)
 			// Loop for individual comparison
@@ -24,7 +26,7 @@ public class Problem1 {
 				}
 			}
 		
-		System.out.println(Arrays.toString(intArr));
+		return intArr;
 	}
-
+	
 }
