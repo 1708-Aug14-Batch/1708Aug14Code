@@ -1,0 +1,31 @@
+package com.ex.day3;
+
+import java.util.Scanner;
+
+public class RunStudents {
+
+	static Student io;
+	
+	public static void main(String[] args) {
+
+
+
+	}
+
+	static void addStudent(){
+		io = new StudentIO();
+
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter first name: ");
+		String fn = scan.nextLine().trim();
+		System.out.println("Enter last name: ");
+		String ln = scan.nextLine().trim();
+		System.out.println("Enter email: ");
+		String em = scan.nextLine().trim();
+
+		Student student = new Student(fn,ln,em);
+
+		io.writeStudents(student);
+	}
+
+}

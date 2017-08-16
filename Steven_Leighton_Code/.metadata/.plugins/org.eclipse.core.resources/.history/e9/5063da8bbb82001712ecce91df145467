@@ -1,0 +1,53 @@
+package com.ex.day3;
+
+public class NestedClasses {
+/*
+ * Java allows us to write classes within
+ * other classes, these are called nested classes
+ * 
+ * Benefits:
+ *  - logical grouping of classes only used in one space
+ *  - increases encapsulation
+ *  - more readable/ maintainable code
+ *  
+ *  Types:
+ *  - static nested: declared static member of another class
+ */
+	int a = 0;
+	static int b = 0;
+	
+	//static nested class
+	static class staticClass{
+		void message(){
+			System.out.println("in static nested class");
+			System.out.println(b); //only print other static variables
+		}
+	}
+	
+	//inner class
+	class memberClass{
+		void message(){
+			System.out.println("in member class");
+			System.out.println(a + b);
+		}
+	}
+}
+
+class Other{
+	int a;
+	String message;
+	
+	public int getA() {
+		return a;
+	}
+	public void setA(int a) {
+		this.a = a;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
+}

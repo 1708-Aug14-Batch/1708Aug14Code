@@ -1,0 +1,27 @@
+package Q6;
+
+public class FindEven {
+
+	public static void main(String[] args) {
+		System.out.println("25 is " + isEven(25));
+		System.out.println("8 is " + isEven(8));
+		System.out.println("9 is " + isEven(9));
+		System.out.println("0 is " + isEven(0));
+	}
+	
+	
+	static boolean isEven(int i){
+		if(i == 0) return false;
+		String num = String.valueOf(i);
+		char lastNum = num.charAt(num.length()-1);
+		switch (lastNum) {
+		case '2': return true;
+		case '4': return true;
+		case '6': return true;
+		case '8': return true;
+		case '0': return true;
+		default:
+			return false;
+		}
+	}
+}

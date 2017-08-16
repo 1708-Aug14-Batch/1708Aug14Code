@@ -1,0 +1,23 @@
+package Q6;
+
+public class FindEven {
+
+	public static void main(String[] args) {
+		
+	}
+	
+	static boolean isEven(int i){
+		if(i == 0) return false;
+		String num = String.valueOf(i);
+		char lastNum = num.charAt(num.length()-1);
+		switch (lastNum) {
+		case '2': return true;
+		case '4': return true;
+		case '6': return true;
+		case '8': return true;
+		case '0': return true;
+		default:
+			return false;
+		}
+	}
+}

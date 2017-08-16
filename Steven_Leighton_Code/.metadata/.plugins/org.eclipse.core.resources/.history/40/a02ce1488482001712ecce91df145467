@@ -1,0 +1,13 @@
+package Q6;
+
+public class FindEven {
+
+	public static void main(String[] args) {
+		
+	}
+	
+	static boolean isEven(int i){
+		String num = String.valueOf(i);
+		char lastNum = num.charAt(num.length()-1);
+	}
+}

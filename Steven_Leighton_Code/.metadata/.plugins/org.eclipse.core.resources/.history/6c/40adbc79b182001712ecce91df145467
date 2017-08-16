@@ -1,0 +1,11 @@
+package Q10;
+
+public class Ternary {
+	public static void main(String[] args) {
+		
+	}
+	
+	static int min(int a, int b){
+		return a < b ? a : b;
+	}
+}
