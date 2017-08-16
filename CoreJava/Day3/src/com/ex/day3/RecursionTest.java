@@ -14,6 +14,7 @@ public class RecursionTest {
  * JUnit provides static methods in the org.junit.assert
  * to test for certain conditions.
  */
+	Recursion tester;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,6 +29,7 @@ public class RecursionTest {
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("before method");
+		tester = new Recursion();
 	}
 
 	@After
@@ -37,7 +39,6 @@ public class RecursionTest {
 
 	@Test
 	public void test() {
-		Recursion tester = new Recursion();
 		
 		int expected = 24;
 		int actual = tester.factorial(4);
