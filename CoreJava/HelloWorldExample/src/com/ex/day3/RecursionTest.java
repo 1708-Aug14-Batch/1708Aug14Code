@@ -16,6 +16,7 @@ import org.junit.Test;
 
 public class RecursionTest {
 
+	//  declare object
 	Recursion tester;
 
 	@BeforeClass
@@ -31,12 +32,14 @@ public class RecursionTest {
 	@Before
 	public void setUp() throws Exception {
 		System.out.println("before method");
+		//initialize before each method
 		tester = new Recursion();
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		System.out.println("after method");
+		//set to null after each method
 		tester = null;
 	}
 
