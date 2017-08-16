@@ -1,0 +1,8 @@
+package com.ex.fileio;
+
+public class Honda {
+	private String color;
+	public Honda(){
+		color = "red";
+	}
+}
