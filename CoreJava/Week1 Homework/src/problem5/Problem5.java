@@ -9,7 +9,19 @@ public class Problem5 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		System.out.println(substring("Hello",3));
 		
+	}
+	
+	public static String substring(String str, int idx) {
+		
+		String substring = "";
+		
+		for(int x = 0; x < idx; x++) {
+			substring += str.charAt(x);
+		}
+		
+		return substring;
 	}
 
 }

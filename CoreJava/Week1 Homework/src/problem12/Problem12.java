@@ -14,16 +14,16 @@ public class Problem12 {
 		
 		ArrayList<Integer> evenArrList = new ArrayList<>();
 		
-		// Add all even by starting at 2 and adding 2
+		// Add 1-100 to array
 		
-		for(int x = 2; x <= max; x+=2) {
+		for(int x = 1; x <= max; x++) {
 			evenArrList.add(x);
 		}
 		
 		// Enhance loop print
 		
 		for(Integer x:evenArrList) {
-			System.out.println(x);
+			if(x%2==0)System.out.println(x);
 		}
 		
 	}

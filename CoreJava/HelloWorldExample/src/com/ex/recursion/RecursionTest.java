@@ -1,4 +1,4 @@
-package Recursion;
+package com.ex.recursion;
 
 import static org.junit.Assert.*;
 

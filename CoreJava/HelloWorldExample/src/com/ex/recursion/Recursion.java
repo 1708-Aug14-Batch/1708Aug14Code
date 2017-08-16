@@ -1,4 +1,4 @@
-package Recursion;
+package com.ex.recursion;
 
 public class Recursion {
 
