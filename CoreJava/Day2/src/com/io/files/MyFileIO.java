@@ -31,9 +31,7 @@ public class MyFileIO {
 			e.printStackTrace();
 		}
 				
-		Scanner scan = new Scanner(filename);
-		String theMessage = scan.nextLine();
-		System.out.println(theMessage);
+		
 	}
 	
 	static String makeTime() {
