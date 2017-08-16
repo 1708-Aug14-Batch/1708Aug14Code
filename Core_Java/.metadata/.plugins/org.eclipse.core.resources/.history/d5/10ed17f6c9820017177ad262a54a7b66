@@ -1,0 +1,20 @@
+package question3;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class StringReverserTest {
+
+	@Test
+	public void testBoundaryCases() {
+		assertEquals(null, StringReverser.reverseString(null));
+		assertEquals("", StringReverser.reverseString(""));
+	}
+	
+	@Test
+	public void testCases() {
+		assertTrue(false);
+	}
+
+}

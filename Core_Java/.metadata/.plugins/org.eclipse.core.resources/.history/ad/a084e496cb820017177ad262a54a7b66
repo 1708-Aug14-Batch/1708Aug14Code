@@ -1,0 +1,34 @@
+package question3;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class StringReverserTest {
+
+	@Test
+	public void testBoundaryCases() {
+		assertEquals(null, StringReverser.reverseString(null));
+		assertEquals("", arrayToString(StringReverser.reverseString("")));
+		assertEquals("a", arrayToString(StringReverser.reverseString("a")));
+	}
+	
+	@Test
+	public void testCases() {
+		StringBuilder sb = new StringBuilder("This is a somewhat long string to be reversed");
+		
+		assertEquals("Hello World!", StringReverser.reverseString("!dlroW olleH"));
+		assertEquals("taco cat", StringReverser.reverseString("tac ocat"));
+		assertEquals(sb.reverse(), StringReverser.reverseString("tac ocat"));
+	}
+	
+	public String arrayToString(char[] characters) {
+		String result = "";
+		
+		for (char cha : characters)
+			result += cha;
+		
+		return result;
+	}
+
+}

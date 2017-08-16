@@ -1,0 +1,19 @@
+package com.ex.day3;
+
+public class NestedClasses {
+	/*
+	 * Java allows us to write classes within other classes,
+	 * these are called nested classes
+	 * 
+	 * Benefits:
+	 * 	- logical grouping of classes only used in one place
+	 * 	- increases encapsulation
+	 *  - more readable and maintainable code
+	 *  
+	 * Types:
+	 *  - static - declared as a static member of another class
+	 */
+	
+	
+
+}

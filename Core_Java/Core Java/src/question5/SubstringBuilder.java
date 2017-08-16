@@ -36,7 +36,12 @@ public class SubstringBuilder {
 	}
 
 	// Returns a substring of str from index 0 to idx-1
-	private static String subStringer(String str, int idx) {
+	public static String subStringer(String str, int idx) {
+		if (str == null)
+			return null;
+		if (idx > str.length())
+			return str;
+		
 		String result = "";
 
 		// Keep each char up to idx-1

@@ -31,10 +31,13 @@ public class BubbleSorter {
 		System.out.println(Arrays.toString(outputArray));
 	}
 	
-	private static int[] bubbleSort(int[] inputArray) {
+	public static int[] bubbleSort(int[] inputArray) {
 		// Keeps track of whether two numbers were swapped during
 		// a single pass through the array
 		boolean swapped = true;
+		
+		if (inputArray == null)
+			return null;
 		
 		while (swapped) {
 			// Set to true by default. If nothing is swapped then loop will end

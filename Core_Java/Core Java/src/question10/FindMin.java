@@ -28,9 +28,7 @@ public class FindMin {
 			int numB = Integer.parseInt(strB);
 
 			// Ternary operators
-			int result = (numA - numB) >= 0 ?
-					(numA - numB) == 0 ?
-							0 : 1 : -1;
+			int result = findMin(numA, numB);
 
 			if (result == -1)
 				System.out.println(numA + " is smaller");
@@ -43,6 +41,12 @@ public class FindMin {
 			System.out.println("Invalid input: That isn't a number");
 		}
 
+	}
+	
+	public static int findMin(int numA, int numB) {
+		return (numA - numB) >= 0 ?
+				(numA - numB) == 0 ?
+						0 : 1 : -1;
 	}
 
 }

@@ -1,0 +1,58 @@
+package question1;
+
+import static org.junit.Assert.*;
+
+import java.util.Collections;
+
+import org.junit.Test;
+
+public class BubbleTest {
+
+	@Test
+	public void testBoundaryCases() {
+		int[] empty = {};
+		int[] set1 = {5};
+		int[] set2 = {5, 4};
+		
+		int[] expected2 = {4, 5};
+		
+		// Buttble sort with a null array
+		assertEquals(null, BubbleSorter.bubbleSort(null));
+
+		// Buttble sort with an empty array
+		assertTrue(areArraysEqual(empty, BubbleSorter.bubbleSort(empty)));
+
+		// Buttble sort with a single-item array
+		assertTrue(areArraysEqual(set1, BubbleSorter.bubbleSort(set1)));
+
+		// Buttble sort with a two-item array
+		assertTrue(areArraysEqual(expected2, BubbleSorter.bubbleSort(set2)));
+
+	}
+
+	@Test
+	public void testCases() {
+		int size1 = 3, size2 = 6, size3 = 13;
+		int[] expected1 = {0, 1, 1};
+		int[] expected2 = {0, 1, 1, 2, 3, 5};
+		int[] expected3 = {0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144};
+		
+		assertTrue(false);	// FIXME method stuf
+		
+		assertTrue(areArraysEqual(expected1, BubbleSorter.bubbleSort(size1)));
+		assertTrue(areArraysEqual(expected2, BubbleSorter.bubbleSort(size2)));
+		assertTrue(areArraysEqual(expected3, BubbleSorter.bubbleSort(size3)));
+	}
+
+	private boolean areArraysEqual(int[] expected, int[] actual) {
+
+		if (actual.length != expected.length)
+			return false;
+		for (int i = 0; i < expected.length; i++)
+			if (expected[i] != actual[i])
+				return false;
+
+		return true;
+	}
+
+}

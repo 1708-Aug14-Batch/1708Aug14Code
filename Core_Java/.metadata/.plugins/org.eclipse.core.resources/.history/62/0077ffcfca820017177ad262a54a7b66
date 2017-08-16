@@ -1,0 +1,30 @@
+package question3;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class StringReverserTest {
+
+	@Test
+	public void testBoundaryCases() {
+		assertEquals(null, StringReverser.reverseString(null));
+		assertEquals("", StringReverser.reverseString(""));
+		assertEquals("a", arrayToString(StringReverser.reverseString("a")));
+	}
+	
+	@Test
+	public void testCases() {
+		assertTrue(false);
+	}
+	
+	public String arrayToString(char[] characters) {
+		String result = "";
+		
+		for (char cha : characters)
+			result += cha;
+		
+		return result;
+	}
+
+}

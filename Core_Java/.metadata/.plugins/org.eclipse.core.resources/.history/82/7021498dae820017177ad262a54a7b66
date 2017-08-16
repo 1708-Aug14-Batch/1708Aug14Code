@@ -1,0 +1,20 @@
+package com.ex.day3;
+
+import java.util.ArrayList;
+
+import com.ex.pojos.Student;
+
+public class StudentIO {
+	
+	static String filename1 = "src/com/ex/files/log.txt";
+	
+	public void writeStudent(Student s) {
+		
+	}
+	
+	public ArrayList<Student> getAllStudents() {
+		ArrayList<Student> studentList = new ArrayList<Student>();
+		
+		return null;	// FIXME method stub
+	}
+}

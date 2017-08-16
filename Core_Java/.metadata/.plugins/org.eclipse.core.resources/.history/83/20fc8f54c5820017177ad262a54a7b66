@@ -1,0 +1,24 @@
+package com.ex.day3;
+
+import java.util.ArrayList;
+
+public class Generics {
+
+	/*
+	 * Generics enable types (classea and interfaces) ...
+	 */
+	
+	public static void main(String[] args) {
+/*		
+		ArrayList<String> strings = new ArrayList<String>();
+		ArrayList<E> things = new ArrayList();
+		things.add(1);
+		things.add("hello");
+		things.add(new Object());
+		
+		Box<Integer> integerBox = new Box<Integer>();
+		Box<String> stringBox = new Box<String>();
+*/
+		
+	}
+}

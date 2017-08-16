@@ -20,7 +20,7 @@ public class FibonacciNumbers {
 	 * Returns a string containing a sequence of Fibonacci numbers
 	 * The length of the sequence is determined by int num 
 	 */
-	private static int[] Fibonacci(int num) {
+	public static int[] Fibonacci(int num) {
 		
 		// Check border cases for input number
 		if (num <= 0)

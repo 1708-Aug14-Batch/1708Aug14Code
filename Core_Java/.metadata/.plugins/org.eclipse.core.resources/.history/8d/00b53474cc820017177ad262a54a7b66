@@ -1,0 +1,19 @@
+package question5;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class SubstringBuilderTest {
+
+	@Test
+	public void testBoundaryCases() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testCases() {
+		fail("Not yet implemented");
+	}
+	
+}

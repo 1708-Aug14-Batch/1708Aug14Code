@@ -1,0 +1,57 @@
+package question2;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class FibonacciTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testBoundaryCases() {
+		int[] expected1 = {0};
+		int[] expected2 = {0, 1};
+		
+		// Fibonacci sequence with 0 numbers
+		assertEquals(null, FibonacciNumbers.Fibonacci(0));
+
+		// Fibonacci sequence with 1 number
+		int[] actual1 = FibonacciNumbers.Fibonacci(1);
+		assertEquals(actual1.length, expected1.length);
+		for (int i = 0; i < expected1.length; i++)
+			assertEquals(expected1[i], actual1[i]);
+		
+
+		// Fibonacci sequence with 2 numbers
+		assertEquals(expected2, FibonacciNumbers.Fibonacci(2));
+		
+		// Fibonacci sequence with fewer than 0 numbers
+		assertEquals(null, FibonacciNumbers.Fibonacci(-5));
+		
+	}
+	
+	@Test
+	public void testCases() {
+		assertEquals(0, 1);
+	}
+
+}

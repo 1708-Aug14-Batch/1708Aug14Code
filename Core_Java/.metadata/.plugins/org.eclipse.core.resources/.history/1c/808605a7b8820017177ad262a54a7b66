@@ -1,0 +1,87 @@
+package com.ex.day3;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.ex.pojos.Student;
+
+public class RunStudents {
+
+	static StudentIO sIO = new StudentIO();
+	static Scanner scan = new Scanner(System.in);
+	
+	// Note: this code does not check whether a last name is legal
+	// or whether the first/last name contains the delimiter
+	// used for writing/reading students
+	public static void main(String[] args) {
+
+		while(true) {
+			System.out.println("Enter 1 to add a student, Enter 2 to print a list of all students" +
+					"\nEnter 3 to update a student, Enter 4 to delete a student" +
+					"\nEnter 5 to delete all students.");
+			String str = scan.nextLine();
+
+			if (str.equals("1"))
+				addStudent();
+			else if (str.equals("2"))
+				printStudents();
+			else if (str.equals("3"))
+				updateStudent();
+			else if (str.equals("4"))
+				deleteStudent();
+			else if (str.equals("5")) {
+
+				System.out.println("You are about to DELETE ALL STUDENTS from the system. Are you sure? y/n");
+				String str2 = scan.nextLine();
+
+				if (str2.equalsIgnoreCase("y"))
+					sIO.deleteAllStudents();
+			}
+
+			System.out.println();
+			System.out.println("Do you wish to continue updating the list of students? y/n");
+			String str3 = scan.nextLine();
+			if (str3.equalsIgnoreCase("y"))
+				continue;
+			else break;
+		}
+
+		scan.close();
+
+	}
+
+	static void addStudent() {
+		Student stud = new Student();
+
+		System.out.println("Enter student's first name: ");
+		stud.setFirstName(scan.nextLine().trim());
+		System.out.println("Enter student's last name: ");
+		stud.setLastName(scan.nextLine().trim());
+		System.out.println("Enter student's unique email: ");
+		stud.setEmail(scan.nextLine().trim());
+
+		sIO.addStudent(stud);
+
+	}
+
+	static void printStudents() {
+
+		ArrayList<Student> studList = new ArrayList<Student>();
+
+		if (studList != null)
+			for (int i = 0; i < studList.size(); i++)
+				System.out.println("Student number " + i + studList.get(i).toString());
+
+	}
+
+	static void updateStudent() {
+		System.out.println("Enter the email address of student to be updated: ");
+	}
+
+	static void deleteStudent() {
+		System.out.println("Enter the email address of student to be deleted: ");
+	}
+
+}

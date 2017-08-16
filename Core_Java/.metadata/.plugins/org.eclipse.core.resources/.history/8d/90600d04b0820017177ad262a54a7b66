@@ -1,0 +1,35 @@
+package com.ex.day3;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.ex.pojos.Student;
+
+public class RunStudents {
+	
+	// Note: this code does not check whether a last name is legal
+	// or whether the first/last name contains the delimiter
+	// used for writing/reading students
+	public static void main(String[] args) {
+		
+		StudentIO sIO = new StudentIO();
+		Scanner scan = new Scanner(System.in);
+		Student stud = new Student();
+		
+		System.out.println("Enter your first name: ");
+		stud.setFirstName(scan.nextLine().trim());
+		System.out.println("Enter your last name: ");
+		stud.setLastName(scan.nextLine().trim());
+		System.out.println("Enter your email: ");
+		stud.setEmail(scan.nextLine().trim());
+		
+		sIO.writeStudent(stud);
+		
+		ArrayList<Student> studList = new ArrayList<Student>();
+		
+		for (int i = 0; i < studList.size(); i++)
+			System.out.println("Student number " + i + studList.get(i).toString());
+		
+	}
+
+}

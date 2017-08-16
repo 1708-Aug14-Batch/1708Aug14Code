@@ -1,0 +1,23 @@
+package question5;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class SubstringBuilderTest {
+
+	@Test
+	public void testBoundaryCases() {
+		assertEquals(null, SubstringBuilder.subStringer(null, 0));
+		assertEquals(null, SubstringBuilder.subStringer(null, 7));
+		assertEquals("", SubstringBuilder.subStringer("", 0));
+		assertEquals("", SubstringBuilder.subStringer("", 77));
+		assertEquals("", SubstringBuilder.subStringer("", -77));
+	}
+	
+	@Test
+	public void testCases() {
+		fail("Not yet implemented");
+	}
+	
+}

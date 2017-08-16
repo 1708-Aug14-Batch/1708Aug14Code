@@ -1,0 +1,36 @@
+package com.ex.day2;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+import com.ex.pojos.Honda;
+
+public class Serialization {
+	
+	static String filename = "src/com/ex/files/bytestream.txt";
+	
+	public static void main(String[] args) {
+		
+		Honda car = new Honda();
+		car.setDescription("Cruizer");
+		
+		writeObject(car);
+		
+	}
+	
+	static void writeObject(Object o) {
+		
+		// try-with-resources block
+		try(ObjectOutputStream oos = new ObjectOutputStream(
+				new FileOutputStream(filename))) {
+			
+			oos.writeObject(o);
+			
+		} catch (IOException e) {
+			System.out.println("IOException for filename: " + filename);
+		}
+		
+	}
+
+}

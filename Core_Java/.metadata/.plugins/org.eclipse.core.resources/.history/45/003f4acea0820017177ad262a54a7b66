@@ -1,0 +1,67 @@
+package question1;
+
+import static org.junit.Assert.*;
+
+
+import org.junit.Test;
+
+public class BubbleTest {
+
+	@Test
+	public void testBoundaryCases() {
+		int[] empty = {};
+		int[] array1 = {5};
+		int[] array2 = {5, 4};
+		
+		int[] expected2 = {4, 5};
+		
+		// Buttble sort with a null array
+		assertEquals(null, BubbleSorter.bubbleSort(null));
+
+		// Buttble sort with an empty array
+		assertTrue(areArraysEqual(empty, BubbleSorter.bubbleSort(empty)));
+
+		// Buttble sort with a single-item array
+		assertTrue(areArraysEqual(array1, BubbleSorter.bubbleSort(array1)));
+
+		// Buttble sort with a two-item array
+		assertTrue(areArraysEqual(expected2, BubbleSorter.bubbleSort(array2)));
+
+	}
+
+	@Test
+	public void testCases() {
+		int[] array1 = {1, 1, 1, 1, 1, 1};
+		int[] array2 = {0, 1, 0, 0, 0, 0, 0, 0, 0, 1};
+		int[] array3 = {5, 2, 8, 3, 9, 1, 4, 6, 8, 7};
+		int[] array4 = new int[100];
+		
+		int[] expected1 = {};
+		int[] expected2 = {};
+		int[] expected3 = {};
+		ArrayList<Integer> arrayList4 = new ArrayList<Integer>();
+		for (int num : array4)
+			arrayList4.add(num);
+		Collections.sort(arrayList4);
+		int[] expected4 = arrayList4.toArray(new int[arrayList4.size()]);
+		
+		
+		assertTrue(false);	// FIXME method stuf
+		
+		assertTrue(areArraysEqual(expected1, BubbleSorter.bubbleSort(size1)));
+		assertTrue(areArraysEqual(expected2, BubbleSorter.bubbleSort(size2)));
+		assertTrue(areArraysEqual(expected3, BubbleSorter.bubbleSort(size3)));
+	}
+
+	private boolean areArraysEqual(int[] expected, int[] actual) {
+
+		if (actual.length != expected.length)
+			return false;
+		for (int i = 0; i < expected.length; i++)
+			if (expected[i] != actual[i])
+				return false;
+
+		return true;
+	}
+
+}
