@@ -7,30 +7,27 @@ public class BubbleSort {
 		
 		int[] array = {1,0,5,6,3,2,3,7,9,8,4};
 		
-		printArray(array);
-		bubbleSortArray(array);
-		printArray(array);
+		//printArray(array);
+		//bubbleSortArray(array);
+		//printArray(array);
 	
 	}
 	
-	public static void swapLeftGreater(int[] array, int i, int k, int v1, int v2) {
+	public static void swapLeftGreater(int[] array, int k, int v1, int v2) {
 		int temp = v2;
-		array[k] = v1;
-		array[i] = temp;
+		array[k+1] = v1;
+		array[k] = temp;
 	}
 	
-	public static void bubbleSortArray(int[] array) {
+	public int[] bubbleSortArray(int[] array) {
 		for(int i = 0; i < array.length; i++) {
-			for (int k = 1; k < array.length - 1; k++) {
-				if(array[i] > array[k]) {
-					//swapLeftGreater(array, i, k, array[i], array[k]);
-					int temp = array[k];
-					array[k] = array[i];
-					array[i] = temp;
+			for (int k = 0; k < array.length - 1; k++) {
+				if(array[k] > array[k+1]) {
+					swapLeftGreater(array, k, array[k], array[k+1]);
 				}
 			}
 		}
-		System.out.println();
+		return array;
 	}
 	
 	public static void printArray(int array[]) { //works fine
