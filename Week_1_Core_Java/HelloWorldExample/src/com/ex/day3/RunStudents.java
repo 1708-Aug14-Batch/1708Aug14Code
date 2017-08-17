@@ -65,7 +65,7 @@ public class RunStudents {
 		temp = input.nextLine().trim();
 		
 		
-		for(Student s: students) { //Enchanced for loop stepping through the students ArrayList
+		for(Student s: students) { //Enhanced for loop stepping through the students ArrayList
 			/*
 			 * The following runs depending on the value given in the main function.
 			 * If the choice was 1 the user will input a new first name.
