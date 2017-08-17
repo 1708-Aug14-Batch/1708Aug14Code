@@ -1,13 +1,15 @@
 package Q9;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Primes {
 	
-	public static ArrayList<Integer> getPrimes(ArrayList<Integer> nums) {
-		ArrayList<Integer> ret = new ArrayList<>();
+	public static List<Integer> getPrimes(List<Integer> nums) {
+		List<Integer> ret = new ArrayList<>();
 		
 		for (Integer n : nums) {
+			if (n == 1) continue;
 			ret.add(n);
 			for (int i = 2; i <= Math.sqrt(n); i++) {
 				if (n % i == 0) {
@@ -22,8 +24,8 @@ public class Primes {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Integer> nums = new ArrayList<>();
-		for (int i = 0; i < 100; i++) nums.add(i+1);
+		List<Integer> nums = new ArrayList<>();
+		for (int i = 0; i < 30; i++) nums.add(i+1);
 
 		nums = getPrimes(nums);
 		for (Integer n : nums) {

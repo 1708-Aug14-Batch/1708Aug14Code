@@ -1,4 +1,4 @@
-package Q10;
+package Q6;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestMinimum {
+public class IsEvenTest {
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,10 +17,12 @@ public class TestMinimum {
 	}
 
 	@Test
-	public void test() {
-		assertEquals(1, Minimum.min(1, 10));
-		assertEquals(1, Minimum.min(10, 1));
-		assertEquals(1, Minimum.min(1, 1));
+	public void testEven() {
+
+		assertEquals(true, IsEven.isEven(0));
+		assertEquals(false, IsEven.isEven(1));
+		assertEquals(true, IsEven.isEven(100));
+		assertEquals(false, IsEven.isEven(255));
 	}
 
 }

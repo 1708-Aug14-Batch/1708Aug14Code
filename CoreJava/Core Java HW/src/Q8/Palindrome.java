@@ -1,12 +1,13 @@
 package Q8;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Palindrome {
 	
-	public static ArrayList<String> getPalindromes(ArrayList<String> words) {
-		ArrayList<String> ret = new ArrayList<>();
+	public static List<String> getPalindromes(List<String> words) {
+		List<String> ret = new ArrayList<>();
 		
 		for (String s : words) {
 			char[] word = s.toCharArray();

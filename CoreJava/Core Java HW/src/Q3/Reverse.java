@@ -1,5 +1,7 @@
 package Q3;
 
+import java.util.Stack;
+
 public class Reverse {
 	
 	/**
@@ -19,13 +21,22 @@ public class Reverse {
 		return new String(ret);
 	}
 	
+	public static String reverse2(String str) {
+		String ret = "";
+		for (char c : str.toCharArray()) {
+			ret = c + ret;
+		}
+		return ret;
+	}
+	
 	public static void main(String[] args) {
 	
 		String s = ".esrever ni si sihT";
 		
 		System.out.println(s);
 		
-		s = reverse(s);
+		//s = reverse(s);
+		s = reverse2(s);
 		
 		System.out.println(s);
 	}
