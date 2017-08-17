@@ -8,21 +8,15 @@ public interface DAO {
 
 	/*
 	 * The contract we make for the information that
-	 * we will need to sed to and receive from the data source.
+	 * we will need to send to and receive from the data source.
 	 * 
-	 * CRUD:
 	 * 
-	 * C: addUser  - new user added to the data
-	 * R: getUser  - grab user by id
-	 * U: editUser - change fn, ln, username, PW, or balance
-	 * D: deleteUser - remove user by id
-	 * 
-	 * getUsers - grab all users 
+	 * addUser  - new user added to the data
+	 * getUsers - grab all users
+	 * rewriteUsers - takes list of users and enters all information 
 	 */
 	
 	void addUser(User user);
-	User getUser(int id);
-	void editUser(User user);
-	void deleteUser(int id);
 	List<User> getUsers();
+	void rewriteUsers(List<User> users);
 }

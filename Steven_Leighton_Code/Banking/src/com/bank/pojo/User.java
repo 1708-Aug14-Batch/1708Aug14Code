@@ -1,6 +1,8 @@
 package com.bank.pojo;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
@@ -25,6 +27,18 @@ public class User {
 		this.balance = balance;
 	}
 
+	public List<String> getInfoAsStringList(){
+		List<String> info = new ArrayList<String>();
+		info.add(String.valueOf(id));
+		info.add(firstname);
+		info.add(lastname);
+		info.add(username);
+		info.add(password);
+		info.add(String.valueOf(balance.doubleValue()));
+		
+		return info;
+	}
+	
 	public int getId() {
 		return id;
 	}
