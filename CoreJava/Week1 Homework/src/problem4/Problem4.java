@@ -9,20 +9,20 @@ public class Problem4 {
 		// TODO Auto-generated method stub
 
 		// User input
-		
-		Scanner scan = new Scanner(System.in);
-		
-		System.out.println("Enter Number");
-		
-		int input = scan.nextInt();
-		
-		System.out.println(factorialRec(input));
+//		
+//		Scanner scan = new Scanner(System.in);
+//		
+//		System.out.println("Enter Number");
+//		
+//		int input = scan.nextInt();
+//		
+//		System.out.println(factorialRec(input));
 		
 	}
 	
 	//function for factorial
 
-	public static int factorialRec(int n) {
+	public int factorialRec(int n) {
 		if(n == 1) return 1;
 		
 		return n * factorialRec(n-1);
