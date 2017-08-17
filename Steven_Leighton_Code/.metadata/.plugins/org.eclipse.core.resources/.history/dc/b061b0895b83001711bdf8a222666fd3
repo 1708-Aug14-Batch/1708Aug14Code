@@ -1,0 +1,17 @@
+package com.bank.main;
+
+import com.bank.service.Service;
+
+public class RunBank {
+
+	//the implementation to run bank application
+	public static void main(String[] args) {
+		
+		Service bankService = new Service();
+	}
+	
+	static void login(){}
+	static void changeInfo(){}
+	static void removeUser(){}
+
+}
