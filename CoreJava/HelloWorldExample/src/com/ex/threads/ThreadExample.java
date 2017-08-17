@@ -41,9 +41,9 @@ public class ThreadExample {
 
 // extends Thread
 
-class ExtendsThread extends ThreadExample{
+class ExtendsThread extends Thread{
 	
-	public void start() {
+	public void run() {
 		System.out.println("In ExtendsThread");
 		for(int i = 0; i <10; i++) {
 			System.out.println(i + " in ExtendsThread");
