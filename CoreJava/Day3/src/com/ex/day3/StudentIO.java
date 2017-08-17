@@ -2,6 +2,7 @@ package com.ex.day3;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class StudentIO {
 	static String filename = "src/com/ex/files/students.txt";
+	static String tempFile = "src/com/ex/files/temp.txt";
 	
 	public void writeStudent(Student s) {
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));) {
@@ -30,9 +32,9 @@ public class StudentIO {
 		ArrayList<Student> list = new ArrayList<>();
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(filename));) {
-			Student temp = new Student();
 			String line = null;
 			while((line = br.readLine()) != null) {
+				Student temp = new Student();
 				String[] states = line.split(":");
 				temp.setFirstName(states[0]);
 				temp.setLastName(states[1]);
@@ -47,18 +49,10 @@ public class StudentIO {
 		return list;
 	}
 	
-//	public void deleteStudent(Student student) {
-//		ArrayList<Student> list = new ArrayList<>();
-//		Scanner scan = new Scanner();
-//		
-//		try(BufferedReader br = new BufferedReader(new FileReader(filename));) {
-//			Student temp
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void deleteFile() {
+		new File(filename).delete();
+	}
+	
 }
 
 

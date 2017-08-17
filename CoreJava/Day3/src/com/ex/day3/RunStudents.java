@@ -8,8 +8,8 @@ public class RunStudents {
 	static StudentIO io = new StudentIO();
 
 	public static void main(String[] args) {
-//		addStudent();
-//		getStudents();
+		addStudent();
+		getStudents();
 		deleteStudent();
 	}
 	
@@ -49,8 +49,15 @@ public class RunStudents {
 
 		io = new StudentIO();
 		ArrayList<Student> students = io.readStudents();
+		io.deleteFile();
 		for(Student s: students) {
-			System.out.println("check for student to delete");
+			if(!(fn.equals(s.getFirstName()) && ln.equals(s.getLastName()))) {
+				io.writeStudent(s);
+			}
 		}
+	}
+	
+	public static void updateStudent() {
+		
 	}
 }
