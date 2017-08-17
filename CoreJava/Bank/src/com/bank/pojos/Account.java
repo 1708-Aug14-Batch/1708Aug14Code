@@ -2,7 +2,7 @@ package com.bank.pojos;
 
 import java.math.BigDecimal;
 
-public class User {
+public class Account {
 	
 	private int id;
 	private String fname;
@@ -11,7 +11,18 @@ public class User {
 	private String pwd;
 	private BigDecimal balance;
 	
-	public User(int id, String fname, String lname, String email, String pwd, BigDecimal balance) {
+	public Account() {};
+	
+	public Account(int id, String fname, String lname, String email, String pwd) {
+		super();
+		this.id = id;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.pwd = pwd;
+	}
+	
+	public Account(int id, String fname, String lname, String email, String pwd, BigDecimal balance) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -68,6 +79,13 @@ public class User {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", fname=" + fname + ", lname=" + lname + ", email=" + email + ", pwd=" + pwd
+				+ ", balance=" + balance + "]";
+	}
+	
 	
 	
 }
