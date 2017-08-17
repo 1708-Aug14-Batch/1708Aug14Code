@@ -3,15 +3,15 @@ import java.util.Scanner;
 
 public class Q4 {
 
-	public static int compute_factorial(int val)
+	public int compute_factorial(int val)
 	{
-		if (val == 0)
-			return 0;
-		return val + compute_factorial(val-1);
+		if (val == 1)
+			return 1;
+		return val * compute_factorial(val-1);
 	}
 	
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		/*Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter a value to compute its factorial.");
 		int n;
 		while (true)
@@ -25,7 +25,7 @@ public class Q4 {
 			}
 		}
 		scanner.close();
-		System.out.println(compute_factorial(n));
+		System.out.println(compute_factorial(n));*/
 	}
 
 }
