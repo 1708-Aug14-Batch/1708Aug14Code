@@ -3,37 +3,74 @@ package com.ex.day3;
 public class ThreadIntro {
 
 	public static void main(String[] args) {
-		Runnable lambda = ()->{
-			System.out.println("running lambda");
+		ExtendsThread et = new ExtendsThread();
+		ImplementsRunnable ir = new ImplementsRunnable();
+		
+		Thread something = new Thread(ir);
+		
+		
+		Runnable anonRun = new Runnable(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				System.out.println("in anon class");
+				for(int i = 0; i<10;i++){
+					System.out.println(i + " in anonclass");
+				}
+			}
+			
 		};
+		
+		
+		Thread anonThread = new Thread(anonRun);
+		
+		
+		//lambda
+		
+		Runnable lambda = () -> {
+			System.out.println("in lambda");
+			for(int i = 0; i < 10; i++){
+				System.out.println(i + " lambda");
+			}
+		
+		};
+			
+		Thread l = new Thread(lambda);
+		l.start();
+		anonThread.start();
+		et.start();
+		something.start();
+		//lambda.run();
 	}
-	
-	
-	Runnable inner = new Runnable(){
-		
-		public void run(){
-			System.out.println("running inner");
-		}
-		
-	};
-	
-	
-	
+
+
 }
 
 
-class ThreadClass extends Thread{
+// extends Thread
+class ExtendsThread extends Thread{
+	
 	public void run(){
-		System.out.println("running from extending thread");
+		
+		System.out.println("In ExtendsThread");
+		for(int i = 0; i<10 ; i++){
+			System.out.println(i + " in ExtendsThread");
+		}
 	}
 }
 
-class RunnableInterface implements Runnable{
-
+//implement runnable
+class ImplementsRunnable implements Runnable{
+	
+	
+	
 	@Override
 	public void run() {
-		System.out.println("running from implementing interface");
+		System.out.println("In ImplementsRunnable");
+		for(int i=0; i<10;i++){
+			System.out.println(i + " in ImplementsRunnable");
+		}
 	}
 	
 }
-
