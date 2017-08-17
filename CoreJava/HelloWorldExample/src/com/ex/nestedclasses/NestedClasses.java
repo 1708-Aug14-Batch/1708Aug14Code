@@ -1,6 +1,6 @@
-package com.exe.nestedclasses;
+package com.ex.nestedclasses;
 
-import com.exe.nestedclasses.NestedClasses.MemberClass;
+import com.ex.nestedclasses.NestedClasses.MemberClass;
 
 public class NestedClasses {
 	
