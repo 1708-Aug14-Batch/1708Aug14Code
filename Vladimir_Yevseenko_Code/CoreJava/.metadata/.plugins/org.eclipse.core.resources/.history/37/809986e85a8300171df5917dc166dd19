@@ -1,0 +1,6 @@
+package com.bank.pojos;
+
+public interface Storeable<T> {
+	String storedForm();
+	
+}

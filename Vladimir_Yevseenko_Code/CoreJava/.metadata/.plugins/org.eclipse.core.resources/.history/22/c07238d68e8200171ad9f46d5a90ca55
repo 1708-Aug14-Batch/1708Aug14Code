@@ -1,0 +1,82 @@
+package com.revature.q07;
+
+import static org.junit.Assert.*;
+
+import java.util.Arrays;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class Tests {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void ageComparatorTest() {
+		Employee[] sorted = new Employee[3];
+		
+		sorted[0] = new Employee("youngin", "crib", 2);
+		sorted[1] = new Employee("sdsd", "2123", 65);
+		sorted[2] = new Employee("turlte", "who dis", 99);
+		
+		Employee[] toSort = new Employee[3];
+		toSort[0] = new Employee("sdsd", "2123", 65);
+		toSort[1] = new Employee("turlte", "who dis", 99);
+		toSort[2] = new Employee("youngin", "crib", 2);
+		
+		Arrays.sort(toSort, new EmployeeAgeComparator());
+		assertArrayEquals(sorted, toSort);
+	}
+	
+	@Test
+	public void nameComparatorTest() {
+		Employee[] sorted = new Employee[3];
+		
+		sorted[0] = new Employee("youngin", "crib", 2);
+		sorted[1] = new Employee("sdsd", "2123", 65);
+		sorted[2] = new Employee("turlte", "who dis", 99);
+		
+		Employee[] toSort = new Employee[3];
+		toSort[0] = new Employee("sdsd", "2123", 65);
+		toSort[1] = new Employee("turlte", "who dis", 99);
+		toSort[2] = new Employee("youngin", "crib", 2);
+		
+		Arrays.sort(toSort, new EmployeeAgeComparator());
+		assertArrayEquals(sorted, toSort);
+	}
+	
+	@Test
+	public void ageComparatorTest() {
+		Employee[] sorted = new Employee[3];
+		
+		sorted[0] = new Employee("youngin", "crib", 2);
+		sorted[1] = new Employee("sdsd", "2123", 65);
+		sorted[2] = new Employee("turlte", "who dis", 99);
+		
+		Employee[] toSort = new Employee[3];
+		toSort[0] = new Employee("sdsd", "2123", 65);
+		toSort[1] = new Employee("turlte", "who dis", 99);
+		toSort[2] = new Employee("youngin", "crib", 2);
+		
+		Arrays.sort(toSort, new EmployeeAgeComparator());
+		assertArrayEquals(sorted, toSort);
+	}
+
+}

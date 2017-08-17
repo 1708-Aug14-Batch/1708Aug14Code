@@ -1,0 +1,7 @@
+package com.revature.q18;
+
+public abstract class AbstractStrOps {
+	public abstract boolean hasUpperCase();
+	public abstract String toUpperCase();
+	
+}

@@ -3,7 +3,7 @@ package com.revature.exceptions;
 public class UnderstandingExceptions {
 	public static void main(String[] args) {
 		int arr[] = new int[4];
-		String s = null;
+		String s = "";
 		try {
 			arr[4] = s.indexOf(9);
 		} catch (ArrayIndexOutOfBoundsException e) {

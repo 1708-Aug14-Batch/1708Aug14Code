@@ -1,0 +1,24 @@
+package com.revature.q19;
+
+import java.util.ArrayList;
+
+public class Numbers {
+	public static void main(String[] args) {
+		ArrayList<Integer> list = new ArrayList<>();
+		for (int i=1; i<=10; i++)
+			list.add(i);
+		
+		int evenSum, oddSum;
+		evenSum = oddSum = 0;
+		for (int i: list) {
+			if (isEven(i))
+				evenSum += i;
+			else
+				oddSum += i;
+		}
+	}
+	
+	public static boolean isEven(int i) {
+		return i % 2 == 0;
+	}
+}

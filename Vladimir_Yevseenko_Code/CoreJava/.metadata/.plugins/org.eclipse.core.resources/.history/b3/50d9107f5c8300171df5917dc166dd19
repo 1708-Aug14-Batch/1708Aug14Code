@@ -1,0 +1,38 @@
+package com.bank.dao;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bank.pojos.User;
+
+public class DAOTextFile implements DAO<User> {
+	
+	private final String path;
+	
+	public DAOTextFile(String path) {
+		this.path = path;
+	}
+	
+	@Override
+	public void write(List<User> list) {
+		try (BufferedWriter b = new BufferedWriter(new FileWriter(path))) {
+			for (T t: list)
+				b.write(t.toString() + "\n");
+		} catch (IOException ex) {
+			System.out.println("I/O error, try again");
+		}
+	}
+
+	@Override
+	public ArrayList<User> read() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

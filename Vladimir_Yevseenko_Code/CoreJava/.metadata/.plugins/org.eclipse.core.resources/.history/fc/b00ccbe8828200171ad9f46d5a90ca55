@@ -1,0 +1,43 @@
+package com.revature.q15;
+
+public class NumberContainer implements Arithmetical<NumberContainer> }
+	private short s;
+	private int i;
+	private long l;
+	private float f;
+	private double d;
+	
+	
+	public NumberContainer(short s, int i, long l, float f, double d) {
+		this.s = s;
+		this.i = i;
+		this.l = l;
+		this.f = f;
+		this.d = d;
+	}
+	
+	@Override
+	public NumberContainer add(NumberContainer t) {
+		
+	}
+	
+	@Override
+	public NumberContainer subtract(NumberContainer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public NumberContainer multiply(NumberContainer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public NumberContainer divide(NumberContainer t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

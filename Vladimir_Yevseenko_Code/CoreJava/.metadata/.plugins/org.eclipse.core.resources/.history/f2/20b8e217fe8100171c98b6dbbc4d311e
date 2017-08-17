@@ -1,0 +1,7 @@
+package com.revature.q2;
+
+public class Fibonacci {
+	public static void main(String[] args) {
+		int[] fibCache = new int[26];
+	}
+}

@@ -1,0 +1,6 @@
+package com.bank.dao;
+
+public interface DAO<T> {
+	void save(String path, List<T> list);
+	ArrayList<T> read(String path);
+}

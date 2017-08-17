@@ -1,0 +1,40 @@
+package com.revature.q9;
+
+import java.util.ArrayList;
+
+public class Primes {
+	private static ArrayList<Integer> sieve = new ArrayList<>();
+	
+	public static void main(String[] args) {
+		initSieve();
+		for (int i: sieve)
+			System.out.print(i + " ");
+		/*ArrayList<Integer> list = new ArrayList<>();
+		for (int i=1; i<=100; i++)
+			list.add(i);
+		
+		ArrayList<Integer> primes = new ArrayList<>();
+		
+		for (int i: list)
+			if (isPrime(i))
+				primes.add(i);
+		
+		System.out.println("Prime numbers left:");
+		for (int n: primes)
+			System.out.print(n + " ");*/
+	}
+	
+	public static void initSieve() {
+		for (int i=1; i<=100; i++)
+			sieve.add(i);
+		sieve.remove((Object) 0);
+		sieve.remove((Object) 1);
+		for (int n: sieve)
+			for (int i=2*n; i <= 100; i += n)
+				sieve.remove((Object) i);
+	}
+	
+	public static boolean isPrime(int n) {
+		return sieve.contains(n);
+	}
+}

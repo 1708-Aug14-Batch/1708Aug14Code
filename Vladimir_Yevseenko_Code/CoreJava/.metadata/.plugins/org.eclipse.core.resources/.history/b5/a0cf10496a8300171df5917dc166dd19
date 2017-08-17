@@ -1,0 +1,15 @@
+package com.bank.pojos;
+
+public enum Field {
+	FIRST, LAST, EMAIL, PASSWORD;
+	
+	public Field parseField(String s) {
+		switch (s) {
+			case "f": return FIRST;
+			case "l": return LAST;
+			case "e": return EMAIL;
+			case "p": return PASSWORD;
+		}
+		return null;
+	}
+}

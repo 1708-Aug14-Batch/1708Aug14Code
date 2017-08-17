@@ -1,0 +1,11 @@
+package com.bank.main;
+
+import com.bank.service.BankService;
+
+public class Driver {
+	static BankService s = new BankService();
+	
+	public static void main(String[] args) {
+		
+	}
+}

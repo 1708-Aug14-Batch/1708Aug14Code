@@ -1,0 +1,7 @@
+package com.revature.q15;
+
+public class Main {
+	public static void main(String[] args) {
+		NumberContainer nc1 = new NumberContainer(5, 100, 2500, 8.6f, 3.14);
+	}
+}

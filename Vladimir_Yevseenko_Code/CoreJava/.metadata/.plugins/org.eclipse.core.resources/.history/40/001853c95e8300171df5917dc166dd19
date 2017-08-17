@@ -1,0 +1,6 @@
+package com.bank.interfaces;
+
+public interface Storeable<T> {
+	String toStoredForm();
+	T fromStoredForm();
+}

@@ -1,0 +1,12 @@
+package com.revature.q14;
+
+public class Switch {
+	public static void main(String[] args) {
+		int choice = 1;
+		try (Scanner s = new Scanner(System.in)) {
+		} catch (NumberFormatException ex) {
+			System.out.println("You did not enter a number.");
+			System.exit(1);
+		}
+	}
+}

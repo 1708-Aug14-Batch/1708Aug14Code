@@ -1,0 +1,6 @@
+package com.bank.dao;
+
+public interface DAO {
+	void addUser(String path);
+	void editUser(String path);
+}

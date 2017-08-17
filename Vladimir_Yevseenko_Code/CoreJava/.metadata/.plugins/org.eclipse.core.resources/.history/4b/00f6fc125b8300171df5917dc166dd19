@@ -1,0 +1,29 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+
+public class User implements Storeable<User> {
+	
+	enum UserFields {
+		
+	};
+	
+	private final int id;
+	private String first, last, email, password;
+	private BigDecimal balance;
+	
+	public User(int id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toStoredForm() {
+		return id+":"+first+":"+last
+	}
+
+	@Override
+	public Object fromStoredForm(String line) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

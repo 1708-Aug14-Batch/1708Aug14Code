@@ -1,0 +1,21 @@
+package com.revature.q4;
+
+public class Factorial {
+	public static void main(String[] args) {
+		int N = 20; /* factorial which to calculate */
+		long[] factorialCache = new long[N+1];
+		factorialCache[0] = 1;
+		for (int i=1; i<N+1; i++)
+			factorialCache[i] = factorialCache[i-1] * i;
+		
+		System.out.println(N + "! = " + factorialCache[N]);
+	}
+	
+	public static long smartFactorial(int n) {
+		
+	}
+	
+	public static long naiveFactorial(int n) {
+		
+	}
+}

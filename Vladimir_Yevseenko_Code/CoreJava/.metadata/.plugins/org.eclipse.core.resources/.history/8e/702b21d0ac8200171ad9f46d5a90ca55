@@ -1,0 +1,24 @@
+package com.revature.threads;
+
+import java.util.Calendar;
+
+public class Timer implements Runnable {
+
+	@Override
+	public void run() {
+		Calendar old = Calendar.getInstance(), cur;
+		while (true) {
+			cur = Calendar.getInstance();
+			if (old.get(Calendar.SECOND) != cur.get(Calendar.SECOND)) {
+				old = cur;
+				System.out.println(cur.get(Calendar.SECOND));
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+}

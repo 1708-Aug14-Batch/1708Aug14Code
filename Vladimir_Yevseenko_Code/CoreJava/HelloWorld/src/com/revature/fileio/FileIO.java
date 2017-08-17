@@ -16,10 +16,12 @@ public class FileIO {
 		Scanner s = new Scanner(System.in);
 		/*while(s.hasNext()) {
 			writeMsg(file, s.next());
-		}
-		s.close();*/
+		} */
+		s.close();
 		ArrayList<String> lines;
 		lines = readFile(file);
+		for (String line: lines)
+			System.out.println(line);
 		
 	}
 	

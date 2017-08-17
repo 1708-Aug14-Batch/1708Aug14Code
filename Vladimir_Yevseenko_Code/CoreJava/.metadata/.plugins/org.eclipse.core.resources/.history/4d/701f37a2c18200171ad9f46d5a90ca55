@@ -1,0 +1,21 @@
+package com.revature.threads;
+
+public class Main {
+	public static void main(String[] args) {
+
+		Runnable r = new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("Anonymous");
+			}
+		};
+		
+		Runnable lambda = () -> {
+			System.out.println("Lambda");
+		};
+		
+		new Thread(lambda).start();
+		System.out.println("Main");
+
+	}
+}

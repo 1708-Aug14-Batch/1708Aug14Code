@@ -1,0 +1,7 @@
+package com.revature.singleton;
+
+public class Singleton {
+	private static Singleton INSTANCE = null;
+	
+	private Singleton() {}
+}

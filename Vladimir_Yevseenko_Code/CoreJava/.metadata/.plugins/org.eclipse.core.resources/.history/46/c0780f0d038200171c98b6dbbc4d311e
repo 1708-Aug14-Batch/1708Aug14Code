@@ -1,0 +1,11 @@
+package com.revature.q6;
+
+public class IsEven {
+	public static void main(String[] args) {
+		
+	}
+	
+	public static boolean isEven(int n) {
+		return (n & 1) == 1;
+	}
+}

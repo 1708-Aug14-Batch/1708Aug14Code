@@ -1,0 +1,43 @@
+package com.bank.service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.bank.dao.DAO;
+import com.bank.dao.DAOTextFile;
+import com.bank.pojos.User;
+
+public class BankService {
+	private DAO<User> dao;
+	private List<User> users;
+	private User currentUser;
+	
+	public BankService(String path) {
+		dao = new DAOTextFile(path);
+		users = dao.read();
+	}
+	
+	public void createNewUser() {
+		User u = new User();
+		u.setFirst(first);
+		u.setLast(last);
+		u.setEmail(email);
+		u.setPassword(password);
+		u.setBalance(balance);
+		users.add(u);
+	}
+	
+	public User login(String email, String password) {
+		User u = null;
+		for (User usr: users)
+			if (usr.getEmail().equals(email) && usr.getPassword().equals(password)) {
+				u = usr;
+				break;
+			}
+		return u;
+	}
+	
+	public void finish() {
+		dao.write(users);
+	}
+}

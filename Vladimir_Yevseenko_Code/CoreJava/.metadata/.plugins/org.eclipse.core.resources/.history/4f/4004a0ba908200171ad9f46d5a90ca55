@@ -1,0 +1,57 @@
+package com.revature.q08;
+
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class Tests {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void isPalindromeTest() {
+		assertTrue(Palindromes.isPalindrome("racecar"));
+		assertTrue(Palindromes.isPalindrome("potatootatop"));
+		assertFalse(Palindromes.isPalindrome("vladimir"));
+		assertFalse(Palindromes.isPalindrome("revature dot com"));
+	}
+	
+	@Test
+	public void isPalindromeRecTest() {
+		assertTrue(Palindromes.isPalindromeRec("racecar"));
+		assertTrue(Palindromes.isPalindromeRec("potatootatop"));
+		assertFalse(Palindromes.isPalindromeRec("vladimir"));
+		assertFalse(Palindromes.isPalindromeRec("revature dot com"));
+	}
+	
+	@Test
+	public void onlyPalindromesTest() {
+		ArrayList<String> p1 = Arrays.asList(String[]{"vladalv", "catac", "evilive"));
+		p1.add("vladalv");
+		p1.add("catac");
+		p1.add("evilive");
+		}
+	}
+
+}

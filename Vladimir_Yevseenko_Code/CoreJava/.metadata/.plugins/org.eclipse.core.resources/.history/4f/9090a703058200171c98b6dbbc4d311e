@@ -1,0 +1,13 @@
+package com.revature.q7;
+
+public class Main {
+	Employee[] employees = new Employee[5];
+	
+	employees[0] = new Employee("Vlad", "Trainee", 21);
+	employees[1] = new Employee("Bob", "Sales", 35);
+	employees[2] = new Employee("Jane", "Trainer", 24);
+	employees[3] = new Employee("Jon", "HR", 28);
+	employees[4] = new Employee("Jill", "HR", 25);
+	
+	
+}

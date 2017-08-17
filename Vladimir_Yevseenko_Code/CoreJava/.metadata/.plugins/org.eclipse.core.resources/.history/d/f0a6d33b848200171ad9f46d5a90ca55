@@ -1,0 +1,11 @@
+package com.revature.q15;
+
+public class Main {
+	public static void main(String[] args) {
+		NumberContainer nc1 = new NumberContainer((short) 5, 100, 2500, 8.6f, 3.14);
+		NumberContainer nc2 = new NumberContainer((short) 40, 259, 69420, 100.05f, 29.29);
+		
+		NumberContainer added = nc1.add(nc2);
+		
+	}
+}

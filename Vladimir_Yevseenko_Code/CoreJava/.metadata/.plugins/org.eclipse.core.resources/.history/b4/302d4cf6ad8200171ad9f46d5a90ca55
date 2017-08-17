@@ -1,0 +1,13 @@
+package com.revature.pojos;
+
+public class Student {
+	private String first, last, email;
+	
+	public Student(String first, String last, String email) {
+		this.first = first;
+		this.last = last;
+		this.email = email;
+	}
+	
+	
+}

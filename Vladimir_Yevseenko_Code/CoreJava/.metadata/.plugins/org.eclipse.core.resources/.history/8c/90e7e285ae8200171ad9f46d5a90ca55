@@ -1,0 +1,8 @@
+package com.revature.student;
+
+public class StudentIO {
+	private static final String path = "src/com/revature/student/students.txt";
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,8 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+
+public class User {
+	private String first, last, email;
+	private BigDecimal balance;
+}

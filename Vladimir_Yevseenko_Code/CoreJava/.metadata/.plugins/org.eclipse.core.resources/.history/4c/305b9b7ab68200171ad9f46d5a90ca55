@@ -1,0 +1,44 @@
+package com.revature.student;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	private static final String path = "src/com/revature/student/students.txt";
+	private static Scanner scanner = new Scanner(System.in);
+	private static StudentIO studentIO = new StudentIO();
+	
+	public static void main(String[] args) {
+		boolean running = true;
+		while(running) {
+			System.out.println("add - add a student, rm - remove a student, mv - replace a student, q - quit");
+			switch(scanner.next()) {
+			case "q": running = false; break;
+			case "add": addStudent();
+			}
+		}
+		System.out.println("Goodbye!");
+		scanner.close();
+	}
+	
+	public static void addStudent() {
+		System.out.print("First: ");
+		String first = scanner.nextLine().trim();
+		System.out.print("First: ");
+		String last = scanner.nextLine().trim();
+		System.out.print("First: ");
+		String email = scanner.nextLine().trim();
+		studentIO.writeStudent(path, new Student(first, last, email));
+		System.out.println("Student successfully removed\n");
+	}
+	
+	public static void removeStudent() {
+		System.out.print("First: ");
+		String first = scanner.nextLine().trim();
+		System.out.print("First: ");
+		String last = scanner.nextLine().trim();
+		System.out.print("First: ");
+		String email = scanner.nextLine().trim();
+		studentIO.removeStudent(path, new Student(first, last, email));
+	}
+}

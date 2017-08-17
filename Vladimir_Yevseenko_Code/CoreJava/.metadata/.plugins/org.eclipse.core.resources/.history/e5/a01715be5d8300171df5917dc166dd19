@@ -1,0 +1,12 @@
+package com.bank.service;
+
+import com.bank.dao.DAO;
+import com.bank.dao.DAOTextFile;
+
+public class BankService {
+	DAO<User> dao = new DaoTextFile();
+	
+	public BankService(String path) {
+		dao = new DAOTextFile(path);
+	}
+}

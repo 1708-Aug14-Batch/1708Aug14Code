@@ -1,0 +1,12 @@
+package com.revature.threads;
+
+public class Main {
+	public static void main(String[] args) {
+		Runnable R = () -> System.out.println("Lambda");
+		
+		for (int i=0; i<1000; i++)
+			new Thread(r).start();
+		System.out.println("Main");
+
+	}
+}

@@ -1,0 +1,9 @@
+package com.bank.service;
+
+public class BankService {
+	DAO dao;
+	
+	public BankService(String path) {
+		dao = new DAOTextFile(path);
+	}
+}

@@ -1,0 +1,14 @@
+package com.revature.q3;
+
+public class ReverseString {
+	public static void main(String[] args) {
+		System.out.println(reverseString("vladimir"));
+	}
+	
+	public static String reverseString(String s) {
+		for (int low = 0, high = s.length() - 1; low < high; low++, high--)
+			s = s.substring(0, low) + s.charAt(high) + s.substring(low+1, high) + 
+					s.charAt(low) + s.substring(high+1);
+		return s;
+	}
+}

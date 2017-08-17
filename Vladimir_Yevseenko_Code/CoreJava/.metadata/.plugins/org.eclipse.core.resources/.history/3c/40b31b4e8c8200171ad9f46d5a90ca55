@@ -1,0 +1,48 @@
+package com.revature.q03;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+public class Tests {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void loopReverseTest() {
+		assertEquals("rimidalv", ReverseString.reverseString("Vladimir"));
+		assertEquals("dlrow olleh", ReverseString.reverseString("hello world"));
+	}
+	
+	@Test
+	public void recReverseTest() {
+		assertEquals("rimidalv", ReverseString.reverseStringRec("Vladimir"));
+		assertEquals("dlrow olleh", ReverseString.reverseStringRec("hello world"));
+	}
+	
+	
+	@Test
+	public void equalityTest() {
+		assertEquals(ReverseString.reverseString("eoh23793diuasd732dgqd"),
+				ReverseString.reverseStringRec("eoh23793diuasd732dgqd"));
+	}
+
+}

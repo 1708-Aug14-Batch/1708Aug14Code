@@ -1,0 +1,21 @@
+package com.revature.threads;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Timer implements Runnable {
+
+	@Override
+	public void run() {
+		SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss");
+		Date old = new Date();
+		Date cur;
+		while (true) {
+			cur = new Date();
+			if (!cur.getSeconds() != old.getSeconds()) {
+				System.out.println(cur.toString());
+				old = cur;
+			}
+		}
+	}
+}

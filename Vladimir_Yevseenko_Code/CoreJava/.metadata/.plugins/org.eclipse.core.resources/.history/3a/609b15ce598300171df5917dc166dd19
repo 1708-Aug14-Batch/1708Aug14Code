@@ -1,0 +1,17 @@
+package com.bank.dao;
+
+public class DAOTextFile implements DAO<T> {
+
+	@Override
+	public void addUser(String path) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editUser(String path) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

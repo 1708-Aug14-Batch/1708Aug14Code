@@ -1,0 +1,24 @@
+package com.revature.q6;
+
+public class IsEven {
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter a number: ");
+		try {
+			
+		} catch (NumberFormatException ex) {
+			
+		}
+	}
+	
+	/*
+	 * check the lowest bit in n to see if it is even
+	 * lowest bit is clear if it is positive and even
+	 * lowest bit is set if it is negative and even
+	 */
+	public static boolean isEven(int n) {
+		if (n < 0)
+			return (n & 1) == 1;
+		return (n & 1) == 0;
+	}
+}

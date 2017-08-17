@@ -1,0 +1,27 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+
+public class User implements Storeable<User> {
+	
+	private final int id;
+	private String first, last, email, password;
+	private BigDecimal balance;
+	
+	static class Builder {
+		private String first, last, email, password;
+		BigDecimal balance;
+	}
+	
+	public User(int id) {
+		this.id = id;
+	}
+
+	public String toStoredForm() {
+		return id+":"+first+":"+last+":"+email+":"+password+":"+balance;
+	}
+
+	public static User fromStoredForm(String line) {
+		String[] fields = line.split(":");
+	}
+}

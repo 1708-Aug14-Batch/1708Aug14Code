@@ -1,0 +1,20 @@
+package com.revature.student;
+
+import java.util.ArrayList;
+
+public class StudentIO {
+	private static final String path = "src/com/revature/student/students.txt";
+	public static void main(String[] args) {
+		
+	}
+	
+	public void writeStudent(String s) {
+		try (BufferedWriter w = new BufferedWriter(new FileWriter(path))) {
+			
+		}
+	}
+	
+	public ArrayList<Student> readStudents(String path) {
+		
+	}
+}

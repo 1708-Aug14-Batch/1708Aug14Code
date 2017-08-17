@@ -1,0 +1,13 @@
+package com.revature.q11_1;
+
+public class FloatContainer {
+	/*
+	 * The instance variables must be public in order for us to
+	 * access them directly from another package
+	 * Another way to do this would be to have the other
+	 * class be a subclass of FloatContainer
+	 * but that is more messy
+	 */
+	float float1 = 23123.232f;
+	float float2 = 3.14f;
+}
