@@ -1,0 +1,13 @@
+package Q16;
+
+public class NumChars {
+
+	public static void main(String[] args) {
+		System.out.println(args[0]);
+		System.out.println("entered string has " + numChars(args[0]) + " chars");
+	}
+	static int numChars(String k){
+		return k.length();
+	}
+
+}

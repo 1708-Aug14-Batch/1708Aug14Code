@@ -1,0 +1,10 @@
+package Q15;
+
+public interface Operators {
+
+	int addition();
+	int subtraction();
+	int multiply();
+	int divide();
+	
+}

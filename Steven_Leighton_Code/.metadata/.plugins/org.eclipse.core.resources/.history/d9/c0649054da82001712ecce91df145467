@@ -1,0 +1,9 @@
+package Q18;
+
+public abstract class MyAbstractClass {
+
+	public abstract boolean checkUppercases();
+	public abstract String convertToUppercase();
+	public abstract void convertToInt();
+	
+}

@@ -1,0 +1,36 @@
+package Q19;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArrayListStuff {
+
+	public static void main(String[] args) {
+		//create list
+		List<Integer> list = new ArrayList<Integer>();
+		//add nums through 10
+		for(int i= 1; i<=10; i++){
+			list.add(i);
+		}
+		//print
+		printList(list);
+		//add all even and print (also add up odds here)
+		int evenSum = 0;
+		int evenOdd = 0;
+		for (Integer integer : list) {
+			if(integer%2==0) evenSum+= integer;
+			else evenOdd += integer;
+		}
+		System.out.println("Even sum is = " +evenSum);
+		System.out.println("Odd sum is = " +oddSum);
+	}
+
+	static void printList(List<Integer> list){
+		//iterate over list, print each
+		System.out.print("List: ");
+		for (Integer integer : list) {
+			System.out.print(list + " ");
+		}
+		System.out.println("");
+	}
+}

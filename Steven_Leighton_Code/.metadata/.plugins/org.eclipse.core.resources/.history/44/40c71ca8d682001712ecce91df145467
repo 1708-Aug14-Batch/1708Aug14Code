@@ -1,0 +1,29 @@
+package Q15;
+
+public class OperatorClass implements Operators {
+
+	@Override
+	public int addition() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int subtraction() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int multiply() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int divide() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
