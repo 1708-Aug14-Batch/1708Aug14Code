@@ -15,7 +15,8 @@ public class RunStudents {
 	static StudentIO io;
 	
 	public static void main(String[] args) {
-		changeStudent();
+		//changeStudent();
+		exterminateStudent();
 	}
 	
 	static void addStudent() {
@@ -62,8 +63,33 @@ public class RunStudents {
 			}catch(IOException e){
 				e.printStackTrace();
 			}
+		}	
+	}
+	static void exterminateStudent() {
+		io = new StudentIO();
+		ArrayList<Student> theStudents = io.readStudents();
+		theStudents = io.deleteStudent(theStudents);
+		String filename = "src/com/ex/day3/students.txt";
+		try {
+			PrintWriter pw = new PrintWriter(filename);
+			pw.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
+		for(int i=0;i<theStudents.size();i++) {
+			try(BufferedWriter bw = 
+					new BufferedWriter(new FileWriter(filename,true))) {
+				String text = "";
+				text = text.concat(theStudents.get(i).getFirstName()+":");
+				text = text.concat(theStudents.get(i).getLastName()+":");
+				text = text.concat(theStudents.get(i).getEmail()+"\n");
+				
+				bw.write(text);
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}	
 	}
 	
 }

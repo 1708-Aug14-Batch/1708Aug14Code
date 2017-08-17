@@ -99,9 +99,10 @@ public class StudentIO {
 		System.out.println("Enter the email of the student you'd like to delete: ");
 		String deleteEmail = scan.nextLine().trim();
 		ArrayList<Student> updatedStudentList = new ArrayList<Student>();
-		
+		String curEmail;
 		for(int i=0;i<theStudents.size();i++) {
-			if(deleteEmail==(theStudents.get(i)).getEmail()) {
+			curEmail = theStudents.get(i).getEmail();
+			if(deleteEmail.equals(curEmail)) {
 				System.out.println("Deleting: "+theStudents.get(i).getFirstName()+" "+theStudents.get(i).getLastName()+".");
 			}
 			else {
