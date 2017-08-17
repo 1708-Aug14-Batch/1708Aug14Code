@@ -19,12 +19,12 @@ public interface DAOInterface {
 	
 	public ArrayList<Account> getAll();
 	
-	public void clearUsers();
+	public void clearAccounts();
 	
-	//public void deleteTextFile()
+	public void updateAccounts(ArrayList<Account> al);
 	
 	public Account getAccount(String email, String pwd);
 	
-	//public void 
+	public void deleteAccount(String email, String pwd);
 
 }

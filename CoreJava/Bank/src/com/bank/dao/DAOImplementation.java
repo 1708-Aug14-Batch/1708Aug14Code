@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.bank.pojos.Account;
 
@@ -24,9 +25,8 @@ public class DAOImplementation implements DAOInterface{
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));){
 			String text = "";
-			
-			// id?
-			text += a.getId() + ":" + a.getFname() + ":" + a.getLname() + ":" + a.getEmail() + ":" + a.getPwd() + ":" + "0.00\n";
+		
+			text += a.getId() + ":" + a.getFname() + ":" + a.getLname() + ":" + a.getEmail() + ":" + a.getPwd() + ":" + a.getBalance() + "\n";
 			
 			bw.write(text);
 			
@@ -45,12 +45,11 @@ public class DAOImplementation implements DAOInterface{
 		
 		ArrayList<Account> userList = getAll();
 		
-		for(Account x:userList) {
-			if(x.getId()==s.getId()) {
-				x = s;
+		for(int x = 0; x<userList.size(); x++) {
+			if(userList.get(x).getId()==s.getId()) {
+				userList.set(x, s);
 			}
 		}
-		
 		updateAccounts(userList);
 	}
 
@@ -62,9 +61,7 @@ public class DAOImplementation implements DAOInterface{
 		ArrayList<Account> userList = getAll();
 		
 		for(Account x:userList) {
-			System.out.println(x.getEmail());
 			if(x.getEmail().equals(email)) {
-				System.out.println(x.getPwd());
 				if(x.getPwd().equals(pwd)) {
 					return x;	
 				}
@@ -75,7 +72,7 @@ public class DAOImplementation implements DAOInterface{
 
 	// Updates the text file
 	public void updateAccounts(ArrayList<Account> al){
-		clearUsers();
+		clearAccounts();
 		
 		for(Account a: al) {
 			addAccount(a);
@@ -89,8 +86,6 @@ public class DAOImplementation implements DAOInterface{
 			ArrayList<Account> userList = new ArrayList<>();
 			
 			try (BufferedReader br = new BufferedReader(new FileReader(filename));){
-				
-				//br.readLine().split(":");
 				
 				String line = null;
 				while((line = br.readLine())!=null) {
@@ -114,7 +109,7 @@ public class DAOImplementation implements DAOInterface{
 	}
 
 	// Clear the text file
-	public void clearUsers() {
+	public void clearAccounts() {
 		try {
 			PrintWriter erase = new PrintWriter(filename);
 			erase.close();
@@ -134,6 +129,24 @@ public class DAOImplementation implements DAOInterface{
 			return userList.get(userList.size()-1).getId()+1;	
 		}
 		
+	}
+
+	@Override
+	public void deleteAccount(String email, String pwd) {
+		// TODO Auto-generated method stub
+
+		ArrayList<Account> userList = getAll();
+
+		for(Iterator<Account> iterator = userList.iterator(); iterator.hasNext();) {
+			Account tempAcct = iterator.next();
+			if(tempAcct.getEmail().equals(email)) {
+				if(tempAcct.getPwd().equals(pwd)) {
+					iterator.remove();	
+				}
+			}
+		}
+
+		updateAccounts(userList);
 	}
 	
 }

@@ -26,7 +26,7 @@ public class RunBank {
 		
 		while(true) {
 
-			System.out.println("Please Enter A Number From the Following\\n"
+			System.out.println("Please Enter A Number From the Following\n"
 					+ "1: Create Account \n"
 					+ "2: Login");
 			
@@ -77,8 +77,6 @@ public class RunBank {
 		
 		bankService.login(email, pwd);
 		
-		System.out.println("main " + bankService.isLoggedIn());
-		
 		if(bankService.isLoggedIn()) {
 			while(bankService.isLoggedIn()) {
 				
@@ -87,7 +85,8 @@ public class RunBank {
 						+ "2: Withdraw\n"
 						+ "3: Deposit\n"
 						+ "4: Change Information\n"
-						+ "5: Logout");
+						+ "5: Logout\n"
+						+ "6: Delete Account");
 				
 				options(bankService, scan.nextInt());
 			}
@@ -98,21 +97,49 @@ public class RunBank {
 		
 	}
 	
-	//System.out.println("class" + loggedIn);
-	
-	//static void
-	
 	static void options(Service bankService, int x) {
+		Scanner scan = new Scanner(System.in);
+		
 		switch(x) {
-		case 1:System.out.println(bankService.getBalance());
+		case 1:bankService.getBalance();
 			break;
-		case 2:
+		case 2:System.out.println("Please Enter An Amount to Withdraw");
+		bankService.withdraw(scan.nextBigDecimal());
 			break;
-		case 3:
+		case 3:System.out.println("Please Enter An Amount to Deposit");
+		bankService.deposit(scan.nextBigDecimal());
 			break;
-		case 4:
+		case 4:System.out.println("Please Enter A Number From the Following\n"
+				+ "1: Change First Name\n"
+				+ "2: Change Last Name\n"
+				+ "3: Change Email\n"
+				+ "4: Change Password");
+			switch(scan.nextInt()) {
+			case 1:System.out.println("Enter New First Name");
+				scan.nextLine();
+				String fname = scan.nextLine().trim();
+				bankService.changeFName(fname);
+				break;
+			case 2:System.out.println("Enter New Last Name");
+				scan.nextLine();
+				bankService.changeLName(scan.nextLine().trim());
+				break;
+			case 3:System.out.println("Enter New Email");
+				scan.nextLine();
+				bankService.changeEmail(scan.nextLine().trim());
+				break;
+			case 4:System.out.println("Enter New Password");
+				scan.nextLine();
+				bankService.changePwd(scan.nextLine().trim());
+				break;
+			}
 			break;
 		case 5:bankService.logout();
+			break;
+		case 6:System.out.println("Enter Email");
+			String email = scan.nextLine().trim();
+			System.out.println("Enter Password");
+			bankService.deleteAccount(email, scan.nextLine().trim());
 			break;
 		default:
 			break;

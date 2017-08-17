@@ -1,15 +1,11 @@
 package com.bank.service;
 
 import java.math.BigDecimal;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import com.bank.dao.DAOImplementation;
-import com.bank.dao.DAOInterface;
 import com.bank.pojos.Account;
 
 public class Service {
-
+	
 	DAOImplementation dao = new DAOImplementation();
 	
 	private boolean loggedIn = false;
@@ -17,16 +13,40 @@ public class Service {
 	
 	public boolean createAccount(String fname, String lname, String email, String pwd) {
 		
-			
-		Account user = new Account(dao.newID(),fname,lname,email,pwd);
+		Account user = new Account(dao.newID(),fname,lname,email,pwd,new BigDecimal(0.00));
 		dao.addAccount(user);
 		
 		return true;
-		
 	}
 	
 	public void deleteAccount(String email, String pwd) {
-		
+		dao.deleteAccount(email, pwd);
+		setLoggedIn(false);
+		System.out.println("Account Deleted");
+	}
+	
+	public void changeFName(String fname) {
+		user.setFname(fname);
+		dao.editAccount(user);
+		System.out.println("First Name Updated");
+	}
+	
+	public void changeLName(String lname) {
+		user.setLname(lname);
+		dao.editAccount(user);
+		System.out.println("Last Name Updated");
+	}
+
+	public void changeEmail(String email) {
+		user.setEmail(email);
+		dao.editAccount(user);
+		System.out.println("Email Updated");
+	}
+	
+	public void changePwd(String pwd) {
+		user.setPwd(pwd);
+		dao.editAccount(user);
+		System.out.println("Password Updated");
 	}
 	
 	public void login(String email, String pwd) {
@@ -43,7 +63,7 @@ public class Service {
 	public void logout() {
 		user = null;
 		setLoggedIn(false);
-		System.out.println("You have logged out");	
+		System.out.println("You Have Logged Out");	
 	}
 
 	public boolean isLoggedIn() {
@@ -54,21 +74,24 @@ public class Service {
 		this.loggedIn = loggedIn;
 	}
 
-	public BigDecimal getBalance() {
+	public void getBalance() {
 		
-		return user.getBalance();
+		System.out.println("Your Current Balance is: " + user.getBalance());
 	}
 	
-	public BigDecimal withdraw(BigDecimal amt) {
+	public void withdraw(BigDecimal amt) {
 		
-		
-		
-		return null;
+		user.setBalance(user.getBalance().subtract(amt));
+		System.out.println("You Have Withdrawn: " + amt);
+		dao.editAccount(user);
 	}
 	
-	public BigDecimal deposit(BigDecimal amt) {
+	public void deposit(BigDecimal amt) {
 
-		return null;
+		user.setBalance(user.getBalance().add(amt));
+		System.out.println("You Have Deposited: " + amt);
+		System.out.println(user.toString());
+		dao.editAccount(user);
 	}
 	
 	// logging functionality

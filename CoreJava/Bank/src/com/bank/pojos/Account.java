@@ -13,14 +13,14 @@ public class Account {
 	
 	public Account() {};
 	
-	public Account(int id, String fname, String lname, String email, String pwd) {
-		super();
-		this.id = id;
-		this.fname = fname;
-		this.lname = lname;
-		this.email = email;
-		this.pwd = pwd;
-	}
+//	public Account(int id, String fname, String lname, String email, String pwd) {
+//		super();
+//		this.id = id;
+//		this.fname = fname;
+//		this.lname = lname;
+//		this.email = email;
+//		this.pwd = pwd;
+//	}
 	
 	public Account(int id, String fname, String lname, String email, String pwd, BigDecimal balance) {
 		super();
