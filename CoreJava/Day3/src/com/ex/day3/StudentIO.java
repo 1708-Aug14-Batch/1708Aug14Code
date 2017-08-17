@@ -53,9 +53,6 @@ public class StudentIO {
 		new File(filename).delete();
 	}
 
-	public void updateStudent() {
-		
-	}
 }
 
 
