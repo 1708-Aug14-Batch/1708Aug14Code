@@ -1,7 +1,10 @@
 package com.bank.dao;
 
+import com.bank.pojos.User;
+
 public interface DAO {
-	// The contract we make for the information that we will 
-	// need to send to and receive from the data source.
-	
+
+	public User addUser(User u);
+	public User editUser(int id, User u);
+	public User getUser(String email, String password);
 }
