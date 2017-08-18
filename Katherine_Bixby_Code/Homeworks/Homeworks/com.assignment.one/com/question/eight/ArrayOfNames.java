@@ -42,9 +42,11 @@ public class ArrayOfNames {
 	}
 	
 	public static void printArray(ArrayList<String> toPrint) {
-		for(int i=0;i<toPrint.size();i++) {
-			System.out.println(toPrint.get(i));
+		for(int i=0;i<toPrint.size()-1;i++) {
+			System.out.print(toPrint.get(i)+", ");
 		}
+		System.out.print(toPrint.get(toPrint.size()-1));
+		System.out.println("");
 	}
 	
 }
