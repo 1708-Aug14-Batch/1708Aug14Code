@@ -14,7 +14,7 @@ public class Q7 {
 		
 		System.out.println("Sorted by name:");
 		Collections.sort(employees, new NameCompare());
-		Iterator iter1 = employees.iterator();
+		Iterator<Employee> iter1 = employees.iterator();
 		while ( iter1.hasNext())
 		{
 			Employee e = (Employee)iter1.next();
@@ -23,7 +23,7 @@ public class Q7 {
 		
 		System.out.println("\nSorted by age:");
 		Collections.sort(employees, new AgeCompare());
-		Iterator iter2 = employees.iterator();
+		Iterator<Employee> iter2 = employees.iterator();
 		while ( iter2.hasNext())
 		{
 			Employee e = (Employee)iter2.next();
@@ -32,7 +32,7 @@ public class Q7 {
 		
 		System.out.println("\nSorted by department:");
 		Collections.sort(employees, new DptCompare());
-		Iterator iter3 = employees.iterator();
+		Iterator<Employee> iter3 = employees.iterator();
 		while ( iter3.hasNext())
 		{
 			Employee e = (Employee)iter3.next();

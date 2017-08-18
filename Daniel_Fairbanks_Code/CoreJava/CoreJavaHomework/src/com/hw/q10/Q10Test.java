@@ -1,18 +1,13 @@
-package com.hw.q2;
+package com.hw.q10;
 
-
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
-public class Q2Test {
+public class Q10Test {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -31,13 +26,11 @@ public class Q2Test {
 	}
 
 	@Test
-	public void fibSequenceTest() {
-		Q2 tester = new Q2();
-		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(0,1,1,3,6,12,24,48));
-		int numElements = expected.size();
-		ArrayList<Integer> actual = tester.fib(numElements);
-		
-		assertThat(actual, is(expected));
+	public void calcMinTest() {
+		Q10 tester = new Q10();
+		int expected = 11;
+		int actual = tester.calc_min(expected, 32);
+		assertEquals(expected, actual);
 	}
 
 }

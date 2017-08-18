@@ -1,5 +1,7 @@
 package com.hw.q4;
+
 import java.util.Scanner;
+
 
 public class Q4 {
 
