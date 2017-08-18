@@ -20,10 +20,14 @@ public class InterestCalculator {
 		System.out.print("Enter the number of years: ");
 		years = input.nextInt();
 		
-		interest = principal * rate * years; //Sets interest to the formula of principal * rate * years
+		interest = calcInterest(principal,rate,years); //Sets interest to the formula of principal * rate * years
 		
 		System.out.println("The interest is: " + interest); //Outputs the result.
 		
+	}
+	
+	public static double calcInterest(double r, double p, int y) { //Simple funciton that calculates the interest
+		return p * r * y;
 	}
 
 }

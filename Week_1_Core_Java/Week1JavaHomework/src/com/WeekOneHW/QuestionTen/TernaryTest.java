@@ -16,9 +16,14 @@ public class TernaryTest {
 		System.out.println("Enter the second number: ");
 		num2 = input.nextInt();
 		
-		int minValue = (num1 < num2) ? num1 : num2;
+		int minValue = minValue(num1,num2);
 		System.out.println(minValue);
 
+	}
+	
+	public static int minValue(int num1, int num2) {
+		
+		return (num1<num2) ? num1 : num2;
 	}
 
 }

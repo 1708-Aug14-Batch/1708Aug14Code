@@ -3,7 +3,7 @@ package com.WeekOneHW.QuestionEight;
 import java.util.ArrayList;
 
 public class Palindrome {
-
+	
 	public static void main(String[] args) {
 		/*
 		 * Setting up the Array and ArrayLists used.
