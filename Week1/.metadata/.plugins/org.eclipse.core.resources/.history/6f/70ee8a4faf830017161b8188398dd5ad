@@ -1,0 +1,50 @@
+package com.bank.main;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.bank.dao.DAOTextImpl;
+import com.bank.pojos.User;
+import com.bank.service.Service;
+
+public class RunBank {
+	static DAOTextImpl g;
+
+	public static void main(String[] args) {
+		
+		Service bankService = new Service();
+		//User d =new User();
+		//bankService.addUser();
+		//bankService.login();
+		getUser();
+		
+	
+			
+	}
+	static void getUser(){
+		g = new DAOTextImpl();
+		ArrayList<User> students = g.getUser();
+		for(User s: students){
+			System.out.println(s.toString());
+		}
+		//static void login(){}	
+		
+		/*
+		 * As a User I can:
+		 * - login
+		 * - create an account
+		 * - withdraw or deposit funds
+		 * - view my account balance
+		 * - edit my information
+		 * 
+		 *  
+		 *  Tech Spec
+		 *  - core java, file i/o
+		 * 
+		 * 
+		 */
+		// TODO Auto-generated method stub
+
+	
+
+}}

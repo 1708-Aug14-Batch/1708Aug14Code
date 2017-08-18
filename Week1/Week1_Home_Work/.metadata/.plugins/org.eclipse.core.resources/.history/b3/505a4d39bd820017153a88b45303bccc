@@ -1,0 +1,21 @@
+package com.hw.problem6;
+
+public class EvenNumber {
+
+	public static void main(String[] args) {
+		
+		//System.out.println(isEven(4));
+		isEven(5);
+
+
+	}
+	public static void isEven(int n){
+		int num = n/2;
+		if(n == num * 2)
+			System.out.println("it is even");
+		else
+			System.out.println("its odd");
+		
+	}
+
+}

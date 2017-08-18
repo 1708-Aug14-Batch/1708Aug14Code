@@ -1,0 +1,29 @@
+package com.ex.day3;
+
+import java.util.Scanner;
+
+import com.ex.pojos.Student;
+//import com.ex.pojos;
+
+public class RunStudents {
+
+	public static void main(String[] args) {
+		
+		StudentIO io = new StudentIO();
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter first name:");
+		String fn = scan.nextLine().trim();
+		System.out.println("enter last name:");
+		String ln = scan.nextLine().trim();
+		System.out.println("enter email:");
+		String email = scan.nextLine().trim();
+		
+		Student student = new Student(fn,ln,email);
+		
+		io.writeStudents(student);
+				
+		// TODO Auto-generated method stub
+
+	}
+
+}

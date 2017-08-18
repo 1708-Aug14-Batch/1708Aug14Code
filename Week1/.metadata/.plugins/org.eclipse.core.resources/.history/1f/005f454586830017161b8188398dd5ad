@@ -1,0 +1,58 @@
+package com.bank.service;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+//import com.bank.dao.DAO;
+import com.bank.dao.DAOTextImpl;
+import com.bank.pojos.User;
+//import com.ex.pojos.Student;
+
+
+public class Service {
+	static DAOTextImpl g;
+	static Scanner scan = new Scanner(System.in);	// lgoin function
+	//what do you want to do functionality
+	DAOTextImpl idaon =new DAOTextImpl();
+	
+	
+
+	public static void addUser(){
+		g = new DAOTextImpl();
+	   // scan = new Scanner(System.in);
+		int id = 0; //=getID();
+		System.out.println("enter first name");
+		String fn = scan.nextLine();
+		System.out.println("enter last name");
+		String ln = scan.nextLine();
+		System.out.println("enter email");
+		String e = scan.nextLine();
+		System.out.println("enter password");
+		String pass = scan.nextLine();
+		System.out.println("blance");
+		double bal = scan.nextDouble();
+		 User work = new User(id,fn,ln,e,pass,bal);
+		 g.addUser(work);
+	}
+	
+	public static void login(){
+		System.out.println("enter email:");
+		String email = scan.nextLine();
+		System.out.println("enter password:");
+		String password = scan.nextLine();
+		ArrayList<User> user = g.getUser();
+		for(User s: user){
+			System.out.println(s.toString());
+		
+		
+//			g = new DAOTextImpl();
+//			user = g.getUser();
+//			for(User s: user){
+//				System.out.println(s.toString());
+//			}
+		
+	}
+	
+
+}
+}

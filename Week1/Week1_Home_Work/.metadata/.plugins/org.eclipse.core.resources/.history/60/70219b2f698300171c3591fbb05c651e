@@ -1,0 +1,17 @@
+package com.hw.problem13;
+
+public class Problem13 {
+
+	public static void main(String[] args) {
+		int[] triangle = {0,1};
+		int n = 4;
+		for(int i = 0; i < 5; i++){
+			System.out.println(0);
+			
+			
+		}
+		// TODO Auto-generated method stub
+
+	}
+
+}

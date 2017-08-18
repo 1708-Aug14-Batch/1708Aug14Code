@@ -1,0 +1,65 @@
+package com.bank.service;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import com.bank.dao.DAO;
+import com.bank.dao.DAOTextImpl;
+import com.bank.pojos.User;
+//import com.ex.pojos.Stude
+
+
+public class Service {
+	private  DAOTextImpl g;// = new DAOTextImpl();
+	private ArrayList<User> users;
+	static Scanner scan = new Scanner(System.in);	// lgoin function
+	//what do you want to do functionality
+	DAOTextImpl idaon =new DAOTextImpl();
+	public Service(){
+		this.g =  new DAOTextImpl();
+		this.users = users;
+		
+	}
+	
+
+	public  void createAccount(){
+		//g = new DAOTextImpl();
+	   // scan = new Scanner(System.in);
+		User u =new User();
+		//int id = 0; //=getID();
+		u.getId();
+		System.out.println("enter first name");
+		String fn = scan.nextLine();
+		u.setFirstname(fn);
+		System.out.println("enter last name");		
+		String ln = scan.nextLine();
+		u.setLastname(ln);
+		System.out.println("enter email");
+		String e = scan.nextLine();
+		u.setEmail(e);
+		System.out.println("enter password");
+		String pass = scan.nextLine();
+		u.setPassword(pass);
+		System.out.println("blance");
+		double bal = scan.nextDouble();
+		u.setBalance(0);
+		//User u = new User(id,fn,ln,e,pass,bal);
+		users.add(u);
+		// ArrayList<User> work = new ArrayList<User>();
+		 g.addUser(users);
+	}
+	public static void login(){}
+	
+	public static void logout(){}
+	public static void whitdraw(){}
+	public static void deposit(){}	
+//	public static void login(String email, String password){
+//		for(User user: s)
+//			if (user.getEmail().equals(email) && user.getPassword().equals(password)){
+//				
+//			}
+//		
+//	}
+	
+
+}

@@ -1,0 +1,19 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public interface DOA<T> {
+	
+	// The contract we make for the information
+	// we will need to send and receive from the data source
+	
+	
+	
+	// addUser
+	//editUser
+	//getUse
+	void addUser(ArrayList<T> list);
+	ArrayList<T> getUser();	
+	
+}

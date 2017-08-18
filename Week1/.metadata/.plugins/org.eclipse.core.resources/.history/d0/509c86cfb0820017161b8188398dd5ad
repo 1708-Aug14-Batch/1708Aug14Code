@@ -1,0 +1,32 @@
+package com.ex.day3;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.ex.pojos.Student;
+
+public class StudentIO {
+	static String filename = "src/com/ex/files/students.txt";
+	
+	public void writeStudents(Student s){
+		
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));){
+			String text = "";
+			
+			text = text.concat(s.getFirstname()+"+");
+			text = text.concat(s.getLastname()+"+");
+			text = text.concat(s.getEmail()+"\n");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public ArrayList<Student> readStudents(){
+		
+	}
+	
+
+}

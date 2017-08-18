@@ -1,0 +1,13 @@
+package com.bank.service;
+
+//import com.bank.dao.DAO;
+import com.bank.dao.DAOTextImpl;
+
+public class Service {
+	
+	// lgoin function
+	//what do you want to do functionality
+	DAOTextImpl idaon =new DAOTextImpl();
+	
+
+}

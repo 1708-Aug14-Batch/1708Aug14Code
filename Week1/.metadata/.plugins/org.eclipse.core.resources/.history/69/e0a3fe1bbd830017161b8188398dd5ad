@@ -1,0 +1,49 @@
+package com.bank.dao;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.bank.pojos.User;
+
+
+public class DAOTextImpl implements DOA<User>{
+	
+	static String filename = "src/com/bank/data/bank_info.txt";
+
+	@Override
+	public void addUser(ArrayList<User> list) {
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename,false));){
+			for(User u: list){
+				bw.write(u +"\n");
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<User> getUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+
+
+
+
+	
+
+}

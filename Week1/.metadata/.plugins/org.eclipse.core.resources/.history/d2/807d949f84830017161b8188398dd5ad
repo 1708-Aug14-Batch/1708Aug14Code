@@ -1,0 +1,82 @@
+package com.bank.dao;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.bank.pojos.User;
+
+
+public class DAOTextImpl implements DOA{
+	
+	static String filename = "src/com/bank/data/bank_info.txt";
+
+	@Override
+	public void addUser(User a) {
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true));){
+			String str = "";
+			str = str.concat("Unique ID = " + a.getId()+ ": ");
+			str = str.concat("First Name = " + a.getFirstname() + ": ");
+			str = str.concat("Last Name = " + a.getLastname() + ": ");
+			str = str.concat("Email = " + a.getEmail() + ": ");
+			str = str.concat("Password = " + a.getPassword() + ": ");
+			str = str.concat("Balance = " + a.getBalance() + "\n");
+			
+			bw.write(str);
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public ArrayList<User> getUser() {
+		try(BufferedReader br = new BufferedReader(new FileReader(filename));){
+			ArrayList<User> list = new ArrayList<User>();
+			br.readLine();
+			//User temp = new User();
+			//String[] states = list;
+//			String line = null;
+//			while((line=br.readLine()) != null){
+//				User temp = new User();
+//				String[] states = line.split(":");
+//				for(String x : states){
+//					System.out.println(x);
+//				}
+//				temp.setFirstname();
+//				temp.setLastname(states[1]);
+//				temp.setEmail(states[2]);
+//				temp.setPassword(states[3]);
+//				//temp.setBalance(states);
+//				list.add(temp);
+				}
+			
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+
+		return null;
+	}
+	
+	@Override
+	public void editUser() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}
