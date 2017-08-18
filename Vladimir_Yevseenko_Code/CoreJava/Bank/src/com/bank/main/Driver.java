@@ -47,13 +47,15 @@ public class Driver {
 	public static void handleUser() {
 		while (true) {
 			System.out.println("What would you like to do?");
-			System.out.println("B - check balance D - deposit W - withdraw C - change info Q - logout");
+			System.out.println("B - check balance D - deposit W - withdraw C - change info "
+					+ "RM - delete user Q - logout");
 			String line = s.nextLine();
 			switch (line) {
 				case "Q": return;
 				case "D": deposit(); break;
 				case "W": withdraw(); break;
 				case "C": changeInfo(); break;
+				case "RM": deleteUser(); return; 
 				case "B": service.displayBalance(); break;
 				default: invalidInput();
 			}
@@ -94,6 +96,11 @@ public class Driver {
 		System.out.print("Enter new " + field.toString() + ": ");
 		service.modify(field, s.nextLine());
 		System.out.println("\nChange successful\n");
+	}
+	
+	public static void deleteUser() {
+		service.deleteUser();
+		System.out.println("\nUser successfully deleted, logged out.\n");
 	}
 	
 	public static void createNewUser() {

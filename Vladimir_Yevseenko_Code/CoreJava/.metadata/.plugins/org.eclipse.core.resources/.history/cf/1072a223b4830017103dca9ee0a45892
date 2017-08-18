@@ -1,0 +1,37 @@
+package com.revature.q19;
+
+import java.util.ArrayList;
+import java.util.stream.IntStream;
+
+public class Numbers {
+	public static void main(String[] args) {
+		/*
+		 * Finding sum of all even and odd numbers using streams
+		 */	
+		System.out.println("Odd sum: " + 
+				IntStream.range(1, 11).filter(i -> i % 2 == 0).sum());
+		
+		System.out.println("Even sum: " + 
+				IntStream.range(1, 11).filter(i -> i % 2 != 0).sum());
+		
+		System.out.print("Only non-prime numbers: ");
+		Intstream
+			.range(1, 11)
+			.filter(i -> isPrime(i))
+			.forEach(i -> System.out.print(i + " "));
+		System.out.println();
+	}
+	
+	public static boolean isEven(int i) {
+		return i % 2 == 0;
+	}
+	
+	public static boolean isPrime(int n) {
+		if (n == 1 || n == 0)
+			return false;
+		for (int i=2; i*i <= n; i++)
+			if (n % i == 0)
+				return false;
+		return true;
+	}
+}

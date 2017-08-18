@@ -1,29 +1,25 @@
 package com.revature.q19;
 
-import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class Numbers {
 	public static void main(String[] args) {
-		ArrayList<Integer> list = new ArrayList<>();
-		for (int i=1; i<=10; i++)
-			list.add(i);
+		/*
+		 * Finding sum of all even and odd numbers using streams
+		 * Simply more interesting than using ArrayList and doing it manually
+		 */	
+		System.out.println("Even sum: " + 
+				IntStream.range(1, 11).filter(i -> isEven(i)).sum());
 		
-		int evenSum, oddSum;
-		evenSum = oddSum = 0;
-		for (int i: list) {
-			if (isEven(i))
-				evenSum += i;
-			else
-				oddSum += i;
-		}
-		System.out.println("Odd sum: " + oddSum);
-		System.out.println("Even sum: " + evenSum);
+		System.out.println("Odd sum: " + 
+				IntStream.range(1, 11).filter(i -> !isEven(i)).sum());
 		
-		for (int i=1; i<=10; i++)
-			if (isPrime(i))
-				list.remove((Object) i);
-		
-		System.out.println("Only non-prime numbers: " + list);
+		System.out.print("Only non-prime numbers: ");
+		IntStream
+			.range(1, 11)
+			.filter(i -> isPrime(i))
+			.forEach(i -> System.out.print(i + " "));
+		System.out.println();
 	}
 	
 	public static boolean isEven(int i) {

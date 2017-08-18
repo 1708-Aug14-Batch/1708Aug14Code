@@ -65,6 +65,11 @@ public class BankService {
 		System.out.println("\nCurrent balance: $" + curUser.getBalance().toString() + "\n");
 	}
 	
+	public void deleteUser() {
+		users.remove(curUser);
+		commit();
+	}
+	
 	public void commit() {
 		dao.write(users);
 	}
