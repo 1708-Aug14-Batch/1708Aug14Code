@@ -152,7 +152,7 @@ public class RunBank {
 				System.out.println("please enter amount to withdraw: ");
 				amount=input.nextInt();
 				input.nextLine();
-				tempUser=dao.changeBalance(tempUser, amount, true);
+				tempUser=dao.changeBalance(tempUser, amount, false);
 			} break;
 			case 3: {
 				user=tempUser;
