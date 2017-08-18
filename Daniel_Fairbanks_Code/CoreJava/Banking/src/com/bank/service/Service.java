@@ -2,8 +2,6 @@ package com.bank.service;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
-
-import com.bank.dao.DAO;
 import com.bank.dao.DaoTextImpl;
 import com.bank.pojos.User;
 
@@ -30,7 +28,6 @@ public class Service {
 			System.out.println("Login (l) or create a new account (n):");
 			val = scan.nextLine();
 		}
-		scan.close();
 		
 		User u = null;
 		if (val.equals("l"))
@@ -50,7 +47,6 @@ public class Service {
 		String email = scan.nextLine();
 		System.out.println("Password:");
 		String password = scan.nextLine();
-		scan.close();
 		
 		return dao.getUser(email, password);
 	}
@@ -70,7 +66,6 @@ public class Service {
 		System.out.println("Balance:");
 		String balance =scan.nextLine();
 		int id = dao.getAllUsers().size();
-		scan.close();
 		
 		User tmp = new User();
 		tmp.setId(id);
@@ -91,7 +86,6 @@ public class Service {
 		System.out.println("Transfer Amt:");
 		BigDecimal amt = new BigDecimal(scan.nextLine());
 		u.setBalance(u.getBalance().add(amt));
-		scan.close();
 		
 		dao.editUser(u.getId(), u);
 	}
@@ -114,7 +108,6 @@ public class Service {
 		String email = scan.nextLine();
 		System.out.println("Password:");
 		String password = scan.nextLine();
-		scan.close();
 		
 		u.setFirstname(fn);
 		u.setLastname(ln);
@@ -141,7 +134,6 @@ public class Service {
 			System.out.println("Update Bal (u), View Bal (v), Edit User (e), Logout (l):");
 			val = scan.nextLine();
 		}
-		scan.close();
 		
 		if (val.equals("u"))
 			op = Operation.UPDATE;
