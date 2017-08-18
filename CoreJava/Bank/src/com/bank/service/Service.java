@@ -21,6 +21,25 @@ public class Service {
 		System.out.println("New account created");
 	}
 
+	public void deleteAcct() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Are you sure you want to delete your Account?");
+		String acctQ = scan.nextLine().trim().toUpperCase();
+		if (acctQ.equals("Y")) {
+			ArrayList<User> user = new ArrayList();
+			user = dao.getAllUsers();
+			dao.deleteFile();
+			for (User u : user) {
+				if (u.getId() == id) {
+					continue;
+				} else {
+					dao.addUser(u);
+				}
+			}
+			System.out.println("Account deleted as requested");
+		}
+	}
+
 	public void login() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please Login:");
@@ -35,7 +54,6 @@ public class Service {
 		if (id == 0) {
 			System.out.println("Account doesn't exist, would you like to create one? (Y/N)");
 			String acctQ = scan.nextLine().trim().toUpperCase();
-			System.out.println(acctQ);
 			if (acctQ.equals("Y")) {
 				System.out.println("Please enter email");
 				String email = scan.nextLine().trim();
@@ -123,7 +141,7 @@ public class Service {
 				String email = scan.nextLine().trim();
 				System.out.println("Enter new password");
 				String pw = scan.nextLine().trim();
-				
+
 				u.setFirstname(fn);
 				u.setLastname(ln);
 				u.setEmail(email);

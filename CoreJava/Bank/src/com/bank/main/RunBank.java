@@ -14,6 +14,7 @@ public class RunBank {
 	 * - withdraw or deposit funds 
 	 * - view my* account balance 
 	 * - edit my* information
+	 * - delete account
 	 * 
 	 * Tech-Specs - core java, file i/o
 	 */
@@ -43,6 +44,9 @@ public class RunBank {
 				bankService.editAcctInfo();
 				break;
 			case "5":
+				bankService.deleteAcct();
+				break;
+			case "6":
 				bankService.logout();
 				break;
 			}
@@ -57,7 +61,8 @@ public class RunBank {
 		System.out.println("* (2) Deposit Funds                *");
 		System.out.println("* (3) Withdraw Funds               *");
 		System.out.println("* (4) Edit Information             *");
-		System.out.println("* (5) Logout                       *");
+		System.out.println("* (5) Delete Account               *");
+		System.out.println("* (6) Logout                       *");
 		System.out.println("*----------------------------------*");
 		System.out.println("Choose from menu item above");
 	}
