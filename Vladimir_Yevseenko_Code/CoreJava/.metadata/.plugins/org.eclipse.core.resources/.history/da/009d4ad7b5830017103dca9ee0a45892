@@ -4,8 +4,7 @@ import java.util.Comparator;
 
 /*
  *  Could also be implemented using a simple Lambda
- *  ie: Comparator<Employee> ageComparator = (e1, e2) ->
- *  			((Integer) e1.getName()).compareTo(e2.getAge());
+ *  ie: Comparator<Employee> ageComparator = (e1, e2) -> {
  */
 public class EmployeeAgeComparator implements Comparator<Employee> {
 	public int compare(Employee e1, Employee e2) {

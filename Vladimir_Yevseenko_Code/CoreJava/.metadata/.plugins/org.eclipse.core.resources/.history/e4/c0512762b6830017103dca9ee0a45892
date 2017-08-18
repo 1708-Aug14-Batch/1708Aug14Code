@@ -46,7 +46,7 @@ public class Main {
 		 * The 2nd uses Lambda to implement a Comparator on the spot
 		 */
 		Arrays.sort(employees, new EmployeeAgeComparator());
-		Arrays.sort(employees, (e1, e2) -> ((Integer)e1.getAge()).compareTo(e2.getAge()));
+		Arrays.sort(employees, (e1, e2) -> ((Integer)e1.getAge()).compareTo(e2.getAge());
 		for (Employee e: employees)
 			System.out.println(e);
 		System.out.println();
