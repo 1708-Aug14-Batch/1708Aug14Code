@@ -26,4 +26,6 @@ public interface DAO {
 	public int getNextID();
 	
 	public void updateID(String id);
+	
+	public void deleteFile();
 }

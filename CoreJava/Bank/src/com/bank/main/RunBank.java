@@ -6,8 +6,14 @@ import com.bank.service.Service;
 
 public class RunBank {
 	/*
-	 * Requirements: As a user I can, - login - create an account - logout -
-	 * withdraw or deposit funds - view my* account balance - edit my* information
+	 * Requirements: 
+	 * As a user I can, 
+	 * - login 
+	 * - create an account 
+	 * - logout 
+	 * - withdraw or deposit funds 
+	 * - view my* account balance 
+	 * - edit my* information
 	 * 
 	 * Tech-Specs - core java, file i/o
 	 */

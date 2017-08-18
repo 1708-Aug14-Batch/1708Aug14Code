@@ -40,4 +40,9 @@ public class DaoDBImpl implements DAO {
 	public void updateID(String id) {
 		
 	}
+	
+	@Override
+	public void deleteFile() {
+		
+	}
 }
