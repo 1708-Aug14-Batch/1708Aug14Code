@@ -9,11 +9,11 @@ public class User {
 	private String lastName;
 	private String email;
 	private String passWord;
-	private String balance; //Used for monetary reasons
+	private Integer balance; //Used for monetary reasons
 	
 	public User() {};
 	
-	public User(String userID, String firstName, String lastName, String email, String passWord, String balance) {
+	public User(String userID, String firstName, String lastName, String email, String passWord, Integer balance) {
 		super();
 		this.userID = userID;
 		this.firstName = firstName;
@@ -74,12 +74,12 @@ public class User {
 	}
 
 
-	public String getBalance() {
+	public Integer getBalance() {
 		return balance;
 	}
 
 
-	public void setBalance(String balance) {
+	public void setBalance(Integer balance) {
 		this.balance = balance;
 	}
 	

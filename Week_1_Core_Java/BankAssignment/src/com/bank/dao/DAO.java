@@ -4,23 +4,16 @@ import java.util.ArrayList;
 
 import com.bank.pojos.User;
 
-public interface DAO {
+public interface DAO { //Interface
 
-	/*
-	 * The contract we make for the information that 
-	 * we will need to send to and receive from the data source
-	 * 
-	 */
-	
+
+	//Abtract methods for the interface to implement
 	void addUser(User u);
 	ArrayList<User> readUser();
-	void editUser();
-	void deleteUser();
+	void editUser(ArrayList<User> u);
 	
 	
-	//addUser
-	//readUser
-	//editUser - change name, email, password, or balance
-	//deleteUser - use ID to delete?
+	
+
 	
 }

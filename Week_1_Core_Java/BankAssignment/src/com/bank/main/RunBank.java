@@ -4,10 +4,18 @@ import com.bank.service.Service;
 
 public class RunBank {
 
-	//implementation to actually run bank application	
+		
 	public static void main(String[] args) {
 		
-		Service bankService = new Service();
+		/*
+		 * My bank application has a normal user and a system admin mode depending on which login information you use.
+		 * The System Admin can Add Users. The email is: sysadmin@bank.com password: admin
+		 * The Normal User can access their account information and make withdrawals/deposits. Both Users can also log out.
+		 * 
+		 */
+		
+		
+		Service bankService = new Service(); //Starts the banking program.
 		bankService.login();
 
 	}

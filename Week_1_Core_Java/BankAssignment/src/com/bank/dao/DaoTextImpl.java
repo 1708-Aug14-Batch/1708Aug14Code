@@ -2,7 +2,7 @@ package com.bank.dao;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
+import java.io.FileNotFoundException; //Importing in the Wrtiers, Readers, Exceptions, ArrayList, and the Pojos
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,8 +12,15 @@ import com.bank.pojos.User;
 
 
 
-public class DaoTextImpl implements DAO {
-	static String textImp = "src/com/bank/files/customer.txt";
+public class DaoTextImpl implements DAO { //We implement the DAO interface
+	
+	static String textImp = "src/com/bank/files/customers1.txt"; //This is the text file used for reading/writing for the program
+	
+	/*
+	 * The addUser function creates a BufferedWriter/FileWriter that concats a text string for the user info.
+	 * It then is written to the text file.
+	 */
+	
 	@Override
 	public void addUser(User u) {
 		
@@ -36,6 +43,11 @@ public class DaoTextImpl implements DAO {
 		
 	}
 
+	/*
+	 * The read user creates an arrayList of Users and a BufferedReader/FileReader
+	 * It then reads each line of the text file and for each string up to ":" puts into an element in the array to be added to the arrayList.
+	 */
+	
 	@Override
 	public ArrayList<User> readUser() {
 		ArrayList<User> list = new ArrayList<User>();
@@ -50,7 +62,7 @@ public class DaoTextImpl implements DAO {
 				temp.setLastName(states[2]);
 				temp.setEmail(states[3]);
 				temp.setPassWord(states[4]);
-				temp.setBalance(states[5]);
+				temp.setBalance(Integer.parseInt(states[5].trim()));
 				list.add(temp);
 			}
 		} catch (FileNotFoundException e) {
@@ -63,17 +75,33 @@ public class DaoTextImpl implements DAO {
 		return list;
 
 	}
+	/*
+	 * The editUser function is similar to the addUser function, except it overwrites instead of concats (see the false value in the creation of the FileWriter).
+	 */
 
 	@Override
-	public void editUser() {
-		
+	public void editUser(ArrayList<User> u) {
+		try(BufferedWriter bw = new BufferedWriter(
+				new FileWriter(textImp,false))){
+			String text = " ";
+			
+			for(User i : u) {
+			text = text.concat(i.getUserID() + ":");
+			text = text.concat(i.getFirstName() + ":");
+			text = text.concat(i.getLastName() + ":");
+			text = text.concat(i.getEmail() + ":");
+			text = text.concat(i.getPassWord() + ":");
+			
+			
+			text = text.concat(i.getBalance() + "\n");
+			}
+			bw.write(text);
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		};
 		
 	}
 
-	@Override
-	public void deleteUser() {
-		
-		
-	}
 
 }
