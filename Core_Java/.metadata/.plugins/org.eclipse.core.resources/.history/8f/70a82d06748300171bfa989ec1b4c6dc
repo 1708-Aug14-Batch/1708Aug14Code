@@ -1,0 +1,44 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+import com.bank.pojos.Person;
+import com.bank.pojos.User;
+
+public class DaoTextImpl implements DAO {
+	
+	private static String personFilename = "src/com/bank/files/persons.txt";
+	private static String UserFilename = "src/com/bank/files/users.txt";
+	private static String ClerkFilename = "src/com/bank/files/clerks.txt";
+	@Override
+	public void createPerson(Person person) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public Person readPerson(int SSN) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public User readUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean updatePerson(int SSN, Person person) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public ArrayList<Person> getAllPersons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public boolean deleteUser(User guy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

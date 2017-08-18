@@ -1,0 +1,16 @@
+package com.bank.pojos;
+
+// Manages bank account information
+// Has access to every account
+// Cannot own an account
+
+public class Clerk extends Person implements Bankable {
+	
+	private final int employee_id;
+	
+	private final Date dateHired;
+	
+	private double hourlyWage;
+
+	admin = true;
+}

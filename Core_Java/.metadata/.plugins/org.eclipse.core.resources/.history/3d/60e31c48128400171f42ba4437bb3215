@@ -1,0 +1,119 @@
+package com.bank.service;
+
+import java.util.ArrayList;
+
+import com.bank.dao.*;
+import com.bank.pojos.Account;
+import com.bank.pojos.Account.accountType;
+import com.bank.pojos.Person;
+import com.bank.pojos.User;
+
+// FIXME always check if user has been deleted
+
+public class Service {
+
+	DAO daoImpl = new DaoTextImpl();
+
+	public Account validateUser(String username, String password) {
+
+		User guy = daoImpl.readUser(username);
+
+		if (guy == null)
+			return null;
+
+		if (guy.getAccount().isDeleted()) {
+			System.out.println("This account has been deleted.");
+			return null;
+		}
+
+		if (guy.getAccount().getPassword().equals(password))
+			return guy.getAccount();
+		else return null;
+	}
+	
+	public boolean isEmailValid(String email) {
+		// FIXME method stub
+		return true;
+	}
+
+	public boolean isEmailAvailable(String email) {
+
+		ArrayList<Person> peopleList = daoImpl.readAllPersons();
+
+		if (peopleList.size() == 0)
+			return true;
+
+		for (Person per : peopleList)
+			if (per.getEmail().equals(email)) {
+				System.out.println("Email unavailable");
+				return false;
+			}
+
+		return true;
+	}
+
+	private boolean isUsernameAvailable(String username) {
+
+		ArrayList<User> userList = daoImpl.readAllUsers();
+
+		for (User guy : userList) {
+			if (guy.getAccount().getUsername().equals(username))
+				return false;
+		}
+
+		return true;
+
+	}
+
+	// Attempts to create a person unless a person already exists with
+	// the given SSN. Returns the person object either way
+	// An email must be supplied but it can be an empty string where it will not
+	// be checked for uniqueness
+	public Person tryCreatePerson(String SSN, String firstName, String lastName, String email) {
+
+		Person per = daoImpl.readPerson(SSN);
+
+		// If person does not exist yet
+		if (per == null) {
+			Person per2 = new Person(SSN, firstName, lastName);
+
+			if (!(email.equals("")))
+				if (isEmailAvailable(email))
+					per2.setEmail(email);
+
+			daoImpl.createPerson(per2);
+			return per2;
+
+		}
+
+		return per;
+
+	}
+
+	public boolean createUser(Person per, String username, String password, accountType type) {
+
+		// Check that username is unique
+		if (!isUsernameAvailable(username)) {
+			System.out.println("That username is already taken.");
+			return false;
+		}
+
+		// Create an account and associated user
+		User myUser = new User(per, new Account(per, username, password, type));
+
+		daoImpl.createUser(myUser);
+
+		return true;
+	}
+
+	// Updates a person with the new person object.
+	// Matches the old person with the new by SSN
+	// All non-final fields of the person object
+	// will be updated
+	public boolean updatePerson(Person per) {
+
+		return daoImpl.updatePerson(per);
+
+	}
+
+}

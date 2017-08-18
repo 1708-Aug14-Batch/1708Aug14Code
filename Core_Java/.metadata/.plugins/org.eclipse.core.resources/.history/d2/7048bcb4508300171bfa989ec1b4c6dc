@@ -1,0 +1,9 @@
+package com.ex.day4;
+
+public interface FactoryObjectInterface {
+	
+	public static String factory_name = "Bob's factory";
+	
+	public void doThing();
+	
+}

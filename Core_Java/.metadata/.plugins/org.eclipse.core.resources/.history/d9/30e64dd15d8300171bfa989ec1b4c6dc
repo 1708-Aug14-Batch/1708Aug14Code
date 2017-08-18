@@ -1,0 +1,12 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+
+public class Account {
+	
+	// BigDecimal: Immutable, arbitrary-precision signed decimal number
+	private BigDecimal checkingBalance;
+	private BigDecimal savingsBalance;
+	private BigDecimal rewardsBalance;
+
+}

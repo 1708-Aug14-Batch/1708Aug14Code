@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="isEmail" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="42"/>
-			<item value="appendMessage"/>
-			<item value="writeMessage"/>
-			<item value="Integer"/>
-			<item value="C"/>
-			<item value="scan.next"/>
-			<item value="scan.next&apos;"/>
-			<item value="Object"/>
+			<item value="isEmail"/>
+			<item value="getAllPer"/>
+			<item value="unava"/>
+			<item value="unavailable"/>
+			<item value="tryCreate"/>
+			<item value="email"/>
+			<item value="write"/>
+			<item value="try"/>
 		</list>
 		<list key="replacehistory">
-			<item value="writeMessage"/>
-			<item value="appendMessage"/>
-			<item value="Number"/>
-			<item value="Integer"/>
-			<item value="C"/>
-			<item value="&quot;"/>
-			<item value="&quot; + name + &quot;"/>
-			<item value="chars"/>
+			<item value="savings"/>
+			<item value="String SSN"/>
+			<item value="Person"/>
+			<item value=".equalsIgnoreCase"/>
+			<item value="addStudent"/>
+			<item value="scan.nextLine()"/>
+			<item value="expected4"/>
+			<item value="array2"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="788" key="DIALOG_X_ORIGIN"/>
-		<item value="160" key="DIALOG_Y_ORIGIN"/>
+		<item value="797" key="DIALOG_X_ORIGIN"/>
+		<item value="363" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

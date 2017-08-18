@@ -1,0 +1,21 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+
+public class Account {
+	
+	// Account id number is initialized when the account is created
+	private int id;
+	
+	// These strings directly correlate to a user's username/password if they are initialized
+	private String username;
+	private String password;
+	
+	private User user;
+	
+	// BigDecimal: Immutable, arbitrary-precision signed decimal number
+	private BigDecimal checkingBalance;
+	private BigDecimal savingsBalance;
+	private BigDecimal rewardsBalance;
+
+}

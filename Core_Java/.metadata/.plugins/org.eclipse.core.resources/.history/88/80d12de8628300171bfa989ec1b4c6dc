@@ -1,0 +1,57 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
+
+public class Account {
+	
+	// The date the account was opened
+	private final Date accountOpenedDate;
+	
+	//
+	private enum accountType;
+	
+	// Account id number is initialized when the account is created
+	private final int accountId;
+	
+	// These strings directly correlate to a user's username/password if they are initialized
+	private final String username;
+	private String password;
+	
+	// This comes from the User and is used to link a user to their account
+	private final int SSN;
+	
+	// Marks whether an account was deleted
+	// When a user deletes their account all of their information is persisted
+	// The only change is that the account is marked as deleted and afterwards
+	// can only be accessed by bank personel.
+	private boolean deleted;
+	
+	// BigDecimal: Immutable, arbitrary-precision signed decimal number
+	private BigDecimal checkingBalance;
+	private BigDecimal savingsBalance;
+	private BigDecimal rewardsBalance;
+	
+	// The interest rate is yearly and based only on the savings account
+	private double interestRate;
+	// The rewards rate is applied by purchase and accrues only with purchases
+	private double rewardsRate;
+	
+	/*
+	 * Account type determines interest rate for savings account and
+	 * the percentage of rewards accrued per purchase
+	 */
+	public static enum accountType {
+		BRONZE,
+		SILVER,
+		GOLD,
+		PLATINUM,
+		DOUBLE_PLATINUM
+	};
+
+	public static Map<AccountType, Double> rewardsRateMap = new TreeMap<AccountType, Double>();
+	public static Map<AccountType, Double> savingsRateMap = new TreeMap<AccountType, Double>();
+
+}

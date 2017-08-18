@@ -1,0 +1,32 @@
+package com.bank.pojos;
+
+import java.math.BigDecimal;
+
+// Uses a single bank account
+// Only has access to their own data
+
+public class User {
+	
+	// Each user must have a unique id, email, and username
+	private String email;
+	private int id;
+	private String username;
+	
+	private String firstname;
+	private String lastname;
+	private String password;
+	
+	// BigDecimal: Immutable, arbitrary-precision signed decimal number
+	private BigDecimal checkingBalance;
+	private BigDecimal savingsBalance;
+	private BigDecimal rewardsBalance;
+	
+	// Marks whether an account was deleted
+	// When a user deletes their account all of their information is persisted
+	// The only change is that the account is marked as deleted and afterwards
+	// can only be accessed by bank personel
+	private boolean deleted;
+	
+	// FIXME add constructors, getters, setters
+
+}

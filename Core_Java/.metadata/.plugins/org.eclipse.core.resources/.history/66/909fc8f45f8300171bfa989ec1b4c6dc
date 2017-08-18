@@ -1,0 +1,26 @@
+package com.bank.pojos;
+
+public class Person {
+	
+	// Each person must have a unique Social Security Number
+	private int SSN;
+	
+	// Each person must have a firstName and lastName
+	private String firstName;
+	private String lastName;
+
+	// If a person has an email then it must be unique
+	private String email;
+	
+	// 
+	public Person(int SSN, String firstName, String lastName) throws InvalidSSNException {
+		
+		// FIXME check that the provided SSN is unique among all current people
+		// otherwise throw an InvalidSSNException
+		
+		this.SSN = SSN;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+}

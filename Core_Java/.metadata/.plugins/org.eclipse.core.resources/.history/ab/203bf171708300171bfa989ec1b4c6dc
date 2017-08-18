@@ -1,0 +1,115 @@
+package com.bank.main;
+
+import java.util.Scanner;
+
+import com.bank.pojos.Account;
+import com.bank.service.Service;
+
+/*
+ * Requirements:
+ * 	User can...
+ * 		- login
+ * 		- create an account
+ * 		- logout
+ * 		- withdraw or deposit funds
+ * 		- view own account balance
+ * 		- edit own information
+ * 
+ * Tech Specs
+ * 	- core java, file i/o
+ */
+
+public class RunBank {
+
+	private static Scanner scan = new Scanner(System.in);
+	// Keeps track of the account currently logged into the system
+	private static Account accountLoggedIn = null;;
+
+	// Implementation to actually run bank application
+	public static void main(String[] args) {
+		Service bankService = new Service();
+
+		System.out.println("Hello. Welcome to the automating banking system.");
+
+		bankingSystem();
+
+		System.out.println("Thank you for using the automating banking system. Goodbye.");
+
+		scan.close();
+
+	}
+
+	private void bankingSystem() {
+
+		while (true) {
+			if (accountLoggedIn != null)
+				displayBasicAccountInfo();
+			System.out.println("Please choose one of the following commands:");
+			System.out.println("login, logout, create account, withdraw, deposit, view account, edit account");
+
+			String str = scan.nextLine();	// FIXME can case statement ignore case?
+			switch(str) {
+			case "login":
+				if (accountLoggedIn != null) {
+					System.out.println("A user is already logged in.");
+					continue;
+				}
+
+				// FIXME unimplemented code
+				
+				break;
+			case "logout":
+				if (accountLoggedIn == null) {
+					System.out.println("You must log in before you can log out.");
+					continue;
+				}
+
+				// FIXME unimplemented code
+
+				break;
+			case "create account":
+
+				// FIXME unimplemented code
+				
+				break;
+			case "withdraw":
+
+				// FIXME unimplemented code
+
+				break;
+			case "deposit":
+
+				// FIXME unimplemented code
+
+				break;
+			case "view account":
+
+				// FIXME unimplemented code
+
+				break;
+			case "edit account":
+
+				// FIXME unimplemented code
+
+				break;
+			}
+		}
+
+	}
+	
+	private void displayBasicAccountInfo() {
+		System.out.println("Logged in as: " + accountLoggedIn.getUsername() +
+				", " + accountLoggedIn.getType());
+	}
+
+	// Returns true if login was successful
+	private static boolean login() {
+
+	}
+
+	// Returns true if an account waas sucessfully created
+	private static boolean createAccount() {
+
+	}
+
+}

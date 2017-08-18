@@ -1,0 +1,25 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+import com.bank.pojos.Person;
+import com.bank.pojos.User;
+
+public interface DAO {
+	
+	// The contract we make for the information that
+	// we will need to send to and receive from the data source
+	
+	public void createPerson(String filename, Person person);
+	
+	public Person readPerson(String filename, int SSN);
+	
+	// change any person's field except their primary keys
+	public boolean updatePerson(String filename, int SSN, Person person);
+	
+	// User is not truly deleted, merely marked as deleted
+	public boolean deleteUser(User guy);
+	
+	public ArrayList<Person> getAllPersons(String filename, );
+
+}

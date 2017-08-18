@@ -1,0 +1,31 @@
+package com.bank.service;
+
+import com.bank.dao.*;
+import com.bank.pojos.User;
+
+public class Service {
+	
+	DAO dao = new DaoTextImpl();
+	
+	public boolean validateUser(String username, String password) {
+		
+		User guy = dao.readUser(username);
+		
+		if (guy.getAccount().isDeleted()) {
+			System.out.println("This account has been deleted.");
+			return false;
+		}
+		
+		if (guy.getAccount().getPassword().equals(password))
+			return true;
+		else return false;
+	}
+	
+	public boolean isEmailAvailable(String email) {
+		
+		ArrayList<Person> dao.
+		
+	}
+	// Always check whether the user has been deleted
+
+}

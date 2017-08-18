@@ -1,0 +1,226 @@
+package com.bank.main;
+
+import java.util.Scanner;
+
+import com.bank.dao.DaoTextImpl;
+import com.bank.pojos.Account;
+import com.bank.pojos.Account.accountType;
+import com.bank.pojos.Person;
+import com.bank.service.Service;
+
+/*
+ * Requirements:
+ * 	User can...
+ * 		- login
+ * 		- create an account
+ * 		- logout
+ * 		- withdraw or deposit funds
+ * 		- view own account balance
+ * 		- edit own information
+ * 
+ * Tech Specs
+ * 	- core java, file i/o
+ */
+
+public class RunBank {
+	
+	private static Scanner scan = new Scanner(System.in);
+	private static Service bankService = new Service();
+	// Keeps track of the account currently logged into the system
+	private static Account accountLoggedIn = null;;
+
+	private static String bankName = "GoldenStar Bank Inc.";
+	
+	// Implementation to actually run bank application
+	public static void main(String[] args) {
+
+		// FIXME DEBUG only
+		createPeopleAndStuff();
+		
+		System.out.println("Hello. Welcome to the automating banking system for" +
+				bankName + ".");
+
+		bankingSystem();
+
+		System.out.println("Thank you for using the automating banking system. Goodbye.");
+
+		scan.close();
+
+	}
+
+	private static void bankingSystem() {
+
+		bankloop:
+		while (true) {
+			if (accountLoggedIn != null)
+				displayBasicAccountInfo();
+			System.out.println("\nPlease choose one of the following commands:");
+			System.out.println("login, logout, create account, withdraw, deposit, view account, edit account, quit");
+
+			// FIXME can case statement ignore case?
+			switch(scan.nextLine()) {
+			case "login":
+				if (accountLoggedIn != null) {
+					System.out.println("A user is already logged in.");
+					continue;
+				}
+
+				login();
+				
+				break;
+			case "logout":
+				if (accountLoggedIn == null) {
+					System.out.println("You must log in before you can log out.");
+					continue;
+				}
+
+				logout();
+
+				break;
+			case "create account":
+				
+				if (!createAccount())
+					System.out.println("Account creation failed.");
+				else {
+					System.out.println("Account created, welcome to " + bankName + ".");
+					System.out.println("Please log in to view or modify your account.");
+				}
+
+				break;
+			case "withdraw":
+				if (accountLoggedIn == null) {
+					System.out.println("You must log in before modifying your account");
+					continue;
+				}
+				
+				withdraw();
+
+				break;
+			case "deposit":
+				if (accountLoggedIn == null) {
+					System.out.println("You must log in before modifying your account");
+					continue;
+				}
+				
+				deposit();
+
+				break;
+			case "view account":
+				if (accountLoggedIn == null) {
+					System.out.println("You must log in before modifying your account");
+					continue;
+				}
+				
+				viewAccount();
+
+				break;
+			case "edit account":
+				if (accountLoggedIn == null) {
+					System.out.println("You must log in before modifying your account");
+					continue;
+				}
+				
+				editAccount();
+
+				break;
+			case "quit":
+				break bankloop;
+			default:
+				System.out.println("Command not recognized. Please try again.");
+			}	// end case statement
+			
+		}	// end bankloop
+
+	}
+
+	private static void displayBasicAccountInfo() {
+		System.out.println("Logged in as: " + accountLoggedIn.getUsername() +
+				", " + accountLoggedIn.getType());
+	}
+
+	// Returns true if login was successful
+	private static void login() {
+		System.out.print("Enter username: ");
+		String username = scan.nextLine();
+		System.out.print("Enter password: ");
+		String password = scan.nextLine();
+		
+		Account acc = bankService.validateUser(username, password);
+		
+		if (acc == null) {
+			System.out.println("Login failed, incorrect username and password combination.");
+		} else {
+			System.out.println("Login successful, welcome " + acc.getUsername());
+			accountLoggedIn = acc;
+		}
+	}
+
+	// Returns true if logout was successful
+	private static boolean logout() {
+		
+		System.out.println("Logout successful.");
+		accountLoggedIn = null;
+		
+		return true;
+	}
+
+	// Returns true if an account waas sucessfully created
+	private static boolean createAccount() {
+		
+		// Get information from user to find/create a person
+		System.out.print("Enter your first name: ");
+		String firstName = scan.nextLine();
+		System.out.print("Enter your last name: ");
+		String lastName = scan.nextLine();
+		System.out.print("Enter your Social Security Number: ");
+		String SSN = scan.nextLine();
+		
+		Person guy = bankService.tryCreatePerson(SSN, firstName, lastName);
+		
+		// Set email. email is not required to be a person but it
+		// is required to have an account
+		if (!setEmail())
+			return false;
+		
+		// Get information from user to create an account
+		System.out.print("Enter your username: ");
+		String username = scan.nextLine();
+		System.out.print("Enter your password: ");
+		String password = scan.nextLine();
+		
+		// A user must have an account, so creating a user creates an account
+		return bankService.createUser(guy, username, password, accountType.BRONZE);
+	}
+
+	private static boolean withdraw() {
+		
+	}
+	private static boolean deposit() {
+		
+	}
+	private static boolean viewAccount() {
+		
+	}
+	private static boolean editAccount() {
+		
+	}
+	
+	// Returns false if a valid email was not supplied
+	private static boolean setEmail() {
+		
+		
+		
+	}
+	
+	// FIXME DEBUG only
+	private static void createPeopleAndStuff() {
+		DaoTextImpl daoImpl = new DaoTextImpl();
+		
+		User myUser = new User();
+		
+		daoImpl.createPerson(myUser);
+		daoImpl.createPerson(per);
+		daoImpl.createPerson(cler);
+	}
+
+}

@@ -1,0 +1,31 @@
+package com.bank.pojos;
+
+import com.bank.exceptions.InvalidSSNException;
+import com.bank.exceptions.NoEmailException;
+
+// Uses a single bank account
+// Only has access to their own data
+
+public class User extends Person {
+
+	// Users do not have administrator priviledges
+	final boolean admin = false;
+
+	// User is limited to only one account
+	private final Account account;
+	
+	public User(Person person, Account account) throws InvalidSSNException, NoEmailException{
+		super(person.getSSN(), person.getFirstName(), person.getLastName());
+		if (person.getEmail().equals(""))
+			throw new NoEmailException();
+		this.account = account;
+	}
+
+	// FIXME add constructors, getters, setters
+	// FIXME For a user to be created a person must be specified and they
+	// 		must have an email 
+	
+	// FIXME set admin to false
+	
+	
+}

@@ -1,0 +1,59 @@
+package com.bank.pojos;
+
+import java.util.Date;
+
+import com.bank.exceptions.InvalidSSNException;
+import com.bank.exceptions.NoEmailException;
+
+// Manages bank account information
+// Has access to every account
+// Cannot own an account
+
+public class Clerk extends Person {
+	
+	public static double MINIMUM_WAGE = 8.85;
+	
+	private static int lastIdIssued = 0;
+	private final int employeeId;
+	
+	private final Date dateHired;
+	
+	private double hourlyWage;
+	
+	// Shows whether the employee is currently working for the company
+	// Turns false when an employee is let go
+	private boolean hired = true;
+	
+	// Clerks do have administrator privileges
+	final boolean admin = true;
+	
+	public Clerk(Person person) throws InvalidSSNException, NoEmailException{
+		super(person.getSSN(), person.getFirstName(), person.getLastName());
+		if (person.getEmail().equals(""))
+			throw new NoEmailException();
+		dateHired = new Date();
+		hourlyWage = MINIMUM_WAGE;
+		employeeId = lastIdIssued++;
+	}
+
+	public double getHourlyWage() {
+		return hourlyWage;
+	}
+
+	public void setHourlyWage(double hourlyWage) {
+		this.hourlyWage = hourlyWage;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public Date getDateHired() {
+		return dateHired;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+	
+}

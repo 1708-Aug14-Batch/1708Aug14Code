@@ -1,0 +1,10 @@
+package com.bank.exceptions;
+
+public class InvalidSSNException extends Exception {
+
+	/**
+	 * Auto-generated
+	 */
+	private static final long serialVersionUID = 1L;
+
+}

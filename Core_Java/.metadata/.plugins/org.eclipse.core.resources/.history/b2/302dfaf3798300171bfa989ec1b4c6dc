@@ -1,0 +1,93 @@
+package com.bank.dao;
+
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import com.bank.pojos.Clerk;
+import com.bank.pojos.Person;
+import com.bank.pojos.User;
+
+public class DaoTextImpl implements DAO {
+	
+	private static String personFilename = "src/com/bank/files/persons.txt";
+	private static String userFilename = "src/com/bank/files/users.txt";
+	private static String clerkFilename = "src/com/bank/files/clerks.txt";
+	
+	@Override
+	public void createPerson(Person per) {
+		
+		String filename = setFilename(per);
+		
+		try(ObjectOutputStream oos = new ObjectOutputStream(
+				new FileOutputStream(filename))) {
+
+			oos.writeObject(per);
+
+		} catch (IOException e) {
+			System.out.println("IOException for filename: " + filename);
+		}
+		
+	}
+	
+	@Override
+	public Person readPerson(int SSN) {
+		Person per = null;
+		String filename = setFilename(per);
+		
+		// try-with-resources block
+		try(ObjectInputStream ois = new ObjectInputStream(
+				new FileInputStream(filename))) {
+
+			per = (Person)ois.readObject();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+		return per;
+	}
+	
+	@Override
+	public User readUser(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public boolean updatePerson(int SSN, Person person) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public ArrayList<Person> getAllPersons() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
+	public boolean deleteUser(User guy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	private static String setFilename(Person p) {
+		if (p.getClass() == User.class)
+			return userFilename;
+		else if (p.getClass() == Clerk.class)
+			return clerkFilename;
+		else return personFilename;
+	}
+	
+}

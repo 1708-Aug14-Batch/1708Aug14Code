@@ -1,0 +1,13 @@
+package com.ex.day4;
+
+public class FactoryObject implements FactoryObjectInterface {
+
+	private int idNumber;
+	
+	@Override
+	public void doThing() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,14 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+import com.bank.pojos.Person;
+import com.bank.pojos.User;
+
+public class DaoTextImpl implements DAO {
+	
+	private static String personFilename = "src/com/bank/files/persons.txt";
+	private static String UserFilename = "src/com/bank/files/users.txt";
+	private static String ClerkFilename = "src/com/bank/files/clerks.txt";
+	
+}

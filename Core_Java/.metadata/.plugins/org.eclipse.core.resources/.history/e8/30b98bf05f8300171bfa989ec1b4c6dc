@@ -1,0 +1,12 @@
+package com.bank.pojos;
+
+public class Person {
+	
+	// If a person has an email then it must be unique
+	private String email;
+	
+	// Each person must have a firstName and lastName
+	private String firstName;
+	private String lastName;
+
+}

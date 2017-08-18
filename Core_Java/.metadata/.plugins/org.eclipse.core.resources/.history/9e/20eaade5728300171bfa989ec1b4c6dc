@@ -1,0 +1,15 @@
+package com.bank.service;
+
+import com.bank.dao.DAO;
+import com.bank.dao.DaoTextImpl;
+
+public class Service {
+	
+	DAO dao = new DaoTextImpl();
+	
+	// Always check whether the user has been deleted
+	// Validate user
+	// Validate that an email address is legal
+	// Validate that a given email address is unique within the data
+
+}

@@ -1,0 +1,13 @@
+package com.bank.enums;
+
+/*
+ * Account type determines interest rate for savings account and
+ * the percentage of rewards accrued per purchase
+ */
+public enum AccountType {
+	BRONZE,
+	SILVER,
+	GOLD,
+	PLATINUM,
+	DOUBLE_PLATINUM
+}
