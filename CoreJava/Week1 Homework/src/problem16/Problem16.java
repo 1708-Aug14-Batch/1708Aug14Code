@@ -9,14 +9,13 @@ public class Problem16 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-
-		Scanner scan = new Scanner(System.in);
+		int numChar = 0;
 		
-		System.out.println("Enter string");
+		for(String x:args) {
+			numChar += x.length();
+		}
 		
-		String input = scan.nextLine();
-		
-		System.out.println(input.length());
+		System.out.println(numChar);
 
 	}
 
