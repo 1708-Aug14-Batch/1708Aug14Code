@@ -18,7 +18,8 @@ public class User {
 		this.password = password;
 		this.balance = balance;
 	}
-
+	
+	//To be improved if time and willing
 	@Override
 	public String toString() {
 		return "User [firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", password="

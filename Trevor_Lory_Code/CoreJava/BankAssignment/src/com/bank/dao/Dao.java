@@ -11,7 +11,9 @@ public interface Dao {
 	//getUser
 	
 	public void addUser(User user);
-	public boolean editUser(int valueID);
+	public void updateUsers(String[] Users);
+	public void editUser(User user);
+	public void deleteUser(int ID);
 	public User getUser(int ID);
 	
 }

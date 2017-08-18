@@ -78,7 +78,7 @@ public class RunBank {
 			}
 		}
 		bankService.createUser(firstname, lastname, username, password, initialBalance);
-		bankService.manageAccount();
+		bankService.manageAccount(scan);
 	}
 	
 	static void login() {
@@ -119,18 +119,19 @@ public class RunBank {
 			}
 		}
 		if(passed) {
-			bankService.manageAccount();
+			bankService.manageAccount(scan);
 		}
 	}
 	
 	/*
 	 * Requirements: As a user I can,
-	 * - login
-	 * - create an account
-	 * - logout
-	 * - withdraw or deposit funds
-	 * - view my* account information
-	 * - edit my* information
+	 * - login *
+	 * - create an account *
+	 * - logout *
+	 * - withdraw or deposit funds *
+	 * - view my* account information *
+	 * - edit my* information *
+	 * - delete account *
 	 * 
 	 * Tech Specs
 	 * - core java, file i/o
