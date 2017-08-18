@@ -25,14 +25,12 @@ public class Account {
 		savingsRateMap.put(accountType.DOUBLE_PLATINUM, (double)8/100);
 	}
 	
+	// This is used to delimit fields in the toString and fromString methods
+	protected static String delimit = "::";
+	
 	// The date the account was opened
 	private final String accountOpenedDate;
 
-	// FIXME will this and the employee account IDs be unique especially after shuting down
-	// and reopening the program?
-	// Keeps track of the last account ID issued
-	private static int lastIdIssued = 1;
-	
 	// Account id number is initialized when the account is created
 	private final int accountId;
 	
@@ -73,8 +71,8 @@ public class Account {
 		DOUBLE_PLATINUM
 	};
 
-	public Account(Person person, String username, String password, accountType type) {
-		accountId = lastIdIssued++;
+	public Account(Person person, String username, String password, accountType type, int accountId) {
+		this.accountId = accountId;
 		accountOpenedDate = new Date().toString();
 		this.type = type;
 		this.username = username;
@@ -166,7 +164,7 @@ public class Account {
 	}
 	
 	private Account(String date, int id, String username, String password, String SSN,
-			boolean deleted, int checkingBalance, int savingsBalance, int rewardsBalance,
+			boolean deleted, BigDecimal checkingBalance, BigDecimal savingsBalance, BigDecimal rewardsBalance,
 			double interestRate, double rewardsRate, accountType type) {
 		
 		this.accountOpenedDate = date;
@@ -175,29 +173,29 @@ public class Account {
 		this.password = password;
 		this.SSN = SSN;
 		this.deleted = deleted;
-		this.checkingBalance = new BigDecimal(checkingBalance);
-		this.savingsBalance = new BigDecimal(savingsBalance);
-		this.rewardsBalance = new BigDecimal(rewardsBalance);
+		this.checkingBalance = checkingBalance;
+		this.savingsBalance = savingsBalance;
+		this.rewardsBalance = rewardsBalance;
 		this.interestRate = interestRate;
 		this.rewardsRate = rewardsRate;
 		this.type = type;
 	}
 	
 	// NOTE: Since the date.toString() returns single colons, this delimited must
-	// be different so I chose "::"
+	// be different so I chose delimit
 	public String toString() {
-		return accountOpenedDate + "::" + accountId + "::" + username + "::" + password + "::" + SSN + "::" +
-				deleted + "::" + checkingBalance + "::" + savingsBalance + "::" + rewardsBalance + "::" + 
-				interestRate + "::" + rewardsRate + "::" + type;
+		return accountOpenedDate + delimit + accountId + delimit + username + delimit + password + delimit + SSN + delimit +
+				deleted + delimit + checkingBalance + delimit + savingsBalance + delimit + rewardsBalance + delimit + 
+				interestRate + delimit + rewardsRate + delimit + type;
 	}
-	public static Account fromString(String str) {
-		String[] splitStr = str.split("::");
+	public static Account fromString(String str) throws NumberFormatException {
+		String[] splitStr = str.split(delimit);
 		
 		return new Account(splitStr[0], Integer.parseInt(splitStr[1]), splitStr[2], splitStr[3], 
-				splitStr[4], Boolean.parseBoolean(splitStr[5]), Integer.parseInt(splitStr[6]),
-				Integer.parseInt(splitStr[7]), Integer.parseInt(splitStr[8]),
-				Double.parseDouble(splitStr[9]), Double.parseDouble(splitStr[10]),
-				parseAccountType(splitStr[11]));
+				splitStr[4], Boolean.parseBoolean(splitStr[5]),
+				new BigDecimal(splitStr[6]), new BigDecimal(splitStr[7]),
+				new BigDecimal(splitStr[8]), Double.parseDouble(splitStr[9]),
+				Double.parseDouble(splitStr[10]), parseAccountType(splitStr[11]));
 	}
 	
 	// FIXME this is too much hard-coding, I need a way to soft code these enums

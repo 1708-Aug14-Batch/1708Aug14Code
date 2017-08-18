@@ -14,6 +14,7 @@ public class LambdaExamples {
 			return a/b;
 		};
 		
+		System.out.println(div);
 	}
 
 }

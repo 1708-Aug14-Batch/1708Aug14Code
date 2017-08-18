@@ -11,16 +11,16 @@ import com.bank.pojos.Clerk;
 import com.bank.pojos.Person;
 import com.bank.pojos.User;
 
-// FIXME ensure that users/people/clerks can be created even if the text files are empty
 // FIXME after it is functioning try replacing the basic CRUD operations with generics
 //		so that there is only one copy of each of the CRUD operations but it operates
 //		generically on either a person, clerk, or user
 
 public class DaoTextImpl implements DAO {
 	
-	private static String personFilename = "src/com/bank/files/persons.txt";
-	private static String userFilename = "src/com/bank/files/users.txt";
-	private static String clerkFilename = "src/com/bank/files/clerks.txt";
+	public static String personFilename = "src/com/bank/files/persons.txt";
+	public static String userFilename = "src/com/bank/files/users.txt";
+	public static String clerkFilename = "src/com/bank/files/clerks.txt";
+	
 	
 //------------------------------------------------------------------------------
 // Persons 
@@ -58,6 +58,8 @@ public class DaoTextImpl implements DAO {
 					return per;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		
@@ -178,6 +180,8 @@ public class DaoTextImpl implements DAO {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
 		}
 		
 		return null;
@@ -296,6 +300,8 @@ public class DaoTextImpl implements DAO {
 					return cler;
 			}
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
 		

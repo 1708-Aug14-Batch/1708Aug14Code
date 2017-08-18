@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="isEmail" key="selection"/>
+		<item value="isEmailValid" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="isEmail"/>
-			<item value="getAllPer"/>
-			<item value="unava"/>
-			<item value="unavailable"/>
-			<item value="tryCreate"/>
-			<item value="email"/>
-			<item value="write"/>
-			<item value="try"/>
+			<item value="isEmailValid"/>
+			<item value="equals"/>
+			<item value="password"/>
+			<item value="password1"/>
+			<item value="createAc"/>
+			<item value="create"/>
+			<item value="maximum"/>
+			<item value="case"/>
 		</list>
 		<list key="replacehistory">
-			<item value="savings"/>
-			<item value="String SSN"/>
-			<item value="Person"/>
-			<item value=".equalsIgnoreCase"/>
-			<item value="addStudent"/>
-			<item value="scan.nextLine()"/>
-			<item value="expected4"/>
-			<item value="array2"/>
+			<item value="scan.nextLine().trim()"/>
+			<item value="parseBoolean"/>
+			<item value="delimit"/>
+			<item value="accountUsernameLoggedIn"/>
+			<item value="&quot;::&quot;"/>
+			<item value="readAll"/>
+			<item value="read"/>
+			<item value="User guy"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
-		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="797" key="DIALOG_X_ORIGIN"/>
-		<item value="363" key="DIALOG_Y_ORIGIN"/>
+		<item value="381" key="DIALOG_HEIGHT"/>
+		<item value="-2" key="DIALOG_X_ORIGIN"/>
+		<item value="273" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -1,13 +1,14 @@
 package com.bank.pojos;
 
-// NOTE: None of these strings can contain the ':' character or else it will corrupt the toString() and fromString() methods
-// FIXME test for the ':' character in any field
-// FIXME add the ":" as a public static delimiter string, then reference by varaible in toString and fromString
-//			same for Clerk, User, and account
+// NOTE: None of these strings can contain the delimit character or else it will corrupt the toString() and fromString() methods
+// FIXME test for the delimit character in any field
 
 public class Person {
 
-	// Each person must have a unique Social Security Number
+	// This is used to delimit fields in the toString and fromString methods
+	protected static String delimit = ":";
+	
+	// Each person must have a unique 9-digit Social Security Number
 	private final String SSN;
 
 	// Each person must have a firstName and lastName
@@ -65,12 +66,12 @@ public class Person {
 
 	// Turns a person into a string object
 	public String toString() {
-		return SSN + ":" + firstName + ":" + lastName + ":" + deceased + ":" + email;
+		return SSN + delimit + firstName + delimit + lastName + delimit + deceased + delimit + email;
 	}
 	// Creates a person object from the given string
 	public static Person fromString(String str) {
 
-		String[] splitStr = str.split(":");
+		String[] splitStr = str.split(delimit);
 
 		Person per = new Person(splitStr[0], splitStr[1], splitStr[2]);
 		per.setDeceased(Boolean.parseBoolean(splitStr[3]));

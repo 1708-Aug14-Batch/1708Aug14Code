@@ -24,12 +24,14 @@ import com.bank.service.Service;
  * 	- core java, file i/o
  */
 
+// FIXME clerks will be able to log in by typing a secret command and
+//		Clerks will likely need some variables such as username and password
 public class RunBank {
 
 	private static Scanner scan = new Scanner(System.in);
 	private static Service bankService = new Service();
 	// Keeps track of the account currently logged into the system
-	private static Account accountLoggedIn = null;;
+	private static String accountUsernameLoggedIn = null;;
 
 	private static String bankName = "People's Bank of Earth";
 
@@ -52,15 +54,16 @@ public class RunBank {
 		bankloop:
 			while (true) {
 				System.out.println();	// Formatting
-				if (accountLoggedIn != null)
+				if (accountUsernameLoggedIn != null)
 					displayBasicAccountInfo();
 				System.out.println("Please choose one of the following commands:");
 				System.out.println("login, logout, create account, withdraw, deposit, view account, edit account, quit");
 
 				String input = "";		// used in a few of the case statements
-				switch(scan.nextLine().toLowerCase()) {
+				switch(scan.nextLine().trim().toLowerCase()) {
 				case "login":
-					if (accountLoggedIn != null) {
+				case "log in":
+					if (accountUsernameLoggedIn != null) {
 						System.out.println("A user is already logged in.");
 						continue;
 					}
@@ -69,7 +72,8 @@ public class RunBank {
 
 					break;
 				case "logout":
-					if (accountLoggedIn == null) {
+				case "log out":
+					if (accountUsernameLoggedIn == null) {
 						System.out.println("You must log in before you can log out.");
 						continue;
 					}
@@ -78,7 +82,8 @@ public class RunBank {
 
 					break;
 				case "create account":
-					if (accountLoggedIn != null) {
+				case "create":
+					if (accountUsernameLoggedIn != null) {
 						System.out.println("Please log out before creating a new account.");
 						continue;
 					}
@@ -86,7 +91,7 @@ public class RunBank {
 					displayTermsAndConditions();
 					System.out.println("Do you accept these conditions? yes/no");
 					
-					if (scan.nextLine().equalsIgnoreCase("yes"))
+					if (scan.nextLine().trim().equalsIgnoreCase("yes"))
 						if (!createAccount())
 							System.out.println("Account creation failed.");
 						else {
@@ -96,13 +101,13 @@ public class RunBank {
 
 					break;
 				case "withdraw":
-					if (accountLoggedIn == null) {
+					if (accountUsernameLoggedIn == null) {
 						System.out.println("You must log in before modifying your account");
 						continue;
 					}
 
 					System.out.println("Would you like to withdraw from checking or transfer money from checking to savings?");
-					input = scan.nextLine().toLowerCase();
+					input = scan.nextLine().trim().toLowerCase();
 					if (input.contains("checking"))
 						transferFunds(true);
 					else if (input.contains("saving"))
@@ -111,13 +116,13 @@ public class RunBank {
 
 					break;
 				case "deposit":
-					if (accountLoggedIn == null) {
+					if (accountUsernameLoggedIn == null) {
 						System.out.println("You must log in before modifying your account");
 						continue;
 					}
 
 					System.out.println("Would you like to deposit to checking or to savings?");
-					input = scan.nextLine().toLowerCase();
+					input = scan.nextLine().trim().toLowerCase();
 					if (input.contains("checking"))
 						deposit(true);
 					else if (input.contains("saving"))
@@ -126,7 +131,8 @@ public class RunBank {
 
 					break;
 				case "view account":
-					if (accountLoggedIn == null) {
+				case "view":
+					if (accountUsernameLoggedIn == null) {
 						System.out.println("You must log in before modifying your account");
 						continue;
 					}
@@ -135,7 +141,8 @@ public class RunBank {
 
 					break;
 				case "edit account":
-					if (accountLoggedIn == null) {
+				case "edit":
+					if (accountUsernameLoggedIn == null) {
 						System.out.println("You must log in before modifying your account");
 						continue;
 					}
@@ -144,6 +151,7 @@ public class RunBank {
 
 					break;
 				case "quit":
+				case "q":
 					break bankloop;
 				default:
 					System.out.println("Command not recognized. Please try again.");
@@ -154,24 +162,24 @@ public class RunBank {
 	}
 
 	private static void displayBasicAccountInfo() {
-		System.out.println("Logged in as: " + accountLoggedIn.getUsername() +
-				", Account type: " + accountLoggedIn.getType());
+		System.out.println("Logged in as: " + accountUsernameLoggedIn +	", Account type: " +
+				bankService.getUser(accountUsernameLoggedIn).getAccount().getType());
 	}
 
 	// Returns true if login was successful
 	private static void login() {
 		System.out.print("Enter username: ");
-		String username = scan.nextLine();
+		String username = scan.nextLine().trim().toLowerCase();
 		System.out.print("Enter password: ");
-		String password = scan.nextLine();
+		String password = scan.nextLine().trim();
 
 		Account acc = bankService.validateUser(username, password);
 
 		if (acc == null) {
 			System.out.println("Login failed, incorrect username and password combination.");
 		} else {
-			System.out.println("Login successful, welcome " + acc.getUsername());
-			accountLoggedIn = acc;
+			accountUsernameLoggedIn = acc.getUsername();
+			System.out.println("Login successful, welcome " + accountUsernameLoggedIn);
 		}
 	}
 
@@ -179,7 +187,7 @@ public class RunBank {
 	private static boolean logout() {
 
 		System.out.println("Logout successful.");
-		accountLoggedIn = null;
+		accountUsernameLoggedIn = null;
 
 		return true;
 	}
@@ -189,11 +197,11 @@ public class RunBank {
 
 		// Get information from user to find/create a person
 		System.out.print("Enter your first name: ");
-		String firstName = scan.nextLine();
+		String firstName = scan.nextLine().trim();
 		System.out.print("Enter your last name: ");
-		String lastName = scan.nextLine();
+		String lastName = scan.nextLine().trim();
 		System.out.print("Enter your Social Security Number: ");
-		String SSN = scan.nextLine();
+		String SSN = scan.nextLine().trim();
 
 		Person per = bankService.tryCreatePerson(SSN, firstName, lastName, "");
 		if (per == null)
@@ -206,11 +214,18 @@ public class RunBank {
 
 		// Get information from user to create an account
 		System.out.print("Enter your username: ");
-		String username = scan.nextLine();
+		String username = scan.nextLine().trim();
 		System.out.print("Enter your password: ");
-		String password = scan.nextLine();
-
-		return bankService.createUser(per, new Account(per, username, password, accountType.BRONZE));
+		String password1 = scan.nextLine().trim();
+		System.out.print("Enter password again: ");
+		String password2 = scan.nextLine().trim();
+		
+		if (password1.equals(password2))
+			return bankService.tryCreateUser(per, username, password1, accountType.BRONZE);
+		else {
+			System.out.println("Passwords do not match.");
+			return false;
+		}
 	}
 
 	private static boolean transferFunds(boolean checking) {
@@ -218,11 +233,11 @@ public class RunBank {
 		String accountStr = null;
 
 		if (checking) {
-			balance = bankService.getCheckingAccountBalance(accountLoggedIn.getUsername());
+			balance = bankService.getCheckingAccountBalance(accountUsernameLoggedIn);
 			accountStr = "Checking";
 		}
 		else {		// Savings account
-			balance = bankService.getSavingsAccountBalance(accountLoggedIn.getUsername());
+			balance = bankService.getSavingsAccountBalance(accountUsernameLoggedIn);
 			accountStr = "Savings";
 		}
 
@@ -231,7 +246,7 @@ public class RunBank {
 			System.out.print("Current funds: $" + balance.toString() +
 					"\nEnter an ammount to be withdrawn from your " + accountStr + " account: ");
 
-			BigDecimal withdrawAmmount = new BigDecimal(scan.nextLine());
+			BigDecimal withdrawAmmount = new BigDecimal(scan.nextLine().trim());
 
 			if (withdrawAmmount.abs() != withdrawAmmount) {
 				System.out.println("You cannot withdraw a negative quantity.");
@@ -244,7 +259,7 @@ public class RunBank {
 				return false;
 			default:
 
-				User guy = bankService.getUser(accountLoggedIn.getUsername());
+				User guy = bankService.getUser(accountUsernameLoggedIn);
 
 				BigDecimal finalBalance = balance.subtract(withdrawAmmount);
 				if (checking)
@@ -273,17 +288,16 @@ public class RunBank {
 
 	}
 
-	// FIXME there should be a maximum limit to how much can be deposited
 	private static boolean deposit(boolean checking) {
 		BigDecimal balance = null;
 		String accountStr = null;
 
 		if (checking) {
-			balance = bankService.getCheckingAccountBalance(accountLoggedIn.getUsername());
+			balance = bankService.getCheckingAccountBalance(accountUsernameLoggedIn);
 			accountStr = "Checking";
 		}
 		else {		// Savings account
-			balance = bankService.getSavingsAccountBalance(accountLoggedIn.getUsername());
+			balance = bankService.getSavingsAccountBalance(accountUsernameLoggedIn);
 			accountStr = "Savings";
 		}
 
@@ -292,14 +306,14 @@ public class RunBank {
 			System.out.print("Current funds: $" + balance.toString() +
 					"\nEnter an ammount to be deposited to your " + accountStr + " account: ");
 
-			BigDecimal depositAmmount = new BigDecimal(scan.nextLine());
+			BigDecimal depositAmmount = new BigDecimal(scan.nextLine().trim());
 
 			if (depositAmmount.abs() != depositAmmount) {
 				System.out.println("You cannot deposit a negative quantity.");
 				return false;
 			}
 
-			User guy = bankService.getUser(accountLoggedIn.getUsername());
+			User guy = bankService.getUser(accountUsernameLoggedIn);
 
 			BigDecimal finalBalance = balance.add(depositAmmount);
 			if (checking)
@@ -313,7 +327,7 @@ public class RunBank {
 			}
 
 			System.out.println("$" + depositAmmount.toString() + " deposited to " + accountStr);
-			System.out.println("$" + guy.getAccount().getCheckingBalance().toString() + " new checking balance");
+			System.out.println("$" + finalBalance + " new " + accountStr + " balance");
 
 			return true;
 
@@ -324,7 +338,7 @@ public class RunBank {
 		}
 	}
 	private static boolean viewAccount() {
-		Account acc = bankService.getUser(accountLoggedIn.getUsername()).getAccount();
+		Account acc = bankService.getUser(accountUsernameLoggedIn).getAccount();
 
 		System.out.println("Account created on : " + acc.getAccountOpenedDate());
 		System.out.println("Account id number: " + acc.getAccountId());
@@ -342,21 +356,44 @@ public class RunBank {
 		// FIXME add option to upgrade account, but requires credentials from a clerk (admin access)
 		
 		System.out.println("Would you like to change your password or delete your account?");
-		String str = scan.nextLine().toLowerCase();
+		String str = scan.nextLine().trim().toLowerCase();
 		if (str.contains("password")) {
-
+			
+			System.out.print("Please enter your current password: ");
+			String password1 = scan.nextLine().trim();
+			
+			if (bankService.validateUser(accountUsernameLoggedIn, password1) == null)
+				System.out.println("Incorrect password.");
+			else {
+				System.out.print("Enter a new password: ");
+				password1 = scan.nextLine().trim();
+				System.out.print("Enter the new password one more time: ");
+				String password2 = scan.nextLine().trim();
+				
+				if (!password1.equals(password2)) {
+					System.out.println("Passwords do not match. Password not changed.");
+					return;
+				}
+				
+				User guy = bankService.getUser(accountUsernameLoggedIn);
+				guy.getAccount().setPassword(password1);
+				bankService.updateUser(guy);
+			}
+			
 		} else if (str.contains("delete")) {
 			System.out.println("WARNING: This canot be undone!");
 			System.out.println("Our bank system does not currently offer the option to restore a delted account" + 
 					"\n OR for a previous customer to create a new account.");
 			System.out.println("Are you sure you with to delete your account? yes/no");
 
-			String confirmation = scan.nextLine().toLowerCase();
+			String confirmation = scan.nextLine().trim().toLowerCase();
 
 			if (confirmation.contains("yes") || confirmation.equalsIgnoreCase("y")) {
-
+				
+				String localAccountUsername = accountUsernameLoggedIn;
 				logout();
-				if (bankService.deleteAccount(accountLoggedIn.getUsername(), false))
+				
+				if (bankService.deleteAccount(localAccountUsername, false))
 					System.out.println("Account has ben DELETED. " + bankName + " thanks your for your patronage.");
 				else System.out.println("Account could not be deleted. Please see an administrator.");
 			}
@@ -384,7 +421,7 @@ public class RunBank {
 		
 		// get email
 		System.out.print("Enter your email address: ");
-		String email = scan.nextLine();
+		String email = scan.nextLine().trim();
 
 		if (bankService.isEmailValid(email))
 			if (bankService.isEmailAvailable(email)) {

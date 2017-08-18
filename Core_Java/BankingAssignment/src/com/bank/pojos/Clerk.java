@@ -8,9 +8,11 @@ import java.util.Date;
 
 public class Clerk extends Person {
 	
+	// This is used to delimit fields in the toString and fromString methods
+	protected static String delimit = "::";
+	
 	public static double MINIMUM_WAGE = 8.85;
 	
-	private static int lastIdIssued = 0;
 	// Each employee has a unique employeeId
 	private final int employeeId;
 	
@@ -25,12 +27,12 @@ public class Clerk extends Person {
 	// Clerks do have administrator privileges
 	final boolean admin = true;
 	
-	public Clerk(Person person) {
+	public Clerk(Person person, int employeeId) {
 		super(person.getSSN(), person.getFirstName(), person.getLastName());
 
 		dateHired = new Date().toString();
 		hourlyWage = MINIMUM_WAGE;
-		employeeId = lastIdIssued++;
+		this.employeeId = employeeId;
 	}
 	private Clerk(Person per, int employeeId, String dateHired, double hourlyWage, boolean hired) {
 		super(per.getSSN(), per.getFirstName(), per.getLastName());
@@ -70,18 +72,18 @@ public class Clerk extends Person {
 	}
 	
 	public String toString() {
-		return super.toString() + ";" + employeeId + ":" + dateHired + ":" + hourlyWage + ":" + hired;
+		return super.toString() + User.delimit + employeeId + delimit + dateHired + delimit + hourlyWage + delimit + hired;
 	}
-	public static Clerk fromString(String str) {
-		String[] splitStr = str.split(";");
+	public static Clerk fromString(String str) throws NumberFormatException {
+		String[] splitStr = str.split(User.delimit);
 		Person per = Person.fromString(splitStr[0]);
 		
-		String[] splitSplitStr = splitStr[1].split(":");
+		String[] splitSplitStr = splitStr[1].split(delimit);
 		
 		int employeeId = Integer.parseInt(splitSplitStr[0]);
 		String dateHired = splitSplitStr[1];
 		double hourlyWage = Double.parseDouble(splitSplitStr[2]);
-		boolean hired = Boolean.getBoolean(splitSplitStr[3]);
+		boolean hired = Boolean.parseBoolean(splitSplitStr[3]);
 		
 		return new Clerk(per, employeeId, dateHired, hourlyWage, hired);
 	}

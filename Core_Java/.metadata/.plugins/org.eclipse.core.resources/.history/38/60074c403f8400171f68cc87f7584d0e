@@ -1,0 +1,110 @@
+package com.bank.tests;
+
+import static org.junit.Assert.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.bank.dao.DaoTextImpl;
+import com.bank.pojos.Clerk;
+import com.bank.pojos.Person;
+import com.bank.pojos.User;
+import com.bank.service.Service;
+
+public class BankTest {
+
+	static DaoTextImpl daoImpl;
+	static Service bankService;
+	
+	private static String testPersonFilename = DaoTextImpl.personFilename + "Test.txt";
+	private static String testUserFilename = DaoTextImpl.userFilename + "Test.txt";
+	private static String testClerkFilename = DaoTextImpl.clerkFilename + "Test.txt";
+	
+	// Copy over all of the data sets for safekeeping
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		
+		copyFile(DaoTextImpl.personFilename, testPersonFilename);
+		copyFile(DaoTextImpl.userFilename, testUserFilename);
+		copyFile(DaoTextImpl.clerkFilename, testClerkFilename);
+	}
+
+	// Erase data created for the test
+	// Restore the original data sets
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		
+		copyFile(testPersonFilename, DaoTextImpl.personFilename);
+		copyFile(testUserFilename, DaoTextImpl.userFilename);
+		copyFile(testClerkFilename, DaoTextImpl.clerkFilename);
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		daoImpl = new DaoTextImpl();
+		bankService = new Service();
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		
+	}
+	
+	@Test
+	public void daoAdvancedTests() {
+		// duplicate SSNs, usernames, people with multiple accounts, incorrect SSNs, incorr
+		
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void daoBasicTests() {
+		// create, read, update, delete
+		
+		daoImpl.createPerson(new Person(null, null, null));
+		daoImpl.createUser(new User(null, null));
+		daoImpl.createClerk(new Clerk(null, 0));
+		
+		fail("Not yet implemented");
+	}
+	
+	private static boolean copyFile(String scanFilename, String writeFilename) {
+		Scanner scan = null;
+		
+		try(BufferedWriter bw = new BufferedWriter(
+				new FileWriter(writeFilename, false)))  {
+			
+			// Read from original file
+			scan = new Scanner(new File(scanFilename));
+			// Write to new file
+			
+			
+			while (scan.hasNext())
+				bw.write(scan.nextLine() + "\n");
+		
+			bw.close();
+			scan.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			scan.close();
+		}
+		
+		return true;
+	}
+
+}
