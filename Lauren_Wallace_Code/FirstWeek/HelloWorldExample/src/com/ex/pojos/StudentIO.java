@@ -16,6 +16,9 @@ public class StudentIO {
 	
 	public void writeStudent(Student s) {
 		
+		//FileWriter(String str, bool state)
+		//the bool state states if we want to append new str to the file
+		//or if we want to overwrite the entire file/str
 		try(BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))) {
 			String text = " ";
 			

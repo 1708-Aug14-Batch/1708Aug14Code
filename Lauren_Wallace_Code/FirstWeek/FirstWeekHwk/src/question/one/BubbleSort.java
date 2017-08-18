@@ -7,9 +7,9 @@ public class BubbleSort {
 		
 		int[] array = {1,0,5,6,3,2,3,7,9,8,4};
 		
-		//printArray(array);
-		//bubbleSortArray(array);
-		//printArray(array);
+		printArray(array);
+		bubbleSortArray(array);
+		printArray(array);
 	
 	}
 	
@@ -19,7 +19,7 @@ public class BubbleSort {
 		array[k] = temp;
 	}
 	
-	public int[] bubbleSortArray(int[] array) {
+	public static int[] bubbleSortArray(int[] array) {
 		for(int i = 0; i < array.length; i++) {
 			for (int k = 0; k < array.length - 1; k++) {
 				if(array[k] > array[k+1]) {

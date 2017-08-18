@@ -63,4 +63,10 @@ public class Employee implements Comparable {
 		return this.age > emp.age ? 1:-1;
 	}
 
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
