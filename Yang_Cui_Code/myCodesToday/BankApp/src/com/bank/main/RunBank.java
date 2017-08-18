@@ -24,22 +24,18 @@ public class RunBank {
 		int userOption;
 		
 		while(!access){
-			System.out.println("1=create new Account");
-			System.out.println("2=long in to an account");
+			System.out.println("0=create new Account");
+			System.out.println("1=User Login");
 			userOption =input.nextInt();
 			input.nextLine();
 			
 			switch(userOption){
 			case 0: {createAccount(dao);
-					user=login(dao);
+					access=login(dao);
 			}break; // create user account
-			case 1: user=login(dao); break; // login user account
+			case 1: access=login(dao); break; // login user account
 			default: System.out.println("Invalid user option please try again"); break; // incorrect option
 			}
-			
-			if(user==null);
-			else
-				access=true;
 		}
 		
 		while(access){
@@ -54,8 +50,8 @@ public class RunBank {
 			switch(userOption){
 			case 0: access=false; break; // user log out
 			case 1: viewAccountInfo(); break; // view my account
-			case 2: user=DepoistOrWithdraw(dao); break; // Deposit or Withdraw
-			case 3: user=EditMyAccountInfo(dao); break; // change my info
+			case 2: DepoistOrWithdraw(dao); break; // Deposit or Withdraw
+			case 3: EditMyAccountInfo(dao); break; // change my info
 			case 4: {
 				CloseMyAccount(dao);
 				access=false;
@@ -63,24 +59,42 @@ public class RunBank {
 			default: System.out.println("Invalid user option please try again"); break; // incorrect option
 			}
 		}
-		
 		user=null;
-		
 	}
 	
-	static public User login(DAO dao){
+	static public boolean login(DAO dao){
 		Scanner input = new Scanner(System.in);
-		while(user==null){
-			System.out.println("please enter user ID:");
-			int id =input.nextInt();
+		int userOption=0;
+		boolean exit=false;
+		boolean access=false;
+		
+		while(!exit){
+			System.out.println("0=EXIT");
+			System.out.println("1=User Login");
+			userOption =input.nextInt();
 			input.nextLine();
-			System.out.println("plese enter user password:");
-			String password =input.nextLine();
-			user=dao.authentication(id, password);
-			if(user==null)
-				System.out.println("user infromation incorrect please try again");
+			
+			switch(userOption){
+			case 0: exit=true; break;
+			case 1: {
+				System.out.println("please enter user ID:");
+				int id =input.nextInt();
+				input.nextLine();
+				System.out.println("plese enter user password:");
+				String password =input.nextLine();
+				user=dao.authentication(id, password);
+				if(user==null)
+					System.out.println("user infromation incorrect please try again");
+				else{
+					exit=true;
+					access=true;
+					System.out.println("login sucessfull");
+				}
+			} break;
+			default: System.out.println("Invalid user option please try again"); break; // incorrect option
+			}
 		}
-		return user;
+		return access;
 	}
 	
 	static public void createAccount(DAO dao){
@@ -107,41 +121,104 @@ public class RunBank {
 		System.out.println("Balance = "+user.getBalance());
 	}
 	
-	static public User DepoistOrWithdraw(DAO dao){
+	static public void DepoistOrWithdraw(DAO dao){
+		User tempUser = user;
 		Scanner input = new Scanner(System.in);
 		int userOption=0;
 		int amount=0;
 		boolean exit=false;
 		
 		while(!exit){
-			System.out.println("0=EXIT");
+			System.out.println("0=EXIT discard change");
 			System.out.println("1=Depoist");
 			System.out.println("2=Withdraw");
+			System.out.println("3=EXIT save change");
 			userOption=input.nextInt();
 			input.nextLine();
 			
 			switch(userOption){
-			case 0: exit=true; break;
+			case 0: {
+				tempUser=null;
+				exit=true;
+				System.out.println("your change is not saved");
+			} break;
 			case 1: {
 				System.out.println("please enter amount to despoit:");
 				amount=input.nextInt();
 				input.nextLine();
-				user=dao.changeBalance(user, amount, true);
+				tempUser=dao.changeBalance(tempUser, amount, true);
 			} break;
 			case 2: {
 				System.out.println("please enter amount to withdraw: ");
 				amount=input.nextInt();
 				input.nextLine();
-				user=dao.changeBalance(user, amount, true);
+				tempUser=dao.changeBalance(tempUser, amount, true);
+			} break;
+			case 3: {
+				user=tempUser;
+				dao.updateUser(user);
+				exit=true;
+				System.out.println("Commited your transaction");
+				System.out.println("your reminding balance: "+user.getBalance());
 			} break;
 			default: System.out.println("Invalid user option please try again"); break;
 			}
 		}
-		return user;
 	}
 	
-	static public User EditMyAccountInfo(DAO dao){
-		return dao.editUser(user);
+	static public void EditMyAccountInfo(DAO dao){
+		User tempUser = user;
+		Scanner input = new Scanner(System.in);
+		boolean exit=false;
+		while(!exit){
+			System.out.println("0=EXIT discard change");
+			System.out.println("1=change user first name");
+			System.out.println("2=change user last name");
+			System.out.println("3=change user email");
+			System.out.println("4=change user password");
+			System.out.println("5=EXIT save change");
+			int userOption =input.nextInt();
+			input.nextLine();
+				
+			switch(userOption){
+			case 0: {
+				tempUser=null;
+				exit=true;
+				System.out.println("your change is not saved");
+			} break;
+			case 1: {
+				System.out.println("please enter your new firstname:");
+				String changeFirst =input.nextLine();
+				tempUser.setFirstname(changeFirst);
+				System.out.println("you changed your firstname to: "+changeFirst);
+			}break;
+			case 2: {
+				System.out.println("please enter your new lastname:");
+				String changeLast =input.nextLine();
+				tempUser.setLastname(changeLast);
+				System.out.println("you changed your lastname to: "+changeLast);
+			}break;
+			case 3: {
+				System.out.println("please enter your new email:");
+				String changeEmail =input.nextLine();
+				tempUser.setEmail(changeEmail);
+				System.out.println("you changed your email to: "+changeEmail);
+			}break;
+			case 4: {
+				System.out.println("please enter your new password:");
+				String changePass =input.nextLine();
+				tempUser.setPassword(changePass);
+				System.out.println("you changed your password to "+changePass);
+			}break;
+			case 5: {
+				user=tempUser;
+				dao.updateUser(user);
+				exit=true;
+				System.out.println("your account information is updated");
+			}break;
+			default: System.out.println("invalid input please try again"); break;
+			}
+		}
 	}
 	
 	static public void CloseMyAccount(DAO dao){

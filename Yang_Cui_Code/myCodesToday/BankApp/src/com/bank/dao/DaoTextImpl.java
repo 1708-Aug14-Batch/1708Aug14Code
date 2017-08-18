@@ -32,69 +32,11 @@ public class DaoTextImpl implements DAO{
 	}
 
 	@Override
-	public User editUser(User user) {
-		// TODO Auto-generated method stub
-		if(user==null)
-			System.out.println("this user ID does not exist");
-		else{
-			boolean exit=false;
-			while(!exit){
-				Scanner input = new Scanner(System.in);
-				System.out.println("0=EXIT");
-				System.out.println("1=change user first name");
-				System.out.println("2=change user last name");
-				System.out.println("3=change user email");
-				System.out.println("4=change user password");
-				int userOption =input.nextInt();
-				input.nextLine();
-				
-				switch(userOption){
-				case 0: exit=true; break;
-				case 1: {
-					System.out.println("please enter your new firstname:");
-					String changeFirst =input.nextLine();
-					user.setFirstname(changeFirst);
-					updateUser(user,1);
-					System.out.println("you changed your firstname to: "+changeFirst);
-				}break;
-				case 2: {
-					System.out.println("please enter your new lastname:");
-					String changeLast =input.nextLine();
-					user.setLastname(changeLast);
-					updateUser(user,2);
-					System.out.println("you changed your lastname to: "+changeLast);
-				}break;
-				case 3: {
-					System.out.println("please enter your new email:");
-					String changeEmail =input.nextLine();
-					user.setEmail(changeEmail);
-					updateUser(user,3);
-					System.out.println("you changed your email to: "+changeEmail);
-				}break;
-				case 4: {
-					System.out.println("please enter your new password:");
-					String changePass =input.nextLine();
-					user.setPassword(changePass);
-					updateUser(user,4);
-					System.out.println("you changed your password to "+changePass);
-				}break;
-				default: System.out.println("invalid input please try again"); break;
-				}
-			}
-		}
-		return user;
-	}
-
-	@Override
 	public void deleteUser(User user) {
 		// TODO Auto-generated method stub
-		if(user==null)
-			System.out.println("this user ID does not exist");
-		else{
-			ArrayList<User> users = readUser();
-			users.remove(user);
-			writeUser(users);
-		}
+		ArrayList<User> users = readUser();
+		users.remove(user.getID());
+		writeUser(users);
 	}
 
 	@Override
@@ -102,6 +44,7 @@ public class DaoTextImpl implements DAO{
 		// TODO Auto-generated method stub
 		try(BufferedWriter bw= new BufferedWriter(new FileWriter(filename, true));){
 			String text=user.getID()+":"+user.getFirstname()+":"+user.getLastname()+":"+user.getEmail()+":"+user.getPassword()+":"+user.getBalance()+"\n";
+			//System.out.println(text);
 			bw.write(text);
 		}catch (IOException e){
 			e.printStackTrace();
@@ -142,38 +85,26 @@ public class DaoTextImpl implements DAO{
 	
 	@Override
 	public User changeBalance(User user, int amount, boolean deposit) {
-		if(user==null)
-			System.out.println("this user ID does not exist");
-		else{
-			if(deposit)
-				user.setBalance(user.getBalance()+amount);
-			else
-				user.setBalance(user.getBalance()-amount);
-			
-			updateUser(user,5);
-			System.out.println("your reminding balance: "+user.getBalance());
-		}
+		if(deposit)
+			user.setBalance(user.getBalance()+amount);
+		else
+			user.setBalance(user.getBalance()-amount);
 		return user;
 		// TODO Auto-generated method stub
 	}
 	
 	@Override
-	public void updateUser(User user, int element) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		ArrayList<User> users = readUser();
-		for(int i=0; i<users.size(); i++){
+		for(int i=0; i<users.size(); i++)
 			if(users.get(i).getID()==user.getID()){
-				switch(element){
-				case 1: users.get(i).setFirstname(user.getFirstname()); break;
-				case 2: users.get(i).setLastname(user.getLastname()); break;
-				case 3: users.get(i).setEmail(user.getEmail()); break;
-				case 4: users.get(i).setPassword(user.getPassword()); break;
-				case 5: users.get(i).setBalance(user.getBalance()); break;
-				default: System.out.println("something went wrong");
-				}
-				break;
+				users.get(i).setFirstname(user.getFirstname());
+				users.get(i).setLastname(user.getLastname());
+				users.get(i).setEmail(user.getEmail());
+				users.get(i).setPassword(user.getPassword());
+				users.get(i).setBalance(user.getBalance());
 			}
-		}
 		writeUser(users);
 	}
 

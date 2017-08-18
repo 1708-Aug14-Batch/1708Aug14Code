@@ -15,10 +15,10 @@ public interface DAO {
 	
 	public User getUser(int id);
 	public void addUser(String id, String firstname, String lastname, String email, String password, String balance);
-	public User editUser(User user);
 	public void deleteUser(User user);
-	public void updateUser(User user, int element);
+	public void updateUser(User user);
 	public User changeBalance(User user, int amount, boolean deposit);
+	
 	public User authentication(int id, String password);
 	public int userIDgeneration();
 	
