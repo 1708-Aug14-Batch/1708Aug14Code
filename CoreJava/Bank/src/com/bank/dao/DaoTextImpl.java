@@ -14,6 +14,7 @@ import com.bank.files.*;
 public class DaoTextImpl implements DAO {
 	// file = located in data package
 	static String filename = "src/com/bank/files/Bank.txt";
+	static String fileID = "src/com/bank/files/nextID.txt";
 
 	@Override
 	public void addUser(User user) {
@@ -38,25 +39,23 @@ public class DaoTextImpl implements DAO {
 	public void editUser(User user) {
 
 	}
-
+	
 	@Override
-	public ArrayList<User> getUser(User user) {
+	public ArrayList<User> getAllUsers() {
 		ArrayList<User> list = new ArrayList<>();
 
 		try (BufferedReader br = new BufferedReader(new FileReader(filename));) {
 			String line = null;
 			while ((line = br.readLine()) != null) {
-				User temp = new User();
-				String[] states = line.split(":");
-				temp.setFirstname(states[0]);
-				temp.setLastname(states[1]);
-				temp.setEmail(states[2]);
-				temp.setPassword(states[3]);
-				
-				System.out.println(states[4]);
-				
-				//temp.setBalance.parseDouble(states[4]);
-				list.add(temp);
+					User temp = new User();
+					String[] states = line.split(":");
+					temp.setId(Integer.parseInt(states[0]));
+					temp.setFirstname(states[1]);
+					temp.setLastname(states[2]);
+					temp.setEmail(states[3]);
+					temp.setPassword(states[4]);
+					temp.setBalance(Double.parseDouble(states[5]));
+					list.add(temp);
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -65,7 +64,34 @@ public class DaoTextImpl implements DAO {
 		}
 		return list;
 	}
-	
+
+	@Override
+	public ArrayList<User> getUser(int id) {
+		ArrayList<User> list = new ArrayList<>();
+
+		try (BufferedReader br = new BufferedReader(new FileReader(filename));) {
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				if(line.substring(0,1).equals(Integer.toString(id))) {
+					User temp = new User();
+					String[] states = line.split(":");
+					temp.setFirstname(states[1]);
+					temp.setLastname(states[2]);
+					temp.setEmail(states[3]);
+					temp.setPassword(states[4]);
+					temp.setBalance(Double.parseDouble(states[5]));
+					list.add(temp);
+					return list;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	@Override
 	public int getUserID(String fn, String ln) {
 		try (BufferedReader br = new BufferedReader(new FileReader(filename));) {
@@ -74,7 +100,7 @@ public class DaoTextImpl implements DAO {
 				String[] states = line.split(":");
 				String firstName = states[1];
 				String lastName = states[2];
-				if(firstName.equals(fn) && lastName.equals(ln)) {
+				if (firstName.equals(fn) && lastName.equals(ln)) {
 					return Integer.parseInt(states[0]);
 				}
 			}
@@ -84,5 +110,29 @@ public class DaoTextImpl implements DAO {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public int getNextID() {
+		try (BufferedReader br = new BufferedReader(new FileReader(fileID));) {
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				return Integer.parseInt(line) + 1;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	@Override
+	public void updateID(String id) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileID, false));) {
+			bw.write(id);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

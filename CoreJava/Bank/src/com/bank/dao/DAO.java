@@ -17,7 +17,13 @@ public interface DAO {
 	
 	public void editUser(User user);
 	
-	public ArrayList<User> getUser(User user);
+	public ArrayList<User> getAllUsers();
+	
+	public ArrayList<User> getUser(int id);
 	
 	public int getUserID(String fn, String ln);
+	
+	public int getNextID();
+	
+	public void updateID(String id);
 }

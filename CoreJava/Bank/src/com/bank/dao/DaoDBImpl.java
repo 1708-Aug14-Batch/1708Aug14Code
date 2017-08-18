@@ -17,7 +17,12 @@ public class DaoDBImpl implements DAO {
 	}
 
 	@Override
-	public ArrayList<User> getUser(User user) {
+	public ArrayList<User> getAllUsers() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<User> getUser(int id) {
 		return null;
 	}
 	
@@ -25,5 +30,14 @@ public class DaoDBImpl implements DAO {
 	public int getUserID(String fn, String ln) {
 		return 0;
 	}
+	
+	@Override
+	public int getNextID() {
+		return 0;
+	}
 
+	@Override
+	public void updateID(String id) {
+		
+	}
 }
