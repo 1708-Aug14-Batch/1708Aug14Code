@@ -9,21 +9,10 @@ public class RunBank {
 	public static void main(String[] args) {
 		
 		Service bankService = new Service();
+		
+		bankService.mainMenu();
+	
 	}
 	
-	static void login() {}
-	
-	/*
-	 * Requirements: as a user, I can
-	 * - login
-	 * - create and account
-	 * - logout
-	 * - withdraw or deposit funds
-	 * - view my account balances
-	 * - edit my info
-	 * 
-	 * Tech Specs
-	 * -core java, file i/o
-	 */
 
 }
