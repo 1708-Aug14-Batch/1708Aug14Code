@@ -2,6 +2,11 @@ package com.question.eleven2;
 
 import com.question.eleven1.MyFloats;
 
+/**
+ * Accessing those floats and printing them out
+ * @author Katie
+ *
+ */
 public class AccessFloats {
 
 	float firstFloat = MyFloats.floatOne;

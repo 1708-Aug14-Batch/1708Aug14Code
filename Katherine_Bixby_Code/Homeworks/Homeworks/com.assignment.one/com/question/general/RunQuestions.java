@@ -1,25 +1,36 @@
 package com.question.general;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.quesetion.twelve.PrintEvens;
 import com.question.eight.ArrayOfNames;
+import com.question.eighteen.SubAbstract;
 import com.question.eleven2.AccessFloats;
 import com.question.fifteen.OperandTest;
 import com.question.five.GetSubstring;
 import com.question.four.Factorial;
 import com.question.fourteen.SwitchStatement;
 import com.question.nine.PrimeNums;
+import com.question.nineteen.ArrListManipulation;
 import com.question.one.BubbleSort;
+import com.question.seven.SortEmployees;
 import com.question.seventeen.Interest;
 import com.question.six.EvenOrOdd;
+import com.question.ten.MinTernary;
 import com.question.thirteen.TrianglePattern;
 import com.question.three.ReverseString;
+import com.question.twenty.DataFileNames;
+import com.question.twenty.Person;
 import com.question.two.Fibonacci;
 
 public class RunQuestions {
 
+	static Scanner scan = new Scanner(System.in);
+	
 	public static void main(String[] args) {
+		
+		
 		
 		/*
 		 * Question 1
@@ -28,14 +39,14 @@ public class RunQuestions {
 		int[] unsorted = {1,0,5,6,3,2,3,7,9,8,4};
 		BubbleSort.sortBubbles(unsorted);
 		/*
-		 * Question 2 - Print out the fibs
+		 * Question 2
 		 */
 		System.out.println("\n\nQuestion 2: Fibonacci");
 		int fibVal = 25;
 		System.out.println("Fibonacci of "+fibVal+": "+Fibonacci.printFibonacci(fibVal));
 		
 		/*
-		 * Question 3 - Comment?
+		 * Question 3
 		 */
 		System.out.println("\n\nQuestion 3: Reverse String");
 		String tbReversed = "reverse";
@@ -43,7 +54,7 @@ public class RunQuestions {
 		System.out.println(tbReversed+" reversed is: "+reversed);
 		
 		/*
-		 * Question 4 - Comment
+		 * Question 4
 		 */
 		System.out.println("\nQuestion 4: Factorial");
 		int fact = 5;
@@ -51,7 +62,7 @@ public class RunQuestions {
 		System.out.println("The factorial of "+fact+" is: "+result);
 		
 		/*
-		 * Question 5 - comment
+		 * Question 5
 		 */
 		System.out.println("\nQuestion 5: Substrings");
 		String togetSub = "This is my beautiful String";
@@ -61,7 +72,7 @@ public class RunQuestions {
 		
 		
 		/*
-		 * Question 6 - comment
+		 * Question 6
 		 */
 		System.out.println("\nQuestion 6: Even or Odd");
 		int inputNum = 11;
@@ -78,11 +89,12 @@ public class RunQuestions {
 		 * Question 7
 		 */
 		System.out.println("\nQuestion 7: ");
-		
+		SortEmployees sortEmploy = new SortEmployees();
+		sortEmploy.sortThem();
 		
 		
 		/*
-		 * Question 8 - Comment
+		 * Question 8
 		 */
 		System.out.println("\nQuestion 8: Palindrome Names");
 		String theNames = "karan,madam,tom,civic,radar,sexes,jimmy,kayak,john,refer,billy,did";
@@ -107,8 +119,9 @@ public class RunQuestions {
 		/*
 		 * Question 10
 		 */
-		System.out.println("\nQuestion 10: ");
-		
+		System.out.println("\nQuestion 10: Ternary");
+		MinTernary minTern = new MinTernary();
+		minTern.minTernary(scan);
 		
 		
 		/*
@@ -174,37 +187,70 @@ public class RunQuestions {
 		/*
 		 * Question 16
 		 */
-		System.out.println("\nQuestion 16: ");
-		
+		System.out.println("\nQuestion 16: Command Line");
+		System.out.println("This question needs to be run in its own class...");
 		
 		
 		/*
-		 * Question 17
+		 * Question 17 - Commented out here because ANNOYING
 		 */
 		System.out.println("\nQuestion 17: Interest");
 		Interest intr = new Interest();
-		double thatInterest = intr.getInterest();
+		double thatInterest = intr.getInterest(scan);
 		System.out.println("Your Interest is: $"+thatInterest);
 		
 		
 		/*
 		 * Question 18
 		 */
-		System.out.println("\nQuestion 18: ");
+		System.out.println("\nQuestion 18: Abstract Super and Sub Classes");
+		String stringCont = "Hello";
+		String stringCont2 = "hello";
+		SubAbstract subAbstract = new SubAbstract();
+		boolean containsUpper = subAbstract.capsCheck(stringCont);
+		boolean containsUpper2 = subAbstract.capsCheck(stringCont2);
+		System.out.println("The string "+stringCont+" contains capital letter(s): "+containsUpper);
+		System.out.println("The string "+stringCont2+" contains capital letter(s): "+containsUpper2);
+		String toUpper = "meowMix";
+		String capsLock = subAbstract.makeCaps(toUpper);
+		System.out.println(toUpper+" capitalized is "+capsLock);
+		String aNum = "50";
+		int pTen = subAbstract.addTen(aNum);
+		System.out.println(aNum+" + 10 = "+pTen);
 		
 		
 		
 		/*
 		 * Question 19
 		 */
-		System.out.println("\nQuestion 19: ");
+		System.out.println("\nQuestion 19: One to Ten Manipulation");
+		ArrayList<Integer> oneToTen = new ArrayList<Integer>();
+		for(int i=1;i<11;i++) {
+			oneToTen.add(i);
+		}
+		System.out.println("The original Array List: ");
+		ArrListManipulation manip = new ArrListManipulation();
+		manip.displayArrList(oneToTen);
+		System.out.println("");
+		manip.addEvens(oneToTen);
+		manip.addOdds(oneToTen);
+		ArrayList<Integer> noPrimes = manip.removePrimes(oneToTen);
+		System.out.println("Here's the list with no Prime Numbers: ");
+		manip.displayArrList(noPrimes);
+		System.out.println("");
 		
 		
 		/*
 		 * Question 20
 		 */
-		System.out.println("\nQuestion 20: ");
-		
+		System.out.println("\nQuestion 20: Data File");
+		DataFileNames dataFileNames = new DataFileNames();
+		ArrayList<Person> people = dataFileNames.readPerson();
+		System.out.println("The names in your data file:");
+		for(Person i:people) {
+			i.printPerson();
+			System.out.println("");
+		}
 		
 		
 	}
