@@ -1,19 +1,15 @@
 package questionSeven;
 
-import java.util.Comparator;
-
-public class QuestionSeven implements Comparator {
+public class Employee {
+	public String name;
+	public String department;
+	public int age;
 	
-	
-	
-	public static void main(String[] args) {
-		
+	public Employee(String name, String department, int age) {
+		this.name = name;
+		this.department = department;
+		this.age = age;
 	}
 
-	@Override
-	public int compare(Object o1, Object o2) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

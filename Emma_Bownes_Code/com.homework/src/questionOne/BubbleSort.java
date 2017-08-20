@@ -1,6 +1,6 @@
 package questionOne;
 
-public class QuestionOne {
+public class BubbleSort {
 	
 	
 	public static void sort(int[] unsorted, int n){
