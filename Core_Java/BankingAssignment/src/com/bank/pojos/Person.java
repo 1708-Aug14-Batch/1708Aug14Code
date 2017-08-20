@@ -1,12 +1,9 @@
 package com.bank.pojos;
 
-// NOTE: None of these strings can contain the delimit character or else it will corrupt the toString() and fromString() methods
-// FIXME test for the delimit character in any field
-
 public class Person {
 
 	// This is used to delimit fields in the toString and fromString methods
-	protected static String delimit = ":";
+	public static final String delimit = ":";
 	
 	// Each person must have a unique 9-digit Social Security Number
 	private final String SSN;
@@ -80,5 +77,12 @@ public class Person {
 			per.setEmail(splitStr[4]);
 
 		return per;
+	}
+	
+	// Validaes whether these strings can be used to make this object. Uses delimit
+	public boolean validateStrings() {
+		
+		return !(SSN.contains(delimit) || firstName.contains(delimit) ||
+				lastName.contains(delimit) || email.contains(delimit));
 	}
 }

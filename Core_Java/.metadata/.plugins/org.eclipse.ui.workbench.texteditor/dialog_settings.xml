@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="isEmailValid" key="selection"/>
+		<item value="changed" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="isEmailValid"/>
-			<item value="equals"/>
-			<item value="password"/>
-			<item value="password1"/>
-			<item value="createAc"/>
-			<item value="create"/>
-			<item value="maximum"/>
-			<item value="case"/>
+			<item value="changed"/>
+			<item value="password changed"/>
+			<item value=";"/>
+			<item value="updateU"/>
+			<item value="update"/>
+			<item value="new Tr"/>
+			<item value="tran.setU"/>
+			<item value="username"/>
 		</list>
 		<list key="replacehistory">
+			<item value="username"/>
+			<item value="Username"/>
+			<item value=""/>
+			<item value="\n\r"/>
+			<item value="private final"/>
 			<item value="scan.nextLine().trim()"/>
 			<item value="parseBoolean"/>
 			<item value="delimit"/>
-			<item value="accountUsernameLoggedIn"/>
-			<item value="&quot;::&quot;"/>
-			<item value="readAll"/>
-			<item value="read"/>
-			<item value="User guy"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

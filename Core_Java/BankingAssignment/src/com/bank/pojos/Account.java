@@ -26,7 +26,7 @@ public class Account {
 	}
 	
 	// This is used to delimit fields in the toString and fromString methods
-	protected static String delimit = "::";
+	public static final String delimit = "::";
 	
 	// The date the account was opened
 	private final String accountOpenedDate;
@@ -195,25 +195,17 @@ public class Account {
 				splitStr[4], Boolean.parseBoolean(splitStr[5]),
 				new BigDecimal(splitStr[6]), new BigDecimal(splitStr[7]),
 				new BigDecimal(splitStr[8]), Double.parseDouble(splitStr[9]),
-				Double.parseDouble(splitStr[10]), parseAccountType(splitStr[11]));
+				Double.parseDouble(splitStr[10]), (accountType.valueOf(splitStr[11])));
 	}
 	
-	// FIXME this is too much hard-coding, I need a way to soft code these enums
-	private static accountType parseAccountType(String str) {
-		switch(str) {
-		case "BRONZE":
-			return accountType.BRONZE;
-		case "SILVER":
-			return accountType.SILVER;
-		case "GOLD":
-			return accountType.GOLD;
-		case "PLATINUM":
-			return accountType.PLATINUM;
-		case "DOUBLE_PLATINUM":
-			return accountType.DOUBLE_PLATINUM;
-		}
+	// Validaes whether these strings can be used to make this object. Uses delimit
+	public boolean validateStrings() {
 		
-		return null;
+		return !(
+				(SSN.contains(delimit) || SSN.contains(User.delimit)) ||
+				(accountOpenedDate.contains(delimit) || accountOpenedDate.contains(User.delimit)) ||
+				(username.contains(delimit) || username.contains(User.delimit)) ||
+				(password.contains(delimit) || password.contains(User.delimit)));
 	}
 	
 }

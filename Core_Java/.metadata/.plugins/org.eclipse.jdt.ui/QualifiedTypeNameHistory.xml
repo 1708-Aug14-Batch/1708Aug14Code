@@ -28,7 +28,6 @@
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="java.io.BufferedReader"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="com.bank.dao.DaoTextImpl"/>
 <fullyQualifiedTypeName name="com.bank.service.Service"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
@@ -36,9 +35,12 @@
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Person"/>
-<fullyQualifiedTypeName name="com.bank.pojos.User"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Clerk"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Account"/>
-<fullyQualifiedTypeName name="com.bank.pojos.Account.accountType"/>
 <fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="com.bank.pojos.Account.accountType"/>
+<fullyQualifiedTypeName name="com.bank.pojos.Transaction.transactionType"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="com.bank.pojos.Transaction"/>
+<fullyQualifiedTypeName name="com.bank.pojos.User"/>
 </qualifiedTypeNameHistroy>

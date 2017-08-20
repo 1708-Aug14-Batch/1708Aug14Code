@@ -9,12 +9,13 @@ import java.util.Date;
 public class Clerk extends Person {
 	
 	// This is used to delimit fields in the toString and fromString methods
-	protected static String delimit = "::";
+	public static final String delimit = "::";
 	
 	public static double MINIMUM_WAGE = 8.85;
 	
 	// Each employee has a unique employeeId
 	private final int employeeId;
+	private String password;
 	
 	private final String dateHired;
 	
@@ -27,17 +28,19 @@ public class Clerk extends Person {
 	// Clerks do have administrator privileges
 	final boolean admin = true;
 	
-	public Clerk(Person person, int employeeId) {
+	public Clerk(Person person, int employeeId, String password) {
 		super(person.getSSN(), person.getFirstName(), person.getLastName());
-
+		this.password = password;
+		
 		dateHired = new Date().toString();
 		hourlyWage = MINIMUM_WAGE;
 		this.employeeId = employeeId;
 	}
-	private Clerk(Person per, int employeeId, String dateHired, double hourlyWage, boolean hired) {
+	private Clerk(Person per, int employeeId, String password, String dateHired, double hourlyWage, boolean hired) {
 		super(per.getSSN(), per.getFirstName(), per.getLastName());
 		
 		this.employeeId = employeeId;
+		this.password = password;
 		this.dateHired = dateHired;
 		this.hourlyWage = hourlyWage;
 		this.hired = hired;
@@ -55,6 +58,12 @@ public class Clerk extends Person {
 		return employeeId;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getDateHired() {
 		return dateHired;
 	}
@@ -72,7 +81,8 @@ public class Clerk extends Person {
 	}
 	
 	public String toString() {
-		return super.toString() + User.delimit + employeeId + delimit + dateHired + delimit + hourlyWage + delimit + hired;
+		return super.toString() + User.delimit + employeeId + delimit + password + delimit +
+				dateHired + delimit + hourlyWage + delimit + hired;
 	}
 	public static Clerk fromString(String str) throws NumberFormatException {
 		String[] splitStr = str.split(User.delimit);
@@ -81,11 +91,18 @@ public class Clerk extends Person {
 		String[] splitSplitStr = splitStr[1].split(delimit);
 		
 		int employeeId = Integer.parseInt(splitSplitStr[0]);
-		String dateHired = splitSplitStr[1];
-		double hourlyWage = Double.parseDouble(splitSplitStr[2]);
-		boolean hired = Boolean.parseBoolean(splitSplitStr[3]);
+		String password = splitStr[1];
+		String dateHired = splitSplitStr[2];
+		double hourlyWage = Double.parseDouble(splitSplitStr[3]);
+		boolean hired = Boolean.parseBoolean(splitSplitStr[4]);
 		
-		return new Clerk(per, employeeId, dateHired, hourlyWage, hired);
+		return new Clerk(per, employeeId, password, dateHired, hourlyWage, hired);
+	}
+	
+	// Validaes whether these strings can be used to make this object. Uses delimit
+	public boolean validateStrings() {
+		
+		return !(password.contains(delimit) || dateHired.contains(delimit));
 	}
 	
 }

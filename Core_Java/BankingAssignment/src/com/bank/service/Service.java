@@ -7,6 +7,7 @@ import com.bank.dao.*;
 import com.bank.pojos.Account;
 import com.bank.pojos.Account.accountType;
 import com.bank.pojos.Person;
+import com.bank.pojos.Transaction;
 import com.bank.pojos.User;
 
 // FIXME this class is where I will checking updating variables to make
@@ -18,6 +19,7 @@ public class Service {
 	DAO daoImpl = new DaoTextImpl();
 
 	public Account validateUser(String username, String password) {
+		username = username.toLowerCase();
 
 		User guy = daoImpl.readUser(username);
 
@@ -38,9 +40,10 @@ public class Service {
 
 		if (email.contains("@") && email.contains(".com"))
 			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
-				return true;
-		
-		System.out.println("Email addresses must contain a valid domain such as \"something@something.com\"");
+				if (!email.contains(Person.delimit))
+					return true;
+
+		System.out.println("Email addresses must not contain invalid character(s): " + Person.delimit + " and must contain a valid domain such as \"something@something.com\"");
 		return false;
 	}
 
@@ -91,6 +94,7 @@ public class Service {
 	}
 
 	private boolean isUsernameAvailable(String username) {
+		username = username.toLowerCase();
 
 		ArrayList<User> userList = daoImpl.readAllUsers();
 
@@ -107,11 +111,12 @@ public class Service {
 	// the given SSN. Returns the person object either way
 	// An email must be supplied but it can be an empty string where it will not
 	// be checked for uniqueness
-	public Person tryCreatePerson(String SSNStr, String firstName, String lastName, String email) {
+	public Person tryCreatePerson(String SSNStr, String firstName, String lastName, String email, Transaction tran) {
 
 		String SSN = validateSSN(SSNStr);
 		if (SSN == null) {
 			System.out.println("Invalid SSN. Must contains 9 digits from 0-9 inclusive.");
+			tran.setReasonFailed("Invalid SSN supplied: " + SSNStr);
 			return null;
 		}
 
@@ -128,9 +133,19 @@ public class Service {
 					if (isEmailAvailable(email))
 						per2.setEmail(email);
 
-				daoImpl.createPerson(per2);
-				return per2;
-			} else return null;
+				if (per2.validateStrings()) {
+					daoImpl.createPerson(per2);
+					tran.setSummary("New person added to the database: " + per2.toString());
+					return per2;
+				} else {
+					System.out.println("Invalid character(s) used: " + Person.delimit);
+					tran.setReasonFailed("User entered the invalid character(s) " + Person.delimit + " into one of the following fields: SSN, firstName, lastName");
+					return null;
+				}
+			} else {
+				tran.setReasonFailed("Supplied SSN belongs to another person: " + SSN);
+				return null;
+			}
 		}
 
 		// If the entered credentials exactly match a person in the data set
@@ -138,6 +153,7 @@ public class Service {
 			return per;
 		else {
 			System.out.println("That is not the name we have on file for that SSN.");
+			tran.setReasonFailed("First and last name given do not match with the supplied SSN: " + SSN);
 			return null;
 		}
 
@@ -145,15 +161,18 @@ public class Service {
 
 	// Tries to create a new user
 	// Fails if the uername is not unique or if the given person is already a user
-	public boolean tryCreateUser(Person per, String username, String password, accountType type) {
+	public boolean tryCreateUser(Person per, String username, String password, accountType type, Transaction tran) {
+		username = username.toLowerCase();
 
 		// Check that username is unique
 		if (!isUsernameAvailable(username)) {
 			System.out.println("That username is already taken.");
+			tran.setReasonFailed("Username " + username + " is already taken");
 			return false;
 		}
 		if (personIsAUser(per)) {
 			System.out.println("That person already has an account.");
+			tran.setReasonFailed("The person with SSN: " + per.getSSN() + " already has an account");
 			return false;
 		}
 
@@ -166,6 +185,13 @@ public class Service {
 		User myUser = new User(per, new Account(per, username, password, type, ++id));
 
 		daoImpl.createUser(myUser);
+		if (myUser.validateStrings())
+			tran.setSummary("New user created with username: " + username);
+		else {
+			System.out.println("Invalid character(s) entered: " + User.delimit);
+			tran.setReasonFailed("User entered the invalid character(s): " + User.delimit + " in one of the following fields: ");
+			return false;
+		}
 
 		return true;
 	}
@@ -174,26 +200,45 @@ public class Service {
 	// Matches the old person with the new by SSN
 	// All non-final fields of the person object
 	// will be updated
-	public boolean updatePerson(Person per) {
+	public boolean updatePerson(Person per, Transaction tran) {
 
 		// If the person-to-be updated on file is deceased, their records cannot be updated
-		if (daoImpl.readPerson(per.getSSN()).isDeceased())
+		if (daoImpl.readPerson(per.getSSN()).isDeceased()) {
+			System.out.println("That person is deceased and their records cannot be updated");
+			tran.setReasonFailed("The person with the SSN: " + per.getSSN() + " is deceased and so their records cannot be updated");
 			return false;
-		return daoImpl.updatePerson(per);
+		}
+
+		if (per.validateStrings())
+			return daoImpl.updatePerson(per);
+		else {
+			System.out.println("Cannot use the illegal character: " + Person.delimit);
+			tran.setReasonFailed("The person with the SSN: " + per.getSSN() + " has the illegal character: " + Person.delimit + " in one or more of their fields");
+			return false;
+		}
 
 	}
 
-	public boolean updateUser(User guy) {
+	public boolean updateUser(User guy, Transaction tran) {
 
 		// If the user-to-be updated on file has had their account deleted, their records cannot be updated
-		if (daoImpl.readUser(guy.getAccount().getUsername()).getAccount().isDeleted())
+		if (daoImpl.readUser(guy.getAccount().getUsername()).getAccount().isDeleted()) {
+			tran.setReasonFailed("Account had been deleted");
 			return false;
-		return daoImpl.updateUser(guy);
+		}
+
+		if (guy.validateStrings())
+			return daoImpl.updateUser(guy);
+		else {
+			System.out.println("Cannot use the illegal character: " + User.delimit);
+			tran.setReasonFailed("The person with the username: " + guy.getAccount().getUsername() + " has the illegal character: " + User.delimit + " in one or more of their fields");
+			return false;
+		}
 	}
 
 	public User getUser(String username) {
 
-		return daoImpl.readUser(username);
+		return daoImpl.readUser(username.toLowerCase());
 
 	}
 
@@ -232,7 +277,7 @@ public class Service {
 
 	public boolean deleteAccount(String username, boolean erase) {
 
-		return daoImpl.deleteUser(username, erase);
+		return daoImpl.deleteUser(username.toLowerCase(), erase);
 
 	}
 
@@ -245,6 +290,19 @@ public class Service {
 				return true;
 
 		return false;
+	}
+
+	public boolean createTransaction(Transaction tran) {
+		if (tran.validateStrings())
+			return daoImpl.createTransaction(tran);
+		else {
+			tran.setReasonFailed("Transaction contains illegal character: " + Transaction.delimit);
+			return false;
+		}
+	}
+
+	public ArrayList<Transaction> getAllTransactions() {
+		return daoImpl.readAllTransactions();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.bank.dao;
 
+// FIXME throw NumberFormatExceptions from the fromString(String) methods
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 
 import com.bank.pojos.Clerk;
 import com.bank.pojos.Person;
+import com.bank.pojos.Transaction;
 import com.bank.pojos.User;
 
 // FIXME after it is functioning try replacing the basic CRUD operations with generics
@@ -16,19 +19,21 @@ import com.bank.pojos.User;
 //		generically on either a person, clerk, or user
 
 public class DaoTextImpl implements DAO {
-	
-	public static String personFilename = "src/com/bank/files/persons.txt";
-	public static String userFilename = "src/com/bank/files/users.txt";
-	public static String clerkFilename = "src/com/bank/files/clerks.txt";
-	
-	
+
+	// Files where data is stored
+	public static String baseFilename = "src/com/bank/files/";
+	public static String personFilename = baseFilename + "persons.txt";
+	public static String userFilename = baseFilename + "users.txt";
+	public static String clerkFilename = baseFilename + "clerks.txt";
+	public static String transactionFilename = baseFilename + "transactions.txt";
+
 //------------------------------------------------------------------------------
 // Persons 
 //------------------------------------------------------------------------------
-	
+
 	@Override
 	public boolean createPerson(Person per) {
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(personFilename, true))) {
 
@@ -38,22 +43,22 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public Person readPerson(String SSN) {
-		
+
 		// try-with-resources block
 		try(BufferedReader br = new BufferedReader(
 				new FileReader(personFilename))) {
 
 			String line = null;
 			while((line = br.readLine()) != null) {
-				
+
 				Person per = Person.fromString(line);
-				
+
 				if (per.getSSN().equals(SSN))
 					return per;
 			}
@@ -62,16 +67,16 @@ public class DaoTextImpl implements DAO {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
-	
+
 	@Override
 	public boolean updatePerson(Person per) {
 		boolean updated = false;
-		
+
 		ArrayList<Person> personList = readAllPersons();
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(personFilename, false))) {
 
@@ -85,25 +90,25 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return updated;
 	}
-	
+
 	// if erase == true then delete the record entirely
 	// if erase == false then mark the record as deleted but keep it in memory
 	@Override
 	public boolean deletePerson(String SSN, boolean erase) {
 		boolean deleted = false;
-		
+
 		ArrayList<Person> personList = readAllPersons();
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(personFilename, false))) {
 
 			for (Person myPer : personList) {
 				if (myPer.getSSN().equals(SSN)) {
 					deleted = true;
-					
+
 					if (erase)
 						;	// This person is not copied over and therefore is deleted
 					else {
@@ -117,39 +122,39 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return deleted;
 	}
-	
+
 	@Override
 	public ArrayList<Person> readAllPersons() {
 		ArrayList<Person> personList = new ArrayList<Person>();
-		
+
 		// try-with-resources block
 		try(BufferedReader br = new BufferedReader(
 				new FileReader(personFilename))) {
 
 			String line = null;
 			while((line = br.readLine()) != null) {
-				
+
 				Person per = Person.fromString(line);
-				
+
 				personList.add(per);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return personList;
 	}
-	
+
 //------------------------------------------------------------------------------
 // Users
 //------------------------------------------------------------------------------
 
 	@Override
 	public boolean createUser(User guy) {
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(userFilename, true))) {
 
@@ -159,22 +164,22 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public User readUser(String username) {
-		
+
 		// try-with-resources block
 		try(BufferedReader br = new BufferedReader(
 				new FileReader(userFilename))) {
 
 			String line = null;
 			while((line = br.readLine()) != null) {
-				
+
 				User guy = User.fromString(line);
-				
+
 				if (guy.getAccount().getUsername().equals(username))
 					return guy;
 			}
@@ -183,16 +188,16 @@ public class DaoTextImpl implements DAO {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public boolean updateUser(User guy) {
 		boolean updated = false;
-		
+
 		ArrayList<User> userList = readAllUsers();
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(userFilename, false))) {
 
@@ -206,7 +211,7 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return updated;
 	}
 
@@ -215,16 +220,16 @@ public class DaoTextImpl implements DAO {
 	@Override
 	public boolean deleteUser(String username, boolean erase) {
 		boolean deleted = false;
-		
+
 		ArrayList<User> userList = readAllUsers();
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(userFilename, false))) {
 
 			for (User myGuy : userList) {
 				if (myGuy.getAccount().getUsername().equals(username)) {
 					deleted = true;
-					
+
 					if (erase)
 						;		// This user is not copied over and therefore is deleted
 					else {
@@ -238,39 +243,39 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return deleted;
 	}
 
 	@Override
 	public ArrayList<User> readAllUsers() {
 		ArrayList<User> userList = new ArrayList<User>();
-		
+
 		// try-with-resources block
 		try(BufferedReader br = new BufferedReader(
 				new FileReader(userFilename))) {
 
 			String line = null;
 			while((line = br.readLine()) != null) {
-				
+
 				User guy = User.fromString(line);
-				
+
 				userList.add(guy);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return userList;
 	}
-	
+
 //------------------------------------------------------------------------------
 // Clerks
 //------------------------------------------------------------------------------
 
 	@Override
 	public boolean createClerk(Clerk cler) {
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(clerkFilename, true))) {
 
@@ -280,22 +285,22 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
 
 	@Override
 	public Clerk readClerk(int employeeId) {
-		
+
 		// try-with-resources block
 		try(BufferedReader br = new BufferedReader(
 				new FileReader(clerkFilename))) {
 
 			String line = null;
 			while((line = br.readLine()) != null) {
-				
+
 				Clerk cler = Clerk.fromString(line);
-				
+
 				if (cler.getEmployeeId() == employeeId)
 					return cler;
 			}
@@ -304,16 +309,16 @@ public class DaoTextImpl implements DAO {
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public boolean updateClerk(Clerk cler) {
 		boolean updated = false;
-		
+
 		ArrayList<Clerk> clerkList = readAllClerks();
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(clerkFilename, false))) {
 
@@ -327,7 +332,7 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return updated;
 	}
 
@@ -336,16 +341,16 @@ public class DaoTextImpl implements DAO {
 	@Override
 	public boolean deleteClerk(int employeeId, boolean erase) {
 		boolean deleted = false;
-		
+
 		ArrayList<Clerk> clerkList = readAllClerks();
-		
+
 		try(BufferedWriter bw = new BufferedWriter(
 				new FileWriter(clerkFilename, false))) {
 
 			for (Clerk myCler : clerkList) {
 				if (myCler.getEmployeeId() == employeeId) {
 					deleted = true;
-					
+
 					if (erase)
 						;	// This Clerk is not copied over and is therefore deleted
 					else {
@@ -359,31 +364,73 @@ public class DaoTextImpl implements DAO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return deleted;
 	}
 
 	@Override
 	public ArrayList<Clerk> readAllClerks() {
 		ArrayList<Clerk> clerkList = new ArrayList<Clerk>();
-		
+
 		// try-with-resources block
 		try(BufferedReader br = new BufferedReader(
 				new FileReader(clerkFilename))) {
 
 			String line = null;
 			while((line = br.readLine()) != null) {
-				
+
 				Clerk cler = Clerk.fromString(line);
-				
+
 				clerkList.add(cler);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return clerkList;
-	}	
-	
-	
+	}
+
+//------------------------------------------------------------------------------
+// Transactions
+//------------------------------------------------------------------------------
+
+	@Override
+	public boolean createTransaction(Transaction tran) {
+
+		try(BufferedWriter bw = new BufferedWriter(
+				new FileWriter(transactionFilename, true))) {
+
+			bw.write(tran.toString() + "\n");
+			return true;
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	@Override
+	public ArrayList<Transaction> readAllTransactions() {
+		ArrayList<Transaction> tranList = new ArrayList<Transaction>();
+
+		// try-with-resources block
+		try(BufferedReader br = new BufferedReader(
+				new FileReader(transactionFilename))) {
+
+			String line = null;
+			while((line = br.readLine()) != null) {
+
+				Transaction tran = Transaction.fromString(line);
+
+				tranList.add(tran);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return tranList;
+	}
+
+
 }

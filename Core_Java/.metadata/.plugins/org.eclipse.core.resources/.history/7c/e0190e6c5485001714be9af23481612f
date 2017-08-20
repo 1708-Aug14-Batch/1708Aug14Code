@@ -1,0 +1,13 @@
+package com.bank.pojos;
+
+public class Transaction {
+	
+	public enum transactionType {LOGIN};
+	
+	private int accountID;
+	private String uername;
+	private String date;
+	private transactionType type;
+	
+
+}

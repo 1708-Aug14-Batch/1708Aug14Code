@@ -1,0 +1,44 @@
+package com.bank.pojos;
+
+public class Transaction {
+	
+	// FIXME this is a parallel data set between here and the runBank main(). Somehow link the two to avoid problems
+	// BOOT_UP transaction takes place any time the RunBank function is run
+	public enum transactionType {BOOT_UP, QUIT, LOGIN, LOGOUT, CREATE_ACCOUNT, WITHDRAW, DEPOSIT, VIEW_ACCOUNT, EDIT_ACCOUNT};
+	
+	// The accountID for the account the transaction was carried out on. Equals 0 for no account
+	private final int accountID;
+	// The username of the account the transaction was carried out on. Equals null for no account
+	private final String uername;
+	// The date and time of the transaction
+	private final String date;
+	// The type of transaction carried out
+	private final transactionType type;
+	// Summarizes the transaction that took place. Empty for simple transactions such as BOOT_UP, QUIT, LOGIN, and LOGOUT
+	private final String summary;
+	// Boolean stating whether a transaction was successful
+	private final boolean successful;
+	// Used to summarize the reason for failed transactions. Empty for successful transactions
+	private final String reasonFailed;
+	
+	public Transaction(int accountID, String uername, String date, transactionType type, String summary,
+			boolean successful, String reasonFailed) {
+		super();
+		this.accountID = accountID;
+		this.uername = uername;
+		this.date = date;
+		this.type = type;
+		this.summary = summary;
+		this.successful = successful;
+		this.reasonFailed = reasonFailed;
+	}
+	
+	// FIXME double check I have all necessary values before writing these two methods
+	public String toString() {
+		
+	}
+	public Transaction fromString(String str) {
+		
+	}
+
+}
