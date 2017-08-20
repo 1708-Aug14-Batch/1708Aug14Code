@@ -1,0 +1,18 @@
+package com.hw.problem11b;
+
+import com.hw.problem11a.Container;
+
+public class Accessor {
+	
+	public static void main(String[] args) {
+		Container acc = new Container();
+		Container bcc = new Container();
+		
+		
+		System.out.println(acc.num2);
+		System.out.println(acc.num2);
+	
+	}
+	
+
+}

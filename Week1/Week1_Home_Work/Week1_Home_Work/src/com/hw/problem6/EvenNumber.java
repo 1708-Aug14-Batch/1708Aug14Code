@@ -5,16 +5,17 @@ public class EvenNumber {
 	public static void main(String[] args) {
 		
 		//System.out.println(isEven(4));
-		isEven(1);
+		//isEven(1);
 
 
 	}
-	public static void isEven(int n){
+	public static  boolean isEven(int n){
 		int num = n/2;
 		if(n == num * 2)
-			System.out.println("it is even");
+			return true;
+		
 		else
-			System.out.println("its odd");
+			return false;
 		
 	}
 

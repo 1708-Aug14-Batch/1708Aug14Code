@@ -1,0 +1,29 @@
+package com.hw.problem17;
+
+import java.util.Scanner;
+
+public class Interest {
+
+	public static void main(String[] args) {
+		
+		double principle = 0, rate = 0, time = 0;
+		
+		try (Scanner scan = new Scanner(System.in)) {
+			
+			System.out.print("Enter principle: ");
+			principle = scan.nextDouble();
+			System.out.print("Enter rate: ");
+			rate = scan.nextDouble();
+			System.out.print("Enter time: ");
+			time = scan.nextDouble();
+			
+		} catch (NumberFormatException ex) {			
+			System.out.println("Invalid input");
+			
+		}
+		System.out.println("Your interest is: " + principle * rate * time);
+		
+
+	}
+
+}
