@@ -21,6 +21,7 @@ public class NestedClasses {
 	static int b = 0;
 	
 	static class StaticClass{
+		int b = 10;
 		void message(){
 			System.out.println("hi i am in my static inner class");
 			System.out.println(b);
@@ -28,6 +29,8 @@ public class NestedClasses {
 	}
 	
 	class MemberClass{
+		int a;
+		int b = 100;
 		void message(){
 			System.out.println("hi i am in my member class");
 			System.out.println(a + b);

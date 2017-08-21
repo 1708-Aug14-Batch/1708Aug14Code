@@ -37,10 +37,10 @@ public class ThreadIntro {
 		};
 			
 		Thread l = new Thread(lambda);
-		l.start();
-		anonThread.start();
-		et.start();
-		something.start();
+		l.run();
+		anonThread.run();
+		et.run();
+		something.run();
 		//lambda.run();
 	}
 

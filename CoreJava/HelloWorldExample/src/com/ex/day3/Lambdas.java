@@ -45,7 +45,7 @@ public class Lambdas {
 			return sum;
 		};
 		
-		//use of local objec
+		//use of local object
 		System.out.println(add.functioning(1, 2, 3, 5, 6));
 		
 		// use of static object
@@ -66,7 +66,7 @@ public class Lambdas {
 		Java's Predicate FI
 	 */
 	interface MyFunctionalInterface{
-		int functioning (int... nums);
+		int functioning (int... nums); // varArgs - variable # of arguments
 	}
 
 

@@ -9,8 +9,12 @@ public class User {
 	private String lastname;
 	private String email;
 	private String password;
-	private BigDecimal balance;
+	private double balance;
 	
 	// add constructors, getters, setters
+	
+	public User(double balance){
+		this.balance = 0.00;
+	}
 
 }
