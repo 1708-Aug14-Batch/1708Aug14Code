@@ -9,25 +9,42 @@ public class ReverseString {
 		
 		//does this count as a temp variable?
 		//hope not...
-		StringBuilder s = new StringBuilder("Revature");
+		//StringBuilder s = new StringBuilder("Revature");
 		
-		for(int i = s.length()-1; i >= 0; i--)
-		{
-			s.append(s.charAt(i));
-		}
+		//for(int i = s.length()-1; i >= 0; i--)
+		//{
+			//s.append(s.charAt(i));
+		//}
 		
-		System.out.println(s);
+		//System.out.println(s);
 		
 		//ORrrrr...
 		
-		String str = "Revature";
+	/*	String str = "Revature";
 		char[] c = str.toCharArray();
 		
 		for(int i = c.length-1; i >= 0; i--)
 		{
 			System.out.print(c[i]);
-		}
+			
+		
+	*/
+		System.out.println(reverseString("Revature"));
 	}
+	
+	public static String reverseString(String str)
+	{
+		String temp = "";
+		char[] c = str.toCharArray();
+		
+		for(int i = c.length-1; i >= 0; i--)
+		{
+			//System.out.print(c[i]);
+			temp += c[i];
+		}
+		return temp;
+	}
+	
 	
 	
 

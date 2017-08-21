@@ -19,5 +19,17 @@ public class EvenOrNot {
 		
 		s.close();
 	}
+	
+	//junit test method
+	public static String evenorNaw(int num)
+	{
+		String result = "";
+		int x = Integer.remainderUnsigned(num, 2);
+		if(x == 0)
+			result = "Even!";
+		else
+			result = "Odd!";
+		return result;
+	}
 
 }
