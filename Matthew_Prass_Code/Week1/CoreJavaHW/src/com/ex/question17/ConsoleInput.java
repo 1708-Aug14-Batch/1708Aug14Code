@@ -6,8 +6,11 @@ public class ConsoleInput {
 
 	public static void main(String[] args) {
 		
+		//user input to console
+		
 		Scanner s = new Scanner(System.in);
 		
+		//calculating interest
 		System.out.println("Enter principal: ");
 		double p = s.nextDouble();
 		

@@ -8,6 +8,7 @@ public class Substring {
 		
 	}
 	
+	//method to print out a substring from 0 to the index
 	static String substring(String str, int idx)
 	{
 		char[] chars = str.toCharArray();

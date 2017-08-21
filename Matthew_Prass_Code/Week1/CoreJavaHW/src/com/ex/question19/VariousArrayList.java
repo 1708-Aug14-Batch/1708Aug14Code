@@ -6,6 +6,7 @@ public class VariousArrayList {
 	
 	public static void main(String[] args) {
 		
+		//arraylist of ints
 		ArrayList<Integer> ints = new ArrayList<Integer>();
 		
 		ints.add(1);
@@ -33,13 +34,13 @@ public class VariousArrayList {
 		display(ints);
 		
 	}
-	
+	//display array
 	static void display(ArrayList<Integer> ints)
 	{
 		for(int i: ints)
 			System.out.println(i);	
 	}
-	
+	//add all the even numbers in arraylist
 	static int addEvens(ArrayList<Integer> ints)
 	{
 		int result = 0;
@@ -50,7 +51,7 @@ public class VariousArrayList {
 		}
 		return result;
 	}
-	
+	//add all the odds
 	static int addOdds(ArrayList<Integer> ints)
 	{
 		int result = 0;
@@ -61,7 +62,7 @@ public class VariousArrayList {
 		}
 		return result;
 	}
-
+	//remove the prime numbers in the array list and print the remaining numbers
 	static void removePrimes(ArrayList<Integer> ints)
 	{
 		ArrayList<Integer> newList = new ArrayList<Integer>();
@@ -80,6 +81,7 @@ public class VariousArrayList {
 		ints.removeAll(newList);
 	}
 	
+	//method to check if a number is prime 
 	static boolean isPrime(int n)
 	{
 		//check if n is a multiple of 2

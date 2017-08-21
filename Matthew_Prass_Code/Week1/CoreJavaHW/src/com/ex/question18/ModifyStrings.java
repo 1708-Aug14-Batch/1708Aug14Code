@@ -2,6 +2,8 @@ package com.ex.question18;
 
 public class ModifyStrings extends AbstractClass {
 
+	
+	//is the string uppercase/has an uppercase character?
 	@Override
 	public boolean isUpper(String str) {
 		
@@ -14,7 +16,8 @@ public class ModifyStrings extends AbstractClass {
 		}
 		return bool;
 	}
-
+	
+	//make all the characters uppcase
 	@Override
 	public String toUpper(String str) {
 		String temp = "";
@@ -27,6 +30,7 @@ public class ModifyStrings extends AbstractClass {
 		return temp;
 	}
 
+	//add 10 to the string value(from a parsed source)
 	@Override
 	public void idk(String str) {
 		

@@ -2,6 +2,7 @@ package com.ex.question7;
 
 import java.util.Comparator;
 
+//employee object to compare(with a comparator)
 public class Employee implements Comparator<Employee> {
 	
 	private String name;
@@ -55,6 +56,8 @@ public class Employee implements Comparator<Employee> {
 	{
 		return name+ " " + dept+ " "+age;
 	}
+	
+	//employee's own compare method that takes into account all it's variables
 	@Override
 	public int compare(Employee o1, Employee o2) {
 		if(o1.getName().equals(o2.getName()))

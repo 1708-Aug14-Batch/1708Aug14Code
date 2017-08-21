@@ -2,6 +2,7 @@ package com.ex.question3;
 
 public class ReverseString {
 
+	//little bit comnfused here...
 	public static void main(String[] args) {
 		
 		//or maybe this?
@@ -20,7 +21,7 @@ public class ReverseString {
 		
 		//ORrrrr...
 		
-	/*	String str = "Revature";
+		String str = "Revature";
 		char[] c = str.toCharArray();
 		
 		for(int i = c.length-1; i >= 0; i--)
@@ -28,10 +29,11 @@ public class ReverseString {
 			System.out.print(c[i]);
 			
 		
-	*/
+		}
 		System.out.println(reverseString("Revature"));
 	}
 	
+	//eventually got it :)
 	public static String reverseString(String str)
 	{
 		String temp = "";

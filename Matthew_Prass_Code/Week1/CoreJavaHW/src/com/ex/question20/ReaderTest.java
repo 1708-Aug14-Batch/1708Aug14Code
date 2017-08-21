@@ -11,6 +11,7 @@ public class ReaderTest {
 
 	}
 	
+	//method to read file and get the information required
 	static void getThings()
 	{
 		r = new Reader();

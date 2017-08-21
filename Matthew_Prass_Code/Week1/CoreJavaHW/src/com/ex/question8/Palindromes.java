@@ -7,6 +7,9 @@ public class Palindromes {
 	
 	public static void main(String[] args) {
 		
+		//palindromes are spelled the same forwards and backwards
+		
+		//arraylist of the words
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<String> listPalindromes = new ArrayList<String>();
 		
@@ -23,6 +26,7 @@ public class Palindromes {
 		list.add("billy");
 		list.add("did");
 		
+		//going through list to see if the reverse of each equals the string
 		for(String s:list)
 		{
 			String temp = reverse(s);

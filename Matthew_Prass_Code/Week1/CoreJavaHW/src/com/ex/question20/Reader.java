@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 public class Reader {
 
+	//file to read
 	static String filename = "src/com/ex/question20/data.txt";
 	
 
+	//reading method and storing of an arraylist of things
 	public ArrayList<Things> readThings()
 	{
 		ArrayList<Things> list = new ArrayList<Things>();

@@ -1,5 +1,6 @@
 package com.ex.question20;
 
+//object to store from data.txt
 public class Things {
 
 	

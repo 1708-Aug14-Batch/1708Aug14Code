@@ -6,6 +6,7 @@ public class EvenOrNot {
 
 	public static void main(String[] args) {
 		
+		//user input
 		Scanner s = new Scanner(System.in);
 		
 		System.out.println("Please enter a number: ");
@@ -23,6 +24,7 @@ public class EvenOrNot {
 	//junit test method
 	public static String evenorNaw(int num)
 	{
+		//return a new string that says a number is even or odd
 		String result = "";
 		int x = Integer.remainderUnsigned(num, 2);
 		if(x == 0)
