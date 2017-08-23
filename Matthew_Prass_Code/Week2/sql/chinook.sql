@@ -78,3 +78,35 @@ where country in(select country
                  from employee
                  )
 /
+
+
+create or replace procedure add_person(
+firstname in varchar2,
+lastname in varchar2,
+songid in number)
+as begin
+insert into example(firstname,lastname,fave_song_id)
+values (firstname,lastname,songid);
+commit;
+end add_person;
+/
+
+DECLARE
+  FIRSTNAME VARCHAR2(200);
+  LASTNAME VARCHAR2(200);
+  SONGID NUMBER;
+BEGIN
+  FIRSTNAME := 'stored';
+  LASTNAME := 'procedure';
+  SONGID := 1;
+
+  ADD_PERSON(
+    FIRSTNAME => FIRSTNAME,
+    LASTNAME => LASTNAME,
+    SONGID => SONGID
+  );
+--rollback; 
+END;
+
+
+
