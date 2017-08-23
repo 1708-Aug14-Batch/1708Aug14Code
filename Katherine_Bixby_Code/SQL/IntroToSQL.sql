@@ -1,3 +1,36 @@
+--Homework 1
+/*
+  Order by, group by, where, having, union, exists, like/wildcards.
+  3 aggregate functions, 3 scalar functions
+*/
+
+create table HOMEWORK
+(
+HW_ID NUMBER PRIMARY KEY,
+FIRST_NAME VARCHAR2(30) NOT NULL,
+LAST_NAME VARCHAR(20) NOT NULL,
+LISTENING_TO_ID NUMBER,
+CONSTRAINT FK_LISTENINGSONG FOREIGN KEY (LISTENING_TO_ID)
+REFERENCES TRACK(TRACKID)
+);
+
+--SEQUENCE
+CREATE SEQUENCE HW_ID_SEQ
+INCREMENT BY 1
+START WITH 1;
+
+
+select * from homework;
+
+
+
+
+
+
+
+
+
+/*
 create table EXAMPLE
 (
 EX_ID NUMBER PRIMARY KEY,
@@ -48,3 +81,6 @@ where EX_ID = 2;
 commit;
 
 rollback;
+
+/
+*/
