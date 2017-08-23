@@ -26,6 +26,9 @@ end;
 insert into EXAMPLE(ex_id,firstname,lastname,fave_song_id)
 values(ex_id_seq.nextval,'matt','prass',12);
 
+insert into EXAMPLE(ex_id,firstname,lastname,fave_song_id)
+values(ex_id_seq.nextval,'john','doe',34);
+
 update example
 set firstname = 'someoneelse'
 where ex_id = 1;
@@ -35,12 +38,43 @@ where ex_id = 1;
 
 
 --order by
+select * from example
+order by FIRSTNAME;
 --group by
+select count(FAVE_SONG_ID),FIRSTNAME
+from example
+group by firstname;
 --where
+select * from example
+where FIRSTNAME = 'matt';
 --having
+select count (customerid),country
+from customer
+group by country
+having count(customerid) > 3;
 --union
+select albumid from album
+union
+select albumid from track;
 --exists
+select title
+from album
+where exists(select artist.name from artist where album.title = artist.name);
 --like/wildcards
+select * from playlist
+where name like 'Classical%';
 --3 aggregate funcions
+select count(*) from example;
+select avg(artistid) from artist;
+select max(customerid) from customer;
 --3 scalar functions
+select playlistid +trackid from playlisttrack;
+select playlistid || trackid from playlisttrack;
+select playlistid / trackid from playlisttrack;
 --1 nested query
+select *
+from customer
+where country in(select country 
+                 from employee
+                 )
+/
