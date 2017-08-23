@@ -3,6 +3,14 @@ package com.ex.day3;
 public class ThreadIntro {
 
 	public static void main(String[] args) {
+		
+		
+		String str = "abc";
+		int mid = (int) Math.floor(str.length()/2);
+		
+			
+			
+		
 		ExtendsThread et = new ExtendsThread();
 		ImplementsRunnable ir = new ImplementsRunnable();
 		
@@ -17,6 +25,8 @@ public class ThreadIntro {
 				System.out.println("in anon class");
 				for(int i = 0; i<10;i++){
 					System.out.println(i + " in anonclass");
+					
+					
 				}
 			}
 			
