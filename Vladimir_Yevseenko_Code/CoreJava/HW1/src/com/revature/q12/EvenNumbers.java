@@ -31,4 +31,5 @@ public class EvenNumbers {
 			.filter(i -> i % 2 == 0)
 			.forEach(i -> System.out.print(i + " "));
 	}
+	
 }

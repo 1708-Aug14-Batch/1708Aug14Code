@@ -1,13 +1,16 @@
 package com.revature.q18;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 public class ConcreteStrOps extends AbstractStrOps {
 
 	@Override
 	public boolean hasUpperCase(String s) {
-		for (char c: s.toCharArray())
-			if (Character.isUpperCase(c))
-				return true;
-		return false;
+		/*
+		 * Nice stream solution
+		 */
+		return s.chars().anyMatch(c -> Character.isUpperCase(c));
 	}
 
 	@Override

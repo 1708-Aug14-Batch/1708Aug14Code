@@ -9,12 +9,10 @@
 <fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="com.revature.pojos.Honda"/>
-<fullyQualifiedTypeName name="java.util.Comparator"/>
 <fullyQualifiedTypeName name="java.util.concurrent.ForkJoinPool.ForkJoinWorkerThreadFactory"/>
 <fullyQualifiedTypeName name="com.revature.q11_1.FloatContainer"/>
 <fullyQualifiedTypeName name="com.revature.q11_2.FloatContainerUser"/>
 <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
-<fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="com.revature.q19.Numbers"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
@@ -23,7 +21,6 @@
 <fullyQualifiedTypeName name="com.revature.student.StudentIO"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.io.BufferedWriter"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
@@ -32,7 +29,6 @@
 <fullyQualifiedTypeName name="com.bank.pojos.Storeable"/>
 <fullyQualifiedTypeName name="com.bank.service.BankService"/>
 <fullyQualifiedTypeName name="com.bank.dao.DAOTextFile"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="com.bank.dao.DAO"/>
 <fullyQualifiedTypeName name="com.bank.interfaces.Storeable"/>
 <fullyQualifiedTypeName name="java.math.BigInteger"/>
@@ -41,4 +37,14 @@
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Field"/>
 <fullyQualifiedTypeName name="java.lang.Float"/>
+<fullyQualifiedTypeName name="java.util.stream.LongStream"/>
+<fullyQualifiedTypeName name="java.util.stream.Stream"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="java.util.Comparator"/>
+<fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+<fullyQualifiedTypeName name="java.util.stream.IntStream"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,74 @@
+/* Basic SELECT statement, selects all columns from a table */
+
+SELECT * FROM artists;
+
+
+/* Basic SELECT statement, selects only specified columns */
+
+SELECT name FROM artists;
+
+
+/* SELECT statements with conditionals using WHERE, NOT, LIKE, AND, OR */
+
+SELECT * FROM artists WHERE name = 'AC/DC';
+
+SELECT name FROM track WHERE unitprice <= 60;
+
+SELECT name FROM track WHERE unitprice > 20 AND unitprice < 60;
+
+SELECT name FROM track WHERE unitprice < 20 OR unitprice > 60;
+
+SELECT name FROM track WHERE composer = 'Gene Simmons';
+
+SELECT * FROM track WHERE name LIKE 'The %';
+
+SELECT name FROM track WHERE NOT name = 'Gene Simmons';
+
+
+/* UNION keyword mergers two queries' results together
+		by default UNION does not allow duplicate values
+	UNION ALL can be used to allow duplicate entries
+*/
+
+SELECT name FROM track
+UNION
+SELECT name FROM artists;
+
+SELECT name FROM album
+UNION ALL
+SELECT name FROM artists;
+
+
+
+/* EXISTS tests for existence of any record in a subquery */
+
+SELECT name FROM artists WHERE EXISTS
+(SELECT name FROM album WHERE artistid = artists.artistid)
+
+
+/* aggregate functions COUNT(), AVG() and SUM()
+
+	COUNT() returns the number of rows that match a query
+	AVG() returns the average of a numeric column
+	SUM() returns the total sum of a numeric column 
+	*/
+	
+SELECT COUNT(name) FROM track WHERE name LIKE 'The %';
+
+SELECT AVG(unitprice) FROM track;
+
+SELECT SUM(unitprice) FROM track WHERE artistid = 5;
+
+
+
+/* GROUP BY is used with aggregate functions to group the result by columns */
+
+SELECT COUNT(name) FROM album GROUP BY artistid;
+
+
+/* CHARACTER_LENGTH(string) is a scalar function that tells you the length of the string 
+	UPPER() and LOWER() are 2 other scalar functions operating on strings 
+	Use of scalar functions is simple */
+
+SELECT CHARACTER_LENGTH(name) FROM album;
+

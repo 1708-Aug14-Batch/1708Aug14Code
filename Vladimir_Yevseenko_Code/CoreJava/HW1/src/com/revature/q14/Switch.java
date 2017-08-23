@@ -1,6 +1,8 @@
 package com.revature.q14;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -21,6 +23,7 @@ public class Switch {
 		case 2: displayDate(); break;
 		case 3: stringSplitCase();
 		}
+		
 		
 		s.close();
 	}
