@@ -5,11 +5,11 @@ public class Example {
 	int id;
 	String firstname;
 	String lastname;
-	int favesong;
+	String favesong;
 	
 	public Example() {}
 
-	public Example(int id, String firstname, String lastname, int favesong) {
+	public Example(int id, String firstname, String lastname, String favesong) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -41,17 +41,17 @@ public class Example {
 		this.lastname = lastname;
 	}
 
-	public int getFavesong() {
+	public String getFavesong() {
 		return favesong;
 	}
 
-	public void setFavesong(int favesong) {
+	public void setFavesong(String favesong) {
 		this.favesong = favesong;
 	}
 
 	@Override
 	public String toString() {
-		return id +firstname +lastname +favesong;
+		return "Example[ " + "id: " + id + " " +"|First name: " + firstname + " " +"|Last name: "+lastname+ " " +"|Fave song: " + favesong + " ]";
 	}
 	
 	

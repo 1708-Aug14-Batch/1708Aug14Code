@@ -47,6 +47,7 @@ public class DaoImpl {
 		return id;
 	}
 	
+	//get name from id
 	public String getName(int id)
 	{
 		Connection conn = null;
@@ -114,7 +115,10 @@ public class DaoImpl {
 		ArrayList<Example> list = new ArrayList<Example>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
-			String sql = "select * from example";
+			String sql = "select ex.ex_id,ex.firstname,ex.lastname,tr.name\r\n" + 
+					"from example ex\r\n" + 
+					"left join track tr\r\n" + 
+					"on ex.fave_song_id = tr.trackid";
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
@@ -123,7 +127,7 @@ public class DaoImpl {
 				int id = rs.getInt(1);
 				String firstname = rs.getString(2);
 				String lastname = rs.getString("lastname");
-				int song = rs.getInt("fave_song_id");
+				String song = rs.getString(4);
 				
 				Example ex = new Example(id, firstname, lastname, song);
 				
