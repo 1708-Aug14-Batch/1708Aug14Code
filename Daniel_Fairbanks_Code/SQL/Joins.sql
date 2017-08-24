@@ -127,3 +127,55 @@ SELECT ex.Ex_ID, ex.Firstname, ex.Lastname, tr.Name
 FROM Example ex
 INNER JOIN Track tr
 ON ex.Favorite_Song_ID = tr.TrackID;
+
+SELECT * FROM Example;
+SELECT Ex_ID FROM Example WHERE lower(Firstname) = lower('daniel');
+
+--FUNCTION EXAMPLE
+CREATE OR REPLACE FUNCTION findPerson(
+    fn IN VARCHAR2 )
+  RETURN NUMBER
+IS
+  person_id NUMBER;
+  CURSOR c1
+  IS
+    SELECT Ex_ID FROM Example WHERE lower(Firstname) = lower(fn);
+BEGIN
+  OPEN c1;
+  FETCH c1 INTO person_id;
+  IF c1%notfound THEN
+    person_id := -1;
+  END IF;
+CLOSE c1;
+RETURN person_id;
+END;
+/
+--END FUNCTION EXAMPLE
+CREATE OR REPLACE FUNCTION getName(
+    id IN NUMBER )
+  RETURN VARCHAR2
+IS
+  name VARCHAR2(242);
+  CURSOR c1
+  IS
+    SELECT Firstname FROM Example WHERE Ex_ID = id;
+BEGIN
+  OPEN c1;
+  FETCH c1 INTO name;
+  IF c1%notfound THEN
+    name := '';
+  END IF;
+CLOSE c1;
+RETURN name;
+END;
+/
+--SECOND EXAMPLE WITH NO CURSOR
+CREATE OR REPLACE FUNCTION findPersonNoCursor (
+fn IN VARCHAR2)
+RETURN NUMBER
+IS
+person_id NUMBER;
+BEGIN
+SELECT Ex_ID INTO person_id FROM Example WHERE lower(Firstname) = lower(fn);
+RETURN person_id;
+END;

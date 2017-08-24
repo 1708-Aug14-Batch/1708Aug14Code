@@ -56,3 +56,73 @@ SELECT CURRENT_TIMESTAMP FROM dual;
 --3.3 USER DEFINED SCALAR FUNCS
 
 --3.4 USER DEFINED TABLE VALUED FUNCS
+
+--4.0 STORED PROCEDURES
+--4.1 BASIC STORED PROCEDURE
+--Task – Create a stored procedure that selects the first and last names of all the employees.
+
+CREATE OR REPLACE PROCEDURE EmployeeNames
+(
+Emps OUT VARCHAR2
+)
+AS BEGIN
+SELECT Firstname, Lastname FROM Employee INTO Emps;
+RETURN Emps;
+END EmployeeNames;
+/
+
+--4.2 STORED PROCEDURE INPUT PARAMS
+--Task – Create a stored procedure that updates the personal information of an employee.
+CREATE OR REPLACE PROCEDURE EditEmployee
+(
+id IN NUMBER,
+fn IN VARCHAR2,
+ln IN VARCHAR2
+)
+AS BEGIN
+UPDATE Employee SET Firstname = fn, Lastname = ln
+WHERE EmployeeID = id;
+commit;
+END EditEmployee;
+/
+BEGIN EditEmployee (3, 'Daniel', 'Fairbanks');
+END;
+/
+SELECT * FROM Employee;
+
+--Task – Create a stored procedure that returns the managers of an employee.
+CREATE OR REPLACE PROCEDURE GetManager
+(
+id IN NUMBER
+)
+AS BEGIN
+INSERT INTO Example (Firstname, Lastname, Favorite_Song_ID)
+VALUES (fn, ln, songID);
+commit;
+END AddPerson;
+
+--4.3 STORED PROCEDURE OUTPUT PARAMS
+--Task – Create a stored procedure that returns the name and company of a customer.
+
+--5.0 TRANSACTIONS 2
+
+--6.0 TRIGGERS
+--6.1 AFTER/FOR 3
+
+--7.0 JOINS
+--7.1 INNER
+--Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+
+--7.2 OUTER
+--Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+
+--7.3 RIGHT
+--Task – Create a right join that joins album and artist specifying artist name and title.
+
+--7.4 CROSS
+--Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+
+--7.5 SELF
+--Task – Perform a self-join on the employee table, joining on the reportsto column.
+
+--7.5 SELF
