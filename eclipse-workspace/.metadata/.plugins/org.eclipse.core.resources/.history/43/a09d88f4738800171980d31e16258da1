@@ -1,0 +1,10 @@
+package com.ex.reflection;
+
+public class Goldfish extends Fish {
+
+	public Goldfish(String color) {
+		super(color);
+		// TODO Auto-generated constructor stub
+	}
+
+}

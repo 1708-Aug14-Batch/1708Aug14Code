@@ -1,0 +1,15 @@
+package com.ex.reflection;
+
+public class Fish {
+	
+	private String name;
+	
+	public Fish(String color) {
+		this.name = color;
+	}
+	
+	public String getColor() {
+		return this.name;
+	}
+
+}
