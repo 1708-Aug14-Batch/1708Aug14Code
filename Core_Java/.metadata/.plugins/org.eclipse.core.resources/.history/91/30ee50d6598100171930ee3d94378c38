@@ -1,7 +1,0 @@
-package fourOOPPrinciples;
-
-public class Dragon extends Lizard implements Flyable, FireBreathing {
-	
-	species = "Draco";
-
-}

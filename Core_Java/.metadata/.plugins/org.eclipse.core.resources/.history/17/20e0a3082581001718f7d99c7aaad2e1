@@ -1,7 +1,0 @@
-package com.ex.helloworld;
-
-public abstract class HelloAbstract {
-	
-	public abstract void add();
-
-}

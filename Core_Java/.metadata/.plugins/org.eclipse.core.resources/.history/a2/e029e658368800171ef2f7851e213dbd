@@ -1,0 +1,15 @@
+package com.ex.day4;
+
+public interface FactoryObject {
+
+	private int idNumber;
+	
+	FactoryObject(int idNumber) {
+		this.idNumber = idNumber;
+	}
+	
+	public void doThing() {
+		System.out.println("Object number " + idNumber + " does a thing");
+	}
+	
+}

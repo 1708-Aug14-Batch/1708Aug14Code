@@ -1,9 +1,0 @@
-package com.ex.day4;
-
-public class Factory {
-	
-	public void createObject(int num) {
-		return new FactoryObject(num);
-	}
-
-}

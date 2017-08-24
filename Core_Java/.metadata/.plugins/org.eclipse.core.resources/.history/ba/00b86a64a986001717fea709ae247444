@@ -1,0 +1,53 @@
+package com.ex.sandbox;
+
+/*
+ * Used for testing code and exceptions. For learning purposes only
+ */
+
+public class Sandbox {
+	
+	public static void main(String[] args) {
+		implicitCasting();
+		
+		StringBuilderAndBuffer();
+	}
+	
+	public static void implicitCasting() {
+		int i1 = 1;
+		Integer i2 = 2;
+		int i3;
+		Integer i4;
+		
+		i1 += i2;
+		i2 += i1;
+		
+		i3 = i1;
+		i3 = i2;
+		i4 = i1;
+		i4 = i2;
+		
+		System.out.println("No exceptions thrown");
+	}
+	
+	public static void StringBuilderAndBuffer() {
+		StringBuffer buf = new StringBuffer("Buffer");
+		StringBuilder build = new StringBuilder("Builder");
+		
+		System.out.println(buf + "\n" + build + "\n");
+		
+		buf.append(" and stuff");
+		build.append(buf);
+		
+		System.out.println(buf + "\n" + build + "\n");
+		
+		buf.insert(0, "INSERT");
+		build.insert(6, "TEXT");
+		
+		System.out.println(buf + "\n" + build + "\n");
+		
+		System.out.println(buf.insert(2, "ADD").append(build).insert(10, "SUBTRACT"));
+		System.out.println(build.append("MULTIPLY").insert(3, buf).append("DIVIDE"));
+		
+	}
+
+}
