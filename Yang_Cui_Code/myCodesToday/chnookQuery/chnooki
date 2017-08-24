@@ -1,0 +1,62 @@
+/* 2.1 SELECT */
+select * from employee;
+select * from employee where LASTNAME='King';
+select * from employee where FIRSTNAME='Andrew' and REPORTSTO is null;
+
+/* 2.2 ORDER BY */
+select * from Album order by TITLE desc;
+select FIRSTNAME from Customer order by CITY;
+
+/* 2.3 INSERT INTO */
+INSERT INTO Genre (GenreId, Name) VALUES (26, 'Random1');
+INSERT INTO Genre (GenreId, Name) VALUES (27, 'Random2');
+
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email) 
+VALUES (9, 'Dummy1', 'Dummy2', 'Placeholder1', 
+TO_DATE('1998-1-10 00:00:00','yyyy-mm-dd hh24:mi:ss'), 
+TO_DATE('2017-1-10 00:00:00','yyyy-mm-dd hh24:mi:ss'), 
+'11730 Plaza America Dr. 2nd Floor', 'Reston', 'VA', 'USA', '20190', '+1 (703) 570-8181', '+1 (703) 995-4500', 'dummy@revature.com');
+INSERT INTO Employee (EmployeeId, LastName, FirstName, Title, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email) 
+VALUES (10, 'Dummy3', 'Dummy4', 'Placeholder2', 
+TO_DATE('1998-1-10 00:00:00','yyyy-mm-dd hh24:mi:ss'), 
+TO_DATE('2017-1-10 00:00:00','yyyy-mm-dd hh24:mi:ss'), 
+'11730 Plaza America Dr. 2nd Floor', 'Reston', 'VA', 'USA', '20190', '+1 (703) 570-8181', '+1 (703) 995-4500', 'dummy@revature.com');
+
+INSERT INTO Customer (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId) 
+VALUES (60, 'Dummy5', 'Dummy6', 'Revature', '11730 Plaza America Dr. 2nd Floor', 'Reston', 
+'VA', 'USA', '20190', '+1 (703) 570-8181', '+1 (703) 995-4500', 'dummy@revature.com', 3);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId) 
+VALUES (61, 'Dummy7', 'Dummy8', 'Revature', '11730 Plaza America Dr. 2nd Floor', 'Reston', 
+'VA', 'USA', '20190', '+1 (703) 570-8181', '+1 (703) 995-4500', 'dummy@revature.com', 3);
+
+/* 2.4 UPDATE */
+update Customer set FIRSTNAME='Rober', LASTNAME='Walter' where FIRSTNAME='Aaron' and LASTNAME='Mitchell';
+update Artist set NAME='CCR' where NAME='Creedence Clearwater Revival';
+
+/* 2.5 LIKE */
+select * from Invoice where BILLINGADDRESS like 'T%';
+
+/* 2.6 BETWEEN */
+select * from Invoice where TOTAL between 15 and 20;
+select * from Employee where HIREDATE between '01-JUL-03' and '01-MAR-04';
+
+/* 2.7 DELETE */
+alter table Invoice drop constraint FK_InvoiceCustomerId;
+alter table Invoice add constraint FK_InvoiceCustomerId foreign key (CustomerId) references Customer(CustomerId) on delete cascade;
+delete from Customer where FIRSTNAME='Robert' and LASTNAME='Walter';
+
+/* 3.1 SYSTEM DEFINED FUNCTIONS */
+create or replace procedure printCurrentTime as
+todayDate DATE := SYSDATE;
+timeNow TIMESTAMP := SYSTIMESTAMP;
+begin
+dbms_output.put_line(todayDate);
+dbms_output.put_line(timeNow);
+end printCurrentTime;
+
+create or replace procedure findMediaLength(mediaID number) as
+declare nameChar varchar(120):=select Name from MediaType where MediaTypeId=mediaID;
+begin
+dbms_output.put_line(nameChar);
+end findMediaLength;
+

@@ -1,0 +1,152 @@
+create view tracklist as
+select * from track where loser(name) like '% for &';
+select * from tracklist;
+
+create view albumlist as
+select * from album where albumid between 250 and 350;
+select track.name, album.title from track inner join album on track.albumid=album.albumid;
+select track.name as trackname, album.title as "Album Title" from track inner join album on track.albumid=album.albumid;
+select track.name as trackname, album.title as "Album Title" from track tr full outer join album al on track.albumid=album.albumid;
+select tr.name as trackname, al.title as "Album Title" from tracklist tr full outer join albumLIST al on tr.albumid=al.albumid;
+select tr.name as trackname, al.title as "Album Title" from tracklist tr right join albumLIST al on tr.albumid=al.albumid;
+
+select tr.name as trackname, al.title as "Album Title" from TRACK tr 
+inner join album al on tr.ALBUMID = al.albumid
+inner join artist art on art.artistid = al.ARTISTID;
+
+select tr.name as "Track Name", al.title as "Album Title", art.NAME as "Artist Name", g.name as "Genre Name",
+pl.NAME "PlayList", mt.name as "MediaType", il.unitprice
+from TRACK tr
+inner join album al on tr.albumid =al.albumid
+inner join artist art on art.artistid =al.artistid
+inner join genre g on g.genreid =tr.genreid
+inner join playlisttrack plt on plt.trackid =tr.trackid
+inner join playlist pl on plt.playlistid =pl.playlistid
+inner join mediatype mt on mt.mediatypeid =tr.mediatypeid
+inner join invoiceline il on il.trackid =tr.trackid
+inner join invoice inv on inv.invoiceid =il.invoiceid;
+
+select tr.name as "Track Name", al.title as "Album Title", art.NAME as "Artist Name", g.name as "Genre Name",
+pl.NAME "PlayList", mt.name as "MediaType", il.unitprice, cust.company, cust.lastname, emp.lastname as "EmployeeName"
+from TRACK tr
+inner join album al on tr.albumid =al.albumid
+inner join artist art on art.artistid =al.artistid
+inner join genre g on g.genreid =tr.genreid
+inner join playlisttrack plt on plt.trackid =tr.trackid
+inner join playlist pl on plt.playlistid =pl.playlistid
+inner join mediatype mt on mt.mediatypeid =tr.mediatypeid
+inner join invoiceline il on il.trackid =tr.trackid
+inner join invoice inv on inv.invoiceid =il.invoiceid
+inner join customer cust on cust.customerid =inv.customerid
+inner join employee emp on emp.employeeid =cust.SUPPORTREPID
+;
+
+select cust.firstname CUSTNAME, emp.firstname EMPNAME from employee emp join customer cust on emp.state = cust.state;
+-- avg sone per album
+select avg(total) from(select count(*) as total from track, album where track.albumid = album.albumid group by album.title);
+-- find things from genre with ascii value
+select name from genre where ascii(substr(name,1,1))=72;
+select name from track where name like 'H%';
+-- soungs per genre
+select t2.name, count(*) from track t1, genre t2 where t1.genreid =t2.genreid group by t2.name;
+-- soungs per playlist
+select count(playlistid) as total, trackid from playlisttrack group by trackid order by total;
+select name, counts.total 
+select * from playlist where playlistid=13;
+
+-- cascade delete
+alter table artist add constraint artistid foreign key (artistid) references artist (artistid) on delete cascade;
+alter table artist add constraint artistid foreign key (artistid) references artist (artistid) on delete cascade;
+alter table album add constraint artist_casdade foreign key (artistid) references artist (artistid) on delete cascade;
+
+
+-- PL/SQL example
+create table example(firstname varchar2(40) not null, lastname varchar2(20) not null, fav_song_id number not null);
+
+select * from example;
+insert into example(firstname, lastname, fav_song_id)
+values ('testing','test',152);
+
+create or replace procedure add_person(
+fn in varchar2, ln in varchar2, songID in number)
+as begin
+insert into example(firstname, lastname, fav_song_id)
+values(fn,ln,songID);
+commit;
+end add_person;
+
+create table example(firstname varchar2(40) not null, lastname varchar2(20) not null, fav_song_id number not null);
+/
+select * from example;
+insert into example(firstname, lastname, fav_song_id) values ('testing','test',152);
+/
+
+create or replace procedure add_person(
+fn in varchar2, ln in varchar2, songID in number)
+as begin
+insert into example(firstname, lastname, fav_song_id)
+values(fn,ln,songID);
+commit;
+end add_person;
+/
+
+
+select ex.ex_id, ex.firstname, ex.lastname, tr.name
+from example ex
+inner join track tr on ex.fav_song_id=tr.trackid;
+
+
+create or replace procedure findTrackLength (tID number) as
+declare dispalyTrackLength number;
+begin
+select Milliseconds into dispalyTrackLength from Track where TrackID=tID;
+end findTrackLength;
+
+select ex_id from example
+where lower(firstname)=lower('genesis');
+
+
+--example example
+alter table example add ex_id number;
+insert into example(firstname, lastname, fav_song_id, ex_id) values ('genesis','bond',152,123);
+
+select ex_id from example
+where lower(firstname)=lower('genesis');
+
+create or replace function findPerson (fn in varchar2)
+return number is person_id number;
+cursor c1 is select ex_id from example where lower(firstname)=lower(fn);
+begin
+open c1;
+fetch c1 into person_id;
+if c1%notfound then person_id:=-1;
+end if;
+close c1;
+return person_id;
+end;
+--end example employee
+
+drop table example;
+create table example (ex_Id number not null, firstname varchar(40), lastname varchar(40), constraint pk_ex primary key (ex_Id));
+insert into example(ex_Id, firstname, lastname) values (0,'genesis','bond');
+
+
+create or replace function findNameViaId (person_Id number)
+return varchar2 is person_name varchar2(40);
+cursor c2 is select firstname from example where ex_id = person_Id;
+begin
+open c2;
+fetch c2 into person_name;
+if c2%notfound then person_name:='not found';
+end if;
+close c2;
+return person_name;
+end;
+
+select ex.ex_Id, ex.firstname, ex.lastname, tr.name from example ex left join track tr on ex.fav_song_id = tr.trackid;
+
+drop table example;
+create table example (ex_Id number primary key, firstname varchar(40), lastname varchar(40));/
+insert into example(ex_Id, firstname, lastname) values (0,'genesis','bond');
+insert into example(ex_Id, firstname, lastname) values (1,'genesis','bond');
+insert into example(ex_Id, firstname, lastname) values (2,'genesis','bond');
