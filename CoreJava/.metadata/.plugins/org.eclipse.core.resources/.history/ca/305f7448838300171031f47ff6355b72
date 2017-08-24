@@ -1,0 +1,28 @@
+package Q6;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class IsEvenTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testEven() {
+
+		assertEquals(true, Even.isEven(0));
+		assertEquals(false, Even.isEven(1));
+		assertEquals(true, Even.isEven(100));
+		System.out.println("255 is even = " + isEven(255))
+	}
+
+}

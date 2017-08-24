@@ -12,6 +12,8 @@ public class Factory {
 	}
 	
 	
+	
+	
 	/*
 	public Object createProduct(String productId) {
 		switch (productId) {

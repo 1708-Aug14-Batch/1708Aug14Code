@@ -1,0 +1,26 @@
+package Q18;
+
+public class ConcreteClass extends SuperClass {
+
+	@Override
+	public boolean hasUpperCase(String str) {
+		for (char c : str.toCharArray()) {
+			System.out.println(c + " = " + (int)c);
+			if ()
+		}
+		return false;
+	}
+
+	@Override
+	public String toUpperCase(String str) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int toIntAddTen(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.example.run;
+
+import com.example.dao.DaoImpl;
+
+public class Test {
+	
+	public static void main(String[] args) {
+		
+		DaoImpl dao = new DaoImpl();
+		
+		System.out.println(dao.getId("Test"));
+	}
+
+}

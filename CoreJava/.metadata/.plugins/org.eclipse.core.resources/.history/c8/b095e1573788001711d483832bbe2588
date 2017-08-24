@@ -1,0 +1,13 @@
+package designpatterns;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Singleton singleton = Singleton.getInstance();
+		singleton.hello();
+		singleton.count = 10;
+		System.out.println(singleton.count);
+		Singleton another = Singleton.getInstance();
+		System.out.println(another.count);
+	}
+}

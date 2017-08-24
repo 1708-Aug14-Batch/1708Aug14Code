@@ -1,0 +1,10 @@
+package designpatterns;
+
+public class ToolFactory {
+	
+	public ToolBox workWithTool(String toolType) {
+		
+		return null;
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.example.util;
+
+public class ConnectionFactory {
+	
+	private static ConnectionFactory instance = null;
+	private static Boolean build = true;
+	
+	private ConnectionFactory() { }
+	
+	public static getInstance() {
+		return (instance == null) ? new ConnectionFactory() : instance;
+	}
+
+}

@@ -1,0 +1,29 @@
+package Q20;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ReadFromFile {
+	
+	public static String fromFile(String filename) {
+		
+		String ret = "";
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
+			for (String word : br.readLine().split("")) {
+				
+			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return ret;
+	}
+	
+	public static void main(String[] args) {
+		
+		System.out.println(fromFile("src/Q20/data.txt"));
+	}
+}

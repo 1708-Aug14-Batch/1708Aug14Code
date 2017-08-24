@@ -1,0 +1,6 @@
+package designpatterns;
+
+public interface ToolBox {
+	
+	String workWithTool();
+}

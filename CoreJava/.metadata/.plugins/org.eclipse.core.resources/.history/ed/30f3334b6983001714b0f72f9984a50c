@@ -1,0 +1,24 @@
+package Q19;
+
+import java.util.List;
+
+public class ListOps {
+	
+	public static void fillList(List<Integer> list, int max) {
+		for (int i = 0; i < max; i++) {
+			list.add(Integer.valueOf(i + 1));
+		}
+	}
+	
+	public static Integer addEvens(List<Integer> list) {
+		Integer ret = 0;
+		for (Integer i : list) {
+			if (i % 2 == 0) {
+				ret += i;
+			}
+		}
+		return ret;
+	}
+	
+
+}

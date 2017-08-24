@@ -1,0 +1,39 @@
+package com.bank.service;
+
+import pojos.User;
+
+import com.bank.dao.Dao;
+import com.bank.dao.DaoTextImpl;
+
+public class Service {
+
+
+	public static User getCurrentUser() {
+		return currentUser;
+	}
+	
+	public static String loginUser(String email, String password) {
+		if (email == null || password == null) return "You must enter an email and password";
+		
+		User user = dao.getUser(email);
+		if (user == null) return "There is no account associated with that email";
+		
+		if (password.equals(user.getPassword())) {
+			currentUser = user;
+			return null;
+		}
+		else {
+			return "Incorrect email or password";
+		}
+	}
+	
+	public static boolean logoutUser() {
+		if (currentUser == null) return false;
+		
+		currentUser = null;
+		return true;
+	}
+	
+	private static User currentUser;	
+	private static Dao dao = new DaoTextImpl();
+}

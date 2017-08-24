@@ -1,0 +1,11 @@
+package Q19;
+
+public class ListOps {
+	
+	public static void fillList(List<Integer> list, int max) {
+		for (int i : max) {
+			
+		}
+	}
+
+}

@@ -7,7 +7,7 @@ public class ThreadIntro {
 		ImplementsRunnable ir = new ImplementsRunnable();
 		
 		Runnable lam = () -> {
-			System.out.println("lambda expression");
+			System.out.println("Lambda runnable");
 		};
 		
 		Runnable anon = new Runnable() {
@@ -28,7 +28,19 @@ public class ThreadIntro {
 		t1.start();
 		t2.start();
 		t3.start();
+		
+		Calculable multiply = (int... nums) -> {
+			int ret = 1;
+			
+			return ret;
+		};
+		
 	}
+}
+
+@FunctionalInterface
+interface Calculable {
+	public int calculate(int... nums);
 }
 
 // extends thread

@@ -1,0 +1,18 @@
+package designpatterns;
+
+public class ToolFactory {
+
+	public ToolBox workWithTool(String toolType) {
+
+		if (toolType.equalsIgnoreCase("hammer")) {
+			
+		}
+		else if (toolType.equalsIgnoreCase("wrench")) {
+			
+		}
+		else {
+			return null;
+		}
+	}
+
+}

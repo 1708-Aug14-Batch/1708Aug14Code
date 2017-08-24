@@ -1,0 +1,78 @@
+package com.example.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+
+import com.example.util.ConnectionFactory;
+
+public class DaoImpl {
+
+	// Callable Statement
+
+	public String getName(int id) {
+		Connection connect = null;
+		CallableStatement cs = null;
+		String name = null;
+
+		try {
+			connect = ConnectionFactory.getInstance().getConnection();
+
+			String sql = "{ ? = call findPerson2 ? }";
+
+			cs = connect.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.setInt(2, id);
+			cs.execute();
+
+			name = cs.getString(1);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				cs.close();
+				connect.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+
+		return name;
+	}
+
+	public int getId(String name) {
+		Connection connect = null;
+		CallableStatement cs = null;
+		int id = 0;
+
+		try {
+			connect = ConnectionFactory.getInstance().getConnection();
+
+			String sql = "{ ? = call findPerson(?) }";
+			cs = connect.prepareCall(sql);
+			cs.registerOutParameter(1, Types.NUMERIC);
+			cs.setString(2, name);
+			cs.execute();
+
+			id = cs.getInt(1);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				cs.close();
+				connect.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return id;
+	}
+
+}

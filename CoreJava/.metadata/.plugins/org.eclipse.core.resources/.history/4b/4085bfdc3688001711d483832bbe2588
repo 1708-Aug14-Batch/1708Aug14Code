@@ -1,0 +1,6 @@
+package designpatterns;
+
+public enum ToolBox {
+	
+	String workWithTool();
+}
