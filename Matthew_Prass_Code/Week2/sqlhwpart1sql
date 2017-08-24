@@ -1,0 +1,63 @@
+--All of SQL 2.0 Queries
+
+--select
+select * from employee;
+select * from employee where lastname = 'King';
+select * from employee where employee.firstname = 'Andrew' and employee.reportsto is null;
+
+--order by
+select * from album
+order by title desc;
+
+select firstname from customer
+order by city;
+
+--insert into
+insert into genre (genreid,name)
+values(26,'Post-punk');
+insert into genre (genreid,name)
+values(27,'Experimental');
+
+insert into employee(employeeid,lastname,firstname,title,reportsto,birthdate,hiredate,address,city,state,country,postalcode,phone,fax,email)
+values(9,'someone','noone','da b0ss',null,'01-JAN-31','04-MAY-01','somewhere','someplace','space and time','anywhere','everywhere','111-111-1112','111-111-1113','idk@someemail.com'); 
+insert into employee(employeeid,lastname,firstname,title,reportsto,birthdate,hiredate,address,city,state,country,postalcode,phone,fax,email)
+values(10,'someone2','noone2','da b0ss2',null,'01-FEB-31','05-MAY-02','somewhere','someplace','space and time','anywhere','everywhere','111-111-1112','111-111-1113','idk@someemail.com');
+
+insert into customer(customerid,firstname,lastname,company,address,city,state,country,postalcode,phone,fax,email,supportrepid)
+values(60,'matt','prass','game company llc','somewhere','someplace','space and time','anywhere','everywhere','111-111-1112','111-111-1113','idk@someemail.com',9); 
+insert into customer(customerid,firstname,lastname,company,address,city,state,country,postalcode,phone,fax,email,supportrepid)
+values(61,'matt2','prass2',null,'somewhere','someplace','space and time','anywhere','everywhere','111-111-1112','111-111-1113','idk@someemail.com',10);
+
+--update
+update customer
+set firstname = 'Robert' , lastname = 'Walter'
+where firstname = 'Aaron' and lastname = 'Mitchell';
+
+update artist
+set name = 'CCR'
+where name = 'Creedence Clearwater Revival';
+
+--like
+select * from invoice
+where billingaddress like 'T%';
+
+--between
+select * from invoice
+where total between 15 and 50;
+
+select * from employee
+where hiredate between '01-JUN-03' and '01-MAR-04';
+
+--delete
+alter table customer
+drop constraint fk_customersupportrepid;
+
+alter table customer
+add constraint fk_customersupportrepid_cas
+foreign key(supportrepid)
+references employee(employeeid)
+on delete cascade;
+
+
+
+
