@@ -1,0 +1,14 @@
+package com.rev.run;
+
+import com.rev.dao.DAOImpl;
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		DAOImpl dao = new DAOImpl();
+		String name = dao.getName(1);
+		System.out.println(name);
+	}
+
+}

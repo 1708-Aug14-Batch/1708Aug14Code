@@ -1,0 +1,10 @@
+package com.rev.pojos;
+
+public class Example {
+
+	int id;
+	String firstname;
+	String lastname;
+	int favSong;
+	
+}

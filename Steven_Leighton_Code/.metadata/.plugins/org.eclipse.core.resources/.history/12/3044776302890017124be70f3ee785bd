@@ -1,0 +1,48 @@
+package com.rev.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+
+import com.rev.util.ConnectionFactory;
+
+public class DAOImpl {
+
+	/*
+	 * Callable statement
+	 */
+	
+	public int getID(String name){
+		Connection conn = null;
+		CallableStatement cs = null;
+		int id = 0;
+		
+		try{
+			conn = ConnectionFactory.getInstance().getConnection();
+			cs = conn.prepareCall("{? = call findPerson(?)}");
+			//set first ? to number (numeric) type
+			cs.registerOutParameter(1, Types.NUMERIC);
+			//set second ? to findPerson for variable name
+			cs.setString(2, name);
+			//execute
+			cs.execute();
+			
+			//get back first out parameter
+			id = cs.getInt(1);
+		} catch (SQLException e){
+			e.printStackTrace();
+		} finally{
+			try{
+				
+				//close connection/statement
+				cs.close();
+				conn.close();
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		return id;
+	}
+}
