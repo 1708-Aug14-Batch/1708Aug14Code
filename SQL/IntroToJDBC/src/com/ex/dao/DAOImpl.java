@@ -11,6 +11,9 @@ public class DAOImpl {
 	
 	/*
 	 * Callable statement
+	 * calls findPerson function in DB that takes in a
+	 * string (firstname) as a parameter then returns the
+	 * person's ID
 	 */
 	public int getID(String name){
 		Connection connect = null;
@@ -38,6 +41,8 @@ public class DAOImpl {
 		}
 		return id;
 	}
+	
+	
 	
 
 }

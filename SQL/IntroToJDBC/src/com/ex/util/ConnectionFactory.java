@@ -32,6 +32,7 @@ public class ConnectionFactory {
 			Properties prop = new Properties();
 			// location for properties file will be wherever you create it. include full file path
 			prop.load(new FileReader("C:/Users/Genesis/my_git_repos/1708Aug14Code/SQL/IntroToJDBC/src/com/ex/util/database.properties"));
+			//register JDBC driver
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(
 					prop.getProperty("url"),
