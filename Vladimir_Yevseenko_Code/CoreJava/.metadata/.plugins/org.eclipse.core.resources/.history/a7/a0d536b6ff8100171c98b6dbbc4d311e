@@ -1,9 +1,0 @@
-package com.revature.q4;
-
-public class Factorial {
-	public static void main(String[] args) {
-		int N = 10; /* factorial which to calculate */
-		long[] factorialCache = new long[N];
-		
-	}
-}

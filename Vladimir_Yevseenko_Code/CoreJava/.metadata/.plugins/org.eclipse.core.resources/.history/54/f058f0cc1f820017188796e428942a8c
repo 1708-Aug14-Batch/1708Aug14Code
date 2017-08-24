@@ -1,9 +1,0 @@
-package com.revature.q11_2;
-
-import com.revature.q11_1.FloatContainer;
-
-public class FloatContainerUser extends FloatContainer {
-	public static void main(String[] args) {
-		
-	}
-}

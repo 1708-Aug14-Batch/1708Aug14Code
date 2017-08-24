@@ -1,7 +1,0 @@
-package com.revature.q7;
-
-public class Main {
-	Employee[] employees = new Employee[5];
-	
-	employees[0] = new Employee("Vlad", )
-}

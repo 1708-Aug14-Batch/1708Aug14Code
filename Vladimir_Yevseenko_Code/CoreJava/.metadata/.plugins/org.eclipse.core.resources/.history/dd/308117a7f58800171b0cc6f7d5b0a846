@@ -1,0 +1,11 @@
+package com.rev.main;
+
+import com.rev.dao.DBDAO;
+
+public class Driver {
+	public static void main(String[] args) {
+		DBDAO d = new DBDAO();
+		
+		System.out.println(d.getID("Andrew"));
+	}
+}

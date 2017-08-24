@@ -1,8 +1,0 @@
-package com.revature.q15;
-
-public interface Arithmetical<T> {
-	T add(T t);
-	T subtract(T t);
-	T multiply(T t);
-	T divide(T t);
-}

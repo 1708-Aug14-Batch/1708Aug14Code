@@ -1,0 +1,40 @@
+package com.rev.dao;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Types;
+
+import org.w3c.dom.CDATASection;
+
+import com.rev.utils.ConnectionFactory;
+
+public class DBDAO {
+	Connection conn;
+	
+	public DBDAO () {
+		conn = ConnectionFactory.getInstance().getConnection();
+	}
+	
+	
+	public int getID(String name) {
+		try (CallableStatement cs = conn.prepareCall("{? = call findperson(?)}")) {
+			cs.registerOutParameter(1, Types.NUMERIC);
+			cs.setString(2, name);
+			cs.execute();
+			return cs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	
+	public void disconnect() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

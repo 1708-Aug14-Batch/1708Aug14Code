@@ -1,9 +1,0 @@
-package com.revature.q12;
-
-import java.util.ArrayList;
-
-public class EvenNumbers {
-	public static void main(String[] args) {
-		ArrayList<Integer> list = new ArrayList<>();
-	}
-}

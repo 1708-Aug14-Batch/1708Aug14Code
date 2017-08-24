@@ -1,9 +1,0 @@
-package com.bank.dao;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public interface DAO<T> {
-	void save(List<T> list);
-	ArrayList<T> read(String path);
-}

@@ -1,7 +1,0 @@
-package com.revature.HelloWorldPackage;
-
-public class HelloWorld implements HelloWorldInterface{
-	public static void main(String args) {
-		System.out.println("Hello world!");
-	}
-}

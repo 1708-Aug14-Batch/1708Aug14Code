@@ -1,8 +1,5 @@
 package com.revature.q18;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 public class ConcreteStrOps extends AbstractStrOps {
 
 	@Override

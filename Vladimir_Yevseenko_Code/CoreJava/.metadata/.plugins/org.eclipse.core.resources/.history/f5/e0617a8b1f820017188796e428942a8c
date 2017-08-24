@@ -1,7 +1,0 @@
-package com.revature.q11_2;
-
-public class FloatContainerUser {
-	public static void main(String[] args) {
-		FloatContainer fc = new FloatContainer();
-	}
-}

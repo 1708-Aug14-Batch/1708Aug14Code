@@ -1,9 +1,0 @@
-package com.revature.threads;
-
-public class Main {
-	public static void main(String[] args) {
-		Thread t = new Thread(new Timer());
-		Thread t2 = new Thread()
-		t.start();
-	}
-}

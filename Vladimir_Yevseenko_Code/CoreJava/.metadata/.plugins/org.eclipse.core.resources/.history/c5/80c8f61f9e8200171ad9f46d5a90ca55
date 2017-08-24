@@ -1,8 +1,0 @@
-package com.revature.q19;
-
-public class Numbers {
-	public static void main(String[] args) {
-		ArraysList<Integer> list = new ArrayList<>();
-		
-	}
-}
