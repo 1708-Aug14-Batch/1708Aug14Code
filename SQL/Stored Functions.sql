@@ -1,19 +1,22 @@
 
-CREATE OR REPLACE FUNCTION findPerson
-(firstName IN VARCHAR2)
-RETURN NUMBER
+--
+INSERT INTO example(firstname, lastname) values("John", "Snow");
+
+--
+CREATE OR REPLACE FUNCTION findPerson(personID IN NUMBER)
+RETURN VARCHAR2
 IS
-person_id NUMBER;
+firstName VARCHAR2;
 CURSOR c1 IS
-SELECT example_id
+SELECT firstname
 FROM example
-WHERE lower(firstname) = lower(firstName);
+WHERE person_id = personID;
 BEGIN
 OPEN c1;
-FETCH c1 INTO person_id;
+FETCH c1 INTO firstName;
 IF c1%notfound THEN
-person_id := -1;
+firstName := 'Not found';
 END IF;
 CLOSE c1;
-RETURN person_id;
-END;
+RETURN firstName;
+END findPerson;

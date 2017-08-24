@@ -1,0 +1,73 @@
+package com.ex.pojos;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.ex.util.ConnectionSingleton;
+
+public class Example {
+	
+	private int ID;
+	private String firstName;
+	private String lastName;
+	private int songID;
+	
+	public Example(int id2, String firstName2, String lastName2, int song) {
+		// TODO Auto-generated constructor stub
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public int getSongID() {
+		return songID;
+	}
+	public void setSongID(int songID) {
+		this.songID = songID;
+	}
+	@Override
+	public String toString() {
+		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID + "]";
+	}
+	
+	/**
+	 * Statement
+	 */
+	public ArrayList<Example> getAll() {
+		ArrayList<Example> list = new ArrayList<Example>();
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
+			String sql = "SELECT * FROM example";
+			Statement statement = conn.createStatement();
+			ResultSet results = statement.executeQuery(sql);
+			while(results.next()) {
+				int id = results.getInt(1);
+				String firstName = results.getString(2);
+				String lastName = results.getString("lastname");
+				int song = results.getInt("fav_song_id");
+				Example temp = new Example(id, firstName, lastName, song);
+				list.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+}
