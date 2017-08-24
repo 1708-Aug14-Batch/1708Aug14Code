@@ -221,4 +221,53 @@ BEGIN
   );
 --rollback; 
 END;
+/
 
+select ex_id
+from example
+where lower(firstname) = lower('genesis');
+
+--Function
+create or replace function findPerson
+  (fname in varchar2)
+  return number
+is 
+  person_id number;
+  cursor c1 
+  is 
+    select ex_id from example where lower(firstname) = lower(fname);
+BEGIN
+  open c1;
+  fetch c1 into person_id;
+  if c1%notfound then
+    person_id := -1; --:= is an assignment operator in this instance
+  end if;
+close c1;
+return person_id;
+End;
+
+/
+
+create or replace function getName
+  (emp_id number)
+  return varchar2
+is
+  person_name varchar2(242);
+  cursor c1
+  is
+    select concat(firstname, concat(' ', lastname)) from example where ex_id = emp_id;
+Begin
+  open c1;
+  fetch c1 into person_name;
+  if c1%notfound then
+    person_name := null;
+  end if;
+close c1;
+return person_name;
+End;
+
+/
+select * from example;
+
+insert into example(firstname, lastname)
+values('adding','things');

@@ -144,5 +144,14 @@ Begin update_emp(2,'more','test');
 End;
 
 
+create or replace procedure find_manager(
+report in number)
+as begin
+Select firstname, lastname from employee
+Where employee.REPORTSTO = report;
+End find_manager;
+
+/
+
 
 
