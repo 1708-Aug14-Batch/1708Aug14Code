@@ -75,8 +75,74 @@ Where customerid = 32;
 
 
 --3.1 System defined functions
-Create Function getCurrentTime{
 
 
-};
+--4.1 Basic Stored Procedure
+
+create or replace procedure nameSelector( 
+fname out varchar,
+lname out varchar)
+as begin
+Select firstname, lastname * into fname, lname from Employee;
+END nameSelector;
+/
+
+/*4.1*/
+CREATE OR REPLACE PROCEDURE ALL_EMPLOYEES(S OUT SYS_REFCURSOR) AS
+BEGIN 
+    OPEN S FOR
+        SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+END;
+/
+
+/*GET_ALL EMPLOYEE NAMES*/
+DBMS_OUTPUT.ENABLE;
+DECLARE
+      S SYS_REFCURSOR;
+      FN EMPLOYEE.FIRSTNAME%TYPE;
+      LN EMPLOYEE.LASTNAME%TYPE;
+BEGIN  
+     ALL_EMPLOYEES(S);
+     LOOP
+          FETCH S INTO FN, LN;
+          EXIT WHEN S%NOTFOUND;
+          DBMS_OUTPUT.PUT_LINE(FN||' '||LN);
+     END LOOP;
+     CLOSE S;
+END;
+/
+
+DECLARE
+  S SYS_REFCURSOR;
+BEGIN
+
+  ALL_EMPLOYEES(
+    S => S
+  );
+  /* Legacy output: 
+DBMS_OUTPUT.PUT_LINE('S = ' || S);
+*/ 
+  :S := S; --<-- Cursor
+--rollback; 
+END;
+
+/
+--4.2 Stored Procedures Input Parameters
+create or replace procedure update_emp(
+empid in number,
+fname in varchar2,
+lname in varchar2)
+as begin
+Update employee
+Set firstname = fname, lastname = lname
+Where employeeid = empid;
+commit;
+END update_emp;
+/
+
+Begin update_emp(2,'more','test');
+End;
+
+
+
 
