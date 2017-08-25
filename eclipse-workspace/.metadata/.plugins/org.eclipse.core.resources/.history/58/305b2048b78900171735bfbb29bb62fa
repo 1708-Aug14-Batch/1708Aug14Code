@@ -2,8 +2,6 @@ package com.bank.model;
 
 public class User {
 	
-	// Use prepared statements
-	
 	private int userID;
 	private String firstName;
 	private String lastName;
