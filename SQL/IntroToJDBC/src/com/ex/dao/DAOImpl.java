@@ -13,6 +13,14 @@ import com.ex.pojos.Example;
 import com.ex.util.ConnectionFactory;
 
 public class DAOImpl {
+	/*
+	 * CLASS ASSIGNMENT FOR 8/24:
+	 * - create procedure/function to take in example id
+	 * and return full name. create callable statement
+	 * to execute this 
+	 */
+	
+	
 	
 	/*
 	 * Callable statement
@@ -78,9 +86,29 @@ public class DAOImpl {
 		
 		return -1;
 	}
+	/*
+	 * STATEMENT - add example
+	 * basically exactly what NOT to do
+	 * allows for sql injection, demonstrating for learning purposes
+	 */
+	
+	public void wrongAddExample(String fn, String ln){
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			String sql = "insert into example "
+					+ "(FIRSTNAME, LASTNAME) "
+					+ "values('" + fn + "' , '" +ln+ "')";
+			Statement s = conn.createStatement();
+			int numRows = s.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	/*
 	 * STATEMENT - get all examples
+	 * use statements for QUERIES that don't take parameters
 	 */
 	
 	public ArrayList<Example> getAll(){

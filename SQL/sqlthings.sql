@@ -223,3 +223,11 @@ BEGIN
 END;
 /
 SELECT * FROM example;
+
+insert into example (FIRSTNAME, LASTNAME)
+values('autogenerate', 'a key');
+
+select ex.ex_id, ex.firstname, ex.lastname, tr.name
+from example ex
+left join track tr
+on ex.fave_song_id = tr.trackid;

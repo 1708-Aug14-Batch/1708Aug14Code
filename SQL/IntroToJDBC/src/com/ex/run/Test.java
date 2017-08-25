@@ -1,11 +1,12 @@
 package com.ex.run;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.ex.dao.DAOImpl;
 import com.ex.pojos.Example;
 
-public class Test {
+public class Test{
 
 	public static void main(String[] args) {
 		
@@ -14,7 +15,7 @@ public class Test {
 //		System.out.println(id);
 		
 		// testing add to db
-//		int x = dao.addExample("wow this is", "awesome");
+		dao.wrongAddExample("wow this is", "awesome");
 //		System.out.println(x);
 		
 		
