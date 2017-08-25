@@ -77,6 +77,95 @@ ON cust.customerid = inv.customerid
 INNER JOIN employee emp
 ON emp.employeeid = cust.supportrepid;
 
+SELECT cust.firstname CUSTNAME,
+  emp.firstname EMPNAME
+FROM employee emp
+FULL JOIN customer cust
+ON emp.state = cust.state;
+-- avg songs per album
+SELECT AVG(total)
+FROM
+  (SELECT COUNT(*) AS total
+  FROM track,
+    album
+  WHERE track.albumid = album.albumid
+  GROUP BY album.title
+  );
+-- find things from track w ascii value
+SELECT name
+FROM track
+WHERE ascii(SUBSTR(name, 1, 1)) = 72;
+SELECT name FROM track WHERE name LIKE 'H%';
+-- # songs per genre
+SELECT t2.name ,
+  COUNT(*)
+FROM track t1,
+  genre t2
+WHERE t1.genreid = t2.genreid
+GROUP BY t2.name;
+-- #song per playlist
+SELECT COUNT(playlistid) AS total,
+  trackid
+FROM playlisttrack
+GROUP BY trackid
+ORDER BY total;
+--
+SELECT name,
+  counts.total
+FROM track
+INNER JOIN
+  (SELECT COUNT(PLAYLISTID) AS total,
+    TRACKID                 AS trackid
+  FROM playlisttrack
+  GROUP BY TRACKID
+  ) counts
+ON track.trackid = counts.trackid;
+/
+SELECT t1.name,
+  COUNT(*)
+FROM playlist t1,
+  playlisttrack
+WHERE t1.PLAYLISTID = playlisttrack.PLAYLISTID
+GROUP BY t1.NAME;
+SELECT * FROM playlisttrack WHERE playlistid = 4;
+SELECT * FROM playlist;
+--Genesis Bonds SQL Homework.
+--2.1 SELECT
+--Task – Select all records from the Employee table.
+SELECT *
+FROM employee;
+-- 2.2 Select all records from the Employee table where last name is King.
+SELECT *
+FROM employee
+WHERE lastname = 'King';
+--
+CREATE INDEX trackname ON track
+  (name
+  );
+DROP INDEX trackname;
+/
+ALTER TABLE album ADD CONSTRAINT artistid_fk FOREIGN KEY (artistid) REFERENCES artist (artistid) ON
+DELETE CASCADE;
+ALTER TABLE ALBUM
+DROP CONSTRAINT FK_ALBUMARTISTID;
+ALTER TABLE ALBUM ADD CONSTRAINT artist_Cascade FOREIGN KEY (artistID) REFERENCES ARTIST(artistid) ON
+DELETE CASCADE;
+SELECT * FROM example;
+INSERT
+INTO example
+  (
+    firstname,
+    lastname,
+    fave_song_id
+  )
+  VALUES
+  (
+    'testing',
+    'test',
+    152
+  );
+/
+
 
 -- Procedure
 
@@ -135,6 +224,17 @@ BEGIN
 CLOSE c1;
 RETURN person_id;
 END findPerson;
+/
+
+CREATE OR REPLACE FUNCTION findPersonNoCursor(
+  fn IN VARCHAR2)
+RETURN NUMBER
+IS
+  person_id NUMBER;
+BEGIN
+  SELECT ex_id INTO person_id FROM example WHERE lower(firstname) = lower(fn);
+  RETURN person_id;
+END;
 /
 
 SELECT * FROM example;

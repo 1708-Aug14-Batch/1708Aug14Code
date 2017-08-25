@@ -44,22 +44,33 @@ SELECT * FROM albums ORDER BY title DEC;
 SELECT firstname FROM customer ORDER BY city ASC;
 
 -- 2.3 INSERT INTO
-Task – Insert two new records into Genre table
-Task – Insert two new records into Employee table
-Task – Insert two new records into Customer table
+INSERT INTO genre(genreid, name) VALUES(26, 'Nightcore');
+INSERT INTO genre(genreid, name) VALUES(27, 'Techno');
+
+INSERT INTO employee (EmployeeId, LastName, FirstName, Title, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email)
+  VALUES (9, 'William', 'Scott', 'Superior Manager', TO_DATE('1989-8-04 00:00:00','yyyy-mm-dd hh24:mi:ss'), TO_DATE('2009-5-27 00:00:00','yyyy-mm-dd hh24:mi:ss'), '11120 Jasper Ave NW', 'Edmonton', 'AB', 'Canada', 'T5K 2N1', '+1 (780) 428-9482', '+1 (360) 123-4567', 'william@chinookcorp.com');
+INSERT INTO employee (EmployeeId, LastName, FirstName, Title, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email)
+  VALUES (10, 'David', 'Smith', 'Superior Programmer', TO_DATE('1974-1-26 00:00:00','yyyy-mm-dd hh24:mi:ss'), TO_DATE('2013-4-06 00:00:00','yyyy-mm-dd hh24:mi:ss'), '11120 Jasper Ave NW', 'Edmonton', 'AB', 'Canada', 'T5K 2N1', '+1 (780) 428-9482', '+1 (801) 321-7654', 'david@chinookcorp.com');
+
+INSERT INTO Customer (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId)
+  VALUES (60, 'Scott', 'Smith', 'Revature', 'Av. Brigadeiro Faria Lima, 2170', 'São José dos Campos', 'SP', 'Brazil', '12227-000', '+55 (12) 3923-5555', '+55 (12) 3923-5566', 'scott@mail.com', 3);
+INSERT INTO Customer (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId)
+  VALUES (61, 'Matthew', 'Wheeler', 'Revature', 'Av. Brigadeiro Faria Lima, 2170', 'São José dos Campos', 'SP', 'Brazil', '12227-000', '+55 (12) 3923-5555', '+55 (12) 3923-5566', 'mathew@mail.com', 3);
+SELECT * FROM customer;
 
 -- 2.4 UPDATE
-Task – Update Aaron Mitchell in Customer table to Robert Walter
-Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
+UPDATE customer SET firstname = 'Robert', lastname = 'Walter' WHERE firstname = 'Aaron' AND lastname = 'Mitchell';
+UPDATE artist SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival';
 
 -- 2.5 LIKE
-Task – Select all invoices with a billing address like “T%”
+SELECT * FROM invoice WHERE billingaddress LIKE 'T%';
 
 -- 2.6 BETWEEN
-Task – Select all invoices that have a total between 15 and 50
-Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
+SELECT * FROM invoice WHERE total BETWEEN 15 AND 50;
+SELECT * FROM employee WHERE hiredate BETWEEN TO_DATE('2003-6-01 00:00:00','yyyy-mm-dd hh24:mi:ss') AND TO_DATE('2004-3-01 00:00:00','yyyy-mm-dd hh24:mi:ss');
 
 -- 2.7 DELETE
+DELETE FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter';
 Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
 
 

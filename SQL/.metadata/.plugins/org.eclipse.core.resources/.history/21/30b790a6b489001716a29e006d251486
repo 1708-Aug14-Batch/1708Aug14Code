@@ -1,0 +1,39 @@
+package com.ex.dao;
+
+import java.util.ArrayList;
+
+import com.bank.pojos.Person;
+
+public interface DaoSql {
+	
+	// Person
+	public boolean createPerson(Person per);
+	public Person readPerson(int SSN);
+	public boolean readPerson(String email);
+	// change any person's field except their primary keys
+	public boolean updatePerson(Person per);
+	// A deleted person is merely marked as deceased unless erase = true
+	public boolean deletePerson(String SSN, boolean erase);
+	public ArrayList<Person> readAllPersons();
+	
+	// BankUser
+	create
+	read
+	update
+	delete
+	
+	/* TODO
+	// Clerk
+	create
+	read
+	update
+	delete
+	*/
+	
+	// Account
+	create
+	read
+	update
+	delete
+	
+}

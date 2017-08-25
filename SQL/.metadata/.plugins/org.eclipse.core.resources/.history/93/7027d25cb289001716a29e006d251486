@@ -1,0 +1,46 @@
+package com.bank.pojos;
+
+// A BankUser can have many acounts
+// Only has access to their own data
+
+public class BankUser extends Person {
+
+	private int userId;
+	private String username;
+	private String password;
+	private int SSN;		// Matches the SSN of the person who is the user
+	
+	public BankUser(Person person, Account account) {
+		super(person.getSSN(), person.getFirstName(), person.getLastName(), person.getBirthDate());
+		
+		this.account = account;
+	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+	
+	public String toString() {
+		return super.toString() + delimit + account.toString();
+	}
+	public static BankUser fromString(String str) throws NumberFormatException {
+		String[] splitStr = str.split(delimit);
+
+		Person per = Person.fromString(splitStr[0]);
+		
+		Account acc = Account.fromString(splitStr[1]);
+
+		return new BankUser(per, acc);
+	}
+	
+	// Validaes whether these strings can be used to make this object. Uses delimit
+	public boolean validateStrings() {
+		
+		return account.validateStrings();
+	}
+	
+}
