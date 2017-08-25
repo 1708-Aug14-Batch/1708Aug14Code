@@ -144,14 +144,29 @@ Begin update_emp(2,'more','test');
 End;
 
 
-create or replace procedure find_manager(
-report in number)
-as begin
-Select firstname, lastname from employee
-Where employee.REPORTSTO = report;
-End find_manager;
 
-/
+Create or replace procedure Get_Manager(
+empID in number,
+fname out varchar2,
+lname out varchar2,
+t out varchar2)
+as begin
+Select firstname, lastname, title into fname, lname, t from employee
+Where employeeId in(
+Select reportsto from employee
+Where employeeID = empID);
+end Get_manager;
+    
+    /
+
+DECLARE
+firstname varchar2(30);
+lastname varchar2(30);
+title varchar2(30);
+Begin
+Get_Manager(8,firstname,lastname,title);
+dbms_output.put_line(firstname || ' ' || lastname || ' ' || title);
+END;
 
 
 
