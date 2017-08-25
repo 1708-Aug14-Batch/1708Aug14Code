@@ -100,8 +100,8 @@ public class DAOImpl {
 			while(rs.next()) {
 				int id = rs.getInt(1);
 				String firstName = rs.getString(2);
-				String lastName = rs.getString(3);
-				int song_id = rs.getInt(4);
+				String lastName = rs.getString("lastname");
+				int song_id = rs.getInt("fave_song_id");
 
 				whateverFloatsYourBoat.add(new Example(id, firstName, lastName, song_id));
 			}
@@ -118,9 +118,9 @@ public class DAOImpl {
 		try(Connection conn = SingleConnection.getInstance().getConnection()) {
 
 			String sql = "SELECT ex.ex_id, ex.firstname, ex.lastname, tr.name" + 
-					" FROM example ex" + 
-					" LEFT JOIN track tr" + 
-					" ON ex.favorite_song_id = tr.trackid";
+					"FROM example ex" + 
+					"LEFT JOIN track tr" + 
+					"ON ex.favorite_song_id = tr.trackid";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 

@@ -51,10 +51,12 @@ public class Example {
 	public void setSongName(String songName) {
 		this.songName = songName;
 	}
+
 	@Override
 	public String toString() {
-		return "Example [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID
-				+ ", songName=" + songName + "]";
+		return "Example [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID + "]";
 	}
+
+
 
 }

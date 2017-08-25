@@ -23,7 +23,7 @@ public class Tester {
 		for (Example ex : list)
 			System.out.println(ex.toString());
 		*/
-		ArrayList<Example> list = dao.getAllWithTitle();
+		ArrayList<Example> list = dao.getAll();
 		for (Example ex : list)
 			System.out.println(ex.toString());
 		

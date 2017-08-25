@@ -5,18 +5,15 @@ public class Example {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private Integer songID;
-	private String songName;
+	private Integer sondID;
 	
-	public Example() {}
-	public Example(int id, String firstName, String lastName, Integer songID) {
+	public Example(int id, String firstName, String lastName, int sondID) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.songID = songID;
+		this.sondID = sondID;
 	}
-	
 	public int getId() {
 		return id;
 	}
@@ -35,26 +32,17 @@ public class Example {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public Integer getSongID() {
-		return songID;
+	public int getSondID() {
+		return sondID;
 	}
-
-	public void setSongID(Integer songID) {
-		this.songID = songID;
-	}
-
-	public String getSongName() {
-		return songName;
-	}
-
-	public void setSongName(String songName) {
-		this.songName = songName;
+	public void setSondID(int sondID) {
+		this.sondID = sondID;
 	}
 	@Override
 	public String toString() {
-		return "Example [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID
-				+ ", songName=" + songName + "]";
+		return "Example [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", sondID=" + sondID + "]";
 	}
+
+
 
 }
