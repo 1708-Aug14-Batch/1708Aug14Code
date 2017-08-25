@@ -15,7 +15,7 @@ SELECT * FROM EMPLOYEE WHERE FIRSTNAME = 'Andrew' AND REPORTSTO IS NULL;
 
 --2.2 ORDER BY
 --Task – Select all albums in Album table and sort result set in descending order by title.
-SELECT * FROM ALBUM ORDER BY TITLE DESC;
+SELECT * FROM ALBUM ORDER BY TITLE DESC;    
 
 --Task – Select first name from Customer and sort result set in ascending order by city
 SELECT FIRSTNAME FROM CUSTOMER ORDER BY CITY ASC;
@@ -196,7 +196,9 @@ BEGIN
     FROM EMPLOYEE;
 END;
 /
+    
 
+    
 /*
 DECLARE
 FNAME VARCHAR2(30);
