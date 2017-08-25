@@ -54,9 +54,78 @@ dbms_output.put_line(todayDate);
 dbms_output.put_line(timeNow);
 end printCurrentTime;
 
-create or replace procedure findMediaLength(mediaID number) as
-declare nameChar varchar(120):=select Name from MediaType where MediaTypeId=mediaID;
+create or replace function findMediaLength(mediaID number)
+return number is charCount number;
+media varchar2(40);
+cursor c1 is select Name from MediaType where MediaTypeId=mediaID;
 begin
-dbms_output.put_line(nameChar);
-end findMediaLength;
+open c1;
+fetch c1 into media;
+charCount := REGEXP_count(media,'[a-zA-Z]');
+dbms_output.put_line(charCount);
+close c1;
+return charCount;
+end;
+
+/* 3.2  SYSTME DEFINED AGGREGATE FUNCTIONS */
+create or replace function avgofInvoice
+return number is average number;
+cursor c1 is select avg(total) from Invoice;
+begin
+open c1;
+fetch c1 into average;
+close c1;
+dbms_output.put_line(average);
+return average;
+end;
+
+create or replace function expansiveTrack
+return number is t_id number;
+cursor c1 is select trackid from track where UNITPRICE=(select max(unitprice) from track);
+begin
+open c1;
+fetch c1 into t_id;
+close c1;
+dbms_output.put_line(t_id);
+return t_id;
+end;
+
+/* 3.3 USER DEFINED SCALAR FUNCTIONS */
+create or replace function avgIncoiveLinePrice
+return number is roundavgprice number;
+avgprice number;
+cursor c1 is select avg(unitprice) from invoiceline;
+begin
+open c1;
+fetch c1 into avgprice;
+close c1;
+roundavgprice:=round(avgprice);
+dbms_output.put_line(roundavgprice);
+return roundavgprice;
+end;
+
+/* 3.4 USER DEFINED TABLE VALUED FUNCTIONS */
+create or replace function bornAfter1968
+returns @notSomeOldFart table(EmployeeId NUMBER NOT NULL,
+	LastName VARCHAR2(20) NOT NULL,
+    FirstName VARCHAR2(20) NOT NULL,
+    Title VARCHAR2(30),
+    ReportsTo NUMBER,
+    BirthDate DATE,
+    HireDate DATE,
+    Address VARCHAR2(70),
+    City VARCHAR2(40),
+    State VARCHAR2(40),
+    Country VARCHAR2(40),
+    PostalCode VARCHAR2(10),
+    Phone VARCHAR2(24),
+    Fax VARCHAR2(24),
+    Email VARCHAR2(60),)
+as begin
+insert into @notSomeOldFart (LastName, FirstName, Title, ReportsTo, BirthDate, HireDate, Address, City, State, Country, PostalCode, Phone, Fax, Email);
+select * from employee where birthdate > '01-JAN-68';
+update @notSomeOldFart;
+return;
+end;
+
 
