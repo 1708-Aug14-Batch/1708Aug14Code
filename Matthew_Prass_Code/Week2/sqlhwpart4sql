@@ -1,0 +1,32 @@
+--5.0 transactions
+--transactions are called implicitly whenever a row is updated...
+--here's my attempt at making them explicit?
+
+alter table invoiceline
+drop constraint fk_invoicelineinvoiceid;
+
+alter table invoiceline
+add constraint fk_invoicelineinvoiceid
+foreign key(invoiceid)
+references invoice(invoiceid)
+on delete cascade;
+
+create or replace procedure deleteInvoice
+(id in number)
+as begin
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+delete from invoice
+where invoiceid = id;
+commit;
+end;
+
+create or replace procedure addCust(
+fn in varchar2,
+ln in varchar2,
+email in varchar2)
+as begin
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+insert into customer(firstname,lastname,email)
+values (fn,ln,email);
+commit;
+end add_person;

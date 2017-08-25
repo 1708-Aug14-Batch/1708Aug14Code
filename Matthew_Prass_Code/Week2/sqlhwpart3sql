@@ -1,0 +1,38 @@
+--4.0 queries
+--"""""basic""""" stored procedure
+create or replace procedure getEmployees
+(s out sys_refcursor) as
+begin
+open s for
+select firstname,lastname from employee;
+end;
+/
+--input params
+create or replace procedure updateEmployeeInfo
+(id in number,fn in varchar2,ln in varchar2)
+as begin
+update employee
+set firstname = fn, lastname = ln
+where employeeid = id;
+commit;
+end;
+/
+
+create or replace procedure getManagers
+(id in number, fn out varchar2, ln out varchar2, title out varchar2)
+as begin
+select firstname, lastname, title into fn, ln, title from employee
+where employeeId in(
+select reportsto from employee
+where employeeID = id);
+end getManagers;
+/
+
+--output parameters
+create or replace procedure getCustInfo
+(id in number, fn out varchar2, ln out varchar2, company out varchar2)
+as begin
+select firstname, lastname, company into fn, ln, company from customer
+where customerid = id;
+end getCustInfo;
+/
