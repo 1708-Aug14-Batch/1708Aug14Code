@@ -6,7 +6,15 @@ public class Example {
 	String firstname;
 	String lastname;
 	int song;
-	
+	String songName;
+	public String getSongName() {
+		return songName;
+	}
+
+	public void setSongName(String songName) {
+		this.songName = songName;
+	}
+
 	public Example() {}
 	
 	public Example(int id, String firstname, String lastname, int song) {
@@ -17,6 +25,13 @@ public class Example {
 		this.song = song;
 	}
 
+	public Example(int id, String firstname, String lastname, String songName) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.songName = songName;
+	}
 	public int getId() {
 		return id;
 	}
@@ -52,6 +67,9 @@ public class Example {
 	@Override
 	public String toString() {
 		return "Example [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", song=" + song + "]";
+	}
+	public String toStringSongName() {
+		return "Example [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", song=" + songName + "]";
 	}
 	
 }

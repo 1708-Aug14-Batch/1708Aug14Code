@@ -21,9 +21,9 @@ public class Test {
 //		int x = dao.addExample("wow this is cool", "and awesome");
 //		System.out.println(x);
 		
-		ArrayList<Example> list = dao.getAll();
+		ArrayList<Example> list = dao.getAllSong();
 		for(Example i: list)
-			System.out.println(i.toString());
+			System.out.println(i.toStringSongName());
 	}
 
 }

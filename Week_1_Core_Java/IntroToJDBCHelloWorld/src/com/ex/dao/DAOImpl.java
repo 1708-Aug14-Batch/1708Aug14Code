@@ -142,7 +142,35 @@ public class DAOImpl {
 		return list;
 		
 	}
-	
+	public ArrayList<Example> getAllSong(){
+		ArrayList<Example> list = new ArrayList<Example>();
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			
+			String sql = "select ex.ex_id, ex.firstname, ex.lastname, tr.name " +
+					"from example ex " + 
+					"left join track tr " +
+					"on ex.favorite_song_id = tr.trackid";
+					
+			Statement state = conn.createStatement();
+			ResultSet rs = state.executeQuery(sql);
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				String firstname = rs.getString(2);
+				String lastname = rs.getString(3);
+				String songName = rs.getString(4);
+				Example e = new Example(id,firstname,lastname,songName);
+				list.add(e);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
+		
+	}
 	
 }
 
