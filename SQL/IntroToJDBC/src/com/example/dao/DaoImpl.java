@@ -122,7 +122,9 @@ public class DaoImpl {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			
-			String sql = "SELECT * FROM EXAMPLE";			
+			String sql = "SELECT EX.EX_ID, EX.FIRSTNAME, EX.LASTNAME, TR.NAME " +
+						 "FROM EXAMPLE EX " + 
+						 "LEFT JOIN TRACK TR ON EX.FAV_SONG_ID = TR.TRACKID";			
 			Statement statement = conn.createStatement();
 			
 			ResultSet rs = statement.executeQuery(sql);
@@ -130,7 +132,7 @@ public class DaoImpl {
 				int id = rs.getInt(1);
 				String first = rs.getString(2);
 				String last = rs.getString("LASTNAME");
-				int song = rs.getInt(4);
+				String song = rs.getString(4);
 				list.add(new Example(id, first, last, song));
 			}
 			
