@@ -40,7 +40,7 @@ select firstname, lastname, address from customer order by country;
 * OFTEN USED WITH AGGREGATE FUNCTIONS (COUNT, MAX, MIN, SUM, AVG)
 * TO GROUP THE RESULT BY COLUMN(S)
 */
-select * from customer group by city;
+select count('Calgary'), title from employee group by title;
 
 /* 
 * SELECT WITH AGGREGATE FUNCTION COUNT UTILIZING HAVING 
@@ -94,6 +94,21 @@ select ceil(total) from invoice;
 select floor(total) from invoice;
 select name from genre where ascii(substr(name,1,1)) = 72;
 
+--songs per genre
+select t2.name, count(*) from track t1, genre t2
+where t1.genreid = t2.genreid
+group by t2.name;
+
+-- song per playlist
+select count(playlistid) as total, trackid
+from playlisttrack group by trackid
+order by total;
+
+-- Emma's 
+select t1.name, count(*) from playlist t1, playlisttrack
+where t1.playlistid = playlisttrack.playlistid
+group by t1.name;
+
 -- NESTED QUERY AKA SUBQUERIES
 select * from invoiceline where invoiceid in (select invoiceid from invoice where invoice.invoiceid = 3); 
 
@@ -107,8 +122,45 @@ values ('test', 'testing', 105);
 -- UPDATE FIRSTNAME IN EXAMPLE TABLE TO ANDREW WHERE ID = 1
 update example
 set firstname = 'Andrew'
-where ex_id = 1;
+where ex_id = 4;
 
 -- DELETE ANY ROWS IN EXAMPLE WHERE ID = 1
 delete from example
 where EX_ID = 1;
+
+-- CREATING AN INDEX
+
+--
+alter table album
+add constraint artist_Cascade
+foreign key (artistid) 
+references artist(artistid)
+on delete cascade;
+
+-- CASCADING ON DELETE
+
+-- PROCEDURE TO ADD A UNIT TO OUR TABLE
+insert into example(ex_id.nextvalue, firstname, lastname, fave_song_id)
+values ('testing', 'test',152);
+
+create or replace procedure add_person(
+fn in varchar2,
+ln in varchar2,
+songID in number)
+as begin
+insert into example(firstname, lastname, fave_song_id)
+values (fn, ln, songid);
+commit;
+end add_person;
+
+declare
+  fn in varchar2(200),
+  ln in varchar2(200),
+  songid in number;
+begin
+
+
+select ex.ex_id, ex.firstname, ex.lastname, tr.name
+from example ex
+inner join track tr
+on ex.fave_song_id = tr.trackid;
