@@ -16,7 +16,7 @@ select firstname from customer;
 
 select *
 from track
-where exists(SELECT artistid from artist where
+where exists(SELECT name from artist where
 artist.name=track.composer AND track.name like '%r%');
 
 
