@@ -70,24 +70,21 @@ public class DAOImplementation {
 		return -1;
 	}
 	
+	/**
+	 * Statement
+	 */
 	public ArrayList<Example> getAll() {
 		ArrayList<Example> list = new ArrayList<Example>();
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
-			conn.setAutoCommit(false);
-			String sql = "SELECT e.example_id, e.firstname, e.lastname, t.name "
-					+ "FROM example e "
-					+ "LEFT JOIN track t "
-					+ "ON e.fav_song_id = t.trackid";
-			String[] key = new String[1];
-			key[0] = "example_id";
-			PreparedStatement statement = conn.prepareStatement(sql, key);
+			String sql = "SELECT * FROM example";
+			Statement statement = conn.createStatement();
 			ResultSet results = statement.executeQuery(sql);
 			while(results.next()) {
-				int id = results.getInt("example_id");
-				String firstName = results.getString("firstname");
+				int id = results.getInt(1);
+				String firstName = results.getString(2);
 				String lastName = results.getString("lastname");
-				String songName = results.getString("name");
-				Example temp = new Example(id, firstName, lastName, songName);
+				int song = results.getInt("fav_song_id");
+				Example temp = new Example(id, firstName, lastName, song);
 				list.add(temp);
 			}
 		} catch (SQLException e) {

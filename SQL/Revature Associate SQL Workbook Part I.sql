@@ -30,6 +30,11 @@ INTO genre(genreid, name) VALUES(DEFAULT, 'Black Metal')
 SELECT * FROM dual;
 --Insert two new records into Employee table
 INSERT ALL
+INTO employee(employeeid, lastname, firstname) VALUES(DEFAULT, 'Putnam', 'Seth')
+INTO employee(employeeid, lastname, firstname) VALUES(DEFAULT, 'Knight', 'Moon')
+SELECT * FROM dual;
+--Insert two new records into Customer table
+INSERT ALL
 INTO employee() VALUES()
 INTO employee() VALUES()
 SELECT * FROM dual;

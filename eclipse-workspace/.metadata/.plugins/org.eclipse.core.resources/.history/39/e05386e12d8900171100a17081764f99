@@ -1,17 +1,25 @@
 package com.ex.pojos;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.ex.util.ConnectionSingleton;
+
 public class Example {
 	
 	private int ID;
 	private String firstName;
 	private String lastName;
-	private String songName;
+	private int songID;
 	
-	public Example(int id, String firstName, String lastName, String songName) {
+	public Example(int id, String firstName, String lastName, int song) {
 		this.ID = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.songName = songName;
+		this.songID = song;
 	}
 	
 	public int getID() {
@@ -38,18 +46,17 @@ public class Example {
 		this.lastName = lastName;
 	}
 	
-	public String getSongName() {
-		return songName;
+	public int getSongID() {
+		return songID;
 	}
-
-	public void setSongName(String songName) {
-		this.songName = songName;
+	
+	public void setSongID(int songID) {
+		this.songID = songID;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songName=" + songName
-				+ "]";
+		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID + "]";
 	}
 
 }

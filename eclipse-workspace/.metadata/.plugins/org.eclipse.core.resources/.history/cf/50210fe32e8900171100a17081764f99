@@ -38,18 +38,17 @@ public class Example {
 		this.lastName = lastName;
 	}
 	
-	public String getSongName() {
-		return songName;
+	public int getSongID() {
+		return songID;
 	}
-
-	public void setSongName(String songName) {
-		this.songName = songName;
+	
+	public void setSongID(int songID) {
+		this.songID = songID;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songName=" + songName
-				+ "]";
+		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID + "]";
 	}
 
 }

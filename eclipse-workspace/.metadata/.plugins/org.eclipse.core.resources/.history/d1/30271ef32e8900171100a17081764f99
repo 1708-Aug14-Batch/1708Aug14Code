@@ -48,8 +48,7 @@ public class Example {
 
 	@Override
 	public String toString() {
-		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songName=" + songName
-				+ "]";
+		return "Example [ID=" + ID + ", firstName=" + firstName + ", lastName=" + lastName + ", songID=" + songID + "]";
 	}
 
 }
