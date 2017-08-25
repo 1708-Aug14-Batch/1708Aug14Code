@@ -193,8 +193,8 @@ public class DAOImplementation {
 			ArrayList<Account> accountList = new ArrayList<>();
 			
 			while(rs.next()) {
-				Account temp = new Account(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
-				accountList.add(temp);
+				//Account temp = new Account(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4));
+				//accountList.add(temp);
 			}
 			
 			return accountList;
