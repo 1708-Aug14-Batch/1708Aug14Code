@@ -55,7 +55,3 @@ insert into example(firstname,lastname)
 values('adding','things');
 commit;
 
-select ex.ex_id,ex.firstname,ex.lastname,tr.name
-from example ex
-left join track tr
-on ex.fave_song_id = tr.trackid

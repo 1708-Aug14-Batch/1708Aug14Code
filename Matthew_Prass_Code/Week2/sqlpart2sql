@@ -1,0 +1,126 @@
+--sql hw 3.0 queries
+
+--3.1
+--get time function
+create or replace function getTime
+return timestamp
+is 
+t_time timestamp;
+
+cursor c1 is
+select localtimestamp from dual;
+
+begin
+open c1;
+fetch c1 into t_time;
+
+close c1;
+return t_time;
+end;
+/
+
+--get length of mediatype
+create or replace function getLengthOfMediatypeString
+(mt in varchar2)
+return number
+is 
+lengthofm number;
+
+cursor c1 is
+select length(name)
+from MEDIATYPE
+where lower(name) = lower(mt);
+
+begin
+open c1;
+fetch c1 into lengthofm;
+
+close c1;
+return lengthofm;
+end;
+/
+
+--aggregate functions
+create or replace function avgofallinvoices
+return number
+is 
+avginv number;
+
+cursor c1 is
+select avg(total) from invoice;
+
+begin
+open c1;
+fetch c1 into avginv;
+
+close c1;
+return avginv;
+end;
+/
+
+create or replace function mostexptrack
+
+return varchar2
+is 
+trackname varchar2(200);
+
+cursor c1 is
+select name
+from track
+where unitprice = (select max(unitprice) from track);
+
+begin
+open c1;
+
+fetch c1 into trackname;
+
+close c1;
+return trackname;
+end;
+/
+
+--user-defined scalar
+create or replace function acgpriceinvl
+return number
+is 
+avgprice number;
+
+cursor c1 is
+select avg(unitprice)
+from invoiceline;
+
+begin
+open c1;
+fetch c1 into avgprice;
+
+close c1;
+return avgprice;
+end;
+/
+
+--table valued functions
+--is there an easier way od doing this??
+create type emp_obj is object(ename varchar(200));
+/
+
+create type emp_tab is table of emp_obj;
+/
+
+create or replace function getafter68
+
+return emp_tab as l_emp_tab emp_tab:=emp_tab();
+n integer :=0;
+begin
+
+for r in(select * from employee)
+loop
+if r.birthdate > '31-DEC-68' then
+l_emp_tab.extend;
+n:=n+1;
+l_emp_tab(n):=emp_obj(r.lastname);
+end if;
+end loop;
+return l_emp_tab;
+end;
+/
+select * from table(getafter68);
