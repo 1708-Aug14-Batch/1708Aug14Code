@@ -75,6 +75,16 @@ Where customerid = 32;
 
 
 --3.1 System defined functions
+create or replace function currentTime
+return date is
+theTime date;
+begin
+select sysdate into theTime from dual;
+return theTime;
+end;
+
+select currentTime() from dual;
+
 
 
 --4.1 Basic Stored Procedure
@@ -168,5 +178,23 @@ Get_Manager(8,firstname,lastname,title);
 dbms_output.put_line(firstname || ' ' || lastname || ' ' || title);
 END;
 
+--4.3 Output Parameters
+Create or replace procedure getCustomerInfo(
+custID in number,
+fname out Varchar2,
+lname out Varchar2,
+comp out Varchar2)
+as Begin
+Select firstname, lastname, company into fname, lname, comp from Customer
+Where(customerID = custID);
+End;
 
+Declare
+firstname varchar2(30);
+lastname varchar2(30);
+company varchar2(200);
+Begin
+getCustomerInfo(5, firstname,lastname,company);
+dbms_output.put_line(firstname || ' ' || lastname || ' ' || company);
+End;
 
