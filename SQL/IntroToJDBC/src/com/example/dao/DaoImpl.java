@@ -27,7 +27,7 @@ public class DaoImpl {
 		try {
 			connect = ConnectionFactory.getInstance().getConnection();
 
-			String sql = "{ ? = call findPerson2 ? }";
+			String sql = "{ ? = call findPerson2(?) }";
 
 			cs = connect.prepareCall(sql);
 			cs.registerOutParameter(1, Types.VARCHAR);

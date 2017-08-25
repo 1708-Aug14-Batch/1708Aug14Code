@@ -9,8 +9,8 @@ public class Test {
 		
 		DaoImpl dao = new DaoImpl();
 		
-		//System.out.println(dao.getId("Nathan"));
-		//System.out.println(dao.getName(21));
+		//System.out.println(dao.getId("Test"));
+		System.out.println(dao.getName(21));
 		//System.out.println(dao.addExample("James", "Bond"));
 
 		for (Example e : dao.getAll()) {
