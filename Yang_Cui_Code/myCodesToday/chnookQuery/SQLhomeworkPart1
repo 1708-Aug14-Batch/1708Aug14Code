@@ -245,4 +245,5 @@ select * from album cross join artist on artist.artistid=album.artistid order by
 
 /* 7.5 SELF
 Task – Perform a self-join on the employee table, joining on the reportsto column.*/
-select reportsto from employee;
+select a.employeeid as employeeid1, b.employeeid as employeeid2, a.reportsto from employee a, employee b
+where a.employeeid<>b.employeeid and a.reportsto=b.reportsto order by a.reportsto;
