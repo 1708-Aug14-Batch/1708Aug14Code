@@ -1,37 +1,6 @@
 -- Connor Monson
 -- 8/23/17
 
---FIXME remove below code
-select cust.firstname CUSTNAME, emp.firstname EMPNAME
-from employee emp
-join customer cust on emp.state = cust.state;
-
--- average songs per album
-select avg(total) from(select count(*) as total from track, album 
-where track.albumid = album.albumid group by album.title);
-
--- find things from genre w ascii value
-select name from genre
-where ascii(substr(name, 1, 1)) = 72;
-
--- Number of songs per genre
-select t2.name, count(*) from track t1, genre t2
-where t.genreid = ts.genreid
-group by t2.name;
-
--- Number of songs per playlist
-select count(playlistid) as total, trackid
-from playlisttrack group by trackid
-order by total;
-
--- Number of songs per playlist
-select t1.name, count(*) from playlist t1, playlisttrack
-where t1.playlistid = playlisttrack.playlistid
-group by t1.name;
-
-alter table table_name add constraint column_name foreign key (column_name) references table_name2 (column_name) on delete cascade;
---FIXME remove above code
-
 -- Section 2.0 SQL Querries 14
 
 -- 2.1 SELECT
@@ -40,7 +9,7 @@ SELECT * FROM employee WHERE lastname = 'King';
 SELECT * FROM employee WHERE firstname = 'Andrew' and REPORTSTO IS NULL;
 
 -- 2.2 ORDER BY
-SELECT * FROM albums ORDER BY title DEC;
+SELECT * FROM album ORDER BY title DESC;
 SELECT firstname FROM customer ORDER BY city ASC;
 
 -- 2.3 INSERT INTO
@@ -70,66 +39,217 @@ SELECT * FROM invoice WHERE total BETWEEN 15 AND 50;
 SELECT * FROM employee WHERE hiredate BETWEEN TO_DATE('2003-6-01 00:00:00','yyyy-mm-dd hh24:mi:ss') AND TO_DATE('2004-3-01 00:00:00','yyyy-mm-dd hh24:mi:ss');
 
 -- 2.7 DELETE
+ALTER TABLE Invoice DROP CONSTRAINT FK_InvoiceCustomerId;
+ALTER TABLE Invoice ADD CONSTRAINT FK_InvoiceCustomerId
+    FOREIGN KEY (CustomerId) REFERENCES Customer (CustomerId) ON DELETE CASCADE;
+ALTER TABLE InvoiceLine DROP CONSTRAINT FK_InvoiceLineInvoiceId;
+ALTER TABLE InvoiceLine ADD CONSTRAINT FK_InvoiceLineInvoiceId
+    FOREIGN KEY (InvoiceId) REFERENCES Invoice (InvoiceId) ON DELETE CASCADE;
 DELETE FROM customer WHERE firstname = 'Robert' AND lastname = 'Walter';
-Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
-
+/
 
 -- Section 3.0 SQL Functions 6
 
 -- 3.1 System Defined Functions
-Task – Create a function that returns the current time.
-Task – create a function that returns the length of a mediatype from the mediatype table
+create or replace FUNCTION get_current_time(datetime OUT VARCHAR2) 
+RETURN VARCHAR2
+IS
+BEGIN  
+    datetime := CURRENT_TIMESTAMP;
+    RETURN datetime;
+END;
+/
+create or replace FUNCTION get_mediatype_length(len OUT VARCHAR2)
+RETURN NUMBER
+IS
+BEGIN
+  SELECT LENGTH(name) INTO len FROM mediatype;
+END;
+/
 
 -- 3.2 System Defined Aggregate Functions
-Task – Create a function that returns the average total of all invoices
-Task – Create a function that returns the most expensive track
+create or replace FUNCTION avg_total_invoices(average OUT NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+  SELECT avg(total) INTO average FROM invoice;
+END;
+/
+
+create or replace FUNCTION most_expensive_track(most_exp OUT NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+  SELECT max(unitprice) INTO most_exp FROM track;
+END;
+/
 
 -- 3.3 User Defined Scalar Functions
-Task – Create a function that returns the average price of invoiceline items in the invoiceline table
+create or replace FUNCTION average_total_invoices2(average OUT NUMBER)
+RETURN NUMBER
+IS
+x NUMBER := 0;
+average NUMBER := 0;
+maximum NUMBER := SELECT COUNT(*) FROM invoiceline;
+BEGIN
+  LOOP
+    x := x + 1;
+    average := average + SELECT ROUND(unitprice, 2) FROM invoiceline WHERE x = invoiceid;
+    EXIT WHEN x = maximum;
+  END LOOP;
+  average := average / x;
+END;
+/
 
 -- 3.4 User Defined Table Valued Functions
-Task – Create a function that returns all employees who are born after 1968.
+create or replace FUNCTION get_employees(employees OUT employee.employeeid%TYPE)
+RETURN employee.employeeid%TYPE
+IS
+BEGIN
+  SELECT firstname INTO employees FROM employee WHERE birthdate > TO_DATE('1968-1-01 00:00:00','yyyy-mm-dd hh24:mi:ss');
+END;
+/
 
 
 -- Section 4.0 Stored Procedures 4
 
 -- 4.1 Basic Stored Procedure
-Task – Create a stored procedure that selects the first and last names of all the employees.
+create or replace PROCEDURE select_names(
+      firstname OUT employee.firstname%TYPE, 
+      lastname OUT employee.lastname%TYPE)
+IS
+BEGIN
+SELECT firstname, lastname into firstname, lastname FROM employee;
+END;
+/
 
 -- 4.2 Stored Procedure Input Parameters
-Task – Create a stored procedure that updates the personal information of an employee.
-Task – Create a stored procedure that returns the managers of an employee.
+create or replace PROCEDURE update_employee(
+    targetEmployeeId IN NUMBER,
+    LastName IN VARCHAR2,
+    FirstName IN VARCHAR,
+    Title IN VARCHAR2,
+    ReportsTo IN NUMBER,
+    BirthDate IN DATE,
+    HireDate IN DATE,
+    Address IN VARCHAR2,
+    City IN VARCHAR2,
+    State IN VARCHAR2,
+    Country IN VARCHAR2,
+    PostalCode IN VARCHAR2,
+    Phone IN VARCHAR2,
+    Fax IN VARCHAR2,
+    Email IN VARCHAR2)
+IS
+BEGIN
+  update employee
+  SET lastname=lastname, firstname=firstname, title=title, reportsTo=reportsTo,
+      birthDate=birthDate, hireDate=hireDate, address=address, city=city,
+      state=state, country=country, postalCode=postalCode, phone=phone,
+      fax=fax, email=email
+  WHERE employeeid = targetEmployeeId;
+END;
+/
+
+create or replace PROCEDURE get_managers(employeeId IN NUMBER,
+    managerId OUT employee.reportsTo%TYPE)
+IS
+BEGIN
+  SELECT reportsTo INTO managerId FROM employee WHERE employeeId=employee.employeeId;
+END;
+/
 
 -- 4.3 Stored Procedure Output Parameters
-Task – Create a stored procedure that returns the name and company of a customer.
+create or replace PROCEDURE get_managers(customerId IN NUMBER,
+    firstname OUT customer.firstname%TYPE,
+    lastname OUT customer.lastname%TYPE,
+    company OUT customer.company%TYPE)
+IS
+BEGIN
+  SELECT firstname, lastname, company INTO firstname, lastname, company
+    FROM customer WHERE customerId=customer.customerId;
+END;
+/
 
 
 -- Section 5.0 Transactions 2
-Task – Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).
-Task – Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+DECLARE
+  InvoiceId_int NUMBER;
+BEGIN
+  InvoiceId_int := 410;
+  COMMIT;
+  SET TRANSACTION READ WRITE;
+  DELETE FROM invoice WHERE invoiceId = InvoiceId_int;
+  COMMIT;
+END;
+/
+
+create or replace PROCEDURE create_customer
+IS
+BEGIN
+  COMMIT;
+  SET TRANSACTION READ ONLY;
+  INSERT INTO Customer (CustomerId, FirstName, LastName, Company, Address, City, State, Country, PostalCode, Phone, Fax, Email, SupportRepId)
+    VALUES (60, 'David', 'Ronaldson', 'Revature', 'Av. Brigadeiro Faria Lima, 2170', 'São José dos Campos', 'SP', 'Brazil', '12227-000', '+55 (12) 3923-5555', '+55 (12) 3923-5566', 'david@revature.com', 3);
+  COMMIT;
+END;
+/
 
 
 -- Section 6.0 Triggers
 
 -- 6.1 AFTER/FOR 3
-Task - Create an after insert trigger on the employee table fired after a new record is inserted into the table.
-Task – Create an after update trigger on the album table that fires after a row is inserted in the table
-Task – Create an after delete trigger on the customer table that fires after a row is deleted from the table.
+CREATE OR REPLACE TRIGGER employee_added AFTER
+  INSERT ON employee BEGIN dbms_output.put_line('Employee added');
+END;
+/
+
+CREATE OR REPLACE TRIGGER album_added AFTER
+  INSERT ON album BEGIN dbms_output.put_line('Record added');
+END;
+/
+
+CREATE OR REPLACE TRIGGER customer_deleted AFTER
+  DELETE ON customer BEGIN dbms_output.put_line('Customer deleted');
+END;
+/
 
 
 -- Section 7.0 Joins 5
 
 -- 7.1 INNER
-Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+SELECT customer.firstname, customer.lastname, invoice.invoiceid
+FROM customer
+INNER JOIN invoice
+ON customer.customerid=invoice.customerid
+/
 
 -- 7.2 OUTER
-Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+SELECT customer.customerid, customer.firstname, customer.lastname, invoice.invoiceid, invoice.total
+FROM invoice
+LEFT OUTER JOIN customer
+ON customer.customerid=invoice.customerid;
+/
+
 
 -- 7.3 RIGHT
-Task – Create a right join that joins album and artist specifying artist name and title.
+SELECT artist.name, album.title
+FROM artist
+RIGHT JOIN album
+ON artist.artistid=album.artistid;
+/
+
 
 -- 7.4 CROSS
-Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+SELECT * 
+FROM album
+CROSS JOIN artist ORDER BY artist.name;
+/
+
 
 -- 7.5 SELF
-Task – Perform a self-join on the employee table, joining on the reportsto column.
+SELECT *
+FROM employee e1
+LEFT OUTER JOIN employee e2
+ON e1.reportsto=e2.employeeid;
+/

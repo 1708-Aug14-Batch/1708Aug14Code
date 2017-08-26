@@ -169,28 +169,16 @@ INTO example
 
 -- Procedure
 
-CREATE OR REPLACE PROCEDURE add_person(
+create or replace PROCEDURE add_person(
     fn     IN VARCHAR2,
     ln     IN VARCHAR2,
     songID IN NUMBER)
 AS
 BEGIN
-  INSERT
-  INTO example
-    (
-      first_name,
-      last_name,
-      favorite_song_ID
-    )
-    VALUES
-    (
-      fn,
-      ln,
-      songID
-    );
+  INSERT INTO example(firstname, lastname, favorite_song_ID)
+    VALUES(fn, ln, songID );
   COMMIT;
 END add_person;
-/
 
 DECLARE
   FN     VARCHAR2(200);
@@ -243,3 +231,34 @@ SELECT ex.ex_id, ex.firstname, ex.lastname, tr.name
 FROM example ex
 LEFT JOIN track tr
 ON ex.favorite_song_id = tr.trackid;
+
+
+
+select cust.firstname CUSTNAME, emp.firstname EMPNAME
+from employee emp
+join customer cust on emp.state = cust.state;
+
+-- average songs per album
+select avg(total) from(select count(*) as total from track, album 
+where track.albumid = album.albumid group by album.title);
+
+-- find things from genre w ascii value
+select name from genre
+where ascii(substr(name, 1, 1)) = 72;
+
+-- Number of songs per genre
+select t2.name, count(*) from track t1, genre t2
+where t.genreid = ts.genreid
+group by t2.name;
+
+-- Number of songs per playlist
+select count(playlistid) as total, trackid
+from playlisttrack group by trackid
+order by total;
+
+-- Number of songs per playlist
+select t1.name, count(*) from playlist t1, playlisttrack
+where t1.playlistid = playlisttrack.playlistid
+group by t1.name;
+
+alter table table_name add constraint column_name foreign key (column_name) references table_name2 (column_name) on delete cascade;

@@ -34,7 +34,7 @@ CREATE TABLE account_level(
   type_id NUMBER PRIMARY KEY,
   name VARCHAR2(25)
 );
-
+INSERT INTO account() VALUES();
 CREATE TABLE account(
   account_id NUMBER PRIMARY KEY,
   balance NUMBER(12, 2) DEFAULT 0.00,
