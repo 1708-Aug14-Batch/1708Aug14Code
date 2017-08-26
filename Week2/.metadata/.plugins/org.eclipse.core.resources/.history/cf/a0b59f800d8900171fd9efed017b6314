@@ -1,0 +1,16 @@
+package com.ex.run;
+
+import com.ex.dao.DAOImpl;
+
+public class Test {
+
+	public static void main(String[] args) {
+		DAOImpl dao = new DAOImpl();
+//		int id = dao.getId("rick");
+//		System.out.println(id);
+		
+		dao.addExample("wowthis is ", "awesome");
+
+	}
+
+}
