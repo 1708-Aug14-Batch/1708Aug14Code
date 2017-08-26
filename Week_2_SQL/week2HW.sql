@@ -318,3 +318,52 @@ end;
 
 Begin InsertRecord(5000,'This', 'is', 'a', 'test', 'does', 'IT', 'Work', 77339, 47979797979, 19000533434,'testemail@email.com', 4);
 end;
+
+--6.0 Triggers
+
+Create or Replace Trigger afterInsert
+After Insert on Employee
+For each row
+Declare
+fname varchar2(100);
+lname varchar2(100);
+Jobt varchar2(100);
+Begin
+Select firstname, lastname, title into fname,lname,Jobt from employee
+Where employeeID = :new.employeeID;
+End;
+
+Insert into Employee(employeeID,lastname,firstname,title,reportsto,birthdate,hiredate,address,city,state,country,postalcode,phone,fax,email)
+values(212121,'test','tester','TheTestMan',4,'31-Aug-98', 
+'05-Jan-07', '22323 Testway', 'Testville', 'TT','The United Tests of America',77339,9999999999,9999999999,'123abctest@test.com');
+
+
+--7.0 Joins
+
+--7.1 Inner
+
+Select customer.firstname, customer.lastname, invoice.invoiceid from customer
+Inner Join Invoice on customer.customerID = invoice.customerid;
+
+--7.2 Outer
+
+Select customer.customerid, customer.firstname, customer.lastname, invoice.invoiceid, invoice.total from customer
+Left Outer Join Invoice on customer.customerid = invoice.customerid;
+
+--7.3 Right Join
+
+Select artist.name,album.title from album
+Right Join artist on album.artistid = artist.artistid;
+
+--7.4 Cross
+
+Select * from artist, ALBUM
+Order by artist.name ASC;
+
+--7.5 Self
+
+Select A.firstname, B.lastname, A.reportsto
+From Employee A, Employee B
+where A.employeeID <> B.employeeID;
+
+
