@@ -22,8 +22,7 @@ public class AccountTypeDAOImpl implements AccountTypeDAO<AccountType> {
 	@Override
 	public int createAccountType(AccountType accountType) {
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
-			String sql = "INSERT INTO ";
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

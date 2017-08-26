@@ -1,11 +1,8 @@
 package com.bank.dao;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.bank.model.AccountType;
-import com.bank.util.ConnectionSingleton;
 
 /**
  * Concrete implementation of AccountTypeDAO.
@@ -21,12 +18,7 @@ public class AccountTypeDAOImpl implements AccountTypeDAO<AccountType> {
 	 */
 	@Override
 	public int createAccountType(AccountType accountType) {
-		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
-			String sql = "INSERT INTO ";
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
