@@ -1,0 +1,10 @@
+package com.bank.model;
+
+public class AccountType {
+	
+	private int accountTypeID;
+	private String accountTypeName;
+	
+	
+
+}
