@@ -1,0 +1,25 @@
+--joins
+--inner
+select cust.firstname as "first name", cust.lastname as "last name", inv.invoiceid as "invoice number"
+from customer cust
+inner join invoice inv on cust.customerid = inv.customerid;
+
+--outer
+select cust.customerid as "customer number",cust.firstname as "first name", cust.lastname as "last name", inv.invoiceid as "invoice number", inv.total as "total"
+from customer cust
+full outer join invoice inv on cust.customerid = inv.customerid;
+
+--right
+select art.name as "artist name", alb.title as "album title"
+from artist art
+right join album alb on art.artistid = alb.artistid;
+
+--cross
+select * from artist
+cross join album
+order by name ;
+
+--self
+select a.employeeid, b.reportsto
+from employee a, employee b
+where a.employeeid = b.employeeid;

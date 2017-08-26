@@ -1,0 +1,26 @@
+--triggers
+
+create or replace trigger empTrig
+after insert on employee
+declare
+hd date;
+begin
+select hiredate into hd from employee;
+end;
+/
+
+create or replace trigger albTrig
+after update on album
+declare id number;
+begin
+select artistid into id from (select artistid from album);
+end;
+/
+
+create or replace trigger delCust
+after delete on customer
+declare cust_name varchar2(50);
+begin
+select lastname into cust_name from customer;
+end;
+/
