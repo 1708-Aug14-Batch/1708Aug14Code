@@ -85,6 +85,77 @@ end;
 
 select currentTime() from dual;
 
+create or replace function getLength(mt_id number)
+return number is
+MLength number;
+begin
+Select Length(name) into Mlength from mediaType
+Where mt_id = mediaTypeid;
+return Mlength;
+end;
+
+
+Select getLength(1) from dual;
+
+--3.2 System defined aggragate functions
+
+create or replace function getAverage
+return number is
+average number(10,2);
+begin
+select AVG(total)into average from Invoice;
+return average;
+end;
+
+Select getAverage from dual;
+
+create or replace function getMax
+return number is
+theMax number;
+begin
+Select Max(UnitPrice) into theMax from track;
+return theMax;
+end;
+
+Select getMax from dual;
+
+--3.3 User Defined Scalar Functions
+create or replace function invoiceAvg
+return number is
+theAvg number(10,2);
+begin
+Select avg(UnitPrice) into theAvg from invoiceline;
+return theAvg;
+end;
+
+Select invoiceAvg from dual;
+
+--3.4 User defined table valued functions
+
+create or replace function getYear
+return date is
+birthyear date;
+cursor c1
+is
+Select birthdate into birthyear from employee
+Where birthdate > '31-DEC-68';
+begin
+  open c1;
+  Loop
+  fetch c1 into birthyear;
+  exit when c1%notfound;
+  end loop;
+close c1;
+return birthyear;
+End;
+
+select getYear from dual;
+
+Select * from employee
+Where birthdate > date '1968-12-31';
+
+
+
 
 
 --4.1 Basic Stored Procedure
