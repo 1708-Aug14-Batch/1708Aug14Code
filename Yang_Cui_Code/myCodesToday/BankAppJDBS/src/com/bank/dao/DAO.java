@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.bank.pojos.Account;
+import com.bank.pojos.AccountType;
 import com.bank.pojos.User;
 
 public interface DAO {
@@ -17,10 +18,17 @@ public interface DAO {
 	public User getUser(int id);
 	public int addUser(String fn, String ln, String email, String pwd);
 	public int updateUser(User user);
-	public void deleteUser(User user);
-	public User changeBalance(User user, int amount, boolean deposit);
-	public int addAccount(User u, int typeId);
-	
+	public int deleteUser(User user);
 	public User authentication(int id, String password);
 	public ArrayList<User> getAllUser();
+	
+	public Account changeBalance(Account acc);
+	public int addAccount(User user, int typeId);
+	public int closeAccount(Account acc);
+	public ArrayList<Account> getAccount(User user);
+	public ArrayList<Account> getAllAccount();
+	public Account getAnAccount(int id);
+	
+	public AccountType getAccountType(int id);
+	public ArrayList<AccountType> getAllAccountType();
 }
