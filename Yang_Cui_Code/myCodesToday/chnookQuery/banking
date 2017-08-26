@@ -1,0 +1,27 @@
+Banking
+
+USER
+User_id
+first_name
+last_name
+username/email
+password
+
+ACCOUNT(n)
+acc_id
+type_id
+balance
+user_id
+
+ACCOUNTTYPE - lookup table
+type_id
+type
+-----
+As a user I can
+- create account(s)
+- withdraw
+- deposit
+- transfer funds between own accounts
+- view account info
+- close account
+- change user info

@@ -1,0 +1,23 @@
+--bankDDL
+create table Users(
+  userID number primary key,
+  firstname varchar2(50) not null,
+  lastname varchar2(50) not null,
+  email varchar2(50) not null unique,
+  password varchar2(50) not null
+);
+
+create table AccountType(
+  typeID number primary key,
+  name varchar2(25)
+);
+
+create table Account(
+  accountID number primary key,
+  balance number(12,2) default 0.0,
+  userID number not null,
+  typeID number not null,
+  constraint fk_account_type foreign key(typeID) references AccountType(typeID),
+  constraint fk_user_id foreign key(userID) references Users(UserID)
+);
+
