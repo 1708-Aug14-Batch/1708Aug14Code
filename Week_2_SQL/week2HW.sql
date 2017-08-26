@@ -151,8 +151,7 @@ End;
 
 select getYear from dual;
 
-Select * from employee
-Where birthdate > date '1968-12-31';
+--
 
 
 
@@ -269,3 +268,53 @@ getCustomerInfo(5, firstname,lastname,company);
 dbms_output.put_line(firstname || ' ' || lastname || ' ' || company);
 End;
 
+
+--5.0
+
+Alter table invoiceLine
+drop constraint FK_INVOICELINEINVOICEID;
+
+Alter table invoiceLine
+Add constraint FK_INVOICELINEINVOICEID
+  Foreign Key (InvoiceID)
+  REFERENCES INVOICE (InvoiceID)
+  ON DELETE CASCADE;
+  
+  rollback;
+
+
+create or replace procedure deleteInvoice(
+invID in number)
+as begin
+Delete from Invoice
+Where invoiceid = invID;
+commit;
+END;
+
+Begin deleteInvoice(6);
+End;
+
+
+create or replace procedure InsertRecord(
+cID in number,
+fname in varchar2,
+lname in varchar2,
+comp in varchar2,
+addr in varchar2,
+c in varchar2,
+st in varchar2,
+cou in varchar2,
+pcode in number,
+phone in number,
+fax in number,
+email in varchar2,
+supportrepid in number
+)
+as begin
+Insert into Customer(customerid,firstname,lastname,company,address,city,state,country,postalcode,phone,fax,email,supportrepid)
+values(cID,fname,lname,comp,addr,c,st,cou,pcode,phone,fax,email,supportrepid);
+commit;
+end;
+
+Begin InsertRecord(5000,'This', 'is', 'a', 'test', 'does', 'IT', 'Work', 77339, 47979797979, 19000533434,'testemail@email.com', 4);
+end;
