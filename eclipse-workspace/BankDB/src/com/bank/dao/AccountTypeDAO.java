@@ -2,6 +2,11 @@ package com.bank.dao;
 
 import java.util.ArrayList;
 
+/**
+ * Provides CRUD operations for AccountType objects.
+ * @author Will Underwood
+ * @param <AccountType> These operations can only be used with AccountType objects.
+ */
 public interface AccountTypeDAO<AccountType> {
 
 	int createAccountType(AccountType accountType);
@@ -12,6 +17,6 @@ public interface AccountTypeDAO<AccountType> {
 
 	int updateAccountType(AccountType accountType);
 
-	int disableAccountType(int id);
+	int deleteAccountType(int id);
 
 }

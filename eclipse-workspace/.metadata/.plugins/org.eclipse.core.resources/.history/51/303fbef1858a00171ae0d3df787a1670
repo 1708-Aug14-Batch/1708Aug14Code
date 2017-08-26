@@ -1,0 +1,49 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+import com.bank.model.User;
+
+/**
+ * Concrete implementation of UserDAO.
+ * @author Will Underwood
+ */
+public class UserDAOImpl implements UserDAO<User> {
+
+	/**
+	 * Inserts a new user into the database.
+	 * @precondition User cannot be null
+	 * @param user - the User to be inserted
+	 * @return The number of rows inserted
+	 */
+	@Override
+	public int createUser(User user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ArrayList<User> readAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User readUser(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateUser(User user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int disableUser(User user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,23 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+/**
+ * Provides CRUD operations for AccountType objects.
+ * @author RevatureAdmin
+ *
+ * @param <AccountType>
+ */
+public interface AccountTypeDAO<AccountType> {
+
+	int createAccountType(AccountType accountType);
+
+	ArrayList<AccountType> readAllAccountTypes();
+
+	AccountType readAccountType(int id);
+
+	int updateAccountType(AccountType accountType);
+
+	int disableAccountType(int id);
+
+}

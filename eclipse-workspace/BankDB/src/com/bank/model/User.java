@@ -1,8 +1,11 @@
 package com.bank.model;
 
+/**
+ * Models a bank customer.
+ * Has a name, password, and email address.
+ * @author Will Underwood
+ */
 public class User {
-	
-	// Use prepared statements
 	
 	private int userID;
 	private String firstName;
