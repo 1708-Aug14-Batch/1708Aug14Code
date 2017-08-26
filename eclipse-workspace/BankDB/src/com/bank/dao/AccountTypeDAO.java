@@ -2,40 +2,16 @@ package com.bank.dao;
 
 import java.util.ArrayList;
 
-public class AccountTypeDAO<T> implements IDAO<T> {
+public interface AccountTypeDAO<AccountType> {
 
-	public AccountTypeDAO() {
-		// TODO Auto-generated constructor stub
-	}
+	int createAccountType(AccountType accountType);
 
-	@Override
-	public int create(T entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	ArrayList<AccountType> readAllAccountTypes();
 
-	@Override
-	public ArrayList<T> readAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	AccountType readAccountType(int id);
 
-	@Override
-	public T read(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	int updateAccountType(AccountType accountType);
 
-	@Override
-	public int update(T entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int disable(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	int disableAccountType(int id);
 
 }

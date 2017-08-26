@@ -2,40 +2,16 @@ package com.bank.dao;
 
 import java.util.ArrayList;
 
-public class UserDAO<T> implements IDAO<T> {
+public interface UserDAO<User> {
 
-	public UserDAO() {
-		// TODO Auto-generated constructor stub
-	}
+	int createUser(User user);
 
-	@Override
-	public int create(T entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	ArrayList<User> readAllUsers();
 
-	@Override
-	public ArrayList<T> readAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	User readUser(int id);
 
-	@Override
-	public T read(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	int updateUser(User user);
 
-	@Override
-	public int update(T entity) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int disable(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	int disableUser(User user);
 
 }
