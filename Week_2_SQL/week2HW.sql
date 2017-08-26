@@ -321,21 +321,43 @@ end;
 
 --6.0 Triggers
 
+DBMS_OUTPUT.ENABLE;
 Create or Replace Trigger afterInsert
 After Insert on Employee
 For each row
 Declare
-fname varchar2(100);
-lname varchar2(100);
-Jobt varchar2(100);
 Begin
-Select firstname, lastname, title into fname,lname,Jobt from employee
-Where employeeID = :new.employeeID;
+DBMS_output.put_line('A new employee is created' || ' ' || :New.firstname || ' ' || 'was created');
 End;
 
 Insert into Employee(employeeID,lastname,firstname,title,reportsto,birthdate,hiredate,address,city,state,country,postalcode,phone,fax,email)
-values(212121,'test','tester','TheTestMan',4,'31-Aug-98', 
+values(2121222332,'test','tester','TheTestMan',4,'31-Aug-98', 
 '05-Jan-07', '22323 Testway', 'Testville', 'TT','The United Tests of America',77339,9999999999,9999999999,'123abctest@test.com');
+
+
+Create or replace Trigger afterAlbumInsert
+After update on Album
+For each row
+Declare
+Begin
+DBMS_output.put_line(:New.albumid || ' ' || 'ID has been updated');
+End;
+
+Update album
+Set title = 'Balls to the Balls'
+where albumid = 2;
+
+
+Create or replace trigger afterDelete
+After Delete on Customer
+For each row
+Declare
+Begin
+DBMS_output.put_line('The record has been deleted');
+End;
+
+Delete from Customer
+where customerID = 10;
 
 
 --7.0 Joins
