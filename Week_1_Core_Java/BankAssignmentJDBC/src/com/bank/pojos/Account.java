@@ -3,22 +3,17 @@ package com.bank.pojos;
 public class Account {
 
 	private int id;
-	private double balance;
-	private User user;
-	private AccountType type;
+	private int balance;
+	private int userId;
+	private int type;
 	private String status;
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+
 	public Account() {};
-	public Account(int id, double balance, User user, AccountType type, String status) {
+	public Account(int id, int balance, int userid, int type, String status) {
 		super();
 		this.id = id;
 		this.balance = balance;
-		this.user = user;
+		this.userId = userid;
 		this.type = type;
 		this.status = status;
 	}
@@ -28,27 +23,40 @@ public class Account {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public double getBalance() {
+	public int getBalance() {
 		return balance;
 	}
-	public void setBalance(double balance) {
+	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public AccountType getType() {
+//	public User getUser() {
+//		return user;
+//	}
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+	public int getType() {
 		return type;
 	}
-	public void setType(AccountType type) {
+	public void setType(int type) {
 		this.type = type;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", user=" + user + ", type=" + type + "]";
+		return "Account [id=" + id + ", balance=" + balance + ", user=" + userId + ", type=" + type + "]";
 	}
 	
 	

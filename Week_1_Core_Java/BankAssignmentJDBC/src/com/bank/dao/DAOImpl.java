@@ -1,5 +1,8 @@
 package com.bank.dao;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,18 +52,19 @@ public class DAOImpl implements DAO{
 	}
 
 	@Override
-	public Account createAccount(User u, int typeID) {
+	public Account createAccount(User u, int typeID, String status) {
 		Account a = new Account();
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			conn.setAutoCommit(false);
-			String sql = "insert into Account(user_id, type_id) " + 
-					"values(?,?) ";
+			String sql = "insert into Account(user_id, type_id, status) " + 
+					"values(?,?,?) ";
 			String[] keys = new String[1];
 			keys[0] = "acct_id";
 			PreparedStatement ps = conn.prepareStatement(sql,keys);
 			ps.setInt(1, u.getId());
 			ps.setInt(2, typeID);
+			ps.setString(3, status);
 			ps.executeUpdate();
 			int id = 0;
 			ResultSet pk = ps.getGeneratedKeys();
@@ -112,8 +116,6 @@ public class DAOImpl implements DAO{
 	
 	public ArrayList<Account> readAccount(){
 		ArrayList<Account> list = new ArrayList<Account>();
-		ArrayList<User> userlist = readUser();
-		ArrayList<AccountType> typelist = readAccountType();
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			String sql = "select * from account";
@@ -121,12 +123,12 @@ public class DAOImpl implements DAO{
 			ResultSet rs = state.executeQuery(sql);
 			while(rs.next()) {
 				int id = rs.getInt(1);
-				double balance = rs.getDouble(2);
-				User u = (User) rs.getObject(3);
-				AccountType t = (AccountType) rs.getObject(4);
+				int balance = rs.getInt(2); 
+				int userId = rs.getInt(3);
+				int t = rs.getInt(4);
 				String status = rs.getString(5);
 				
-				Account a = new Account(id,balance,u,t,status);
+				Account a = new Account(id,balance,userId,t,status);
 				list.add(a);
 			}
 		} catch (SQLException e) {
@@ -158,8 +160,87 @@ public class DAOImpl implements DAO{
 		
 		return list;
 		
+	}
+	
+	public void UpdateBalance(Account a) {
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			conn.setAutoCommit(false);
+			String sql = "Update account " + 
+					"set balance = ? " + 
+					"Where acct_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+//				System.out.println(test.getBalance());
+				ps.setInt(1, a.getBalance());
+				ps.setInt(2, a.getId());
+			
+			ps.executeUpdate();
+			conn.commit();
+			conn.setAutoCommit(true);
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void UpdateAccount(Account a) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			conn.setAutoCommit(false);
+			String sql = "Update account " + 
+					"set status = ? " + 
+					"Where acct_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+//				System.out.println(test.getBalance());
+				ps.setString(1, a.getStatus());
+				ps.setInt(2, a.getId());
+			
+			ps.executeUpdate();
+			conn.commit();
+			conn.setAutoCommit(true);
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void editUser(User u) {
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			
+			conn.setAutoCommit(false);
+			String sql = "Update users "
+					+ "set firstname = ?, lastname = ?, email = ?, password = ? " +
+					"where user_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, u.getFirstname());
+			ps.setString(2, u.getLastname());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getPassword());
+			ps.setInt(5, u.getId());
+			
+			ps.executeUpdate();
+			System.out.println("Here");
+			conn.commit();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
+	
+	
+	
+	
 	
 ////	public int getBalance() {
 ////		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
