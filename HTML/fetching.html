@@ -47,7 +47,7 @@
                     </button>
 
                     <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
-                    <a class="pull-left" href="#"><img src="NTTLogosm.png"></a>
+                    <!--<a class="pull-left" href="#"><img src="logo.png"></a>-->
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -67,18 +67,35 @@
         <div class="well well-lg">
             <h3>
                 <p>
-                    The central purpose of the Oracle PL/SQL language is to make it as easy and efficient as possible to query and change the contents of tables in a database. You must, of course, use the SQL language to access tables, and each time you do so, you use a cursor to get the job done. Cursor management of DML statements is handled by Oracle Database, but PL/SQL offers several ways to define and manipulate cursors to execute SELECT statements.
+                    A SELECT-INTO is also referred to as an implicit query, because Oracle Database implicitly opens a cursor for the SELECT statement, fetches the row, and then closes the cursor when it finishes doing that (or when an exception is raised).
                 </p><br>
                 <p>
-                    A cursor is a pointer to a private SQL area that stores information about the processing of a SELECT or data manipulation language (DML) statement (INSERT, UPDATE, DELETE, or MERGE).
-                </p><br>
-                <p>
-                    Cursor management of DML statements is handled by Oracle Database, but PL/SQL offers several ways to define and manipulate cursors to execute SELECT statements.
-                </p><br>
-                <p>
-                    The most-common ways programmers execute SELECT statements in PL/SQL are:
+                    You can, alternatively, explicitly declare a cursor and then perform the open, fetch, and close operations yourself.
                 </p>
             </h3>
+            <h4>
+                <br>
+                <p>
+                    <b>Code Listing 1:</b> Block and description of explicit cursor implementation
+                </p>
+                <p>DECLARE</p>
+                <p>l_total       INTEGER := 10000;</p><br>
+                <p>CURSOR employee_id_cur IS</p>
+                <p>&nbsp;&nbsp;SELECT employee_id</p>
+                <p>&nbsp;&nbsp;FROM plch_employees</p>
+                <p>&nbsp;&nbsp;ORDER BY salary ASC;</p><br>
+                <p>l_employee_id   employee_id_cur%ROWTYPE;</p><br>
+                <p>BEGIN</p>
+                <p>&nbsp;&nbsp;OPEN employee_id_cur;</p>
+                <p>&nbsp;&nbsp;LOOP</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;FETCH employee_id_cur INTO l_employee_id;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;EXIT WHEN employee_id_cur%NOTFOUND;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;assign_bonus (l_employee_id, l_total);</p>
+                <p>&nbsp;&nbsp;EXIT WHEN l_total &lt;&#61; 0;</p>
+                <p>&nbsp;&nbsp;END LOOP;</p><br>
+                <p>&nbsp;&nbsp;CLOSE employees_cur;</p>
+                <p>END;</p>
+            </h4>
         </div>
     </div>
 

@@ -67,18 +67,34 @@
         <div class="well well-lg">
             <h3>
                 <p>
-                    The central purpose of the Oracle PL/SQL language is to make it as easy and efficient as possible to query and change the contents of tables in a database. You must, of course, use the SQL language to access tables, and each time you do so, you use a cursor to get the job done. Cursor management of DML statements is handled by Oracle Database, but PL/SQL offers several ways to define and manipulate cursors to execute SELECT statements.
-                </p>
+                    A cursor variable is, as you might guess from its name, a variable that points to a cursor or a result set.  
+                </p><br>
                 <p>
-                    A cursor is a pointer to a private SQL area that stores information about the processing of a SELECT or data manipulation language (DML) statement (INSERT, UPDATE, DELETE, or MERGE).
-                </p>
-                <p>
-                    Cursor management of DML statements is handled by Oracle Database, but PL/SQL offers several ways to define and manipulate cursors to execute SELECT statements.
-                </p>
-                <p>
-                    The most-common ways programmers execute SELECT statements in PL/SQL are:
-                </p>
+                    Unlike with an explicit cursor, you can pass a cursor variable as an argument to a procedure or a function.
+                </p><br>
+                <p>Cursor variables can be used with either embedded (static) or dynamic SQL. Below we see a function which returns a cursor variable that fetches either employee or department names, depending on the argument passed to the function.</p><br>
             </h3>
+            <h4>
+                <p>CREATE OR REPLACE FUNCTION names_for (name_type_in IN VARCHAR2)</p>
+                <p>RETURN SYS_REFCURSOR</p>
+                <p>IS</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;l_return   SYS_REFCURSOR;</p>
+                <p>BEGIN</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;CASE name_type_in</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;WHEN 'EMP' THEN</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OPEN l_return FOR</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT last_name</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM employees</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY employee_id;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;WHEN 'DEPT' THEN</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OPEN l_return FOR</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SELECT department_name</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FROM departments</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY department_id;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;END CASE;</p><br>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;RETURN l_return;</p>
+                <p>END names_for;</p>
+            </h4>
         </div>
     </div>
 

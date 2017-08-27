@@ -67,16 +67,16 @@
         <div class="well well-lg">
             <h3>
                 <p>
-                    The central purpose of the Oracle PL/SQL language is to make it as easy and efficient as possible to query and change the contents of tables in a database. You must, of course, use the SQL language to access tables, and each time you do so, you use a cursor to get the job done. Cursor management of DML statements is handled by Oracle Database, but PL/SQL offers several ways to define and manipulate cursors to execute SELECT statements.
-                </p>
+                    Dynamic SQL means that at the time you write (and then compile) your code, you do not have all the information you need for parsing a SQL statement. Instead, you must wait for runtime to complete the SQL statement and then parse and execute it.
+                </p><br>
                 <p>
-                    A cursor is a pointer to a private SQL area that stores information about the processing of a SELECT or data manipulation language (DML) statement (INSERT, UPDATE, DELETE, or MERGE).
-                </p>
+                    Oracle Database makes it easy to execute SQL statements (and PL/SQL blocks) dynamically with the EXECUTE IMMEDIATE statement. And querying data is the easiest dynamic SQL operation of all!
+                </p><br>
                 <p>
-                    Cursor management of DML statements is handled by Oracle Database, but PL/SQL offers several ways to define and manipulate cursors to execute SELECT statements.
-                </p>
+                    You can also use EXECUTE IMMEDIATE to fetch multiple rows of data, which means that you will populate a collection, so you must use BULK COLLECT.
+                </p><br>
                 <p>
-                    The most-common ways programmers execute SELECT statements in PL/SQL are:
+                    A general note of caution regarding dynamic SQL: whenever you concatenate text to execute a dynamically executed statement, you run the risk of SQL injection. This occurs when a malicious user “injects,” or inserts into the statement, code that changes the behavior of that SQL statement.
                 </p>
             </h3>
         </div>
