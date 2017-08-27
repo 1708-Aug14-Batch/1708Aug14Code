@@ -1,0 +1,11 @@
+package com.ex.reflection;
+
+public class ReflectionTester {
+
+	public static void main(String[] args) {
+		Fish fish = new Fish("Harald");
+		Goldfish goldfish = new Goldfish("");
+		System.out.println("My name is " + fish.getName() + " and I'm a " + fish.getClass());
+	}
+
+}

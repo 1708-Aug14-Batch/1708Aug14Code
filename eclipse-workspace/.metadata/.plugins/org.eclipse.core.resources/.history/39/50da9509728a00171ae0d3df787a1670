@@ -1,0 +1,32 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+public interface UserDAO<User> {
+
+	int createUser(T entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	ArrayList<T> readAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	T readUser(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	int updateUser(T entity) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	int disableUser(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

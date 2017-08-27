@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;e&apos; in &apos;com.ex.dao.DAOImplementation.addExample(...)&apos; to &apos;sqle&apos;&#x0D;&#x0A;- Original project: &apos;JDBC_Intro&apos;&#x0D;&#x0A;- Original element: &apos;com.ex.dao.DAOImplementation.addExample(String, String).e&apos;&#x0D;&#x0A;- Renamed element: &apos;e&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;e&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.ex.dao{DAOImplementation.java[DAOImplementation~addExample~QString;~QString;@e!1730!1743!1743!1743!QSQLException;!0!false" name="sqle" references="true" stamp="1503605385618" version="1.0"/>
+</session>

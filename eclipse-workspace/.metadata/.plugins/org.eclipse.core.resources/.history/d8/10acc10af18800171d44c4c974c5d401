@@ -1,0 +1,27 @@
+package com.ex.util;
+
+import java.sql.Connection;
+
+public class ConnectionSingleton {
+	
+	private static ConnectionSingleton cs = null;
+	private static Boolean build = true;
+	
+	private ConnectionSingleton() {
+		build = false;
+	}
+	
+	public static synchronized ConnectionSingleton getInstance() {
+		if (build) {
+			cs = new ConnectionSingleton();
+		}
+		return cs;
+	}
+	
+	public Connection getConnection() {
+		Connection connection = null;
+		
+		return connection;
+	}
+
+}

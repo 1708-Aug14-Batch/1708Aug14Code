@@ -1,0 +1,14 @@
+package com.ex.dao;
+
+public class DAOImplementation {
+	
+	/*
+	 * Callable statement
+	 */
+	public int getID(String name) {
+		Connection conn = null;
+		
+		return -1;
+	}
+
+}
