@@ -1,17 +1,15 @@
-package com.bank.pojos;
-
-import java.math.BigDecimal;
+package com.revature.andy.pojos;
 
 public class Account {
-	
+			 
 	private int accountID;
-	private int balance;
+	private double balance;
 	private User user;
 	private AccountType type;
 	
 	public Account() {}
 	
-	public Account(int accountID, int balance, User user, AccountType type) {
+	public Account(int accountID, double balance, User user, AccountType type) {
 		super();
 		this.accountID = accountID;
 		this.balance = balance;
@@ -27,7 +25,7 @@ public class Account {
 		this.accountID = accountID;
 	}
 
-	public int getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
@@ -53,7 +51,10 @@ public class Account {
 
 	@Override
 	public String toString() {
-		return "Account [accountID=" + accountID + ", balance=" + balance + ", user=" + user + ", type=" + type + "]";
+		return "Account ID: " + accountID + 
+				", Balance: " + balance + 
+				", User: " + user.getFName() + " " + user.getLName() + 
+				", Type: " + type.getType();
 	}
 
 	

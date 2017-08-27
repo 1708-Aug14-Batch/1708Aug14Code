@@ -1,9 +1,9 @@
-package com.bank.dao;
+package com.revature.andy.dao;
 
 import java.util.ArrayList;
 
-import com.bank.pojos.Account;
-import com.bank.pojos.User;
+import com.revature.andy.pojos.Account;
+import com.revature.andy.pojos.User;
 
 public interface DAOInterface {
 	

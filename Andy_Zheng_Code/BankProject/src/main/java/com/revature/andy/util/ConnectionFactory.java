@@ -1,4 +1,4 @@
-package com.bank.util;
+package com.revature.andy.util;
 
 import java.io.FileReader;
 import java.sql.Connection;
@@ -31,7 +31,7 @@ public class ConnectionFactory {
 		
 		try {
 			Properties prop = new Properties();
-			prop.load(new FileReader("C:/Users/Creus/my_git_repos/1708Aug14Code/Andy_Zheng_Code/BankProject/Bank/src/com/bank/util/database.properties"));;
+			prop.load(new FileReader("C:/Users/Creus/my_git_repos/1708Aug14Code/Andy_Zheng_Code/BankProject/src/main/java/com/revature/andy/util/database.properties"));;
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(prop.getProperty("url"),prop.getProperty("usr"),prop.getProperty("pwd"));
 		}catch(Exception e) {

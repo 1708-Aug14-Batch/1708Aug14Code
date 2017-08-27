@@ -169,7 +169,6 @@ EMAIL	VARCHAR2(60 BYTE)
 );
 /
 
-
 CREATE OR REPLACE FUNCTION AFTER1968
 RETURN EMPLOYEEs AS BORNAFTER1968 EMPLOYEEs;
 BEGIN
@@ -190,24 +189,11 @@ END;
 CREATE OR REPLACE PROCEDURE EMPLOYEENAMES(FN OUT VARCHAR2, LN OUT VARCHAR2)
 AS
 BEGIN
-    SELECT FIRSTNAME INTO FN
-    FROM EMPLOYEE;
-    SELECT LASTNAME INTO LN
+    SELECT FIRSTNAME, LASTNAME
+    INTO FN, LN
     FROM EMPLOYEE;
 END;
 /
-    
-
-    
-/*
-DECLARE
-FNAME VARCHAR2(30);
-LNAME VARCHAR2(30);
-BEGIN
-    EMPLOYEENAMES(FNAME,LNAME);
-END;
-/
-*/
 
 --4.2 Stored Procedure Input Parameters
 --Task – Create a stored procedure that updates the personal information of an employee.
@@ -255,32 +241,85 @@ AS
 BEGIN
 SELECT REPORTSTO
 INTO MANAGER
-FROM EMPLOYEE;
+FROM EMPLOYEE
+WHERE EMPLOYEEID = REPORTSTO;
 END;
 /
 
 --4.3 Stored Procedure Output Parameters
 --Task – Create a stored procedure that returns the name and company of a customer.
-CREATE OR REPLACE PROCEDURE FINDMANAGER(CUSTOMERID IN NUMBER, FIRSTNAME OUT VARCHAR2, LASTNAME OUT VARCHAR2, COMPANY OUT VARCHAR2)
+CREATE OR REPLACE PROCEDURE CUSTOMERINFO(CUSTOMERID IN NUMBER, FIRSTNAME OUT VARCHAR2, LASTNAME OUT VARCHAR2, COMPANY OUT VARCHAR2)
 AS
 BEGIN
 SELECT FIRSTNAME, LASTNAME, COMPANY
 INTO FIRSTNAME, LASTNAME, COMPANY
-FROM EMPLOYEE
+FROM CUSTOMER
 WHERE CUSTOMERID = CUSTOMERID;
 END;
 /
-
 
 --5.0 Transactions 2
 --In this section you will be working with transactions. Transactions are usually nested within a stored procedure.
 
 --Task – Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).
-
+CREATE OR REPLACE PROCEDURE deleteInvoice(inID IN NUMBER)
+AS
+BEGIN
+SAVEPOINT SAVE1;
+DELETE FROM INVOICE WHERE INVOICEID = inID;
+COMMIT;
+END;
+/
 
 --Task – Create a transaction nested within a stored procedure that inserts a new record in the Customer table
 
-
+CREATE OR REPLACE PROCEDURE insertCustomer(
+aCUSTOMERID IN VARCHAR2,
+aFIRSTNAME IN VARCHAR2,
+aLASTNAME IN VARCHAR2,
+aCOMPANY IN VARCHAR2,
+aADDRESS IN VARCHAR2,
+aCITY IN VARCHAR2,
+aSTATE IN VARCHAR2,
+aCOUNTRY IN VARCHAR2,
+aPOSTALCODE IN VARCHAR2,
+aPHONE IN VARCHAR2,
+aFAX IN VARCHAR2,
+aEMAIL IN VARCHAR2,
+aSUPPORTREPID IN NUMBER)
+AS
+BEGIN
+SAVEPOINT SAVE1;
+INSERT INTO CUSTOMER(
+CUSTOMERID,
+FIRSTNAME,
+LASTNAME,
+COMPANY,
+ADDRESS,
+CITY,
+STATE,
+COUNTRY,
+POSTALCODE,
+PHONE,
+FAX,
+EMAIL,
+SUPPORTREPID) VALUES(
+aCUSTOMERID,
+aFIRSTNAME,
+aLASTNAME,
+aCOMPANY,
+aADDRESS,
+aCITY,
+aSTATE,
+aCOUNTRY,
+aPOSTALCODE,
+aPHONE,
+aFAX,
+aEMAIL,
+aSUPPORTREPID);
+COMMIT;
+END;
+/   
 
 --6.0 Triggers
 --In this section you will create various kinds of triggers that work when certain DML statements are executed on a table.
@@ -310,6 +349,7 @@ BEGIN
 DBMS_OUTPUT.PUT_LINE('after delete'); 
 END;
 /
+
 --7.0 JOINS 5
 --In this section you will be working with combing various tables through the use of joins. You will work with outer, inner, right, left, cross, and self joins.
 
@@ -317,20 +357,24 @@ END;
 --Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
 SELECT CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID
 FROM CUSTOMER INNER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
 --7.2 OUTER
 --Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
 SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID, INVOICE.TOTAL
 FROM CUSTOMER FULL OUTER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
+
 --7.3 RIGHT
 --Task – Create a right join that joins album and artist specifying artist name and title.
 SELECT ARTIST.NAME, ALBUM.TITLE
 FROM ARTIST RIGHT JOIN ALBUM ON ARTIST.ARTISTID = ALBUM.ARTISTID;
+
 --7.4 CROSS
 --Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
 SELECT ARTIST.NAME
 FROM ALBUM
 CROSS JOIN ARTIST
 ORDER BY ARTIST.NAME ASC;
+
 --7.5 SELF
 --Task – Perform a self-join on the employee table, joining on the reportsto column.
-
+SELECT * FROM EMPLOYEE E1, EMPLOYEE E2 WHERE E1.REPORTSTO = E1.EMPLOYEEID;

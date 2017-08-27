@@ -1,4 +1,4 @@
-package com.bank.pojos;
+package com.revature.andy.pojos;
 
 public class AccountType {
 	
@@ -33,6 +33,4 @@ public class AccountType {
 	public String toString() {
 		return "AccountType [typeID=" + typeID + ", type=" + type + "]";
 	}
-
-
 }
