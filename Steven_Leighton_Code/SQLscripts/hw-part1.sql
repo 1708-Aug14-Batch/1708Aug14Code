@@ -175,41 +175,14 @@ END averageInvoiceLine; --1.04 with base chinook values right now
 Task – Create a function that returns all employees who are born after 1968.
 */
 
---create employee type to be returned in function
-create or replace type emp_type as object
-            (employeeid number,
-            firstname varchar2(20),
-            lastname varchar2(20));
-            
---create table type for employees
-create or replace type emp_type_table as table of emp_type;
-
---create or replace function employees1968 
---return table is emp (empID number, fn varchar2(20),ln varchar(20))
---BEGIN
---  return query 
---    select * from employee where birthdate after '31-DEC-1968';
---END emplyee1968;
---
---create or replace function get_emps
---    return emp_type_table
---    is
---       l_emps  emp_type_table := emp_type_table();
---    begin
---         for i in (select employeeid,firstname, lastname from employee where birthdate > '31-DEC-1968') loop
---  
---                 l_emps.EXTEND;
---                 l_emps(l_emps.count) := (emp_type(i.employeeid,i.firstname, i.lastname)) ;
---        end loop;
---        return l_emps;
---   end;
---
---create or replace function emp1968 
---return emp table (empID number, fn varchar2(20),ln varchar(20))
---begin
---  emp := select employeeid,firstname, lastname from employee where birthdate > '31-DEC-1968';
---  return emp;
---end;
+CREATE OR REPLACE FUNCTION getEmpAfter1968
+  RETURN SYS_REFCURSOR
+AS
+  my_cursor SYS_REFCURSOR;
+BEGIN
+  OPEN my_cursor FOR SELECT * FROM employee where birthdate > '31-DEC-68';
+  RETURN my_cursor;
+END getEmpAfter1968;
 
 /*
 4.0 Stored Procedures 4
@@ -257,6 +230,69 @@ In this section you will be working with transactions. Transactions are usually 
 Task – Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).
 Task – Create a transaction nested within a stored procedure that inserts a new record in the Customer table
 */
+-- deletes invoice with given invoiceid
+create or replace procedure deleteInvoice(invID in number) as
+BEGIN
+--Begin the transaction
+SET TRANSACTION READ WRITE;
+
+delete from invoice where invoiceid = invID;
+
+COMMIT;
+
+END;
+
+--add customer w/ procedure and transaction
+CREATE OR REPLACE PROCEDURE addCustomer(
+    cID      IN NUMBER,
+    fn       IN VARCHAR2,
+    ln       IN VARCHAR2,
+    addr     IN VARCHAR2,
+    ci       IN VARCHAR2,
+    st       IN VARCHAR2,
+    co       IN VARCHAR2,
+    postal   IN VARCHAR2,
+    phon     IN VARCHAR2,
+    fa       IN VARCHAR2,
+    emai     IN VARCHAR2,
+    employee IN NUMBER)
+AS
+BEGIN
+  --Begin the transaction
+  SET TRANSACTION READ WRITE;
+  INSERT
+  INTO Customer
+    (
+      customerid,
+      firstname,
+      lastname,
+      address,
+      city,
+      state,
+      country,
+      postalcode,
+      phone,
+      fax,
+      email,
+      supportrepid
+    )
+    VALUES
+    (
+      cID,
+      fn,
+      ln,
+      addr,
+      ci,
+      st,
+      co,
+      postal,
+      phon,
+      fa,
+      emai,
+      employee
+    );
+  COMMIT;
+END;
 
 /*
 6.0 Triggers
