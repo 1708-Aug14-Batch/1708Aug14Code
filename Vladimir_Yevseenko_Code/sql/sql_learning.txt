@@ -71,4 +71,3 @@ SELECT COUNT(name) FROM album GROUP BY artistid;
 	Use of scalar functions is simple */
 
 SELECT CHARACTER_LENGTH(name) FROM album;
-

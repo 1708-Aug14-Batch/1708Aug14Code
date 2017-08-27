@@ -1,12 +1,9 @@
 package com.bank.dao;
 
-import java.util.List;
+import com.bank.pojos.User;
 
-/*
- * Generic Data Access Object Interface
- * write() must store list, read must read a file and return a list
- */
-public interface DAO<T> {
-	void write(List<T> list);
-	List<T> read();
+public interface DAO {
+	void createNewUser(User user);
+	void updateUserInfo(User user);
+	
 }

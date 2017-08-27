@@ -1,0 +1,41 @@
+package com.bank.dao;
+
+import java.io.Closeable;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.bank.pojos.User;
+import com.rev.utils.ConnectionFactory;
+
+public class DBDAO implements Closeable {
+	private Connection dbConn;
+	
+	public static void main(String[] args) {
+		DBDAO d = new DBDAO();
+		System.out.println("success");
+	}
+	
+	public DBDAO() {
+		dbConn = ConnectionFactory.getInstance().getConnection();
+	}
+	
+	
+	public void addNewUser(User user) {
+		try (CallableStatement stmt = dbConn.prepareCall("{add_user(? ? ? ?)}")) {
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void close() {
+		try {
+			dbConn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}

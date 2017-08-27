@@ -1,0 +1,17 @@
+package com.bank.main;
+
+import java.util.Scanner;
+import com.bank.service.BankService;
+
+public class Driver {
+	Scanner s = new Scanner(System.in);
+	DBDao dao = new DBDao();
+	public static void main(String[] args) {
+		
+		
+		
+		s.close();
+	}
+	
+	
+}

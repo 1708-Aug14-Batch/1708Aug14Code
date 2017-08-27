@@ -1,0 +1,10 @@
+body {
+	background-color: yellow;
+}
+p {
+	color: red;
+}
+.header {
+	color: green;
+	background-color: blue;
+}

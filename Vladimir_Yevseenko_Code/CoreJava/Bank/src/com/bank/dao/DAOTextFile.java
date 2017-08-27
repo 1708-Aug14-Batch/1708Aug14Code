@@ -10,22 +10,15 @@ import java.util.List;
 
 import com.bank.pojos.User;
 
-public class DAOTextFile implements DAO<User> {
-	
-	/*
-	 * File to be read by this Text File Data Access Object
-	 */
+public class DAOTextFile {
+/*
 	private final String path;
 	
 	public DAOTextFile(String path) {
 		this.path = path;
 	}
 	
-	@Override
 	public void write(List<User> list) {
-		/*
-		 * We will overwrite the entire file with the list
-		 */
 		try (BufferedWriter b = new BufferedWriter(new FileWriter(path, false))) {
 			for (User u: list)
 				b.write(u.toStoredForm() + "\n");
@@ -35,7 +28,6 @@ public class DAOTextFile implements DAO<User> {
 		}
 	}
 
-	@Override
 	public List<User> read() {
 		try (BufferedReader r = new BufferedReader(new FileReader(path))) {
 			List<User> list = new ArrayList<>();
@@ -49,5 +41,5 @@ public class DAOTextFile implements DAO<User> {
 			ex.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 }

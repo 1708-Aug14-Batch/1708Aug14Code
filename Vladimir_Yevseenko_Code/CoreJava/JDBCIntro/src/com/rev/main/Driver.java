@@ -6,9 +6,10 @@ public class Driver {
 	public static void main(String[] args) {
 		DBDAO d = new DBDAO();
 		
-		String[] name = d.getFirstAndLast(1);
+		String first = d.getFirstFromId(1);
+		String last = d.getLastFromId(1);
 		
-		System.out.println(name[0] + " " + name[1]);
+		System.out.println(first + " " + last);
 		
 		d.disconnect();
 	}

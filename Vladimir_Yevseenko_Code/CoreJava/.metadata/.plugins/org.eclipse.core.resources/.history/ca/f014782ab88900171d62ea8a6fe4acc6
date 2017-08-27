@@ -1,0 +1,23 @@
+package com.bank.service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.bank.dao.DAOTextFile;
+import com.bank.dao.DBDAO;
+import com.bank.pojos.Field;
+import com.bank.pojos.User;
+
+public class BankService {
+	private DBDAO dao;
+	private List<User> users;
+	private User curUser;
+	
+	public BankService(String path) {
+		dao = new DBDAO();
+	}
+	
+	public void createNewUser(String fn, String ln, String e, String pw) {
+		dao.createNewUser(new User(fn, ln, e, pw));
+	}
+}

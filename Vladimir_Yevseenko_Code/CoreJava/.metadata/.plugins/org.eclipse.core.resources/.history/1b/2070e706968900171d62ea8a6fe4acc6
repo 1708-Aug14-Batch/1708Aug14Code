@@ -1,0 +1,15 @@
+package com.rev.main;
+
+import com.rev.dao.DBDAO;
+
+public class Driver {
+	public static void main(String[] args) {
+		DBDAO d = new DBDAO();
+		
+		String[] name = d.getFirstAndLast(1);
+		
+		System.out.println(name[0] + " " + name[1]);
+		
+		d.disconnect();
+	}
+}

@@ -1,0 +1,33 @@
+package com.bank.dao;
+
+import java.io.Closeable;
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.rev.utils.ConnectionFactory;
+
+public class DBDAO implements Closeable {
+	private Connection dbConn;
+	
+	public static void main(String[] args) {
+		DBDAO d = new DBDAO();
+		System.out.println("success");
+	}
+	
+	public DBDAO() {
+		dbConn = ConnectionFactory.getInstance().getConnection();
+	}
+	
+	
+	public void addUser(User usr)
+	
+	@Override
+	public void close() {
+		try {
+			dbConn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}

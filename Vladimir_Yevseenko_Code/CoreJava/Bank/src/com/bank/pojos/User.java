@@ -1,23 +1,26 @@
 package com.bank.pojos;
 
-import java.math.BigDecimal;
-
 public class User {
 	
-	private static int nextID;
-	private final int id;
+	private int id = -1;
 	private String first, last, email, password;
-	private BigDecimal balance;
 	
-	public User() {
-		this.id = nextID++;
-		balance = BigDecimal.ZERO;
+	public User(String first, String last, String email, String password) {
+		this.first = first;
+		this.last = last;
+		this.email = email;
+		this.password = password;
 	}
 	
-	public User(int id) {
+	public User(int id, String first, String last, String email, String password) {
 		this.id = id;
-		if (id >= nextID)
-			nextID = id + 1;
+		this.first = first;
+		this.last = last;
+		this.email = email;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getFirst() {
@@ -50,41 +53,5 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public BigDecimal getBalance() {
-		return balance;
-	}
-
-	public void setBalance(BigDecimal balance) {
-		this.balance = balance;
-	}
-	
-	
-	public void deposit(BigDecimal b) {
-		balance = balance.add(b);
-	}
-	
-	public boolean withdraw(BigDecimal b) {
-		if (balance.compareTo(b) < 0)
-			return false;
-			
-		balance = balance.subtract(b);
-		return true;
-	}
-
-	public String toStoredForm() {
-		return id+":"+first+":"+last+":"+email+":"+password+":"+balance;
-	}
-
-	public static User fromStoredForm(String line) {
-		String[] fields = line.split(":");
-		User u = new User(Integer.parseInt(fields[0]));
-		u.first = fields[1];
-		u.last = fields[2];
-		u.email = fields[3];
-		u.password = fields[4];
-		u.balance = new BigDecimal(fields[5]);
-		return u;
 	}
 }
