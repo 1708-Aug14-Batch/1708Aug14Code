@@ -1,0 +1,12 @@
+package revature;
+
+import java.util.logging.Logger;
+
+public class LoggingExample {
+
+	private Logger log = logger.getRootLogger();
+	
+	public static void main(String[] args) {
+		
+	}
+}

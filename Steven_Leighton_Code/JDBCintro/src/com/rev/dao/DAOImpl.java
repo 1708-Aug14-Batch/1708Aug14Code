@@ -149,7 +149,6 @@ public class DAOImpl {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -160,8 +159,6 @@ public class DAOImpl {
 	 * Get all of example w/ name of favsong instead of id
 	 */
 	public void getAllWithSongName(){
-		ArrayList<Example> all = new ArrayList<Example>();
-		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			String sql = "SELECT ex.ex_id, "

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 5 packages to &apos;BankingJDBC/src&apos;&#x0D;&#x0A;- Original project: &apos;Banking&apos;&#x0D;&#x0A;- Destination element: &apos;BankingJDBC/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Banking/src/com.bank.dao&#x0D;&#x0A;     Banking/src/com.bank.service&#x0D;&#x0A;     Banking/src/com.bank.main&#x0D;&#x0A;     Banking/src/com.bank.pojo&#x0D;&#x0A;     Banking/src/com.bank.files" description="Copy packages" destination="=BankingJDBC/src" element1="/src&lt;com.bank.dao" element2="/src&lt;com.bank.service" element3="/src&lt;com.bank.main" element4="/src&lt;com.bank.pojo" element5="/src&lt;com.bank.files" flags="589830" fragments="5" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1503668687520" version="1.0"/>
+</session>

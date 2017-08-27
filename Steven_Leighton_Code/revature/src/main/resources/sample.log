@@ -1,0 +1,12 @@
+2017-08-25 14:06:25 TRACE root:10 - most specific
+2017-08-25 14:06:25 DEBUG root:11 - debugging
+2017-08-25 14:06:25 INFO  root:12 - generalized information from system
+2017-08-25 14:06:25 WARN  root:13 - abnormal behavior
+2017-08-25 14:06:25 ERROR root:14 - recoverable but affects user
+2017-08-25 14:06:25 FATAL root:15 - most serious, something bad enough happened to make unrecoverable
+2017-08-25 14:07:41 TRACE root:10 - most specific
+2017-08-25 14:07:41 DEBUG root:11 - debugging
+2017-08-25 14:07:41 INFO  root:12 - generalized information from system
+2017-08-25 14:07:41 WARN  root:13 - abnormal behavior
+2017-08-25 14:07:41 ERROR root:14 - recoverable but affects user
+2017-08-25 14:07:41 FATAL root:15 - most serious, something bad enough happened to make unrecoverable

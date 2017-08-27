@@ -1,0 +1,12 @@
+package tests;
+
+import com.bank.dao.DBDAO;
+import com.bank.pojo.User;
+
+public class Test {
+	public static void main(String[] args) {
+		DBDAO dao = new DBDAO();
+		User user = new User("Steven","Leighton","Serka","pass");
+		dao.addUser(user);
+	}
+}
