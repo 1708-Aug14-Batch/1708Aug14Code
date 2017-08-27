@@ -63,3 +63,10 @@ BEGIN
   END IF;
 END;
 /
+
+INSERT ALL
+  INTO accounttype(name) VALUES('Personal Checking')
+  INTO accounttype(name) VALUES('Personal Savings')
+  INTO accounttype(name) VALUES('Student Checking')
+  INTO accounttype(name) VALUES('Student Savings')
+SELECT * FROM dual;

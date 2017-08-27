@@ -35,6 +35,29 @@ INTO employee(employeeid, lastname, firstname) VALUES(DEFAULT, 'Knight', 'Moon')
 SELECT * FROM dual;
 --Insert two new records into Customer table
 INSERT ALL
-INTO employee() VALUES()
-INTO employee() VALUES()
+  INTO customer(customerid, firstname, lastname, email) VALUES(DEFAULT, 'Scott', 'Michael', 'mscott@mailinator.com')
+  INTO customer(customerid, firstname, lastname, email) VALUES(DEFAULT, 'Schrute', 'Dwight', 'dschrute@mailinator.com')
 SELECT * FROM dual;
+
+--2.4
+--Update Aaron Mitchell in Customer table to Robert Walter
+UPDATE customer
+SET firstname = 'Robert',
+    lastname = 'Walter'
+WHERE firstname = 'Aaron' AND lastname = 'Mitchell';
+--Update name of artist in the Artist table "Creedence Clearwater Revival" to "CCR"
+UPDATE artist
+SET name = 'CCR'
+WHERE name = 'Creedence Clearwater Revival';
+
+--2.5
+--Select all invoices with a billing address like "T%"
+SELECT *
+FROM invoice
+WHERE billingaddress LIKE 'T%';
+
+--2.6
+--Select all onvoices that have a total between 15 and 50
+SELECT *
+FROM invoice
+WHERE total > 15 AND total < 50;

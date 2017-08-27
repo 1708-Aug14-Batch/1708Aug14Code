@@ -37,14 +37,18 @@ public class BankService {
 		this.userDAO = new UserDAOImpl();
 		this.scanner = new Scanner(System.in);
 	}
-	
+
 	/**
-	 * Displays the appropriate menu
+	 * Displays the initial menu when the app is started.
 	 * @precondition None.
 	 * @param None.
-	 * @postcondition Showing a menu to the user
+	 * @postcondition Showing the initial menu to the user
 	 */
-	public void displayInitialMenu() {
+	public void run() {
+		this.displayInitialMenu();
+	}
+	
+	private void displayInitialMenu() {
 		this.printWelcomeMessage();
 		this.printOptionsForLoggedOutUser();
 		this.processInitialMenu();
@@ -129,7 +133,7 @@ public class BankService {
 		String firstName = this.scanner.nextLine();
 		System.out.print("What is your last name? >");
 		String lastName = this.scanner.nextLine();
-		System.out.print("Enter a username >");
+		System.out.print("What is your email address? >");
 		String email = this.scanner.nextLine();
 		System.out.print("Enter a password >");
 		String password = this.scanner.nextLine();
