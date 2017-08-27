@@ -273,7 +273,6 @@ cursor c1 is
 select milliseconds
 from track
 where mediatypeid = mediatype_id;
---set what it gave to something you can return
 begin open c1;
 fetch c1 into return_length;
           END get_length;
@@ -306,7 +305,6 @@ begin
   select max(unitprice) 
   into maxp
   from track;
-  
   select name
   into tname
   from track
@@ -328,33 +326,6 @@ end;
 /
 --3.4 User Defined Table Valued Functions
 -- Create a function that returns all employees who are born after 1968.
-select * from employee;
---bornafter table(employeeid, lastname,firstname,title,reportsto,birthdate,hiredate,address,city,state,country,postalcode,phone,fax,email);
---begin
---create type employee_table is object
---(EMPLOYEEID	NUMBER,
---LASTNAME	VARCHAR2(20 BYTE),
---FIRSTNAME	VARCHAR2(20 BYTE),
---TITLE	VARCHAR2(30 BYTE),
---REPORTSTO	NUMBER,
---BIRTHDATE	DATE,
---HIREDATE	DATE,
---ADDRESS	VARCHAR2(70 BYTE),
---CITY	VARCHAR2(40 BYTE),
---STATE	VARCHAR2(40 BYTE),
---COUNTRY	VARCHAR2(40 BYTE),
---POSTALCODE	VARCHAR2(10 BYTE),
---PHONE	VARCHAR2(24 BYTE),
---FAX	VARCHAR2(24 BYTE),
---EMAIL	VARCHAR2(60 BYTE));
---/
---
---create type empl_name is object (i_d number);
---/
-----, firstname varchar2(20), lastname varchar2(20));
---/
---create type empl_coll is table of empl_name;
---/
 
 create or replace function born_after
 RETURN sys_refcursor 
@@ -367,14 +338,8 @@ where EXTRACT(year from birthdate) > 1968;
 return c1;
 end;
 /
-  select * from EMPLOYEE where EXTRACT(year from birthdate) > 1968;
 
---pipelined is
---begin
-  --for i in (select * into empl from employee where EXTRACT(YEAR FROM BIRTHDATE) > 1968) loop
- -- pipe row (employee_table(i.employeeid,i.lastname, i.firstname, i.title, i.reportsto,
-  --i.birthdate, i.hiredate,i.address,i.city,i.state,i.country,i.postalcode,i.phone,i.fax,i.email));
-  --end loop;
+select * from EMPLOYEE where EXTRACT(year from birthdate) > 1968;
 
 -- 4.0 Stored Procedures 4
 --   creating and executing stored procedures.
@@ -530,8 +495,7 @@ end;
 
 -- Create an after delete trigger on the customer table that fires after a row is deleted from the table.
 create table lostcustomer
-(
-LOSTID NUMBER PRIMARY KEY,
+(LOSTID NUMBER PRIMARY KEY,
 DateLost date);
 
 create or replace trigger updatecustomer after delete
