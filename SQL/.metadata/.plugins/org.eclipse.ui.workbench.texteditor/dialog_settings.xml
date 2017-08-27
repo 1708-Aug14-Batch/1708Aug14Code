@@ -2,22 +2,25 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="FIXME" key="selection"/>
+		<item value="create" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="FIXME"/>
-			<item value="&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;"/>
-			<item value="PreparedStatement prep"/>
-			<item value="prep."/>
-			<item value="prep"/>
-			<item value="createA"/>
-			<item value="Account c"/>
-			<item value="account"/>
+			<item value="create"/>
+			<item value="read"/>
+			<item value="SELECT *"/>
+			<item value="LocalDate.par"/>
+			<item value="readPerson"/>
+			<item value="readAccount"/>
+			<item value="opened_date"/>
+			<item value="TO_DATE"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="LocalDate"/>
+			<item value="TODO"/>
 			<item value="PreparedStatement ps"/>
 			<item value="ps."/>
 			<item value="ps"/>

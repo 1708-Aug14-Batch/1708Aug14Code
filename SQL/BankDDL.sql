@@ -34,7 +34,7 @@ CREATE TABLE account_level(
   type_id NUMBER PRIMARY KEY,
   name VARCHAR2(25)
 );
-INSERT INTO account() VALUES();
+DROP TABLE account;
 CREATE TABLE account(
   account_id NUMBER PRIMARY KEY,
   balance NUMBER(12, 2) DEFAULT 0.00,
@@ -58,7 +58,7 @@ END IF;
 END;
 /
 create or replace TRIGGER acc_seq_trigger before
-  INSERT ON account FOR EACH row BEGIN IF :new.user_id IS NULL THEN
+  INSERT ON account FOR EACH row BEGIN IF :new.account_id IS NULL THEN
   SELECT acc_seq.nextval INTO :new.account_id FROM dual;
 END IF;
 END;

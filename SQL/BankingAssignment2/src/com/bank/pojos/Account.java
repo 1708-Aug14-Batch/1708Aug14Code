@@ -1,7 +1,7 @@
 package com.bank.pojos;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Account {
 		
@@ -9,7 +9,7 @@ public class Account {
 	private final int accountId;
 	
 	// The date the account was opened
-	private final Date accountOpenedDate;
+	private final LocalDate accountOpenedDate;
 
 	// BigDecimal: Immutable, arbitrary-precision signed decimal number
 	private BigDecimal balance = BigDecimal.ZERO;
@@ -33,6 +33,7 @@ public class Account {
 	 * rate for a credit account
 	 */
 	public enum accountLevel {
+		NULL,		// The database is 1-indexed so I'm throwing out the index 0 element
 		BRONZE,
 		SILVER,
 		GOLD,
@@ -40,13 +41,14 @@ public class Account {
 		DOUBLE_PLATINUM
 	};
 	public enum accountType {
+		NULL,		// The database is 1-indexed so I'm throwing out the index 0 element
 		CHECKING,
 		SAVINGS,
 		CREDIT,
 		REWARD
 	}
 	
-	public Account(int accountId, Date accountOpenedDate, BigDecimal balance,
+	public Account(int accountId, LocalDate accountOpenedDate, BigDecimal balance,
 			boolean deleted, accountType type, accountLevel level, int userId) {
 		super();
 		this.accountId = accountId;
@@ -87,7 +89,7 @@ public class Account {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public Date getAccountOpenedDate() {
+	public LocalDate getAccountOpenedDate() {
 		return accountOpenedDate;
 	}
 	public int getAccountId() {

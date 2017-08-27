@@ -1,6 +1,6 @@
 package com.bank.pojos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 // Manages bank account information
 // Has access to every account
@@ -14,7 +14,7 @@ public class Clerk extends Person {
 	private final int employeeId;
 	private String password;
 	
-	private final Date dateHired;
+	private final LocalDate dateHired;
 	
 	private double hourlyWage;
 	
@@ -22,7 +22,7 @@ public class Clerk extends Person {
 	// Turns false when an employee is let go
 	private boolean hired = true;
 	
-	private Clerk(Person per, int employeeId, String password, Date dateHired, double hourlyWage, boolean hired) {
+	private Clerk(Person per, int employeeId, String password, LocalDate dateHired, double hourlyWage, boolean hired) {
 		super(per.getSSN(), per.getFirstName(), per.getLastName(), per.getBirthDate());
 		
 		this.employeeId = employeeId;
@@ -50,7 +50,7 @@ public class Clerk extends Person {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Date getDateHired() {
+	public LocalDate getDateHired() {
 		return dateHired;
 	}
 	

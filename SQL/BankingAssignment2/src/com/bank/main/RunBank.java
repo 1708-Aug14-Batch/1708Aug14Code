@@ -1,10 +1,15 @@
 package com.bank.main;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
+import com.bank.dao.DaoSqlImpl;
 import com.bank.pojos.*;
+import com.bank.pojos.Account.accountLevel;
+import com.bank.pojos.Account.accountType;
 import com.bank.service.Service;
 
 /*
@@ -24,7 +29,7 @@ import com.bank.service.Service;
  * 	- core java, file i/o
  */
 
-// FIXME add clerk functionality
+// TODO add clerk functionality
 //			View all transactions, Users, Persons
 //			add new clerks (later there will have to be a hierarchy of clerks where only high-level clerks can add lower-level clerks)
 //			change password
@@ -35,7 +40,7 @@ import com.bank.service.Service;
 //			upgrade an account
 //			Provide verification for deleting an account
 //		Clerks have two ways to log in: to access the secret clerk menu, and a temporary log in which logs out after verification for doing admin things like changing a user's username
-// FIXME add transactions (transaction method which calls any transaction) - consider changing transactionType to String
+// TODO add transactions (transaction method which calls any transaction) - consider changing transactionType to String
 // Add more JUnit tests
 public class RunBank {
 
@@ -51,14 +56,14 @@ public class RunBank {
 	// Implementation to actually run bank application
 	public static void main(String[] args) {
 
+		// FIXME DEBUG V
+		debugStuff();
+		// FIXME DEBUG ^
+		
 		System.out.println("Hello. Welcome to the automating banking system for " +
 				bankName + ".");
 
-		makeTransaction(transactionType.BOOT_UP);
-
 		bankingSystem();
-
-		makeTransaction(transactionType.QUIT);
 
 		System.out.println("Thank you for using the automating banking system. Have a wonderful day.");
 
@@ -85,7 +90,7 @@ public class RunBank {
 						continue;
 					}
 
-					makeTransaction(transactionType.LOGIN);
+					login();
 
 					break;
 				case "logout":
@@ -95,7 +100,7 @@ public class RunBank {
 						continue;
 					}
 
-					makeTransaction(transactionType.LOGOUT);
+					logout();
 
 					break;
 				case "create account":
@@ -109,7 +114,7 @@ public class RunBank {
 					System.out.println("Do you accept these conditions? yes/no");
 
 					if (scan.nextLine().trim().equalsIgnoreCase("yes"))
-						if (!makeTransaction(transactionType.CREATE_ACCOUNT))
+						if (!createAccount())
 							System.out.println("Account creation failed.");
 						else {
 							System.out.print("Account created, welcome to " + bankName + ".");
@@ -126,9 +131,9 @@ public class RunBank {
 					System.out.println("Would you like to withdraw from checking or transfer money from checking to savings?");
 					input = scan.nextLine().trim().toLowerCase();
 					if (input.contains("checking") || input.contains("withdraw"))
-						makeTransaction(transactionType.WITHDRAW_CHECKING);
+						transferFunds(true);
 					else if (input.contains("saving") || input.contains("transfer"))
-						makeTransaction(transactionType.TRANSFER_SAVINGS);
+						transferFunds(false);
 					else System.out.println("Input was not recognized. Valid entries are \"checking\" and \"saving\"");
 
 					break;
@@ -141,9 +146,9 @@ public class RunBank {
 					System.out.println("Would you like to deposit to checking or to savings?");
 					input = scan.nextLine().trim().toLowerCase();
 					if (input.contains("checking"))
-						makeTransaction(transactionType.DEPOSIT_CHECKING);
+						deposit(true);
 					else if (input.contains("saving"))
-						makeTransaction(transactionType.DEPOSIT_SAVINGS);
+						deposit(false);
 					else System.out.println("Input was not recognized. Valid entries are \"checking\" and \"saving\" in all lower case");
 
 					break;
@@ -154,7 +159,7 @@ public class RunBank {
 						continue;
 					}
 
-					makeTransaction(transactionType.VIEW_ACCOUNT);
+					viewAccount();
 
 					break;
 				case "edit account":
@@ -164,7 +169,7 @@ public class RunBank {
 						continue;
 					}
 
-					makeTransaction(transactionType.EDIT_ACCOUNT);
+					editAccount();
 
 					break;
 				case "quit":
@@ -173,8 +178,7 @@ public class RunBank {
 				case "clerk login":
 				case "clerk log in":
 
-					// FIXME add implementation
-					// makeTransaction(transactionType.CLERK_LOGIN);
+					// TODO add implementation
 
 					break;
 				default:
@@ -185,118 +189,26 @@ public class RunBank {
 
 	// If the user is still logged in when they quit, the log them off.
 	if (accountUsernameLoggedIn != null)
-		makeTransaction(transactionType.LOGOUT);
+		logout();
 
 	}
 
 	private static void displayBasicAccountInfo() {
 		System.out.println("Logged in as: " + accountUsernameLoggedIn +	", Account type: " +
-				bankService.getUser(accountUsernameLoggedIn).getAccount().getType());
-	}
-
-	private static boolean makeTransaction(transactionType type) {
-		Transaction tran = new Transaction(type);
-		boolean succeeded = false;
-		// Set some default values:
-		tran.setSummary("");
-		tran.setReasonFailed("");
-		if (accountUsernameLoggedIn == null) {
-			tran.setUsername("");
-			tran.setAccountID(0);
-		} else {
-			tran.setUsername(accountUsernameLoggedIn);
-			tran.setAccountID(bankService.getUser(accountUsernameLoggedIn).getAccount().getAccountId());
-		}
-		tran.setClerkID(clerkIDLoggedIn);
-
-		// Within the switch statement the following fields must either be set or accept the default value:
-		//		boolean succeeded
-		//		transaction String summary
-		//		transaction String reasonFailed
-		switch(type) {
-		case BOOT_UP:
-		case QUIT:
-			succeeded = true;
-			break;
-		case LOGIN:
-			succeeded = login(tran);
-
-			if (succeeded) {
-				tran.setUsername(accountUsernameLoggedIn);
-				tran.setAccountID(bankService.getUser(accountUsernameLoggedIn).getAccount().getAccountId());
-			}
-
-			break;
-		case LOGOUT:
-			succeeded = logout(tran);
-			break;
-		case CREATE_ACCOUNT:
-
-			succeeded = createAccount(tran);
-
-			break;
-		case WITHDRAW_CHECKING:
-
-			succeeded = transferFunds(true, tran);
-
-			break;
-		case TRANSFER_SAVINGS:
-
-			succeeded = transferFunds(false, tran);
-
-			break;
-		case DEPOSIT_CHECKING:
-
-			succeeded = deposit(true, tran);
-
-			break;
-		case DEPOSIT_SAVINGS:
-
-			succeeded = deposit(false, tran);
-
-			break;
-		case VIEW_ACCOUNT:
-
-			succeeded = viewAccount(tran);
-
-			break;
-		case EDIT_ACCOUNT:
-
-			succeeded = editAccount(tran);
-
-			break;
-		case CLERK_LOGIN:
-			// FIXME
-			break;
-		case CLERK_LOGOUT:
-			// FIXME
-			break;
-		default:
-			System.out.println("Error. That transaction is not yet supported.");
-			return false;
-		}
-
-		// Set variables for the transaction
-		tran.setDate(new Date().toString());
-		tran.setSuccessful(succeeded);
-
-		bankService.createTransaction(tran);
-		return succeeded;
+				bankService.getUser(accountUsernameLoggedIn).getLevel());
 	}
 
 	// Returns true if login was successful
-	private static boolean login(Transaction tran) {
+	private static boolean login() {
 		System.out.print("Enter username: ");
 		String username = scan.nextLine().trim().toLowerCase();
 		System.out.print("Enter password: ");
 		String password = scan.nextLine().trim();
 
 		Account acc = bankService.validateUser(username, password);
-		tran.setUsername(username);
-
+		
 		if (acc == null) {
 			System.out.println("Login failed, incorrect username and password combination.");
-			tran.setReasonFailed("Username and password do not match");
 			return false;
 		} else {
 			accountUsernameLoggedIn = acc.getUsername();
@@ -306,7 +218,7 @@ public class RunBank {
 	}
 
 	// Returns true if logout was successful
-	private static boolean logout(Transaction tran) {
+	private static boolean logout() {
 
 		System.out.println("Logout successful.");
 		accountUsernameLoggedIn = null;
@@ -315,7 +227,7 @@ public class RunBank {
 	}
 
 	// Returns true if an account was successfully created
-	private static boolean createAccount(Transaction tran) {
+	private static boolean createAccount() {
 
 		// Get information from user to find/create a person
 		System.out.print("Enter your first name: ");
@@ -325,13 +237,13 @@ public class RunBank {
 		System.out.print("Enter your Social Security Number: ");
 		String SSN = scan.nextLine().trim();
 
-		Person per = bankService.tryCreatePerson(SSN, firstName, lastName, "", tran);
+		Person per = bankService.tryCreatePerson(SSN, firstName, lastName, "");
 		if (per == null)
 			return false;
 
 		// Set email. email is not required to be a person but it
 		// is required to have an account
-		if (!setEmail(per, tran)) {
+		if (!setEmail(per)) {
 			return false;
 		}
 
@@ -344,15 +256,14 @@ public class RunBank {
 		String password2 = scan.nextLine().trim();
 
 		if (password1.equals(password2))
-			return bankService.tryCreateUser(per, username, password1, accountLevel.BRONZE, tran);
+			return bankService.tryCreateUser(per, username, password1, accountLevel.BRONZE);
 		else {
 			System.out.println("Passwords do not match.");
-			tran.setReasonFailed("The two supplied passwords did not match");
 			return false;
 		}
 	}
 
-	private static boolean transferFunds(boolean checking, Transaction tran) {
+	private static boolean transferFunds(boolean checking) {
 		BigDecimal balance = null;
 		String accountStr = null;
 
@@ -375,14 +286,12 @@ public class RunBank {
 
 			if (withdrawAmmount.abs() != withdrawAmmount) {
 				System.out.println("You cannot withdraw a negative quantity.");
-				tran.setReasonFailed("User tried to withdraw the negative quantity of " + withdrawAmmount);
 				return false;
 			}
 
 			switch(balance.compareTo(withdrawAmmount)) {
 			case -1:
 				System.out.println("You cannot withdraw more than your " + accountStr + " balance");
-				tran.setReasonFailed("User tried to withdraw " + withdrawAmmount + " from a balance of " + balance);
 				return false;
 			default:
 
@@ -397,7 +306,7 @@ public class RunBank {
 					guy.getAccount().setCheckingBalance(checkingBalance.add(withdrawAmmount));
 				}
 
-				if (!bankService.updateUser(guy, tran)) {
+				if (!bankService.updateUser(guy)) {
 					System.out.println("Transaction failed.");
 					return false;
 				}
@@ -405,20 +314,17 @@ public class RunBank {
 				System.out.println("$" + withdrawAmmount.toString() + " withdrawn from " + accountStr);
 				System.out.println("$" + guy.getAccount().getCheckingBalance().toString() + " new checking balance");
 
-				tran.setSummary(withdrawAmmount + " was taken from " + accountStr);
-
 				return true;
 			}
 
 		} catch (NumberFormatException e) {
 			System.out.println("Error: That is not a valid withdraw ammount");
-			tran.setReasonFailed("User tried to withdraw the non-integer ammount of " + withdrawAmmount);
 			return false;
 		}
 
 	}
 
-	private static boolean deposit(boolean checking, Transaction tran) {
+	private static boolean deposit(boolean checking) {
 		BigDecimal balance = null;
 		String accountStr = null;
 
@@ -441,7 +347,6 @@ public class RunBank {
 
 			if (depositAmmount.abs() != depositAmmount) {
 				System.out.println("You cannot deposit a negative quantity.");
-				tran.setReasonFailed("User tried to withdraw the negative quantity of " + depositAmmount);
 				return false;
 			}
 
@@ -453,7 +358,7 @@ public class RunBank {
 			else 		// Savings account
 				guy.getAccount().setSavingsBalance(finalBalance);
 
-			if (!bankService.updateUser(guy, tran)) {
+			if (!bankService.updateUser(guy)) {
 				System.out.println("Transaction failed.");
 				return false;
 			}
@@ -461,18 +366,15 @@ public class RunBank {
 			System.out.println("$" + depositAmmount.toString() + " deposited to " + accountStr);
 			System.out.println("$" + finalBalance + " new " + accountStr + " balance");
 
-			tran.setSummary(depositAmmount + " was deposited to " + accountStr);
-
 			return true;
 
 
 		} catch (NumberFormatException e) {
 			System.out.println("Error: That is not a valid withdraw ammount");
-			tran.setReasonFailed("User tried to withdraw the non-integer ammount of " + depositAmmount);
 			return false;
 		}
 	}
-	private static boolean viewAccount(Transaction tran) {
+	private static boolean viewAccount() {
 		Account acc = bankService.getUser(accountUsernameLoggedIn).getAccount();
 
 		System.out.println("Account created on : " + acc.getAccountOpenedDate());
@@ -486,9 +388,9 @@ public class RunBank {
 		return true;
 	}
 
-	private static boolean editAccount(Transaction tran) {
+	private static boolean editAccount() {
 
-		// FIXME add option to upgrade account, but requires credentials from a clerk (admin access)
+		// TODO add option to upgrade account, but requires credentials from a clerk (admin access)
 
 		System.out.println("Would you like to change your password or delete your account?");
 		String str = scan.nextLine().trim().toLowerCase();
@@ -499,7 +401,6 @@ public class RunBank {
 
 			if (bankService.validateUser(accountUsernameLoggedIn, password1) == null) {
 				System.out.println("Incorrect password.");
-				tran.setReasonFailed("Incorrectly entered current password");
 				return false;
 			}
 			else {
@@ -510,14 +411,12 @@ public class RunBank {
 
 				if (!password1.equals(password2)) {
 					System.out.println("New passwords do not match. Password not changed.");
-					tran.setReasonFailed("New password was not verified and therefore not changed");
 					return false;
 				}
 
 				BankUser guy = bankService.getUser(accountUsernameLoggedIn);
 				guy.getAccount().setPassword(password1);
-				if (bankService.updateUser(guy, tran)) {
-					tran.setSummary("Password changed");
+				if (bankService.updateUser(guy)) {
 					System.out.println("Password changed");
 				} else {
 					System.out.println("Password NOT changed");
@@ -536,23 +435,19 @@ public class RunBank {
 			if (confirmation.contains("yes") || confirmation.equalsIgnoreCase("y")) {
 
 				String localAccountUsername = accountUsernameLoggedIn;
-				makeTransaction(transactionType.LOGOUT);
-
+				logout();
+				
 				if (bankService.deleteAccount(localAccountUsername, false)) {
 					System.out.println("Account has ben DELETED. " + bankName + " thanks your for your patronage.");
-					tran.setSummary("Account has been deleted");
 				}
 				else {
 					System.out.println("Account could not be deleted. Please see an administrator.");
-					tran.setReasonFailed("Account could not be deleted");
 					return false;
 				}
 			}
 			else System.out.println("Account NOT deleted. " + bankName + " thanks you for your continued patronage.");
-			tran.setSummary("User chose to delete account but did not confirm the choice");
-
+			
 		} else {
-			tran.setReasonFailed("Invalid choice for editing account: " + str);
 			return false;
 		}
 
@@ -570,7 +465,7 @@ public class RunBank {
 	}
 
 	// Returns false if a valid email was not supplied
-	private static boolean setEmail(Person per, Transaction tran) {
+	private static boolean setEmail(Person per) {
 
 		// If the person already has an email
 		if (!per.getEmail().equals(""))
@@ -583,11 +478,25 @@ public class RunBank {
 		if (bankService.isEmailValid(email))
 			if (bankService.isEmailAvailable(email)) {
 				per.setEmail(email);
-				return bankService.updatePerson(per, tran);
+				return bankService.updatePerson(per);
 			}
 
-		tran.setReasonFailed("Invalid email supplied: " + email);
 		return false;
+	}
+	
+	private static void debugStuff() {
+		
+		DaoSqlImpl dao = new DaoSqlImpl();
+		Person per = dao.readPerson(123456789);
+		if (per == null)
+			per = dao.createPerson(123456789, "firstName", "lastName", LocalDate.now());
+		BankUser guy = dao.readBankUser(4);
+		if (guy == null)
+			guy = dao.createBankUser(per, "username", "password");
+		Account acc = dao.readAccount(4);
+		if (acc == null)
+			acc = dao.createAccount(guy, new BigDecimal(100), accountType.CHECKING, accountLevel.GOLD);
+		
 	}
 
 }

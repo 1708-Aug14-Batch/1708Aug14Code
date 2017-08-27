@@ -1,6 +1,6 @@
 package com.bank.pojos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Person {
 	
@@ -14,11 +14,11 @@ public class Person {
 	// If a person has an email then it must be unique.
 	private String email = "";
 	
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	private boolean deceased = false;
 	
-	public Person(int SSN, String firstName, String lastName, Date birthDate) {
+	public Person(int SSN, String firstName, String lastName, LocalDate birthDate) {
 
 		this.SSN = SSN;
 		this.firstName = firstName;
@@ -62,11 +62,11 @@ public class Person {
 		return deceased;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
