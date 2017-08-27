@@ -4,17 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.HashSet;
 
 import com.revature.andy.pojos.*;
-import com.revature.andy.session.PseudoSession;
 import com.revature.andy.util.ConnectionFactory;
 
-public class DAOImplementation {
+public class DAOImplementation implements DAOInterface {
 	
 	// prepared statement
 	
+	// Add Account
 	public int addAccount(User u, int typeID) {
 		
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
@@ -27,8 +26,6 @@ public class DAOImplementation {
 			PreparedStatement ps = con.prepareStatement(sql, key);
 			ps.setInt(1, u.getUserID());
 			ps.setInt(2, typeID);
-			
-			System.out.println(ps.toString());
 			
 			ps.executeUpdate();
 			
@@ -49,6 +46,7 @@ public class DAOImplementation {
 		
 	}
 	
+	// Update Account
 	public int updateAccount(User user, int accountID, double balance) {
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
 			con.setAutoCommit(false);
@@ -68,7 +66,7 @@ public class DAOImplementation {
 		}
 	};
 
-	// Pass object
+	// Add User by Pass object
 	public int addUser(User u) {
 
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
@@ -98,7 +96,7 @@ public class DAOImplementation {
 		return -1;
 	}
 	
-	// Pass strings
+	// Add User by Pass strings
 	public int addUser(String fn, String ln, String email, String pwd) {
 		
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
@@ -129,7 +127,7 @@ public class DAOImplementation {
 		}
 	}
 	
-	// Update pass object
+	// Update User by pass object
 	public int updateUser(User u) {
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
 			con.setAutoCommit(false);
@@ -153,6 +151,7 @@ public class DAOImplementation {
 		return -1;
 	}
 	
+	// Get Specific User
 	public User getUser(String email, String pwd) {
 		
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
@@ -178,6 +177,7 @@ public class DAOImplementation {
 		
 	}
 	
+	// Return HashSet of Accounts
 	public HashSet<Account> getAccounts(User user) {
 		
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
@@ -204,6 +204,7 @@ public class DAOImplementation {
 		
 	}
 	
+	// Get Account
 	public Account getAccount(User user, int accountID) {
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
 			String sql = "SELECT * FROM ACCOUNTS WHERE ACCOUNTID = ?";
@@ -227,6 +228,7 @@ public class DAOImplementation {
 		}
 	}
 	
+	// Return a AccountType Object From Look Up Table
 	public AccountType getAccountTypeFromID(int accountTypeID) {
 		
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
@@ -251,6 +253,7 @@ public class DAOImplementation {
 			
 	}
 	
+	// Delete Account
 	public int deleteAccount(User user, int accountID) {
 		
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){

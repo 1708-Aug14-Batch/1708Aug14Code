@@ -199,7 +199,11 @@ public class RunBank {
 								// Close account
 								else if(bankinput == 6) {
 									System.out.println("Enter AccountID To Delete");
-									ser.deleteAccount(scan.nextInt());
+									if(ser.deleteAccount(scan.nextInt())){
+										System.out.println("Account Closed");
+									}else {
+										System.out.println("Failed to Close Account");
+									}
 								}
 								// Return
 								else if(bankinput == 7) {
@@ -286,10 +290,12 @@ public class RunBank {
 					System.out.println("Invalid Email or Password");
 				}
 			}else if(input == 3) {
+				scan.close();
 				System.out.println("Exiting");
 				System.exit(0);
 			}
 			else {
+				scan.close();
 				System.exit(0);
 			}
 		}

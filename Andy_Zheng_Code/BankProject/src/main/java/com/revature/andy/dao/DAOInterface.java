@@ -1,38 +1,35 @@
 package com.revature.andy.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.revature.andy.pojos.Account;
+import com.revature.andy.pojos.AccountType;
 import com.revature.andy.pojos.User;
 
 public interface DAOInterface {
 	
 	// Accounts
-	public void addAccount(Account a);
+	public int addAccount(User u, int typeID);
 	
-	public void updateAccount(Account a);
+	public int updateAccount(User user, int accountID, double balance);
+	
+	public HashSet<Account> getAccounts(User user);
+
+	public Account getAccount(User user, int accountID);
+
+	public int deleteAccount(User user, int accountID);
 	
 	
 	// Users
-	public void addUser(User u);
+	public int addUser(User u);
+
+	public int updateUser(User u);
 	
-	public void updateUser(User u);
-	
-	//public void deleteUser(User s);
-	
-	
-	// Get All ?
-	public ArrayList<Account> getAllAccounts();
-	
-	public ArrayList<User> getAllUsers();
-	
-	// Get Specific
 	public User getUser(String email, String pwd);
 	
-	public ArrayList<Account> getAccount(int userID);
+	// AccountType
 	
-	
-	// Delete???
-	public void deleteAccount(String email, String pwd);
+	public AccountType getAccountTypeFromID(int accountTypeID);
 
 }

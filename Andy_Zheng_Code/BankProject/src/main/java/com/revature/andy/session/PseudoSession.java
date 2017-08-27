@@ -14,7 +14,7 @@ public class PseudoSession {
 	
 	static public boolean login(String email, String pwd) {
 		currentUser = dao.getUser(email, pwd);
-		if(currentUser.getUserID()>0){
+		if(currentUser != null && currentUser.getUserID()!=0){
 			isLoggedIn = true;
 			return true;
 		}else {

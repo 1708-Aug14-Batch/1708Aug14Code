@@ -4,14 +4,13 @@ import java.util.HashSet;
 
 import com.revature.andy.dao.DAOImplementation;
 import com.revature.andy.pojos.Account;
-import com.revature.andy.pojos.AccountType;
-import com.revature.andy.pojos.User;
 import com.revature.andy.session.PseudoSession;
 
 public class Service {
 
 	static DAOImplementation dao = new DAOImplementation();
 	
+	// Create User
 	public boolean createUser(String fname, String lname, String email, String pwd) {
 		
 		int x = dao.addUser(fname,lname,email,pwd);
@@ -22,7 +21,7 @@ public class Service {
 		}
 	}
 	
-	
+	// Create Account
 	public boolean createAccount(int typeID) {
 		int x = dao.addAccount(PseudoSession.getCurrentUser(), typeID);
 		if(x > 1) {
@@ -32,10 +31,12 @@ public class Service {
 		}
 	}
 	
+	// Get User Information from session
 	public void getUser() {
 		System.out.println(PseudoSession.getCurrentUser().toString());
 	}
 	
+	// Get Accounts
 	public void getAccounts() {
 		HashSet<Account> accountList = 	dao.getAccounts(PseudoSession.getCurrentUser());
 		if(accountList.isEmpty()) {
@@ -49,13 +50,13 @@ public class Service {
 		}
 	}
 	
+	// Change User info
 	public boolean changeInformation(int position, String change) {
 		
 		position = position-1;
 		
 		switch(position) {
 		case 1:
-			System.out.println("hrllo");
 			PseudoSession.getCurrentUser().setFName(change);
 			break;
 		case 2:
@@ -71,8 +72,6 @@ public class Service {
 			return false;
 		}
 		
-		System.out.println(PseudoSession.getCurrentUser().toString());
-		
 		int x = dao.updateUser(PseudoSession.getCurrentUser());
 		if(x == 1) {
 			return true;
@@ -81,6 +80,7 @@ public class Service {
 		}
 	}
 	
+	// Change Balance
 	public boolean changeBalance(int accountID, double amt, boolean w) {
 		if(w) {
 			amt = amt * -1;
@@ -97,6 +97,7 @@ public class Service {
 		}
 	}
 	
+	// Transfer Funds
 	public boolean transferFunds(int accountID1, int accountID2, double amt) {
 		
 		int x;
@@ -121,6 +122,7 @@ public class Service {
 		
 	}
 	
+	// Delete Account
 	public boolean deleteAccount(int accountID) {
 		int x = dao.deleteAccount(PseudoSession.getCurrentUser(), accountID);
 		if(x == 1) {
