@@ -1,10 +1,13 @@
 package com.bank.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.bank.dao.*;
 import com.bank.pojos.Account;
+import com.bank.pojos.Account.accountLevel;
+import com.bank.pojos.Account.accountType;
 import com.bank.pojos.Person;
 import com.bank.pojos.BankUser;
 
@@ -13,37 +16,34 @@ import com.bank.pojos.BankUser;
 //		ensure correctness on create as well as on update
 // TODO add methods to read particular values from database rather than always getting a list of every _____
 
+// FIXME rather than using so many daoImpl.readAllXXX() methods, make more methods in the DaoSqlImpl that are not in the DaoSql interface
+
 public class Service {
 
 	DaoSqlImpl daoImpl = new DaoSqlImpl();
 
-	public Account validateUser(String username, String password) {
+	public BankUser validateBankUser(String username, String password) {
 		username = username.toLowerCase();
 
-		BankUser guy = daoImpl.readUser(username);
+		BankUser guy = daoImpl.readBankUser(username);
 
 		if (guy == null)
 			return null;
 
-		if (guy.getAccount().isDeleted()) {
-			System.out.println("This account has been deleted.");
-			return null;
-		}
-
 		if (guy.getPassword().equals(password))
-			return guy.getAccount();
+			return guy;
 		else return null;
 	}
 
 	// FIXME an email does not need to end with .com, could be .org or others
+	//		Change to a regular expression using the method .matches()
 	public boolean isEmailValid(String email) {
 
 		if (email.contains("@") && email.contains(".com"))
 			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
-				if (!email.contains(Person.delimit))
-					return true;
+				return true;
 
-		System.out.println("Email addresses must not contain invalid character(s): " + Person.delimit + " and must contain a valid domain such as \"something@something.com\"");
+		System.out.println("Email addresses must contain a valid domain such as \"something@something.com\"");
 		return false;
 	}
 
@@ -64,12 +64,12 @@ public class Service {
 		return result;
 	}
 
-	public boolean isSSNAvailable(String SSN) {
+	public boolean isSSNAvailable(int SSN) {
 
-		ArrayList<Person> personList = new ArrayList<Person>();
+		ArrayList<Person> personList = daoImpl.readAllPersons();
 
 		for (Person per : personList)
-			if (per.getSSN().equals(SSN)) {
+			if (per.getSSN() == (SSN)) {
 				System.out.println("Someone else already has the SSN: " + SSN);
 				return false;
 			}
@@ -85,7 +85,7 @@ public class Service {
 			return true;
 
 		for (Person per : peopleList)
-			if (per.getEmail().equals(email)) {
+			if (per.getEmail() != null && per.getEmail().equals(email)) {
 				System.out.println("Email unavailable");
 				return false;
 			}
@@ -96,10 +96,10 @@ public class Service {
 	private boolean isUsernameAvailable(String username) {
 		username = username.toLowerCase();
 
-		ArrayList<BankUser> userList = daoImpl.readAllUsers();
+		ArrayList<BankUser> userList = daoImpl.readAllBankUsers();
 
 		for (BankUser guy : userList) {
-			if (guy.getAccount().getUsername().equals(username))
+			if (guy.getUsername().equals(username))
 				return false;
 		}
 
@@ -111,41 +111,42 @@ public class Service {
 	// the given SSN. Returns the person object either way
 	// An email must be supplied but it can be an empty string where it will not
 	// be checked for uniqueness
-	public Person tryCreatePerson(String SSNStr, String firstName, String lastName, String email) {
+	public Person tryCreatePerson(String SSNStr, String firstName, String lastName, LocalDate birthDate, String email) {
 
-		String SSN = validateSSN(SSNStr);
-		if (SSN == null) {
+		SSNStr = validateSSN(SSNStr);
+		if (SSNStr == null) {
 			System.out.println("Invalid SSN. Must contains 9 digits from 0-9 inclusive.");
 			return null;
 		}
 
+		Integer SSN = Integer.parseInt(SSNStr);
 		Person per = daoImpl.readPerson(SSN);
 
 		// If person does not exist yet
 		if (per == null) {
 
 			if (isSSNAvailable(SSN)) {
-				Person per2 = new Person(SSN, firstName, lastName);
 
+				per = daoImpl.createPerson(SSN, firstName, lastName, birthDate);
 				// Auto-set the email if available in the data
-				if (!(email.equals("")))
-					if (isEmailAvailable(email))
-						per2.setEmail(email);
-
-
-				daoImpl.createPerson(per2);
-				return per2;
-
+				if (!(email == null))
+					if (isEmailAvailable(email)) {
+						per.setEmail(email);
+						daoImpl.updatePerson(SSN, per);	// Update email address
+					}
+				
 			} else {
 				return null;
 			}
 		}
 
 		// If the entered credentials exactly match a person in the data set
-		if (firstName.equalsIgnoreCase(per.getFirstName()) && lastName.equalsIgnoreCase(per.getLastName()))
+		if (firstName.equalsIgnoreCase(per.getFirstName()) &&
+				lastName.equalsIgnoreCase(per.getLastName()) &&
+				birthDate.toString().equals(per.getBirthDate().toString()))
 			return per;
 		else {
-			System.out.println("That is not the name we have on file for that SSN.");
+			System.out.println("That is not the name/birth_date we have on file for that person.");
 			return null;
 		}
 
@@ -153,7 +154,7 @@ public class Service {
 
 	// Tries to create a new user
 	// Fails if the uername is not unique or if the given person is already a user
-	public BankUser tryCreateUser(Person per, String username, String password, accountLevel level) {
+	public BankUser tryCreateBankUser(Person per, String username, String password, accountLevel level) {
 		username = username.toLowerCase();
 
 		// Check that username is unique
@@ -161,42 +162,26 @@ public class Service {
 			System.out.println("That username is already taken.");
 			return null;
 		}
+		
+		if (personIsAUser(per)) {
+			System.out.println("That person is already a bank user");
+			return null;
+		}
 
-		// Create an account and associated user
-		ArrayList<BankUser> userList = daoImpl.readAllUsers();
-		// Account ID should be one higher than the current highest account id
-		int id = 1;
-		for (BankUser guy : userList)
-			id = Math.max(id, guy.getAccount().getAccountId());
-		BankUser myUser = new BankUser(per, new Account(per, username, password, type, ++id));
-
-		daoImpl.createUser(myUser);
-
-		return guy;
+		return daoImpl.createBankUser(per, username, password);
 	}
 
 	// Tries to create a new account
-	// Fails if ...FIXME
-	public Account tryCreateAccount() {
-
-		// Create an account and associated user
-		ArrayList<Account> accountList = daoImpl.readAllAccounts();
-		// Account ID should be one higher than the current highest account id
-		int id = 1;
-		for (BankUser guy : userList)
-			id = Math.max(id, guy.getAccount().getAccountId());
-		BankUser myUser = new BankUser(per, new Account(per, username, password, type, ++id));
-
-		daoImpl.createUser(myUser);
-
-		return guy;
+	public Account tryCreateAccount(BankUser guy, BigDecimal balance, accountType type, accountLevel level) {
+		
+		return daoImpl.createAccount(guy, balance, type, level);
 	}
 
 	// Updates a person with the new person object.
 	// Matches the old person with the new by SSN
 	// All non-final fields of the person object
 	// will be updated
-	public boolean updatePerson(Person per) {
+	public boolean updatePerson(int SSN, Person per) {
 
 		// If the person-to-be updated on file is deceased, their records cannot be updated
 		if (daoImpl.readPerson(per.getSSN()).isDeceased()) {
@@ -204,73 +189,66 @@ public class Service {
 			return false;
 		}
 
-		return daoImpl.updatePerson(per);
-
+		return daoImpl.updatePerson(SSN, per);
 
 	}
 
-	public boolean updateUser(BankUser guy) {
+	public boolean updateBankUser(int userId, BankUser guy) {
 
-		// If the user-to-be updated on file has had their account deleted, their records cannot be updated
-		if (daoImpl.readUser(guy.getAccount().getUsername()).getAccount().isDeleted()) {
+		return daoImpl.updateBankUser(userId, guy);
+
+	}
+	
+	public boolean updateAccount(int accountId, Account acc) {
+
+		// If the account is deleted, the records cannot be updated
+		if (daoImpl.readAccount(accountId).isDeleted()) {
 			return false;
 		}
 
-		return daoImpl.updateUser(guy);
+		return daoImpl.updateAccount(accountId, acc);
 
+	}	
+
+	public BankUser getBankUser(int userId) {
+
+		return daoImpl.readBankUser(userId);
+	}
+	
+	public Person getPerson(int SSN) {
+		
+		return daoImpl.readPerson(SSN);
+	}
+	
+	public ArrayList<Account> getAccounts(int userId) {
+		
+		return daoImpl.readAllAccounts(userId);
 	}
 
-	public BankUser getUser(String username) {
-
-		return daoImpl.readUser(username.toLowerCase());
-
-	}
-
-	public BigDecimal getCheckingAccountBalance(String username) {
-
-		if (daoImpl.readUser(username).getAccount().isDeleted()) {
+	public BigDecimal getAccountBalance(int accountId) {
+		Account acc = daoImpl.readAccount(accountId);
+		
+		if (acc.isDeleted()) {
 			System.out.println("Nothing can be withdrawn as this account has been deleted");
 			return null;
 		}
 
-		return daoImpl.readUser(username).getAccount().getCheckingBalance();
+		return acc.getBalance();
 
 	}
 
-	public BigDecimal getSavingsAccountBalance(String username) {
+	public boolean deleteAccount(int accountId) {
 
-		if (daoImpl.readUser(username).getAccount().isDeleted()) {
-			System.out.println("Nothing can be withdrawn as this account has been deleted");
-			return null;
-		}
-
-		return daoImpl.readUser(username).getAccount().getSavingsBalance();
-
-	}
-
-	public BigDecimal getRewardsAccountBalance(String username) {
-
-		if (daoImpl.readUser(username).getAccount().isDeleted()) {
-			System.out.println("Nothing can be withdrawn as this account has been deleted");
-			return null;
-		}
-
-		return daoImpl.readUser(username).getAccount().getRewardsBalance();
-
-	}
-
-	public boolean deleteAccount(String username, boolean erase) {
-
-		return daoImpl.deleteUser(username.toLowerCase(), erase);
+		return daoImpl.deleteAccount(accountId);
 
 	}
 
 	private boolean personIsAUser(Person per) {
 
-		ArrayList<BankUser> userList = daoImpl.readAllUsers();
+		ArrayList<BankUser> userList = daoImpl.readAllBankUsers();
 
 		for (BankUser guy : userList)
-			if (guy.getSSN().equals(per.getSSN()))
+			if (guy.getSSN() == (per.getSSN()))
 				return true;
 
 		return false;

@@ -15,20 +15,19 @@ public interface DaoSql {
 	// Person
 	public Person createPerson(int SSN, String firstName, String lastName, LocalDate birthDate);
 	public Person readPerson(int SSN);
-	public Person readPerson(String email);
-	// change any person's field except their primary keys
-	public boolean updatePerson(Person per);
-	// A deleted person is merely marked as deceased unless erase = true
-	public boolean deletePerson(String SSN, boolean erase);
+	// change any person's field except their uniquely identifying keys
+	public boolean updatePerson(int SSN, Person per);
+	// A deleted person is merely marked as deceased
+	public boolean deletePerson(int SSN);
 	public ArrayList<Person> readAllPersons();
 	
 	// BankUser
 	public BankUser createBankUser(Person per, String username, String password);
-	public BankUser readBankUser(String username);
 	public BankUser readBankUser(int userId);
-	public boolean updateBankUser(BankUser guy);
-	// A deleted User merely has their account marked as deleted unless erase = true
-	public boolean deleteBankUser(int userId, boolean erase);
+	// change any BankUser's fields except their uniquely identifying keys
+	public boolean updateBankUser(int userId, BankUser guy);
+	// A deleted User merely has their account marked as deleted
+	public boolean deleteBankUser(int userId);
 	public ArrayList<BankUser> readAllBankUsers();	
 	
 	/* TODO
@@ -42,11 +41,11 @@ public interface DaoSql {
 	// Account
 	public Account createAccount(BankUser guy, BigDecimal balance, accountType type, accountLevel level);
 	public Account readAccount(int accountId);
-	// change any person's field except their primary keys
-	public boolean updateAccount(Account acc);
-	// A deleted person is merely marked as deceased unless erase = true
-	public boolean deleteAccount(int accountId, boolean erase);
+	// change any account's field except their uniquely identifying keys
+	public boolean updateAccount(int accountId, Account acc);
+	// A deleted Account is merely marked as deleted
+	public boolean deleteAccount(int accountId);
 	public ArrayList<Account> readAllAccounts();
-	
+	public ArrayList<Account> readAllAccounts(int userId);
 	
 }

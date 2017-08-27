@@ -2,29 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="create" key="selection"/>
+		<item value="commit" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="create"/>
-			<item value="read"/>
-			<item value="SELECT *"/>
-			<item value="LocalDate.par"/>
-			<item value="readPerson"/>
-			<item value="readAccount"/>
-			<item value="opened_date"/>
-			<item value="TO_DATE"/>
+			<item value="commit"/>
+			<item value="294304865"/>
+			<item value="Eli"/>
+			<item value="setEmail"/>
+			<item value="trySetEmail"/>
+			<item value="viewAccount"/>
+			<item value="get"/>
+			<item value="tryCreate"/>
 		</list>
 		<list key="replacehistory">
+			<item value="System.out.println(&quot;Database error&quot;);"/>
+			<item value="syso "/>
+			<item value="password2"/>
+			<item value=".getSSN() == (SSN)"/>
+			<item value="daoImpl.deleteBankUser"/>
+			<item value="daoImpl.readBankUser"/>
 			<item value=""/>
 			<item value="LocalDate"/>
-			<item value="TODO"/>
-			<item value="PreparedStatement ps"/>
-			<item value="ps."/>
-			<item value="ps"/>
-			<item value="songID"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

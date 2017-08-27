@@ -2,9 +2,36 @@ package com.bank.pojos;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Account {
+	
+	public static final Map<accountLevel, Double> rewardsRateMap = new TreeMap<accountLevel, Double>();
+	public static final Map<accountLevel, Double> savingsRateMap = new TreeMap<accountLevel, Double>();
+	public static final Map<accountLevel, Double> interestRateMap = new TreeMap<accountLevel, Double>();
+	
+	// Initialization block
+	static {
+		rewardsRateMap.put(accountLevel.BRONZE, (double)1/100);
+		rewardsRateMap.put(accountLevel.SILVER, (double)2/100);
+		rewardsRateMap.put(accountLevel.GOLD, (double)3/100);
+		rewardsRateMap.put(accountLevel.PLATINUM, (double)5/100);
+		rewardsRateMap.put(accountLevel.DOUBLE_PLATINUM, (double)10/100);
 		
+		savingsRateMap.put(accountLevel.BRONZE, (double)3/100);
+		savingsRateMap.put(accountLevel.SILVER, (double)4/100);
+		savingsRateMap.put(accountLevel.GOLD, (double)5/100);
+		savingsRateMap.put(accountLevel.PLATINUM, (double)6/100);
+		savingsRateMap.put(accountLevel.DOUBLE_PLATINUM, (double)8/100);
+		
+		interestRateMap.put(accountLevel.BRONZE, (double)25/100);
+		interestRateMap.put(accountLevel.SILVER, (double)23/100);
+		interestRateMap.put(accountLevel.GOLD, (double)20/100);
+		interestRateMap.put(accountLevel.PLATINUM, (double)17/100);
+		interestRateMap.put(accountLevel.DOUBLE_PLATINUM, (double)12/100);
+	}
+	
 	// Account id number is initialized when the account is created
 	private final int accountId;
 	
@@ -40,12 +67,32 @@ public class Account {
 		PLATINUM,
 		DOUBLE_PLATINUM
 	};
+	public static void printAccountLevels() {
+		String result = "";
+		
+		for (accountLevel level : accountLevel.values())
+			if (level != accountLevel.NULL)
+				result += level.toString() + ", ";
+		result = result.substring(0, result.length()-2);	// Delete the last ", " from the end
+		
+		System.out.println(result);
+	}
 	public enum accountType {
 		NULL,		// The database is 1-indexed so I'm throwing out the index 0 element
 		CHECKING,
 		SAVINGS,
 		CREDIT,
 		REWARD
+	}
+	public static void printAccountTypes() {
+		String result = "";
+		
+		for (accountType type : accountType.values())
+			if (type != accountType.NULL)
+				result += type.toString() + ", ";
+		result = result.substring(0, result.length()-2);	// Delete the last ", " from the end
+		
+		System.out.println(result);
 	}
 	
 	public Account(int accountId, LocalDate accountOpenedDate, BigDecimal balance,
@@ -74,14 +121,20 @@ public class Account {
 	public accountType getType() {
 		return type;
 	}
-	public void setType(accountType type) {
-		this.type = type;
+	public boolean setType(accountType type) {
+		if (type != accountType.NULL)
+			this.type = type;
+		else return false;
+		return true;
 	}
 	public accountLevel getLevel() {
 		return level;
 	}
-	public void setLevel(accountLevel level) {
-		this.level = level;
+	public boolean setLevel(accountLevel level) {
+		if (level != accountLevel.NULL)
+			this.level = level;
+		else return false;
+		return true;
 	}
 	public int getUserId() {
 		return userId;
@@ -95,6 +148,16 @@ public class Account {
 	public int getAccountId() {
 		return accountId;
 	}
+	public double getInterestRate() {
+		return interestRateMap.get(level);
+	}
+	public double getRewardsRate() {
+		return rewardsRateMap.get(level);
+	}
+	public double getSavingsRate() {
+		return savingsRateMap.get(level);
+	}
+	
 	@Override
 	public String toString() {
 		return "Account [accountOpenedDate=" + accountOpenedDate + ", accountId=" + accountId + ", balance=" + balance

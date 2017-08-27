@@ -5,11 +5,8 @@
 <fullyQualifiedTypeName name="com.ex.dao.DaoSqlImpl"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Person"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.bank.pojos.BankUser"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Account"/>
-<fullyQualifiedTypeName name="com.bank.pojos.Account.accountLevel"/>
-<fullyQualifiedTypeName name="com.bank.dao.DaoSqlImpl"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
 <fullyQualifiedTypeName name="com.bank.pojos.Account.accountType"/>
@@ -18,4 +15,10 @@
 <fullyQualifiedTypeName name="java.util.Properties"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.bank.pojos.Account.accountLevel"/>
+<fullyQualifiedTypeName name="java.rmi.server.SocketSecurityException"/>
+<fullyQualifiedTypeName name="java.time.format.DateTimeParseException"/>
+<fullyQualifiedTypeName name="com.bank.dao.DaoSqlImpl"/>
+<fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
 </qualifiedTypeNameHistroy>
