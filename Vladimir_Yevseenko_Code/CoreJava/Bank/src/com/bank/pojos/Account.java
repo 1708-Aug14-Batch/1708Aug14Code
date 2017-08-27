@@ -2,17 +2,41 @@ package com.bank.pojos;
 
 import java.math.BigDecimal;
 
-import com.rev.utils.InsufficientFundsException;
 
 public class Account {
+	private int id;
 	private AccountType type;
 	private User user;
 	private BigDecimal balance;
 	
-	public Account(AccountType type, User user, BigDecimal balance) {
+	public Account() {
+		
+	}
+	
+	public Account(int id, AccountType type, User user, BigDecimal balance) {
+		this.id = id;
 		this.type = type;
 		this.user = user;
 		this.balance = balance;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public void setType(AccountType type) {
+		this.type = type;
+	}
+	
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+	
+	public void setUser(User user){ 
+		this.user = user;
 	}
 	
 	public AccountType getType() {
@@ -31,9 +55,10 @@ public class Account {
 		balance = balance.add(amt);
 	}
 	
-	public void withdraw(BigDecimal amt) throws InsufficientFundsException {
+	public boolean withdraw(BigDecimal amt) {
 		if (amt.compareTo(balance) > 0)
-			throw new InsufficientFundsException();
+			return false;
 		balance = balance.subtract(amt);
+		return true;
 	}
 }

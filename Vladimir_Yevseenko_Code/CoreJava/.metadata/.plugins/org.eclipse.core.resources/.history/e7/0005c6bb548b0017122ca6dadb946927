@@ -1,0 +1,151 @@
+package com.bank.dao;
+
+import java.io.Closeable;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.bank.pojos.Account;
+import com.bank.pojos.AccountType;
+import com.bank.pojos.User;
+import com.rev.utils.ConnectionFactory;
+
+public class DBDAO implements Closeable {
+	private Connection dbConn;
+	
+	public DBDAO() {
+		dbConn = ConnectionFactory.getInstance().getConnection();
+	}
+	
+	
+	public boolean createNewUser(String fn, String ln, String email, String pw) {
+		final String sql = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setString(1, fn);
+			cs.setString(2, ln);
+			cs.setString(3, email);
+			cs.setString(4, pw);
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
+	
+	public boolean updateUserFirst(int userId, String fn) {
+		final String sql = "UPDATE users SET first_name = ? WHERE user_id = ?";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setString(1, fn);
+			cs.setInt(2, userId);
+			cs.execute();
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
+	
+	public boolean updateUserLast(int userId, String ln) {
+		final String sql = "UPDATE users SET last_name = ? WHERE user_id = ?";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setString(1, ln);
+			cs.setInt(2, userId);
+			cs.execute();
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
+	
+	public boolean updateUserEmail(int userId, String email) {
+		final String sql = "UPDATE users SET email = ? WHERE user_id = ?";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setString(1, email);
+			cs.setInt(2, userId);
+			cs.execute();
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
+	
+	public boolean updateUserPassword(int userId, String pw) {
+		final String sql = "UPDATE users SET password = ? WHERE user_id = ?";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setString(1, pw);
+			cs.setInt(2, userId);
+			cs.execute();
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
+	
+	public boolean createNewAccount(int userId, AccountType type) {
+		final String sql = "INSERT INTO accounts (user_id, account_type) VALUES (?, ?)";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setInt(1, userId);
+			cs.setInt(2, type.getId());
+			cs.execute();
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
+	
+	public Account selectAccount(int userId, AccountType type) {
+		final String sql = "SELECT * FROM accounts WHERE user_id = ? AND account_type = ?";
+		try (PreparedStatement cs = dbConn.prepareStatement(sql)) {
+			cs.setInt(1, userId);
+			cs.setInt(2, type.getId());
+			ResultSet rs = cs.executeQuery();
+			
+			Account acc = new Account();
+			acc.setId(rs.getInt("account_id"));
+			acc.setBalance(new BigDecimal(rs.getFloat("balance")));
+			acc.setType(type);
+			
+			return acc;
+		} catch (SQLException ex) {
+			return null;
+		}
+	}
+	
+	public User attemptLogin(String email, String password) {
+		final String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+		try (PreparedStatement s = dbConn.prepareStatement(sql)) {
+			User usr = new User();
+			
+			s.setString(1, email);
+			s.setString(2, password);
+			
+			ResultSet rs = s.executeQuery();
+			
+			usr.setId(rs.getInt("user_id"));
+			usr.setFirst(rs.getString("first_name"));
+			usr.setLast(rs.getString("last_name"));
+			usr.setEmail(email);
+			usr.setPassword(password);
+			
+			return usr;
+		} catch (SQLException ex) {
+			return null;
+		}
+	}
+	
+	@Override
+	public void close() {
+		try {
+			dbConn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+}

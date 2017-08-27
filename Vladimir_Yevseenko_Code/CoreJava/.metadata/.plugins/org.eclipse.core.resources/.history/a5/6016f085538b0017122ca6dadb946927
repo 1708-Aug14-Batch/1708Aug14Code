@@ -1,0 +1,34 @@
+package com.bank.main;
+
+import java.util.Scanner;
+import com.bank.service.BankService;
+
+public class Driver {
+	static Scanner scanner = new Scanner(System.in);
+	static BankService service = new BankService();
+	
+	public static void main(String[] args) {
+		boolean running = true;
+		
+		while (running) {
+			System.out.println("Select an option:");
+			System.out.println("(1) login, (2) create user");
+			switch (scanner.nextLine()) {
+				case "1": login(); break;
+				case "2": createAcc(); break;
+				default: System.out.println("Invalid choice.\n");
+			}
+		}
+	}
+	
+	
+	public static void login() {
+		
+	}
+	
+	public static void createAcc() {
+		
+	}
+	
+	
+}

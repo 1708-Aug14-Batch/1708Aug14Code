@@ -1,0 +1,30 @@
+package com.bank.service;
+
+import com.bank.dao.DBDAO;
+import com.bank.pojos.Account;
+import com.bank.pojos.User;
+
+public class BankService {
+	private DBDAO dao;
+	private User curUser;
+	
+	public BankService() {
+		dao = new DBDAO();
+	}
+	
+	public boolean createNewUser(String fn, String ln, String e, String pw) {
+		return dao.createNewUser(new User(fn, ln, e, pw));
+	}
+	
+	public User attemptLogin(String email, String pw) {
+		return dao.attemptLogin(email, pw);
+	}
+	
+	public void createNewAccount(Account acc) {
+		dao.createNewAccount(acc);
+	}
+	
+	public void updateUserInfo(User user) {
+		
+	}
+}

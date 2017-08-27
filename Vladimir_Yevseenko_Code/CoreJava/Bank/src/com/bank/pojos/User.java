@@ -5,6 +5,9 @@ public class User {
 	private int id = -1;
 	private String first, last, email, password;
 	
+	public User() {
+	}
+	
 	public User(String first, String last, String email, String password) {
 		this.first = first;
 		this.last = last;
@@ -19,6 +22,9 @@ public class User {
 		this.email = email;
 	}
 	
+	public void setId(int id) {
+		this.id = id;
+	}
 	public int getId() {
 		return id;
 	}

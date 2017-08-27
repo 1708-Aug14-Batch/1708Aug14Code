@@ -18,6 +18,16 @@ public enum AccountType {
 		return typeName;
 	}
 	
+	
+	public static AccountType get(int id) {
+		switch (id) {
+		case 1: return CHECKING;
+		case 2: return SAVINGS;
+		case 3: return CREDIT;
+		default: return null;
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "AccountType [id="+id+" typeName="+typeName;
