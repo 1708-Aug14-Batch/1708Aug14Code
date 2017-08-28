@@ -109,9 +109,21 @@ public class UserDAOImpl implements UserDAO<User> {
 	 * @return The number of affected rows. Should be 1.
 	 */
 	@Override
-	public int updateUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void updateUser(User user) {
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
+			conn.setAutoCommit(false);
+			String sql = "UPDATE bankuser SET email = ?, password = ? WHERE user_id = ?"; // do not use semicolon
+			String[] key = new String[1];
+			key[0] = "user_id";
+			PreparedStatement statement = conn.prepareStatement(sql, key);
+			statement.setString(1, user.getEmail());
+			statement.setString(2, user.getPassword());
+			statement.setInt(3, user.getUserID());
+			statement.executeUpdate();
+			conn.commit();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
 	}
 
 	/**

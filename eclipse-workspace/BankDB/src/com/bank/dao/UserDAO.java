@@ -15,7 +15,7 @@ public interface UserDAO<User> {
 
 	User readUser(int id);
 
-	int updateUser(User user);
+	void updateUser(User user);
 
 	int disableUser(User user);
 

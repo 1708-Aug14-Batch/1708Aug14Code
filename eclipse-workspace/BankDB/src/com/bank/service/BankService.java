@@ -324,16 +324,13 @@ public class BankService {
 	}
 	
 	private void editInfo() {
-		System.out.print("Enter your first name >");
-		String firstName = this.scanner.nextLine();
-		System.out.print("Enter your last name >");
-		String lastName = this.scanner.nextLine();
+		System.out.print("Enter new email >");
+		String email = this.scanner.nextLine();
 		System.out.print("Enter a password >");
 		String password = this.scanner.nextLine();
-		this.loggedInUser.setFirstName(firstName);
-		this.loggedInUser.setLastName(lastName);
+		this.loggedInUser.setEmail(email);
 		this.loggedInUser.setPassword(password);
-		//this.dao.updateUser(this.loggedInUser);
+		this.userDAO.updateUser(this.loggedInUser);
 		this.returnToLoggedInMenu();
 	}
 	
