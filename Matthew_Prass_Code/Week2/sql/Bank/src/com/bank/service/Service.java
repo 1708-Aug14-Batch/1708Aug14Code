@@ -31,6 +31,7 @@ public class Service
 			break;
 		case 2:
 			create();
+			running();
 			break;
 		case 3:
 			quit();
@@ -210,16 +211,19 @@ public class Service
 				newAct = new Account(0,u,dao.getAccountType(1));
 				dao.creatAccount(u, 1);
 				list.add(newAct);
+				running();
 				break;
 			case 2:
 				newAct = new Account(0,u,dao.getAccountType(2));
 				dao.creatAccount(u, 2);
 				list.add(newAct);
+				running();
 				break;
 			case 3:
 				newAct = new Account(0,u,dao.getAccountType(3));
 				dao.creatAccount(u, 3);
 				list.add(newAct);
+				running();
 				break;
 			default: 
 				System.out.println("Please enter a valid option.");
@@ -249,18 +253,20 @@ public class Service
 					{
 						a.setBalance(a.getBalance()+amt);
 						dao.updateAccount(a);
+						running();
 						break;
 					}
 					else if(choice2 == 2)
 					{
 						a.setBalance(a.getBalance()-amt);
 						dao.updateAccount(a);
+						running();
 						break;
 					}
 				}
 				else
 				{
-					break;
+					continue;
 				}
 			//System.out.println("Account doesn't exist!");
 			break;
@@ -276,12 +282,14 @@ public class Service
 					{
 						a.setBalance(a.getBalance()+amt);
 						dao.updateAccount(a);
+						running();
 						break;
 					}
 					else if(choice2 == 2)
 					{
 						a.setBalance(a.getBalance()-amt);
 						dao.updateAccount(a);
+						running();
 						break;
 					}
 				}
@@ -304,12 +312,14 @@ public class Service
 					{
 						a.setBalance(a.getBalance()+amt);
 						dao.updateAccount(a);
+						running();
 						break;
 					}
 					else if(choice2 == 2)
 					{
 						a.setBalance(a.getBalance()-amt);
 						dao.updateAccount(a);
+						running();
 						break;
 					}
 				}
@@ -360,6 +370,7 @@ public class Service
 								dao.updateAccount(a);
 								ta.setBalance(ta.getBalance()+amt);
 								dao.updateAccount(ta);
+								running();
 							}
 						}
 					}
@@ -379,6 +390,7 @@ public class Service
 								dao.updateAccount(a);
 								ta.setBalance(ta.getBalance()+amt);
 								dao.updateAccount(ta);
+								running();
 							}
 						}
 					}
@@ -404,6 +416,7 @@ public class Service
 								dao.updateAccount(a);
 								ta.setBalance(ta.getBalance()+amt2);
 								dao.updateAccount(ta);
+								running();
 							}
 						}
 					}
@@ -423,6 +436,7 @@ public class Service
 								dao.updateAccount(a);
 								ta.setBalance(ta.getBalance()+amt2);
 								dao.updateAccount(ta);
+								running();
 							}
 						}
 					}
@@ -448,6 +462,7 @@ public class Service
 								dao.updateAccount(a);
 								ta.setBalance(ta.getBalance()+amt3);
 								dao.updateAccount(ta);
+								running();
 							}
 						}
 					}
@@ -467,6 +482,7 @@ public class Service
 								dao.updateAccount(a);
 								ta.setBalance(ta.getBalance()+amt3);
 								dao.updateAccount(ta);
+								running();
 							}
 						}
 					}
@@ -505,6 +521,7 @@ public class Service
 			u.setPassword(pass);
 			
 			dao.updateUser(u);
+			running();
 			break;
 		case 2:
 			ArrayList<Account> list = dao.getAllAccountsForUser(u.getId());
@@ -513,6 +530,7 @@ public class Service
 				dao.deleteAccount(a);
 			}
 			dao.deleteUser(u);
+			mainMenu();
 		}
 		
 	}
@@ -532,6 +550,7 @@ public class Service
 				break;
 			}
 		}
+		running();
 	}
 }
 
