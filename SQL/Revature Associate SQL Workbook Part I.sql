@@ -153,7 +153,7 @@ END get_employee_names;
 --4.2
 --Create a stored procedure that updates the personal information of an employee
 CREATE OR REPLACE PROCEDURE update_personal_info
-(id IN NUMBER, ln IN VARCHAR2, fn IN VARCHAR2, new_title IN VARCHAR2, new_address IN VARCHAR2, new_city IN VARCHAR2, new_state IN VARCHAR2, new_country IN VARCHAR2, new_postalcode IN VARCHAR2, new_ phone IN VARCHAR2, new_fax IN VARCHAR2, new_email IN VARCHAR2) AS
+("id" IN NUMBER, ln IN VARCHAR2, fn IN VARCHAR2, new_title IN VARCHAR2, new_address IN VARCHAR2, new_city IN VARCHAR2, new_state IN VARCHAR2, new_country IN VARCHAR2, new_postalcode IN VARCHAR2, new_ phone IN VARCHAR2, new_fax IN VARCHAR2, new_email IN VARCHAR2) AS
   BEGIN
     UPDATE employee
     SET lastname = ln,
@@ -161,12 +161,12 @@ CREATE OR REPLACE PROCEDURE update_personal_info
         title = new_title,
         address = new_address,
         city = new_city,
-        state = new_state,
+        "state" = new_state,
         country = new_country,
         postalcode = new_postalcode,
         phone = new_phone,
         fax = new_fax,
         email = new_email
-    WHERE employeeid = id;
+    WHERE employeeid = "id";
 END update_personal_info;
       
