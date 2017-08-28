@@ -95,3 +95,78 @@ CREATE OR REPLACE FUNCTION get_mediatype_length
     FROM mediatype
     WHERE mediatypeid = 1;
 END get_mediatype_length;
+
+--3.2
+--Create a function that returns the average total of all invoices
+CREATE OR REPLACE FUNCTION get_invoice_total_average
+  RETURN NUMBER
+  AS
+    average NUMBER;
+  BEGIN
+    SELECT AVG(total) AS average
+    FROM invoice;
+END get_invoice_total_average;
+--Create a function that returns the most expensive track
+CREATE OR REPLACE FUNCTION get_most_expensive_track
+  RETURN VARCHAR2
+  AS
+    "name" VARCHAR2;
+  BEGIN
+    SET @max_price := (SELECT MAX(price) FROM track);
+    SELECT name
+    FROM track
+    WHERE price = @max_price;
+END get_most_expensive_track;
+
+--3.3
+--Create a function that returns the average price of invoiceline items in the invoiceline table
+CREATE OR REPLACE FUNCTION get_invoiceline_price_average
+  RETURN NUMBER
+  AS
+    average NUMBER;
+  BEGIN
+    SELECT AVG(unitprice) AS average
+    FROM invoiceline;
+END get_invoiceline_price_average;
+
+--3.4
+--Create a function that returns all employees who are born after 1968
+TYPE employee_collection IS RECORD(lastname VARCHAR2, firstname VARCHAR2);
+CREATE OR REPLACE FUNCTION get_employees_born_after_1968
+  RETURN employees
+  AS employee_collection employees;
+  BEGIN
+    SELECT (lastname, firstname) AS  employees
+    FROM employee
+    WHERE birthdate > to_date('01-JAN-68','DD-MON-YY');
+END get_employees_born_after_1968;
+/
+
+--4.1
+--Create a stored procedure that selects the first and last names of all the employees
+CREATE OR REPLACE PROCEDURE get_employee_names(firstname OUT VARCHAR2, lastname OUT VARCHAR2) AS
+  BEGIN
+    SELECT firstname, lastname
+    FROM employee;
+END get_employee_names;
+
+--4.2
+--Create a stored procedure that updates the personal information of an employee
+CREATE OR REPLACE PROCEDURE update_personal_info
+(id IN NUMBER, ln IN VARCHAR2, fn IN VARCHAR2, new_title IN VARCHAR2, new_address IN VARCHAR2, new_city IN VARCHAR2, new_state IN VARCHAR2, new_country IN VARCHAR2, new_postalcode IN VARCHAR2, new_ phone IN VARCHAR2, new_fax IN VARCHAR2, new_email IN VARCHAR2) AS
+  BEGIN
+    UPDATE employee
+    SET lastname = ln,
+        firstname = fn,
+        title = new_title,
+        address = new_address,
+        city = new_city,
+        state = new_state,
+        country = new_country,
+        postalcode = new_postalcode,
+        phone = new_phone,
+        fax = new_fax,
+        email = new_email
+    WHERE employeeid = id;
+END update_personal_info;
+      
