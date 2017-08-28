@@ -307,4 +307,14 @@ public class DaoImpl implements DAO{
 		}
 		return atlist;
 	}
+
+	@Override
+	public boolean accountVarify(User user, int accID) {
+		// TODO Auto-generated method stub
+		Account account= getAnAccount(accID);
+		if(account.getUser().getID()==user.getID())
+			return true;
+		else
+			return false;
+	}
 }

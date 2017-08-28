@@ -31,4 +31,5 @@ public interface DAO {
 	
 	public AccountType getAccountType(int id);
 	public ArrayList<AccountType> getAllAccountType();
+	public boolean accountVarify(User user, int accID);
 }
