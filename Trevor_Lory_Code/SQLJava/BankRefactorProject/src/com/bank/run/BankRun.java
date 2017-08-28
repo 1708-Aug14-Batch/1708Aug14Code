@@ -11,7 +11,6 @@ public class BankRun {
 
 	public static void main(String[] args) {
 		Service ser = new Service();
-		//ser.addUser("rrr", "rrr", "rrr", "rrr");
 		run(ser);
 	}
 	
@@ -138,14 +137,15 @@ public class BankRun {
 		while(true) {
 			try {
 				num = scan.nextInt();
-				break;
 			}
 			catch(Exception e) { 
 				System.out.println("Invalid Account Number, please try again.");
 			}
 			if(num < 0 || num > list.size() - 1) {
 				System.out.println("Invalid Account Number, please try again.");
+				continue;
 			}
+			break;
 		}
 		System.out.println("How much do you want to withdraw: ");
 		double d = 0;
@@ -173,14 +173,15 @@ public class BankRun {
 		while(true) {
 			try {
 				num = scan.nextInt();
-				break;
 			}
 			catch(Exception e) { 
 				System.out.println("Invalid Account Number, please try again.");
 			}
 			if(num < 0 || num > list.size() - 1) {
 				System.out.println("Invalid Account Number, please try again.");
+				continue;
 			}
+			break;
 		}
 		System.out.println("How much do you want to Deposit: ");
 		double d = 0;
