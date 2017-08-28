@@ -61,3 +61,37 @@ WHERE billingaddress LIKE 'T%';
 SELECT *
 FROM invoice
 WHERE total > 15 AND total < 50;
+--Select all employees hired between 1st of June 2003 and 1st of March 2004
+SELECT *
+FROM employee
+WHERE hiredate > to_date('01-JUN-03','DD-MON-YY') AND hiredate < to_date('01-MAR-04','DD-MON-YY');
+
+--2.7
+--Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them)
+DELETE FROM invoiceline
+WHERE invoiceid = 245 OR invoiceid = 268 OR invoiceid = 290 OR invoiceid = 342 OR invoiceid = 50 OR invoiceid = 61 OR invoiceid = 116;
+DELETE FROM invoice
+WHERE customerid = 32;
+DELETE FROM customer
+WHERE firstname = 'Robert' AND lastname = 'Walter';
+
+--3.1
+--Create a function that returns the current time
+CREATE OR REPLACE FUNCTION get_current_time
+  RETURN
+    TIMESTAMP
+  AS
+    current_time TIMESTAMP;
+  BEGIN
+    SELECT SYSTIMESTAMP FROM dual;
+END get_current_time;
+--create a function that returns the length of a mediatype from the mediatype table
+CREATE OR REPLACE FUNCTION get_mediatype_length
+  RETURN NUMBER
+  AS
+    length NUMBER;
+  BEGIN
+    SELECT LENGTH(name)
+    FROM mediatype
+    WHERE mediatypeid = 1;
+END get_mediatype_length;
