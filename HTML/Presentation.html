@@ -1,8 +1,21 @@
 <!DOCTYPE>
-<!-- https://getbootstrap.com/ -->
+<!--
+Presentation notes:
+
+
+There are three notions of the JVM: specification, implementation, and instance.
+	The specification is a document that formally describes what is required of a JVM implementation.
+	A JVM implementation is a computer program that meets the requirements of the JVM specification.
+	An instance of a JVM is an implementation running in a process that executes a computer program compiled into Java bytecode.
+
+.class files
+security
+run anywhere
+
+-->
 <html>
 <head>
-<title>My Second HTML Page</title>
+<title>Java Virtual Machine</title>
 <link rel="stylesheet" href="CSS intro.css">
 <link rel="" href="">	<!-- Add an icon with this -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -19,63 +32,99 @@
   <!-- Navbar content -->
 </nav>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
 <br>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+<div class="text-center">
+	<h1>The Java Virtual Machine</h1>
+	<br>
+	<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/JvmSpec7.png/556px-JvmSpec7.png">
 </div>
+<div class="text-left">
+<p>	The Java Virtual Machine (JVM) can be used to refer to three separate things...</p>
+<ul>
+	<li>The abstract specification of the JVM. This is analogous to a java interface.</li>
+	<li>A concrete implementation of the JVM. This ia analogous to a java non-abstract class.</li>
+	<li>A runtime instance of the JVM. This is analogous to an instance of a java class.</li>
+</ul>
+<p>	There are many different implementations of the JVM, though each one conforms to the abstract specification of a JVM.</p>
+<p>	Most programming languages convert source code directly into machine code. Jave converts source code into its own machine code known as bytecode. This runs on a virtual machine which integrates system calls with the unique operating system it is run on.</p>
+<p>	Since the Java Virtual Machine chooses how to interpret the bytecode (based on the Operating System of the machine it is on), it can run the same set of bytecode on any machine. This is how java code is Write Once, Run Anywhere.</p>
+<p>	Different JVMs are allowed flexibility in how they handle things like...</p>
+<ul>
+	<li>Garbage collection: A JVM is not technically required to implement garbage collection at all-- this is why garbage collection cannot be forced.</li>
+	<ul>
+		<li>The JVM implements garbage collection by running threads known as daemon thread. Daemon threads are used by the JVM itself.</li>
+	</ul>
+	<li>Thread scheduling: Depends heavily on the OS threading and as such it is loosely restricted by the JVM.</li>
+</ul>
+<p>	The greatest advantage that the JVM gives us is encapsulating the Operating System's implementation of machine code. Without that Java would be platform-dependant.</p>
+<p>	The JVM has limited support for booleans, so most compilers will convert booleans into ints or bytes before creating bytecode.</p>
+<p>	The JVM uses an extra primitive type which is unavailable to a Java programmer: the returnAddress type. This primitive is used to implement <i>finally</i> clauses.</p>
+<p>	The JVM is a 32-bit virtual machine.</p>
+
+<table class="table table-bordered" class="text-center">
+  <thead class="thead-default">
+    <tr>
+      <th>Type</th>
+      <th>Range</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">byte</th>
+      <td>8-bit signed two's complement integer (-2^7 to 2^7 - 1, inclusive)</td>
+    </tr>
+    <tr>
+      <th scope="row">short</th>
+      <td>16-bit signed two's complement integer (-2^15 to 2^15 - 1, inclusive)</td>
+    </tr>
+    <tr>
+      <th scope="row">int</th>
+      <td>32-bit signed two's complement integer (-2^31 to 2^31 - 1, inclusive)</td>
+    </tr>
+	   <tr>
+      <th scope="row">long</th>
+      <td>64-bit signed two's complement integer (-2^63 to 2^63 - 1, inclusive)</td>
+    </tr>
+    <tr>
+      <th scope="row">char</th>
+      <td>16-bit unsigned Unicode character (0 to 2^16 - 1, inclusive)</td>
+    </tr>
+    <tr>
+      <th scope="row">float</th>
+      <td>32-bit IEEE 754 single-precision float</td>
+    </tr>
+	   <tr>
+      <th scope="row">double</th>
+      <td>64-bit IEEE 754 double-precision float</td>
+    </tr>
+    <tr>
+      <th scope="row">returnAddress</th>
+      <td>address of an opcode within the same method</td>
+    </tr>
+    <tr>
+      <th scope="row">reference</th>
+      <td>reference to an object on the heap, or null</td>
+    </tr>
+  </tbody>
+</table>
+<p class=text-center><b>Ranges of the Java Virtual Machine's data types</b></p>
+
+</div>
+
+
+<h2>References:</h2>
+<ul>
+<li><a href="http://docs.oracle.com/javase/specs/jvms/se7/html/jvms-1.html">oracle.com</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Java_virtual_machine">wikipedia.org</a></li>
+<li><a href="http://www.theserverside.com/definition/Java-virtual-machine-JVM">theserverside.com</a></li>
+<li><a href="http://www.artima.com/insidejvm/ed2/jvm1.html">artima.com</a></li>
+<li><a href="https://www.javatpoint.com/internal-details-of-jvm">javatpoint.com</a></li>
+</ul>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-
 </body>
 
 </html>
