@@ -164,7 +164,8 @@ public class BankService {
 		System.out.println("4. View Account Balance");
 		System.out.println("5. Open New Bank Account");
 		System.out.println("6. Edit My Information");
-		System.out.println("7. Close Account");
+		System.out.println("7. Transfer Funds");
+		System.out.println("8. Close Account");
 		this.processLoggedInMenu();
 	}
 	
@@ -191,6 +192,9 @@ public class BankService {
 			this.editInfo();
 			break;
 		case 7:
+			this.printTransferMenu();
+			break;
+		case 8:
 			this.closeAccount();
 			break;
 		}
@@ -308,10 +312,11 @@ public class BankService {
 				this.loggedInUser.setHasSavings(true);
 			}
 		} else {
-			System.err.println("Input choice");
+			System.err.println("Invalid input");
 		}
 		System.out.println("Press any key to continue...");
 		this.scanner.nextLine();
+		this.returnToLoggedInMenu();
 	}
 
 	private void createAccount(int accountType) {
@@ -331,6 +336,45 @@ public class BankService {
 		this.loggedInUser.setEmail(email);
 		this.loggedInUser.setPassword(password);
 		this.userDAO.updateUser(this.loggedInUser);
+		this.returnToLoggedInMenu();
+	}
+	
+	private void printTransferMenu() {
+		System.out.println("Transfer Funds");
+		if (this.loggedInUser.hasChecking() && this.loggedInUser.hasSavings()) {
+			System.out.println("1. Checking");
+			System.out.println("2. Savings");
+			System.out.print("From which account do you want to transfer funds? >");
+			int choice = Integer.parseInt(this.scanner.nextLine());
+			Account source = null;
+			Account destination = null;
+			if (choice == 1) {
+				source = this.accountDAO.readAccount(this.loggedInUser.getUserID(), 1);
+				destination = this.accountDAO.readAccount(this.loggedInUser.getUserID(), 2);
+			}
+			if (choice == 2) {
+				source = this.accountDAO.readAccount(this.loggedInUser.getUserID(), 2);
+				destination = this.accountDAO.readAccount(this.loggedInUser.getUserID(), 1);
+			}
+			if (source != null && destination != null) {
+				System.out.print("How much do you want to transfer? >");
+				double amount = Double.parseDouble(this.scanner.nextLine());
+				if (source.getBalance().doubleValue() > amount) {
+					source.setBalance(source.getBalance().subtract(new BigDecimal(amount)));
+					destination.setBalance(destination.getBalance().add(new BigDecimal(amount)));
+					this.accountDAO.updateAccount(source);
+					this.accountDAO.updateAccount(destination);
+				} else {
+					System.out.println("Insufficient funds");
+				}
+			} else {
+				System.err.println("Invalid input");
+			}
+		} else {
+			System.out.println("You only have one bank account");
+			System.out.println("Press any key to continue...");
+			this.scanner.nextLine();
+		}
 		this.returnToLoggedInMenu();
 	}
 	

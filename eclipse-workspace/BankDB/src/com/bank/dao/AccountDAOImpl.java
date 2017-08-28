@@ -18,6 +18,12 @@ import com.bank.util.ConnectionSingleton;
  * @author Will Underwood
  */
 public class AccountDAOImpl implements AccountDAO<Account> {
+	
+	private UserDAO<User> userDAO;
+	
+	public AccountDAOImpl() {
+		this.userDAO = new UserDAOImpl();
+	}
 
 	/**
 	 * Adds a new user account to the database.
@@ -50,6 +56,14 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		User user = this.userDAO.readUser(account.getUserID());
+		if (account.getAccountTypeID() == 1) {
+			user.setHasChecking(true);
+		}
+		if (account.getAccountTypeID() == 2) {
+			user.setHasSavings(true);
+		}
+		this.userDAO.updateUser(user);
 		return 0;
 	}
 
