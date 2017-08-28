@@ -158,7 +158,7 @@ IS
   name VARCHAR2(242);
   CURSOR c1
   IS
-    SELECT Firstname FROM Example WHERE Ex_ID = id;
+    SELECT concat(Firstname, concat(' ', Lastname)) FROM Example;-- WHERE Ex_ID = id;
 BEGIN
   OPEN c1;
   FETCH c1 INTO name;
@@ -179,3 +179,15 @@ BEGIN
 SELECT Ex_ID INTO person_id FROM Example WHERE lower(Firstname) = lower(fn);
 RETURN person_id;
 END;
+/
+
+INSERT INTO Example (Firstname, Lastname)
+VALUES ('adding', 'things');
+
+SELECT ex.Ex_ID, ex.Firstname, ex.Lastname, tr.Name
+FROM Example ex
+LEFT JOIN Track tr
+ON Ex.Favorite_Song_ID = tr.TrackID;
+
+
+SELECT * FROM Example;
