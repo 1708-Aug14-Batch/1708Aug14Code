@@ -1,0 +1,37 @@
+package com.bank.dao;
+
+import com.bank.pojos.Account;
+import com.bank.pojos.User;
+
+public interface Dao {
+		
+	// Send and receive from data source
+	
+	/**
+	 * Adds a new User to the database
+	 * @param user with firstname, lastname, email, and password
+	 * @return new USERID created for User record
+	 */
+	public int addUser(User user);
+	/**
+	 * Gets the User
+	 * @param email
+	 * @param password
+	 * @return
+	 */
+	public User getUser(String email, String password);
+	public boolean hasUser(String email);
+	
+	public int createAccount(int userId, int typeId);
+	public boolean closeAccount(int accountId);
+
+	public float getBalance(int userId, int accountId);
+	public boolean withdraw(float amount, int accountId);
+	public boolean deposit(float amount, int accountId);
+	
+	public boolean transferFunds(float amount, int fromAccountId, int toAccountId);
+	
+	public boolean updateFirstName(int userId, String fName);
+	public boolean updateLastName(int userId, String lName);
+	public boolean updatePassword(int userId, String password);
+}

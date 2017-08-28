@@ -1,0 +1,125 @@
+package com.bank.dao;
+
+import com.bank.pojos.User;
+
+public interface Dao {
+	// Send and receive from data source
+
+	/**
+	 * Creates a new User in the database
+	 * 
+	 * @param user
+	 *            with non-null first name, last name, and email
+	 * @param password
+	 * @return USERID created for new User
+	 */
+	public int addUser(User user, String password);
+
+	/**
+	 * Gets the User with matching email and password from the database
+	 * 
+	 * @param email
+	 * @param password
+	 * @return User object containing User information from database
+	 */
+	public User getUser(String email, String password);
+
+	/**
+	 * Returns whether a User already exists with a specific email in the
+	 * database
+	 * 
+	 * @param email
+	 * @return Whether the email is already in use
+	 */
+	public boolean hasUser(String email);
+
+	/**
+	 * Creates a new account for the specified User in the database
+	 * 
+	 * @param userId
+	 *            User to which account belongs
+	 * @param typeId
+	 *            AccountType for new Account
+	 * @return ACCOUNTID created for new Account
+	 */
+	public int createAccount(int userId, int typeId);
+
+	/**
+	 * Deactivates specified Account in the database
+	 * 
+	 * @param accountId
+	 *            Account to be deactivated
+	 * @return Whether the Account was successfully deactivated
+	 */
+	public boolean closeAccount(int accountId);
+
+	/**
+	 * Gets the current balance of the specified account from the database
+	 * 
+	 * @param accountId
+	 *            Account to get balance
+	 * @return The Account's current balance
+	 */
+	public float getBalance(int accountId);
+
+	/**
+	 * Withdraw funds from the specified Account in the database
+	 * 
+	 * @param amount To withdraw
+	 * @param accountId Account to withdraw from
+	 * @return Whether the funds were successfully withdrawn from the account
+	 */
+	public boolean withdraw(float amount, int accountId);
+
+	/**
+	 * Deposit funds into the specified Account in the database
+	 * 
+	 * @param amount To deposit
+	 * @param accountId Account to withdraw from
+	 * @return Whether the funds were successfully deposited into the account
+	 */
+	public boolean deposit(float amount, int accountId);
+
+	/**
+	 * Transfer funds from one Account to another in the database
+	 * 
+	 * @param amount To transfer
+	 * @param fromAccountId Source of funds
+	 * @param toAccountId Destination of funds
+	 * @return Whether the funds were successfully transfered across Accounts
+	 */
+	public boolean transferFunds(float amount, int fromAccountId, int toAccountId);
+
+	/**
+	 * Updates the first name of the specified User in the database
+	 * 
+	 * @param userId
+	 *            of User to be updated
+	 * @param firstName
+	 *            New value
+	 * @return Whether the first name of the User was successfully updated
+	 */
+	public boolean updateFirstName(int userId, String firstName);
+
+	/**
+	 * Updates the last name of the specified User in the database
+	 * 
+	 * @param userId
+	 *            of User to be updated
+	 * @param lastName
+	 *            New value
+	 * @return Whether the last name of the User was successfully updated
+	 */
+	public boolean updateLastName(int userId, String lastName);
+
+	/**
+	 * Updates the password of the specified User in the database
+	 * 
+	 * @param userId
+	 *            of User to be updated
+	 * @param password
+	 *            New value
+	 * @return Whether the password of the User was successfully updated
+	 */
+	public boolean updatePassword(int userId, String password);
+}

@@ -1,0 +1,429 @@
+2017-08-25 13:51:06,251 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:07,244 [New I/O client worker #1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/2.4.1/maven-clean-plugin-2.4.1.jar
+2017-08-25 13:51:07,264 [New I/O client worker #1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-clean-plugin/2.4.1/maven-clean-plugin-2.4.1.jar
+2017-08-25 13:51:07,570 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:07,610 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.5/maven-resources-plugin-2.5.jar
+2017-08-25 13:51:07,675 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.5/maven-resources-plugin-2.5.jar
+2017-08-25 13:51:07,838 [Worker-40] WARN  o.e.m.c.i.embedder.EclipseLogger - Failed to dispatch repository event to org.eclipse.m2e.core.internal.embedder.EclipseRepositoryListener: null
+2017-08-25 13:51:07,856 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:07,929 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.jar
+2017-08-25 13:51:07,988 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.jar
+2017-08-25 13:51:08,184 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:08,230 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.10/maven-surefire-plugin-2.10.jar
+2017-08-25 13:51:08,297 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.10/maven-surefire-plugin-2.10.jar
+2017-08-25 13:51:08,720 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:08,774 [New I/O client worker #5-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/2.3.2/maven-jar-plugin-2.3.2.jar
+2017-08-25 13:51:08,868 [New I/O client worker #5-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/2.3.2/maven-jar-plugin-2.3.2.jar
+2017-08-25 13:51:09,068 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:09,810 [New I/O client worker #6-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/2.3.1/maven-install-plugin-2.3.1.jar
+2017-08-25 13:51:09,866 [New I/O client worker #6-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-install-plugin/2.3.1/maven-install-plugin-2.3.1.jar
+2017-08-25 13:51:10,023 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:10,096 [New I/O client worker #7-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/2.7/maven-deploy-plugin-2.7.jar
+2017-08-25 13:51:10,163 [New I/O client worker #7-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-deploy-plugin/2.7/maven-deploy-plugin-2.7.jar
+2017-08-25 13:51:10,697 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:10,756 [New I/O client worker #8-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.0/maven-site-plugin-3.0.jar
+2017-08-25 13:51:10,947 [New I/O client worker #8-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/3.0/maven-site-plugin-3.0.jar
+2017-08-25 13:51:11,194 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:11,254 [New I/O client worker #9-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.pom
+2017-08-25 13:51:11,256 [New I/O client worker #9-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-compiler-plugin/2.3.2/maven-compiler-plugin-2.3.2.pom
+2017-08-25 13:51:11,315 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:11,628 [New I/O client worker #10-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/18/maven-plugins-18.pom
+2017-08-25 13:51:11,634 [New I/O client worker #10-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/18/maven-plugins-18.pom
+2017-08-25 13:51:11,880 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:11,914 [New I/O client worker #11-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/16/maven-parent-16.pom
+2017-08-25 13:51:11,942 [New I/O client worker #11-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/16/maven-parent-16.pom
+2017-08-25 13:51:12,066 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:12,120 [New I/O client worker #12-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/apache/7/apache-7.pom
+2017-08-25 13:51:12,140 [New I/O client worker #12-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/apache/7/apache-7.pom
+2017-08-25 13:51:12,356 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:12,481 [New I/O client worker #13-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.pom
+2017-08-25 13:51:12,483 [New I/O client worker #13-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-api/2.0.6/maven-plugin-api-2.0.6.pom
+2017-08-25 13:51:12,565 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:12,686 [New I/O client worker #14-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven/2.0.6/maven-2.0.6.pom
+2017-08-25 13:51:12,715 [New I/O client worker #14-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven/2.0.6/maven-2.0.6.pom
+2017-08-25 13:51:12,789 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:12,846 [New I/O client worker #15-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/5/maven-parent-5.pom
+2017-08-25 13:51:12,870 [New I/O client worker #15-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/5/maven-parent-5.pom
+2017-08-25 13:51:12,930 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,007 [New I/O client worker #16-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/apache/3/apache-3.pom
+2017-08-25 13:51:13,009 [New I/O client worker #16-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/apache/3/apache-3.pom
+2017-08-25 13:51:13,090 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,146 [New I/O client worker #17-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.pom
+2017-08-25 13:51:13,147 [New I/O client worker #17-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact/2.0.6/maven-artifact-2.0.6.pom
+2017-08-25 13:51:13,211 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,275 [New I/O client worker #18-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.4.1/plexus-utils-1.4.1.pom
+2017-08-25 13:51:13,276 [New I/O client worker #18-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.4.1/plexus-utils-1.4.1.pom
+2017-08-25 13:51:13,339 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,426 [New I/O client worker #19-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom
+2017-08-25 13:51:13,445 [New I/O client worker #19-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.11/plexus-1.0.11.pom
+2017-08-25 13:51:13,501 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,550 [New I/O client worker #20-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-core/2.0.6/maven-core-2.0.6.pom
+2017-08-25 13:51:13,552 [New I/O client worker #20-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-core/2.0.6/maven-core-2.0.6.pom
+2017-08-25 13:51:13,662 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,757 [New I/O client worker #21-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.pom
+2017-08-25 13:51:13,762 [New I/O client worker #21-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-settings/2.0.6/maven-settings-2.0.6.pom
+2017-08-25 13:51:13,825 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:13,905 [New I/O client worker #22-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.pom
+2017-08-25 13:51:13,906 [New I/O client worker #22-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-model/2.0.6/maven-model-2.0.6.pom
+2017-08-25 13:51:13,977 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:14,121 [New I/O client worker #23-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.6/maven-plugin-parameter-documenter-2.0.6.pom
+2017-08-25 13:51:14,123 [New I/O client worker #23-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-parameter-documenter/2.0.6/maven-plugin-parameter-documenter-2.0.6.pom
+2017-08-25 13:51:14,196 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:14,271 [New I/O client worker #24-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.pom
+2017-08-25 13:51:14,279 [New I/O client worker #24-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-profile/2.0.6/maven-profile-2.0.6.pom
+2017-08-25 13:51:14,336 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:14,527 [New I/O client worker #25-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.pom
+2017-08-25 13:51:14,530 [New I/O client worker #25-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-repository-metadata/2.0.6/maven-repository-metadata-2.0.6.pom
+2017-08-25 13:51:14,579 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:14,644 [New I/O client worker #26-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.6/maven-error-diagnostics-2.0.6.pom
+2017-08-25 13:51:14,646 [New I/O client worker #26-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-error-diagnostics/2.0.6/maven-error-diagnostics-2.0.6.pom
+2017-08-25 13:51:14,725 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:14,932 [New I/O client worker #27-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.pom
+2017-08-25 13:51:14,934 [New I/O client worker #27-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-project/2.0.6/maven-project-2.0.6.pom
+2017-08-25 13:51:15,087 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:15,165 [New I/O client worker #28-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.pom
+2017-08-25 13:51:15,167 [New I/O client worker #28-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-artifact-manager/2.0.6/maven-artifact-manager-2.0.6.pom
+2017-08-25 13:51:15,246 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:15,375 [New I/O client worker #29-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.pom
+2017-08-25 13:51:15,377 [New I/O client worker #29-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-registry/2.0.6/maven-plugin-registry-2.0.6.pom
+2017-08-25 13:51:15,472 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:15,532 [New I/O client worker #30-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.pom
+2017-08-25 13:51:15,534 [New I/O client worker #30-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-plugin-descriptor/2.0.6/maven-plugin-descriptor-2.0.6.pom
+2017-08-25 13:51:15,610 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:15,671 [New I/O client worker #31-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-monitor/2.0.6/maven-monitor-2.0.6.pom
+2017-08-25 13:51:15,672 [New I/O client worker #31-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-monitor/2.0.6/maven-monitor-2.0.6.pom
+2017-08-25 13:51:15,731 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:15,800 [New I/O client worker #32-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-toolchain/1.0/maven-toolchain-1.0.pom
+2017-08-25 13:51:15,801 [New I/O client worker #32-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-toolchain/1.0/maven-toolchain-1.0.pom
+2017-08-25 13:51:15,878 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:15,974 [New I/O client worker #33-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.pom
+2017-08-25 13:51:15,975 [New I/O client worker #33-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.pom
+2017-08-25 13:51:16,034 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:16,146 [New I/O client worker #34-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-containers/1.0.3/plexus-containers-1.0.3.pom
+2017-08-25 13:51:16,147 [New I/O client worker #34-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-containers/1.0.3/plexus-containers-1.0.3.pom
+2017-08-25 13:51:16,260 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:16,337 [New I/O client worker #35-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.4/plexus-1.0.4.pom
+2017-08-25 13:51:16,338 [New I/O client worker #35-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/1.0.4/plexus-1.0.4.pom
+2017-08-25 13:51:16,408 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:16,581 [New I/O client worker #36-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/junit/junit/3.8.1/junit-3.8.1.pom
+2017-08-25 13:51:16,582 [New I/O client worker #36-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/junit/junit/3.8.1/junit-3.8.1.pom
+2017-08-25 13:51:16,680 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:16,859 [New I/O client worker #37-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.0.4/plexus-utils-1.0.4.pom
+2017-08-25 13:51:16,860 [New I/O client worker #37-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.0.4/plexus-utils-1.0.4.pom
+2017-08-25 13:51:16,948 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:17,061 [New I/O client worker #38-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.pom
+2017-08-25 13:51:17,062 [New I/O client worker #38-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.pom
+2017-08-25 13:51:17,131 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:17,226 [New I/O client worker #39-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.pom
+2017-08-25 13:51:17,228 [New I/O client worker #39-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.pom
+2017-08-25 13:51:17,356 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:17,424 [New I/O client worker #40-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting/2.0.6/maven-reporting-2.0.6.pom
+2017-08-25 13:51:17,426 [New I/O client worker #40-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting/2.0.6/maven-reporting-2.0.6.pom
+2017-08-25 13:51:17,489 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:17,571 [New I/O client worker #41-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.pom
+2017-08-25 13:51:17,573 [New I/O client worker #41-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.pom
+2017-08-25 13:51:17,629 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:17,720 [New I/O client worker #42-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.0-alpha-7/doxia-1.0-alpha-7.pom
+2017-08-25 13:51:17,721 [New I/O client worker #42-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia/1.0-alpha-7/doxia-1.0-alpha-7.pom
+2017-08-25 13:51:17,795 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:17,892 [New I/O client worker #43-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.pom
+2017-08-25 13:51:17,894 [New I/O client worker #43-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.pom
+2017-08-25 13:51:17,971 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,027 [New I/O client worker #44-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.pom
+2017-08-25 13:51:18,029 [New I/O client worker #44-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.pom
+2017-08-25 13:51:18,076 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,111 [New I/O client worker #45-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.pom
+2017-08-25 13:51:18,112 [New I/O client worker #45-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/classworlds/classworlds/1.1/classworlds-1.1.pom
+2017-08-25 13:51:18,160 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,264 [New I/O client worker #46-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.pom
+2017-08-25 13:51:18,265 [New I/O client worker #46-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.pom
+2017-08-25 13:51:18,306 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,362 [New I/O client worker #47-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.6/plexus-2.0.6.pom
+2017-08-25 13:51:18,399 [New I/O client worker #47-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.6/plexus-2.0.6.pom
+2017-08-25 13:51:18,471 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,526 [New I/O client worker #48-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.pom
+2017-08-25 13:51:18,527 [New I/O client worker #48-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.pom
+2017-08-25 13:51:18,585 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,628 [New I/O client worker #49-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/1.8.1/plexus-compiler-1.8.1.pom
+2017-08-25 13:51:18,629 [New I/O client worker #49-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler/1.8.1/plexus-compiler-1.8.1.pom
+2017-08-25 13:51:18,663 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,753 [New I/O client worker #50-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom
+2017-08-25 13:51:18,754 [New I/O client worker #50-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.18/plexus-components-1.1.18.pom
+2017-08-25 13:51:18,817 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,849 [New I/O client worker #51-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.7/plexus-2.0.7.pom
+2017-08-25 13:51:18,882 [New I/O client worker #51-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.7/plexus-2.0.7.pom
+2017-08-25 13:51:18,933 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:18,980 [New I/O client worker #52-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.5/plexus-utils-1.5.5.pom
+2017-08-25 13:51:18,981 [New I/O client worker #52-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.5/plexus-utils-1.5.5.pom
+2017-08-25 13:51:19,019 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:19,107 [New I/O client worker #53-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.pom
+2017-08-25 13:51:19,108 [New I/O client worker #53-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.pom
+2017-08-25 13:51:19,161 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:19,221 [New I/O client worker #54-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.pom
+2017-08-25 13:51:19,222 [New I/O client worker #54-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.pom
+2017-08-25 13:51:19,280 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:19,310 [New I/O client worker #55-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/1.8.1/plexus-compilers-1.8.1.pom
+2017-08-25 13:51:19,311 [New I/O client worker #55-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compilers/1.8.1/plexus-compilers-1.8.1.pom
+2017-08-25 13:51:19,441 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:19,520 [New I/O client worker #56-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.jar
+2017-08-25 13:51:19,529 [New I/O client worker #56-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar
+2017-08-25 13:51:19,553 [New I/O client worker #56-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-javac/1.8.1/plexus-compiler-javac-1.8.1.jar
+2017-08-25 13:51:19,563 [New I/O client worker #56-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.jar
+2017-08-25 13:51:19,590 [New I/O client worker #56-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.jar
+2017-08-25 13:51:19,592 [New I/O client worker #56-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-manager/1.8.1/plexus-compiler-manager-1.8.1.jar
+2017-08-25 13:51:19,631 [New I/O client worker #56-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-compiler-api/1.8.1/plexus-compiler-api-1.8.1.jar
+2017-08-25 13:51:19,889 [New I/O client worker #56-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/2.0.5/plexus-utils-2.0.5.jar
+2017-08-25 13:51:20,541 [Worker-40] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 13:51:20,556 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:20,613 [New I/O client worker #57-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.5/maven-resources-plugin-2.5.pom
+2017-08-25 13:51:20,614 [New I/O client worker #57-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-resources-plugin/2.5/maven-resources-plugin-2.5.pom
+2017-08-25 13:51:20,668 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:20,725 [New I/O client worker #58-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/19/maven-plugins-19.pom
+2017-08-25 13:51:20,727 [New I/O client worker #58-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/19/maven-plugins-19.pom
+2017-08-25 13:51:20,778 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:20,818 [New I/O client worker #59-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/19/maven-parent-19.pom
+2017-08-25 13:51:20,860 [New I/O client worker #59-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/19/maven-parent-19.pom
+2017-08-25 13:51:20,915 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:20,961 [New I/O client worker #60-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/apache/9/apache-9.pom
+2017-08-25 13:51:20,976 [New I/O client worker #60-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/apache/9/apache-9.pom
+2017-08-25 13:51:21,069 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:21,104 [New I/O client worker #61-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.10/maven-surefire-plugin-2.10.pom
+2017-08-25 13:51:21,122 [New I/O client worker #61-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.10/maven-surefire-plugin-2.10.pom
+2017-08-25 13:51:21,190 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:21,262 [New I/O client worker #62-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/2.10/surefire-2.10.pom
+2017-08-25 13:51:21,288 [New I/O client worker #62-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/2.10/surefire-2.10.pom
+2017-08-25 13:51:21,429 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:21,490 [New I/O client worker #63-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/20/maven-parent-20.pom
+2017-08-25 13:51:21,544 [New I/O client worker #63-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-parent/20/maven-parent-20.pom
+2017-08-25 13:51:21,626 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:21,676 [New I/O client worker #64-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/2.3.2/maven-jar-plugin-2.3.2.pom
+2017-08-25 13:51:21,677 [New I/O client worker #64-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jar-plugin/2.3.2/maven-jar-plugin-2.3.2.pom
+2017-08-25 13:51:21,723 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:21,789 [New I/O client worker #65-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/21/maven-plugins-21.pom
+2017-08-25 13:51:21,828 [New I/O client worker #65-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-plugins/21/maven-plugins-21.pom
+2017-08-25 13:51:22,114 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:22,174 [New I/O client worker #66-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/2.4.2/maven-archiver-2.4.2.pom
+2017-08-25 13:51:22,175 [New I/O client worker #66-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/2.4.2/maven-archiver-2.4.2.pom
+2017-08-25 13:51:22,219 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:22,289 [New I/O client worker #67-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/16/maven-shared-components-16.pom
+2017-08-25 13:51:22,299 [New I/O client worker #67-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-shared-components/16/maven-shared-components-16.pom
+2017-08-25 13:51:22,341 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:22,376 [New I/O client worker #68-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.0.1/plexus-archiver-2.0.1.pom
+2017-08-25 13:51:22,377 [New I/O client worker #68-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.0.1/plexus-archiver-2.0.1.pom
+2017-08-25 13:51:22,409 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:22,457 [New I/O client worker #69-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/17/spice-parent-17.pom
+2017-08-25 13:51:22,458 [New I/O client worker #69-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/17/spice-parent-17.pom
+2017-08-25 13:51:22,491 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:22,550 [New I/O client worker #70-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/10/forge-parent-10.pom
+2017-08-25 13:51:22,578 [New I/O client worker #70-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/10/forge-parent-10.pom
+2017-08-25 13:51:22,713 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:22,755 [New I/O client worker #71-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom
+2017-08-25 13:51:22,756 [New I/O client worker #71-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.pom
+2017-08-25 13:51:22,961 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:23,020 [New I/O client worker #72-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom
+2017-08-25 13:51:23,022 [New I/O client worker #72-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/16/spice-parent-16.pom
+2017-08-25 13:51:23,073 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:23,139 [New I/O client worker #73-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom
+2017-08-25 13:51:23,158 [New I/O client worker #73-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/5/forge-parent-5.pom
+2017-08-25 13:51:23,242 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:23,302 [New I/O client worker #74-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.1/plexus-io-2.0.1.pom
+2017-08-25 13:51:23,303 [New I/O client worker #74-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.1/plexus-io-2.0.1.pom
+2017-08-25 13:51:23,361 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:23,522 [New I/O client worker #75-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.19/plexus-components-1.1.19.pom
+2017-08-25 13:51:23,523 [New I/O client worker #75-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.19/plexus-components-1.1.19.pom
+2017-08-25 13:51:23,663 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:23,792 [New I/O client worker #76-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/3.0.1/plexus-3.0.1.pom
+2017-08-25 13:51:23,800 [New I/O client worker #76-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/3.0.1/plexus-3.0.1.pom
+2017-08-25 13:51:23,955 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:24,012 [New I/O client worker #77-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.pom
+2017-08-25 13:51:24,013 [New I/O client worker #77-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.pom
+2017-08-25 13:51:24,082 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:24,118 [New I/O client worker #78-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.15/plexus-components-1.1.15.pom
+2017-08-25 13:51:24,119 [New I/O client worker #78-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.15/plexus-components-1.1.15.pom
+2017-08-25 13:51:24,389 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:24,423 [New I/O client worker #79-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.3/plexus-2.0.3.pom
+2017-08-25 13:51:24,469 [New I/O client worker #79-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.3/plexus-2.0.3.pom
+2017-08-25 13:51:24,631 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:24,730 [New I/O client worker #80-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.1/commons-lang-2.1.pom
+2017-08-25 13:51:24,751 [New I/O client worker #80-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.1/commons-lang-2.1.pom
+2017-08-25 13:51:24,855 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:24,914 [New I/O client worker #81-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar
+2017-08-25 13:51:24,925 [New I/O client worker #81-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.jar
+2017-08-25 13:51:24,968 [New I/O client worker #81-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.1/plexus-io-2.0.1.jar
+2017-08-25 13:51:24,991 [New I/O client worker #81-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar
+2017-08-25 13:51:25,005 [New I/O client worker #81-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.1/commons-lang-2.1.jar
+2017-08-25 13:51:25,031 [New I/O client worker #81-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/2.4.2/maven-archiver-2.4.2.jar
+2017-08-25 13:51:25,036 [New I/O client worker #81-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.0.1/plexus-archiver-2.0.1.jar
+2017-08-25 13:51:25,198 [New I/O client worker #81-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/maven-archiver/2.4.2/maven-archiver-2.4.2.jar
+2017-08-25 13:51:25,459 [New I/O client worker #81-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-io/2.0.1/plexus-io-2.0.1.jar
+2017-08-25 13:51:25,485 [New I/O client worker #81-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.13/plexus-interpolation-1.13.jar
+2017-08-25 13:51:26,142 [New I/O client worker #81-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-lang/commons-lang/2.1/commons-lang-2.1.jar
+2017-08-25 13:51:26,261 [New I/O client worker #81-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/3.0/plexus-utils-3.0.jar
+2017-08-25 13:51:26,284 [New I/O client worker #81-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-archiver/2.0.1/plexus-archiver-2.0.1.jar
+2017-08-25 13:51:26,287 [New I/O client worker #81-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/junit/junit/3.8.1/junit-3.8.1.jar
+2017-08-25 13:51:28,155 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:28,263 [New I/O client worker #82-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0/maven-filtering-1.0.pom
+2017-08-25 13:51:28,264 [New I/O client worker #82-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0/maven-filtering-1.0.pom
+2017-08-25 13:51:28,379 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:28,460 [New I/O client worker #83-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.pom
+2017-08-25 13:51:28,461 [New I/O client worker #83-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.15/plexus-utils-1.5.15.pom
+2017-08-25 13:51:28,529 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:28,759 [New I/O client worker #84-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.2/plexus-2.0.2.pom
+2017-08-25 13:51:28,761 [New I/O client worker #84-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus/2.0.2/plexus-2.0.2.pom
+2017-08-25 13:51:28,853 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:28,916 [New I/O client worker #85-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.12/plexus-interpolation-1.12.pom
+2017-08-25 13:51:28,917 [New I/O client worker #85-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interpolation/1.12/plexus-interpolation-1.12.pom
+2017-08-25 13:51:29,210 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:29,328 [New I/O client worker #86-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.14/plexus-components-1.1.14.pom
+2017-08-25 13:51:29,329 [New I/O client worker #86-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-components/1.1.14/plexus-components-1.1.14.pom
+2017-08-25 13:51:29,379 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:29,556 [New I/O client worker #87-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.pom
+2017-08-25 13:51:29,558 [New I/O client worker #87-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.pom
+2017-08-25 13:51:29,641 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:30,017 [New I/O client worker #88-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/10/spice-parent-10.pom
+2017-08-25 13:51:30,018 [New I/O client worker #88-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/spice/spice-parent/10/spice-parent-10.pom
+2017-08-25 13:51:30,061 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:30,137 [New I/O client worker #89-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/3/forge-parent-3.pom
+2017-08-25 13:51:30,138 [New I/O client worker #89-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/forge/forge-parent/3/forge-parent-3.pom
+2017-08-25 13:51:30,198 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:30,285 [New I/O client worker #90-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.8/plexus-utils-1.5.8.pom
+2017-08-25 13:51:30,287 [New I/O client worker #90-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-utils/1.5.8/plexus-utils-1.5.8.pom
+2017-08-25 13:51:30,425 [Worker-40] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 13:51:30,735 [New I/O client worker #91-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.jar
+2017-08-25 13:51:30,736 [New I/O client worker #91-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar
+2017-08-25 13:51:30,738 [New I/O client worker #91-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/doxia/doxia-sink-api/1.0-alpha-7/doxia-sink-api-1.0-alpha-7.jar
+2017-08-25 13:51:30,757 [New I/O client worker #91-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.jar
+2017-08-25 13:51:30,787 [New I/O client worker #91-4] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/codehaus/plexus/plexus-interactivity-api/1.0-alpha-4/plexus-interactivity-api-1.0-alpha-4.jar
+2017-08-25 13:51:30,803 [New I/O client worker #91-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.jar
+2017-08-25 13:51:30,804 [New I/O client worker #91-2] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/sonatype/plexus/plexus-build-api/0.0.4/plexus-build-api-0.0.4.jar
+2017-08-25 13:51:30,806 [New I/O client worker #91-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0/maven-filtering-1.0.jar
+2017-08-25 13:51:30,857 [New I/O client worker #91-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar
+2017-08-25 13:51:30,917 [New I/O client worker #91-3] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/commons-cli/commons-cli/1.0/commons-cli-1.0.jar
+2017-08-25 13:51:30,983 [New I/O client worker #91-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/shared/maven-filtering/1.0/maven-filtering-1.0.jar
+2017-08-25 13:51:31,023 [New I/O client worker #91-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/reporting/maven-reporting-api/2.0.6/maven-reporting-api-2.0.6.jar
+2017-08-25 13:51:31,986 [Worker-40] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /logging/src/main/java
+2017-08-25 13:51:31,990 [Worker-40] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /logging/src/main/resources
+2017-08-25 13:51:31,991 [Worker-40] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /logging/src/test/java
+2017-08-25 13:51:31,992 [Worker-40] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /logging/src/test/resources
+2017-08-25 13:51:32,009 [Worker-49] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 13:51:34,005 [Worker-49] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 13:51:34,709 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:51:34,715 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:51:34,719 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:51:34,721 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:54:27,983 [Worker-51] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 13:54:28,239 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:54:28,269 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:54:28,288 [Worker-51] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:54:28,291 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:55:10,356 [Worker-50] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 13:55:10,505 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:55:10,511 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:55:10,517 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:55:10,519 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:55:48,103 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:55:48,110 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:55:48,114 [Worker-43] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:55:48,116 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:56:21,722 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:56:21,728 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:56:21,763 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:56:21,765 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:56:32,032 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:56:32,036 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:56:32,040 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:56:32,042 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:56:55,352 [Worker-40] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:56:55,355 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:56:55,359 [Worker-40] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:56:55,361 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:57:02,744 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:57:02,748 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:57:02,754 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:57:02,757 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:58:12,681 [Worker-51] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-08-25 13:58:12,785 [Worker-51] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 13:58:12,974 [Worker-51] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /logging/src/main/java
+2017-08-25 13:58:12,975 [Worker-51] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /logging/src/main/resources
+2017-08-25 13:58:12,982 [Worker-51] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /logging/src/test/java
+2017-08-25 13:58:12,983 [Worker-51] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /logging/src/test/resources
+2017-08-25 13:58:13,224 [Worker-51] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2017-08-25 13:58:13,436 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:58:13,439 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 13:58:13,463 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 13:58:13,467 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:00:53,348 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:00:53,351 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:00:53,355 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:00:53,357 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:02:39,134 [Worker-45] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: revature:logging:0.0.1-SNAPSHOT @ C:\Users\Nathan\my_dir_repos\1708Aug14Code\SQL\logging\pom.xml.
+2017-08-25 14:02:39,211 [Worker-45] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 14:02:39,290 [New I/O client worker #92-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.pom
+2017-08-25 14:02:39,330 [New I/O client worker #92-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.pom
+2017-08-25 14:02:39,402 [Worker-45] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 4
+2017-08-25 14:02:39,454 [New I/O client worker #93-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar
+2017-08-25 14:02:40,178 [New I/O client worker #93-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/log4j/log4j/1.2.17/log4j-1.2.17.jar
+2017-08-25 14:02:40,470 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:02:40,472 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:02:40,475 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:02:40,477 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:02:41,734 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:02:41,738 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:02:41,741 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:02:41,743 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:05:02,042 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:05:02,046 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:05:02,050 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:05:02,052 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:08:36,808 [Worker-55] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:08:36,898 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:08:36,923 [Worker-55] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:08:36,925 [Worker-55] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:09:16,189 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:09:16,192 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:09:16,209 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:09:16,212 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:09:56,841 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:09:56,844 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:09:56,855 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:09:56,858 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:10:07,908 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:07,911 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:10:07,915 [Worker-45] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:07,917 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:10:39,566 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:39,569 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:10:39,578 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:39,581 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:10:44,805 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:44,809 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-08-25 14:10:44,813 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:44,815 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:10:55,526 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:55,529 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:10:55,537 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:55,539 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:10:56,599 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:56,602 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:10:56,608 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:10:56,610 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:11:00,445 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:11:00,448 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2017-08-25 14:11:00,453 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:11:00,459 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 14:11:45,870 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:11:45,873 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-08-25 14:11:45,886 [Worker-50] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 14:11:45,888 [Worker-50] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 15:04:59,385 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 15:04:59,400 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-08-25 15:04:59,413 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 15:04:59,416 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-25 21:19:00,032 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 21:19:00,064 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-08-25 21:19:00,088 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-25 21:19:00,210 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-08-27 18:36:22,775 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-27 18:36:22,824 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2017-08-27 18:36:22,844 [Worker-7] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-08-27 18:36:22,850 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource

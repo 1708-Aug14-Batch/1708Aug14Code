@@ -1,0 +1,36 @@
+package com.bank.run;
+
+import com.bank.dao.DaoImpl;
+import com.bank.pojos.User;
+
+public class Test {
+	
+	public static void main(String[] args) {
+		
+		DaoImpl dao = new DaoImpl();
+		
+		System.out.println(dao.getUser("test@test.com", "p4ssw0rd"));
+		System.out.println(dao.getUser("arod@packers.com", "gopackgo"));
+		System.out.println(dao.getUser("test@TEST.com", "p4ssw0rd"));
+		System.out.println();
+		
+		System.out.println("Has cobb = " + dao.hasUser("cobb@packers.com"));
+		System.out.println("Get cobb (good) = " + dao.getUser("cobb@packers.com", "gopackgo"));
+		System.out.println("Get cobb (bad)  = " + dao.getUser("cobb@packers.com", "gopkgo"));
+		System.out.println();
+		
+		System.out.println("Update randall to randy = " + dao.updateFirstName(7, "randy"));
+		System.out.println();
+
+		System.out.println("Has fake = " + dao.hasUser("fake@fake.com"));
+		System.out.println();
+		
+		User cobb = new User("Randall", "Cobb", "cobb@packers.com");
+		System.out.println(dao.addUser(cobb, "gopackgo"));
+		System.out.println();
+		
+		User ty = new User("Ty", "Montgomery", "ty@packers.com");
+		System.out.println(dao.addUser(ty, "gopackgo"));
+		System.out.println();
+	}
+}
