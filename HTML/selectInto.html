@@ -59,7 +59,7 @@
                         <li><a href="forLoop.html">For Loop</a></li>
                         <li><a href="dynamicQueries.html">Dynamic Queries</a></li>
                         <li><a href="cursorVariables.html">Cursor Variables</a></li>
-                        <li><a href="theRightWay.html">The Right Way</a></li>
+                        <li><a href="summary.html">In Summary</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -70,11 +70,11 @@
                 <p>
                     SELECT-INTO offers the fastest and simplest way to fetch a single row from a SELECT statement. The syntax of this statement is:
                 </p><br>
-                <p>
-                    SELECT select_list INTO variable_list FROM remainder_of_query; 
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    SELECT <i>select_list</i> INTO <i>variable_list</i> FROM <i>remainder_of_query</i>; 
                 </p><br>
                 <p>
-                    where remainder_of_query contains the list of tables or views, the WHERE clause, and other clauses of the query. The number and types of elements in the variable_list must match those of the select_list.
+                    where <i>remainder_of_query</i> contains the list of tables or views, the WHERE clause, and other clauses of the query. The number and types of elements in the <i>variable_list</i> must match those of the <i>select_list</i>.
                 </p><br>
                 <p>
                     If the SELECT statement identifies more than one row to be fetched, Oracle Database will raise the TOO_MANY_ROWS exception. If the statement doesn’t identify any rows to be fetched, Oracle Database will raise the NO_DATA_FOUND exception.
