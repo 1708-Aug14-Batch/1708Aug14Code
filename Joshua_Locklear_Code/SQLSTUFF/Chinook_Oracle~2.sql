@@ -67,14 +67,43 @@ add constraint fk_empid_hiredate
    EXCEPTIONS INTO wrong_emp;
 --3.1 System Defined Functions
 --Task – Create a function that returns the current time.
+create or replace function Time return VARCHAR2 is
+  Time varchar2(10);
+begin
+  select to_char(sysdate, 'hh24:mi') into Time from dual;
+  return Time;
+end;
+/
 --Task – create a function that returns the length of a mediatype from the mediatype table
+create or replace function media(id in number) return number is
+  len number;
+begin
+  select length(name) into len from mediatype where mediatypeid = id;
+  return vlen;
+end;
+/
 --3.2 System Defined Aggregate Functions
 --Task – Create a function that returns the average total of all invoices
+create or replace function average return number is average number;
+begin
+select avg(total) into avg from invoice;
+return average;
+end;
+/
 --Task – Create a function that returns the most expensive track
 --3.3 User Defined Scalar Functions
+create or replace function expens return is varchar2 tracks varchar(100);
+begin
+select name into tracks from track where unitprice = select max(unitprice) from track
+and rownum = 1;
+return tracks;
+end;
+/
 --Task – Create a function that returns the average price of invoiceline items in the invoiceline table
 --3.4 User Defined Table Valued Functions
 --Task – Create a function that returns all employees who are born after 1968.
+select * from employees
+where birthdate > date '68-01-01'
 --4.0 Stored Procedures 4
 --4.1 Basic Stored Procedure
 --Task – Create a stored procedure that selects the first and last names of all the employees.
@@ -93,8 +122,79 @@ commit;
 end;
 /
 --Task – Create a stored procedure that returns the managers of an employee.
-
+create or replace procedure returnmanagers(fn in varchar2(50), ln in varchar2(50),mgr out varchar(100))
+is
+begin
+select firstname, lastname as Manager into mgr from employee
+where employeeid = (select reportsto from employee where first name = fn and lastname = ln);
+end;
+/
 --4.3 Stored Procedure Output Parameters
 --Task – Create a stored procedure that returns the name and company of a customer.
-
-
+create or replace procedure Company(cust_id in number, name out varchar2, comp out varchar2)is
+begin
+select firstname, lastname as cust, company into name, comp from customer
+where customerid = custid_id;
+end;
+/
+--5.0 Transactions 2
+--Task – Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+create or replace procedure delinvoice(id in number)is
+begin
+set transaction name 'Delete2';
+delete from invoiceline where invoiceid = id;
+delete from invoice where in invoiceid = id;
+end;
+/
+--Task – Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+create or replace procedure newCustomer(id in number, fn in varchar2, ln in varchar2, email in varchar2) is
+begin
+set transaction name 'newCustomer'
+insert into customer
+(customerid, firstname, lastname, email)
+values
+(id,fn,ln,email)
+savepoint after_customer_insert
+commit;
+end;
+/
+--6.1 AFTER/FOR 3
+--Task - Create an after insert trigger on the employee table fired after a new record is inserted into the table.
+create or replace Trigger 
+--Task – Create an after update trigger on the album table that fires after a row is inserted in the table
+create or replace trigger updateAlbum_TRIGGER
+AFTER UPDATE ON ALBUM
+FOR EACH ROW
+BEGIN
+  dbms_output.put_line('change to the ALBUM table');
+END;
+/
+--Task – Create an after delete trigger on the customer table that fires after a row is deleted from the table
+-- 7.1 INNER
+-- Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+select firstname as fn, lastname as ln, invoiceid
+from customer cust
+inner join invoice inv on cust.customerid = inv.customerid
+order by 1,2;
+--7.2 outer
+-- Task – Create an outer join that joins the customer and invoice table,  
+--        specifying the CustomerId, firstname, lastname, invoiceId, and total.
+select cust.customerid, firstname, lastname, invoiceid, total
+from customer cust
+full outer join invoice inv on cust.customerid = inv.customerid
+order by 1,4;
+--7.3 Right
+--Task – Create a right join that joins album and artist specifying artist name and title.
+select title, name
+from album
+right join artist on album.artistid = artist.artistid;
+--cross
+--Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
+select name, title
+from album
+cross join artist
+order by name asc;
+--self
+--Task – Perform a self-join on the employee table, joining on the reportsto column.
+select * from employee t1, employee t2
+where t1.employeeid = t2.reportsto;
