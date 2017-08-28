@@ -16,6 +16,7 @@ import com.bank.util.ConnectionFactory;
 public class DaoImpl implements DAO{
 	
 		@Override
+		//add a user as a prepared statement
 		public int addUser(String fn,String ln,String email,String pw)
 		{
 			try(Connection conn = ConnectionFactory.getInstance().getConnection();)
@@ -48,6 +49,7 @@ public class DaoImpl implements DAO{
 		}
 		
 		@Override
+		//create a new account as a prepared statement
 		public Account creatAccount(User u, int typeid) {
 			Account a = null;
 			try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -79,6 +81,7 @@ public class DaoImpl implements DAO{
 		}
 
 		@Override
+		//retrieve all the users registered as a statement
 		public ArrayList<User> getAllUsers()
 		{
 			ArrayList<User> list = new ArrayList<User>();
@@ -109,6 +112,7 @@ public class DaoImpl implements DAO{
 		}
 		
 		@Override
+		//get all the accounts belonging to a user as a prepared statement
 		public ArrayList<Account> getAllAccountsForUser(int userid)
 		{
 			ArrayList<Account> list = new ArrayList<Account>();
@@ -141,6 +145,7 @@ public class DaoImpl implements DAO{
 		}
 		
 		@Override
+		//get all the account types as a statement
 		public ArrayList<AccountType> getAllAccountTypes() {
 			ArrayList<AccountType> list = new ArrayList<AccountType>();
 
@@ -170,6 +175,7 @@ public class DaoImpl implements DAO{
 		
 		
 		@Override
+		//using the get all method, able to find one of the users within it
 		public User getUser(int id)
 		{
 			ArrayList<User> list = getAllUsers();
@@ -182,6 +188,7 @@ public class DaoImpl implements DAO{
 		}
 		
 		@Override
+		//using the get all method, able to find one of the account types
 		public AccountType getAccountType(int id)
 		{
 			ArrayList<AccountType> list = getAllAccountTypes();
@@ -194,6 +201,7 @@ public class DaoImpl implements DAO{
 		}
 
 		@Override
+		//updating the user credentials by calling a stored procedure
 		public void updateUser(User u) 
 		{
 			try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -216,6 +224,7 @@ public class DaoImpl implements DAO{
 		}
 
 		@Override
+		//updating a user account by calling a stored procedure
 		public void updateAccount(Account a) 
 		{
 			try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -236,6 +245,7 @@ public class DaoImpl implements DAO{
 		}
 
 		@Override
+		//deleting a user by calling a stored procedure
 		public void deleteUser(User u) {
 			try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
@@ -253,6 +263,7 @@ public class DaoImpl implements DAO{
 		}
 
 		@Override
+		//deleting an account held by a user by calling a stored procedure
 		public void deleteAccount(Account a) {
 		
 			try(Connection conn = ConnectionFactory.getInstance().getConnection();){

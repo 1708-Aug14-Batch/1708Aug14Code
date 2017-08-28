@@ -10,8 +10,12 @@ import com.bank.pojos.User;
 
 public class Service 
 {
+	//belongs to every instance of service class
 	static DAO dao = new DaoImpl();
+	//create a new user per service
 	User user = new User();
+	
+	//welcome screen
 	public void mainMenu()
 	{
 		Scanner s = new Scanner(System.in);
@@ -38,13 +42,13 @@ public class Service
 	}
 
 
-
+	//quitting the program
 	private void quit() {
 		System.out.println("Goodbye.");
 		System.exit(0);
 	}
 
-
+	//creating a new user
 	User create() {
 		Scanner s = new Scanner(System.in);
 		
@@ -60,6 +64,11 @@ public class Service
 		System.out.println("Password: ");
 		String pass = s.nextLine();
 		
+		//call the add user method from daoimpl, 
+		//store their resulting id as the id
+		//of the new user
+		//set that new user equal to the user
+		//declared at the top
 		int id = dao.addUser(fn, ln, email, pass);
 		User newUser = new User(fn,ln,email,pass);
 		newUser.setId(id);
@@ -67,7 +76,7 @@ public class Service
 		return user;
 	}
 
-
+	//existing user login
 	User login() {
 		
 		ArrayList<User> list = dao.getAllUsers();
@@ -79,6 +88,7 @@ public class Service
 		System.out.println("Password: ");
 		String pass = s.nextLine();
 		
+		//find their credentials
 		for(User u:list)
 		{
 			if(u.getEmail().equals(email) && u.getPassword().equals(pass) )
@@ -89,10 +99,11 @@ public class Service
 		return user;
 	}
 	
+	//moreso the main menu than mainMenu()...
 	void running() {
 		Scanner s = new Scanner(System.in);
 		
-		System.out.println("What would you like to do? (1 for viewing accounts, 2 for updating your info, 3 to quit");
+		System.out.println("What would you like to do? (1 for viewing accounts, 2 for updating your info, 3 to quit)");
 		int choice = s.nextInt();
 	
 		switch(choice)
@@ -112,10 +123,12 @@ public class Service
 		
 	}
 	
+	//checking all your accounts held at the bank
 	public void checkAccounts(User u)
 	{
 		ArrayList<Account> list = dao.getAllAccountsForUser(u.getId());
 		Scanner s = new Scanner(System.in);
+		//checking to see if you have any, if you don't, offers to create one
 		if(list.isEmpty())
 		{
 			System.out.println("You have no accounts here, create a new one?(1 for yes, 2 to quit");
@@ -134,6 +147,7 @@ public class Service
 		}
 		else
 		{
+			//show your accounts
 			for(Account a:list)
 				System.out.println(a.toString());
 			
@@ -142,7 +156,7 @@ public class Service
 			System.out.println("Transfer funds? (press 2)");
 			System.out.println("Open another account? (press 3)");
 			System.out.println("Close and account? (press 4");
-			System.out.println("Quit? (press 5");
+			System.out.println("Quit? (press 5)");
 			
 			int choice2 = s.nextInt();
 			switch(choice2)
@@ -169,17 +183,27 @@ public class Service
 	}
 
 
-
+	//add a new account that isn't the same type as another account held
 	public void newAccount(User u)
 	{
 		ArrayList<Account> list = dao.getAllAccountsForUser(u.getId());
 		Account newAct;
+		//cannot create more than 3 accounts
 		if(list.size() >= 3)
 			System.out.println("Cannout creat anymore accounts!");
 		else {
 			Scanner s = new Scanner(System.in);
 			System.out.println("What kind of account would you like to create?(1 for checking, 2 for savings, 3 for credit)");
 			int choice = s.nextInt();
+			//checking to see if you have the account already
+			for(Account a:list)
+			{
+				if(a.getType().getId() == choice )
+				{
+					System.out.println("Cannout creat more accounts of that type!");
+					return;
+				}
+			}
 			switch(choice)
 			{
 			case 1:
@@ -203,6 +227,8 @@ public class Service
 		}
 	}
 	
+	//depositing and withdrawing funds from your accounts
+	//also checks to see if you have the account you wish to update
 	void updateFunds(User u)
 	{
 		ArrayList<Account> list = dao.getAllAccountsForUser(u.getId());
@@ -299,6 +325,7 @@ public class Service
 			System.out.println("Please enter a valid option.");
 		}
 	}
+	//transferring funds from account to account
 	public void transferFunds(User user) 
 	{
 		ArrayList<Account> list = dao.getAllAccountsForUser(user.getId());
@@ -307,6 +334,7 @@ public class Service
 			System.out.println("You must have more than 1 account to transfer.");
 			return;
 		}
+		//print the accounts for convenience
 		System.out.println("Select the account you would like to transfer from: (Enter the account type id)");
 		for(Account a :list)
 		{
@@ -315,6 +343,7 @@ public class Service
 		int choice = s.nextInt();
 		switch(choice)
 		{
+		//checking to savings 
 		case 1:
 			System.out.println("To which account? (1 for savings, 2 for credit)");
 			int choice2 = s.nextInt();
@@ -338,6 +367,7 @@ public class Service
 					}
 				}
 			}
+			//checking to credit
 			else {
 				for(Account a: list)
 				{
@@ -357,6 +387,7 @@ public class Service
 				}
 			}
 			break;
+		//savings to checking
 		case 2:
 			System.out.println("To which account? (1 for checking, 2 for credit)");
 			int choice3 = s.nextInt();
@@ -380,6 +411,7 @@ public class Service
 					}
 				}
 			}
+			//savings to credit
 			else {
 				for(Account a: list)
 				{
@@ -399,6 +431,7 @@ public class Service
 				}
 			}
 			break;
+		//credit to checking
 		case 3: 
 			System.out.println("To which account? (1 for checking, 2 for savings)");
 			int choice4 = s.nextInt();
@@ -422,6 +455,7 @@ public class Service
 					}
 				}
 			}
+			//credit to savings
 			else {
 				for(Account a: list)
 				{
@@ -445,6 +479,7 @@ public class Service
 		
 		
 	}
+	//updating the user info or deleting the profile
 	void updateInfo(User u)
 	{
 		Scanner s = new Scanner(System.in);
@@ -483,6 +518,7 @@ public class Service
 		}
 		
 	}
+	//close a specified account
 	public void closeAccount(User u) 
 	{
 		ArrayList<Account> list = dao.getAllAccountsForUser(u.getId());
