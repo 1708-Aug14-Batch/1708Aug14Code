@@ -6,60 +6,157 @@
 <title> My first HTML page for the 3rd time!</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+<style>
+#grad1 {
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(red, yellow); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(red, yellow); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(red, yellow); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(red, yellow); /* Standard syntax (must be last) */
+}
+</style>
 </head>
-<body>
+<body id = "grad1">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+<h1 class="text-center">DESIGN PATTERNS THO</h1>
+<div class="text-center">
+<a href = "https://www.youtube.com/watch?v=ZZ5LpwO-An4">
+<img src="artworks-000077775079-drmtjp-t500x500.jpg" class="img-fluid" alt="Responsive image">
+</a>
+<br>
+<br>
+<br>
+<h2> What IS a design pattern? </h2>
+<div class="card">
+  <div class="card-body">
+    A design pattern is a <b>well-proved</b> solution for solving the specific problem/task.<br>
+	<i> for more information, please visit</i> <a href = "https://www.javatpoint.com/design-patterns-in-java"> https://www.javatpoint.com/design-patterns-in-java </a>
   </div>
 </div>
+</div>
 
+
+
+
+
+<h3> There are 3 different kinds of design patterns used in Java</h3>
+<ol>
+<li class = "h4">Creational</li>
+<li class = "h4">Structural</li>
+<li class = "h4">Behavioral</li>
+</ol>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<h1>Creational</h1>
+<div class="card-body">
+    Creational design patterns are concerned with the way of creating objects. These design patterns are used when a decision must be made at the time of instantiation of a class (i.e. creating an object of a class)
+</div>
+<ol class = "h4"> <u>Examples</u> <br>
+<br>
+<br>
+<li>Singleton</li>
+<img src="singleton.jpg" class="img-fluid" alt="Responsive image">
+<h6>Singleton Pattern says that just"define a class that has only one instance and provides a global point of access to it".<br>
+
+In other words, a class must ensure that only single instance should be created and single object can be used by all other classes.
+</h6>
+<li>Factory</li>
+<img src="factorymethod.jpg" class="img-fluid" alt="Responsive image">
+<h6>A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but let the subclasses <br>
+decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
+
+The Factory Method Pattern is also known as Virtual Constructor.</h6>
+<li>Abstract Factory</li>
+<img src="abstractfactory.jpg" class="img-fluid" alt="Responsive image">
+<h6>Abstract Factory Pattern says that just define an interface or abstract class for creating families of related (or dependent) <br>
+objects but without specifying their concrete sub-classes.That means Abstract Factory lets a class returns a factory of classes. <br>
+So, this is the reason that Abstract Factory Pattern is one level higher than the Factory Pattern.<br>
+
+An Abstract Factory Pattern is also known as Kit.</h6>
+</ol>
+
+<h1>Structural</h1>
+<div class="card-body">
+Structural design patterns are concerned with how classes and objects can be composed, to form larger structures.<br>
+
+The structural design patterns simplifies the structure by identifying the relationships.<br>
+
+These patterns focus on, how the classes inherit from each other and how they are composed from other classes.
+</div>
+<ol class = "h4"> <u>Examples</u> <br>
+<br>
+<br>
+<li>Bridge</li>
+<img src="bridgeuml.jpg" class="img-fluid" alt="Responsive image">
+<h6>A Bridge Pattern says that just "decouple the functional abstraction from the implementation so that the two can vary independently".<br>
+
+The Bridge Pattern is also known as Handle or Body.
+
+.</h6>
+<li>Decorator</li>
+<img src="decoratoruml.jpg" class="img-fluid" alt="Responsive image">
+<h6>A Decorator Pattern says that just "attach a flexible additional responsibilities to an object dynamically".<br>
+
+In other words, The Decorator Pattern uses composition instead of inheritance to extend the functionality of an object at runtime.<br>
+
+The Decorator Pattern is also known as Wrapper.
+
+.</h6>
+<li>Facade</li>
+<img src="facadeuml.jpg" class="img-fluid" alt="Responsive image">
+<h6>A Facade Pattern says that just "just provide a unified and simplified interface to a set of interfaces in a subsystem, <br>
+therefore it hides the complexities of the subsystem from the client".<br>
+
+In other words, Facade Pattern describes a higher-level interface that makes the sub-system easier to use.
+
+Practically, every Abstract Factory is a type of Facade.</h6>
+</ol>
+
+
+<h1>Behavioral</h1>
+<div class="card-body">
+   Behavioral design patterns are concerned with the interaction and responsibility of objects.<br>
+
+In these design patterns,the interaction between the objects should be in such a way that they can easily talk to each other and still should be loosely coupled.<br>
+
+That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.
+</div>
+<ol class = "h4"> <u>Examples</u> <br>
+<br>
+<br>
+<li>Command</li>
+<img src="commanduml.jpg" class="img-fluid" alt="Responsive image">
+<h6> Command Pattern says that "encapsulate a request under an object as a command and pass it to invoker object.<br> 
+Invoker object looks for the appropriate object which can handle this command and pass the command to the <br>
+corresponding object and that object executes the command".<br>
+
+It is also known as Action or Transaction.</h6>
+<li>Interpreter</li>
+<img src="interpreteruml.jpg" class="img-fluid" alt="Responsive image">
+<h6>An Interpreter Pattern says that "to define a representation of grammar of a given language, along with an <br>
+interpreter that uses this representation to interpret sentences in the language".<br>
+
+Basically the Interpreter pattern has limited area where it can be applied. We can discuss the Interpreter pattern only in terms of formal grammars but <br>
+in this area there are better solutions that is why it is not frequently used.<br>
+
+This pattern can applied for parsing the expressions defined in simple grammars and sometimes in simple rule engines.</h6>
+<li>Iterator</li>
+<img src="iteratoruml.jpg" class="img-fluid" alt="Responsive image">
+<h6>Iterator Pattern is used "to access the elements of an aggregate object sequentially without exposing its underlying implementation".<br>
+
+The Iterator pattern is also known as Cursor.<br>
+
+In collection framework, we are now using Iterator that is preferred over Enumeration.</h6>
+</ol>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
