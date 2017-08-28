@@ -72,16 +72,17 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 	 * @return A single Account
 	 */
 	@Override
-	public Account readAccount(int id) {
-		if (id < 1) {
+	public Account readAccount(int userID, int accountTypeID) {
+		if (userID < 1 || accountTypeID < 1) {
 			throw new IllegalArgumentException("ID cannot be less than 1");
 		}
 		Account account = new Account();
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "SELECT * FROM bankaccount WHERE user_id = ?";
+			String sql = "SELECT * FROM bankaccount WHERE user_id = ? AND account_type_id = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(1, id);
+			statement.setInt(1, userID);
+			statement.setInt(2, accountTypeID);
 			ResultSet results = statement.executeQuery();
 			while(results.next()) {
 				int account_id = results.getInt("account_id");

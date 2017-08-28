@@ -199,18 +199,36 @@ public class BankService {
 	private void printWithdrawMenu() {
 		System.out.println("Withdraw");
 		System.out.println("From which account do you want to withdraw? >");
+		System.out.println("1. Checking");
+		System.out.println("2. Savings");
+		System.out.print("Which account? >");
+		int choice = Integer.parseInt(this.scanner.nextLine());
+		if (choice == 1) {
+			if (this.loggedInUser.hasChecking()) {
+				this.withdrawFunds(1);
+			} else {
+				System.out.println("You do not have a checking account.");
+			}
+		}
+		if (choice == 2) {
+			if (this.loggedInUser.hasSavings()) {
+				this.withdrawFunds(2);
+			} else {
+				System.out.println("You do not have a savings account.");
+			}
+		}
+		this.returnToLoggedInMenu();
+	}
+
+	private void withdrawFunds(int accountTypeID) {
 		System.out.print("How much money do you want to withdraw? >");
-		double withdrawl = Double.parseDouble(this.scanner.nextLine());
-		/*if (this.loggedInUser.getBalance().doubleValue() >= withdrawl) {
-			this.loggedInUser.setBalance(this.loggedInUser.getBalance().subtract(new BigDecimal(withdrawl)));
-			this.dao.updateUser(this.loggedInUser);
-			System.out.println(withdrawl + " has been withdrawn from your account.");
-			this.returnToLoggedInMenu();
-		} else {
-			System.out.println("Insufficient funds. Returning to previous menu.");
-			this.returnToLoggedInMenu();
-		}*/
-		
+		double withdrawal = Double.parseDouble(this.scanner.nextLine());
+		Account account = this.accountDAO.readAccount(this.loggedInUser.getUserID(), accountTypeID);
+		if (account.getBalance().doubleValue() > withdrawal) {
+			account.setBalance(account.getBalance().subtract(new BigDecimal(withdrawal)));
+			this.accountDAO.updateAccount(account);
+			System.out.println("You have withdrawn $" + withdrawal);
+		}
 	}
 	
 	private void printDepositMenu() {
@@ -223,14 +241,14 @@ public class BankService {
 		int choice = Integer.parseInt(this.scanner.nextLine());
 		if (choice == 1) {
 			if (this.loggedInUser.hasChecking()) {
-				this.depositFunds(deposit);
+				this.depositFunds(deposit, 1);
 			} else {
 				System.out.println("You do not have a checking account.");
 			}
 		}
 		if (choice == 2) {
 			if (this.loggedInUser.hasSavings()) {
-				this.depositFunds(deposit);
+				this.depositFunds(deposit, 2);
 			} else {
 				System.out.println("You do not have a savings account.");
 			}
@@ -238,8 +256,8 @@ public class BankService {
 		this.returnToLoggedInMenu();
 	}
 
-	private void depositFunds(double deposit) {
-		Account account = this.accountDAO.readAccount(this.loggedInUser.getUserID());
+	private void depositFunds(double deposit, int accountTypeID) {
+		Account account = this.accountDAO.readAccount(this.loggedInUser.getUserID(), accountTypeID);
 		account.setBalance(account.getBalance().add(new BigDecimal(deposit)));
 		this.accountDAO.updateAccount(account);
 		System.out.println(deposit + " has been deposited to your account.");

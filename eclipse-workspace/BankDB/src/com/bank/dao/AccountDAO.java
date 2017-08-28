@@ -13,7 +13,7 @@ public interface AccountDAO<Account> {
 
 	ArrayList<Account> readAllAccounts();
 
-	Account readAccount(int id);
+	Account readAccount(int userID, int accountTypeID);
 
 	void updateAccount(Account account);
 
