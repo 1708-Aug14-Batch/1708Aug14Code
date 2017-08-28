@@ -22,7 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" data-toggle="collapse" href="#pfSection" aria-expanded="false" aria-controls="pfSection">Procedures and Functions<span class="sr-only">(current)</span></a>
+        <a class="nav-link" data-toggle="collapse" href="#pfSection" aria-expanded="false" aria-controls="pfSection">Stored Procedures and Functions<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#tableSection" aria-expanded="false" aria-controls="tableSection">Table Comparison</a>
@@ -42,19 +42,17 @@
     <div class="row">
       <div class="col">
         <ul class="list-group">
-          <li class="list-group-item"><h3>PL/SQL Subprograms</h3></li>
-          <li class="list-group-item">
-            <ul class="list-group">
-              <li class="list-group-item"><h3>Procedures</h3></li>
-              <li class="list-group-item"><h4>One</h4></li>
-              <li class="list-group-item"><h4>Two</h4></li></li>
+          <li class="list-group-item"><h3>Procedures</h3>
+            <ul>
+              <li><h4>A Subprogram defined to perform specific or multiple task. It is storable to the database once complied and can be referenced by other programs.</h4></li>
+              <li><h4>Execute business logic</h4></li>
             </ul>
           </li>
-          <li class="list-group-item">
-            <ul class="list-group">
-              <li class="list-group-item"><h3>Functions</h3></li>
-              <li class="list-group-item"><h4>Three</h4></li>
-              <li class="list-group-item"><h4>Four</h4></li></li>
+          <li class="list-group-item"><h3>Functions</h3>
+            <ul>
+              <li><h4>Similar to procedures, however it generally is used for a single definitive purpose. Functions are required to return a value to the caller.
+              </h4></li>
+              <li><h4>Suited for computational logic</h4></li>
             </ul>
           </li>
         </ul>
@@ -72,26 +70,26 @@
         <table class="table">
           <thead class="thead-inverse">
             <tr>
-              <th></th>
               <th><h3>Procedures</h3></th>
-              <th><h3>Function</h3></th>
+              <th><h3>Functions</h3></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td><<p></p></td>
-              <td>Otto</td>
+              <td>May return multiple values or none</td>
+              <td>Returns a single value</td>
             </tr>
             <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
+              <td>Can be executed independently</td>
+              <td>Must be part of an executable state</td>
+            <tr>
+              <td>Useable in PL/SQL Blocks</td>
+              <td>Useable in SQL statements and PL/SQL Block</td>
             </tr>
             <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
+              <td>Can call Function</td>
+              <td>Cannot call Procedures</td>
+            </tr>
             </tr>
           </tbody>
         </table>
@@ -103,76 +101,74 @@
 
    <div class="row">
      <div class="col">
-        <h3>Procedures</h3>
-     </div>
-     <div class="col">
-        <h3>Function</h3>
-     </div>
-   </div>
+      <h3>Procedures</h3>
+    </div>
+    <div class="col">
+      <h3>Function</h3>
+    </div>
+  </div>
 
-    <div class="row">
-      <div class="col">
-        <pre class="col border border-dark rounded" ><code>
-          CREATE [OR REPLACE] PROCEDURE procedure_name
-          [ (parameter [,parameter]) ]
-          IS
-          [declaration_section]
-          BEGIN
-          executable_section
-          [EXCEPTION
-          exception_section]
-          END [procedure_name];
-        </code></pre>
-      </div>
-      <div class="col">
-        <pre class="col border border-dark rounded"><code>
-         CREATE [OR REPLACE] FUNCTION function_name
-         [ (parameter [,parameter]) ]
-         RETURN return_datatype
-         IS | AS
-         [declaration_section]
-         BEGIN
-         executable_section
-         [EXCEPTION
-         exception_section]
-         END [function_name];
-       </code></pre>
-     </div>
+  <div class="row">
+    <div class="col">
+      <pre class="col border border-dark rounded" ><code>
+        CREATE [OR REPLACE] PROCEDURE procedure_name
+        [(parameter_name [IN | OUT | IN OUT] type [, ...])]
+        IS | AS
+        [declaration_section]
+        BEGIN
+        executable_section
+        [EXCEPTION
+        exception_section]
+        END;
+      </code></pre>
+    </div>
+    <div class="col">
+      <pre class="col border border-dark rounded"><code>
+       CREATE [OR REPLACE] FUNCTION function_name
+       [(parameter_name [IN | OUT | IN OUT] type [, ...])]
+       RETURN return_datatype
+       IS | AS
+       [declaration_section]
+       BEGIN
+       executable_section
+       [EXCEPTION
+       exception_section]
+       END;
+     </code></pre>
    </div>
-   <div class="row">
-     <div class="col">
-        <pre class="col border border-dark rounded"><code>
-         DROP FUNCTION <i>procedure_name</i>;
-       </code></pre>
-     </div>
-     <div class="col">
-        <pre class="col border border-dark rounded"><code>
-         DROP FUNCTION <i>function_name</i>;
-       </code></pre>
-     </div>
  </div>
+ <div class="row">
+   <div class="col">
+    <pre class="col border border-dark rounded"><code>
+     DROP Procedure <i>procedure_name</i>;
+   </code></pre>
+ </div>
+ <div class="col">
+  <pre class="col border border-dark rounded"><code>
+   DROP FUNCTION <i>function_name</i>;
+ </code></pre>
+</div>
+</div>
 </div>
 
 <div class="collapse" id="sourceSection">
   <div class="row">
     <div class="col">
-    <ol>
-      <a href="https://www.tutorialspoint.com/plsql/plsql_procedures.htm">https://www.tutorialspoint.com/plsql/plsql_procedures.htm</a>
-      <br>
-      <a href="https://www.tutorialspoint.com/plsql/plsql_functions.htm">https://www.tutorialspoint.com/plsql/plsql_functions.htm</a>
-      <br>
-      <a href="https://www.techonthenet.com/oracle/procedures.php">https://www.techonthenet.com/oracle/procedures.php</a>
-      <br>
-      <a href="https://www.techonthenet.com/oracle/functions.php">https://www.techonthenet.com/oracle/functions.php</a>
-      <br>
-    </ol>
+      <ol>
+        <a href="https://www.tutorialspoint.com/plsql/plsql_procedures.htm">https://www.tutorialspoint.com/plsql/plsql_procedures.htm</a>
+        <br>
+        <a href="https://www.tutorialspoint.com/plsql/plsql_functions.htm">https://www.tutorialspoint.com/plsql/plsql_functions.htm</a>
+        <br>
+        <a href="https://www.techonthenet.com/oracle/procedures.php">https://www.techonthenet.com/oracle/procedures.php</a>
+        <br>
+        <a href="https://www.techonthenet.com/oracle/functions.php">https://www.techonthenet.com/oracle/functions.php</a>
+        <br>
+        <a href="https://stackoverflow.com/questions/771949/what-is-the-difference-between-function-and-procedure-in-pl-sql">https://stackoverflow.com/questions/771949/what-is-the-difference-between-function-and-procedure-in-pl-sql</a>
+      </ol>
     </div>
   </div>
 </div>
-
 </div>
-
-
 
 
 <!-- Optional JavaScript -->
