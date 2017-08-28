@@ -1,6 +1,9 @@
 package com.bank.pojos;
 
+
 public class AccountType {
+	
+	public static enum TYPES { NONE, SAVINGS, CHECKING, CREDIT };
 
 	private int typeId;
 	private String name;

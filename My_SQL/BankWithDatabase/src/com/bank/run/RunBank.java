@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.bank.pojos.Account;
+import com.bank.pojos.AccountType;
 import com.bank.pojos.User;
 import com.bank.service.Service;
 
@@ -438,7 +439,7 @@ public class RunBank {
 		for (Account a : accounts) {
 			i++;
 			if (a.getId() != skipId) {
-				System.out.println("" + i + ". " + a.getId() + " (" + a.getType() + ")");
+				System.out.println("" + i + ". " + a.getId() + " (" + AccountType.TYPES.values()[a.getType()] + ")");
 			}
 			else {
 				except = i;
