@@ -112,13 +112,17 @@ public class UserDAOImpl implements UserDAO<User> {
 	public void updateUser(User user) {
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
 			conn.setAutoCommit(false);
-			String sql = "UPDATE bankuser SET email = ?, password = ? WHERE user_id = ?"; // do not use semicolon
+			String sql = "UPDATE bankuser SET email = ?, password = ?, has_checking = ?, has_savings = ? WHERE user_id = ?"; // do not use semicolon
 			String[] key = new String[1];
 			key[0] = "user_id";
 			PreparedStatement statement = conn.prepareStatement(sql, key);
 			statement.setString(1, user.getEmail());
 			statement.setString(2, user.getPassword());
-			statement.setInt(3, user.getUserID());
+			int hasChecking = user.hasChecking() ? 1 : 0;
+			statement.setInt(3, hasChecking);
+			int hasSavings = user.hasSavings() ? 1 : 0;
+			statement.setInt(4, hasSavings);
+			statement.setInt(5, user.getUserID());
 			statement.executeUpdate();
 			conn.commit();
 		} catch (SQLException sqle) {
@@ -133,9 +137,20 @@ public class UserDAOImpl implements UserDAO<User> {
 	 * @return The number of affected rows. Should be 1.
 	 */
 	@Override
-	public int disableUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void disableUser(User user) {
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
+			conn.setAutoCommit(false);
+			String sql = "UPDATE bankuser SET enabled = 0 WHERE user_id = ?"; // do not use semicolon
+			String[] key = new String[1];
+			key[0] = "user_id";
+			PreparedStatement statement = conn.prepareStatement(sql, key);
+			statement.setInt(1, user.getUserID());
+			statement.executeUpdate();
+			conn.commit();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		
 	}
 
 }

@@ -107,7 +107,7 @@ public class BankService {
 			System.out.print("Enter email >");
 			String email = this.scanner.nextLine();
 			for(User currentUser : allUsers) {
-				if (currentUser.getEmail().equals(email)) {
+				if (currentUser.getEmail().equals(email) && currentUser.isEnabled()) {
 					user = currentUser;
 					break;
 				}
@@ -379,19 +379,54 @@ public class BankService {
 	}
 	
 	private void closeAccount() {
-		System.out.print("Warning! You have selected to close your account. Are you sure you want to do this? y/n >");
-		String answer = this.scanner.nextLine();
-		if (answer.equalsIgnoreCase("y")) {
-			System.out.println("We're sorry to see you go. Your account will be closed.");
-			//this.dao.destroyUser(this.loggedInUser);
-			this.displayInitialMenu();
+		System.out.print("Close account");
+		Account checking = this.accountDAO.readAccount(this.loggedInUser.getUserID(), 1);
+		Account savings = this.accountDAO.readAccount(this.loggedInUser.getUserID(), 2);
+		if (this.loggedInUser.hasChecking()) {
+			System.out.println("1. Checking");
 		}
-		else if (answer.equalsIgnoreCase("n")) {
-			System.out.println("Returning to previous menu...");
-			this.returnToLoggedInMenu();
+		if (this.loggedInUser.hasSavings()) {
+			System.out.println("2. Savings");
 		}
-		else {
-			System.out.println("Your input was not recognized. Returning to previous menu...");
+		System.out.println("3. My User Account");
+		System.out.println("Which account do you want to close? >");
+		int answer = Integer.parseInt(this.scanner.nextLine());
+		if (answer == 1) {
+			if (this.loggedInUser.hasSavings()) {
+				System.out.println("Remaining funds in your checking account will be transfered to your savings account.");
+				savings.setBalance(savings.getBalance().add(checking.getBalance()));
+				this.accountDAO.updateAccount(savings);
+				this.accountDAO.destroyAccount(checking.getAccountID());
+				this.loggedInUser.setHasChecking(false);
+				this.userDAO.updateUser(this.loggedInUser);
+			} else {
+				System.out.println("Remaining funds will be mailed to you.");
+				this.accountDAO.destroyAccount(checking.getAccountID());
+				this.loggedInUser.setHasChecking(false);
+				this.userDAO.updateUser(this.loggedInUser);
+			}
+		}
+		if (answer == 2) {
+			if (this.loggedInUser.hasChecking()) {
+				System.out.println("Remaining funds in your savings account will be transfered to your checking account.");
+				checking.setBalance(savings.getBalance().add(savings.getBalance()));
+				this.accountDAO.updateAccount(checking);
+				this.accountDAO.destroyAccount(savings.getAccountID());
+				this.loggedInUser.setHasSavings(false);
+				this.userDAO.updateUser(this.loggedInUser);
+			} else {
+				System.out.println("Remaining funds will be mailed to you.");
+				this.accountDAO.destroyAccount(savings.getAccountID());
+				this.loggedInUser.setHasSavings(false);
+				this.userDAO.updateUser(this.loggedInUser);
+			}
+		}
+		if (answer == 3) {
+			System.out.println("We're sorry to see you go. Your account details will remain on record, and remaining funds will be mailed to you.");
+			this.userDAO.disableUser(this.loggedInUser);
+			this.loggedInUser = null;
+			this.printOptionsForLoggedOutUser();
+		} else {
 			this.returnToLoggedInMenu();
 		}
 	}

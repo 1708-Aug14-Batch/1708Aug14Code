@@ -144,9 +144,19 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 	 * @return - The number of rows affected. Should be 1.
 	 */
 	@Override
-	public int disableAccount(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public void destroyAccount(int id) {
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
+			conn.setAutoCommit(false);
+			String sql = "DELETE FROM bankaccount WHERE account_id = ?"; // do not use semicolon
+			String[] key = new String[1];
+			key[0] = "account_id";
+			PreparedStatement statement = conn.prepareStatement(sql, key);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			conn.commit();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
 	}
 
 }

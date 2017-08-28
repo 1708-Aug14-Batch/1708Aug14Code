@@ -17,6 +17,6 @@ public interface UserDAO<User> {
 
 	void updateUser(User user);
 
-	int disableUser(User user);
+	void disableUser(User user);
 
 }

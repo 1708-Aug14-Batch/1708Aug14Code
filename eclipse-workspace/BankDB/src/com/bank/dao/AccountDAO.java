@@ -17,6 +17,6 @@ public interface AccountDAO<Account> {
 
 	void updateAccount(Account account);
 
-	int disableAccount(int id);
+	void destroyAccount(int id);
 
 }
