@@ -58,8 +58,30 @@ public class UserDAOImpl implements UserDAO<User> {
 	 */
 	@Override
 	public ArrayList<User> readAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<User> allUsers = new ArrayList<User>();
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "SELECT * FROM bankuser";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			ResultSet results = statement.executeQuery(sql);
+			while(results.next()) {
+				int id = results.getInt("user_id");
+				String firstName = results.getString("firstname");
+				String lastName = results.getString("lastname");
+				String email = results.getString("email");
+				String password = results.getString("password");
+				User user = new User();
+				user.setUserID(id);
+				user.setFirstName(firstName);
+				user.setLastName(lastName);
+				user.setEmail(email);
+				user.setPassword(password);
+				allUsers.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return allUsers;
 	}
 
 	/**

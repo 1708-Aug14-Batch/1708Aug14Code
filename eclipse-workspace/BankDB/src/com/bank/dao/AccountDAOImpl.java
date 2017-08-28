@@ -1,8 +1,13 @@
 package com.bank.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.bank.model.Account;
+import com.bank.util.ConnectionSingleton;
 
 /**
  * Concrete implementation of interface AccountDAO.
@@ -14,11 +19,33 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 	 * Adds a new user account to the database.
 	 * @precondition Account cannot be null
 	 * @param account - Account whose details will be placed in the database
-	 * @return The number of rows successfully added. Should be 1.
+	 * @return The id of the inserted account
 	 */
 	@Override
 	public int createAccount(Account account) {
-		// TODO Auto-generated method stub
+		if (account == null) {
+			throw new IllegalArgumentException("Account cannot be null");
+		}
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO bankaccount(account_id, balance, user_id, account_type_id) VALUES(DEFAULT, ?, ?, ?)";
+			String[] key = new String[1];
+			key[0] = "account_id";
+			PreparedStatement statement = conn.prepareStatement(sql, key);
+			statement.setBigDecimal(1, account.getBalance());
+			statement.setInt(2, account.getUserID());
+			statement.setInt(3, account.getAccountTypeID());
+			statement.executeUpdate();
+			int id = 0;
+			ResultSet returnedKeys = statement.getGeneratedKeys();
+			while(returnedKeys.next()) {
+				id = returnedKeys.getInt(1);
+			}
+			conn.commit();
+			return id;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 

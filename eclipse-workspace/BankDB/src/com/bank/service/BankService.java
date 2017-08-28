@@ -1,5 +1,6 @@
 package com.bank.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -103,7 +104,7 @@ public class BankService {
 		User user = null;
 		do {
 			System.out.println("Login");
-			System.out.print("Enter username >");
+			System.out.print("Enter email >");
 			String email = this.scanner.nextLine();
 			for(User currentUser : allUsers) {
 				if (currentUser.getEmail().equals(email)) {
@@ -125,7 +126,7 @@ public class BankService {
 					}
 				} while (!passwordCorrect);
 			} else {
-				System.out.println("Username not found. Press any key to continue...");
+				System.out.println("Email not found. Press any key to continue...");
 				this.scanner.nextLine();
 			}
 		} while(user == null);
@@ -161,8 +162,9 @@ public class BankService {
 		System.out.println("2. Withdraw Funds");
 		System.out.println("3. Deposit Funds");
 		System.out.println("4. View Account Balance");
-		System.out.println("5. Edit My Information");
-		System.out.println("6. Close Account1");
+		System.out.println("5. Open New Bank Account");
+		System.out.println("6. Edit My Information");
+		System.out.println("7. Close Account1");
 		this.processLoggedInMenu();
 	}
 	
@@ -182,10 +184,13 @@ public class BankService {
 		case 4: // View Balance
 			this.viewBalance();
 			break;
-		case 5: // Edit information
+		case 5:
+			this.openNewBankAccount();
+			break;
+		case 6: // Edit information
 			this.editInfo();
 			break;
-		case 6:
+		case 7:
 			this.closeAccount();
 			break;
 		}
@@ -224,6 +229,36 @@ public class BankService {
 	private void viewBalance() {
 		//System.out.println("Your balance is : " + this.loggedInUser.getBalance());
 		this.returnToLoggedInMenu();
+	}
+	
+	private void openNewBankAccount() {
+		System.out.println("Open New Bank Account");
+		int accountTypeChoice = 0;
+		do {
+			System.out.println("What kind of account would you like to open?");
+			System.out.println("1. Personal Checking");
+			System.out.println("2. Personal Savings");
+			System.out.print("Enter your choice >");
+			try {
+				accountTypeChoice = Integer.parseInt(this.scanner.nextLine());
+			} catch (NumberFormatException nfe) {
+				System.out.println("Your input was not recognized. Please input a number.");
+			}
+		} while (accountTypeChoice == 0);
+		if (accountTypeChoice == 1) {
+			Account account = new Account();
+			account.setAccountTypeID(1);
+			account.setUserID(this.loggedInUser.getUserID());
+			account.setBalance(new BigDecimal(0));
+			this.accountDAO.createAccount(account);
+		} else if (accountTypeChoice == 2) {
+			
+		} else {
+			System.err.println("Input invalid");
+		}
+		System.out.println("Thank you. Your account has been created.");
+		System.out.println("Press any key to continue...");
+		this.scanner.nextLine();
 	}
 	
 	private void editInfo() {
