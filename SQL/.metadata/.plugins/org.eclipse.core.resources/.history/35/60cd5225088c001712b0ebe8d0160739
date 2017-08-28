@@ -394,7 +394,7 @@ public class DaoSqlImpl implements DaoSql {
 			key[0] = "account_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setString(1, balance.toString());
+			ps.setDouble(1, balance.doubleValue());	// FIXME I'll likely lose data with this conversion. Find a better way to do it
 			LocalDate day = LocalDate.now();
 			ps.setString(2, getFormatedDate(day));
 			ps.setInt(3, guy.getUserId());
@@ -439,7 +439,7 @@ public class DaoSqlImpl implements DaoSql {
 
 			while(rs.next()) {
 				accountId = rs.getInt(1);		// This line is redundant
-				BigDecimal balance = new BigDecimal(rs.getString(2));
+				BigDecimal balance = new BigDecimal(rs.getDouble(2));	// FIXME change getDouble if I change the lossy conversion for creating an account
 				LocalDate accountOpenedDate = LocalDate.parse(rs.getString(3).substring(0, 10));
 				int userId = rs.getInt(4);
 				int typeId = rs.getInt(5);
@@ -469,7 +469,7 @@ public class DaoSqlImpl implements DaoSql {
 			key[0] = "account_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setString(1, acc.getBalance().toString());
+			ps.setDouble(1, acc.getBalance().doubleValue());	// FIXME BigDecimal conversion
 			ps.setInt(2, acc.getLevel().ordinal());
 			ps.setInt(3, acc.isDeleted()?1:0);
 			ps.setInt(4, accountId);
@@ -512,7 +512,7 @@ public class DaoSqlImpl implements DaoSql {
 
 			while(rs.next()) {
 				int accountId = rs.getInt(1);		// This line is redundant
-				BigDecimal balance = new BigDecimal(rs.getString(2));
+				BigDecimal balance = new BigDecimal(rs.getDouble(2));	// FIXME change getDouble if I change the lossy conversion for creating an account
 				LocalDate accountOpenedDate = LocalDate.parse(rs.getString(3).substring(0, 10));
 				int userId = rs.getInt(4);
 				int typeId = rs.getInt(5);
@@ -547,7 +547,7 @@ public class DaoSqlImpl implements DaoSql {
 
 			while(rs.next()) {
 				int accountId = rs.getInt(1);		// This line is redundant
-				BigDecimal balance = new BigDecimal(rs.getString(2));
+				BigDecimal balance = new BigDecimal(rs.getDouble(2));	// FIXME change getDouble if I change the lossy conversion for creating an account
 				LocalDate accountOpenedDate = LocalDate.parse(rs.getString(3).substring(0, 10));
 				userId = rs.getInt(4);
 				int typeId = rs.getInt(5);

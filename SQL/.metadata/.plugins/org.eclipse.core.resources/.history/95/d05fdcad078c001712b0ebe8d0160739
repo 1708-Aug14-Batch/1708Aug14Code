@@ -56,6 +56,9 @@ public class RunBank {
 	// Implementation to actually run bank application
 	public static void main(String[] args) {
 
+		// FIXME DEBUG ONLY
+		showEverything();
+
 		System.out.println("Hello. Welcome to the automating banking system for " + bankName + ".");
 
 		try {
@@ -751,6 +754,16 @@ public class RunBank {
 			}
 
 		return false;
+
+	}
+
+	public static void showEverything() {
+		DaoSqlImpl daoImpl = new DaoSqlImpl();
+
+		System.out.println(daoImpl.readAllPersons());
+		System.out.println(daoImpl.readAllBankUsers());
+		System.out.println(daoImpl.readAllAccounts());
+		System.out.println();
 
 	}
 
