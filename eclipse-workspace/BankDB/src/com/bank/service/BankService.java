@@ -270,7 +270,12 @@ public class BankService {
 	}
 	
 	private void viewBalance() {
-		//System.out.println("Your balance is : " + this.loggedInUser.getBalance());
+		if (this.loggedInUser.hasChecking()) {
+			System.out.println("Checking Balance: $" + this.accountDAO.readAccount(this.loggedInUser.getUserID(), 1).getBalance());
+		}
+		if (this.loggedInUser.hasSavings()) {
+			System.out.println("Savings Balance: $" + this.accountDAO.readAccount(this.loggedInUser.getUserID(), 2).getBalance());
+		}
 		this.returnToLoggedInMenu();
 	}
 	
