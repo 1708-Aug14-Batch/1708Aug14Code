@@ -9,11 +9,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.bank.pojos.Account;
+import com.bank.pojos.*;
 import com.bank.pojos.Account.accountLevel;
 import com.bank.pojos.Account.accountType;
-import com.bank.pojos.BankUser;
-import com.bank.pojos.Person;
 import com.bank.util.ConnectionFactory;
 
 // NOTE: SQL is 1-indexed rather than 0-indexed
@@ -565,5 +563,155 @@ public class DaoSqlImpl implements DaoSql {
 		return list;
 	}
 
+	public Clerk createClerk(Person per, int employeeId, String password, double hourlyWage) {
+		Clerk cler = null;
 
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+
+			// No semi-colon inside the quotes
+			String sql = "INSERT INTO clerk(employee_id, password, date_hired, hourly_wage, hired, ssn)" + 
+					" VALUES(?, ?, TO_DATE(?,'yyyy-mm-dd'), ?, ?, ?)";
+			String[] key = new String[1];
+			key[0] = "employee_id";
+
+			LocalDate dateHired = LocalDate.now();
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setInt(1, employeeId);
+			ps.setString(2, password);
+			ps.setString(3, getFormatedDate(dateHired));
+			ps.setDouble(4, hourlyWage);
+			ps.setInt(5, 1);		// true
+			ps.setInt(6, per.getSSN());
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			conn.commit();
+			cler = new Clerk(per, employeeId, dateHired, password, hourlyWage);
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return cler;
+
+	}
+
+	@Override
+	public Clerk readClerk(int employeeId) {
+		Clerk cler = null;
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT * FROM clerk WHERE employee_id=?";
+			String[] key = new String[1];
+			key[0] = "employee_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setInt(1, employeeId);
+
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()) {
+				employeeId = rs.getInt(1);		// This line is redundant
+				String password = rs.getString(2);
+				LocalDate dateHired = LocalDate.parse(rs.getString(3).substring(0, 10));
+				double hourlyWage = rs.getDouble(4);
+				boolean hired = (rs.getInt(5) == 0)?false:true;
+				int SSN = rs.getInt(6);
+				
+				Person per = readPerson(SSN);
+				
+				cler = new Clerk(per, employeeId, dateHired, password, hourlyWage);
+				cler.setHired(hired);
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return cler;
+	}
+
+	@Override
+	public boolean updateClerk(int employeeId, Clerk cler) {
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+
+			// No semi-colon inside the quotes
+			String sql = "UPDATE clerk SET" + 
+					" password=?, hourly_wage=?, hired=?" + 
+					" WHERE employee_id=?";
+			String[] key = new String[1];
+			key[0] = "employee_id";
+			
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, cler.getPassword());
+			ps.setDouble(2, cler.getHourlyWage());
+			ps.setInt(3, cler.isHired()?1:0);
+			ps.setInt(4, employeeId);
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			conn.commit();
+			return true;
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return false;
+
+	}
+
+	@Override
+	public boolean deleteClerk(int employeeId) {
+
+		Clerk cler = readClerk(employeeId);
+		if (cler == null)
+			return false;
+
+		cler.setHired(false);
+		return updateClerk(employeeId, cler);
+
+	}
+
+/*
+	@Override
+	public ArrayList<Clerk> readAllClerks() {
+		ArrayList<Clerk> list = new ArrayList<Clerk>();
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT * from clerk";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while(rs.next()) {
+				int ssn = rs.getInt(1);
+				String firstName = rs.getString(2);
+				String lastName = rs.getString(3);
+				String email = rs.getString(4);
+				LocalDate birthDate = LocalDate.parse(rs.getString(5).substring(0, 10));
+				boolean deceased = (rs.getInt(6) == 0)?false:true;
+
+				Clerk cler = new Person(ssn, firstName, lastName, birthDate);
+				per.setEmail(email);
+				per.setDeceased(deceased);
+
+				list.add(per);
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return list;
+	}
+*/
+	public ArrayList<Clerk> readAllClerks() {
+		// TODO method stub
+		return null;
+	}
 }

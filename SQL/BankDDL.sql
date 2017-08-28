@@ -22,7 +22,9 @@ CREATE TABLE clerk(
   password VARCHAR(50),
   date_hired DATE,
   hourly_wage NUMBER(8, 2),
-  hired NUMBER(1) DEFAULT 1 NOT NULL
+  hired NUMBER(1) DEFAULT 1 NOT NULL,
+  ssn NUMBER NOT NULL UNIQUE,
+  CONSTRAINT fk_clerk_ssn FOREIGN KEY(ssn) REFERENCES person(ssn)
 );
 
 CREATE TABLE account_type(

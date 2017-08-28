@@ -9,7 +9,7 @@ public class Account {
 	
 	public static final Map<accountLevel, Double> rewardsRateMap = new TreeMap<accountLevel, Double>();
 	public static final Map<accountLevel, Double> savingsRateMap = new TreeMap<accountLevel, Double>();
-	public static final Map<accountLevel, Double> interestRateMap = new TreeMap<accountLevel, Double>();
+	public static final Map<accountLevel, Double> creditRateMap = new TreeMap<accountLevel, Double>();
 	
 	// Initialization block
 	static {
@@ -25,11 +25,12 @@ public class Account {
 		savingsRateMap.put(accountLevel.PLATINUM, (double)6/100);
 		savingsRateMap.put(accountLevel.DOUBLE_PLATINUM, (double)8/100);
 		
-		interestRateMap.put(accountLevel.BRONZE, (double)25/100);
-		interestRateMap.put(accountLevel.SILVER, (double)23/100);
-		interestRateMap.put(accountLevel.GOLD, (double)20/100);
-		interestRateMap.put(accountLevel.PLATINUM, (double)17/100);
-		interestRateMap.put(accountLevel.DOUBLE_PLATINUM, (double)12/100);
+		creditRateMap.put(accountLevel.BRONZE, (double)25/100);
+		creditRateMap.put(accountLevel.SILVER, (double)23/100);
+		creditRateMap.put(accountLevel.GOLD, (double)20/100);
+		creditRateMap.put(accountLevel.PLATINUM, (double)17/100);
+		creditRateMap.put(accountLevel.DOUBLE_PLATINUM, (double)12/100);
+		
 	}
 	
 	// Account id number is initialized when the account is created
@@ -148,8 +149,8 @@ public class Account {
 	public int getAccountId() {
 		return accountId;
 	}
-	public double getInterestRate() {
-		return interestRateMap.get(level);
+	public double getCreditRate() {
+		return creditRateMap.get(level);
 	}
 	public double getRewardsRate() {
 		return rewardsRateMap.get(level);
@@ -157,6 +158,7 @@ public class Account {
 	public double getSavingsRate() {
 		return savingsRateMap.get(level);
 	}
+	
 	
 	@Override
 	public String toString() {

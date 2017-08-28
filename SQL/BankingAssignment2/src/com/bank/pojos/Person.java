@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Person {
 	
 	// Each person must have a unique 9-digit Social Security Number
-	private final int SSN;
+	protected final int SSN;
 
 	// Each person must have a firstName and lastName
 	private String firstName;

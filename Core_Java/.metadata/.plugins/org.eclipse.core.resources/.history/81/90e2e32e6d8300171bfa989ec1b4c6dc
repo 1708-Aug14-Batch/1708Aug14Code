@@ -1,9 +1,0 @@
-package com.bank.pojos;
-
-public interface Bankable {
-	
-	// Determines whether an Bank user is an admin
-	// Users are non-admin, bank personnel (clerk) have admin privileges
-	boolean admin;
-
-}

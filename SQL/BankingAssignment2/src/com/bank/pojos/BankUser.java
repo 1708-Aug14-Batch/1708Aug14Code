@@ -8,14 +8,12 @@ public class BankUser extends Person {
 	private final int userId;
 	private final String username;
 	private String password;
-	private final int SSN;		// Matches the SSN of the person who is the user
 	
 	public BankUser(Person per, int userId, String username, String password) {
 		super(per.getSSN(), per.getFirstName(), per.getLastName(), per.getBirthDate());
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
-		SSN = per.getSSN();
 	}
 	
 	public String getPassword() {

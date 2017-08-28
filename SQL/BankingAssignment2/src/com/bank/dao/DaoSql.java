@@ -4,9 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import com.bank.pojos.Account;
-import com.bank.pojos.BankUser;
-import com.bank.pojos.Person;
+import com.bank.pojos.*;
 import com.bank.pojos.Account.accountLevel;
 import com.bank.pojos.Account.accountType;
 
@@ -30,13 +28,14 @@ public interface DaoSql {
 	public boolean deleteBankUser(int userId);
 	public ArrayList<BankUser> readAllBankUsers();	
 	
-	/* TODO
 	// Clerk
-	create
-	read
-	update
-	delete
-	*/
+	public Clerk createClerk(Person per, int employeeId, String password, double hourlyWage);
+	public Clerk readClerk(int employeeId);
+	// change any clerk's field except their uniquely identifying keys
+	public boolean updateClerk(int employeeId, Clerk cler);
+	// A deleted Clerk is merely marked as no longer hired
+	public boolean deleteClerk(int employeeId);
+	public ArrayList<Clerk> readAllClerks();
 	
 	// Account
 	public Account createAccount(BankUser guy, BigDecimal balance, accountType type, accountLevel level);
