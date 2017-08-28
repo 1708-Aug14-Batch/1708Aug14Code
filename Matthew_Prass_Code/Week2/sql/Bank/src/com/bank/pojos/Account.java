@@ -10,9 +10,8 @@ public class Account {
 		
 		public Account() {};
 		
-		public Account(int id, double balance, User user, AccountType type) {
+		public Account(double balance, User user, AccountType type) {
 			super();
-			this.id = id;
 			this.balance = balance;
 			this.user = user;
 			this.type = type;
