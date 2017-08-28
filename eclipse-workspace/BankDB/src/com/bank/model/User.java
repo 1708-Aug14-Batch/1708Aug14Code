@@ -12,6 +12,9 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	private boolean hasChecking;
+	private boolean hasSavings;
+	private boolean enabled;
 	
 	public int getUserID() {
 		return userID;
@@ -52,6 +55,30 @@ public class User {
 		this.password = password;
 	}
 	
+	public boolean hasChecking() {
+		return hasChecking;
+	}
+
+	public void setHasChecking(boolean hasChecking) {
+		this.hasChecking = hasChecking;
+	}
+
+	public boolean hasSavings() {
+		return hasSavings;
+	}
+
+	public void setHasSavings(boolean hasSavings) {
+		this.hasSavings = hasSavings;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email

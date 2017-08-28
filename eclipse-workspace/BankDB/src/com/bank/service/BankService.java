@@ -155,7 +155,7 @@ public class BankService {
 		this.displayInitialMenu();
 	}
 	
-	private void printOptionsForLoggedInUser(String username) {;
+	private void printOptionsForLoggedInUser(String username) {
 		System.out.println("Welcome " + username);
 		System.out.println("Options:");
 		System.out.println("1. Logout");
@@ -164,30 +164,30 @@ public class BankService {
 		System.out.println("4. View Account Balance");
 		System.out.println("5. Open New Bank Account");
 		System.out.println("6. Edit My Information");
-		System.out.println("7. Close Account1");
+		System.out.println("7. Close Account");
 		this.processLoggedInMenu();
 	}
 	
 	private void processLoggedInMenu() {
 		int input = this.getInput();
 		switch(input) {
-		case 1: // logout
+		case 1:
 			System.out.println("Logging out...");
 			this.displayInitialMenu();
 			break;
-		case 2: // Withdraw Funds
-			this.withdrawFunds();
+		case 2:
+			this.printWithdrawMenu();
 			break;
-		case 3: // Deposit Funds
-			this.depositFunds();
+		case 3:
+			this.printDepositMenu();
 			break;
-		case 4: // View Balance
+		case 4:
 			this.viewBalance();
 			break;
 		case 5:
 			this.openNewBankAccount();
 			break;
-		case 6: // Edit information
+		case 6:
 			this.editInfo();
 			break;
 		case 7:
@@ -196,7 +196,9 @@ public class BankService {
 		}
 	}
 	
-	private void withdrawFunds() {
+	private void printWithdrawMenu() {
+		System.out.println("Withdraw");
+		System.out.println("From which account do you want to withdraw? >");
 		System.out.print("How much money do you want to withdraw? >");
 		double withdrawl = Double.parseDouble(this.scanner.nextLine());
 		/*if (this.loggedInUser.getBalance().doubleValue() >= withdrawl) {
@@ -211,13 +213,36 @@ public class BankService {
 		
 	}
 	
-	private void depositFunds() {
+	private void printDepositMenu() {
+		System.out.println("Deposit");
 		System.out.print("How much money do you want to deposit? >");
 		double deposit = Double.parseDouble(this.scanner.nextLine());
-		//this.loggedInUser.setBalance(this.loggedInUser.getBalance().add(new BigDecimal(deposit)));
-		//this.dao.updateUser(this.loggedInUser);
-		System.out.println(deposit + " has been deposited to your account.");
+		System.out.println("1. Checking");
+		System.out.println("2. Savings");
+		System.out.print("Which account? >");
+		int choice = Integer.parseInt(this.scanner.nextLine());
+		if (choice == 1) {
+			if (this.loggedInUser.hasChecking()) {
+				this.depositFunds(deposit);
+			} else {
+				System.out.println("You do not have a checking account.");
+			}
+		}
+		if (choice == 2) {
+			if (this.loggedInUser.hasSavings()) {
+				this.depositFunds(deposit);
+			} else {
+				System.out.println("You do not have a savings account.");
+			}
+		}
 		this.returnToLoggedInMenu();
+	}
+
+	private void depositFunds(double deposit) {
+		Account account = this.accountDAO.readAccount(this.loggedInUser.getUserID());
+		account.setBalance(account.getBalance().add(new BigDecimal(deposit)));
+		this.accountDAO.updateAccount(account);
+		System.out.println(deposit + " has been deposited to your account.");
 	}
 
 	private void returnToLoggedInMenu() {
@@ -246,19 +271,33 @@ public class BankService {
 			}
 		} while (accountTypeChoice == 0);
 		if (accountTypeChoice == 1) {
-			Account account = new Account();
-			account.setAccountTypeID(1);
-			account.setUserID(this.loggedInUser.getUserID());
-			account.setBalance(new BigDecimal(0));
-			this.accountDAO.createAccount(account);
+			if (this.loggedInUser.hasChecking()) {
+				System.out.println("You already have a checking account.");
+			} else {
+				this.createAccount(accountTypeChoice);
+				this.loggedInUser.setHasChecking(true);
+			}
 		} else if (accountTypeChoice == 2) {
-			
+			if (this.loggedInUser.hasSavings()) {
+				System.out.println("You already have a savings account.");
+			} else {
+				this.createAccount(accountTypeChoice);
+				this.loggedInUser.setHasSavings(true);
+			}
 		} else {
-			System.err.println("Input invalid");
+			System.err.println("Input choice");
 		}
-		System.out.println("Thank you. Your account has been created.");
 		System.out.println("Press any key to continue...");
 		this.scanner.nextLine();
+	}
+
+	private void createAccount(int accountType) {
+		Account account = new Account();
+		account.setAccountTypeID(accountType);
+		account.setUserID(this.loggedInUser.getUserID());
+		account.setBalance(new BigDecimal(0));
+		this.accountDAO.createAccount(account);
+		System.out.println("Thank you. Your account has been created.");
 	}
 	
 	private void editInfo() {
