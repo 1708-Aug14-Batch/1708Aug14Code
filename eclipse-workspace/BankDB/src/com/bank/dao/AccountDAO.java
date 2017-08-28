@@ -15,7 +15,7 @@ public interface AccountDAO<Account> {
 
 	Account readAccount(int id);
 
-	int updateAccount(Account account);
+	void updateAccount(Account account);
 
 	int disableAccount(int id);
 

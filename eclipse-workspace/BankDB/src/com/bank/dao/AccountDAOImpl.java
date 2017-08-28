@@ -82,7 +82,7 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 			String sql = "SELECT * FROM bankaccount WHERE user_id = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, id);
-			ResultSet results = statement.executeQuery(sql);
+			ResultSet results = statement.executeQuery();
 			while(results.next()) {
 				int account_id = results.getInt("account_id");
 				BigDecimal balance = new BigDecimal(results.getDouble("balance"));
@@ -103,10 +103,10 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 	 * Edits the data of the specified account.
 	 * @precondition Account cannot be null
 	 * @param Account - The account whose data will be edited
-	 * @return The number of rows affected. Should be one.
+	 * @postcondition Account was edited
 	 */
 	@Override
-	public int updateAccount(Account account) {
+	public void updateAccount(Account account) {
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection();) {
 			conn.setAutoCommit(false);
 			String sql = "UPDATE bankaccount SET balance = ? WHERE account_id = ?"; // do not use semicolon
@@ -116,17 +116,10 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 			statement.setDouble(1, account.getBalance().doubleValue());
 			statement.setInt(2, account.getAccountID());
 			statement.executeUpdate();
-			int id = 0;
-			ResultSet primaryKeys = statement.getGeneratedKeys();
-			while(primaryKeys.next()) {
-				id = primaryKeys.getInt(1);
-			}
 			conn.commit();
-			return id;
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
-		return -1;
 	}
 
 	/**

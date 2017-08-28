@@ -70,12 +70,18 @@ public class UserDAOImpl implements UserDAO<User> {
 				String lastName = results.getString("lastname");
 				String email = results.getString("email");
 				String password = results.getString("password");
+				boolean hasChecking = (0 != results.getInt("has_checking"));
+				boolean hasSavings = (0 != results.getInt("has_savings"));
+				boolean enabled = (0 != results.getInt("enabled"));
 				User user = new User();
 				user.setUserID(id);
 				user.setFirstName(firstName);
 				user.setLastName(lastName);
 				user.setEmail(email);
 				user.setPassword(password);
+				user.setHasChecking(hasChecking);
+				user.setHasSavings(hasSavings);
+				user.setEnabled(enabled);
 				allUsers.add(user);
 			}
 		} catch (SQLException e) {
