@@ -3,9 +3,14 @@ package com.bank.service;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.bank.dao.AccountDAO;
 import com.bank.dao.AccountDAOImpl;
+import com.bank.dao.AccountTypeDAO;
 import com.bank.dao.AccountTypeDAOImpl;
+import com.bank.dao.UserDAO;
 import com.bank.dao.UserDAOImpl;
+import com.bank.model.Account;
+import com.bank.model.AccountType;
 import com.bank.model.User;
 
 
@@ -19,9 +24,9 @@ import com.bank.model.User;
 public class BankService {
 	
 	//private DAO dao;
-	private AccountDAOImpl accountDAO;
-	private AccountTypeDAOImpl accountTypeDAO;
-	private UserDAOImpl userDAO;
+	private AccountDAO<Account> accountDAO;
+	private AccountTypeDAO<AccountType> accountTypeDAO;
+	private UserDAO<User> userDAO;
 	private Scanner scanner;
 	private User loggedInUser;
 	
@@ -61,20 +66,20 @@ public class BankService {
 	private void printOptionsForLoggedOutUser() {
 		System.out.println("Options:");
 		System.out.println("1. Login");
-		System.out.println("2. Register New Account");
+		System.out.println("2. Register New User Account");
 		System.out.println("3. Quit");
 	}
 	
 	private void processInitialMenu() {
 		int input = getInput();
 		switch (input) {
-			case 1: // login
+			case 1:
 				this.login();
 				break;
-			case 2: // register new account
-				this.registerNewAccount();
+			case 2:
+				this.registerNewUserAccount();
 				break;
-			case 3: //quit
+			case 3:
 				System.out.println("Goodbye");
 				System.exit(0);
 			default: System.err.println("Input not recognized. Please type the number of your option.");
@@ -127,7 +132,7 @@ public class BankService {
 		
 	}
 	
-	private void registerNewAccount() {
+	private void registerNewUserAccount() {
 		System.out.println("Register New Account");
 		System.out.print("What is your first name? >");
 		String firstName = this.scanner.nextLine();
@@ -137,15 +142,12 @@ public class BankService {
 		String email = this.scanner.nextLine();
 		System.out.print("Enter a password >");
 		String password = this.scanner.nextLine();
-		//System.out.print("Enter initial balance >");
-		//BigDecimal balance = new BigDecimal(Double.parseDouble(this.scanner.nextLine()));
 		System.out.println("Thank you");
 		User newUser = new User();
 		newUser.setFirstName(firstName);
 		newUser.setLastName(lastName);
 		newUser.setEmail(email);
 		newUser.setPassword(password);
-		//newUser.setBalance(balance);
 		this.userDAO.createUser(newUser);
 		System.out.println("Press any key to continue...");
 		scanner.nextLine();

@@ -42,7 +42,7 @@ public class ConnectionSingleton {
 		Connection conn = null;
 		try {
 			Properties props = new Properties();
-			props.load(new FileReader("C:/Users/will/my_git_repos/1708Aug14Code/eclipse-workspace/JDBC_Intro/src/com/ex/util/database.properties"));
+			props.load(new FileReader("C:/Users/will/my_git_repos/1708Aug14Code/eclipse-workspace/BankDB/src/com/bank/util/database.properties"));
 			Class.forName(props.getProperty("driver"));
 			conn = DriverManager.getConnection(
 					props.getProperty("url"),

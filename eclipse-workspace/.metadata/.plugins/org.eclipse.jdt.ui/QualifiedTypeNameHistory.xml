@@ -7,17 +7,21 @@
 <fullyQualifiedTypeName name="com.ex.util.ConnectionSingleton"/>
 <fullyQualifiedTypeName name="java.sql.Types"/>
 <fullyQualifiedTypeName name="com.ex.dao.DAOImplementation"/>
-<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.ex.pojos.Example"/>
-<fullyQualifiedTypeName name="com.bank.model.Account"/>
-<fullyQualifiedTypeName name="com.bank.model.AccountType"/>
 <fullyQualifiedTypeName name="com.bank.dao.AccountDAOImpl"/>
 <fullyQualifiedTypeName name="com.bank.dao.AccountTypeDAOImpl"/>
 <fullyQualifiedTypeName name="com.bank.dao.UserDAOImpl"/>
 <fullyQualifiedTypeName name="com.bank.model.User"/>
-<fullyQualifiedTypeName name="com.bank.util.ConnectionSingleton"/>
+<fullyQualifiedTypeName name="com.bank.service.BankService"/>
+<fullyQualifiedTypeName name="com.bank.dao.AccountDAO"/>
+<fullyQualifiedTypeName name="com.bank.dao.AccountTypeDAO"/>
+<fullyQualifiedTypeName name="com.bank.dao.UserDAO"/>
+<fullyQualifiedTypeName name="com.bank.model.Account"/>
+<fullyQualifiedTypeName name="com.bank.model.AccountType"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="com.bank.util.ConnectionSingleton"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 </qualifiedTypeNameHistroy>
