@@ -268,7 +268,6 @@ public class Service
 			for(Account a:list)
 				if(a.getType().getId() == 2)
 				{
-					System.out.println("Account does not exist!");
 					System.out.println("Deposit or withdraw? (1 for deposit, 2 for withdraw)");
 					int choice2 = s.nextInt();
 					System.out.println("How much?");
@@ -290,14 +289,13 @@ public class Service
 				{
 					continue;
 				}
-			System.out.println("Account doesn't exist!");
+			//System.out.println("Account doesn't exist!");
 			
 			break;
 		case 3:
 			for(Account a:list)
 				if(a.getType().getId() == 3)
 				{
-					System.out.println("Account does not exist!");
 					System.out.println("Deposit or withdraw? (1 for deposit, 2 for withdraw)");
 					int choice2 = s.nextInt();
 					System.out.println("How much?");
@@ -319,7 +317,7 @@ public class Service
 				{
 					continue;
 				}
-			System.out.println("Account doesn't exist!");
+			//System.out.println("Account doesn't exist!");
 			break;
 		default:
 			System.out.println("Please enter a valid option.");
