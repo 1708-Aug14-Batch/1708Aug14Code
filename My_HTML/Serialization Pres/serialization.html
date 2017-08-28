@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+        <link rel="shortcut icon" href="https://www.spreadshirt.com/image-server/v1/designs/1008317231,width=178,height=178/party-parrot-green.png">
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Serialization</a>
+           
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#Overview">Overview<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Implementation">Implementation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#InDepth">In depth</a>
+                    </li>
+                </ul>
+            </div>
+
+            <a class="navbar-brand">by Nathan Koszuta</a>
+        </nav>
+
+        <div class="overview" id="Overview">
+            <h2>Overview</h1>
+            <p>
+                To serialize an object means to convert its state to a byte stream so that the byte stream can be reverted back into a copy of the object. A Java object is serializable if its class or any of its superclasses implements either the java.io.Serializable interface or its subinterface, java.io.Externalizable. Deserialization is the process of converting the serialized form of an object back into a copy of the object.
+                For example, the java.awt.Button class implements the Serializable interface, so you can serialize a java.awt.Button object and store that serialized state in a file. Later, you can read back the serialized state and deserialize into a java.awt.Button object.
+                The Java platform specifies a default way by which serializable objects are serialized. A (Java) class can override this default serialization and define its own way of serializing objects of that class. The Object Serialization Specification describes object serialization in detail.
+                When an object is serialized, information that identifies its class is recorded in the serialized stream. However, the class's definition ("class file") itself is not recorded. It is the responsibility of the system that is deserializing the object to determine how to locate and load the necessary class files. For example, a Java application might include in its classpath a JAR file that contains the class files of the serialized object(s) or load the class definitions by using information stored in the directory, as explained later in this lesson.
+            </p>
+        </div>
+        
+        <div class="implementation" id="Implementation">
+            <h2>Implementation</h1>
+            <pre>
+    import java.io.*;
+    public class SerializeDemo {
+
+        public static void main(String [] args) {
+            Employee e = new Employee();
+            e.name = "Reyan Ali";
+            e.address = "Phokka Kuan, Ambehta Peer";
+            e.SSN = 11122333;
+            e.number = 101;
+            
+            try {
+                FileOutputStream fileOut =
+                new FileOutputStream("/tmp/employee.ser");
+                ObjectOutputStream out = new ObjectOutputStream(fileOut);
+                out.writeObject(e);
+                out.close();
+                fileOut.close();
+                System.out.printf("Serialized data is saved in /tmp/employee.ser");
+            }catch(IOException i) {
+                i.printStackTrace();
+            }
+        }
+    }
+            </pre>
+        </div>
+
+        <div class="in depth" id="InDepth">
+            <h2>In depth</h1>
+            <p>
+                
+            </p>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    </body>
+</html>
