@@ -30,4 +30,4 @@ ORDER BY ARTIST.NAME;
 -- Perform a self-join on the employee table,
 -- joining on the reportsto column.
 SELECT * FROM EMPLOYEE E1
-INNER JOIN EMPLOYEE E2 ON E1.EMPLOYEEID = E2.REPORTSTO;
+INNER JOIN EMPLOYEE E2 ON E1.REPORTSTO = E2.REPORTSTO;
