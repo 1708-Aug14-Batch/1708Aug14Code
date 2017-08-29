@@ -11,7 +11,7 @@ import com.service.Service;
 public class BankFront {
 
 	static Service bankService;
-	static User currentUser;
+	static User session;
 	static ArrayList<Account> currentAccounts;
 	static Scanner userInput;
 
@@ -20,14 +20,17 @@ public class BankFront {
 
 		userInput = new Scanner(System.in);
 		System.out.println("Welcome to the bank:");
-		home();
+		mainMenu();
 
 	}
 
-	static void home() {
-		System.out.println("1 - login");
-		System.out.println("2 - register");
-		System.out.println("3 - quit");
+	static void mainMenu() {
+		System.out.println("______________");
+		System.out.println("|  Main Menu |");
+		System.out.println("|1 - login   |");
+		System.out.println("|2 - register|");
+		System.out.println("|3 - quit    |");
+		System.out.println("|____________|");
 
 		String input = userInput.nextLine();
 		switch (input) {
@@ -40,7 +43,7 @@ public class BankFront {
 		}
 			break;
 		case "3": {
-			home();
+			mainMenu();
 		}
 			break;
 		}
@@ -56,27 +59,27 @@ public class BankFront {
 		System.out.println("Enter password: ");
 		String password = userInput.nextLine();
 		User user = new User(fn, ln, username, password);
-		currentUser = bankService.addUser(user);
+		session = bankService.addUser(user);
 		currentAccounts = new ArrayList<Account>();
-		while (currentUser.getId() == -1) {
+		while (session.getId() == -1) {
 			System.out.println("Username in use, enter a different username:");
 			username = userInput.nextLine();
-			currentUser.setEmail(username);
-			currentUser = bankService.addUser(user);
+			session.setEmail(username);
+			session = bankService.addUser(user);
 		}
 		userMenu();
 	}
 
 	static void login() {
 		System.out.println("Enter username");
-		String username = userInput.nextLine().toLowerCase();
+		String email = userInput.nextLine().toLowerCase();
 
 		System.out.println("Enter password:");
 		String password = userInput.nextLine();
-		currentUser = bankService.getUser(username, password);
-		if (!currentUser.equals(new User())) {
-			System.out.println("Welcome " + currentUser.getFirstname());
-			currentAccounts = bankService.getAccounts(currentUser.getId());
+		session = bankService.getUser(email, password);
+		if (!session.equals(new User())) {
+			System.out.println("Welcome " + session.getFirstname());
+			currentAccounts = bankService.getAccounts(session.getId());
 			userMenu();
 		} else {
 			System.out.println("Incorrect username or password");
@@ -85,11 +88,13 @@ public class BankFront {
 	}
 
 	static void userMenu() {
-		System.out.println("Home Page");
-		System.out.println("Choose an option:");
-		System.out.println("1 - view accounts");
-		System.out.println("2 - update your user information");
-		System.out.println("3 - logout");
+		System.out.println("___________________________________");
+		System.out.println("|          Home Page              |");
+		System.out.println("|       Choose an option:         |");
+		System.out.println("| 1 - view accounts               |");
+		System.out.println("| 2 - update your user information|");
+		System.out.println("| 3 - logout                      |");
+		System.out.println("|_________________________________|");
 
 		String input = userInput.nextLine();
 		switch (input) {
@@ -98,7 +103,7 @@ public class BankFront {
 		}
 			break;
 		case "2": {
-			updateInfo();
+			update();
 		}
 			break;
 		case "3": {
@@ -113,17 +118,19 @@ public class BankFront {
 	}
 
 	static void logout() {
-		currentUser = null;
+		session = null;
 		currentAccounts.clear();
 		System.out.println("Logged out");
-		home();
+		mainMenu();
 	}
 
 	static void viewBalance() {
 		if (currentAccounts.isEmpty()) {
-			System.out.println("No Available Accounts");
-			System.out.println("1 - open a new account");
-			System.out.println("2 - home page");
+			System.out.println(" _______________________");
+			System.out.println("|No Available Accounts |");
+			System.out.println("|1 - open a new account|");
+			System.out.println("|2 - home page         |");
+			System.out.println("|______________________|");
 			String input = userInput.nextLine();
 			switch (input) {
 			case "1": {
@@ -143,23 +150,27 @@ public class BankFront {
 			for (Account a : currentAccounts) {
 				switch (a.getTypeID()) {
 				case 1:
-					System.out.println("Checking:" + a.getBalance());
+					System.out.println(" _____________________________");
+					System.out.println("|   Current Accounts          |");
+					System.out.println("|Checking:" + a.getBalance()+"|");
 					break;
 				case 2:
-					System.out.println("Savings:" + a.getBalance());
+					System.out.println("|Savings:" + a.getBalance()+" |");
 					break;
 				case 3:
-					System.out.println("Credit:" + a.getBalance());
+					System.out.println("|Credit:" + a.getBalance()+"  |");
 					break;
 				}
 			}
-
-			System.out.println("1 - make a deposit");
-			System.out.println("2 - make a withdrawal");
-			System.out.println("3 - make a transfer");
-			System.out.println("4 - open a new account");
-			System.out.println("5 - close an account");
-			System.out.println("6 - User Menu");
+			System.out.println("________________________");
+			System.out.println("|    Accounts menu     |");
+			System.out.println("|1 - make a deposit    |");
+			System.out.println("|2 - make a withdrawal |");
+			System.out.println("|3 - make a transfer   |");
+			System.out.println("|4 - open a new account|");
+			System.out.println("|5 - close an account  |");
+			System.out.println("|6 - User Menu         |");
+			System.out.println("|______________________|");
 			String input = userInput.nextLine();
 			switch (input) {
 			case "1": {
@@ -234,7 +245,7 @@ public class BankFront {
 
 		switch (input) {
 		case "1": {
-			newAccount = new Account(new BigDecimal(0), currentUser.getId(), 1);
+			newAccount = new Account(new BigDecimal(0), session.getId(), 1);
 			newAccount.setAccountID(bankService.addAccount(newAccount));
 			currentAccounts.add(newAccount);
 			System.out.println("You opened a new checkings account!");
@@ -242,7 +253,7 @@ public class BankFront {
 		}
 			break;
 		case "2": {
-			newAccount = new Account(new BigDecimal(0), currentUser.getId(), 2);
+			newAccount = new Account(new BigDecimal(0), session.getId(), 2);
 			newAccount.setAccountID(bankService.addAccount(newAccount));
 			currentAccounts.add(newAccount);
 			System.out.println("You opened a new savings account!");
@@ -250,7 +261,7 @@ public class BankFront {
 		}
 			break;
 		case "3": {
-			newAccount = new Account(new BigDecimal(0), currentUser.getId(), 3);
+			newAccount = new Account(new BigDecimal(0), session.getId(), 3);
 			newAccount.setAccountID(bankService.addAccount(newAccount));
 			currentAccounts.add(newAccount);
 			System.out.println("You opened a new credit account!");
@@ -373,8 +384,6 @@ public class BankFront {
 	}
 
 	static void withdraw() {
-
-		// get available accounts using this array, non-negative if available
 		int[] typeIdArray = { -1, -1, -1 };
 		for (Account a : currentAccounts) {
 			switch (a.getTypeID()) {
@@ -678,44 +687,51 @@ public class BankFront {
 		}
 		viewBalance();
 	}
-	static void updateInfo() {
+	static void update() {
 		System.out.println("Choose option to change:");
-		System.out.println("1 - First name (" + currentUser.getFirstname() + ")");
-		System.out.println("2 - Last name (" + currentUser.getLastname() + ")");
+		System.out.println("1 - First name (" + session.getFirstname() + ")");
+		System.out.println("2 - Last name (" + session.getLastname() + ")");
 		System.out.println("3 - Password");
-		System.out.println("4 - User Menu");
-		System.out.println("5 - Delete user and accounts");
+		System.out.println("4 - Delete user and accounts");
+		System.out.println("5 - User Menu");
 		String input = userInput.nextLine();
 		if (input.equals("d")) {
 			userMenu();
 			return;
 		}
-		System.out.println("Enter change: ");
+		System.out.println("What Would You Like To Change: ");
 		String change = userInput.nextLine();
-
-		if (input.equals("1")) {
-			currentUser.setFirstname(change);
-			bankService.updateUser(currentUser);
+		switch(change){
+		case "1":{
+			session.setFirstname(change);
+			bankService.updateUser(session);
 			System.out.println("Changed your first name");
-		} else if (input.equals("2")) {
-			currentUser.setLastname(change);
-			bankService.updateUser(currentUser);
+		}break;
+		case "2":{
+			session.setLastname(change);
+			bankService.updateUser(session);
 			System.out.println("Changed your last name");
-		} else if (input.equals("3")) {
-			currentUser.setPassword(change);
-			bankService.updateUser(currentUser);
-		} else if (input.equals("4")) {
+		}break;
+		case "3":{
+			session.setPassword(change);
+			bankService.updateUser(session);
+		}break;
+		case "4":{
 			System.out.println("Are you sure? (y/n)");
 			input = userInput.nextLine();
 			if (input.equals("y")) {
 				removeUser();
 				return;
-			}
-		} else {
-			System.out.println("Try Again");
+		}break;
 		}
-
-		updateInfo();
+		case "5":{
+			userMenu();
+		}break;
+		default:{
+			System.out.println("Sorry Wrong input returning to Change Menu");
+			update();
+		}break;
+		}
 
 	}
 	static void removeAccount() {
@@ -791,9 +807,9 @@ public class BankFront {
 		for (Account a : currentAccounts) {
 			bankService.removeAccount(a);
 		}
-		bankService.removeUser(currentUser);
+		bankService.removeUser(session);
 		System.out.println("Successfully removed accounts and user");
-		home();
+		mainMenu();
 	}
 
 }

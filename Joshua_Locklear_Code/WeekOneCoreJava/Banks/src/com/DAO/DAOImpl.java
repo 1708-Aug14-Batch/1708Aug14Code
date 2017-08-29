@@ -11,12 +11,15 @@ import com.pojos.User;
 import com.util.ConnectionFactory;
 
 public class DAOImpl implements DAO {
+	static User user = new User();
+	static String sql;
+	
 
 	public int addUser(User user) {
 		int id = -1;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "insert into users (firstname, lastname, email, password) " + 
+			sql = "insert into users (firstname, lastname, email, password) " + 
 						 "values (?, ?, ?, ?)";
 			String[] key = new String[1];
 			key[0] = "user_id";
@@ -37,9 +40,9 @@ public class DAOImpl implements DAO {
 	}
 	
 	public User getUser(int id) {
-		User user = new User();
+		//User user = new User();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from users where user_id = ?";
+			sql = "select * from users where user_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -54,10 +57,10 @@ public class DAOImpl implements DAO {
 		return user;
 	}
 	public User getUser(String email, String pass){
-		User user = new User();
+		//User user = new User();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
 			conn.setAutoCommit(false);
-			String sql = "select * from users where"
+			sql = "select * from users where"
 					+ " email = ? AND "
 					+ " password = ?";
 
@@ -86,7 +89,7 @@ public class DAOImpl implements DAO {
 		int id = -1;
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "insert into account (user_id,type_id) values (?,?)";
+			sql = "insert into account (user_id,type_id) values (?,?)";
 
 
 			String[] key = new String[1];
@@ -113,7 +116,7 @@ public class DAOImpl implements DAO {
 		Account account = new Account();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()){
 			conn.setAutoCommit(false);
-			String sql = "select * from account where"
+			sql = "select * from account where"
 					+ " account_id = ? ";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, accountid);
@@ -132,7 +135,7 @@ public class DAOImpl implements DAO {
 	public void updateUser(User user) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "update users set firstname = ?, lastname = ?, email = ?, password = ? where user_id = ?";
+			sql = "update users set firstname = ?, lastname = ?, email = ?, password = ? where user_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getFirstname());
 			ps.setString(2, user.getLastname());
@@ -148,7 +151,7 @@ public class DAOImpl implements DAO {
 	public void deleteAccount(Account a) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "delete from account where account_id = ?";
+			sql = "delete from account where account_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, a.getAccountID());
 			ps.executeUpdate();
@@ -163,7 +166,7 @@ public class DAOImpl implements DAO {
 		ArrayList<Account> accounts = new ArrayList<Account>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "select * from account where user_id = ?";
+			sql = "select * from account where user_id = ?";
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setInt(1, userid);
 			ResultSet rs = st.executeQuery();
@@ -180,7 +183,7 @@ public class DAOImpl implements DAO {
 	
 	public void updateAccount(Account a) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "update account set balance = ? where account_id = ?";
+			sql = "update account set balance = ? where account_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setBigDecimal(1, a.getBalance());
 			ps.setInt(2, a.getAccountID());
