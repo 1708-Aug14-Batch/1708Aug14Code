@@ -24,7 +24,7 @@ public class Test {
 		for(Example ex:list) {
 			System.out.println(ex.toString());
 			int songID = ex.getSong();
-			dao.getSongs(songID);
+			System.out.println(dao.getSongs(songID));
 		}
 		
 	}

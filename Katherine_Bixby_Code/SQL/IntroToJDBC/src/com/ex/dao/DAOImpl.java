@@ -133,14 +133,16 @@ public class DAOImpl {
 	
 	public String getSongs(int id){
 		String songName = "";
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+		Connection connect = null;
+		CallableStatement cs = null;
+		connect = ConnectionFactory.getInstance().getConnection();
+		try{
 			String sql = "select name from track where trackid = ?";
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery(sql);
-			
-			while(rs.next()) {
-				songName = rs.getString("name");
-			}
+			cs = connect.prepareCall(sql);
+			cs.registerOutParameter(1, Types.VARCHAR);
+			cs.execute();
+			songName = cs.getString(1);
+			System.out.println("Song name: "+songName);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
