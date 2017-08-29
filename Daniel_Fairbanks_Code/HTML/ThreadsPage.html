@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	
+	<script>
+	function show(shown, hidden) {
+	  document.getElementById(shown).style.display='block';
+	  for(var i=0; i<hidden.length; i++)
+		document.getElementById(hidden[i]).style.display='none';
+	  return false;
+	}
+	</script>
+	<style>.tab { margin-left: 40px; }</style>
+  </head>
+  <body>
+ 
+	<nav class="navbar navbar-expand-lg navbar-blue bg-dark">
+	  <a class="navbar-brand" href="#" onclick="return show('Home',['Threads', 'Mutex', 'Semaphores', 'Pools']);">Multithreading</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+		  <li class="nav-item">
+			<a class="nav-link" href="#" onclick="return show('Threads',['Home', 'Mutex', 'Semaphores', 'Pools']);">Threads</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="#" onclick="return show('Mutex',['Home', 'Threads', 'Semaphores', 'Pools']);">Mutex</a>
+		  </li>
+		   <li class="nav-item">
+			<a class="nav-link" href="#" onclick="return show('Semaphores',['Home', 'Mutex', 'Threads', 'Pools']);">Semaphores </a>
+		  </li>
+		   <li class="nav-item">
+			<a class="nav-link" href="#" onclick="return show('Pools',['Home', 'Mutex', 'Semaphores', 'Threads']);">Pools</a>
+		  </li>
+		</ul>
+	  </div>
+	</nav>
+	<div id="Home">
+    <h1>What are threads?</h1><br>
+	<h2>A thread is a single line of execution.</h2><br>
+	<h1>What is multithreading?</h1><br>
+	<h2>Multithreading is running multiple threads in concurrency.</h2><br>
+	<h1>Why use multithreading?</h1><br>
+	<h2><ul>
+	<li>Parallelzation -  Systems can use multithreading to split data and tasks into parallel subtasks 
+	and let the underlying architecture manage how the threads run, either concurrently on one core or in parallel on multiple cores.</li>
+	<li>Faster execution - this advantage of a multithreaded program allows it to operate faster on computer systems that have multiple central processing units (CPUs) 
+	or one or more multi-core processors.</li>
+	<li>Responsiveness - Multithreading can allow an application to remain responsive to input. In a one-thread program, if the main execution thread blocks on a long-running task, 
+	the entire application can appear to freeze. By moving such long-running tasks to a worker thread that runs concurrently with the main execution thread, 
+	it is possible for the application to remain responsive to user input while executing tasks in the background.</li>
+	<b>Examples:</b>
+	<li>On a web server if a client is slow other clients can still communicate using other threads.</li>
+	<li>In a game program you can use threads for different tasks: AI, Graphics, User Input, Networking</h2>
+	</ul>
+	</div>
+	
+	<div id="Threads" style="display:none">
+	<h1>How do you run threads in Java?</h1><br>
+	<h2>Extending the thread class or implementing the runnable interface.<h2><br>
+	<h3>
+	ArrayList<Thread>> T = new ArrayList<>();<br>
+	for(int i=0;i<10;++i){<br>
+		<p class="tab">Thread t = new Thread( ... );<br>
+		t.start();<br>
+		T.add(t);</p>
+	}<br>
+	for(Thread t : T )<br>
+		<p class="tab">t.join();</p></h3>
+	<h1>What is the join method and why should you use it?</h1><br>
+	<p>When using threads usually:
+	<ol>
+	<li>Create threads</li>
+	<li>Start threads</li>
+	<li>Wait for threads to finish</li>
+	</ol>
+	How do you determine if they're done?<br>
+	One way (very inefficient): Keep checking them:</p>
+	while t1.isAlive()<br>
+		<p class="tab">pass</p>
+	Better: join the thread<br>
+	Can throw an InterruptedException so use a try catch:<br>
+	try{<br>
+		<p class="tab">t.join();</p>
+	}<br>
+	catch(InterruptedException e){<br>
+		<p class="tab">System.exit(0);</p>
+	}
+	</h2>
+	
+	</div>
+	
+	<div id="Mutex" style="display:none">
+	<h1>Hello, mutex!</h1>
+	</div>
+	
+	<div id="Semaphores" style="display:none">
+    <h1>Hello, semaphore!</h1>
+	</div>
+	
+	<div id="Pools" style="display:none">
+    <h1>Hello, thread pool!</h1>
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  </body>
+</html>
