@@ -1,16 +1,15 @@
-package com.bank.dao;
+package com.revature.dao;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import com.bank.pojos.Account;
-import com.bank.pojos.AccountType;
-import com.bank.pojos.User;
-import com.bank.util.ConnectionFactory;
+import com.revature.pojo.Account;
+import com.revature.pojo.AccountType;
+import com.revature.pojo.User;
+import com.revature.util.ConnectionFactory;
 
 
 public class DaoImpl implements DAO{

@@ -232,7 +232,7 @@ public class RunBank {
 				if(tempAcct==null)
 					System.out.println("Something went wrong despoit not effective");
 				else
-					System.out.println("$"+amount+" added to your account");
+					System.out.println("$"+amount+" subtracted from your account");
 			} break;
 			case 3: {
 				Transfer(dao);
@@ -360,8 +360,13 @@ public class RunBank {
 				if(IsMyAccount(dao,accID));
 				else
 					break;
+				int close=dao.closeAccount(dao.getAnAccount(accID));
+				if(close>-1)
+					System.out.println("Account "+accID+" is closed");
+				else
+					System.out.println("Something went wrong");
 			}break;
-			default: System.out.println("invalid input please try again");
+			default: System.out.println("invalid input please try again"); break;
 			}
 		}
 	}
