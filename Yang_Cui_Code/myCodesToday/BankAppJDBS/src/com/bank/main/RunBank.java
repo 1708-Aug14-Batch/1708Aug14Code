@@ -127,12 +127,14 @@ public class RunBank {
 				System.out.println("1=Create a Checking Account");
 				System.out.println("2=Create a Saving Account");
 				System.out.println("3=Create a Credit Union");
+				userOption=input.nextInt();
+				input.nextLine();
 				
 				switch(userOption){
 				case 0: exit=true; break;
-				case 1: createAccount(dao,user,userOption);break;
-				case 2: createAccount(dao,user,userOption);break;
-				case 3: createAccount(dao,user,userOption);break;
+				case 1: createAccount(dao,user,userOption); break;
+				case 2: createAccount(dao,user,userOption); break;
+				case 3: createAccount(dao,user,userOption); break;
 				default:System.out.println("Invalid user option please try again");break;
 				}
 			}
@@ -150,8 +152,8 @@ public class RunBank {
 		if(hasAccount>4)
 			System.out.println("You already have maximum number of this type of account");
 		else{
-		int x=-1;
-			x=dao.addAccount(user, 1);
+			int x=-1;
+			x=dao.addAccount(user, accType);
 			if(x>-1)
 				System.out.println("Account Created type "+accType);
 			else
@@ -221,9 +223,6 @@ public class RunBank {
 				if(IsMyAccount(dao,accID));
 				else
 					break;
-				System.out.println("please enter amount to despoit:");
-				amount=input.nextInt();
-				input.nextLine();
 				System.out.println("please enter amount to withdraw: ");
 				amount=input.nextInt();
 				input.nextLine();
