@@ -1,7 +1,6 @@
 package com.bank.service;
 
-import java.util.regex.Pattern;
-
+//import java.util.ArrayList;
 import com.bank.dao.DAOIm;
 import com.bank.pojo.Account;
 import com.bank.pojo.User;
@@ -13,10 +12,12 @@ public class Service{
 	public User myUser;
 	public static DAOIm myDao;
 	public Account myAccount;
+	//public ArrayList<Account> myAccounts;
 	public Service(){
 		myDao = new DAOIm();
 		myUser = new User();
 		myAccount = new Account();
+		//myAccounts = new ArrayList<>();
 	}
 
 	public int addUser(String fn, String ln, String em, String pw){
@@ -45,8 +46,13 @@ public class Service{
 	}
 
 	public boolean getAccount(User u){
-
 		myAccount = myDao.getAccount(u);
+		
+		
+		//myAccounts = myDao.getAccount(u);
+		
+		// loop through accounts to getid
+		
 		try{
 			if(myAccount.getId() != 0){
 

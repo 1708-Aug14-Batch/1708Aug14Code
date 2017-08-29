@@ -2,16 +2,49 @@ package com.bank.run;
 
 import java.util.Formatter;
 import java.util.Scanner;
-
-import com.bank.dao.DAOIm;
-import com.bank.pojo.Account;
-import com.bank.pojo.AccountType;
 import com.bank.pojo.User;
 import com.bank.service.Service;
 
-
+/** 
+ * 
+ * @author joshw
+ * @version 8/28/2017
+ */
 public class TestBank {
+	
 	public static User myUser = new User();
+	
+	public static void CreateAccount(String em,String pw, Service bankService){
+		boolean createAccount = false;
+
+		while(!createAccount){
+			Scanner scan = new Scanner(System.in);
+
+
+			System.out.println(" Create Account: Enter (1) Checking \n" 
+					+ "(2) Saving \n" + "(3) Credit Card");
+
+			int createType = scan.nextInt();
+
+
+			bankService.addAccount(myUser, createType);
+			/** returns the result if the account was created or not*/
+			boolean check = bankService.getAccount(myUser);
+
+			/** check to see if account was created if so log in*/
+			if(check == true){
+				createAccount = true;
+				scan.close();
+			}
+			else if(check == false) {
+				System.out.println("ERROR: Account was not created.");
+				continue;
+
+			}
+		}
+	}
+
+
 	public static void main(String[] args) {
 
 		Service bankService = new Service();
@@ -50,7 +83,7 @@ public class TestBank {
 						//loggedIn = true;
 						System.out.println(email + " has logged in.");
 						myUser = bankService.getUser(email, password);
-						System.out.println(myUser);
+						//System.out.println(myUser);
 					}
 					//TODO when logging in the and input wrong password the system crashes.
 					else if(statement == false) {
@@ -126,7 +159,8 @@ public class TestBank {
 							+ "3:Withdraw \n"
 							+ "4:Transfer\n"  //between users accounts
 							+ "5:EditAccount \n"
-							+ "6:Logout");
+							+ "6:Add Account\n"
+							+ "7:Logout");
 					System.out.print("> ");
 					String cho = scan.nextLine();
 					double something = 0;
@@ -140,20 +174,20 @@ public class TestBank {
 						break;
 
 					case "2": /**Deposit Funds*/
-						System.out.println(myUser);
+						//System.out.println(myUser);
 						System.out.println("Enter the amount to deposit.");
 						/** sets the holding balance to the new balance.*/
 
 						something = bankService.deposit(myUser, scan.nextLine());
 
-						
+
 
 						if (something > 0) {
 							System.out.println("Deposit successful.");
 							System.out.print("Your balance is: $" + something);
 						} else if (something < 0) {
-						 	System.out.println("ERROR: Invalid input.");
-						 break;
+							System.out.println("ERROR: Invalid input.");
+							break;
 						} else{
 						}						
 						break;
@@ -191,7 +225,14 @@ public class TestBank {
 						editPassword = scan.nextLine();
 						bankService.editUser(myUser, editEmail, editPassword);
 						break;
-					case "6": /**Logging Out*/
+					case "6": /** Add Account*/
+
+						CreateAccount(myUser.getEmail(), myUser.getPassword(), bankService);
+
+
+						break;
+
+					case "7": /**Logging Out*/
 						System.out.println("Logging out...");
 						bankService.logout();
 						loggedIn = bankService.isOpen();
@@ -205,23 +246,6 @@ public class TestBank {
 	}// ends main.
 } //Test class main.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//		int id = yo.addUser("joshua", "Wurdemann", "joshwurdemann@gmail.com", "thebig1");
-//		int id1 = yo.addUser("Bob", "Wurdemann", "Bob@gmail.com", "hello");
-//		System.out.println(id1);
 
 
 

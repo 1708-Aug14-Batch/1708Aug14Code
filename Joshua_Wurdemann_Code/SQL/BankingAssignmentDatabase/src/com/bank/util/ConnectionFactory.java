@@ -31,7 +31,7 @@ public class ConnectionFactory {
 		Connection conn = null;
 		try{
 			Properties prop = new Properties();
-			prop.load(new FileReader("C:/Users/joshw/my_git_repos/SQL/BankingAssignmentDatabase/src/com/bank/util/DataBaseProperties"));
+			prop.load(new FileReader("C:/Users/joshw/my_git_repos/1708Aug14Code/Joshua_Wurdemann_Code/SQL/BankingAssignmentDatabase/src/com/bank/util/DataBaseProperties"));
 		Class.forName(prop.getProperty("driver"));
 		
 		conn = DriverManager.getConnection(prop.getProperty("url"),

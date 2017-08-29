@@ -5,23 +5,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
-import java.util.Formatter;
-
 import com.bank.pojo.Account;
 import com.bank.pojo.AccountType;
 import com.bank.pojo.DAO;
 import com.bank.pojo.User;
 import com.bank.util.ConnectionFactory;
-
 import oracle.jdbc.OracleTypes;
-import oracle.jdbc.oracore.OracleType;
 
+/**  Communicates with the Server different actions that bank service has requested.
+ * 
+ * @author joshw
+ * @version 8/28/2017
+ */
 public class DAOIm implements DAO {
 
 	public int addUser(String fn, String ln, String em, String pw){
 		try(
-
 				Connection conn = ConnectionFactory.
 				getInstance()
 				.getConnection();){
@@ -49,7 +48,9 @@ public class DAOIm implements DAO {
 		}
 		return -1;
 	}
-
+/**
+ *  Adds new account to database to specific user based on userid 
+ */
 	@Override
 	public Account addAccount(User u, int typeId) {
 		Account a = new Account();
@@ -126,8 +127,9 @@ public class DAOIm implements DAO {
 		return add;
 	}
 
-	public Account getAccount(User someUser){
-		Account add = null;
+	public  Account /**ArrayList<Account>*/ getAccount(User someUser){
+		Account addAccount = null;
+		//ArrayList<Account> listAccounts = new ArrayList<>();
 		try( 
 				Connection conn = ConnectionFactory.
 				getInstance()
@@ -142,20 +144,22 @@ public class DAOIm implements DAO {
 			ResultSet result = (ResultSet) cs.getObject(1);
 
 			if(result.next()){
-				add = new Account();
+				addAccount= new Account();
+				
 				AccountType some = new AccountType();
 			
-				add.setId(result.getInt("accountId"));
-				add.setBalance(result.getDouble("balance"));
+				addAccount.setId(result.getInt("accountId"));
+				addAccount.setBalance(result.getDouble("balance"));
 				some.setId(result.getInt("typeId"));
 				some.setName(result.getString("name"));
-				add.setType(some);
-				add.setUser(someUser);
+				addAccount.setType(some);
+				addAccount.setUser(someUser);
+			//listAccounts.add(addAccount);
 			} 
 		} catch(SQLException e){
 			e.printStackTrace();
 		}
-		return  add;
+		return   addAccount/**listAccounts*/;
 	}
 	
 	
