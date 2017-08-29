@@ -34,9 +34,9 @@ public class LoginServlet extends HttpServlet{
 			
 			else{
 				String message = u.getFirstname();
-		        req.setAttribute("message", message); // This will be available as ${message}
+		        req.setAttribute("message", message);
 		        req.getRequestDispatcher("success.jsp").forward(req, res);
-				res.sendRedirect("success.jsp");
+				//res.sendRedirect("success.jsp");
 			}
 		}
 	}
