@@ -16,6 +16,8 @@ public class LoginServlet extends HttpServlet{
 	
 	//Service s = new Service();
 	static Service s = new Service();
+
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
 		String email = req.getParameter("name");
@@ -31,7 +33,10 @@ public class LoginServlet extends HttpServlet{
 			}
 			
 			else{
-				res.sendRedirect("success.html");
+				String message = u.getFirstname();
+		        req.setAttribute("message", message); // This will be available as ${message}
+		        req.getRequestDispatcher("success.jsp").forward(req, res);
+				res.sendRedirect("success.jsp");
 			}
 		}
 	}
