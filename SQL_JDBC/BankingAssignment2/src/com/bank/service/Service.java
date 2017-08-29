@@ -25,6 +25,9 @@ public class Service {
 	private static long maxBalance = 10000000000L;
 	
 	public BankUser validateBankUser(String username, String password) {
+		if (username == null || password == null)
+			return null;
+		
 		username = username.toLowerCase();
 
 		BankUser guy = daoImpl.readBankUser(username);

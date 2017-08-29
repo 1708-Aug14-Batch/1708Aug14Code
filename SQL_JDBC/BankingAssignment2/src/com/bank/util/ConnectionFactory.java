@@ -29,7 +29,7 @@ public class ConnectionFactory {
 		Connection conn = null;
 		try {
 			Properties prop = new Properties();
-			prop.load(new FileReader("C:/Users/Surplus/my_git_repos/1708Aug14Code/SQL/BankingAssignment2/src/com/bank/util/database.properties"));
+			prop.load(new FileReader("C:/Users/Surplus/my_git_repos/1708Aug14Code/SQL_JDBC/bankingAssignment2/src/com/bank/util/database.properties"));
 			Class.forName(prop.getProperty("driver"));
 			
 			conn = DriverManager.getConnection(

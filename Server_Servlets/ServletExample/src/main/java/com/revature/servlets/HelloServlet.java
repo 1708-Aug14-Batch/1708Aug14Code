@@ -8,22 +8,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class HelloServlet extends HttpServlet {
-
+	
 	/**
-	 * Auto-generatred
+	 * Auto-generated
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("Hello from the servlet in the doGet()");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//System.out.println("Hello Servlet");
+		String name = request.getParameter("name");
+		String pass = request.getParameter("pass");
+		System.out.println(name + " " + pass);
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		System.out.println("Hello from the servlet in the doPost()");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String pass = request.getParameter("pass");
+		System.out.println(name + " " + pass);
+		
 	}
-
 }
