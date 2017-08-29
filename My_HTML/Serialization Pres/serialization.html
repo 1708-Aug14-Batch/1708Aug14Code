@@ -11,87 +11,180 @@
         <link rel="shortcut icon" href="https://www.spreadshirt.com/image-server/v1/designs/1008317231,width=178,height=178/party-parrot-green.png">
     </head>
 
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-            <a class="navbar-brand" href="#">Serialization</a>
-           
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <body style="">
+        <div class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="navbar-nav">
+                <a class="navbar-brand">Serialization</a>
+            
+                <a class="nav-item nav-link" href="#Overview">Overview</a>
+                <a class="nav-item nav-link" href="#Implementation">Implementation</a>
+                <a class="nav-item nav-link" href="#QandA">Q&A</a>
+            </div>
+        </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#Overview">Overview<span class="sr-only">(current)</span></a>
+        <div style="padding: 30px 200px 70px 200px">
+            <div class="overview" id="Overview">
+                <h2>Overview</h1>
+                <br>
+                <ul>
+                    <li>
+                        To <i>serialize</i> an object means to convert its state into a byte stream in a way that always it to be reverted back into an object.
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#Implementation">Implementation</a>
+                    <li>
+                        <i>Deserialization</i> is the process of converting the serialized form back into a copy of the object.
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#InDepth">In depth</a>
+                    <li>
+                        When an object is serialized, the class definition itself is not recorded. It is the responsibility of the system to locate the necessary class files.
+                    </li>
+                    <li>
+                        To create a serializable object, simply <span style="font-family: Courier New">implement Serializable</span>
+                    </li>
+                    <li>
+                        Declare and initialize a field <span style="font-family: Courier New"> static final long serialVersionUID = 1L </span> (<i>Strongly recommended</i>)
+                    </li>
+                    <li>
+                        Use an <span style="font-family: Courier New"> ObjectOutputStream </span> to serialize an object
+                    </li>
+                    <li>
+                            Use an <span style="font-family: Courier New"> ObjectInputStream </span> to deserialize an object
                     </li>
                 </ul>
             </div>
-        </nav>
-
-        <div class="overview" id="Overview">
-            <h2>Overview</h1>
-            <p>
-                To serialize an object means to convert its state to a byte stream so that the byte stream can be reverted back into a copy of the object. A Java object is serializable if its class or any of its superclasses implements either the java.io.Serializable interface or its subinterface, java.io.Externalizable. Deserialization is the process of converting the serialized form of an object back into a copy of the object.
-                For example, the java.awt.Button class implements the Serializable interface, so you can serialize a java.awt.Button object and store that serialized state in a file. Later, you can read back the serialized state and deserialize into a java.awt.Button object.
-                The Java platform specifies a default way by which serializable objects are serialized. A (Java) class can override this default serialization and define its own way of serializing objects of that class. The Object Serialization Specification describes object serialization in detail.
-                When an object is serialized, information that identifies its class is recorded in the serialized stream. However, the class's definition ("class file") itself is not recorded. It is the responsibility of the system that is deserializing the object to determine how to locate and load the necessary class files. For example, a Java application might include in its classpath a JAR file that contains the class files of the serialized object(s) or load the class definitions by using information stored in the directory, as explained later in this lesson.
-            </p>
-        </div>
-        
-        <div class="implementation" id="Implementation">
-            <h2>Implementation</h1>
-            <pre>
-    import java.io.*;
-    public class SerializeDemo {
-
-        public static void main(String [] args) {
-            Employee e = new Employee();
-            e.name = "Reyan Ali";
-            e.address = "Phokka Kuan, Ambehta Peer";
-            e.SSN = 11122333;
-            e.number = 101;
-            
-            try {
-                FileOutputStream fileOut =
-                new FileOutputStream("/tmp/employee.ser");
-                ObjectOutputStream out = new ObjectOutputStream(fileOut);
-                out.writeObject(e);
-                out.close();
-                fileOut.close();
-                System.out.printf("Serialized data is saved in /tmp/employee.ser");
-            }catch(IOException i) {
-                i.printStackTrace();
-            }
-        }
-    }
-            </pre>
-        </div>
-
-        <div class="in depth" id="InDepth">
-            <h2>In depth</h1>
-            <p>
-                
-            </p>
-        </div>
-       
-        <div class="collapse bg-light fixed-bottom" id="Sources" style="bottom:30px">
-            <ol>
-                <a href="https://www.tutorialspoint.com/java/java_serialization.htm">Java - Serialization</a>
+            <br>
+            <div class="implementation" id="Implementation">
+                <h2>Implementation</h1>
                 <br>
+                <h4>Creating the class</h4>
+                <br>
+                <pre style="font-family: Courier New">
+    public class Example implements Serializable {
+    
+        public static int count;
+        public String name;
+        public transient int ssn;
+        
+        private static final long serialVersionUID = 1L;
+    }
+                </pre>
+                <h4>Serializing the object</h4>
+                <br>
+                <pre style="font-family: Courier New">
+    String filename = "file.txt";
+    Example ex = new Example();
+    try (FileOutputStream   fos = new FileOutputStream(filename);
+         ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+        
+        oos.writeObject(ex);
+        
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+                </pre>
+                <h4>Deserializing the object</h4>
+                <br>
+                <pre style="font-family: Courier New">
+    String filename = "file.txt";
+    Example exCopy;    
+    try (FileInputStream   fis = new FileInputStream(filename);
+         ObjectInputStream ois = new ObjectInputStream(fis)) {
+        
+        exCopy = (Example) ois.readObject();
+        
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+                </pre>
+            </div>
+
+            <div class="qanda" id="QandA">
+                <h2>Q&A</h1>
+                <br>
+                <table>
+                    <tr class="row">
+                        <td class="col border border-dark rounded">
+                            How many methods Serializable has?
+                            If no method then what is the purpose
+                            of Serializable interface?
+                        </td>
+                        <td class="col border border-dark rounded">
+                            java.io.Serializable doesn't have any method and is called Marker Interface.
+                            Creating a class that implements Serializable gives the compiler
+                            an indication that it is possible serialize this object.
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col border border-dark rounded">
+                            What is serialVersionUID?
+                            What would happen if you don't define this?
+                        </td>
+                        <td class="col border border-dark rounded">
+                            SerialVersionUID is used for version control. The default value of serialVersionUID
+                            is calculated based on the object structure. This value can be affected by the compiler,
+                            so it is best to explicitly define a value.
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col border border-dark rounded">
+                            While serializing you want some of the members
+                            not to serialize? How do you achieve it?
+                        </td>
+                        <td class="col border border-dark rounded">
+                            All members of an object will be serialized unless it is marked transient or it is a static member.
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col border border-dark rounded">
+                            What will happen if one of the members in the class
+                            doesn't implement Serializable interface?
+                        </td>
+                        <td class="col border border-dark rounded">
+                            If you try to serialize an object of a class which implements Serializable,
+                            but the object includes a reference to an non-serializable class then
+                            a <span style="font-family: Courier New">NotSerializableException</span> will be thrown at runtime.
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col border border-dark rounded">
+                            Suppose super class of a new class implement Serializable interface,
+                            how can you avoid new class to being serialized?
+                        </td>
+                        <td class="col border border-dark rounded">
+                            If a class' parent already implements Serializable interface, then it is already Serializable.
+                            Since you cannot unimplemented an interface, to avoid Java serialization, you need to implement the writeObject() and readObject() methods to throw a <span style="font-family: Courier New">NotSerializableException</span>.
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col border border-dark rounded">
+                            Which methods are used during Serialization and Deserialization in Java?
+                        </td>
+                        <td class="col border border-dark rounded">
+                            To store any object via serialization, call ObjectOutputStream.writeObject(someObject).
+                            To deserialize that object, call ObjectInputStream.readObject().
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="collapse bg-light fixed-bottom" id="Sources" style="bottom:50px">
+            <ol>
                 <a href="https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html">The Java™ Tutorials: Serializable Objects</a>
                 <br>
+                <a href="http://docs.oracle.com/javase/7/docs/api/java/io/Serializable.html">Serializable Interface Javadoc</a>
+                <br>
+                <a href="https://www.tutorialspoint.com/java/java_serialization.htm">Java - Serialization</a>
+                <br>
+                <a href="http://javarevisited.blogspot.com/2011/04/top-10-java-serialization-interview.html">Java Serialization Interview Questions and Answers</a>
             </ol>
-        </div>      
+        </div>
 
-        <div class="navbar-light bg-light fixed-bottom">
-            <a class="navbar-brand float-left" href="#Sources" data-toggle="collapse">Sources</a>
-            <a class="navbar-brand float-right">by Nathan Koszuta</a>
+        <div class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link disabled">by Nathan Koszuta</a>
+                <a class="nav-item nav-link" href="#Sources" data-toggle="collapse">Sources</a>
+            </div>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
