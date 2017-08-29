@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Hello world</title>
+</head>
+<body>
+	<h1>Get</h1>
+	<form action="hello" method="get">
+		name = <input type="text" name="name"/><br>
+		password = <input type="password" name="password"/><br>
+		<input type="submit" value="get"/>
+	</form>
+</body>
+</html>
