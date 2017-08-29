@@ -71,12 +71,12 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public int getUserID(String fn, String ln) {
+	public int getUserID(String username, String pw) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select userid from users where firstname = ? and lastname = ?";
+			String sql = "select userid from users where username = ? and password = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, fn);
-			ps.setString(2, ln);
+			ps.setString(1, username);
+			ps.setString(2, pw);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				return rs.getInt(1);

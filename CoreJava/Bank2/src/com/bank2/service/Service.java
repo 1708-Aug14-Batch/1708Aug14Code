@@ -16,22 +16,22 @@ public class Service {
 	public void login() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Please Login:");
-		System.out.println("Enter your first name");
-		String fn = scan.nextLine().trim();
+		System.out.println("Username:");
+		String username = scan.nextLine().trim();
 
-		System.out.println("Enter your last name");
-		String ln = scan.nextLine().trim();
+		System.out.println("Password:");
+		String pw = scan.nextLine().trim();
 
-		id = dao.getUserID(fn, ln);
+		id = dao.getUserID(username, pw);
 
 		if (id == 0) {
 			System.out.println("User doesn't exist, would you like to create one? (Y/N)");
 			String acctQ = scan.nextLine().trim().toUpperCase();
 			if (acctQ.equals("Y")) {
-				System.out.println("Please enter username");
-				String username = scan.nextLine().trim();
-				System.out.println("Please enter password");
-				String pw = scan.nextLine().trim();
+				System.out.println("Please enter firstname");
+				String fn = scan.nextLine().trim();
+				System.out.println("Please enter lastname");
+				String ln = scan.nextLine().trim();
 				dao.addUser(fn, ln, username, pw);
 				login = false;
 				System.out.println("Rerun program to access new user");
@@ -79,7 +79,7 @@ public class Service {
 		dao.updateBalance(id, typeid, amt);
 	}
 
-	public void withdrawFunds() {
+	public boolean withdrawFunds() {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Which account would you like to withdraw from?");
 		System.out.println("Enter (1) for Checking");
@@ -92,8 +92,10 @@ public class Service {
 		if (balance < amt) {
 			System.out.println("You don't have enough to cover that withdrawal");
 			System.out.println("Your balance is: " + balance);
+			return false;
 		} else {
 			dao.updateBalance(id, typeid, -amt);
+			return true;
 		}
 	}
 
@@ -110,7 +112,7 @@ public class Service {
 
 	public void deleteAcct() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("Are you sure you want to delete your Account?");
+		System.out.println("Are you sure you want to delete your Account? (Y,N)");
 		String acctQ = scan.nextLine().trim().toUpperCase();
 		if (acctQ.equals("Y")) {
 			System.out.println("Which account would you like to close?");
@@ -129,8 +131,11 @@ public class Service {
 	}
 	
 	public void transferFunds() {
-		withdrawFunds();
-		depositFunds();
+		boolean success = false;
+		success = withdrawFunds();
+		if(success) {
+			depositFunds();
+		}
 	}
 
 	public void logout() {

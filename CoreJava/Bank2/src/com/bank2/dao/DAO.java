@@ -16,7 +16,7 @@ public interface DAO {
 	
 	public void editUser(String fn, String ln, String pw, int id);
 	
-	public int getUserID(String fn, String ln);
+	public int getUserID(String username, String pw);
 	
 	public double getBalance(int id, int typeid);
 	
