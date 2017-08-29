@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Java Reflection</title>
+		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">-->
+		<link rel="stylesheet" href="bootstrap.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<h1>Reflection in Java</h1>
+		<div class="jumbotron">
+			<h2>What is reflection?</h2>
+			<p>Reflection is the act of examining code at runtime.</p>
+			<p>More specifically, reflection allows us to check the class, fields, methods, and constructors of objects at runtime.</p>
+		</div>
+		
+		<div class="jumbotron">
+			<h2>What are the downsides?</h2>
+			<ul>
+				<li>Slows down performance</li>
+				<li>May Not Run Under Security</li>
+				<li>Exposure of Internals</li>
+			</ul>
+		</div>
+		
+		<div class="jumbotron">
+			<h2>The java.lang.reflection Package</h2>
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>Class</th>
+					<th>Purpose</th>
+				</tr>
+				<tr>
+					<td>Class</td>
+					<td>Models the class of an object or primitive</td>
+				</tr>
+				<tr>
+					<td>Field</td>
+					<td>Models the data members of a class. Can access public and private members</td>
+				</tr>
+				<tr>
+					<td>Method</td>
+					<td>Models methods. Has an invoke() method for calling methods. Can also pass parameters.</td>
+				</tr>
+				<tr>
+					<td>Constructor</td>
+					<td>Models constructors, including names, modifiers, and parameters</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="jumbotron">
+			<h2>Breaking encapsulation:</h2>
+			<img src="hidden-class.png">
+			<img src="main-method.png">
+		</div>
+		
+		<div class="jumbotron">
+			<h2>Sources:</h2>
+			<a href="https://stackoverflow.com/questions/37628/what-is-reflection-and-why-is-it-useful">Stack Overflow : What is reflection and why is it useful?</a>
+			<br>
+			<a href="https://docs.oracle.com/javase/tutorial/reflect/">The Java Tutorials : Reflection</a>
+			<br>
+			<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html">Java 8 API : Class</a>
+			<br>
+			<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Method.html">Java 8 API : Method</a>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	</body>
+</html>
