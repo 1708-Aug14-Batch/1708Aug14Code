@@ -1,6 +1,7 @@
 package com.revature.andy.session;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.revature.andy.dao.DAOImplementation;
 import com.revature.andy.pojos.User;
@@ -20,17 +21,17 @@ public class PseudoSession {
 			isLoggedIn = true;
 			return 1;
 		}else {
-			return validatePair(email);
+			return validateLogin(email);
 		}
 	}
 	// Validate User
 	
-	static public int validatePair(String email) {
+	static public int validateLogin(String email) {
 		
-		HashMap<Integer, String> idEmail = dao.getIDEmail();
+		HashSet<String> idEmail = dao.getEmails();
 		
-		for(Integer x:idEmail.keySet()) {
-			if(idEmail.get(x).equalsIgnoreCase(email)) {
+		for(String x:idEmail) {
+			if(x.equalsIgnoreCase(email)){
 				return 2;
 			}
 		}

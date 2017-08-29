@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 import java.util.HashSet;
 
 import com.revature.andy.pojos.Account;
@@ -180,42 +179,16 @@ public class DAOImplementation implements DAOInterface {
 		}	
 	}
 	
-	/*
-	public User getUser(int ID) {
-		
+	public HashSet<String> getEmails(){
 		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM USERS WHERE USERID = (?)";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1,ID);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			User temp = null;
-			
-			while(rs.next()) {	
-				temp = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
-			}
-			return temp;
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}	
-	}
-	*/
-	
-	
-	public HashMap<Integer, String> getIDEmail(){
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM USERS";
+			String sql = "SELECT EMAIL FROM USERS";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
-			HashMap<Integer, String> userList = new HashMap<>();
+			HashSet<String> userList = new HashSet<>();
 			
 			while(rs.next()) {
-				userList.put(rs.getInt(1), rs.getString(4));
+				userList.add(rs.getString(1));
 			}
 			
 			return userList;
