@@ -169,4 +169,34 @@ CREATE OR REPLACE PROCEDURE update_personal_info
         email = new_email
     WHERE employeeid = "id";
 END update_personal_info;
-      
+
+--4.3
+--Create a stored procedure that returns the name and company of a customer
+CREATE OR REPLACE PROCEDURE get_customer_name_and_company
+(customer_id IN NUMBER, firstname OUT VARCHAR2, lastname OUT VARCHAR2, company OUT VARCHAR2)
+  BEGIN
+    SELECT firstname, lastname, company
+    FROM customer
+    WHERE customerid = customer_id;
+END get_customer_name_and_company;
+
+--5.0
+--Create a transaction that given a invoiceId will delete that invoice
+CREATE OR REPLACE PROCEDURE delete_invoice
+("id" IN NUMBER)
+  BEGIN
+    DELETE FROM invoiceline
+    WHERE invoiceid = "id";
+    DELETE FROM invoice
+    WHERE invoiceid = "id";
+    COMMIT WORK;
+END delete_invoice;
+--Create a transaction nested within a stored procedure that inserts a new record in the Customer table
+CREATE OR REPLACE PROCEDURE insert_customer
+(fn IN VARCHAR2, ln IN VARCHAR2, "em" IN VARCHAR2)
+  BEGIN
+    INSERT INTO customer(firstname, lastname, email) VALUES(fn, ln, "em");
+    COMMIT WORK;
+END insert_customer;
+
+
