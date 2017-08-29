@@ -3,8 +3,9 @@
   <groupId>com.revature</groupId>
   <artifactId>ServletExample</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>ServletExample</name>
-    
+  
   <properties>
   	<maven.compiler.source>1.8</maven.compiler.source>
   	<maven.compiler.target>1.8</maven.compiler.target>
