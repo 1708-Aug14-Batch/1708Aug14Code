@@ -7,8 +7,18 @@
   	<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>ForwardRedirectServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.ForwardRedirectServlets</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>HelloServlet</servlet-name>
   	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ForwardRedirectServlet</servlet-name>
+  	<url-pattern>/forred</url-pattern>
   </servlet-mapping>
 </web-app>

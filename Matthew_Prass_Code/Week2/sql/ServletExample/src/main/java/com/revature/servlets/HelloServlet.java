@@ -11,11 +11,16 @@ public class HelloServlet extends HttpServlet
 {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
-		System.out.println("Hello servlet!");
+		//System.out.println("Hello servlet!");
+		String name = req.getParameter("name");
+		String pass = req.getParameter("pass");
+		System.out.println(name +" "+pass);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
-		
+		String name = req.getParameter("name");
+		String pass = req.getParameter("pass");
+		System.out.println(name +" "+pass);
 	}
 }
