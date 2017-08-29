@@ -1,6 +1,5 @@
 -- IN CLASS WORK 2
 
-
 -- create or replace function findPerson
 -- function with cursor
 select ex_id
