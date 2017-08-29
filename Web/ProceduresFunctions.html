@@ -7,12 +7,10 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="ProceduresFunctions.css">
 </head>
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <!--
-  <img src="http://cultofthepartyparrot.com/parrots/hd/parrot.gif">
--->
 <a class="navbar-brand">Andy Zheng</a>
 <!--
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,15 +42,16 @@
         <ul class="list-group">
           <li class="list-group-item"><h3>Procedures</h3>
             <ul>
-              <li><h4>A Subprogram defined to perform specific or multiple task. It is storable to the database once complied and can be referenced by other programs.</h4></li>
-              <li><h4>Execute business logic</h4></li>
+              <li><h4>Subprogram defined to perform a specific task.</h4></li>
+              <li><h4>It is storable to the database once complied and can be referenced by other programs.</h4></li>
             </ul>
           </li>
           <li class="list-group-item"><h3>Functions</h3>
             <ul>
-              <li><h4>Similar to procedures, however it generally is used for a single definitive purpose. Functions are required to return a value to the caller.
+              <li><h4>Similar to procedures, however it generally is used to compute values.
               </h4></li>
-              <li><h4>Suited for computational logic</h4></li>
+              <li><h4>Functions are required to return a value to the caller.
+              </h4></li>
             </ul>
           </li>
         </ul>
@@ -76,20 +75,20 @@
           </thead>
           <tbody>
             <tr>
-              <td>May return multiple values or none</td>
+              <td>May return a single or multiple items or none</td>
               <td>Returns a single value</td>
             </tr>
             <tr>
-              <td>Can be executed independently</td>
-              <td>Must be part of an executable state</td>
-            <tr>
-              <td>Useable in PL/SQL Blocks</td>
-              <td>Useable in SQL statements and PL/SQL Block</td>
-            </tr>
-            <tr>
-              <td>Can call Function</td>
-              <td>Cannot call Procedures</td>
-            </tr>
+              <td>Business logic</td>
+              <td>Computational logic</td>
+              <tr>
+                <td>Useable in PL/SQL Blocks</td>
+                <td>Useable in SQL statements and PL/SQL Block</td>
+              </tr>
+              <tr>
+                <td>No Procedure-based index</td>
+                <td>Function-based index</td>
+              </tr>
             </tr>
           </tbody>
         </table>
@@ -111,36 +110,50 @@
   <div class="row">
     <div class="col">
       <pre class="col border border-dark rounded" ><code>
-        CREATE [OR REPLACE] PROCEDURE procedure_name
-        [(parameter_name [IN | OUT | IN OUT] type [, ...])]
-        IS | AS
-        [declaration_section]
-        BEGIN
-        executable_section
-        [EXCEPTION
-        exception_section]
-        END;
+   CREATE [OR REPLACE] PROCEDURE <i>procedure_name</i>
+   [(parameter_name [IN | OUT | IN OUT] type [, ...])]
+   IS | AS
+   [declaration_section]
+   BEGIN
+   executable_section
+   [EXCEPTION
+   exception_section]
+   END;
       </code></pre>
     </div>
     <div class="col">
       <pre class="col border border-dark rounded"><code>
-       CREATE [OR REPLACE] FUNCTION function_name
-       [(parameter_name [IN | OUT | IN OUT] type [, ...])]
-       RETURN return_datatype
-       IS | AS
-       [declaration_section]
-       BEGIN
-       executable_section
-       [EXCEPTION
-       exception_section]
-       END;
-     </code></pre>
-   </div>
- </div>
- <div class="row">
+   CREATE [OR REPLACE] FUNCTION <i>function_name</i>
+   [(parameter_name [IN | OUT | IN OUT] type [, ...])]
+   RETURN return_datatype
+   IS | AS
+   [declaration_section]
+   BEGIN
+   executable_section
+   [EXCEPTION
+   exception_section]
+   END;
+      </code></pre>
+    </div>
+  </div>
+  <div class="row">
    <div class="col">
     <pre class="col border border-dark rounded"><code>
-     DROP Procedure <i>procedure_name</i>;
+   ALTER PROCEDURE <i>procedure_name</i>
+   COMPILE;
+   </code></pre>
+  </div>
+  <div class="col">
+  <pre class="col border border-dark rounded"><code>
+   ALTER FUNCTION <i>function_name</i>
+   COMPILE;
+ </code></pre>
+</div>
+</div>
+  <div class="row">
+   <div class="col">
+    <pre class="col border border-dark rounded"><code>
+   DROP PROCEDURE <i>procedure_name</i>;
    </code></pre>
  </div>
  <div class="col">
@@ -155,15 +168,33 @@
   <div class="row">
     <div class="col">
       <ol>
+  <!--
+  <img src="http://cultofthepartyparrot.com/parrots/hd/parrot.gif">
+-->
+        <li>
         <a href="https://www.tutorialspoint.com/plsql/plsql_procedures.htm">https://www.tutorialspoint.com/plsql/plsql_procedures.htm</a>
-        <br>
+        </li>
+        <li>
         <a href="https://www.tutorialspoint.com/plsql/plsql_functions.htm">https://www.tutorialspoint.com/plsql/plsql_functions.htm</a>
-        <br>
+        </li>
+        <li>
         <a href="https://www.techonthenet.com/oracle/procedures.php">https://www.techonthenet.com/oracle/procedures.php</a>
-        <br>
+        </li>
+        <li>
         <a href="https://www.techonthenet.com/oracle/functions.php">https://www.techonthenet.com/oracle/functions.php</a>
-        <br>
-        <a href="https://stackoverflow.com/questions/771949/what-is-the-difference-between-function-and-procedure-in-pl-sql">https://stackoverflow.com/questions/771949/what-is-the-difference-between-function-and-procedure-in-pl-sql</a>
+        </li>
+        <li>
+        <a href="https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/alter_procedure.htm#LNPLS99997">https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/alter_procedure.htm#LNPLS99997</a>
+        </li>
+        <li>
+        <a href="https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/alter_function.htm#LNPLS99999">https://docs.oracle.com/cd/B28359_01/appdev.111/b28370/alter_function.htm#LNPLS99999</a>
+        </li>
+        <li>
+        <a href="https://stackoverflow.com/questions/25419629/functions-vs-procedures-in-oracle">https://stackoverflow.com/questions/25419629/functions-vs-procedures-in-oracle</a>
+        </li>
+        <li>
+        <a href="http://searchoracle.techtarget.com/answer/Calling-stored-procedures-inside-user-defined-functions-in-Oracle-Database">http://searchoracle.techtarget.com/answer/Calling-stored-procedures-inside-user-defined-functions-in-Oracle-Database</a>
+        </li>
       </ol>
     </div>
   </div>
