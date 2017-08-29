@@ -11,6 +11,15 @@
   	</servlet-class>
   </servlet>
   
+  <servlet>
+  	<servlet-name>
+  		ForwardRedirectServlet
+  	</servlet-name>
+  	<servlet-class>
+  		com.revature.andy.servlets.ForwardRedirectServlet
+  	</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>
   		HelloServlets
@@ -19,5 +28,14 @@
   		/hello
   	</url-pattern>
   </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>
+  		ForwardRedirectServlet
+  	</servlet-name>
+  	<url-pattern>
+  		/forred
+  	</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
-
