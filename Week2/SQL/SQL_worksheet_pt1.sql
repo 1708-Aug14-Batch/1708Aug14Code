@@ -114,17 +114,13 @@ AND lower (lastname)   = lower('walter');
 --Task – Create a function that returns the current time.
 select sysdate
 from dual;
-
-select avg(total) from invoice;
-
 --Task – create a function that returns the length of a mediatype from the mediatype table
 
 --3.2 System Defined Aggregate Functions
 --Task – Create a function that returns the average total of all invoices
 CREATE OR REPLACE FUNCTION averageInvoice 
 RETURN number
-is
-  average number(10,2);
+is average number(10,2);
 BEGIN
   select avg(total) into average from invoice;
   return average;
@@ -136,9 +132,16 @@ END;
 --Task – Create a function that returns the average price of invoiceline items in the invoiceline table
 
 
-select AVERAGEINVOICE from INVOICE;
+
 --3.4 User Defined Table Valued Functions
 --Task – Create a function that returns all employees who are born after 1968.
+create or replace function getEmployeeBornAfter
+       Return firstname
+       is employees Employee;
+       begin
+            SELECT Employee Into employees  from Employee where birthdate >= date '1968-01-01';
+        return employees;
+        end;
 
 --4.0 Stored Procedures 4
 --In this section you will be creating and executing stored procedures. You will be creating various types

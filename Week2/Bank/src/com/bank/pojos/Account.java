@@ -47,7 +47,7 @@ public class Account {
 	}
 
 
-	public void setTypeId(AccountType typeId) {
+	public void setTypeId(int id) {
 		this.type = type;
 	}
 
@@ -59,6 +59,12 @@ public class Account {
 
 	public void setUserId(Users user) {
 		this.user = user;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Account Information: \nAccountId=" + accountId + "\nBalance=" + balance;
 	}
 	
 

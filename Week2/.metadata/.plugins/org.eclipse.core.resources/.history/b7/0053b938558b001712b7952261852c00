@@ -1,0 +1,41 @@
+package com.bank.services;
+
+import java.util.Scanner;
+
+import com.bank.dao.DAO;
+import com.bank.dao.DAOImpl;
+import com.bank.pojos.Account;
+import com.bank.pojos.Users;
+
+public class Service {
+	static DAOImpl dao = new DAOImpl();
+	//static User user = new User();
+	static Scanner scan;
+	
+	public int addUser(){//{String fn, String ln, String email, String password){	
+		System.out.println("Welcome New User. Please create a user acount:");
+		System.out.println("Please enter your First Name:");
+		 String fn = scan.next();
+		System.out.println("Please enter your Lasty Name:");
+		String ln = scan.next();
+		System.out.println("Please enter your Email:");
+		String email = scan.next();
+		System.out.println("Please enter your Password:");
+		String password = scan.next();
+		int id = dao.addUser(fn, ln, email, password);
+		return id;
+		
+	}
+	
+	public Users getUser(String email, String password){
+		
+		 Users user =  dao.getUser(email, password);
+		
+		return user;
+	}
+	public Account createAccount(int u, int typeId){
+		Account acc = dao.createAccount(u, typeId);
+		return acc;
+	}
+
+}

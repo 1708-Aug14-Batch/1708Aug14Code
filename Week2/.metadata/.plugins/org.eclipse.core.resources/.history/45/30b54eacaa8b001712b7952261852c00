@@ -1,0 +1,145 @@
+package com.bank.run;
+
+import java.util.Scanner;
+
+import com.bank.dao.DAOImpl;
+import com.bank.pojos.Account;
+import com.bank.pojos.Users;
+import com.bank.services.Service;
+
+public class BankTest {
+ static Scanner scan;
+ static int option;
+ static String email;
+ static DAOImpl dao = new DAOImpl();
+	static Service ser = new Service();
+	static Account acc1 = new Account();
+	static double bal;
+	public static void main(String[] args) {
+		scan = new Scanner(System.in);
+				
+		//dao.createAccount(5,3);
+		//dao.viewAccount(6);
+		//
+//		
+		
+		boolean logon = true;
+	
+		
+		mainMenu();
+		while(logon){
+			
+		}
+		option = scan.nextInt();
+		switch(option){
+		case 1:			
+			String pass;
+			System.out.println("Welcome to the login section: \n Enter you login credentials:");
+			System.out.println("Enter you email address:");
+			email = scan.next();
+			System.out.println("Enter your password:");
+			pass = scan.next();
+			Users user = ser.getUser(email, pass);
+			System.out.println(user);
+			loginMenu();
+			option = scan.nextInt();
+			login(option);
+			break;
+		case 2:
+			System.out.println("Welcome New User. Please create a user acount:");
+			System.out.println("Please enter your First Name:");
+			String fn = scan.next();
+			System.out.println("Please enter your Lasty Name:");
+			String ln = scan.next();
+			System.out.println("Please enter your Email:");
+			email = scan.next();
+			System.out.println("Please enter your Password:");
+			String password = scan.next();
+			int user1 = ser.addUser(fn, ln, email, password);
+			System.out.println("Thank you creating your USER ACCOUNT.\n Your User ID is: " +user1);
+			System.out.println("What type of account do you want to create" + "\n 1: Checking" +"\n 1: Savings"+ "\n 3: Credit Card");
+			int type = scan.nextInt();
+			Account acc = ser.createAccount(user1, type);
+			if(type == 1)
+				System.out.println("Thank you  for creating a Checking Account");
+			else if(type == 2)
+				System.out.println("Thank you for creating a Savings Account");
+			else if(type == 3)
+				System.out.println("Thank you for applying for a Credit Card");
+			else
+				System.out.println("Invalid Input");		
+			
+			
+			
+			
+//			 
+//			
+//
+			break;
+			default:
+				}			
+		
+		
+		//		scan = new Scanner(System.in);
+//		System.out.println("Please enter your First Name:");
+//		String fn = scan.nextLine();
+//		System.out.println("Please enter your Lasty Name:");
+//		String ln = scan.nextLine();
+//		System.out.println("Please enter your Email:");
+//		String email = scan.nextLine();
+//		System.out.println("Please enter your Password:");
+//		String password = scan.nextLine();
+//		 ser.addUser(fn, ln, email, password);
+		//Users user = ser.getUser(email, password);
+		//System.out.println(user2);
+		
+	}
+		
+//		Users user = dao.getUser("rick@email.com", "noobnoob");
+//		System.out.println(user);
+//		
+		//System.out.println(dao);
+		//dao.addUser("rick", "sanchez", "rick@email.com", "noobnoob");
+		//dao.createAccount(1, 2);
+		// TODO Auto-generated method stub
+
+	
+	
+	public static void mainMenu(){
+		System.out.println("-----WELCOME TO THE BANK-----");
+		System.out.println();
+		System.out.println("Please Select one of the following options:");
+		System.out.println("Option 1: Login");
+		System.out.println("Option 2: Create an Account");	
+	}
+	public static void loginMenu(){
+		System.out.println("Select one of the following");
+		System.out.println("1: Get balance");
+		System.out.println("2: Deposit");
+		System.out.println("3: Withdraw");
+	} 
+	static void login(int n){
+		switch(n){
+		case 1:
+			acc1  = dao.getAccount(6);
+			System.out.println(acc1);
+			double bal = ser.getbalance(acc1);
+			System.out.println("Your Balance is: " + bal );
+			break;
+		case 2:			
+			acc1  = dao.getAccount(6);
+			System.out.println(acc1);
+			bal = ser.getbalance(acc1);
+			System.out.println("How much money would you like to deposit:");
+			int cash = scan.nextInt();
+			int deposit = (int) ser.deposit((int)bal, cash);			
+			dao.updateBalance(deposit, 6);
+			login(1);
+			break;
+			
+		}
+		
+	}
+	
+
+}

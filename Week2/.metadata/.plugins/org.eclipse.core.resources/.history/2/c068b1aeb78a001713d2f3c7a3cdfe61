@@ -1,0 +1,28 @@
+package com.bank.services;
+
+import java.util.Scanner;
+
+import com.bank.dao.DAO;
+import com.bank.dao.DAOImpl;
+import com.bank.pojos.Account;
+import com.bank.pojos.Users;
+
+public class Service {
+	static DAOImpl dao = new DAOImpl();
+	//static User user = new User();
+	static Scanner scan;
+	
+	static public int addUser(String fn, String ln, String email, String password){		
+		int id = dao.addUser(fn, ln, email, password);
+		return id;
+		
+	}
+	
+	public Users getUser(String email, String password){
+		
+		 Users user =  dao.getUser(email, password);
+		
+		return user;
+	}
+
+}

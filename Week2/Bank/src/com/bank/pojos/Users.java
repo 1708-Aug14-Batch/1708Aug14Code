@@ -68,4 +68,11 @@ public class Users {
 		this.password = password;
 	}
 
+	@Override
+	public String toString() {
+		return "User Account: \nUserID= " + id + "\nFirstName= " + firstname + "\nLastName= " + lastname; //+ ", email=" + email
+				//+ ", password=" + password + "]";
+	}
+	
+
 }
