@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <title id="title">Java Generics</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	
+	<style> 
+		#header {
+			text-align: center;
+		}
+		
+		#java-image {
+			display: block;
+			margin: auto;
+		}
+	
+	</style>
+  </head>
+
+  <body>
+
+  
+    <div class="container">
+
+      
+      <h1 id="header">
+		Generics in Java
+      </h1>
+     
+    
+      <img align="middle" id="java-image" src="http://techguylabs.com/sites/techguylabs.com/files/styles/tgl-4col/public/java-logo.jpeg?itok=5oH93v5L">
+    
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex1.png">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>What are generics?</h3>
+          <p>Generics are a language feature implemented in Java 5 that allow for parametrization of classes, interfaces, and methods.</p>
+        </div>
+      </div>
+
+      <hr>
+	
+      <div class="row">
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex2.png">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>What was Java like before generics?</h3>
+          <p>
+			Prior to generics, classes simply dealt directly with the Object type and did the proper casting required to expose the actual type.
+			For example, collections would return Object and accept Object as an argument.
+			This makes runtime errors very common because you never know what your collection truly contains without using many instanceof conditionals to check.
+			Also leads to a lot of ambiguity over what your methods actually do and what their arguments are.</p>
+		</div>
+      </div>
+
+      <hr>
+	  
+      <div class="row">
+
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex3.png">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Why are generics useful?</h3>
+          <p>
+			Runtime bugs are much harder to find than compile time bugs.
+			Generics reduce a lot of common runtime errors to compile time errors due to the enforcement of the generics type system.
+			Arguments, return types and parametrized classes now follow specific input and output patterns described by the information provided inside the <> brackets.
+			</p>
+        </div>
+      </div>
+      <hr>
+	  
+	  
+	   <div class="row">
+
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex3.png">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Example usage</h3>
+          <p>
+			Runtime bugs are much harder to find than compile time bugs.
+			Generics reduce a lot of common runtime errors to compile time errors due to the enforcement of the generics type system.
+			Arguments, return types and parametrized classes now follow specific input and output patterns described by the information provided inside the <> brackets.
+			</p>
+        </div>
+      </div>
+      <hr>
+	  
+     
+    </div>
+   
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Vladimir Yevseenko</p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

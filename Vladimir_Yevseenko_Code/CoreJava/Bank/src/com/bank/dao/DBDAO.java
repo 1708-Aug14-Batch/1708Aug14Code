@@ -36,7 +36,6 @@ public class DBDAO implements Closeable {
 			dbConn.commit();
 			return true;
 		} catch (SQLException ex) {
-			ex.printStackTrace();
 			return false;
 		}
 	}

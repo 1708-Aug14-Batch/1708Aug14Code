@@ -109,9 +109,9 @@ public class Driver {
 			case "1": case "2": case "3": 
 			{
 				if (service.createNewAccount(AccountType.get(Integer.parseInt(choice))))
-					System.out.println("Account successfully created\n");
+					System.out.println("\nAccount successfully created\n");
 				else
-					System.out.println("Account already exists\n");
+					System.out.println("\nAccount already exists\n");
 			} break;
 			case "4": return;
 			default: System.out.println("Invalid choice\n");
