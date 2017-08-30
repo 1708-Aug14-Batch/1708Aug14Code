@@ -11,12 +11,12 @@ import com.bank.pojos.Account.accountType;
 public interface DaoSql {
 	
 	// Person
-	public Person createPerson(int SSN, String firstName, String lastName, LocalDate birthDate);
-	public Person readPerson(int SSN);
+	public Person createPerson(String firstName, String lastName, String email, LocalDate birthDate, boolean deceased);
+	public Person readPerson(int personId);
 	// change any person's field except their uniquely identifying keys
-	public boolean updatePerson(int SSN, Person per);
+	public boolean updatePerson(int personId, Person per);
 	// A deleted person is merely marked as deceased
-	public boolean deletePerson(int SSN);
+	public boolean deletePerson(int personId);
 	public ArrayList<Person> readAllPersons();
 	
 	// BankUser

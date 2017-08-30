@@ -4,26 +4,26 @@ import java.time.LocalDate;
 
 public class Person {
 	
-	// Each person must have a unique 9-digit Social Security Number
-	protected final int SSN;
-
+	// Each person must have a unique identification number
+	protected final int personId;
+	
 	// Each person must have a firstName and lastName
 	private String firstName;
 	private String lastName;
 
-	// If a person has an email then it must be unique.
+	// A person must have an email
 	private String email = "";
 	
-	private LocalDate birthDate;
+	private LocalDate birthDate = null;
 
 	private boolean deceased = false;
 	
-	public Person(int SSN, String firstName, String lastName, LocalDate birthDate) {
+	public Person(int personId, String firstName, String lastName, String email) {
 
-		this.SSN = SSN;
+		this.personId = personId;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthDate = birthDate;
+		this.email = email;
 	}
 
 	public String getFirstName() {
@@ -49,10 +49,6 @@ public class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public int getSSN() {
-		return SSN;
-	}
 	
 	public void setDeceased(boolean deceased) {
 		this.deceased = deceased;
@@ -69,10 +65,14 @@ public class Person {
 	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
+	
+	public int getPersonId() {
+		return personId;
+	}
 
 	@Override
 	public String toString() {
-		return "Person [SSN=" + SSN + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+		return "Person [personId=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", birthDate=" + birthDate + ", deceased=" + deceased + "]";
 	}
 

@@ -19,35 +19,90 @@ import com.bank.util.ConnectionFactory;
 
 public class DaoSqlImpl implements DaoSql {
 
-	public String getFormatedDate(LocalDate day) {
+	public String getFormattedDate(LocalDate day) {
+		if (day == null)
+			return null;
 		return day.toString();
 	}
+	public LocalDate fromFormattedDate(String str) {
+		if (str == null || str.equals("null"))
+			return null;
+		
+		return LocalDate.parse(str.substring(0, 10));
+	}
 
-	public Person createPerson(int SSN, String firstName, String lastName, LocalDate birthDate) {
+	public Person createPerson(String firstName, String lastName, String email, boolean deceased) {
 		Person per = null;
 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 
 			// No semi-colon inside the quotes
-			String sql = "INSERT INTO person(ssn, first_name, last_name, email, birth_date, deceased)" + 
-					" VALUES(?, ?, ?, ?, TO_DATE(?,'yyyy-mm-dd'), ?)";
+			String sql = "INSERT INTO person(first_name, last_name, email, deceased)" + 
+					" VALUES(?, ?, ?, ?)";
 			String[] key = new String[1];
-			key[0] = "ssn";
+			key[0] = "person_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setInt(1, SSN);
-			ps.setString(2, firstName);
-			ps.setString(3, lastName);
-			ps.setString(4, null);
-			ps.setString(5, getFormatedDate(birthDate));
-			ps.setInt(6, 0);		// false
+			ps.setString(1, firstName);
+			ps.setString(2, lastName);
+			ps.setString(3, email);
+			ps.setInt(4, deceased?1:0);
 
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
 
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next())
+				id = pk.getInt(1);
+			
 			conn.commit();
-			per = new Person(SSN, firstName, lastName, birthDate);
+			per = new Person(id, firstName, lastName, email);
+			per.setDeceased(deceased);
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return per;
+
+	}
+	
+	public Person createPerson(String firstName, String lastName, String email, LocalDate birthDate, boolean deceased) {
+		Person per = null;
+		
+		if (birthDate == null)
+			return createPerson(firstName, lastName, email, deceased);
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+
+			// No semi-colon inside the quotes
+			String sql = "INSERT INTO person(first_name, last_name, email, birth_date, deceased)" + 
+					" VALUES(?, ?, ?, TO_DATE(?,'yyyy-mm-dd'), ?)";
+			String[] key = new String[1];
+			key[0] = "person_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, firstName);
+			ps.setString(2, lastName);
+			ps.setString(3, email);
+			ps.setString(4, getFormattedDate(birthDate));
+			ps.setInt(5, deceased?1:0);
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next())
+				id = pk.getInt(1);
+			
+			conn.commit();
+			per = new Person(id, firstName, lastName, email);
+			per.setBirthDate(birthDate);
+			per.setDeceased(deceased);
 
 		} catch (SQLException e) {
 			System.out.println("Database error");
@@ -58,30 +113,30 @@ public class DaoSqlImpl implements DaoSql {
 	}
 
 	@Override
-	public Person readPerson(int SSN) {
+	public Person readPerson(int personId) {
 		Person per = null;
 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT * FROM person WHERE ssn=?";
+			String sql = "SELECT * FROM person WHERE person_id=?";
 			String[] key = new String[1];
-			key[0] = "ssn";
+			key[0] = "person_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setInt(1, SSN);
+			ps.setInt(1, personId);
 
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
-				int ssn = rs.getInt(1);
+				personId = rs.getInt(1);		// This line is redundant
 				String firstName = rs.getString(2);
 				String lastName = rs.getString(3);
 				String email = rs.getString(4);
-				LocalDate birthDate = LocalDate.parse(rs.getString(5).substring(0, 10));
+				LocalDate birthDate = fromFormattedDate(rs.getString(5));
 				boolean deceased = (rs.getInt(6) == 0)?false:true;
 
-				per = new Person(ssn, firstName, lastName, birthDate);
-				per.setEmail(email);
+				per = new Person(personId, firstName, lastName, email);
+				per.setBirthDate(birthDate);
 				per.setDeceased(deceased);
 			}
 		} catch (SQLException e) {
@@ -98,7 +153,7 @@ public class DaoSqlImpl implements DaoSql {
 
 			String sql = "SELECT * FROM person WHERE email=?";
 			String[] key = new String[1];
-			key[0] = "ssn";
+			key[0] = "person_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, email);
@@ -106,15 +161,15 @@ public class DaoSqlImpl implements DaoSql {
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()) {
-				int ssn = rs.getInt(1);
+				int personId = rs.getInt(1);
 				String firstName = rs.getString(2);
 				String lastName = rs.getString(3);
 				email = rs.getString(4);		// This line is redundant
-				LocalDate birthDate = LocalDate.parse(rs.getString(5).substring(0, 10));
+				LocalDate birthDate = fromFormattedDate(rs.getString(5));
 				boolean deceased = (rs.getInt(6) == 0)?false:true;
 
-				per = new Person(ssn, firstName, lastName, birthDate);
-				per.setEmail(email);
+				per = new Person(personId, firstName, lastName, email);
+				per.setBirthDate(birthDate);
 				per.setDeceased(deceased);
 			}
 		} catch (SQLException e) {
@@ -125,7 +180,7 @@ public class DaoSqlImpl implements DaoSql {
 	}
 
 	@Override
-	public boolean updatePerson(int SSN, Person per) {
+	public boolean updatePerson(int personId, Person per) {
 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
@@ -133,17 +188,17 @@ public class DaoSqlImpl implements DaoSql {
 			// No semi-colon inside the quotes
 			String sql = "UPDATE person SET" + 
 					" first_name=?, last_name=?, email=?, birth_date=TO_DATE(?,'yyyy-mm-dd'), deceased=?" + 
-					" WHERE ssn=?";
+					" WHERE person_id=?";
 			String[] key = new String[1];
-			key[0] = "ssn";
+			key[0] = "person_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, per.getFirstName());
 			ps.setString(2, per.getLastName());
 			ps.setString(3, per.getEmail());
-			ps.setString(4, getFormatedDate(per.getBirthDate()));
+			ps.setString(4, getFormattedDate(per.getBirthDate()));
 			ps.setInt(5, per.isDeceased()?1:0);
-			ps.setInt(6, SSN);
+			ps.setInt(6, personId);
 
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
@@ -160,14 +215,14 @@ public class DaoSqlImpl implements DaoSql {
 	}
 
 	@Override
-	public boolean deletePerson(int SSN) {
+	public boolean deletePerson(int personId) {
 
-		Person per = readPerson(SSN);
+		Person per = readPerson(personId);
 		if (per == null)
 			return false;
 
 		per.setDeceased(true);
-		return updatePerson(SSN, per);
+		return updatePerson(personId, per);
 
 	}
 
@@ -182,15 +237,15 @@ public class DaoSqlImpl implements DaoSql {
 			ResultSet rs = statement.executeQuery(sql);
 
 			while(rs.next()) {
-				int ssn = rs.getInt(1);
+				int personId = rs.getInt(1);
 				String firstName = rs.getString(2);
 				String lastName = rs.getString(3);
 				String email = rs.getString(4);
-				LocalDate birthDate = LocalDate.parse(rs.getString(5).substring(0, 10));
+				LocalDate birthDate = fromFormattedDate(rs.getString(5));
 				boolean deceased = (rs.getInt(6) == 0)?false:true;
 
-				Person per = new Person(ssn, firstName, lastName, birthDate);
-				per.setEmail(email);
+				Person per = new Person(personId, firstName, lastName, email);
+				per.setBirthDate(birthDate);
 				per.setDeceased(deceased);
 
 				list.add(per);
@@ -208,14 +263,14 @@ public class DaoSqlImpl implements DaoSql {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			conn.setAutoCommit(false);
 
-			String sql = "INSERT INTO bank_user(username, password, ssn) VALUES(?, ?, ?)";
+			String sql = "INSERT INTO bank_user(username, password, person_id) VALUES(?, ?, ?)";
 			String[] key = new String[1];
 			key[0] = "user_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, username);
 			ps.setString(2, password);
-			ps.setInt(3, per.getSSN());
+			ps.setInt(3, per.getPersonId());
 
 			ps.executeUpdate();
 
@@ -253,9 +308,9 @@ public class DaoSqlImpl implements DaoSql {
 				int id = rs.getInt(1);
 				username = rs.getString(2);		// This line is redundant
 				String password = rs.getString(3);
-				int SSN = rs.getInt(4);
+				int personId = rs.getInt(4);
 
-				Person per = readPerson(SSN);
+				Person per = readPerson(personId);
 
 				guy = new BankUser(per, id, username, password);
 
@@ -286,9 +341,9 @@ public class DaoSqlImpl implements DaoSql {
 				userId = rs.getInt(1);		// This line is redundant
 				String username = rs.getString(2);
 				String password = rs.getString(3);
-				int SSN = rs.getInt(4);
+				int personId = rs.getInt(4);
 
-				Person per = readPerson(SSN);
+				Person per = readPerson(personId);
 
 				guy = new BankUser(per, userId, username, password);
 
@@ -364,9 +419,9 @@ public class DaoSqlImpl implements DaoSql {
 				int userId = rs.getInt(1);
 				String username = rs.getString(2);
 				String password = rs.getString(3);
-				int SSN = rs.getInt(4);
+				int personId = rs.getInt(4);
 
-				Person per = readPerson(SSN);
+				Person per = readPerson(personId);
 
 				BankUser guy = new BankUser(per, userId, username, password);
 
@@ -394,7 +449,7 @@ public class DaoSqlImpl implements DaoSql {
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, balance.toString());
 			LocalDate day = LocalDate.now();
-			ps.setString(2, getFormatedDate(day));
+			ps.setString(2, getFormattedDate(day));
 			ps.setInt(3, guy.getUserId());
 			ps.setInt(4, type.ordinal());
 			ps.setInt(5, level.ordinal());
@@ -438,7 +493,7 @@ public class DaoSqlImpl implements DaoSql {
 			while(rs.next()) {
 				accountId = rs.getInt(1);		// This line is redundant
 				BigDecimal balance = new BigDecimal(rs.getString(2));
-				LocalDate accountOpenedDate = LocalDate.parse(rs.getString(3).substring(0, 10));
+				LocalDate accountOpenedDate = fromFormattedDate(rs.getString(3));
 				int userId = rs.getInt(4);
 				int typeId = rs.getInt(5);
 				int levelId = rs.getInt(6);
@@ -511,7 +566,7 @@ public class DaoSqlImpl implements DaoSql {
 			while(rs.next()) {
 				int accountId = rs.getInt(1);		// This line is redundant
 				BigDecimal balance = new BigDecimal(rs.getString(2));
-				LocalDate accountOpenedDate = LocalDate.parse(rs.getString(3).substring(0, 10));
+				LocalDate accountOpenedDate = fromFormattedDate(rs.getString(3));
 				int userId = rs.getInt(4);
 				int typeId = rs.getInt(5);
 				int levelId = rs.getInt(6);
@@ -546,7 +601,7 @@ public class DaoSqlImpl implements DaoSql {
 			while(rs.next()) {
 				int accountId = rs.getInt(1);		// This line is redundant
 				BigDecimal balance = new BigDecimal(rs.getString(2));
-				LocalDate accountOpenedDate = LocalDate.parse(rs.getString(3).substring(0, 10));
+				LocalDate accountOpenedDate = fromFormattedDate(rs.getString(3));
 				userId = rs.getInt(4);
 				int typeId = rs.getInt(5);
 				int levelId = rs.getInt(6);
@@ -570,7 +625,7 @@ public class DaoSqlImpl implements DaoSql {
 			conn.setAutoCommit(false);
 
 			// No semi-colon inside the quotes
-			String sql = "INSERT INTO clerk(employee_id, password, date_hired, hourly_wage, hired, ssn)" + 
+			String sql = "INSERT INTO clerk(employee_id, password, date_hired, hourly_wage, hired, person_id)" + 
 					" VALUES(?, ?, TO_DATE(?,'yyyy-mm-dd'), ?, ?, ?)";
 			String[] key = new String[1];
 			key[0] = "employee_id";
@@ -579,10 +634,10 @@ public class DaoSqlImpl implements DaoSql {
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setInt(1, employeeId);
 			ps.setString(2, password);
-			ps.setString(3, getFormatedDate(dateHired));
+			ps.setString(3, getFormattedDate(dateHired));
 			ps.setDouble(4, hourlyWage);
 			ps.setInt(5, 1);		// true
-			ps.setInt(6, per.getSSN());
+			ps.setInt(6, per.getPersonId());
 
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
@@ -616,12 +671,12 @@ public class DaoSqlImpl implements DaoSql {
 			while(rs.next()) {
 				employeeId = rs.getInt(1);		// This line is redundant
 				String password = rs.getString(2);
-				LocalDate dateHired = LocalDate.parse(rs.getString(3).substring(0, 10));
+				LocalDate dateHired = fromFormattedDate(rs.getString(3));
 				double hourlyWage = rs.getDouble(4);
 				boolean hired = (rs.getInt(5) == 0)?false:true;
-				int SSN = rs.getInt(6);
+				int personId = rs.getInt(6);
 				
-				Person per = readPerson(SSN);
+				Person per = readPerson(personId);
 				
 				cler = new Clerk(per, employeeId, dateHired, password, hourlyWage);
 				cler.setHired(hired);
@@ -690,14 +745,14 @@ public class DaoSqlImpl implements DaoSql {
 			ResultSet rs = statement.executeQuery(sql);
 
 			while(rs.next()) {
-				int ssn = rs.getInt(1);
+				int personId = rs.getInt(1);
 				String firstName = rs.getString(2);
 				String lastName = rs.getString(3);
 				String email = rs.getString(4);
-				LocalDate birthDate = LocalDate.parse(rs.getString(5).substring(0, 10));
+				LocalDate birthDate = fromFormattedDate(rs.getString(5));
 				boolean deceased = (rs.getInt(6) == 0)?false:true;
 
-				Clerk cler = new Person(ssn, firstName, lastName, birthDate);
+				Clerk cler = new Person(personId, firstName, lastName, birthDate);
 				per.setEmail(email);
 				per.setDeceased(deceased);
 

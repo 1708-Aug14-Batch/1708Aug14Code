@@ -62,7 +62,8 @@ public class RunBank {
 		} catch (NoSuchElementException e) {
 			System.out.println("Bad input. Exiting system...");
 		} catch (Exception e) {
-			System.out.println("Unforseen error! Exiting system...\n" + e.getMessage());
+			System.out.println("Unforseen error! Exiting system...\n");
+			e.printStackTrace();
 		}
 
 		System.out.println("Thank you for using the automating banking system. Have a wonderful day.");
@@ -334,24 +335,15 @@ public class RunBank {
 		String firstName = scan.nextLine().trim();
 		System.out.print("Enter your last name: ");
 		String lastName = scan.nextLine().trim();
-		System.out.print("Enter your Social Security Number: ");
-		String SSN = scan.nextLine().trim();
-		System.out.print("Enter your date of birth, yyyy-mm-dd: ");
-		LocalDate birthDate = formatDate(scan.nextLine().trim());
 
-		if (birthDate == null) {
-			System.out.println("Invalid birth date");
+		String email = setEmail();
+		if (email == null) {
 			return false;
 		}
-		Person per = bankService.tryCreatePerson(SSN, firstName, lastName, birthDate, null);
+
+		Person per = bankService.tryCreatePerson(firstName, lastName, email, null);
 		if (per == null)
 			return false;
-
-		// Set email. email is not required to be a person but it
-		// is required to have an account
-		if (!trySetEmail(per)) {
-			return false;
-		}
 
 		// Get information from user to create an account
 		System.out.print("Enter your username: ");
@@ -364,6 +356,9 @@ public class RunBank {
 		BankUser guy = null;
 		if (password1.equals(password2)) {
 			guy = bankService.tryCreateBankUser(per, username, password1, accountLevel.BRONZE);
+
+			if (guy == null)
+				return false;
 			// Free checking account
 			bankService.tryCreateAccount(guy, new BigDecimal(0), accountType.CHECKING, accountLevel.BRONZE);
 		}
@@ -522,6 +517,11 @@ public class RunBank {
 		BigDecimal balance = acc.getBalance();
 		String accountStr = acc.getType().toString().toLowerCase();
 
+		if (acc.getType() == accountType.REWARD) {
+			System.out.println("You cannot deposit into a rewards account");
+			return false;
+		}
+
 		BigDecimal depositAmmount = null;
 		try {
 
@@ -571,7 +571,7 @@ public class RunBank {
 			System.out.println("Interest rate: " + 100 * acc.getCreditRate() + "%");
 		else if (type == accountType.REWARD)
 			System.out.println("Rewards rate: " + 100 * acc.getRewardsRate() + "%");
-		
+
 		return true;
 	}
 
@@ -612,7 +612,7 @@ public class RunBank {
 
 		} else if(str.contains("name")) {
 
-			Person per = bankService.getPerson(guy.getSSN());
+			Person per = bankService.getPerson(guy.getPersonId());
 
 			System.out.print("Enter a new first name: ");
 			String firstName = scan.nextLine().trim();
@@ -622,7 +622,7 @@ public class RunBank {
 			per.setFirstName(firstName);
 			per.setLastName(lastName);
 
-			if (bankService.updatePerson(per.getSSN(), per)) {
+			if (bankService.updatePerson(per.getPersonId(), per)) {
 				System.out.println("Name updated");
 				return true;
 			} else {
@@ -632,9 +632,12 @@ public class RunBank {
 
 		} else if (str.contains("mail")) {
 
-			Person per = bankService.getPerson(guy.getSSN());
+			Person per = bankService.getPerson(guy.getPersonId());
+			String email = setEmail();
 
-			if (setEmail(per)) {
+			if (email != null) {
+				per.setEmail(email);
+				bankService.updatePerson(guy.getPersonId(), per);
 				System.out.println("Email updated.");
 				return true;
 			} else {
@@ -727,29 +730,17 @@ public class RunBank {
 				+ " or property stored on the property of \n" + bankName);
 	}
 
-	private static boolean trySetEmail(Person per) {
-
-		// If the person already has an email
-		if (per.getEmail() == null || per.getEmail().equals("")) {
-
-			return setEmail(per);
-		} else return true;
-	}
-
 	// Returns false if a valid email was not supplied
-	private static boolean setEmail(Person per) {
+	private static String setEmail() {
 
 		// get email
 		System.out.print("Enter your email address: ");
 		String email = scan.nextLine().trim();
 
 		if (bankService.isEmailValid(email))
-			if (bankService.isEmailAvailable(email)) {
-				per.setEmail(email);
-				return bankService.updatePerson(per.getSSN(), per);
-			}
+			return email;
 
-		return false;
+		return null;
 
 	}
 

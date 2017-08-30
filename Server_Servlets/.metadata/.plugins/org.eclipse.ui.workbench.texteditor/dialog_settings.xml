@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="readBankU" key="selection"/>
+		<item value="sA" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="sA"/>
 			<item value="readBankU"/>
 			<item value="setvlets"/>
 			<item value="doP"/>
@@ -15,7 +16,6 @@
 			<item value="do"/>
 			<item value="doGet"/>
 			<item value="8080"/>
-			<item value="8181"/>
 		</list>
 		<list key="replacehistory">
 			<item value="servlets"/>

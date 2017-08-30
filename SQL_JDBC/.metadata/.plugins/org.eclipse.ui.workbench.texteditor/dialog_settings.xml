@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="8181" key="selection"/>
-		<item value="true" key="casesensitive"/>
+		<item value="That person" key="selection"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="8181"/>
-			<item value="8080"/>
-			<item value="updateAccount"/>
-			<item value="bankService"/>
-			<item value="eposit"/>
-			<item value="deposit"/>
-			<item value=" balance"/>
-			<item value="  balance"/>
+			<item value="That person"/>
+			<item value="isEmailAv"/>
+			<item value="tryCreate"/>
+			<item value="setEmail"/>
+			<item value="isEmailA"/>
+			<item value="isEmailAvailable"/>
+			<item value="email Un"/>
+			<item value="Email un"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Formatted"/>
+			<item value="personId"/>
+			<item value="WHERE person_id"/>
+			<item value="key[0] = &quot;person_id&quot;;"/>
+			<item value="int personId"/>
+			<item value="PersonId"/>
 			<item value="employeeId"/>
 			<item value="clerkId"/>
-			<item value="Clerk"/>
-			<item value="creditRateMap"/>
-			<item value="System.out.println(&quot;Database error&quot;);"/>
-			<item value="syso "/>
-			<item value="password2"/>
-			<item value=".getSSN() == (SSN)"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
