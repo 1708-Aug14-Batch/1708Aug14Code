@@ -1,0 +1,8 @@
+create user ers
+identified by erspass;
+
+Grant connect to ers;
+grant resource to ers;
+grant create session to ers;
+grant create table to ers;
+grant create view to ers;
