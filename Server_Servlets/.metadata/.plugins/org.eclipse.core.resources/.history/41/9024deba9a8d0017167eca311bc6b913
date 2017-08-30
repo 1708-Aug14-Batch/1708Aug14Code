@@ -1,0 +1,210 @@
+package com.reimburse.service;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import com.reimburse.dao.DaoImpl;
+import com.reimburse.pojos.*;
+
+// TODO this class is where I will checking updating variables to make
+// sure they are correct. i.e. valid emails, untaken username, etc
+//		ensure correctness on create as well as on update
+// TODO add methods to read particular values from database rather than always getting a list of every _____
+
+// FIXME rather than using so many daoImpl.readAllXXX() methods, make more methods in the DaoSqlImpl that are not in the DaoSql interface
+
+public class Service {
+
+	DaoImpl daoImpl = new DaoImpl();
+
+	public Worker validateWorker(String username, String password) {
+		if (username == null || password == null)
+			return null;
+
+		username = username.toLowerCase();
+
+		Worker work = daoImpl.readWorker(username);
+
+		if (work == null)
+			return null;
+
+		if (work.getPassword().equals(password))
+			return work;
+		else return null;
+	}
+
+	// FIXME an email does not need to end with .com, could be .org or others
+	//		Change to a regular expression using the method .matches()
+	public boolean isEmailValid(String email) {
+
+		if (email.contains("@") && email.contains(".com"))
+			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
+				return true;
+
+		System.out.println("Email addresses must contain a valid domain such as \"something@something.com\"");
+		return false;
+	}
+
+	public boolean isEmailAvailable(String email) {
+
+		ArrayList<Worker> workerList = daoImpl.readAllWorkers();
+
+		if (workerList.size() == 0)
+			return true;
+
+		for (Worker work : workerList)
+			if (work.getEmail() != null && work.getEmail().equalsIgnoreCase(email)) {
+				System.out.println("Email unavailable");
+				return false;
+			}
+
+		return true;
+	}
+
+	private boolean isUsernameAvailable(String username) {
+		username = username.toLowerCase();
+
+		ArrayList<Worker> userList = daoImpl.readAllWorkers();
+
+		for (Worker work : userList) {
+			if (work.getUsername().equalsIgnoreCase(username))
+				return false;
+		}
+
+		return true;
+
+	}
+
+	// Attempts to create a worker unless a worker already exists with
+	// the given email. Returns the worker object either way
+	// An email must be supplied but it can be an empty string where it will not
+	// be checked for uniqueness
+	public Worker tryCreateWorker(String firstName, String lastName, String email, String username,
+			String password, boolean isManager, boolean isHired) {
+
+		Worker work = daoImpl.readWorker(email);
+
+		// If worker does not exist yet
+		if (work == null) {
+			work = daoImpl.createWorker(firstName, lastName, email, birthDate, false);
+		}
+		
+		return work;
+	}
+
+	// Tries to create a new user
+	// Fails if the uername is not unique or if the given worker is already a user
+	public Worker tryCreateWorker(Worker work, String username, String password, accountLevel level) {
+		username = username.toLowerCase();
+
+		// Check that username is unique
+		if (!isUsernameAvailable(username)) {
+			System.out.println("That username is already taken.");
+			return null;
+		}
+
+		if (workerIsAWorker(work)) {
+			System.out.println("That worker is already a bank user");
+			return null;
+		}
+
+		return daoImpl.createWorker(work, username, password);
+	}
+
+	// Tries to create a new account
+	public Account tryCreateAccount(Worker work, BigDecimal balance, accountType type, accountLevel level) {
+
+		return daoImpl.createAccount(work, balance, type, level);
+	}
+
+	// Updates a worker with the new worker object.
+	// Matches the old worker with the new by workerId
+	// All non-final fields of the worker object
+	// will be updated
+	public boolean updateWorker(int workerId, Worker work) {
+
+		// If the worker-to-be updated on file is deceased, their records cannot be updated
+		if (daoImpl.readWorker(work.getWorkerId()).isDeceased()) {
+			System.out.println("That worker is deceased and their records cannot be updated");
+			return false;
+		}
+
+		return daoImpl.updateWorker(workerId, work);
+
+	}
+
+	public boolean updateWorker(int userId, Worker work) {
+
+		return daoImpl.updateWorker(userId, work);
+
+	}
+
+	public boolean updateAccount(int accountId, Account acc) {
+
+		if (acc.getBalance().longValue() >= maxBalance) {
+			System.out.println("Deposit failed. An account cannot have more than $" + maxBalance);
+			return false;
+		}
+
+		// If the account is deleted, the records cannot be updated
+		if (daoImpl.readAccount(accountId).isDeleted()) {
+			return false;
+		}
+
+		return daoImpl.updateAccount(accountId, acc);
+
+	}	
+
+	public Worker getWorker(int userId) {
+
+		return daoImpl.readWorker(userId);
+	}
+
+	public Worker getWorker(int workerId) {
+
+		return daoImpl.readWorker(workerId);
+	}
+
+	public ArrayList<Account> getAccounts(int userId) {
+
+		return daoImpl.readAllAccounts(userId);
+	}
+
+	public BigDecimal getAccountBalance(int accountId) {
+		Account acc = daoImpl.readAccount(accountId);
+
+		if (acc.isDeleted()) {
+			System.out.println("Nothing can be withdrawn as this account has been deleted");
+			return null;
+		}
+
+		return acc.getBalance();
+
+	}
+
+	public boolean deleteAccount(int accountId) {
+
+		return daoImpl.deleteAccount(accountId);
+
+	}
+
+	private boolean workerIsAWorker(Worker work) {
+
+		ArrayList<Worker> userList = daoImpl.readAllWorkers();
+
+		for (Worker work : userList)
+			if (work.getWorkerId() == (work.getWorkerId()))
+				return true;
+
+		return false;
+	}
+	
+	public boolean isAWorker(String username) {
+		Worker work = daoImpl.readWorker(username);
+		
+		if (work == null)
+			return false;
+		else return true;
+	}
+
+}

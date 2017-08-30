@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+h1{color:green;}
+</style>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>succeed</title>
+</head>
+<body>
+
+<h1>You've successfully logged in. Congratulations! :D</h1>
+
+	<form action="backToLogin" method="get">
+		<input type="submit" value="Logout" />
+	</form>
+
+</body>
+</html>

@@ -23,7 +23,7 @@ public class Clerk extends Person {
 	private boolean hired = true;
 	
 	public Clerk(Person per, int employeeId, LocalDate dateHired, String password, double hourlyWage) {
-		super(per.getSSN(), per.getFirstName(), per.getLastName(), per.getBirthDate());
+		super(per.getPersonId(), per.getFirstName(), per.getLastName(), per.getEmail());
 		
 		this.employeeId = employeeId;
 		this.password = password;

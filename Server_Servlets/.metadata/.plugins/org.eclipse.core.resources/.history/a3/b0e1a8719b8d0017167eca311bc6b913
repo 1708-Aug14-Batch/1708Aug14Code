@@ -1,0 +1,91 @@
+package com.reimburse.pojos;
+
+import java.time.LocalDate;
+
+public class Reimbursement {
+	
+	public enum reimbursementStatus {
+		NULL,		// The database is 1-indexed so I'm throwing out the index 0 element
+		PENDING,
+		DENIED,
+		APPROVED
+	};
+	
+	private final int reimbursementId;
+	private final int submitterId;
+	private int resolverId;
+	private reimbursementStatus status;
+	private final LocalDate submitDate;
+	private LocalDate resolvedDate;
+	private String description;
+	private String resolveNotes;
+	
+	public Reimbursement(int reimbursementId, int submitterId, reimbursementStatus status, LocalDate submitDate, String description) {
+		super();
+		this.reimbursementId = reimbursementId;
+		this.submitterId = submitterId;
+		this.status = status;
+		this.submitDate = submitDate;
+		this.description = description;
+	}
+
+	public int getResolverId() {
+		return resolverId;
+	}
+
+	public void setResolverId(int resolverId) {
+		this.resolverId = resolverId;
+	}
+
+	public reimbursementStatus getStatus() {
+		return status;
+	}
+
+	public void setStatusId(reimbursementStatus status) {
+		this.status = status;
+	}
+
+	public LocalDate getResolvedDate() {
+		return resolvedDate;
+	}
+
+	public void setResolvedDate(LocalDate resolvedDate) {
+		this.resolvedDate = resolvedDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getResolveNotes() {
+		return resolveNotes;
+	}
+
+	public void setResolveNotes(String resolveNotes) {
+		this.resolveNotes = resolveNotes;
+	}
+
+	public int getReimbursementId() {
+		return reimbursementId;
+	}
+
+	public int getSubmitterId() {
+		return submitterId;
+	}
+
+	public LocalDate getSubmitDate() {
+		return submitDate;
+	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [reimbursementId=" + reimbursementId + ", submitterId=" + submitterId + ", resolverId="
+				+ resolverId + ", statusId=" + statusId + ", submitDate=" + submitDate + ", resolvedDate="
+				+ resolvedDate + ", description=" + description + ", resolveNotes=" + resolveNotes + "]";
+	}
+	
+}

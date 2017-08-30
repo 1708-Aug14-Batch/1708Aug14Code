@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JS Homework!</title>
+</head>
+<body>
+
+<h1>Event Propagation</h1>
+<div id="outer" style="color:red">
+
+</div>
+
+	<h1>Problem 1: Fibonacci</h1>
+	<br>
+	<input type="number" id="fib" placeholder="Enter n" />
+	<button id="doFib">Fibonacc'ed!</button>
+	<b> =
+		<p id="fibDisplay"></p>
+	</b>
+
+	<script type="text/javascript" src="HW.js"></script>
+
+</body>
+</html>

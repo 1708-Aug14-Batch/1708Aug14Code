@@ -4,12 +4,18 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.revature"/>
 			<item value="com.bank"/>
 		</list>
 		<list key="name">
+			<item value="IntroToServlets"/>
+			<item value="ReimbursementProject"/>
 			<item value="BankingAssignment3"/>
 		</list>
 		<list key="artifactId">
+			<item value="IntroToServlets"/>
+			<item value="Servlets"/>
+			<item value="Reimbursement"/>
 			<item value="BankingAssignment3"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -67,6 +73,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Surplus\my_git_repos\1708Aug14Code\Server_Servlets\BankingAssignment3\target\m2e-wtp\web-resources\META-INF\maven\com.bank\BankingAssignment3\pom.properties"/>
 			<item value="C:\Users\Surplus\my_git_repos\1708Aug14Code\Server_Servlets\BankingAssignment3_broken\target\m2e-wtp\web-resources\META-INF\maven\com.revature\BankingAssignment3\pom.properties"/>
 			<item value="C:\Users\Surplus\my_git_repos\1708Aug14Code\Server_Servlets\ServletExample\target\m2e-wtp\web-resources\META-INF\maven\com.revature\ServletExample\pom.properties"/>
 			<item value="C:\Users\Surplus\my_git_repos\1708Aug14Code\Server_Servlets\ServletExample_old_2\target\m2e-wtp\web-resources\META-INF\maven\com.revature\ServletExample\pom.properties"/>

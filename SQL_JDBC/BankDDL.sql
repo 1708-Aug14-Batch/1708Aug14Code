@@ -101,6 +101,3 @@ SELECT * FROM person;
 SELECT * FROM bank_user;
 SELECT * FROM clerk;
 SELECT * FROM account;
-
-INSERT INTO person(first_name, last_name, email, deceased)
-					 VALUES('Charles', 'Turner', 'charles.turner@mail.com', 0);

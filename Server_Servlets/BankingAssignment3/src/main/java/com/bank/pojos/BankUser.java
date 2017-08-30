@@ -10,7 +10,7 @@ public class BankUser extends Person {
 	private String password;
 	
 	public BankUser(Person per, int userId, String username, String password) {
-		super(per.getSSN(), per.getFirstName(), per.getLastName(), per.getBirthDate());
+		super(per.getPersonId(), per.getFirstName(), per.getLastName(), per.getEmail());
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
@@ -28,12 +28,10 @@ public class BankUser extends Person {
 	public String getUsername() {
 		return username;
 	}
-	public int getSSN() {
-		return SSN;
-	}
+
 	@Override
 	public String toString() {
-		return "BankUser [userId=" + userId + ", username=" + username + ", password=" + password + ", SSN=" + SSN
+		return "BankUser [userId=" + userId + ", username=" + username + ", password=" + password 
 				+ "]";
 	}
 	
