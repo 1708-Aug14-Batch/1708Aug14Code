@@ -1,0 +1,96 @@
+package com.revature.model;
+
+import java.time.LocalDateTime;
+
+public class Reimbursement {
+	
+	private int reimbursementID;
+	private int submitterID;
+	private int resolverID;
+	private LocalDateTime dateSubmitted;
+	private LocalDateTime dateResolved;
+	private int statusID;
+	private String description;
+	private String resolutionNotes;
+	private double amount;
+	
+	public int getReimbursementID() {
+		return reimbursementID;
+	}
+	
+	public void setReimbursementID(int reimbursementID) {
+		this.reimbursementID = reimbursementID;
+	}
+	
+	public int getSubmitterID() {
+		return submitterID;
+	}
+	
+	public void setSubmitterID(int submitterID) {
+		this.submitterID = submitterID;
+	}
+	
+	public int getResolverID() {
+		return resolverID;
+	}
+	
+	public void setResolverID(int resolverID) {
+		this.resolverID = resolverID;
+	}
+	
+	public LocalDateTime getDateSubmitted() {
+		return dateSubmitted;
+	}
+	
+	public void setDateSubmitted(LocalDateTime dateSubmitted) {
+		this.dateSubmitted = dateSubmitted;
+	}
+	
+	public LocalDateTime getDateResolved() {
+		return dateResolved;
+	}
+	
+	public void setDateResolved(LocalDateTime dateResolved) {
+		this.dateResolved = dateResolved;
+	}
+	
+	public int getStatusID() {
+		return statusID;
+	}
+	
+	public void setStatusID(int statusID) {
+		this.statusID = statusID;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getResolutionNotes() {
+		return resolutionNotes;
+	}
+	
+	public void setResolutionNotes(String resolutionNotes) {
+		this.resolutionNotes = resolutionNotes;
+	}
+	
+	public double getAmount() {
+		return amount;
+	}
+	
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+	
+	@Override
+	public String toString() {
+		return "Reimbursement [reimbursementID=" + reimbursementID + ", submitterID=" + submitterID + ", resolverID="
+				+ resolverID + ", dateSubmitted=" + dateSubmitted + ", dateResolved=" + dateResolved + ", statusID="
+				+ statusID + ", description=" + description + ", resolutionNotes=" + resolutionNotes + ", amount="
+				+ amount + "]";
+	}
+}
