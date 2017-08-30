@@ -85,6 +85,8 @@ public class RunBank {
 		if (creationError != null) {
 			System.out.println("Error: " + creationError);
 		}
+		
+		startMenu();
 	}
 
 	private static void mainMenu() {		
@@ -128,7 +130,12 @@ public class RunBank {
 	private static void withdrawDialogue() {
 		sectionBreak();
 
-		Account account = chooseAccount(-1);		
+		Account account = chooseAccount(-1);
+		if (account == null) {
+			mainMenu();
+			return;
+		}
+		
 		String input = getUserInput("Amount to withdraw");
 
 		try {
@@ -172,6 +179,11 @@ public class RunBank {
 		sectionBreak();
 
 		Account account = chooseAccount(-1);
+		if (account == null) {
+			mainMenu();
+			return;
+		}
+		
 		String input = getUserInput("Amount to deposit");
 
 		try {
@@ -210,6 +222,11 @@ public class RunBank {
 		sectionBreak();
 
 		Account account = chooseAccount(-1);
+		if (account == null) {
+			mainMenu();
+			return;
+		}
+		
 		User user = Service.getCurrentUser();
 
 		if (user != null) {
@@ -235,6 +252,10 @@ public class RunBank {
 
 		System.out.println("Which account would you like to transfer from?");
 		Account from = chooseAccount(-1);
+		if (from == null) {
+			mainMenu();
+			return;
+		}
 
 		System.out.println("Which account would you like to transfer to?");
 		Account to = chooseAccount(from.getId());
@@ -407,7 +428,7 @@ public class RunBank {
 		System.out.println();
 		Account account = chooseAccount(-1);
 		
-		if (confirm("close this account")) {
+		if (account != null && confirm("close this account")) {
 			Service.closeAccount(account);
 		}
 		
@@ -445,9 +466,10 @@ public class RunBank {
 				except = i;
 			}
 		}
+		System.out.println("" + ++i + ". " + "Return to menu");
 
 		int index = 0;
-		while (index < 1 || index > accounts.size() || index == except) {
+		while (index < 1 || index > i || index == except) {
 			try {
 				index = Integer.parseInt(scan.nextLine());
 
@@ -469,7 +491,7 @@ public class RunBank {
 			}
 		}
 
-		return accounts.get(index-1);
+		return (index == i) ? null : accounts.get(index-1);
 	}
 
 	private static String getUserInput(String inputName) {
