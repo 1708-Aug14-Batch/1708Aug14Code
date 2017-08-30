@@ -31,8 +31,8 @@ public class LoginServlet extends HttpServlet {
 
 		Service bankService = new Service();
 		if (bankService.validateBankUser(username, password) != null)
-			response.sendRedirect("success.html");
-		else response.sendRedirect("failure.html");
+			response.sendRedirect("success");
+		else response.sendRedirect("failure");
 		
 	}
 
