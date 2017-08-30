@@ -1,6 +1,7 @@
 
+DROP USER bank;
 CREATE USER bank
-IDENTIFIED BY p4ssw0rd;
+IDENTIFIED BY somberlain;
 
 GRANT CONNECT TO bank;
 GRANT RESOURCE TO bank;

@@ -5,4 +5,6 @@ org.eclipse.debug.ui.errorColor=255,139,255
 org.eclipse.debug.ui.inColor=224,226,228
 org.eclipse.debug.ui.outColor=224,226,228
 org.eclipse.debug.ui.save_dirty_editors_before_launch=never
+org.eclipse.debug.ui.switch_perspective_on_suspend=always
+preferredDetailPanes=DefaultDetailPane\:DefaultDetailPane|
 preferredTargets=default\:default|default,org.eclipse.wst.jsdt.chromium.debug.ui.toggleTargetId\:default|

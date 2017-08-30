@@ -8,7 +8,6 @@
 <fullyQualifiedTypeName name="java.sql.Types"/>
 <fullyQualifiedTypeName name="com.ex.dao.DAOImplementation"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.ex.pojos.Example"/>
 <fullyQualifiedTypeName name="com.bank.dao.AccountDAOImpl"/>
 <fullyQualifiedTypeName name="com.bank.dao.AccountTypeDAOImpl"/>
@@ -31,4 +30,10 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="com.revature.service.BankService"/>
+<fullyQualifiedTypeName name="com.revature.dao.UserDAO"/>
+<fullyQualifiedTypeName name="com.revature.dao.UserDAOImpl"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.revature.model.User"/>
 </qualifiedTypeNameHistroy>
