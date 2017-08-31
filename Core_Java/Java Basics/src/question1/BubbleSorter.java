@@ -40,7 +40,7 @@ public class BubbleSorter {
 			return null;
 		
 		while (swapped) {
-			// Set to true by default. If nothing is swapped then loop will end
+			// Set to false by default. If nothing is swapped then loop will end
 			swapped = false;
 			
 			// Current index for searching through the array

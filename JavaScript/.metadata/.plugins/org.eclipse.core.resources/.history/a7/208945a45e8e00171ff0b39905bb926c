@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JQuery Intro</title>
+</head>
+<body>
+
+	<h1>Grocery List</h1>
+	<input type="text" id="newItem" placeholder="Anything Else?" />
+	<br>
+	<button id="add">Add Item</button>
+	<br>
+	<p><small>Click an item to remove it</small></p>
+
+	<ul>
+		<li id="one">figs</li>
+		<li id="two">steak</li>
+		<li id="three">rice</li>
+	</ul>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous">
+		
+	</script>
+	<script>
+		$('#add').on('click', function() {
+			var temp = document.createElement('li');
+			temp.innerHTML = $('#newItem').val();
+			$('ul').append(temp);
+			$('#newItem').val('');
+			
+			$('li').on('click', function() {
+				$(this).remove();
+			})
+		})
+
+	</script>
+
+</body>
+</html>

@@ -10,21 +10,31 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/HelloWorld")
-public class HelloWorld extends GenericServlet {
+public class HelloWorld extends GenericServlet{
 
 	/**
 	 * Auto-generated
 	 */
-	private static final long serialVersionUID = -1893419766837691887L;
+	private static final long serialVersionUID = 1455069594855767260L;
 
 	@Override
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-
-		out.print("<h1>Hello from the HelloWorld extends GenericServlet service()</h1>" + 
-				"<ul><li>short</li><li>list</li></ul>");
+		
+		out.println("<h1> Hello Servlets!</h1>"
+				+ "<br><br>"
+				+ "<ul><li>this is a list</li></ul>");
+		
 	}
 
+	
+	
+//	protected void doPost(HttpServletRequest req,
+//			HttpServletResponse resp) throws 
+//			ServletException, IOException{
+//	}
+	
+	
 }

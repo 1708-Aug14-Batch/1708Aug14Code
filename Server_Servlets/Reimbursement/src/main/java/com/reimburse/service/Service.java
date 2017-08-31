@@ -7,6 +7,7 @@ import com.reimburse.dao.DaoImpl;
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.Reimbursement.reimbursementStatus;
 import com.reimburse.pojos.Worker;
+import org.apache.log4j.Logger;
 
 // TODO this class is where I will checking updating variables to make
 // sure they are correct. i.e. valid emails, untaken username, etc
@@ -16,6 +17,7 @@ import com.reimburse.pojos.Worker;
 // FIXME rather than using so many daoImpl.readAllXXX() methods, make more methods in the DaoSqlImpl that are not in the DaoSql interface
 
 public class Service {
+	private static Logger log = Logger.getRootLogger();
 
 	DaoImpl daoImpl = new DaoImpl();
 
@@ -121,25 +123,71 @@ public class Service {
 
 	}
 
+	/*
 	public boolean updateReimbursement(int reimbursementId, Reimbursement reimburse) {
 
 		// daoImpl cannot format a null date
-		if (reimburse.getSubmitDate() == null)
+		if (reimburse.getSubmitDate() == null) {
+			log.warn("Cannot format a null submit date for a reimbursement request");
 			return false;
+		}
 		// A manager cannot submit a reimbursement request
-		if (daoImpl.readWorker(reimburse.getSubmitterId()).isManager())
+		if (daoImpl.readWorker(reimburse.getSubmitterId()).isManager()) {
+			log.warn("A manager cannot submit reimbursements");
 			return false;
+		}
 		// Reimbursement ammount cannot be negative
-		if (reimburse.getAmmount() < 0)
+		if (reimburse.getAmmount() < 0) {
+			log.warn("A reimbursement must have a reimbursement ammount >= 0");
 			return false;
+		}
 		
 		return daoImpl.updateReimbursement(reimbursementId, reimburse);
 
 	}	
-
+*/
 	public Worker getWorker(int workerId) {
 
 		return daoImpl.readWorker(workerId);
+	}
+	
+	// If the resolvedDate is null, gives the current dateTime as the resolvedDate
+	public boolean resolveReimbursement(int reimbursementId, int resolverId, reimbursementStatus status, LocalDateTime resolvedDate, String resolveNotes) {
+		Worker resolver = daoImpl.readWorker(resolverId);
+		
+		if (resolver == null) {
+			log.warn("That employee is not in the system. ID: " + resolverId);
+			return false;
+		}
+		if (!resolver.isManager() || !resolver.isHired()) {
+			log.warn("That employee is not a current manager. Username: " + resolver.getUsername());
+			return false;
+		}
+		if (status == null || status == reimbursementStatus.NULL || status == reimbursementStatus.PENDING) {
+			log.warn("Invalid status for resolving a reimbursement. Status: " + status);
+			return false;
+		}
+		
+		Reimbursement reimburse = daoImpl.readReimbursement(reimbursementId);
+		if (reimburse.getStatus() == reimbursementStatus.APPROVED || reimburse.getStatus() == reimbursementStatus.DENIED) {
+			log.warn("That reimbursement is alread closed. ID: " + reimburse.getReimbursementId());
+			return false;
+		}
+		
+		// Resolves a null date by giving the current date/time
+		if (resolvedDate == null) {
+			log.info("Resolved date of reimbursement set to current timestamp. ID: " + reimbursementId);
+			resolvedDate = LocalDateTime.now();
+		}
+		
+		log.info("Reimbursement id " + reimbursementId + " set to status: " + status);
+		// Set the reimbursement as resolved and save it to the database
+		reimburse.setResolverId(resolverId);
+		reimburse.setResolvedDate(resolvedDate);
+		reimburse.setResolveNotes(resolveNotes);
+		daoImpl.updateReimbursement(reimbursementId, reimburse);
+		
+		return true;
 	}
 
 	public ArrayList<Reimbursement> getReimbursements() {

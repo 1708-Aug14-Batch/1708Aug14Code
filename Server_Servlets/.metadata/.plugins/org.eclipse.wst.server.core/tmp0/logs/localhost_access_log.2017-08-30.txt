@@ -153,3 +153,10 @@
 0:0:0:0:0:0:0:1 - - [30/Aug/2017:14:52:49 -0400] "GET /IntroToServlets/register?username=a&pass= HTTP/1.1" 200 103
 0:0:0:0:0:0:0:1 - - [30/Aug/2017:14:52:57 -0400] "GET /IntroToServlets/register?username=user&pass=word HTTP/1.1" 200 113
 0:0:0:0:0:0:0:1 - - [30/Aug/2017:14:53:22 -0400] "GET /IntroToServlets/register?username=user&pass=word&fav_color=green HTTP/1.1" 200 162
+127.0.0.1 - - [30/Aug/2017:22:13:41 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:22:14:05 -0400] "GET /Reimbursement/login_portal.html HTTP/1.1" 200 486
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:22:14:15 -0400] "GET /Reimbursement/loginAction?username=&password= HTTP/1.1" 500 2087
+127.0.0.1 - - [30/Aug/2017:22:16:32 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:22:16:44 -0400] "GET /Reimbursement/loginAction?username=&password= HTTP/1.1" 200 -
+127.0.0.1 - - [30/Aug/2017:22:47:07 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:22:47:18 -0400] "GET /Reimbursement/loginAction?username=&password= HTTP/1.1" 200 -

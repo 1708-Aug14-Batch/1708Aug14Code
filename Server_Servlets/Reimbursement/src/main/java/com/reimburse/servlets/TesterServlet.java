@@ -2,6 +2,7 @@ package com.reimburse.servlets;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.reimburse.dao.DaoImpl;
 import com.reimburse.pojos.Reimbursement;
-import com.reimburse.pojos.Reimbursement.reimbursementStatus;
 import com.reimburse.pojos.Worker;
 import com.reimburse.service.Service;
 
@@ -34,23 +34,24 @@ public class TesterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		DaoImpl dao = new DaoImpl();
-		
-		LocalDateTime rightNow = LocalDateTime.now();
-		System.out.println(rightNow.toString());
-		System.out.println(LocalDateTime.parse(rightNow.toString()));
-		System.out.println(dao.getFormattedTimestamp(rightNow));
-		
+
 		Service serve = new Service();
+		
 		Worker work = serve.getWorker(1);
+		Worker manager = serve.getWorker(2);
 		Reimbursement reimburse = null;
-		if (work != null)
-			reimburse = serve.tryCreateReimbursement(work.getWorkerId(), reimbursementStatus.PENDING, LocalDateTime.now(), "Testing... testing", 42);
+
+		ArrayList<Reimbursement> reimburseList = serve.getReimbursements();
+		reimburse = reimburseList.get(0);
+		
+		// This will fail
+		serve.resolveReimbursement(1, 1, null, LocalDateTime.now(), "");
 		
 		System.out.println(work);
+		System.out.println(manager);
 		System.out.println(reimburse);
 		
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**

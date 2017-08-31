@@ -42,7 +42,11 @@ public class DaoImpl implements Dao {
 		if (str == null || str.equals("null"))
 			return null;
 
-		return LocalDateTime.parse(str);
+		// Put the 'T' back in index 10 where it belongs
+		char[] timeArray = str.toCharArray();
+		timeArray[10] = 'T';
+		
+		return LocalDateTime.parse(String.copyValueOf(timeArray));
 	}
 
 	public Worker createWorker(String firstName, String lastName, String email,
