@@ -7,16 +7,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bank.pojos.User;
 import com.bank.service.Service;
+import com.google.gson.Gson;
 
 public class LoginServlet extends HttpServlet {
-	
+
 	static Service service = new Service();
 	@Override
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
+
+		HttpSession session = request.getSession();
+
+
 		String email = request.getParameter("email");
 		String pass = request.getParameter("pass");
 		int id = service.validateUser(email);
@@ -31,12 +37,15 @@ public class LoginServlet extends HttpServlet {
 				rd.forward(request, response); // password is wrong 
 			}
 			else{
-			RequestDispatcher rd = request.getRequestDispatcher("success.html");
-			rd.forward(request, response); // successful login 	
+				session.setAttribute("user", u);
+				//String json = new Gson().toJson(u);
+				RequestDispatcher rd = request.getRequestDispatcher("success.html");
+				rd.forward(request, response); // successful login 	
 			}
 		}
 	}
-	
-	
+
+
+
 
 }

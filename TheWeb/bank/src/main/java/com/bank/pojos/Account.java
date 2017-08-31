@@ -51,7 +51,7 @@ public class Account {
 	}
 
 	public String toString() {
-		return "Account [id=" + id + ", balance=" + balance + ", user=" + user + ", type=" + type + "]";
+		return "Account " + id + " has balance=" + balance;
 	}
 	
 	

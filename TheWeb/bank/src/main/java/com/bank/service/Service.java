@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import com.bank.dao.DAO;
 import com.bank.dao.DAOImpl;
+import com.bank.pojos.Account;
 import com.bank.pojos.User;
 
 public class Service {
@@ -29,6 +30,16 @@ public class Service {
 			return u;
 		}
 		else return null;
+	}
+	
+	public User addUser(User u){
+		int id = dao.addUser(u.getFirstname(), u.getLastname(), u.getEmail(), u.getPassword());
+		u.setId(id);
+		return u;
+	}
+	
+	public Account addAccount(User u, int typeId){
+		return dao.createAccount(u, typeId);
 	}
 
 }

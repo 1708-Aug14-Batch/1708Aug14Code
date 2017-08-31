@@ -55,7 +55,7 @@ public class DAOImpl implements DAO{
 		
 		return u;
 	}
-	
+
 	
 	public int addUser(String fn, String ln, String email, String pass){
 		try(Connection conn  = ConnectionFactory
@@ -129,6 +129,7 @@ public class DAOImpl implements DAO{
 		
 		return a;
 	}
+	
 	
 
 }
