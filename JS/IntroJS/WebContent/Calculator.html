@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<input type="number" id="x" placeholder="x">
+	<input type="number" id="y" placeholder="y">
+	<button id="add">+</button>
+	<br/>
+	<button id="sub">-</button>
+	<br/>
+	<button id="multiple">*</button>
+	<br/>
+	<button id="divide">/</button>
+	<br/>
+
+	<select id = operation>
+	  <option value="dadd">+</option>
+	  <option value="dsub">-</option>
+	  <option value="dmul">*</option>
+	  <option value="ddiv">/</option>
+	</select>
+	
+	<br/>
+	<button id="calc"/>
+
+	<br/>
+
+	<div id="output"></div>
+
+	<script type="text/javascript">
+
+		$('#calc').on('click',function(){
+			var ops = $('#operation option:selected').text();
+			if(ops == "+"){
+			$('#output').text("");
+				var output = parseInt($('#x').val()) + parseInt($('#y').val());
+			$('#output').append(output);
+			}else if(ops == "-"){
+			$('#output').text("");
+				var output = parseInt($('#x').val()) - parseInt($('#y').val());
+			$('#output').append(output);
+			}else if(ops == "*"){
+			$('#output').text("");
+				var output = parseInt($('#x').val()) * parseInt($('#y').val());
+			$('#output').append(output);
+			}else if(ops == "/"){
+			$('#output').text("");
+				var output = parseInt($('#x').val()) / parseInt($('#y').val());
+			$('#output').append(output);
+			}
+		})
+
+		$('#add').on('click',function(){
+			$('#output').text("");
+			var output = parseInt($('#x').val()) + parseInt($('#y').val());
+			$('#output').append(output);
+		})
+		$('#sub').on('click',function(){
+			$('#output').text("");
+			var output = parseInt($('#x').val()) - parseInt($('#y').val());
+			$('#output').append(output);
+		})
+		$('#multiple').on('click',function(){
+			$('#output').text("");
+			var output = parseInt($('#x').val()) * parseInt($('#y').val());
+			$('#output').append(output);
+		})
+		$('#divide').on('click',function(){
+			$('#output').text("");
+			var output = parseInt($('#x').val()) / parseInt($('#y').val());
+			$('#output').append(output);
+		})
+
+	</script>
+
+
+</body>
+</html>
