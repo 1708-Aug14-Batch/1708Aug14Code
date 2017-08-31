@@ -8,30 +8,65 @@
 	crossorigin="anonymous">
 </head>
 <body>
+<p>
+Some notes about jQuery:
+<br>
+jQuery is a lightweight "write less, do more" JS library that
+simplifies programming. 
+It contains the following:
+
+</p>
 
 	<h1>Grocery List</h1>
 
 	<div class="jumbotron">
-		<input type="text" id="newItem" class="form-control"
-			placeholder="Anything Else?" /> <br>
-		<button id="add" class="btn btn-primary">Add Item</button>
+		<div class="row justify-content-start">
+			<div class="col-6">
+				<input type="text" id="newItem" class="form-control"
+					placeholder="Anything Else?" /> <br>
+				<button id="add" class="btn btn-primary">Add Item</button>
 
-		<ul>
-			<li id="one">figs</li>
-			<li id="two">steak</li>
-			<li id="three">rice</li>
-		</ul>
+				<ul id="toBuy">
+					<li id="one">figs</li>
+					<li id="two">steak</li>
+					<li id="three">rice</li>
+				</ul>
+			</div>
+
+			<div class="col-6">
+				<h3>Purchased:</h3>
+				<br>
+				<ul id="bought">
+
+				</ul>
+
+
+			</div>
+		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 		crossorigin="anonymous"></script>
 
 	<script>
+		$('li').on('click', function() {
+			$('ul#bought').append($(this));
+		});
+		
 		$('#add').on('click', function() {
 			var temp = document.createElement('li');
 			temp.innerHTML = $('#newItem').val();
-			$('ul').append(temp);
-		})
+			$('ul#toBuy').append(temp);
+			$('#newItem').val('');
+
+			/*	$('li').on('click', function() {
+					$(this).remove();
+				}); */
+
+			$('li').on('click', function() {
+				$('ul#bought').append($(this));
+			});
+		});
 	</script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
