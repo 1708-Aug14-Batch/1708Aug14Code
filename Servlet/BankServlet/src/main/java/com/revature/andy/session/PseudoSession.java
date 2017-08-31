@@ -28,15 +28,15 @@ public class PseudoSession {
 	
 	static public int validateLogin(String email) {
 		
-		HashSet<User> users = dao.getUsers();
+		HashSet<String> idEmail = dao.getEmails();
 		
-		for(User x:users) {
-			if(x.getEmail().equalsIgnoreCase(email)) {
+		for(String x:idEmail) {
+			if(x.equalsIgnoreCase(email)){
 				return 2;
 			}
 		}
-		return 0;
-		}
+		return 0;	
+	}
 	
 	static public void logout() {
 		isLoggedIn = false;

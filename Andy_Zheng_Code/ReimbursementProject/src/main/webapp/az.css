@@ -1,0 +1,45 @@
+.azcenter{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+.azborder{
+    padding: 3%;
+    border: 1px solid;
+	
+}
+
+
+.azsize50{
+	width: 50%
+}
+.azsize60{
+	width: 55%
+}
+.azsize60{
+	width: 60%
+}
+.azsize60{
+	width: 65%
+}
+.azsize60{
+	width: 70%
+}
+.azsize75{
+	width: 75%
+}
+.azsize75{
+	width: 80%
+}
+.azsize75{
+	width: 85%
+}
+.azsize75{
+	width: 90%
+}
+.azsize99{
+	width: 95%
+}

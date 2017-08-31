@@ -1,5 +1,6 @@
 package com.revature.andy.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,294 +8,363 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 
-import com.revature.andy.pojos.Account;
-import com.revature.andy.pojos.AccountType;
+import com.revature.andy.pojos.Reimbursement;
+import com.revature.andy.pojos.ReimStatus;
 import com.revature.andy.pojos.User;
 import com.revature.andy.util.ConnectionFactory;
 
 public class DAOImplementation implements DAOInterface {
-	
+
 	// prepared statement
-	
-	// Add Account
-	public int addAccount(User u, int typeID) {
-		
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
+
+	// Insert User
+	// Insert User by Pass strings
+	public int addUser(String fn, String ln, String email, String pwd, int isManager) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			con.setAutoCommit(false);
-			
-			String sql = "INSERT INTO ACCOUNTS(USERID, TYPEID) VALUES(?,?)";
-			
+			String sql = "INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ISMANAGER) VALUES(?,?,?,?,?)";
+			String[] key = new String[1];
+			key[0] = "USERID";
+			PreparedStatement ps = con.prepareStatement(sql, key);
+			ps.setString(1, fn);
+			ps.setString(2, ln);
+			ps.setString(3, email);
+			ps.setString(4, pwd);
+			ps.setInt(5, isManager);
+
+			ps.executeUpdate();
+
+			int id = 0;
+
+			ResultSet rs = ps.getGeneratedKeys();
+			while (rs.next()) {
+				id = rs.getInt(1);
+			}
+			con.commit();
+			return id;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+
+	// Insert User by Pass object
+	public int addUser(User u) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			con.setAutoCommit(false);
+			String sql = "INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ISMANAGER) VALUES(?,?,?,?,?)";
+			String[] key = new String[1];
+			key[0] = "USERID";
+			PreparedStatement ps = con.prepareStatement(sql, key);
+			ps.setString(1, u.getFName());
+			ps.setString(2, u.getLName());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getPassword());
+			ps.setInt(5, u.getIsManager());
+
+			int id = 0;
+
+			ResultSet rs = ps.getGeneratedKeys();
+			while (rs.next()) {
+				id = rs.getInt(1);
+			}
+			con.commit();
+			return id;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return -1;
+	}
+
+	// Update User by pass object
+	public int updateUser(User u) {
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			con.setAutoCommit(false);
+			String sql = "UPDATE USERS SET FIRSTNAME = ?, LASTNAME = ?, "
+					+ "EMAIL = ?, PASSWORD = ?, ISMANAGER = ? WHERE USERID = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setString(1, u.getFName());
+			ps.setString(2, u.getLName());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getPassword());
+			ps.setInt(5, u.getIsManager());
+			ps.setInt(6, u.getUserID());
+
+			ps.executeUpdate();
+
+			con.commit();
+			return 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	// Insert Reimbursement
+	public int addReimbursement(User u, String description, int amount) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			con.setAutoCommit(false);
+
+			String sql = "INSERT INTO REIMBURSEMENTS(SUBMITTERID, DESCRIPTION, AMOUNT) VALUES(?,?,?)";
+
 			String[] key = new String[1];
 			key[0] = "ACCOUNTID";
 			PreparedStatement ps = con.prepareStatement(sql, key);
 			ps.setInt(1, u.getUserID());
-			ps.setInt(2, typeID);
-			
+			ps.setString(2, description);
+			ps.setInt(3, amount);
+
 			ps.executeUpdate();
-			
+
 			int id = 0;
 			ResultSet rs = ps.getGeneratedKeys();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				id = rs.getInt(1);
 			}
-			
+
 			con.commit();
 			return id;
-			
-		}catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;
 		}
-		
+
 	}
-	
-	// Update Account
-	public int updateAccount(User user, int accountID, double balance) {
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
+
+	// Update Reimbursement
+	public int updateReimbursement(int reimID, User user, ReimStatus rs, String notes) {
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			con.setAutoCommit(false);
-			String sql = "UPDATE ACCOUNTS SET BALANCE = ? WHERE ACCOUNTID = ? AND USERID = ?";
+			String sql = "UPDATE REIMBURSEMENTS SET RESOLVERID = ?, RESOLVEDATE = CURRENT_TIMESTAMP, "
+					+ "STATUSID = ?, NOTES = ? WHERE REIMID = ?";
+
 			PreparedStatement ps = con.prepareStatement(sql);
-			
-			ps.setDouble(1, balance);
-			ps.setInt(2, accountID);
-			ps.setInt(3, user.getUserID());
-			
+
+			ps.setInt(1, reimID);
+			ps.setInt(2, user.getUserID());
+			ps.setInt(3, rs.getStatusID());
+			ps.setString(4, notes);
+
 			ps.executeQuery();
 			con.commit();
 			return 1;
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return -1;
 		}
 	};
 
-	// Add User by Pass object
-	public int addUser(User u) {
+	// Procedure, select user info by id
+	public User getUser(int userID) {
 
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			con.setAutoCommit(false);
-			String sql = "INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD) VALUES(?,?,?,?)";
-			String[] key = new String[1];
-			key[0] ="USERID";
-			PreparedStatement ps = con.prepareStatement(sql,key);
-			ps.setString(1, u.getFName());
-			ps.setString(2, u.getLName());
-			ps.setString(3, u.getEmail());
-			ps.setString(4, u.getPassword());
-			
-			int id = 0;
-			
-			ResultSet rs = ps.getGeneratedKeys();
-			while(rs.next()) {
-				id=rs.getInt(1);
-			}
-			con.commit();
-			return id;			
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		
-		return -1;
-	}
-	
-	// Add User by Pass strings
-	public int addUser(String fn, String ln, String email, String pwd) {
-		
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			con.setAutoCommit(false);
-			String sql = "INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD) VALUES(?,?,?,?)";
-			String[] key = new String[1];
-			key[0] ="USERID";
-			PreparedStatement ps = con.prepareStatement(sql,key);
-			ps.setString(1, fn);
-			ps.setString(2, ln);
-			ps.setString(3, email);
-			ps.setString(4, pwd);
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "{call getUserInfo(?,?,?,?,?)}";
+			CallableStatement cs = con.prepareCall(sql);
 
-			ps.executeUpdate();
-			
-			int id = 0;
-			
-			ResultSet rs = ps.getGeneratedKeys();
-			while(rs.next()) {
-				id=rs.getInt(1);
-			}
-			con.commit();
-			return id;
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return -1;
-		}
-	}
-	
-	// Update User by pass object
-	public int updateUser(User u) {
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			con.setAutoCommit(false);
-			String sql = "UPDATE USERS SET FIRSTNAME = ?, LASTNAME = ?, "
-					+ "EMAIL = ?, PASSWORD = ? WHERE USERID = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			
-			ps.setString(1, u.getFName());
-			ps.setString(2,u.getLName());
-			ps.setString(3,u.getEmail());
-			ps.setString(4,u.getPassword());
-			ps.setInt(5,u.getUserID());
+			cs.setInt(1, userID);
+			cs.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(4, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(5, java.sql.Types.NUMERIC);
 
-			ps.executeUpdate();
-			
-			con.commit();
-			return 1;
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return -1;
-	}
-	
-	// Get Specific User
-	public User getUser(String email, String pwd) {
-		
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM USERS WHERE EMAIL = (?) AND PASSWORD = (?)";
-			
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1,email);
-			ps.setString(2,pwd);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			User temp = null;
-			
-			while(rs.next()) {	
-				temp = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
-			}
+			cs.executeQuery();
+
+			User temp = new User();
+			temp.setUserID(userID);
+			temp.setFName(cs.getString(2));
+			temp.setLName(cs.getString(3));
+			temp.setEmail(cs.getString(4));
+			temp.setIsManager(cs.getInt(5));
+
 			return temp;
-			
-		}catch(SQLException e){
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
-		}	
+		}
 	}
-	
-	public HashSet<String> getEmails(){
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT EMAIL FROM USERS";
+
+	// Select user email/pwd
+	public User getUser(String email, String pwd) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM USERS WHERE EMAIL = (?) AND PASSWORD = (?)";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, pwd);
+
+			ResultSet rs = ps.executeQuery();
+
+			User temp = null;
+
+			while (rs.next()) {
+				temp = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6));
+			}
+			return temp;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// change to statement?
+	// select all users
+	public HashSet<User> getUsers() {
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM USERS WHERE ISMANAGER = 0";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
-			
-			HashSet<String> userList = new HashSet<>();
-			
-			while(rs.next()) {
-				userList.add(rs.getString(1));
+
+			HashSet<User> userList = new HashSet<>();
+
+			while (rs.next()) {
+				User temp = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6));
+				userList.add(temp);
 			}
-			
+
 			return userList;
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	
 
-	// Return HashSet of Accounts
-	public HashSet<Account> getAccounts(User user) {
-		
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM ACCOUNTS WHERE USERID = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, user.getUserID());
-			
-			ResultSet rs = ps.executeQuery();
-			
-			HashSet<Account> accountList = new HashSet<>();
-			
-			while(rs.next()) {
-				AccountType tempType = getAccountTypeFromID(rs.getInt(4));
-				Account temp = new Account(rs.getInt(1), rs.getDouble(2), user, tempType);
-				accountList.add(temp);
-			}
-			
-			return accountList;
-			
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		
 	}
-	
-	// Get Account
-	public Account getAccount(User user, int accountID) {
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM ACCOUNTS WHERE ACCOUNTID = ?";
+
+	// select all reimbursement based of a user
+	public HashSet<Reimbursement> getReimbursement(int userID) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM REIMBURSEMENT WHERE SUBMITTERID = ?";
+
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, accountID);
-			
-			ResultSet rs = ps.executeQuery();
-			
-			Account temp = null;
-			
-			while(rs.next()) {
-				AccountType tempType = getAccountTypeFromID(rs.getInt(4));
-				temp = new Account(rs.getInt(1), rs.getInt(2), user, tempType);
+			ps.setInt(1, userID);
+
+			ResultSet rs = ps.executeQuery(sql);
+
+			HashSet<Reimbursement> reimList = new HashSet<>();
+
+			while (rs.next()) {
+
+				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
+				User tempSub = getUser(rs.getInt(2));
+				User tempRes = getUser(rs.getInt(3));
+
+				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
+						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));
+
+				reimList.add(tempReim);
 			}
-			
+
+			return reimList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// selects all reimbursements based on status
+	public HashSet<Reimbursement> getReimbursements(int statusID) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM REIMBURSEMENT WHERE STATUSID = ?";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, statusID);
+
+			ResultSet rs = ps.executeQuery(sql);
+
+			HashSet<Reimbursement> reimList = new HashSet<>();
+
+			while (rs.next()) {
+
+				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
+				User tempSub = getUser(rs.getInt(2));
+				User tempRes = getUser(rs.getInt(3));
+
+				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
+						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));
+
+				reimList.add(tempReim);
+			}
+
+			return reimList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// selects all reimbursements based on user and status
+	public HashSet<Reimbursement> getUserReimbursements(int userID, int statusID) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM REIMBURSEMENT WHERE USERID = ? AND STATUSID = ?";
+
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, userID);
+			ps.setInt(2, statusID);
+
+			ResultSet rs = ps.executeQuery(sql);
+
+			HashSet<Reimbursement> reimList = new HashSet<>();
+
+			while (rs.next()) {
+
+				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
+				User tempSub = getUser(rs.getInt(2));
+				User tempRes = getUser(rs.getInt(3));
+
+				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
+						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));
+
+				reimList.add(tempReim);
+			}
+
+			return reimList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// Return a ReimStatus Object From Look Up Table
+	public ReimStatus getReimStatusFromID(int statusID) {
+
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM REIMSTATUS WHERE STATUSID = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, statusID);
+
+			ResultSet rs = ps.executeQuery();
+
+			ReimStatus temp = null;
+
+			while (rs.next()) {
+				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
+			}
+
 			return temp;
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	// Return a AccountType Object From Look Up Table
-	public AccountType getAccountTypeFromID(int accountTypeID) {
-		
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM ACCOUNTTYPE WHERE TYPEID = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, accountTypeID);
-			
-			ResultSet rs = ps.executeQuery();
 
-			AccountType tempType = new AccountType();
-			
-			while(rs.next()) {
-				tempType = new AccountType(rs.getInt(1),rs.getString(2));
-			}
-			
-			return tempType;
-			
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-			
-	}
-	
-	// Delete Account
-	public int deleteAccount(User user, int accountID) {
-		
-		try(Connection con = ConnectionFactory.getInstance().getConnection();){
-			con.setAutoCommit(false);
-			String sql = "DELETE FROM ACCOUNTS WHERE ACCOUNTID = ? AND USERID = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, accountID);
-			ps.setInt(2, user.getUserID());
-			
-			ps.executeUpdate();
-			
-			con.commit();
-			return 1;
-			
-		}catch(SQLException e){
-			e.printStackTrace();
-			return -1;
-		}
+
 	}
 }

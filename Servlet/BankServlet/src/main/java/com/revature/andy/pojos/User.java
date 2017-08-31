@@ -7,33 +7,30 @@ public class User {
 	private String lName;
 	private String email;
 	private String pwd;
-	private int isManager;
 	
 	public User(){}
-	
-	public User(int userID, String fName, String lName, String email, String pwd, int isManager) {
+
+	public User(int userid, String fname, String lname, String email, String pwd) {
 		super();
-		this.userID = userID;
-		this.fName = fName;
-		this.lName = lName;
+		this.userID = userid;
+		this.fName = fname;
+		this.lName = lname;
 		this.email = email;
 		this.pwd = pwd;
-		this.isManager = isManager;
 	}
 
-	public User(String fname, String lname, String email, String pwd, int isManager) {
+	public User(String fname, String lname, String email, String pwd) {
 		super();
 		this.fName = fname;
 		this.lName = lname;
 		this.email = email;
 		this.pwd = pwd;
-		this.isManager = isManager;
 	}
 
 	public int getUserID() {
 		return userID;
 	}
-	
+
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
@@ -69,12 +66,15 @@ public class User {
 	public void setPassword(String password) {
 		this.pwd = password;
 	}
-	
-	public int getIsManager() {
-		return isManager;
-	}
 
-	public void setIsManager(int isManager) {
-		this.isManager = isManager;
-	}
+	@Override
+	public String toString() {
+		return "\n------------------------------------\n"
+				+ "UserID: " + userID + 
+				"\nFirst Name: " + fName + 
+				"\nLast Name: " + lName + 
+				"\nEmail: " + email + 
+				"\nPassword: " + pwd + 
+				"\n------------------------------------\n";
+	};
 }
