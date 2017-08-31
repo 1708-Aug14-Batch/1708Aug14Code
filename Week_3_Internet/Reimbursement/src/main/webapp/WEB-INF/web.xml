@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>Reimbursement</display-name>
+
+
+	<servlet>
+		<servlet-name>BankServlet</servlet-name>
+		<servlet-class>com.bank.servlets.BankServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>BankServlet</servlet-name>
+		<url-pattern>/FrontDesk</url-pattern>
+	</servlet-mapping>
+	
+
+	<servlet-mapping>
+		<servlet-name>BankServlet</servlet-name>
+		<url-pattern>/Success</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>BankServlet</servlet-name>
+		<url-pattern>/Failure</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>MainMenuServlet</servlet-name>
+		<servlet-class>com.bank.servlets.MainMenuServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>MainMenuServlet</servlet-name>
+		<url-pattern>/Admin</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
