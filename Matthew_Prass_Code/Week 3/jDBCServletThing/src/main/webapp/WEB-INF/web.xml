@@ -5,10 +5,16 @@
   <servlet>
   	<servlet-name>LoginServlet</servlet-name>
   	<servlet-class>com.bank.servlets.LoginServlet</servlet-class>
+  	<init-param>
+  	<param-name>param</param-name>
+  	<param-value>123</param-value>
+  	</init-param>
   </servlet>
   
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
   	<url-pattern>/login</url-pattern>
   </servlet-mapping>
+  
+  
 </web-app>

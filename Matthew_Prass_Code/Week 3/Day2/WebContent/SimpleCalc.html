@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>Simple Calculator</h1>
+<input type = "number" id = "x" placeholder = "Enter a number"/><br>
+<input type = "number" id = "y" placeholder = "Enter another number"/><br>
+<button id = "adding">Add Items</button>
+<button id = "subtract">Subtract Items</button>
+<button id = "multiply">Multiply Items</button>
+<button id = "divide">Divide Items</button>
+<br>
+<p id = "result"></p>
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        
+<script>
+
+$('#adding').on('click',function(){
+	 var a = parseInt($('#x').val());
+	 var b = parseInt($('#y').val());
+	 var result = document.getElementById('result');
+	 result.innerHTML = a+b;
+});
+
+$('#subtract').on('click',function(){
+	 var a = parseInt($('#x').val());
+	 var b = parseInt($('#y').val());
+	 var result = document.getElementById('result');
+	 result.innerHTML = a-b;
+});
+$('#multiply').on('click',function(){
+	 var a = parseInt($('#x').val());
+	 var b = parseInt($('#y').val());
+	 var result = document.getElementById('result');
+	 result.innerHTML = a*b;
+});
+$('#divide').on('click',function(){
+	 var a = parseInt($('#x').val());
+	 var b = parseInt($('#y').val());
+	 var result = document.getElementById('result');
+	 result.innerHTML = a/b;
+});
+
+</script>
+</body>
+</html>

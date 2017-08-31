@@ -2,6 +2,7 @@ package com.bank.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,20 @@ public class LoginServlet extends HttpServlet{
 	//Service s = new Service();
 	static Service s = new Service();
 
+//	@Override
+//	public void init() throws ServletException {
+//		super.init();
+//		System.out.println("init!");
+//	}
+	protected String servConParam = null;
 	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		System.out.println("init with params oooooooo");
+		this.servConParam = config.getInitParameter("param");
+		System.out.println(servConParam);
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
 		String email = req.getParameter("name");
@@ -40,5 +54,9 @@ public class LoginServlet extends HttpServlet{
 			}
 		}
 	}
-
+	@Override
+	public void destroy() {
+		super.destroy();
+		System.out.println("DEEEstroyed");
+	}
 }
