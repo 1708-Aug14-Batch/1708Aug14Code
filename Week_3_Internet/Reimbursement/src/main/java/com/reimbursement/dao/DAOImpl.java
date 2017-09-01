@@ -1,12 +1,15 @@
 package com.reimbursement.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import com.reimbursement.pojos.Reimbursement;
 import com.reimbursement.pojos.User;
 import com.reimbursement.util.ConnectionFactory;
 
@@ -62,19 +65,52 @@ public class DAOImpl implements DAO {
 		
 		
 	}
+	
+	@Override
 	public void createReimbursement(User u) {
-		
+		int amount = 0;
+		Date date = new Date(Calendar.getInstance().getTime().getTime());
+		String description = " ";
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
 			String sql = "insert into Reimbursement(submit_id, submit_date, description, amount) " + 
-					"values(?,CURRENT_TIMESTAMP, ?, ?) ";
+					"values(?,?, ?, ?) ";
 			String[] keys = new String[1];
 			keys[0] = "re_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, u.getUserId());
-//			ps.setDate(2, x);
-//			ps.setString(3, );
-//			ps.setInt(4, x);
+			ps.setDate(2, date);
+			ps.setString(3, description);
+			ps.setInt(4, amount);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public ArrayList<Reimbursement> getReimbursement(){
+		ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			
+			String sql = "select * from reimbursement";
+			Statement state = conn.createStatement();
+			ResultSet rs = state.executeQuery(sql);
+			
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				int sID = rs.getInt(2);
+				int rID = rs.getInt(3);
+				int statusID = rs.getInt(4);
+				String desc = rs.getString(5);
+				String notes = rs.getString(6);
+				int amount = rs.getInt(7);
+				
+				Reimbursement r = new Reimbursement(id,sID,rID,statusID,desc,notes,amount);
+				list.add(r);
+			}
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -82,6 +118,7 @@ public class DAOImpl implements DAO {
 		}
 		
 		
+		return list;
 		
 	}
 	

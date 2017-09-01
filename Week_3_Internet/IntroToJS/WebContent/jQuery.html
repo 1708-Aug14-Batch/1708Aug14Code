@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<style>
+
+
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<h1>Grocery List</h1>
+<div class = "jumbotron">
+  <div class = "row justify-content-start">
+    <div class = "col-6">
+<input type = "text" id = "newitem" placeholder = "Anything Else?" /><br>
+<button id = "add">Add Item</button>
+  <button id = "remove">Remove Item</button>
+
+<ul id = "list">
+	<li id = "one"> figs </li>
+	<li id = "two"> steak </li>
+	<li id = "three"> rice </li>
+</ul>
+    </div>
+    <div class="col-6">
+      <h3>Purchased: </h3>
+      <ul id = "purchased"></ul>
+  </div>
+  
+  
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+<script>
+	$('#add').on('click', function(){
+		var temp = document.createElement('li');
+		temp.innerHTML = $('#newitem').val();
+		$('ul').append(temp);
+    $('#newitem').val("Anything Else?");
+    
+    $('li').on('click', function(){
+    $(this).toggle();
+    });
+});
+</script>
+    
+    <script>
+      $('#list').on('click', function(){
+        $('li').on('click', function(){
+          var list = document.createElement('li');
+          list.innerHTML = $(this).val();
+          $('#purchased').append(list);
+        });
+      });
+      
+    </script>
+</body>
+</html>

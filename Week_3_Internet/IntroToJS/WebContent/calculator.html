@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<input type = "number" id = "x" placeholder = "x"/>
+
+<input type = number id = "y" placeholder = "y"/>
+
+<button id = "plus">+</button>
+<button id = "minus">- </button>
+<button id = "multiply">* </button>
+<button id = "divide">/</button>
+
+  <div id = "answer"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+
+  <script>
+    $("#plus").on('click', function(){
+      $('#answer').val("");
+      var firstNum = $('#x').val();
+      var secondNum = $('#y').val();
+      $('#answer').append(parseInt(firstNum) + parseInt(secondNum));
+    });
+    
+    $("#minus").on('click', function(){
+        $('#answer').val("");
+        var firstNum = $('#x').val();
+        var secondNum = $('#y').val();
+        $('#answer').append(parseInt(firstNum) - parseInt(secondNum));
+      });
+    $("#multiply").on('click', function(){
+        $('#answer').val("");
+        var firstNum = $('#x').val();
+        var secondNum = $('#y').val();
+        var result = firstNum * secondNum;
+        $('#answer').append(result);
+      });
+    $("#divide").on('click', function(){
+        $('#answer').val("");
+        var firstNum = $('#x').val();
+        var secondNum = $('#y').val();
+        var result = firstNum / secondNum;
+        $('#answer').append(result);
+      });
+    
+  </script>
+
+
+</body>
+</html>
