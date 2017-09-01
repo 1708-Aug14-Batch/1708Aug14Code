@@ -98,7 +98,41 @@
   <a>Click Here</a>
 	  
   <script type="text/javascript">
-    //TODO: Javascript homework
+  	
+  //Question 1: Get USA
+  function getUSA(){
+	  var aTags = document.getElementsByTagName("span");
+	  var searchText = "USA";
+	  var found;
+
+	  for (var i = 0; i < aTags.length; i++) {
+	    if (aTags[i].textContent == searchText) {
+	      found = aTags[i];
+	      break;
+	    }
+	  }
+	  
+	  if(found)
+		  console.log(found);
+	  else
+		  console.log("nope!");
+  }
+	//Question 2: Sales
+	function getPeopleInSales(){
+		 var aTags = document.getElementsByTagName("td");
+		 var searchText = "Sales";
+		 var found;
+
+		  for (var i = 0; i < aTags.length; i++) {
+		    if (aTags[i].textContent == searchText) {
+		      found = aTags[i];
+		      if(found){
+		    	  console.log(found);
+		    	  console.log("\n");
+		      }
+			}
+  		}
+	}
   </script>
   
 </body>
