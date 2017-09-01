@@ -1,9 +1,0 @@
-package com.ex.reflection;
-
-public class ReflectionTester {
-
-	public static void main(String[] args) {
-		System.out.println("I'm a Fish, and my ");
-	}
-
-}

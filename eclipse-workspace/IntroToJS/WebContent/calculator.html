@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<input type="number" id="x" placeholder="x">
+	<select id="operator">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+	</select>
+	<input type="number" id="y" placeholder="y">
+	<button id="calculate">Calculate</button>
+	= <input type="text" id="answer">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous"></script>
+
+	<script>
+		$('#calculate').on('click', function() {
+			var x = parseInt($('#x').val());
+			var y = parseInt($('#y').val());
+			var operator = $('#operator').val();
+			if (operator == "+") {
+				$('#answer').val(x + y);
+			}
+			if (operator == "-") {
+				$('#answer').val(x - y);
+			}
+			if (operator == "*") {
+				$('#answer').val(x * y);
+			}
+			if (operator == "/") {
+				$('#answer').val(x / y);
+			}
+		})
+	</script>
+
+</body>
+</html>

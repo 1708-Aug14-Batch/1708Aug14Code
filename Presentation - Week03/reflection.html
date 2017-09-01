@@ -9,25 +9,39 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+	
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="reflection.html">Reflection in Java</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+			  <ul class="nav navbar-nav">
+					<li><a href="examples.html">Examples</a></li>
+			  </ul>
+			</div>
+		</div>
+	</nav>
+		
 		<h1>Reflection in Java</h1>
+		
 		<div class="jumbotron">
 			<h2>What is reflection?</h2>
-			<p>Reflection is the act of examining code at runtime.</p>
-			<p>More specifically, reflection allows us to check the classes, fields, methods, and constructors of objects at runtime.</p>
-			<p>We can store these things in objects whose datatypes are named for what they model, e.g., methods are stored in Method objects.</p>
+			<p>Reflection allows us to examine code at runtime.</p>
+			<p>That means we can see the classes, fields, methods, and constructors of objects at runtime.</p>
+			<p>For example, if I have an object of an unkown type, I can use the getClass() method to discover its type.</p>
+			<p>Reflection is a powerful tool that can allow us to perform operations otherwise impossible, but it is a very advanced feature that should only be used by experienced programmers.</p>
 		</div>
 		
 		<div class="jumbotron">
-			<h2>What are the downsides?</h2>
-			<ul>
-				<li>Slows down performance</li>
-				<li>May Not Run Under Security</li>
-				<li>Exposure of Internals</li>
-			</ul>
-		</div>
-		
-		<div class="jumbotron">
-			<h2>The java.lang.reflection Package</h2>
+			<h2>Important Reflection Classes</h2>
 			<table class="table table-striped table-hover">
 				<tr>
 					<th>Class</th>
@@ -53,9 +67,12 @@
 		</div>
 		
 		<div class="jumbotron">
-			<h2>Breaking encapsulation:</h2>
-			<img src="hidden-class.png">
-			<img src="main-method.png">
+			<h2>What are the downsides?</h2>
+			<ul>
+				<li>May not run under a security manager</li>
+				<li>Can expose private members</li>
+				<li>Slows down performance</li>
+			</ul>
 		</div>
 		
 		<div class="jumbotron">
