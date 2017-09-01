@@ -8,14 +8,12 @@
 	crossorigin="anonymous">
 </head>
 <body>
-<p>
-Some notes about jQuery:
-<br>
-jQuery is a lightweight "write less, do more" JS library that
-simplifies programming. 
-It contains the following:
+	<p>
+		Some notes about jQuery: <br> jQuery is a lightweight "write
+		less, do more" JS library that simplifies programming. It contains the
+		following:
 
-</p>
+	</p>
 
 	<h1>Grocery List</h1>
 
@@ -36,10 +34,7 @@ It contains the following:
 			<div class="col-6">
 				<h3>Purchased:</h3>
 				<br>
-				<ul id="bought">
-
-				</ul>
-
+				<ul id="bought"></ul>
 
 			</div>
 		</div>
@@ -52,7 +47,7 @@ It contains the following:
 		$('li').on('click', function() {
 			$('ul#bought').append($(this));
 		});
-		
+
 		$('#add').on('click', function() {
 			var temp = document.createElement('li');
 			temp.innerHTML = $('#newItem').val();
@@ -67,6 +62,10 @@ It contains the following:
 				$('ul#bought').append($(this));
 			});
 		});
+
+		function add() {
+			// do things
+		};
 	</script>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
