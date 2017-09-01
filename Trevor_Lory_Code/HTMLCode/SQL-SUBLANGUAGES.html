@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Presentaion</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+</script>
+<style>
+table, th, td {
+	color: violet;
+    border: 2px solid black;
+	padding: 10px;
+}
+</style>
+</head>
+<body style="background-color: grey;">
+
+<div class="jumbotron" style="background-color: orange;">
+	<h1 class="display-1">SQL SubLanguages</h1>
+	<p style="font-size:40px;">All commands of sql fall in to one of the following categories</p>
+</div>
+
+
+
+
+<div class="jumbotron" style="background-color: green;">
+	<h1 class="display-6">DDL (Data Definition Language)</h1>
+	<p style="font-size:30px;">These statements are used to create tables and databases and define field properties or table properties</p>
+	<p style="font-size:30px;">The various objects that a database can have are table, view, synonym, sequence, index and type</p>
+	<p style="font-size:30px;">DDL provides the following statements to manipulate these objects:</p>
+	<table>
+		<tr>
+			<th>CREATE</th>
+			<th>ALTER</th>
+			<th>DROP</th>
+			<th>TRUNCATE</th>
+			<th>RENAME</th>
+		</tr>
+		<tr>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Used to create tables, procedures, and functions</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Used to change the properties of tables</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Used to remove a table from the database or place it inside the recycle bin</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Used to remove all rows from a table</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Used to rename a table, view, or a sequence</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="jumbotron" style="background-color: green;">
+	<h1 class="display-6">DML (Data Manipulation Language) aka CRUD</h1>
+	<p style="font-size:30px;">The statements that falls under this category are used to update data or add or remove data from tables</p>
+	<table>
+		<tr>
+			<th>INSERT</th>
+			<th>UPDATE</th>
+			<th>SELECT</th>
+			<th>DELETE</th>
+		</tr>
+		<tr>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Adds one or more rows to a table</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Updates values within a table</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Queries Data from tables and views to be viewable or assignable</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Deletes rows within a table</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="jumbotron" style="background-color: green;">
+	<h1 class="display-6">DCL (Data Control Language)</h1>
+	<p style="font-size:30px;">It is used to control who access the data</p>
+	<p style="font-size:30px;">DCL provides 2 statements for access control:</p>
+	<table>
+		<tr>
+			<th>GRANT</th>
+			<th>REVOKE</th>
+		</tr>
+		<tr>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Gives privledges to edit or view the database</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Takes away privledges to edit or view the database</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="jumbotron" style="background-color: green;">
+	<h1 class="display-6">TCL (Transaction Control Language)</h1>
+	<p style="font-size:30px;">After any DML statement is executed, the updated data is not made persistent in the respective tables.</p>
+	<p style="font-size:30px;">In order to save the data it has to be explicitly saved by the user using a TCL command.</p>
+	<p style="font-size:30px;">The user can either save or discard it. The statements provided by TCL for this purpose are:</p>
+	<table>
+		<tr>
+			<th>SAVEPOINT</th>
+			<th>ROLLBACK</th>
+			<th>COMMIT</th>
+		</tr>
+		<tr>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>A saved state in the ongoing execution that can be rolled back to</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Undos most commands so as to revert to a previous state within the database</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Makes permanent any changes done before it</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+<div class="jumbotron" style="background-color: green;">
+	<h1 class="display-6">DQL (Data Query Language)</h1>
+	<p style="font-size:30px;">This is to retrieve data from sql server without changing the data itself</p>
+	<p style="font-size:30px;">Is also called the Data Retrieval Language (DRL)</p>
+	<table>
+		<tr>
+			<th>SELECT</th>
+			<th>ORDER BY</th>
+			<th>GROUP BY</th>
+		</tr>
+		<tr>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Queries Data from tables and views to be viewable or assignable</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Orders data in ascending or decsending data based on a inputed column</li>
+				</ul>
+			</td>
+			<td>
+				<ul style="font-size:25px; color: violet;">
+					<li>Groups data together within a table so operations can either be done to them or for them to be ordered differently</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="jumbotron" style="background-color: orange;">
+	<h1 class="display-6">Sources</h1>
+	<a href="https://www.cubearticle.com/articles/more/sql/sql_intro">Cube Articule on SQL SubLanguages</a>
+</div>
+
+
+</body>
+</html>

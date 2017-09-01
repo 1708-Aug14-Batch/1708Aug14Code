@@ -5,7 +5,22 @@
   <servlet>
   	<servlet-name>HelloServlet</servlet-name>
   	<servlet-class>com.revature.servlets.HelloServlet</servlet-class>
+  	<!-- <load-on-startup>0</load-on-startup> -->
+  	<!-- Applys to this specific servlet -->
+  	<!--
+  	<init-param>
+  		<param-name>NAME</param-name>
+  		<param-value>10</param-value>
+  	</init-param> -->
   </servlet>
+  
+  <!-- Applys to any servlet -->
+  <!--
+  <context-param>
+  	<param-name>NAME</param-name>
+  	<param-value>10</param-value>
+  </context-param>
+  -->
   
   <servlet>
   	<servlet-name>ForwardRedirectServlet</servlet-name>
