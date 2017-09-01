@@ -1,6 +1,7 @@
 package com.revature.andy.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,28 @@ public class Login extends HttpServlet{
 
 	Service s = new Service();
 	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		PrintWriter pw = resp.getWriter();
+		pw.write("hello");
+
+		String email = req.getParameter("email");
+		String pass = req.getParameter("pass");
+		
+		if(PseudoSession.login(email, pass) == 1) {
+			pw.write(PseudoSession.getCurrentUser().getFName());
+			pw.write(PseudoSession.getCurrentUser().getLName());
+			pw.write("logged in");
+		}
+		else if(PseudoSession.login(email, pass) == 2){
+			pw.write("wrong password");
+		}else {
+			pw.write("Failure");
+		}
+	}
+
+
+/*
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -35,5 +58,5 @@ public class Login extends HttpServlet{
 			resp.sendRedirect("failure.html");
 		}
 	}
-	
+	*/
 }

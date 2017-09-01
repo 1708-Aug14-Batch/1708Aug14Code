@@ -17,8 +17,22 @@ $('#one').on('click',function(){
 
 //2
 function bubbleSort(numArray){
-
+	var array = JSON.parse("[" + numArray + "]");
+	for(var x = 0; x < array.length; x++){
+		for(var y = 0; y < array.length-1; y++){
+			if(array[y] > array[y+1]){
+				var temp = array[y];
+				array[y] = array[y+1];
+				array[y+1] = temp;
+			}
+		}
+	}
+	return array;
 }
+
+$('#two').on('click',function(){
+	$('#twoout').text(bubbleSort($('#twoin').val()));
+})
 
 //3
 function reverseStr(someStr){
@@ -103,20 +117,118 @@ $('#seven').on('click',function(){
 
 //8
 function printShape(shape, height, character){
+	var temp = shape;
+	switch(temp){
+		case "Square":
+		for(var x = 0; x < parseInt(height); x++){
+			console.log(Array(parseInt(height)+1).join(character) + "\n");
+		}
+		break;
+		case "Triangle":
+		for(var x = 1; x < parseInt(height)+2; x++){
+				console.log(Array(x).join(character));
+		}
+		break;
+		case "Diamond":
+		for(var x = 1; x < parseInt(height)-1; x+= 2){
+			var tempString = "";
+			var tempSpace = parseInt(height) - x;
+			for(var z = 0; z < tempSpace/2; z++){
+				tempString += " ";
+			}
+			for(var z = 0; z < x; z++){
+				tempString += character;
+			}
+			for(var z = 0; z < tempSpace/2; z++){
+				tempString += " ";
+			}
+			console.log(tempString);
+		}
 
+		var tempStringM = "";
+		for(var x = 0; x < parseInt(height); x++){
+			tempStringM += character;
+		}
+		console.log(tempStringM);
+
+		for(var x = parseInt(height)-1; x > 1; x-= 2){
+			var tempString = "";
+			var tempSpace = parseInt(height) - x;
+			for(var z = 0; z < tempSpace/2; z++){
+				tempString += " ";
+			}
+			for(var z = 0; z < x-1; z++){
+				tempString += character;
+			}
+			for(var z = 0; z < tempSpace/2; z++){
+				tempString += " ";
+			}
+			console.log(tempString);
+		}
+		break;
+	}
 }
+
+$('#eight').on('click',function(){
+	$('#eightout').text(printShape($('#eightin1').val(),$('#eightin2').val(),$('#eightin3').val()));
+})
 
 //9
 function traverseObject(someObj){
-
+	var temp;
+	for(var props in someObj){
+		temp = someObj[props];
+		console.log(props, temp)
+	}
 }
+
+$('#nine').on('click',function(){
+	$('#nineout').text(traverseObject($('#ninein')));
+})
 
 //10
 function deleteElement(someArr){
-
+	var array = JSON.parse("[" + someArr + "]");
+	var string = "";
+	string += "Length: " + array.length;
+	console.log(string);
+	delete array[2];
+	string += "         Array: " + array;
+	string += "         Length: " + array.length;
+	return string
 }
+
+$('#ten').on('click',function(){
+	$('#tenout').text(deleteElement($('#tenin').val()));
+})
 
 //11
 function spliceElement(someArr){
+	var array = JSON.parse("[" + someArr + "]");
+	var string = "";
+	string += "Length: " + array.length;
+	console.log(string);
+	array.splice(2,1);
+	string += "         Array: " + array;
+	string += "         Length: " + array.length;
+	return string
 
 }
+
+$('#eleven').on('click',function(){
+	$('#elevenout').text(spliceElement($('#elevenin').val()));
+})
+
+$('#twelve').on('click',function(){
+	function person(name, age){
+		this.name = name;
+		this.age = age;
+	}
+	var person = new person($('#twelvein1').val(),$('#twelvein2').val())
+	$('#twelveout').text(person);
+})
+
+$('#thirteen').on('click',function(){
+	var person = {name:$('#thirteenin1').val(),age:$('#thirteenin2').val()}
+	$('#thirteenout').text(person);
+})

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+	integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+	<div class="jumbotron">
+		<h3>Using <h1>PoKeMoN</h1></h3>
+		<div class="well">
+			<input type="number" id="pokemonID" placeholder="PokemonID"/>
+			<input type="submit" class="btn btn-info" value="Get PokeMoN Info" id="pokemonSubmit">
+		</div>
+		
+		<div class="well">
+			<div class="text-center">
+				<!-- will use API to display information appended to the following elements-->
+				<img id="pokemonImg" alt="" src=""/>
+				<h3 id="pokemonName"></h3>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	<script type="text/javascript" src="pokemon.js"></script>
+</body>
+</html>

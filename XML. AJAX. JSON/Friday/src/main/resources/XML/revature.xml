@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<revature>
+	<empolyee id="1">
+		<firstname>
+			Andy
+		</firstname>
+		<lastname>
+			Zheng
+		</lastname>
+		<nickname>
+			Creus
+		</nickname>
+		<salary>
+			1
+		</salary>
+	</empolyee>
+	<empolyee id="2">
+		<firstname>
+			Bob
+		</firstname>
+		<lastname>
+			Marley
+		</lastname>
+		<nickname>
+			Da
+		</nickname>
+		<salary>
+			300000
+		</salary>
+	</empolyee>
+</revature>

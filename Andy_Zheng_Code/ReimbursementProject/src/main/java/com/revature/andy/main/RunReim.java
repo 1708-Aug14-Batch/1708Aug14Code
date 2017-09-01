@@ -7,17 +7,18 @@ import org.apache.log4j.*;
 import com.revature.andy.service.Service;
 import com.revature.andy.session.PseudoSession;
 
-public class RunBank {
+public class RunReim {
 
 
 	private static Logger log = Logger.getRootLogger();
 	
 	public static void main(String[] args) {
 		
-		start();
+		//start();
 		
 	}
 	
+	/*
 	static void start() {
 		// Scanner and Service
 		Scanner scan = new Scanner(System.in);
@@ -299,5 +300,5 @@ public class RunBank {
 				System.exit(0);
 			}
 		}
-	}
+	}*/
 }
