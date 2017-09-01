@@ -7,10 +7,15 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
         <link rel="shortcut icon" href="https://www.spreadshirt.com/image-server/v1/designs/1008317231,width=178,height=178/party-parrot-green.png">
 
         <title>Serialization</title>
+
+        <style>
+            .code {
+                font-family: Courier New, Courier, monospace;
+            }
+        </style>
     </head>
 
     <body style="">
@@ -30,7 +35,7 @@
                 <br>
                 <ul>
                     <li>
-                        To <i>serialize</i> an object means to convert its state into a byte stream in a way that always it to be reverted back into an object.
+                        To <i>serialize</i> an object means to convert its state into a format that allows it to be reverted back into an object.
                     </li>
                     <li>
                         <i>Deserialization</i> is the process of converting the serialized form back into a copy of the object.
@@ -39,16 +44,16 @@
                         When an object is serialized, the class definition itself is not recorded. It is the responsibility of the system to locate the necessary class files.
                     </li>
                     <li>
-                        To create a serializable object, simply <span style="font-family: Courier New">implement Serializable</span>
+                        To create a serializable object, simply <span class="code">implement Serializable</span>
                     </li>
                     <li>
-                        Declare and initialize a field <span style="font-family: Courier New"> static final long serialVersionUID = 1L </span> (<i>Strongly recommended</i>)
+                        Declare and initialize a field <span class="code"> static final long serialVersionUID = 1L </span> (<i>Strongly recommended</i>)
                     </li>
                     <li>
-                        Use an <span style="font-family: Courier New"> ObjectOutputStream </span> to serialize an object
+                        Use an <span class="code"> ObjectOutputStream </span> to serialize an object
                     </li>
                     <li>
-                        Use an <span style="font-family: Courier New"> ObjectInputStream </span> to deserialize an object
+                        Use an <span class="code"> ObjectInputStream </span> to deserialize an object
                     </li>
                 </ul>
             </div>
@@ -58,7 +63,7 @@
                 <br>
                 <h4>Creating the class</h4>
                 <br>
-                <pre style="font-family: Courier New">
+                <pre class="code">
     public class Example implements Serializable {
     
         public static int count;
@@ -70,7 +75,7 @@
                 </pre>
                 <h4>Serializing the object</h4>
                 <br>
-                <pre style="font-family: Courier New">
+                <pre class="code">
     String filename = "file.txt";
     Example ex = new Example();
     try (FileOutputStream   fos = new FileOutputStream(filename);
@@ -84,7 +89,7 @@
                 </pre>
                 <h4>Deserializing the object</h4>
                 <br>
-                <pre style="font-family: Courier New">
+                <pre class="code">
     String filename = "file.txt";
     Example exCopy;    
     try (FileInputStream   fis = new FileInputStream(filename);
@@ -101,70 +106,78 @@
             </div>
 
             <div class="qanda" id="QandA">
-                <h2>Q&A</h1>
+                <h2></h1>
                 <br>
-                <table>
+                <table class="table">
                     <tr class="row">
-                        <td class="col border border-dark rounded">
+                        <th class="col">Question</th>
+                        <th class="col">Answer</th>
+                    </tr>
+                    <tr class="row">
+                        <td class="col">
                             How many methods Serializable has?
                             If no method then what is the purpose
                             of Serializable interface?
                         </td>
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             java.io.Serializable doesn't have any method and is called Marker Interface.
                             Creating a class that implements Serializable gives the compiler
                             an indication that it is possible serialize this object.
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             What is serialVersionUID?
                             What would happen if you don't define this?
                         </td>
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             SerialVersionUID is used for version control. The default value of serialVersionUID
                             is calculated based on the object structure. This value can be affected by the compiler,
                             so it is best to explicitly define a value.
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             While serializing you want some of the members
                             not to serialize? How do you achieve it?
                         </td>
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             All members of an object will be serialized unless it is marked transient or it is a static member.
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             What will happen if one of the members in the class
                             doesn't implement Serializable interface?
                         </td>
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             If you try to serialize an object of a class which implements Serializable,
                             but the object includes a reference to an non-serializable class then
-                            a <span style="font-family: Courier New">NotSerializableException</span> will be thrown at runtime.
+                            a <span class="code">NotSerializableException</span> will be thrown at runtime.
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             Suppose super class of a new class implement Serializable interface,
                             how can you avoid new class to being serialized?
                         </td>
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             If a class' parent already implements Serializable interface, then it is already Serializable.
-                            Since you cannot unimplemented an interface, to avoid Java serialization, you need to implement the writeObject() and readObject() methods to throw a <span style="font-family: Courier New">NotSerializableException</span>.
+                            Since you cannot unimplemented an interface, to avoid Java serialization, you need to implement the <span class="code">writeObject()</span> and <span class="code">readObject()</span> methods to throw a <span class="code">NotSerializableException</span>.
                         </td>
                     </tr>
                     <tr class="row">
-                        <td class="col border border-dark rounded">
+                        <td class="col">
                             Which methods are used during Serialization and Deserialization in Java?
                         </td>
-                        <td class="col border border-dark rounded">
-                            To store any object via serialization, call ObjectOutputStream.writeObject(someObject).
-                            To deserialize that object, call ObjectInputStream.readObject().
+                        <td class="col">
+                            To store any object via serialization, call <span class="code">ObjectOutputStream.writeObject(someObject)</span>.
+                            To deserialize that object, call <span class="code">ObjectInputStream.readObject()</span>.
                         </td>
+                    </tr>
+                    <tr class="row">
+                        <th class="col"></th>
+                        <th class="col"></th>
                     </tr>
                 </table>
             </div>

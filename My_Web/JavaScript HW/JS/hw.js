@@ -151,7 +151,7 @@ function doSubstring() {
 	}
 	else if (len + off > str.length) {
 		console.log('invalid substring range');
-		alert('Substring range [' + off + ', ' + len + '] invalid for string with length ' + str.length);
+		alert('Substring range [' + off + ', ' + (off + len) + '] invalid for string with length ' + str.length);
 	}
 	else {
 		var substr = substring(str, len, off);
@@ -167,12 +167,40 @@ document.getElementById('doSubstring').addEventListener('click', doSubstring);
 //Return true if even, false if odd.
 //Do not use % operator.
 
+function isEven(num) {
+	//console.log('in isEven');
+	return Math.floor(num / 2) == num / 2;
+}
 
+function doIsEven() {
+	var num = parseInt($('#isEven').val());
+	$('#isEvenDisplay').text(isEven(num));
+}
+
+document.getElementById('doIsEven').addEventListener('click', doIsEven);
 
 
 //7. Palindrome
 //Define function isPalindrome(someStr)
 //Return true if someStr is a palindrome, otherwise return false
+
+function isPalindrome(someStr) {
+	console.log('in isPalindrome');
+	for (i = 0; i < Math.floor(someStr.length / 2); i++) {
+		if (someStr[i] != someStr[someStr.length - i - 1])
+			return false;
+	}
+	return true;
+}
+
+function doPalindrome() {
+	var str = $('#palindrome').val();
+	$('#isPalindrome').text(isPalindrome(str));
+}
+
+document.getElementById('doPalindrome').addEventListener('click', doPalindrome);
+
+
 //8. Shapes
 //Define function: printShape(shape, height, character)
 //shape is a String and is either "Square", "Triangle", "Diamond".
@@ -194,34 +222,206 @@ document.getElementById('doSubstring').addEventListener('click', doSubstring);
 //*****
 // ***
 //  *
+
+function printSquare(height, char) {
+	var ret = "";
+	for (i = 0; i < height; i++) {
+		for (j = 0; j < height; j++) {
+			ret = ret + char;
+		}
+		ret = ret + '\n';
+	}
+	return ret;
+}
+
+function printTriangle(height, char) {
+	var ret = "";
+	for (i = 1; i < height + 1; i++) {
+		for (j = i; j > 0; j--) {
+			ret = ret + char;
+		}
+		ret = ret + "\n";
+	}
+	return ret;
+}
+
+function printDiamond(height, char) {
+	var ret = "";
+	for (i = Math.ceil(height / 2) - 1; i >= 0; i--) {
+		for (n = 0 ; n < i; n++) {
+			ret = ret + " ";
+		}
+		for (n = 0 ; n < height - 2*i; n++) {
+			ret = ret + char;
+		}
+		ret += "\n";
+	}
+	for (i = 1; i < Math.ceil(height / 2); i++) {
+		for (n = 0 ; n < i; n++) {
+			ret = ret + " ";
+		}
+		for (n = 0 ; n < height - 2*i; n++) {
+			ret = ret + char;
+		}
+		ret += "\n";
+	}
+	return ret;
+}
+
+function printShape(shape, height, char) {
+	if (!height || !char || char.length > 1) {
+		alert('Enter valid height and character');
+		return;
+	}
+	switch (shape) {
+		case "square":
+		return printSquare(height, char);
+		break;
+		case "triangle":
+		return printTriangle(height, char);
+		break;
+		case "diamond":
+		return printDiamond(height, char);
+		break;
+		default:
+	}
+	return "";
+}
+
+function doPrintShape() {
+	var shape = $('#shapeSelect').val();
+	var height = parseInt($('#shapeHeight').val());
+	var char = $('#shapeChar').val();
+	
+	var printShap = printShape(shape, height, char);
+	console.log(printShap);
+	//$('#printShape').text(printShap);
+}
+
+document.getElementById('doPrintShape').addEventListener('click', doPrintShape);
+
+
 //9. Object literal
 //Define function traverseObject(someObj)
 //Print every property and it's value.
+
+function traverseObject(someObj) {
+	var ret = "";
+	for (var prop in someObj) {
+		ret += prop + " = " + someObj[prop] + ", ";
+	}
+	return ret;
+}
+
+function doTraverseObject() {
+	var input = $('#objectIn').val();
+	//console.log(input);
+	var obj;
+	try {
+		obj = JSON.parse(input);
+	}
+	catch (err) {
+		alert('Bad JSON structure');
+		return;
+	}
+	//console.log(obj);
+	$('#traverseObject').text(traverseObject(obj));
+}
+
+document.getElementById('doTraverseObject').addEventListener('click', doTraverseObject);
+
+
 //10. Delete Element
 //Define function deleteElement(someArr)
 //Print length
 //Delete the third element in the array.
 //Print length
 //The lengths should be the same.
+
+function deleteElement(someArr, i) {
+	console.log("before delete: length = " + someArr.length);
+	delete someArr[i];
+	console.log("after delete: length = " + someArr.length);
+	return someArr;
+}
+
+function doDeleteElement() {
+	var i = parseInt($('#deleteElement').val());
+	var arr = ["A", "B", "C", "D", "E", "F"];
+	if (i < 0 || i >= arr.length) {
+		alert('Index out of range');
+		return;
+	}
+	$('#originalArray').text(arr);
+	$('#deletedArray').text(deleteElement(arr, i));
+}
+
+document.getElementById('doDeleteElement').addEventListener('click', doDeleteElement);
+
+
 //11. Splice Element
 //Define function spliceElement(someArr)
 //Print length
 //Splice the third element in the array.
 //Print length
 //The lengths should be one less than the original length.
+
+function spliceElement(someArr, i) {
+	console.log("before splice: length = " + someArr.length);
+	someArr.splice(i, 1);
+	console.log("after splice: length = " + someArr.length);
+	return someArr;
+}
+
+function doSpliceElement() {
+	var i = parseInt($('#spliceElement').val());
+	var arr = ["A", "B", "C", "D", "E", "F"];
+	if (i < 0 || i >= arr.length) {
+		alert('Index out of range');
+		return;
+	}
+	$('#originalArray2').text(arr);
+	$('#splicedArray').text(spliceElement(arr, i));
+}
+
+document.getElementById('doSpliceElement').addEventListener('click', doSpliceElement);
+
+
 //12. Defining an object using a constructor
 //Define a function Person(name, age)
 //The following line should set a Person object to the variable john:
 //    var john = new Person("John", 30);
+
+function Person(name, age) {
+	this.name = name;
+	this.age = age;
+}
+
+function doCreatePerson() {
+	var john = new Person("John", 30);
+	console.log(john);
+}
+
+document.getElementById('doCreatePerson').addEventListener('click', doCreatePerson);
+
+
 //13. Defining an object using an object literal
 //Define function getPerson(name, age)
 //The following line should set a Person object to the variable john:
 //    var john = getPerson("John", 30);
-// 
-// 
-// 
-// 
-// 
+
+function getPerson(name, age) {
+	return { "name":name, "age":age };
+}
+
+function doGetPerson() {
+	var john = getPerson("John", 30);
+	console.log(john);
+}
+
+document.getElementById('doGetPerson').addEventListener('click', doGetPerson);
+
+
 //-----------------------------------------------------------------------------------
 //PART II
 //Part II will focus on Javascript's ability to manipulate the DOM.

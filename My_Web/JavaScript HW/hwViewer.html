@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="ISO-8859-1">
+	<title>JS Homework</title>
+	<link href="" />
+	</head>
+	
+	<body>
+			
+		<h2>1: Fibonacci</h2>
+		<input type="number" id="fib" placeholder="Enter a number" />
+		<button id="doFibonacci">Calculate</button>
+		<p id="fibDisplay"></p>
+		
+		<h2>2: Bubble Sort</h2>
+		<table><tr id="sortList"><td>5</td><td>2</td><td>10</td><td>7</td><td>4</td><td>9</td><td>3</td><td>8</td><td>6</td><td>1</td></tr></table>
+		<br>
+		<button id="doScramble">Scramble</button>
+		<button id="doSort">Sort</button>
+		
+		<h2>3: Reverse String</h2>
+		<input type="text" id="toReverse" placeholder="Write something..." />
+		<button id="doReverse">Reverse</button>
+		<p id="reversed"> </p>
+
+		<h2>4: Factorial</h2>
+		<input type="number" id="fac" placeholder="Enter a number" />
+		<button id="doFactorial">Calculate</button>
+		<p id="facDisplay"></p>
+
+		<h2>5: Substring</h2>
+		<input type="text" id="subString" placeholder="Write something..." />
+		<input type="number" id="subLength" placeholder="Length of substring" />
+		<input type="number" id="subOffset" placeholder="Offset from start" />
+		<button id="doSubstring">Sub</button>
+		<p id="substrDisplay"></p>
+
+		<h2>6: Even Number</h2>
+		<input type="number" id="isEven" placeholder="Enter a number" />
+		<button id="doIsEven">Check</button>
+		<p id="isEvenDisplay"></p>
+		
+		<h2>7: Palindrome</h2>
+		<input type="text" id="palindrome" placeholder="Write something..." />
+		<button id="doPalindrome">Check</button>
+		<p id="isPalindrome"></p>
+
+		<h2>8: Shapes</h2>
+		<select id="shapeSelect">
+			<option value="square">Square</option>
+			<option value="triangle">Triangle</option>
+			<option value="diamond">Diamond</option>
+		</select>		
+		<input type="number" id="shapeHeight" placeholder="Enter the height" />
+		<input type="text" id="shapeChar" placeholder="Enter a character" />
+		<button id="doPrintShape">Check</button>
+		<p id="printShape"></p>
+		
+		<h2>9: Object Literal</h2>
+		<textarea id="objectIn" cols="50" rows="3">Enter object in JSON format</textarea>
+		<button id="doTraverseObject">Traverse</button>
+		<p id="traverseObject"></p>
+		
+		<h2>10: Delete Element</h2>		
+		<input type="number" id="deleteElement" value="3" placeholder="Enter an index to delete" />
+		<button id="doDeleteElement">Delete</button>
+		<br><br>
+		Original: <p id="originalArray"></p>
+		Deleted: <p id="deletedArray"></p>
+		
+		<h2>11: Splice Element</h2>		
+		<input type="number" id="spliceElement" value="3" placeholder="Enter an index to delete" />
+		<button id="doSpliceElement">Splice</button>
+		<br><br>
+		Original: <p id="originalArray2"></p>
+		Spliced: <p id="splicedArray"></p>
+
+		<h2>12: Defining an object using a constructor</h2>
+		<button id="doCreatePerson">Create</button>
+
+		<h2>13: Defining an object using an object literal</h2>
+		<button id="doGetPerson">Get</button>
+		
+		
+		<script type="text/javascript" src="JS/hw.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+	</body>
+</html>
