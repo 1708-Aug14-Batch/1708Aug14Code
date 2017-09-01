@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Calculator</title>
+</head>
+
+<body>
+<input type="number" id="x" placeholder="x"/>
+<button id="add">+</button>
+<button id="sub">-</button>
+<button id="mul">x</button>
+<button id="divide">/</button>
+<button id="mod">%</button>
+<input type="number" id="y" placeholder="y"/>
+<h3>Output:</h3>
+<div id="out">
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.js" 
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" 
+		crossorigin="anonymous"></script>
+<script>
+	$('#add').on('click', function() {
+		$('#out').html("");
+		var x = $('#x').val();
+		var y = $('#y').val();
+		$('#out').append(parseInt(x)+parseInt(y));
+	})
+	$('#sub').on('click', function() {
+		$('#out').html("");
+		var x = $('#x').val();
+		var y = $('#y').val();
+		$('#out').append(parseInt(x)-parseInt(y));
+	})
+	$('#mul').on('click', function() {
+		$('#out').html("");
+		var x = $('#x').val();
+		var y = $('#y').val();
+		$('#out').append(parseInt(x)*parseInt(y));
+	})
+	$('#divide').on('click', function() {
+		$('#out').html("");
+		var x = $('#x').val();
+		var y = $('#y').val();
+		$('#out').append(parseInt(x)/parseInt(y));
+	})
+	$('#mod').on('click', function() {
+		$('#out').html("");
+		var x = $('#x').val();
+		var y = $('#y').val();
+		$('#out').append(parseInt(x)%parseInt(y));
+	})
+</script>
+</body>
+
+</html>
