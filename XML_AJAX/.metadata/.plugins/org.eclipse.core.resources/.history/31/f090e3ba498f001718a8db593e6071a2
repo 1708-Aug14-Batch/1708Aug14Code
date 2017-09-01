@@ -1,0 +1,12 @@
+/**
+ * Learning JSON: JavaScript Object Notation.
+ * JSON is text, NOT a JS Object
+ */
+
+var myJSON = '{ "name" : "Connor", "age" : 100, "city" : "Fairfax" }';
+
+var myObject = JSON.parse(myJSON);
+console.log(myJSON);
+console.log(myObject);
+
+document.getElementById("demo").innerHTML = myObject.name;

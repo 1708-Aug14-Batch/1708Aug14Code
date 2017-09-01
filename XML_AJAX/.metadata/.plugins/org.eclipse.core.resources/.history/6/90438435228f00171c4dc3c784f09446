@@ -1,0 +1,29 @@
+package com.ex.parserxml;
+
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+public class DomParser {
+	/*
+	 * This file will read an XML file via DOM XML parser. The DOM parser will
+	 * parse the entire XML document and load it into memory. Then it will model
+	 * a tree-structure for easy traversal/manipulation of the stored data
+	 * 
+	 * WARNING: The DOM parser is slow and consumes a lot of memory when it
+	 * loads a large XML doc
+	 */
+
+	public static void main(String[] args) {
+		
+		File revXML = new File(
+				"C:/Users/Surplus/my_git_repos/1708Aug14Code/XML_AJAX/FridayExamples/src/main/resources/xml/revature.xml");
+
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		
+		DocumentBuilder builder = new dbFactory.newDocumentBuilder();
+		
+	}
+
+}

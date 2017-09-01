@@ -1,0 +1,47 @@
+<!-- 
+   JS Homework
+   Connor Monson
+ -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JS Homework!</title>
+</head>
+<body>
+
+	<h1>Event Propagation</h1>
+	<div id="outer" style="background-color: yellow">
+		outer<br>
+		<div id="middle" style="background-color: blue">
+			middle<br>
+			<div id="inner" style="background-color: green">
+				inner<br>
+
+			</div>
+			<br>
+		</div>
+		<br>
+	</div>
+	<br>
+
+
+	<h1>Problem 1: Fibonacci</h1>
+	<input type="number" id="fibonacci_text" placeholder="Enter n" />
+	<button id="fibonacci_button">Fibonacc'ed!</button>
+	<b> =
+		<p id="fibonacci_display"></p>
+	</b>
+	<script type="text/javascript" src="HW.js"></script>
+	
+	<h1>Problem 2: Bubble Sort</h1>
+	<input type="number" id="bubble_text" placeholder="Enter n" />
+	<button id="bubble_button">Sortify!</button>
+	<b> =
+		<p id="bubble_display"></p>
+	</b>
+	<script type="text/javascript" src="HW.js"></script>
+
+</body>
+</html>

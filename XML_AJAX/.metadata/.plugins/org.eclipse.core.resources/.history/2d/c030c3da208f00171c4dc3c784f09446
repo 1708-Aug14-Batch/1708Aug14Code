@@ -1,0 +1,24 @@
+package com.ex.parserxml;
+
+import java.io.File;
+
+public class DomParser {
+	/*
+	 * This file will read an XML file via DOM XML parser.
+	 * The DOM parser will parse the entire XML document and
+	 * load it into memory. Then it will model a tree-structure
+	 * for easy traversal/manipulation of the stored data
+	 * 
+	 * WARNING: The DOM parser is slow and consumes a lot
+	 * of memory when it loads a large XML doc
+	 */
+	
+	public static void main(String[] args) {
+		try {
+			
+			File revXML = new File("C:/Users/Surplus/my_git_repos/1708Aug14Code/XML_AJAX/FridayExamples/src/main/resources/xml/revature.xml");
+			
+		} 
+	}
+
+}

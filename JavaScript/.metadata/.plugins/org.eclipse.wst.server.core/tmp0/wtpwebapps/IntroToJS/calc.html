@@ -11,23 +11,34 @@
 </head>
 <body>
 
-	<input type="text" id="input1" class="input" placeholder="Enter x" />
-	<input type="text" id="input2" class="input" placeholder="Enter y" />
-	<br>
-	<input type="text" id="output" class="output" disabled
-		placeholder="Result goes here" style="background-color: Silver" />
-	<br>
 
-	<button id="add" class="btn btn-primary">+</button>
-	<button id="sub" class="btn btn-primary">-</button>
-	<button id="mul" class="btn btn-primary">*</button>
-	<button id="div" class="btn btn-primary">/</button>
-	<button id="mod" class="btn btn-primary">%</button>
-	<button id="pow" class="btn btn-primary">x^y</button>
-	<button id="sin" class="btn btn-primary">sine(x)</button>
-	<button id="cos" class="btn btn-primary">cos(x)</button>
-	<button id="ln" class="btn btn-primary">ln(x)</button>
-	<button id="sqrt" class="btn btn-primary">sqrt(x)</button>
+	<h1> Simple Calculator </h1><br>
+	<div class="jumbotron">
+		<div>
+
+			X: <input type="text" id="input1" class="input" placeholder="Enter x" />
+			Y: <input type="text" id="input2" class="input" placeholder="Enter y" />
+		</div>
+		<div><br>
+			<input type="text" id="output" class="output" disabled
+				placeholder="Result goes here" style="background-color: Silver" />
+		</div>
+		<div><br>
+
+			<button id="add" class="btn btn-primary">x + y</button>
+			<button id="sub" class="btn btn-primary">x - y</button>
+			<button id="mul" class="btn btn-primary">x * y</button>
+			<button id="div" class="btn btn-primary">x / y</button>
+			<button id="mod" class="btn btn-primary">x % y</button>
+		</div>
+		<div><br>
+			<button id="pow" class="btn btn-primary">x^y</button>
+			<button id="sin" class="btn btn-primary">sine(x)</button>
+			<button id="cos" class="btn btn-primary">cos(x)</button>
+			<button id="ln" class="btn btn-primary">ln(x)</button>
+			<button id="sqrt" class="btn btn-primary">sqrt(x)</button>
+		</div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.js"
 		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="

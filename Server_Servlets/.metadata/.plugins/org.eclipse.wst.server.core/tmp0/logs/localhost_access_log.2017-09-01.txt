@@ -1,0 +1,7 @@
+127.0.0.1 - - [01/Sep/2017:16:00:43 -0400] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [01/Sep/2017:16:01:33 -0400] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [01/Sep/2017:16:01:45 -0400] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [01/Sep/2017:16:01:57 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [01/Sep/2017:16:02:35 -0400] "GET /Reimbursement/login_portal.html HTTP/1.1" 200 486
+0:0:0:0:0:0:0:1 - - [01/Sep/2017:16:02:38 -0400] "GET /BankingAssignment3/frontPage.html HTTP/1.1" 200 10280
+0:0:0:0:0:0:0:1 - - [01/Sep/2017:16:02:46 -0400] "GET /BankingAssignment3/login_action?username=panther&password=asdf HTTP/1.1" 500 1584
