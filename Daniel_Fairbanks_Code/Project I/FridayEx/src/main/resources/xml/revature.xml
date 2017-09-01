@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<revature>
+	<employee id="1">
+		<firstname>Daniel</firstname>
+		<lastname>Fairbanks</lastname>
+		<email>dlf@gmail.com</email>
+		<salary>121,000</salary>
+	</employee>
+	<employee id="2">
+		<firstname>Emily</firstname>
+		<lastname>Bickford</lastname>
+		<email>eb@gmail.com</email>
+		<salary>97,500</salary>
+	</employee>
+</revature>
