@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="jumbotron">
+		<div class="row justify-content-start">
+			<div class="col-6">
+				<h1>Grocery List</h1>
+
+				<input type="text" id="newitem" placeholder="Anything else..." /> <br>
+				<button id="add">Add Item</button>
+
+				<ul id = "grocery" class="list-group">
+					<li class="list-group-item" id="one">figs</li>
+					<li class="list-group-item" id="two">steak</li>
+					<li class="list-group-item" id="three">rice</li>
+				</ul>
+			</div>
+			
+			<div class = "col-6">
+			<h2>Purchased </h2>
+			<ul id = "purchased">
+			</ul>
+			</div>
+		</div>
+	</div>
+	
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$('#add').on('click', function() {
+			var temp = document.createElement('li');
+			temp.innerHTML = $('#newitem').val();
+			$('ul#grocery').append(temp);
+			$('#newitem').val('');
+			$('li').addClass('list-group-item');
+		})
+
+		$('li#g').on('click', function() {
+			var temp = document.createElement('li');
+			temp.innerHTML = $(this).text();
+			$('ul#purchased').append(temp);
+			$(this).remove();
+			$('li').addClass('list-group-item');
+		})
+		
+		
+	</script>
+</body>
+</html>
