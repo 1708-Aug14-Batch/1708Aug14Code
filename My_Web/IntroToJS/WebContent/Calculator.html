@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Calculator</title>
+</head>
+<body>
+
+<input type="number" id="x" value=0 />
+
+<select id="operator">
+	<option value="add">+</option>
+	<option value="sub">-</option>
+	<option value="mul">*</option>
+	<option value="div">/</option>
+</select>
+
+<input type="number" id="y" value=0 />
+
+<button id="calculate">=</button>
+
+<p id="result"></p>
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+crossorigin="anonymous"></script>
+
+<script>
+	$('#calculate').on('click', function() {
+		var x = parseInt($('#x').val());
+		var y = parseInt($('#y').val());
+		var op = $('#operator').val();
+
+		switch (op) {
+			case "add":
+			$('#result').text(x + y);
+			break;
+			case "sub":
+			$('#result').text(x - y);
+			break;
+			case "mul":
+			$('#result').text(x * y);
+			break;
+			case "div":
+			$('#result').text(x / y);
+			break;
+		}
+	})
+</script>
+</body>
+</html>

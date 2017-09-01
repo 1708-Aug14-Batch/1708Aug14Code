@@ -20,42 +20,156 @@ function fib(n) {
 }
 
 function doFib() {
-	var display = document.getElementById("fibDisplay");
-	var input = document.getElementById("fib").value;
-	
-	display.innerHTML = fib(input);
+	var input = $('#fib').val();
+	$('#fibDisplay').text(fib(input));
 }
 
-document.getElementById("doFib").addEventListener("click", doFib);
-
-document.getElementById("inner").addEventListener("click", 
-		function() { alert("inner") });
-
-document.getElementById("middle").addEventListener("click", 
-		function() { alert("middle") });
-
-document.getElementById("outer").addEventListener("click", 
-		function() { alert("outer") }, true);
+document.getElementById('doFibonacci').addEventListener('click', doFib);
 
 
 //2. Bubble Sort
 //Define function: bubbleSort(numArray)
 //Use the bubble sort algorithm to sort the array.
 //Return the sorted array.
+
+function bubbleSort(numArray) {
+	//console.log("in bubbleSort");
+	for (n = numArray.length; n > 0; n--) {
+		//console.log("in outer loop");
+		for (i = 1; i < n; i++) {
+			//console.log("in inner loop");
+			if (numArray[i-1] > numArray[i]) {
+				var temp = numArray[i];
+				numArray[i] = numArray[i-1];
+				numArray[i-1] = temp;
+			}
+		}
+	}
+	//console.log("end bubbleSort");
+	return numArray;
+}
+
+function doSort() {
+	var array = [];
+	$('#sortList').find('td').each(function(index, elem) {
+		array.push(parseInt($(elem).text()));
+	});
+	array = bubbleSort(array);
+	
+	$('#sortList').find('td').each(function(index) {
+		$(this).text(array[index]);
+	});	
+}
+
+function doScramble() {
+	var list = [];
+	$('#sortList').find('td').each(function() {
+		while (true) {
+			var rand = Math.floor(Math.random() * 10 + 1);
+			if (!list.find(function(n) {
+				return n == rand;
+			})) {
+				list.push(rand);
+				$(this).text(rand);
+				break;
+			}
+		}
+	});
+}
+
+document.getElementById('doSort').addEventListener('click', doSort);
+document.getElementById('doScramble').addEventListener('click', doScramble);
+
+
 //3. Reverse String
 //Define function: reverseStr(someStr)
 //Reverse and return the String.
+
+function reverseStr(someStr) {
+	//console.log(someStr);
+	var ca = someStr.split('');
+	//console.log(ca);
+	for (i = 0; i < Math.floor(ca.length / 2); i++) {
+		var temp = ca[i];
+		ca[i] = ca[ca.length - i - 1];
+		ca[ca.length - i - 1] = temp;
+	}
+	var ret = "";
+	for (i = 0; i < ca.length; i++) {
+		ret = ret + ca[i];
+	}
+	return ret;
+}
+
+function doReverse() {
+	$('#reversed').text(reverseStr($('#toReverse').val()));
+}
+
+document.getElementById('doReverse').addEventListener('click', doReverse);
+
 //4. Factorial
 //Define function: factorial(someNum)
 //Use recursion to compute and return the factorial of someNum.
+
+function factorial(someNum) {
+	if (someNum < 2) return 1;
+	return someNum * factorial(someNum-1);
+}
+
+function doFactorial() {
+	var input = $('#fac').val();
+	$('#facDisplay').text(factorial(input));
+}
+
+document.getElementById('doFactorial').addEventListener('click', doFactorial);
+
+
 //5. Substring
 //Define function substring(someStr, length, offset)
 //Return the substring contained between offset and (offset + length) inclusively.
 //If incorrect input is entered, use the alert function and describe why the input was incorrect.
+
+function substring(someStr, length, offset) {
+	console.log('in substring')
+	var ret = '';
+	for (i = offset; i < length + offset; i++) {
+		//if (i < someStr.length) {
+			ret = ret + someStr[i];
+		//}
+	}
+	return ret;
+}
+
+function doSubstring() {
+	var str = $('#subString').val();
+	var len = parseInt($('#subLength').val());
+	var off = parseInt($('#subOffset').val());
+
+	if (off < 0 || len < 0) {
+		console.log('invalid offset or length < 0');
+		alert('Substring length and offset cannot be negative');
+	}
+	else if (len + off > str.length) {
+		console.log('invalid substring range');
+		alert('Substring range [' + off + ', ' + len + '] invalid for string with length ' + str.length);
+	}
+	else {
+		var substr = substring(str, len, off);
+		$('#substrDisplay').text(substr);
+	}
+}
+
+document.getElementById('doSubstring').addEventListener('click', doSubstring);
+
+
 //6. Even Number
 //Define function: isEven(someNum)
 //Return true if even, false if odd.
 //Do not use % operator.
+
+
+
+
 //7. Palindrome
 //Define function isPalindrome(someStr)
 //Return true if someStr is a palindrome, otherwise return false
