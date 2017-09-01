@@ -1,6 +1,7 @@
 package com.bank.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -32,8 +33,9 @@ public class LoginServlet extends HttpServlet{
 		this.servConParam = config.getInitParameter("param");
 		System.out.println(servConParam);
 	}
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
 		String email = req.getParameter("name");
 		String pass = req.getParameter("paw");
 		int id = s.validateUser(email);
@@ -47,13 +49,37 @@ public class LoginServlet extends HttpServlet{
 			}
 			
 			else{
-				String message = u.getFirstname();
-		        req.setAttribute("message", message);
-		        req.getRequestDispatcher("success.jsp").forward(req, res);
+				PrintWriter out = res.getWriter();
+				out.write(u.getFirstname());
 				//res.sendRedirect("success.jsp");
 			}
 		}
 	}
+	
+	
+	
+//	@Override
+//	protected void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
+//		String email = req.getParameter("name");
+//		String pass = req.getParameter("paw");
+//		int id = s.validateUser(email);
+//		if(id < 0){
+//			res.sendRedirect("fail.html");
+//		}
+//		else {
+//			User u = s.loginForServlet(id, pass);
+//			if(u == null){
+//				res.sendRedirect("fail.html");
+//			}
+//			
+//			else{
+//				String message = u.getFirstname();
+//		        req.setAttribute("message", message);
+//		        req.getRequestDispatcher("success.jsp").forward(req, res);
+//				//res.sendRedirect("success.jsp");
+//			}
+//		}
+//	}
 	@Override
 	public void destroy() {
 		super.destroy();
