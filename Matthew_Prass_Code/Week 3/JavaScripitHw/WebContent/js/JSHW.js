@@ -96,6 +96,42 @@ function printShapes(shape, height, character){
 		}
 		
 	}
+//Question 9: Object Literal
+function trasverseObject(someObj){
+	var propVal;
+	for(var propName in someObj){
+		propVal = someObj[propName];
+		console.log(propName,propVal);
+	}
+}
+
+//Question 10: Delete Element
+function deleteThird(someArr){
+	console.log(someArr.length);
+	delete someArr[3];
+	console.log(someArr.length);
+}
+
+//Question 11: Splice Element
+function spliceThird(someArr){
+	console.log(someArr.length);
+	someArr.splice(3,1);
+	console.log(someArr.length);
+}
+
+//Question 12: Constructor
+function Person(name,age){
+	this.name = name;
+	this.age = age;
+}
+
+//Question 13: Object Literal Constructor
+function getPerson(name,age){
+	var Person = new Object();
+	Person.name = name;
+	Person.age = age;
+	return Person;
+}
 
 //function runFib(){
 //	var display = document.getElementById("fibDisplay");
