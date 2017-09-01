@@ -1,8 +1,0 @@
-package designpatterns;
-
-public class Hammer {
-	
-	public String workWithTool() {
-		return "I'm a hammer!";
-	}
-}

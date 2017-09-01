@@ -9,4 +9,15 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>GetTextServlet</display-name>
+    <servlet-name>GetTextServlet</servlet-name>
+    <servlet-class>servlets.GetTextServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTextServlet</servlet-name>
+    <url-pattern>/getText</url-pattern>
+  </servlet-mapping>
 </web-app>

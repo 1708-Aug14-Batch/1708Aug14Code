@@ -1,9 +1,0 @@
-package Q18;
-
-public abstract class SuperClass {
-	
-	public static abstract boolean hasUpperCase(String str);
-	public static abstract String toUpperCase(String str);
-	public static abstract int toIntAddTen(String str);
-
-}

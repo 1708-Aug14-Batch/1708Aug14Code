@@ -1,8 +1,0 @@
-package designpatterns;
-
-public class Wrench {
-	
-	public String workWithTool() {
-		return "I'm a wrench!";
-	}
-}

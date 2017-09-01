@@ -113,69 +113,69 @@
                         <th class="col">Question</th>
                         <th class="col">Answer</th>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <td class="col">
                             How many methods Serializable has?
                             If no method then what is the purpose
                             of Serializable interface?
                         </td>
-                        <td class="col">
+                        <td class="col answer">
                             java.io.Serializable doesn't have any method and is called Marker Interface.
                             Creating a class that implements Serializable gives the compiler
                             an indication that it is possible serialize this object.
                         </td>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <td class="col">
                             What is serialVersionUID?
                             What would happen if you don't define this?
                         </td>
-                        <td class="col">
+                        <td class="col answer">
                             SerialVersionUID is used for version control. The default value of serialVersionUID
                             is calculated based on the object structure. This value can be affected by the compiler,
                             so it is best to explicitly define a value.
                         </td>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <td class="col">
                             While serializing you want some of the members
                             not to serialize? How do you achieve it?
                         </td>
-                        <td class="col">
+                        <td class="col answer">
                             All members of an object will be serialized unless it is marked transient or it is a static member.
                         </td>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <td class="col">
                             What will happen if one of the members in the class
                             doesn't implement Serializable interface?
                         </td>
-                        <td class="col">
+                        <td class="col answer">
                             If you try to serialize an object of a class which implements Serializable,
                             but the object includes a reference to an non-serializable class then
                             a <span class="code">NotSerializableException</span> will be thrown at runtime.
                         </td>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <td class="col">
                             Suppose super class of a new class implement Serializable interface,
                             how can you avoid new class to being serialized?
                         </td>
-                        <td class="col">
+                        <td class="col answer">
                             If a class' parent already implements Serializable interface, then it is already Serializable.
                             Since you cannot unimplemented an interface, to avoid Java serialization, you need to implement the <span class="code">writeObject()</span> and <span class="code">readObject()</span> methods to throw a <span class="code">NotSerializableException</span>.
                         </td>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <td class="col">
                             Which methods are used during Serialization and Deserialization in Java?
                         </td>
-                        <td class="col">
+                        <td class="col answer">
                             To store any object via serialization, call <span class="code">ObjectOutputStream.writeObject(someObject)</span>.
                             To deserialize that object, call <span class="code">ObjectInputStream.readObject()</span>.
                         </td>
                     </tr>
-                    <tr class="row">
+                    <tr class="row question">
                         <th class="col"></th>
                         <th class="col"></th>
                     </tr>
@@ -203,6 +203,15 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>
+            function toggleAnswer() {
+                console.log("in toggle: " + this.style.visibility);
+                this.style.visibility = "visible";
+            }
+
+            $('td.answer').on('click', toggleAnswer);
+        </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </body>
