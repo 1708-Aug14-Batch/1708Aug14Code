@@ -1,14 +1,15 @@
 package com.ers.pojos;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Reimbursement {
 
 	private int id;
 	private Employee submitter;
 	private Employee resolver;
-	private Date submitdate;
-	private Date resolveddate;
+	private Timestamp submitdate;
+	private Timestamp resolveddate;
 	private ReimbursementStatus type;
 	private String descript;
 	private String notes;
@@ -16,7 +17,7 @@ public class Reimbursement {
 	
 	public Reimbursement() {};
 	
-	public Reimbursement(Employee submitter, Employee resolver, Date submitdate, Date resolveddate,
+	public Reimbursement(Employee submitter, Employee resolver, Timestamp submitdate, Timestamp resolveddate,
 			ReimbursementStatus type, String descript, String notes, double amount) {
 		super();
 		this.submitter = submitter;
@@ -53,19 +54,19 @@ public class Reimbursement {
 		this.resolver = resolver;
 	}
 
-	public Date getSubmitdate() {
+	public Timestamp getSubmitdate() {
 		return submitdate;
 	}
 
-	public void setSubmitdate(Date submitdate) {
+	public void setSubmitdate(Timestamp submitdate) {
 		this.submitdate = submitdate;
 	}
 
-	public Date getResolveddate() {
+	public Timestamp getResolveddate() {
 		return resolveddate;
 	}
 
-	public void setResolveddate(Date resolveddate) {
+	public void setResolveddate(Timestamp resolveddate) {
 		this.resolveddate = resolveddate;
 	}
 

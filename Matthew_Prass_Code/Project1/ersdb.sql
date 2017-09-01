@@ -72,3 +72,21 @@ values(1,'Approved');
 insert into REIMBURSESTATUS(statusid, name)
 values(2,'Denied');
 /
+
+create table reimbursement
+(
+reid number primary key,
+submitterid number not null,
+resolverid number,
+submitdate timestamp not null,
+resolved timestamp,
+statusid number default(0),
+description varchar2(30) NOT NULL,
+notes varchar2(30) unique,
+amount number(12,2) not null, 
+check(amount>0),
+constraint fk_submitter foreign key(submitterid) references employee(empid),
+constraint fk_resolver foreign key(resolverid) references employee(empid),
+constraint fk_status foreign key(statusid) references reimbursestatus(statusid)
+);
+/
