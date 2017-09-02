@@ -1,9 +1,0 @@
-package com.bank.pojos;
-
-import java.math.BigDecimal;
-
-public class Account {
-	private AccountType type;
-	private User user;
-	private BigDecimal balance;
-}

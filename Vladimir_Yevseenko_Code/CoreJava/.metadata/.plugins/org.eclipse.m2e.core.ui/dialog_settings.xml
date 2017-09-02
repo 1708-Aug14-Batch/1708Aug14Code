@@ -2,11 +2,24 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.revature"/>
 			<item value="revature"/>
 		</list>
 		<list key="name">
+			<item value="FridayXML"/>
+			<item value="XMLStuff"/>
+			<item value="XML"/>
+			<item value="ReimbursementSystem"/>
+			<item value="BankWithServlet"/>
+			<item value="ServletExample"/>
 		</list>
 		<list key="artifactId">
+			<item value="FridayXML"/>
+			<item value="XMLStuff"/>
+			<item value="XML"/>
+			<item value="ReimbursementSystem"/>
+			<item value="BankWithServlet"/>
+			<item value="ServletExample"/>
 			<item value="logging"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -51,6 +64,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\CoreJava\ServletExample"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

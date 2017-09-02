@@ -1,0 +1,14 @@
+
+function fib(n) {
+	if (n <= 1)
+		return n;
+	return fib(n-1) + fib(n-2);
+}
+
+
+function runFib() {
+	document.getElementById("doFib").addEventListener("click", runFib(), 0);
+	var display = document.getElementById("fibOut");
+	var n = document.getElementById("fibIn").value;
+	display.innerHtml = fib(n);
+}

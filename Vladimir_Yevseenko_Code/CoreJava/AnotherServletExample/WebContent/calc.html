@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+</head>
+<body>
+
+	
+	<div class="jumbotron">
+		<div class="row justify-content-start">
+			<div class="col">
+				<h1>Grocery List</h1>
+				<input type="text" id="newItem" placeholder="Anything else?" class="form-control"/>
+				<button id="add">Add Item</button>
+				
+				<ul>
+					<li> Watermelon </li>
+					<li> Pineapple </li>
+					<li> Grapes </li>
+				</ul>
+			</div>
+			
+			<div class="col">
+				<h1>Purchased</h1>
+				<ul>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
+   	<script>
+		$('li').on('click', function() {
+			var text = $(this).innerHTML;
+			console.log(text);
+		});
+		
+   		$('#add').on('click', function() {
+   			if ($('#newItem').val()) {
+	   			var item = document.createElement('li');
+	   			item.innerHTML = $('#newItem').val();
+	   			$('ul').append(item);
+	   			$('#newItem').val('');
+	   			$('li').on('click', function() {
+	   	   			$(this).remove();
+	   	   		});
+   			}
+   		});	
+   	</script>
+
+</body>
+</html>

@@ -28,7 +28,7 @@ public class BubbleSort {
 	 */
 	public static void naiveBubbleSort(int[] arr) {
 		for (int i = 0; i < arr.length-1; i++)
-			for (int j = i; j < arr.length-1; j++)
+			for (int j = 0; j < arr.length-i-1; j++)
 				if (arr[j] > arr[j+1]) {
 					int temp = arr[j];
 					arr[j] = arr[j+1];
@@ -38,7 +38,7 @@ public class BubbleSort {
 	
 	
 	public static void smartBubbleSortTest() {
-		int[] arr = {1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4};
+		int[] arr = {9, 8, 7, 5, 4, 3, 2, 1};
 		System.out.print("Before smart bubble sort: ");
 		for (int n: arr)
 			System.out.print(n + " ");
@@ -62,7 +62,7 @@ public class BubbleSort {
 		boolean swapped;
 		for (int i = 0; i < arr.length-1; i++) {
 			swapped = false;
-			for (int j = i; j < arr.length-1; j++) {
+			for (int j = 0; j < arr.length-i-1; j++) {
 				if (arr[j] > arr[j+1]) {
 					int temp = arr[j];
 					arr[j] = arr[j+1];

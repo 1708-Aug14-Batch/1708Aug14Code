@@ -1,6 +1,0 @@
-package com.bank.pojos;
-
-public class Account {
-	private AccountType type;
-	private User user;
-}

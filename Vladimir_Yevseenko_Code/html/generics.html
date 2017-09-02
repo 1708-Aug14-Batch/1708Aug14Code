@@ -16,6 +16,14 @@
 			display: block;
 			margin: auto;
 		}
+		
+		body {
+			background-color: grey;
+		}
+		
+		div {
+			background-color: white;
+		}
 	
 	</style>
   </head>
@@ -87,31 +95,49 @@
       <hr>
 	  
 	  
+	  
 	   <div class="row">
 
         <div class="col-md-7">
           <a href="#">
-            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex3.png">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex4.png">
           </a>
         </div>
         <div class="col-md-5">
-          <h3>Example usage</h3>
+          <h3>How does it actually work? Type Erasure!</h3>
           <p>
-			Runtime bugs are much harder to find than compile time bugs.
-			Generics reduce a lot of common runtime errors to compile time errors due to the enforcement of the generics type system.
-			Arguments, return types and parametrized classes now follow specific input and output patterns described by the information provided inside the <> brackets.
+			These parametrized classes, interfaces and methods only exist before your program is compiled.
+			The compiler replaces all type parameters used with the bounds the types require or just the Object type if there are no bounds.
+			It also provides all the casts required for your program to compile once all the parametrized types are erased.
 			</p>
         </div>
       </div>
       <hr>
 	  
-     
+	  
+	  <div class="row">
+
+        <div class="col-md-7">
+          <a href="#">
+            <img class="img-fluid rounded mb-3 mb-md-0" src="generics_ex5.png">
+          </a>
+        </div>
+        <div class="col-md-5">
+          <h3>Things you cannot do!</h3>
+          <ul>
+			<li>You cannot use subtyping with generics</li>
+			<li>You cannot create generic arrays</li>
+			<li>Generics parameters cannot be primitives</li>
+		  </ul>
+        </div>
+      </div>
+      <hr>
+	  
+
     </div>
    
     <footer class="py-5 bg-dark">
-      <div class="container">
         <p class="m-0 text-center text-white">Vladimir Yevseenko</p>
-      </div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

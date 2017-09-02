@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<revature>
+	<employee>
+		<id>0</id>
+		<firstname>Vladimir</firstname>
+		<lastname>Bonds</lastname>
+		<nickname>Vlad</nickname>
+		<salary>50000</salary>
+	</employee>
+	
+	<employee>
+		<id>1</id>
+		<firstname>John</firstname>
+		<lastname>Burger</lastname>
+		<nickname>Burger</nickname>
+		<salary>69000</salary>
+	</employee>
+</revature>

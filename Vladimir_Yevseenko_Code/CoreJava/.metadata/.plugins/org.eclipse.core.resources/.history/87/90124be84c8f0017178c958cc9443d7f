@@ -1,0 +1,25 @@
+var myJSON = ' { "first": "Vladimir", "last": "Yevseenko", "age": 21 }';
+
+var myObj = JSON.parse(myJSON);
+
+console.log(myJSON);
+console.log(myObj);
+
+
+
+
+function getText() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readystate == 4 && xhr.status == 200) {
+			document.getElementById('things').innerHTML = xhr.responseText;
+		}
+	}
+	
+	xhr.open('GET', 'getText', true);
+	
+	xhr.send();
+}
+
+
+document.getElementById('myBtn').addEventListener('click', getText, false);

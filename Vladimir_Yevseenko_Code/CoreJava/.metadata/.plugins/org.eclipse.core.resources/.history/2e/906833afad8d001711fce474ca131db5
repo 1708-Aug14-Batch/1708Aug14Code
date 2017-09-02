@@ -1,0 +1,10 @@
+package com.revature.servlets;
+
+import javax.servlet.http.HttpServlet;
+
+public class HelloWorldServlet extends HttpServlet {
+	private static final long serialVersionUID = -8313834183301309288L;
+	
+	
+	
+}

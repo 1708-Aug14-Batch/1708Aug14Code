@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Grocery List</h1>
+	
+	<input type="text" id="newItem" placeholder="Anything else?"/>
+	<button id="add">Add Item</button>
+	
+	<ul>
+		<li> Watermelon </li>
+		<li> Pineapple </li>
+		<li> Grapes </li>
+		
+	</ul>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        
+   	<script>
+   		$('#add').on('clock', function() {
+   			var item = document.createElemt('li');
+   			temp.immerHTML = $('#newItem').val();
+   		})
+   	
+   	</script>
+</body>
+</html>

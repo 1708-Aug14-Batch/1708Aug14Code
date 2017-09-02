@@ -1,7 +1,0 @@
-package com.bank.dao;
-
-public interface DAO {
-	void abstract createNewUser(String fn, String ln, String email, String pw);
-	
-	
-}
