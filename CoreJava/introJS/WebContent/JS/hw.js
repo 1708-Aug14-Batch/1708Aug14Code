@@ -159,6 +159,21 @@ document.getElementById("doEven").addEventListener("click", runIsEven);
 //Define function isPalindrome(someStr)
 //Return true if someStr is a palindrome, otherwise return false
 
+function isPalindrome(someStr) {
+	if (someStr == someStr.split('').reverse().join('')) {
+		return true;
+    } else {
+    	return false;
+    }
+}
+
+function runIsPalindrome() {
+	var display = document.getElementById("palinDisplay");
+	var str = document.getElementById("bString").value;
+	display.innerHTML = isPalindrome(str);
+}
+
+document.getElementById("doPalin").addEventListener("click", runIsPalindrome);
 
 //8. Shapes
 //Define function: printShape(shape, height, character)
@@ -188,6 +203,7 @@ document.getElementById("doEven").addEventListener("click", runIsEven);
 //Print every property and it's value.
 
 
+
 //10. Delete Element
 //Define function deleteElement(someArr)
 //Print length
@@ -195,6 +211,24 @@ document.getElementById("doEven").addEventListener("click", runIsEven);
 //Print length
 //The lengths should be the same.
 
+function deleteElement(someArr) {
+	delete someArr[2];
+	return someArr;
+}
+
+function runDeleteElement() {
+	var arr = [1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4];
+	var arrBefore = document.getElementById("arrBefore");
+	var arrAfter = document.getElementById("arrAfter");
+	var len = arr.length;
+	arrBefore.innerHTML = arr;
+	lenBefore.innerHTML = len;
+	arrAfter.innerHTML = deleteElement(arr);
+	len = arr.length;
+	lenAfter.innerHTML = len;
+}
+
+document.getElementById("doDelete").addEventListener("click", runDeleteElement);
 
 //11. Splice Element
 //Define function spliceElement(someArr)
