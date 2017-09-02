@@ -1,7 +1,0 @@
-package com.ex.day4;
-
-public interface FactoryObject {
-
-	public void doSomething();
-	
-}
