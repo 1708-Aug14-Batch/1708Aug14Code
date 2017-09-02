@@ -8,10 +8,16 @@ public interface DAO {
 	
 	public void viewAllEmp();
 	
-	public void viewPendingRequests();
+	public void viewPendingRequestsByMgr();
 	
-	public void viewResolvedRequests();
+	public void viewResolvedRequestsByMgr();
+	
+	public void viewPendingRequestsByEmp(int id);
+	
+	public void viewResolvedRequestsByEmp(int id);
 	
 	public void viewEmpRequest(int id);
+	
+	public void viewEmployee(int id);
 
 }
