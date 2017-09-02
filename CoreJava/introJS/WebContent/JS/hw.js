@@ -237,6 +237,24 @@ document.getElementById("doDelete").addEventListener("click", runDeleteElement);
 //Print length
 //The lengths should be one less than the original length.
 
+function spliceElement(someArr) {
+	someArr.splice(2,1);
+	return someArr;
+}
+
+function runSpliceElement() {
+	var arr = [1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4];
+	var arr1 = document.getElementById("arrayBefore");
+	var arr2 = document.getElementById("arrayAfter");
+	var len = arr.length;
+	arr1.innerHTML = arr;
+	lenSBefore.innerHTML = len;
+	arr2.innerHTML = spliceElement(arr);
+	len = arr.length;
+	lenSAfter.innerHTML = len;
+}
+
+document.getElementById("doSplice").addEventListener("click", runSpliceElement);
 
 
 //12. Defining an object using a constructor
