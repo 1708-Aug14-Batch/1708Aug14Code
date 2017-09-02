@@ -249,7 +249,6 @@ function runPrintShape() {
 	var shape = document.getElementById("cString").value;
 	var height = document.getElementById("height").value;
 	var char = document.getElementById("char").value;
-	//display.innerHTML = isPalindrome(str);
 	printShape(shape, height, char);
 }
 
@@ -259,7 +258,32 @@ document.getElementById("doShapes").addEventListener("click", runPrintShape);
 //Define function traverseObject(someObj)
 //Print every property and it's value.
 
+function traverseObject(someObj) {
+	var output = "";
+	for(prop in someObj) {
+		if(someObj.hasOwnProperty(prop)) {
+			output += prop;
+			output += ": ";
+			output += someObj[prop];
+			output += "<br>"
+		}
+	}
+	return output;
+}
 
+function runTravereObject() {
+	var obj = {
+		name: "Allan Jones",
+		address: "123 Main Street",
+		city: "Seattle",
+		state: "Washington",
+		email: "DrJava@gmail.com"
+	};
+	var display = document.getElementById("traverseDisplay");
+	display.innerHTML = traverseObject(obj);
+}
+
+document.getElementById("doTraverse").addEventListener("click", runTravereObject);
 
 //10. Delete Element
 //Define function deleteElement(someArr)
