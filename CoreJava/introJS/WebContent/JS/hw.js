@@ -337,19 +337,22 @@ function runSpliceElement() {
 
 document.getElementById("doSplice").addEventListener("click", runSpliceElement);
 
-
 //12. Defining an object using a constructor
 //Define a function Person(name, age)
 //The following line should set a Person object to the variable john:
 //	var john = new Person("John", 30);
 
 function Person(name, age) {
-	
+	this.name = name;
+	this.age = age;
 }
 
 function runPerson() {
-	
+	var john = new Person("John",30);
+	johnDisplay.innerHTML = "Name: " + john.name + "<br>" + "Age: " + john.age;
 }
+
+document.getElementById("doConstruct").addEventListener("click", runPerson);
 
 //13. Defining an object using an object literal
 //Define function getPerson(name, age)
