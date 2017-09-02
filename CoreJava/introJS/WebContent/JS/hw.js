@@ -197,6 +197,63 @@ document.getElementById("doPalin").addEventListener("click", runIsPalindrome);
 // ***
 //  *
 
+function printShape(shape, height, character) {
+	switch(shape) {
+	case "Square":
+		var output = "";
+		for (row = 1; row <= height; row++) {
+			for (x = 1; x <= height; x++) {
+				output += character;
+			}
+			output += "\n"
+		}
+		console.log(output);
+		break;
+	case "Triangle":
+		var output = "";
+		for (row = 1; row <= height; row++) {
+			for (x = 1; x <= row; x++) {
+				output += character + " ";
+			}
+			output += "\n";
+		}
+		console.log(output);
+	break;
+	case "Diamond":
+		var output = "";
+		for(row=1 ; row<=height ; ++row) {
+		   var i = (2*row) - 1;
+		   if(i>height) {
+			   i = 2*(height-row+1) - 1;
+		   }
+		   for(j=0 ; j<(height-i)/2 ; ++j){
+			   output += " ";
+		   }
+		   for(j=0 ; j<i ; ++j) {
+			   output += character;
+		   }
+		   for(j=0 ; j<(height-i)/2 ; ++j) {
+			   output += " ";
+		   }
+		   output += "\n";
+		 }
+		   console.log(output);
+		break;
+	default:
+		console.log("Shape Must be Square, Triangle, or Diamond");
+	}
+}
+
+function runPrintShape() {
+	var display = document.getElementById("shapesDisplay");
+	var shape = document.getElementById("cString").value;
+	var height = document.getElementById("height").value;
+	var char = document.getElementById("char").value;
+	//display.innerHTML = isPalindrome(str);
+	printShape(shape, height, char);
+}
+
+document.getElementById("doShapes").addEventListener("click", runPrintShape);
 
 //9. Object literal
 //Define function traverseObject(someObj)
@@ -262,7 +319,13 @@ document.getElementById("doSplice").addEventListener("click", runSpliceElement);
 //The following line should set a Person object to the variable john:
 //	var john = new Person("John", 30);
 
+function Person(name, age) {
+	
+}
 
+function runPerson() {
+	
+}
 
 //13. Defining an object using an object literal
 //Define function getPerson(name, age)
