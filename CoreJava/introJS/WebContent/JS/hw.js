@@ -359,7 +359,17 @@ document.getElementById("doConstruct").addEventListener("click", runPerson);
 //The following line should set a Person object to the variable john:
 //	var john = getPerson("John", 30);
 
+function getPerson(name, age) {
+	var obj = {Name: name, Age: age};
+	return obj;
+}
 
+function runGetPerson() {
+	var john = getPerson("John", 30);
+	john2Display.innerHTML = "Name: " + john.Name + "<br>" + "Age: " + john.Age;	
+}
+
+document.getElementById("doLiteral").addEventListener("click", runGetPerson);
 
 //-----------------------------------------------------------------------------------
 //PART II
