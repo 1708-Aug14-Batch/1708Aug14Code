@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="D" key="selection"/>
+		<item value="disabled" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="disabled"/>
+			<item value="bubbleSort"/>
+			<item value="alert"/>
+			<item value="sub"/>
+			<item value="form"/>
+			<item value="&lt;script type=&quot;text/javascript&quot; src=&quot;HW part 1.js&quot;&gt;&lt;/script&gt;"/>
+			<item value="8080"/>
 			<item value="D"/>
-			<item value="shape_length"/>
-			<item value="224"/>
-			<item value="shape_button"/>
-			<item value="shapes"/>
-			<item value="XXX"/>
-			<item value="define"/>
-			<item value="HW.js"/>
 		</list>
 		<list key="replacehistory">
+			<item value=""/>
+			<item value="8181"/>
 			<item value="define_lit"/>
 			<item value="define_con"/>
 			<item value="define"/>
 			<item value="splice"/>
 			<item value="delete"/>
 			<item value="literal"/>
-			<item value="shape"/>
-			<item value="shapes"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

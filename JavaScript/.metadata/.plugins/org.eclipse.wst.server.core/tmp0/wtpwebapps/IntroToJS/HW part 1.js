@@ -58,7 +58,7 @@ function bubbleSort(numArray) {
 		}
 		console.log(swapped);
 		console.log(loop);
-
+		
 	}
 
 	return numArray;
@@ -222,11 +222,9 @@ function runShape() {
 	var display = document.getElementById("shape_display");
 	var someChar = document.getElementById("shape_text").value;
 	var height = document.getElementById("shape_height").value;
-	var type = document.getElementById("shape_radio").checked;
-	//display.innerHTML = shape(someChar, height, type);
-	display.innerHTML = type;
 	
-	var radios = form.elements[name];
+	var form = document.getElementById('radios');
+	var radios = form.elements['radio'];
 	var val;
 	for (var i=0, len=radios.length; i<len; i++) {
 		if (radios[i].checked == true) {
@@ -234,13 +232,57 @@ function runShape() {
 			break;
 		}
 	}
-	alert("This is the checked element: " + val);
+	
+	display.innerHTML = shape(someChar, height, val);
 }
 function shape(someChar, height, type) {
-	alert(someChar);
-	alert(height);
-	alert(type);
-	return null;
+
+	for (var i = 0; i < height; i++) {
+		switch (type) {
+		case 'square':
+			var str = "";
+			for (var j = 0; j < height; j++)
+				str += someChar;
+			console.log(str);
+			break;
+
+		case 'triangle':
+			var str = ""
+			for (var j = 0; j < i + 1; j++)
+				str += someChar;
+			console.log(str);
+			break;
+
+		case 'diamond':
+			var str = "";
+			
+			/*
+			 * This part almost makes a diamond. More like a square
+			 * with the bottom-left and top-right cut off
+			 */
+			for (var j = 0; j < height; j++) {
+
+				if (Math.abs(i - j) <= Math.floor(height/2)) {
+					str += someChar;
+
+				} else
+					str += " ";
+			}
+			
+			// This makes an almost diamond with both left corners cut off
+			if (i < height/2)
+				str = reverseString(str);
+			
+			// So if the left side is correct, reflect it (and overwrite) the right side
+			var tempStr = substring(str, Math.floor(parseInt(str.length/2)), 0);
+			str = tempStr + someChar + reverseString(tempStr);
+			
+			console.log(str);
+			break;
+		}
+	}
+
+	return "(See console for output)";
 }
 document.getElementById("shape_button").addEventListener("click", runShape);
 
@@ -250,43 +292,85 @@ document.getElementById("shape_button").addEventListener("click", runShape);
  */
 function runLiteral() {
 	var display = document.getElementById("literal_display");
-	var someStr = document.getElementById("literal_text").value;
-	display.innerHTML = literal(someStr);
+	var someObj = {"name":"Dude", "favorite color":"Green", "favorite drink":"Sprite"};
+	display.innerHTML = traverseObject(someObj);
 }
-function literal(someStr) {
+function traverseObject(someObj) {
+	var someStr = "";
+	
+	var propValue;
+	for(var propName in someObj) {
+	    propValue = someObj[propName]
 
-	return null;
+	    someStr += propName + ":" + propValue + ", ";
+	}
+	
+	return someStr;
 }
 document.getElementById("literal_button").addEventListener("click", runLiteral);
 
 /*
- * 10. Delete Element Define function deleteElement(someArr) Print length Delete
- * the third element in the array. Print length The lengths should be the same.
+ * 10. Delete Element Define function deleteElement(someArr)
+ * Print length
+ * Delete the third element in the array.
+ * Print length The lengths should be the same.
  */
 function runDeleteEl() {
 	var display = document.getElementById("delete_display");
-	var someStr = document.getElementById("delete_text").value;
-	display.innerHTML = deleteEl(someStr);
+	var someArr = ["low", "fuel", "audio", "ordeal", "pulse", "talk", "context", "arson", "foot", "beat", "bland"];
+	var someStr = "";
+	someStr += "Array length: " + someArr.length + " before, ";
+	someStr += deleteElement(someArr);
+	
+	display.innerHTML = someStr;
 }
-function deleteEl(someStr) {
+function deleteElement(someArr) {
+	var someStr = "";
 
-	return null;
+	if (someArr.length < 3) {
+		str += "Array isn't long enough";
+		return someStr;
+	}
+	
+	// Cut out the third element
+	someArr[3] = "";
+	
+	someStr += "Array length " + someArr.length + " after deleting the third element. New array: " + someArr;
+	
+	return someStr;
 }
 document.getElementById("delete_button").addEventListener("click", runDeleteEl);
 
 /*
- * 11. Splice Element Define function spliceElement(someArr) Print length Splice
- * the third element in the array. Print length The lengths should be one less
- * than the original length.
+ * 11. Splice Element Define function
+ * spliceElement(someArr) Print length
+ * Splice the third element in the array.
+ * Print length The lengths should be one less than the original length.
  */
 function runSpliceEl() {
 	var display = document.getElementById("splice_display");
-	var someStr = document.getElementById("splice_text").value;
-	display.innerHTML = spliceEl(someStr);
+	var someArr = ["low", "fuel", "audio", "ordeal", "pulse", "talk", "context", "arson", "foot", "beat", "bland"];
+	var someStr = "";
+	someStr += "Array length: " + someArr.length + " before, ";
+	someStr += spliceElement(someArr);
+	
+	display.innerHTML = someStr;
 }
-function spliceEl(someStr) {
+function spliceElement(someArr) {
+	var someStr = "";
 
-	return null;
+	if (someArr.length < 3) {
+		str += "Array isn't long enough";
+		return someStr;
+	}
+	
+	// Cut out the third element
+	var newArr = someArr.splice(0, 2);
+	newArr = newArr.concat(someArr.splice(1, someArr.length-1));
+	
+	someStr += "Array length " + newArr.length + " after deleting the third element. New array: " + newArr;
+	
+	return someStr;
 }
 document.getElementById("splice_button").addEventListener("click", runSpliceEl);
 
@@ -298,28 +382,36 @@ document.getElementById("splice_button").addEventListener("click", runSpliceEl);
 function runDefineCon() {
 	var display = document.getElementById("define_con_display");
 	var someStr = document.getElementById("define_con_text").value;
-	display.innerHTML = define_conCon(someStr);
+	
+	var john = new Person("John", 30);
+	
+	display.innerHTML = traverseObject(john);
 }
-function defineCon(someStr) {
-
-	return null;
+function Person(name, age) {
+	
+	return {"name":name, "age":age};
 }
 document.getElementById("define_con_button").addEventListener("click",
 		runDefineCon);
 
 /*
- * 13. Defining an object using an object literal Define function
- * getPerson(name, age) The following line should set a Person object to the
- * variable john: var john = getPerson("John", 30);
+ * 13. Defining an object using an object literal
+ * Define function getPerson(name, age)
+ * The following line should set a Person object to the variable john:
+ *    var john = getPerson("John", 30);
  */
 function runDefineLit() {
 	var display = document.getElementById("define_lit_display");
 	var someStr = document.getElementById("define_lit_text").value;
-	display.innerHTML = defineLit(someStr);
+	
+	var john = getPerson("John", 30);
+	
+	display.innerHTML = traverseObject(john);
 }
-function defineLit(someStr) {
+function getPerson(name, age) {
 
-	return null;
+	return Person(name, age);
+	
 }
 document.getElementById("define_lit_button").addEventListener("click",
 		runDefineLit);
