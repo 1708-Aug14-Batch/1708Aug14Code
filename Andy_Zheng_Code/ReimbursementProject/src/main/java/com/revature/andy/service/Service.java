@@ -11,6 +11,47 @@ import com.revature.andy.session.PseudoSession;
 public class Service {
 
 	static DAOImplementation dao = new DAOImplementation();
+	boolean isLoggedIn = false;
+	User currentUser = null;
+	
+	public int login(String email, String pwd) {
+		currentUser = dao.getUser(email, pwd);
+		if(currentUser != null && currentUser.getUserID()!=0){
+			isLoggedIn = true;
+			return 1;
+		}else {
+			return validateLogin(email);
+		}
+	}
+	
+	public int validateLogin(String email) {
+		
+		HashSet<User> users = dao.getUsers();
+		
+		for(User x:users) {
+			if(x.getEmail().equalsIgnoreCase(email)) {
+				return 2;
+			}
+		}
+		return 0;
+		}
+	
+	public void logout() {
+		isLoggedIn = false;
+		currentUser = null;
+	}
+	
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+	
+	public boolean getIsLoggedIn(){
+		return isLoggedIn;
+	}
 	
 	// Create User
 	public boolean createUser(String fname, String lname, String email, String pwd, int isManager) {

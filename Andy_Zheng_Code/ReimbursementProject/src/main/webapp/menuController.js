@@ -7,10 +7,10 @@
  		$http({
  			method: 'POST',
  			// servlet mapping
- 			url: '/login',
+ 			url: 'login',
  			data: $scope.newLogin
  		}).then(function(value)){
-
+ 			console.log("faj");
  		}
  	}
  })

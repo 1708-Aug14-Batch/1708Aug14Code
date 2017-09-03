@@ -16,13 +16,10 @@
 			<div class="col">
 				<h1>Reimbursement System</h1>
 				<br/>
-
-				<label for="exampleInputEmail1">Email address</label>
-				<!-- change input type="email" -->
-				<input type="text" name="email" placeholder="Enter email" ng-model="credential.email">
+				<input type="text" class="form-control" placeholder="Email" aria-label="Email" ng-model="credential.email">
 				<br>
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" name="credential.pass" placeholder="Password" ng-model="password">
+				<input type="password" class="form-control" placeholder="Password" aria-label="Password" ng-model="credential.password">
+				<br>
 				<button type="submit" value="Post" class="btn btn-primary" ng-click="login()">Login</button>
 				<p id="fail"></p>
 			</div>

@@ -21,6 +21,9 @@ public class Login extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		String email;
+		String password;
+		
 		JsonFactory factory = new JsonFactory();
 		JsonParser parser  = factory.createParser(req.getInputStream());
 		
@@ -29,22 +32,18 @@ public class Login extends HttpServlet{
 			
 			if(JsonToken.FIELD_NAME.equals(jsonToken)){
 		        String fieldName = parser.getCurrentName();
-		        System.out.println(fieldName);
+		        if(fieldName.equals("email")) {
+		        	email = parser.getValueAsString();
+		        }else if(fieldName.equals("password")) {
+		        	password = parser.getValueAsString();
+		        }
 
 		        jsonToken = parser.nextToken();
 	        	System.out.println(parser.getValueAsString());
-		        
-		        /*
-		        
-		        if("email".equals(fieldName)){
-		        	System.out.println(parser.getValueAsString());
-		        }
-		        if ("pass".equals(fieldName)){
-		            System.out.println(parser.getValueAsString());
-		        }
-		        */
 		    }
 		}
+		
+		
 		
 		/*
 		PrintWriter pr = resp.getWriter();
