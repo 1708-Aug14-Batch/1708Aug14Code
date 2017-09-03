@@ -1,15 +1,15 @@
 package com.bank.main;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import com.bank.pojos.*;
+import com.bank.pojos.Account;
 import com.bank.pojos.Account.accountLevel;
 import com.bank.pojos.Account.accountType;
+import com.bank.pojos.BankUser;
+import com.bank.pojos.Person;
 import com.bank.service.Service;
 
 /*
@@ -59,6 +59,7 @@ public class RunBank {
 
 		try {
 			bankingSystem();
+
 		} catch (NoSuchElementException e) {
 			System.out.println("Bad input. Exiting system...");
 		} catch (Exception e) {
@@ -316,18 +317,6 @@ public class RunBank {
 		return true;
 	}
 
-	private static LocalDate formatDate(String dateString) {
-		LocalDate day = null;
-
-		try {
-			day = LocalDate.parse(dateString);
-		} catch (DateTimeParseException e) {
-			return null;
-		}
-
-		return day;
-	}
-
 	private static boolean createBankUser() {
 
 		// Get information from user to find/create a person
@@ -367,10 +356,7 @@ public class RunBank {
 			return false;
 		}
 
-		if (guy == null)
-			return false;
-		else
-			return true;
+		return true;
 	}
 
 	// Returns true if an account was successfully created

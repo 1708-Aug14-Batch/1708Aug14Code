@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="That person" key="selection"/>
+		<item value="profile" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="That person"/>
-			<item value="isEmailAv"/>
-			<item value="tryCreate"/>
-			<item value="setEmail"/>
-			<item value="isEmailA"/>
-			<item value="isEmailAvailable"/>
-			<item value="email Un"/>
-			<item value="Email un"/>
+			<item value="profile"/>
+			<item value="your profile"/>
+			<item value="updateP"/>
+			<item value="conn.set"/>
+			<item value="try"/>
+			<item value="update"/>
+			<item value="updatePerson"/>
+			<item value="createPerson"/>
 		</list>
 		<list key="replacehistory">
+			<item value="employee_id"/>
+			<item value="user_id"/>
+			<item value=""/>
 			<item value="Formatted"/>
 			<item value="personId"/>
 			<item value="WHERE person_id"/>
 			<item value="key[0] = &quot;person_id&quot;;"/>
 			<item value="int personId"/>
-			<item value="PersonId"/>
-			<item value="employeeId"/>
-			<item value="clerkId"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

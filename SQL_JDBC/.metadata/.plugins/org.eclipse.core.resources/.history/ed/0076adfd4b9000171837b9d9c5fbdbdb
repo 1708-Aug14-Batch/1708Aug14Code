@@ -1,0 +1,709 @@
+package com.bank.dao;
+
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import com.bank.pojos.Account;
+import com.bank.pojos.Account.accountLevel;
+import com.bank.pojos.Account.accountType;
+import com.bank.pojos.BankUser;
+import com.bank.pojos.Clerk;
+import com.bank.pojos.Person;
+import com.bank.util.ConnectionFactory;
+
+// NOTE: SQL is 1-indexed rather than 0-indexed
+
+/*
+ * This is my second try at the DaoImpl class. I've made modification
+ * to reduce duplicated code. This is a separate class as I know the
+ * earlier one works and I want to keep it as a backup in case
+ * something goes wrong. This class will need extensive testing to
+ * ensure it still works properly
+ */
+
+public class DaoSqlImpl2 {
+
+	public String getFormattedDate(LocalDate day) {
+		if (day == null)
+			return null;
+		return day.toString();
+	}
+
+	public LocalDate fromFormattedDate(String str) {
+		if (str == null || str.equals("null"))
+			return null;
+
+		return LocalDate.parse(str.substring(0, 10));
+	}
+
+	// Need to set either String, int, double, LocalDate, or boolean
+	private void setPreparedStatement(int i, PreparedStatement ps, Object obj) throws SQLException {
+		if (obj instanceof String)
+			ps.setString(i, (String) obj);
+		else if (obj instanceof Integer)
+			ps.setInt(i, (int) obj);
+		else if (obj instanceof Double)
+			ps.setDouble(i, (double) obj);
+		else if (obj instanceof Boolean)
+			ps.setInt(i, (Boolean) obj ? 1 : 0); // SQL does not have booleans.
+													// Saved as an int
+		else if (obj instanceof LocalDate)
+			ps.setString(i, getFormattedDate((LocalDate) obj));
+		else
+			System.out.println("Error. Illegal data type");
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// CREATE methods
+	///////////////////////////////////////////////////////////////////////////////
+
+	// Works either as a CREATE or UPDATE depending on the String sql passed in
+	private Integer createUpdate(String sql, String[] key, ArrayList<Object> objects) {
+		Integer id = null;
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			for (int i = 0; i < objects.size(); i++)
+				setPreparedStatement(i + 1, ps, objects.get(i));
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			ResultSet pk = ps.getGeneratedKeys();
+			while (pk.next())
+				id = pk.getInt(1);
+
+			conn.commit();
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return id;
+
+	}
+
+	public Person createPerson(String firstName, String lastName, String email, boolean deceased) {
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		// No semi-colon inside the quotes
+		String sql = "INSERT INTO person(first_name, last_name, email, deceased)" + " VALUES(?, ?, ?, ?)";
+		String[] key = new String[1];
+		key[0] = "person_id";
+
+		objects.add((Object) firstName);
+		objects.add((Object) lastName);
+		objects.add((Object) email);
+		objects.add((Object) deceased);
+
+		Integer id = createUpdate(sql, key, objects);
+
+		Person per = null;
+		if (id != null) {
+			per = new Person(id, firstName, lastName, email);
+			per.setDeceased(deceased);
+		}
+
+		return per;
+	}
+
+	public Person createPerson(String firstName, String lastName, String email, LocalDate birthDate, boolean deceased) {
+
+		if (birthDate == null)
+			return createPerson(firstName, lastName, email, deceased);
+
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		String sql = "INSERT INTO person(first_name, last_name, email, birth_date, deceased)"
+				+ " VALUES(?, ?, ?, TO_DATE(?,'yyyy-mm-dd'), ?)";
+		String[] key = new String[1];
+		key[0] = "person_id";
+
+		objects.add((Object) firstName);
+		objects.add((Object) lastName);
+		objects.add((Object) email);
+		objects.add((Object) birthDate);
+		objects.add((Object) deceased);
+
+		Integer id = createUpdate(sql, key, objects);
+
+		Person per = null;
+		if (id != null) {
+			per = new Person(id, firstName, lastName, email);
+			per.setBirthDate(birthDate);
+			per.setDeceased(deceased);
+		}
+
+		return per;
+	}
+
+	public BankUser createBankUser(Person per, String username, String password) {
+
+		// No semi-colon inside the quotes
+		String sql = "INSERT INTO bank_user(username, password, person_id) VALUES(?, ?, ?)";
+		
+		Integer id = createUpdateBankUser(sql, per.getPersonId(), username, password);
+		BankUser user = null;
+		if (id != null)
+			user = new BankUser(per, id, username, password);
+
+		return user;
+	}
+	
+	private Integer createUpdateBankUser(String sql, int personId, String username, String password) {
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		String[] key = new String[1];
+		key[0] = "user_id";
+
+		objects.add((Object) username);
+		objects.add((Object) password);
+		objects.add((Object) personId);
+
+		Integer id = createUpdate(sql, key, objects);
+
+		return id;
+	}
+
+	public Account createAccount(BankUser guy, BigDecimal balance, accountType type, accountLevel level) {
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		// No semi-colon inside the quotes
+		String sql = "INSERT INTO account(balance, opened_date, user_id, type_id, level_id, deleted)"
+				+ " VALUES(?, TO_DATE(?,'yyyy-mm-dd'), ?, ?, ?, ?)";
+		String[] key = new String[1];
+		key[0] = "account_id";
+
+		LocalDate day = LocalDate.now();
+		objects.add((Object) balance.toString());
+		objects.add((Object) day);
+		objects.add((Object) guy.getUserId());
+		objects.add((Object) type.ordinal());
+		objects.add((Object) level.ordinal());
+		objects.add((Object) 0); // deleted = false
+
+		Integer id = createUpdate(sql, key, objects);
+
+		Account acc = null;
+		if (id != null)
+			acc = new Account(id, day, balance, false, type, level, guy.getUserId());
+
+		return acc;
+	}
+
+	public Clerk createClerk(Person per, int employeeId, String password, double hourlyWage) {
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		// No semi-colon inside the quotes
+		String sql = "INSERT INTO clerk(employee_id, password, date_hired, hourly_wage, hired, person_id)"
+				+ " VALUES(?, ?, TO_DATE(?,'yyyy-mm-dd'), ?, ?, ?)";
+		String[] key = new String[1];
+		key[0] = "employee_id";
+
+		LocalDate dateHired = LocalDate.now();
+		objects.add((Object) employeeId);
+		objects.add((Object) password);
+		objects.add((Object) dateHired);
+		objects.add((Object) hourlyWage);
+		objects.add((Object) 1); // hired = true
+		objects.add((Object) per.getPersonId());
+
+		Integer id = createUpdate(sql, key, objects);
+
+		Clerk cler = null;
+		if (id != null)
+			cler = new Clerk(per, employeeId, dateHired, password, hourlyWage);
+
+		return cler;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// READ methods
+	///////////////////////////////////////////////////////////////////////////////
+
+	private Object read(String sql, String[] key, Object id) {
+		Object obj = null;
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			setPreparedStatement(1, ps, id);
+
+			ResultSet rs = ps.executeQuery();
+
+			obj = getObjectFromResultSet(rs, key[0]);
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return obj;
+	}
+
+	public Person readPerson(int personId) {
+		String sql = "SELECT * FROM person WHERE person_id=?";
+		String[] key = new String[1];
+		key[0] = "person_id";
+
+		return (Person) read(sql, key, personId);
+	}
+
+	public Person readPerson(String email) {
+		String sql = "SELECT * FROM person WHERE email=?";
+		String[] key = new String[1];
+		key[0] = "person_id";
+
+		return (Person) read(sql, key, email);
+	}
+
+	public BankUser readBankUser(String username) {
+		String sql = "SELECT * FROM bank_user WHERE username=?";
+		String[] key = new String[1];
+		key[0] = "user_id";
+
+		return (BankUser) read(sql, key, username);
+	}
+
+	public BankUser readBankUser(int userId) {
+		String sql = "SELECT * FROM bank_user WHERE user_id=?";
+		String[] key = new String[1];
+		key[0] = "user_id";
+
+		return (BankUser) read(sql, key, userId);
+	}
+
+	public Account readAccount(int accountId) {
+		String sql = "SELECT * FROM account WHERE account_id=?";
+		String[] key = new String[1];
+		key[0] = "account_id";
+
+		return (Account) read(sql, key, accountId);
+	}
+
+	public Clerk readClerk(int employeeId) {
+		String sql = "SELECT * FROM clerk WHERE employee_id=?";
+		String[] key = new String[1];
+		key[0] = "employee_id";
+
+		return (Clerk) read(sql, key, employeeId);
+	}
+
+	private Object getObjectFromResultSet(ResultSet rs, String key) throws SQLException {
+		if (key.equals("person_id"))
+			return getPersonFromResultSet(rs);
+		else if (key.equals("bank_user_id"))
+			return getBankUserFromResultSet(rs);
+		else if (key.equals("account_id"))
+			return getAccountFromResultSet(rs);
+		else if (key.equals("clerk_id"))
+			return getClerkFromResultSet(rs);
+
+		return null;
+	}
+
+	private Object getPersonFromResultSet(ResultSet rs) throws SQLException {
+		Person per = null;
+		while (rs.next()) {
+			int personId = rs.getInt(1); // This line is redundant
+			String firstName = rs.getString(2);
+			String lastName = rs.getString(3);
+			String email = rs.getString(4);
+			LocalDate birthDate = fromFormattedDate(rs.getString(5));
+			boolean deceased = (rs.getInt(6) == 0) ? false : true;
+
+			per = new Person(personId, firstName, lastName, email);
+			per.setBirthDate(birthDate);
+			per.setDeceased(deceased);
+		}
+
+		return (Object) per;
+	}
+
+	private Object getBankUserFromResultSet(ResultSet rs) throws SQLException {
+		BankUser user = null;
+		while (rs.next()) {
+			int id = rs.getInt(1);
+			String username = rs.getString(2); // This line is redundant
+			String password = rs.getString(3);
+			int personId = rs.getInt(4);
+
+			Person per = readPerson(personId);
+
+			user = new BankUser(per, id, username, password);
+
+		}
+
+		return (Object) user;
+	}
+
+	private Object getAccountFromResultSet(ResultSet rs) throws SQLException {
+		Account acc = null;
+		while (rs.next()) {
+			int accountId = rs.getInt(1); // This line is redundant
+			BigDecimal balance = new BigDecimal(rs.getString(2));
+			LocalDate accountOpenedDate = fromFormattedDate(rs.getString(3));
+			int userId = rs.getInt(4);
+			int typeId = rs.getInt(5);
+			int levelId = rs.getInt(6);
+			boolean deleted = (rs.getInt(7) == 0) ? false : true;
+
+			acc = new Account(accountId, accountOpenedDate, balance, deleted, accountType.values()[typeId],
+					accountLevel.values()[levelId], userId);
+
+		}
+
+		return (Object) acc;
+	}
+
+	private Object getClerkFromResultSet(ResultSet rs) throws SQLException {
+		Clerk cler = null;
+		while (rs.next()) {
+			int employeeId = rs.getInt(1); // This line is redundant
+			String password = rs.getString(2);
+			LocalDate dateHired = fromFormattedDate(rs.getString(3));
+			double hourlyWage = rs.getDouble(4);
+			boolean hired = (rs.getInt(5) == 0) ? false : true;
+			int personId = rs.getInt(6);
+
+			Person per = readPerson(personId);
+
+			cler = new Clerk(per, employeeId, dateHired, password, hourlyWage);
+			cler.setHired(hired);
+		}
+
+		return (Object) cler;
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// UPDATE methods
+	///////////////////////////////////////////////////////////////////////////////
+
+	public boolean updatePerson(int personId, Person per) {
+		ArrayList<Object> objects = new ArrayList<Object>();
+
+		// No semi-colon inside the quotes
+		String sql = "UPDATE person SET"
+				+ " first_name=?, last_name=?, email=?, birth_date=TO_DATE(?,'yyyy-mm-dd'), deceased=?"
+				+ " WHERE person_id=?";
+		String[] key = new String[1];
+		key[0] = "person_id";
+
+		objects.add((Object) per.getFirstName());
+		objects.add((Object) per.getLastName());
+		objects.add((Object) per.getEmail());
+		objects.add((Object) per.getBirthDate());
+		objects.add((Object) per.isDeceased());
+		objects.add((Object) personId);
+
+		Integer id = createUpdate(sql, key, objects);
+
+		if (id == null)
+			return false;
+		else
+			return true;
+	}
+
+	public boolean updateBankUser(int userId, BankUser guy) {
+		String sql = "UPDATE bank_user SET" + " username=?, password=?" + " WHERE user_id=?";
+		
+		Integer id = createUpdateBankUser(sql, per.getPersonId(), username, password);
+		BankUser user = null;
+		if (id != null)
+			user = new BankUser(per, id, username, password);
+
+		return user;
+	}
+
+	public boolean updateAccount(int accountId, Account acc) {
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			// No semi-colon inside the quotes
+			String sql = "UPDATE account SET" + " balance=?, level_id=?, deleted=?" + " WHERE account_id=?";
+			String[] key = new String[1];
+			key[0] = "account_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, acc.getBalance().toString());
+			ps.setInt(2, acc.getLevel().ordinal());
+			ps.setInt(3, acc.isDeleted() ? 1 : 0);
+			ps.setInt(4, accountId);
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			conn.commit();
+			return true;
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return false;
+
+	}
+
+	public boolean updateClerk(int employeeId, Clerk cler) {
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			// No semi-colon inside the quotes
+			String sql = "UPDATE clerk SET" + " password=?, hourly_wage=?, hired=?" + " WHERE employee_id=?";
+			String[] key = new String[1];
+			key[0] = "employee_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, cler.getPassword());
+			ps.setDouble(2, cler.getHourlyWage());
+			ps.setInt(3, cler.isHired() ? 1 : 0);
+			ps.setInt(4, employeeId);
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			conn.commit();
+			return true;
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return false;
+
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// DELETE methods
+	///////////////////////////////////////////////////////////////////////////////
+
+	public boolean deletePerson(int personId) {
+
+		Person per = readPerson(personId);
+		if (per == null)
+			return false;
+
+		per.setDeceased(true);
+		return updatePerson(personId, per);
+
+	}
+
+	// Delete all of the user's accounts
+	public boolean deleteBankUser(int userId) {
+
+		BankUser guy = readBankUser(userId);
+		if (guy == null)
+			return false;
+
+		ArrayList<Account> list = readAllAccounts(userId);
+		if (list == null)
+			return true; // User has no accounts, there's nothing to delete
+
+		for (Account acc : list) // Delete each account
+			if (!deleteAccount(acc.getAccountId())) // If something went wrong
+				return false; // return false
+
+		return true;
+	}
+
+	public boolean deleteAccount(int accountId) {
+
+		Account acc = readAccount(accountId);
+		if (acc == null)
+			return false;
+
+		acc.setDeleted(true);
+		return updateAccount(accountId, acc);
+
+	}
+
+	public boolean deleteClerk(int employeeId) {
+
+		Clerk cler = readClerk(employeeId);
+		if (cler == null)
+			return false;
+
+		cler.setHired(false);
+		return updateClerk(employeeId, cler);
+
+	}
+
+	///////////////////////////////////////////////////////////////////////////////
+	// READ ALL methods
+	///////////////////////////////////////////////////////////////////////////////
+
+	public ArrayList<Person> readAllPersons() {
+		ArrayList<Person> list = new ArrayList<Person>();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			String sql = "SELECT * from person";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				int personId = rs.getInt(1);
+				String firstName = rs.getString(2);
+				String lastName = rs.getString(3);
+				String email = rs.getString(4);
+				LocalDate birthDate = fromFormattedDate(rs.getString(5));
+				boolean deceased = (rs.getInt(6) == 0) ? false : true;
+
+				Person per = new Person(personId, firstName, lastName, email);
+				per.setBirthDate(birthDate);
+				per.setDeceased(deceased);
+
+				list.add(per);
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return list;
+	}
+
+	public ArrayList<BankUser> readAllBankUsers() {
+		ArrayList<BankUser> list = new ArrayList<BankUser>();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			String sql = "SELECT * from bank_user";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				int userId = rs.getInt(1);
+				String username = rs.getString(2);
+				String password = rs.getString(3);
+				int personId = rs.getInt(4);
+
+				Person per = readPerson(personId);
+
+				BankUser guy = new BankUser(per, userId, username, password);
+
+				list.add(guy);
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return list;
+	}
+
+	public ArrayList<Account> readAllAccounts() {
+		ArrayList<Account> list = new ArrayList<Account>();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			String sql = "SELECT * from account";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+
+			while (rs.next()) {
+				int accountId = rs.getInt(1); // This line is redundant
+				BigDecimal balance = new BigDecimal(rs.getString(2));
+				LocalDate accountOpenedDate = fromFormattedDate(rs.getString(3));
+				int userId = rs.getInt(4);
+				int typeId = rs.getInt(5);
+				int levelId = rs.getInt(6);
+				boolean deleted = (rs.getInt(7) == 0) ? false : true;
+
+				Account acc = new Account(accountId, accountOpenedDate, balance, deleted, accountType.values()[typeId],
+						accountLevel.values()[levelId], userId);
+
+				list.add(acc);
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return list;
+	}
+
+	public ArrayList<Account> readAllAccounts(int userId) {
+		ArrayList<Account> list = new ArrayList<Account>();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			String sql = "SELECT * from account WHERE user_id=?";
+			String[] key = new String[1];
+			key[0] = "user_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setInt(1, userId);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int accountId = rs.getInt(1); // This line is redundant
+				BigDecimal balance = new BigDecimal(rs.getString(2));
+				LocalDate accountOpenedDate = fromFormattedDate(rs.getString(3));
+				userId = rs.getInt(4);
+				int typeId = rs.getInt(5);
+				int levelId = rs.getInt(6);
+				boolean deleted = (rs.getInt(7) == 0) ? false : true;
+
+				Account acc = new Account(accountId, accountOpenedDate, balance, deleted, accountType.values()[typeId],
+						accountLevel.values()[levelId], userId);
+
+				list.add(acc);
+			}
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return list;
+	}
+
+	/*
+	 * public ArrayList<Clerk> readAllClerks() { ArrayList<Clerk> list = new
+	 * ArrayList<Clerk>();
+	 * 
+	 * try(Connection conn = ConnectionFactory.getInstance().getConnection();
+	 * AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false); AutoRollback tm
+	 * = new AutoRollback(conn)) {
+	 * 
+	 * String sql = "SELECT * from clerk"; Statement statement =
+	 * conn.createStatement(); ResultSet rs = statement.executeQuery(sql);
+	 * 
+	 * while(rs.next()) { int personId = rs.getInt(1); String firstName =
+	 * rs.getString(2); String lastName = rs.getString(3); String email =
+	 * rs.getString(4); LocalDate birthDate =
+	 * fromFormattedDate(rs.getString(5)); boolean deceased = (rs.getInt(6) ==
+	 * 0)?false:true;
+	 * 
+	 * Clerk cler = new Person(personId, firstName, lastName, birthDate);
+	 * per.setEmail(email); per.setDeceased(deceased);
+	 * 
+	 * list.add(per); } } catch (SQLException e) { System.out.println(
+	 * "Database error"); }
+	 * 
+	 * return list; }
+	 */
+	public ArrayList<Clerk> readAllClerks() {
+		// TODO method stub
+		return null;
+	}
+}

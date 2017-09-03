@@ -33,8 +33,6 @@ public class TesterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DaoImpl dao = new DaoImpl();
-
 		Service serve = new Service();
 		
 		Worker work = serve.getWorker(1);
@@ -51,7 +49,6 @@ public class TesterServlet extends HttpServlet {
 		System.out.println(manager);
 		System.out.println(reimburse);
 		
-
 	}
 
 	/**

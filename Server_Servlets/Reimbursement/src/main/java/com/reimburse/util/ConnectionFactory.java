@@ -29,7 +29,7 @@ public class ConnectionFactory {
 		Connection conn = null;
 		try {
 			Properties prop = new Properties();
-			prop.load(new FileReader("C:/Users/Surplus/my_git_repos/1708Aug14Code/Server_Servlets/Reimbursement/src/main/java/com/reimburse/util/database.properties"));
+			prop.load(new FileReader("C:/Users/Surplus/my_git_repos/Revature projects/Server_Servlets/Reimbursement/src/main/java/com/reimburse/util/database.properties"));
 			Class.forName(prop.getProperty("driver"));
 			
 			conn = DriverManager.getConnection(

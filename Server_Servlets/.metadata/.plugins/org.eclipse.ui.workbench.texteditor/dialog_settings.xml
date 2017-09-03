@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="readBankUser" key="selection"/>
+		<item value="warn" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="warn"/>
 			<item value="readBankUser"/>
 			<item value="javax"/>
 			<item value="readWorker"/>
@@ -15,7 +16,6 @@
 			<item value="LocalDate"/>
 			<item value="LocalDateTimeTime"/>
 			<item value="VALUES"/>
-			<item value="createWorker"/>
 		</list>
 		<list key="replacehistory">
 			<item value="LocalDateTime"/>

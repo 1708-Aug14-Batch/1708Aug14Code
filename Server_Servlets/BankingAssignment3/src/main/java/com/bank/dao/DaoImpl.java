@@ -34,8 +34,9 @@ public class DaoImpl implements Dao {
 	public Person createPerson(String firstName, String lastName, String email, boolean deceased) {
 		Person per = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();
+		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
+		        AutoRollback tm = new AutoRollback(conn)) {
 
 			// No semi-colon inside the quotes
 			String sql = "INSERT INTO person(first_name, last_name, email, deceased)" + 
@@ -75,8 +76,7 @@ public class DaoImpl implements Dao {
 		if (birthDate == null)
 			return createPerson(firstName, lastName, email, deceased);
 		
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			// No semi-colon inside the quotes
 			String sql = "INSERT INTO person(first_name, last_name, email, birth_date, deceased)" + 
@@ -116,7 +116,7 @@ public class DaoImpl implements Dao {
 	public Person readPerson(int personId) {
 		Person per = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM person WHERE person_id=?";
 			String[] key = new String[1];
@@ -149,7 +149,7 @@ public class DaoImpl implements Dao {
 	public Person readPerson(String email) {
 		Person per = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM person WHERE email=?";
 			String[] key = new String[1];
@@ -182,8 +182,8 @@ public class DaoImpl implements Dao {
 	@Override
 	public boolean updatePerson(int personId, Person per) {
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
+			
 
 			// No semi-colon inside the quotes
 			String sql = "UPDATE person SET" + 
@@ -230,7 +230,7 @@ public class DaoImpl implements Dao {
 	public ArrayList<Person> readAllPersons() {
 		ArrayList<Person> list = new ArrayList<Person>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from person";
 			Statement statement = conn.createStatement();
@@ -261,7 +261,7 @@ public class DaoImpl implements Dao {
 		BankUser guy = null;
 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			conn.setAutoCommit(false);
+			
 
 			String sql = "INSERT INTO bank_user(username, password, person_id) VALUES(?, ?, ?)";
 			String[] key = new String[1];
@@ -293,7 +293,7 @@ public class DaoImpl implements Dao {
 	public BankUser readBankUser(String username) {
 		BankUser guy = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM bank_user WHERE username=?";
 			String[] key = new String[1];
@@ -326,7 +326,7 @@ public class DaoImpl implements Dao {
 	public BankUser readBankUser(int userId) {
 		BankUser guy = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM bank_user WHERE user_id=?";
 			String[] key = new String[1];
@@ -357,8 +357,8 @@ public class DaoImpl implements Dao {
 
 	@Override
 	public boolean updateBankUser(int userId, BankUser guy) {
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
+			
 
 			// No semi-colon inside the quotes
 			String sql = "UPDATE bank_user SET" + 
@@ -409,7 +409,7 @@ public class DaoImpl implements Dao {
 	public ArrayList<BankUser> readAllBankUsers() {
 		ArrayList<BankUser> list = new ArrayList<BankUser>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from bank_user";
 			Statement statement = conn.createStatement();
@@ -438,8 +438,8 @@ public class DaoImpl implements Dao {
 	public Account createAccount(BankUser guy, BigDecimal balance, accountType type, accountLevel level) {
 		Account acc = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
+			
 
 			String sql = "INSERT INTO account(balance, opened_date, user_id, type_id, level_id, deleted)" + 
 					" VALUES(?, TO_DATE(?,'yyyy-mm-dd'), ?, ?, ?, ?)";
@@ -479,7 +479,7 @@ public class DaoImpl implements Dao {
 	public Account readAccount(int accountId) {
 		Account acc = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM account WHERE account_id=?";
 			String[] key = new String[1];
@@ -511,8 +511,8 @@ public class DaoImpl implements Dao {
 
 	@Override
 	public boolean updateAccount(int accountId, Account acc) {
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
+			
 
 			// No semi-colon inside the quotes
 			String sql = "UPDATE account SET" + 
@@ -557,7 +557,7 @@ public class DaoImpl implements Dao {
 	public ArrayList<Account> readAllAccounts() {
 		ArrayList<Account> list = new ArrayList<Account>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from account";
 			Statement statement = conn.createStatement();
@@ -587,7 +587,7 @@ public class DaoImpl implements Dao {
 	public ArrayList<Account> readAllAccounts(int userId) {
 		ArrayList<Account> list = new ArrayList<Account>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from account WHERE user_id=?";
 			String[] key = new String[1];
@@ -621,8 +621,8 @@ public class DaoImpl implements Dao {
 	public Clerk createClerk(Person per, int employeeId, String password, double hourlyWage) {
 		Clerk cler = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
+			
 
 			// No semi-colon inside the quotes
 			String sql = "INSERT INTO clerk(employee_id, password, date_hired, hourly_wage, hired, person_id)" + 
@@ -657,7 +657,7 @@ public class DaoImpl implements Dao {
 	public Clerk readClerk(int employeeId) {
 		Clerk cler = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM clerk WHERE employee_id=?";
 			String[] key = new String[1];
@@ -691,8 +691,8 @@ public class DaoImpl implements Dao {
 	@Override
 	public boolean updateClerk(int employeeId, Clerk cler) {
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			conn.setAutoCommit(false);
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
+			
 
 			// No semi-colon inside the quotes
 			String sql = "UPDATE clerk SET" + 
@@ -738,7 +738,7 @@ public class DaoImpl implements Dao {
 	public ArrayList<Clerk> readAllClerks() {
 		ArrayList<Clerk> list = new ArrayList<Clerk>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();		        AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);		        AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from clerk";
 			Statement statement = conn.createStatement();
