@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.reimbursement.dao.DAO;
 import com.reimbursement.dao.DAOImpl;
+import com.reimbursement.pojos.Reimbursement;
 import com.reimbursement.pojos.User;
 
 
@@ -24,7 +25,16 @@ public class Service {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(test.getUsers().toString());
+		ArrayList<User> pass = test.getUsers();
+		User temp = new User();
+		for(User u: pass) {
+			if(u.getUserId() == 1) {
+				temp = new User(u.getUserId(), u.getFirstname(), u.getLastname(), u.getEmail(), u.getPassword(), u.getIsManager());
+			}
+		}
+		
+		test.ApproveOrDeny(2,23, "Denied. Try Again later");
+		
 	}
 	
 	

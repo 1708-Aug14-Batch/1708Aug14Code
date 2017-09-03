@@ -46,6 +46,26 @@ public class DAOImpl implements DAO {
 		return list;
 		
 	}
+	public void getSingleUser(User u) {
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql = "select firstname, lastname, email from users " + 
+					"where user_id = ?";
+			PreparedStatement state = conn.prepareStatement(sql);
+			state.setInt(1, u.getUserId());
+			ResultSet rs = state.executeQuery();
+			while(rs.next()) {
+				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) + "\n"
+				+ "Email: " + rs.getString(3));
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	public void createUser() {
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -66,11 +86,34 @@ public class DAOImpl implements DAO {
 		
 	}
 	
-	@Override
-	public void createReimbursement(User u) {
-		int amount = 0;
+	
+	public void UpdateUser(User u) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql = "update users " + 
+					"set firstname = ?, lastname = ?, email = ?, password = ? " + 
+					"where user_id = ? ";
+			
+			PreparedStatement state = conn.prepareStatement(sql);
+			state.setInt(5, u.getUserId());
+			state.setString(1, u.getFirstname());
+			state.setString(2, u.getLastname());
+			state.setString(3, u.getEmail());
+			state.setString(4, u.getPassword());
+			state.executeUpdate();
+			System.out.println("Update success?");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public void createReimbursement(User u ,int amt, String desc) {
+		int amount = amt;
 		Date date = new Date(Calendar.getInstance().getTime().getTime());
-		String description = " ";
+		String description = desc;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
 			String sql = "insert into Reimbursement(submit_id, submit_date, description, amount) " + 
@@ -82,6 +125,9 @@ public class DAOImpl implements DAO {
 			ps.setDate(2, date);
 			ps.setString(3, description);
 			ps.setInt(4, amount);
+			ps.executeUpdate();
+
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -90,7 +136,7 @@ public class DAOImpl implements DAO {
 
 	}
 	
-	public ArrayList<Reimbursement> getReimbursement(){
+	public ArrayList<Reimbursement> getAllReimbursements(){
 		ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
@@ -102,10 +148,10 @@ public class DAOImpl implements DAO {
 				int id = rs.getInt(1);
 				int sID = rs.getInt(2);
 				int rID = rs.getInt(3);
-				int statusID = rs.getInt(4);
-				String desc = rs.getString(5);
-				String notes = rs.getString(6);
-				int amount = rs.getInt(7);
+				int statusID = rs.getInt(6);
+				String desc = rs.getString(7);
+				String notes = rs.getString(8);
+				int amount = rs.getInt(9);
 				
 				Reimbursement r = new Reimbursement(id,sID,rID,statusID,desc,notes,amount);
 				list.add(r);
@@ -119,6 +165,107 @@ public class DAOImpl implements DAO {
 		
 		
 		return list;
+		
+	}
+	
+	public void getReimbursement(int id) {
+		
+		
+		
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			
+			
+			String sql = "select users.firstname, users.lastname, Reimbursement.RE_ID, Reimbursement.SUBMIT_DATE, Reimbursement.DESCRIPTION, Reimbursement.AMOUNT, R_status.name from users " + 
+					"Left Join Reimbursement inner join R_status on Reimbursement.STATUS_ID = R_Status.st_id on users.user_id = reimbursement.submit_id " + 
+					"Where users.user_id = ? ";
+			PreparedStatement state = conn.prepareStatement(sql);
+			state.setInt(1, id);
+			ResultSet rs = state.executeQuery();
+			System.out.println("Here");
+			while(rs.next()) {
+				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) 
+				+ " ReimbursmentID: " + rs.getInt(3)
+				+ " Date Submitted: " + rs.getDate(4)
+				+ " Description: " + rs.getString(5)
+				+ " Amount: " + rs.getInt(6)
+				+ " Status: " + rs.getString(7) + "\n");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void getPendingReimbursements() {
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql = "select users.firstname, users.lastname, Reimbursement.RE_ID, Reimbursement.SUBMIT_DATE, Reimbursement.DESCRIPTION, Reimbursement.AMOUNT, R_status.name from users " + 
+					"Left Join Reimbursement inner join R_status on Reimbursement.STATUS_ID = R_Status.st_id on users.user_id = reimbursement.submit_id " + 
+					"where R_status.name = ?";
+			
+			PreparedStatement state = conn.prepareStatement(sql);
+			state.setString(1, "Pending");
+			ResultSet rs = state.executeQuery();
+			while(rs.next()) {
+				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) 
+				+ " ReimbursmentID: " + rs.getInt(3)
+				+ " Date Submitted: " + rs.getDate(4)
+				+ " Description: " + rs.getString(5)
+				+ " Amount: " + rs.getInt(6)
+				+ " Status: " + rs.getString(7) + "\n");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public void getResolvedReimbursements() {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql = "select users.firstname, users.lastname, Reimbursement.RE_ID, Reimbursement.SUBMIT_DATE, Reimbursement.DESCRIPTION, Reimbursement.AMOUNT, R_status.name from users " + 
+					"Left Join Reimbursement inner join R_status on Reimbursement.STATUS_ID = R_Status.st_id on users.user_id = reimbursement.submit_id " + 
+					"where R_status.name = ? or R_status.name = ?";
+			
+			PreparedStatement state = conn.prepareStatement(sql);
+			state.setString(1, "Approved");
+			state.setString(2, "Denied");
+			ResultSet rs = state.executeQuery();
+			while(rs.next()) {
+				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) 
+				+ " \nReimbursmentID: " + rs.getInt(3)
+				+ " \nDate Submitted: " + rs.getDate(4)
+				+ " \nDescription: " + rs.getString(5)
+				+ " \nAmount: " + rs.getInt(6)
+				+ " \nStatus: " + rs.getString(7) + "\n\n");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void ApproveOrDeny(int stat_id, int id, String notes) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			Date date = new Date(Calendar.getInstance().getTime().getTime());
+			String sql = "update reimbursement " + 
+					"set status_id = ?, resolved_date = ? ,notes = ? " + 
+					"where re_id = ? ";
+			PreparedStatement state = conn.prepareStatement(sql);
+			state.setInt(1,stat_id);
+			state.setDate(2, date);
+			state.setString(3, notes);
+			state.setInt(4, id);
+			state.executeUpdate();
+			
+			System.out.println("Updated!");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 	

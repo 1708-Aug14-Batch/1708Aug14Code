@@ -64,6 +64,11 @@ public class Reimbursement {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	@Override
+	public String toString() {
+		return "Reimbursement [r_id=" + r_id + ", sub_id=" + sub_id + ", res_id=" + res_id + ", status_id=" + status_id
+				+ ", description=" + description + ", notes=" + notes + ", amount=" + amount + "]";
+	}
 	
 	
 }

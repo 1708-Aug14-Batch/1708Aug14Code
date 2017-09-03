@@ -2,6 +2,8 @@ package com.reimbursement.pojos;
 
 public class User {
 
+	public User() {};
+	
 	public User(int userId, String firstname, String lastname, String email, String password, int isManager) {
 		super();
 		this.userId = userId;
