@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.revature.andy.service.Service;
 import com.revature.andy.session.PseudoSession;
 
@@ -18,6 +21,32 @@ public class Login extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		JsonFactory factory = new JsonFactory();
+		JsonParser parser  = factory.createParser(req.getInputStream());
+		
+		while(!parser.isClosed()) {
+			JsonToken jsonToken = parser.nextToken();
+			
+			if(JsonToken.FIELD_NAME.equals(jsonToken)){
+		        String fieldName = parser.getCurrentName();
+		        System.out.println(fieldName);
+
+		        jsonToken = parser.nextToken();
+	        	System.out.println(parser.getValueAsString());
+		        
+		        /*
+		        
+		        if("email".equals(fieldName)){
+		        	System.out.println(parser.getValueAsString());
+		        }
+		        if ("pass".equals(fieldName)){
+		            System.out.println(parser.getValueAsString());
+		        }
+		        */
+		    }
+		}
+		
+		/*
 		PrintWriter pr = resp.getWriter();
 		
 		String email = req.getParameter("email");
@@ -31,6 +60,6 @@ public class Login extends HttpServlet{
 			resp.sendRedirect("failurepassword.html");
 		}else {
 			resp.sendRedirect("failure.html");
-		}
+		}*/
 	}
 }

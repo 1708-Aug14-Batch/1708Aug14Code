@@ -7,39 +7,45 @@
 
 
 .azborder{
+	/*
+		add bootstrap rounded
+	*/
     padding: 3%;
     border: 1px solid;
 	
 }
 
+.azheight100{
+	height: 100%;
+}
 
-.azsize50{
+.azwidth50{
 	width: 50%
 }
-.azsize60{
+.azwidth60{
 	width: 55%
 }
-.azsize60{
+.azwidth60{
 	width: 60%
 }
-.azsize60{
+.azwidth60{
 	width: 65%
 }
-.azsize60{
+.azwidth60{
 	width: 70%
 }
-.azsize75{
+.azwidth75{
 	width: 75%
 }
-.azsize75{
+.azwidth75{
 	width: 80%
 }
-.azsize75{
+.azwidth75{
 	width: 85%
 }
-.azsize75{
+.azwidth75{
 	width: 90%
 }
-.azsize99{
+.azwidth99{
 	width: 95%
 }

@@ -1,6 +1,5 @@
 package com.revature.andy.session;
 
-import java.util.HashMap;
 import java.util.HashSet;
 
 import com.revature.andy.dao.DAOImplementation;
