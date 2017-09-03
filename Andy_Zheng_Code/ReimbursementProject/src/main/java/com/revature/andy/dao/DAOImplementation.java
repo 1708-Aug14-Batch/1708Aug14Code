@@ -15,6 +15,25 @@ import com.revature.andy.util.ConnectionFactory;
 
 public class DAOImplementation implements DAOInterface {
 
+	public int selectALL() {
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			con.setAutoCommit(false);
+			String sql = "SELECT * FROM USERS";
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			while (rs.next()) {
+				System.out.println(rs.getInt(1));
+			}
+			con.commit();
+			return 1;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return -1;
+		}
+	}
+	
 	// prepared statement
 
 	// Insert User
@@ -197,14 +216,14 @@ public class DAOImplementation implements DAOInterface {
 	public User getUser(String email, String pwd) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM USERS WHERE EMAIL = (?) AND PASSWORD = (?)";
+			String sql = "SELECT * FROM USERS WHERE EMAIL = ? AND PASSWORD = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, email);
 			ps.setString(2, pwd);
 
 			ResultSet rs = ps.executeQuery();
-
+			
 			User temp = null;
 
 			while (rs.next()) {

@@ -14,51 +14,60 @@ import com.fasterxml.jackson.core.JsonToken;
 import com.revature.andy.service.Service;
 import com.revature.andy.session.PseudoSession;
 
-public class Login extends HttpServlet{
+public class Login extends HttpServlet {
 
-	Service s = new Service();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
+	Service s = new Service();
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String email;
-		String password;
-		
-		JsonFactory factory = new JsonFactory();
-		JsonParser parser  = factory.createParser(req.getInputStream());
-		
-		while(!parser.isClosed()) {
-			JsonToken jsonToken = parser.nextToken();
-			
-			if(JsonToken.FIELD_NAME.equals(jsonToken)){
-		        String fieldName = parser.getCurrentName();
-		        if(fieldName.equals("email")) {
-		        	email = parser.getValueAsString();
-		        }else if(fieldName.equals("password")) {
-		        	password = parser.getValueAsString();
-		        }
+		String email = null;
+		String pwd = null;
 
-		        jsonToken = parser.nextToken();
-	        	System.out.println(parser.getValueAsString());
-		    }
+		JsonFactory factory = new JsonFactory();
+		JsonParser parser = factory.createParser(req.getInputStream());
+
+		while (!parser.isClosed()) {
+			JsonToken jsonToken = parser.nextToken();
+
+			if (JsonToken.FIELD_NAME.equals(jsonToken)) {
+				String fieldName = parser.getCurrentName();
+				if (fieldName.equals("email")) {
+					jsonToken = parser.nextToken();
+					email = parser.getValueAsString();
+				} else if (fieldName.equals("password")) {
+					jsonToken = parser.nextToken();
+					pwd = parser.getValueAsString();
+				}
+			}
 		}
+
+		resp.setContentType("text/plain");
 		
-		
-		
-		/*
-		PrintWriter pr = resp.getWriter();
-		
-		String email = req.getParameter("email");
-		String pass = req.getParameter("pass");
-		
-		if(PseudoSession.login(email, pass) == 1) {
-			pr.println(PseudoSession.getCurrentUser().getFName() + " " + PseudoSession.getCurrentUser().getLName());
-			//resp.sendRedirect("success.html");
+		if (email != null && pwd != null) {
+			resp.getWriter().write(Integer.toString(s.login(email, pwd)));
+			// resp.setStatus(200);
+			resp.getWriter().close();
 		}
-		else if(PseudoSession.login(email, pass) == 2){
-			resp.sendRedirect("failurepassword.html");
-		}else {
-			resp.sendRedirect("failure.html");
-		}*/
 	}
+
+	/*
+	 * PrintWriter pr = resp.getWriter();
+	 * 
+	 * String email = req.getParameter("email"); String pass =
+	 * req.getParameter("pass");
+	 * 
+	 * if(PseudoSession.login(email, pass) == 1) {
+	 * pr.println(PseudoSession.getCurrentUser().getFName() + " " +
+	 * PseudoSession.getCurrentUser().getLName());
+	 * //resp.sendRedirect("success.html"); } else if(PseudoSession.login(email,
+	 * pass) == 2){ resp.sendRedirect("failurepassword.html"); }else {
+	 * resp.sendRedirect("failure.html"); }
+	 */
+
 }

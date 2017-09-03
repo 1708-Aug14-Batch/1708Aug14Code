@@ -13,7 +13,14 @@
  			url: 'login',
  			data: $scope.credential
  		}).then(function(response){
- 			$state.go("menu");
+ 			console.log(response);
+ 			if(response.data == 1){
+ 				$state.go("menu");
+ 			}else if(response.data == 2){
+ 				$scope.fail = 'Invalid Password';
+ 			}else{
+ 				$scope.fail = 'Invalid Username or Password';
+ 			}
  		})
  	}
  })

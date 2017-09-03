@@ -14,7 +14,7 @@
  		controller: 'loginContainer'
  	}).state({
  		name: 'menu',
- 		url: '/',
+ 		url: '/menu',
  		templateUrl: 'menu.html'
  		//controller: 'menuContainer'
  	});

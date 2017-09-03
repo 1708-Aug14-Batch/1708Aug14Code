@@ -16,6 +16,7 @@ public class Service {
 	
 	public int login(String email, String pwd) {
 		currentUser = dao.getUser(email, pwd);
+		
 		if(currentUser != null && currentUser.getUserID()!=0){
 			isLoggedIn = true;
 			return 1;
@@ -74,10 +75,12 @@ public class Service {
 		}
 	}
 	
+	/*
 	// Get User Information from session
 	public void getUser() {
 		System.out.println(PseudoSession.getCurrentUser().toString());
 	}
+	*/
 	
 	public HashSet<User> getAllUsers(){
 		return dao.getUsers();

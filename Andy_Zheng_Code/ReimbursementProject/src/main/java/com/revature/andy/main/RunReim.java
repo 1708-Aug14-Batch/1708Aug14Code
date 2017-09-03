@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.*;
 
+import com.revature.andy.dao.DAOImplementation;
 import com.revature.andy.service.Service;
 import com.revature.andy.session.PseudoSession;
 
@@ -11,10 +12,20 @@ public class RunReim {
 
 
 	private static Logger log = Logger.getRootLogger();
+	static Service s = new Service();
+	static DAOImplementation d = new DAOImplementation();
 	
 	public static void main(String[] args) {
+	
+		String a = "A";
 		
-		//start();
+		//System.out.println(s.login("A","A"));
+		
+		//String temp = d.getUser(a, a).getEmail();
+		
+		//d.selectALL();
+		
+		//System.out.println(temp);
 		
 	}
 	
