@@ -2,13 +2,24 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.ex"/>
 			<item value="com.rev"/>
+			<item value="com.bank"/>
+			<item value="com.revature"/>
 		</list>
 		<list key="name">
+			<item value="FridayExample"/>
+			<item value="GenServletExample"/>
+			<item value="BankingServlets"/>
+			<item value="ServletExample"/>
 			<item value="Logging"/>
 			<item value="LogginThings"/>
 		</list>
 		<list key="artifactId">
+			<item value="FridayExample"/>
+			<item value="GenServletExample"/>
+			<item value="BankingServlets"/>
+			<item value="ServletExample"/>
 			<item value="revature"/>
 			<item value="hello"/>
 		</list>
@@ -48,6 +59,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\steve\my_git_repos\1708Aug14Code\Steven_Leighton_Code\IntroJS\WebContent\view_hw.html"/>
 			<item value="C:\Users\steve\my_git_repos\1708Aug14Code\Steven_Leighton_Code\Aug15"/>
 		</list>
 		<list key="projectNameTemplate">

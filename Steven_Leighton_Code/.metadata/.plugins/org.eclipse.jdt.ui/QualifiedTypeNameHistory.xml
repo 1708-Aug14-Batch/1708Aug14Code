@@ -12,12 +12,10 @@
 <fullyQualifiedTypeName name="java.io.DataOutputStream"/>
 <fullyQualifiedTypeName name="java.io.DataInputStream"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="com.ex.Q11P2.StoreFloats"/>
 <fullyQualifiedTypeName name="com.ex.Q4.Factorial"/>
 <fullyQualifiedTypeName name="com.ex.Q10.Ternary"/>
 <fullyQualifiedTypeName name="com.ex.Q17.Finances"/>
-<fullyQualifiedTypeName name="com.bank.service.Service"/>
 <fullyQualifiedTypeName name="com.ex.Q8.Palindrome"/>
 <fullyQualifiedTypeName name="com.ex.Q6.FindEven"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
@@ -37,4 +35,11 @@
 <fullyQualifiedTypeName name="java.math.BigDecimal"/>
 <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthSpinnerUI"/>
 <fullyQualifiedTypeName name="javax.swing.plaf.synth.SynthSeparatorUI"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="com.bank.service.Service"/>
+<fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
+<fullyQualifiedTypeName name="javax.xml.parsers.DocumentBuilderFactory"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Document"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Node"/>
+<fullyQualifiedTypeName name="org.w3c.dom.Element"/>
 </qualifiedTypeNameHistroy>
