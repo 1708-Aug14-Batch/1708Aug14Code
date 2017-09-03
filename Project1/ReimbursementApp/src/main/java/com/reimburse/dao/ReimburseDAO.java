@@ -94,7 +94,7 @@ public class ReimburseDAO implements DAO {
 
 			while(rs.next()){
 				User u = new User(rs.getInt("userid"), rs.getString("firstname"), rs.getString("lastname"), 
-						rs.getString("username"), rs.getString("email"), rs.getString("password"),
+						rs.getString("username"), rs.getString("email"), rs.getString("pwd"),
 						rs.getByte("isManager"));
 				users.add(u);
 			}
@@ -118,7 +118,7 @@ public class ReimburseDAO implements DAO {
 
 			conn.setAutoCommit(false);
 			String sql = "select * from users where"
-					+ " userid = ?";
+					+ " USERID = ?";
 
 			//setup prepared with sql and allocate space for key
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class ReimburseDAO implements DAO {
 
 			while(rs.next()){
 				user = new User(rs.getInt("userid"), rs.getString("firstname"), rs.getString("lastname"), 
-						rs.getString("username"), rs.getString("email"), rs.getString("password"),
+						rs.getString("username"), rs.getString("email"), rs.getString("pwd"),
 						rs.getByte("isManager"));
 			}
 			conn.commit();
@@ -166,7 +166,7 @@ public class ReimburseDAO implements DAO {
 
 			while(rs.next()){
 				user = new User(rs.getInt("userid"), rs.getString("firstname"), rs.getString("lastname"), 
-						rs.getString("username"), rs.getString("email"), rs.getString("password"),
+						rs.getString("username"), rs.getString("email"), rs.getString("pwd"),
 						rs.getByte("isManager"));
 			}
 			conn.commit();
@@ -201,7 +201,7 @@ public class ReimburseDAO implements DAO {
 
 			while(rs.next()){
 				user = new User(rs.getInt("userid"), rs.getString("firstname"), rs.getString("lastname"), 
-						rs.getString("username"), rs.getString("email"), rs.getString("password"),
+						rs.getString("username"), rs.getString("email"), rs.getString("pwd"),
 						rs.getByte("isManager"));
 			}
 			conn.commit();
@@ -235,7 +235,7 @@ public class ReimburseDAO implements DAO {
 
 			while(rs.next()){
 				user = new User(rs.getInt("userid"), rs.getString("firstname"), rs.getString("lastname"), 
-						rs.getString("username"), rs.getString("email"), rs.getString("password"),
+						rs.getString("username"), rs.getString("email"), rs.getString("pwd"),
 						rs.getByte("isManager"));
 			}
 			conn.commit();
@@ -273,7 +273,7 @@ public class ReimburseDAO implements DAO {
 
 			while(rs.next()){
 				user = new User(rs.getInt("userid"), rs.getString("firstname"), rs.getString("lastname"), 
-						rs.getString("username"), rs.getString("email"), rs.getString("password"),
+						rs.getString("username"), rs.getString("email"), rs.getString("pwd"),
 						rs.getByte("isManager"));
 			}
 			conn.commit();
@@ -320,7 +320,7 @@ public class ReimburseDAO implements DAO {
 
 			conn.setAutoCommit(false);
 			String sql = "insert into reimbursements(submitid,description,amount,submit_date) "
-					+"values (?,?,?,systimestamp);";
+					+"values (?,?,?,systimestamp)";
 
 			//to get back primary key
 			String[] key = new String[1];
@@ -375,7 +375,7 @@ public class ReimburseDAO implements DAO {
 				r = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
 						rs.getInt("statusid"), rs.getString("description"),
 						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
-						rs.getDate("submitDate"), rs.getDate("resolvedate"));
+						rs.getDate("submit_Date"), rs.getDate("resolve_date"));
 			}
 			conn.commit();
 
@@ -409,7 +409,7 @@ public class ReimburseDAO implements DAO {
 				Reimbursement u = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
 						rs.getInt("statusid"), rs.getString("description"),
 						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
-						rs.getDate("submitDate"), rs.getDate("resolvedate"));
+						rs.getDate("submit_date"), rs.getDate("resolve_date"));
 				reimbursements.add(u);
 			}
 			conn.commit();
@@ -442,7 +442,7 @@ public class ReimburseDAO implements DAO {
 				Reimbursement u = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
 						rs.getInt("statusid"), rs.getString("description"),
 						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
-						rs.getDate("submitDate"), rs.getDate("resolvedate"));
+						rs.getDate("submit_date"), rs.getDate("resolve_date"));
 				reimbursements.add(u);
 			}
 			conn.commit();
@@ -475,7 +475,7 @@ public class ReimburseDAO implements DAO {
 				Reimbursement u = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
 						rs.getInt("statusid"), rs.getString("description"),
 						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
-						rs.getDate("submitDate"), rs.getDate("resolvedate"));
+						rs.getDate("submit_date"), rs.getDate("resolve_date"));
 				reimbursements.add(u);
 			}
 			conn.commit();
@@ -507,7 +507,7 @@ public class ReimburseDAO implements DAO {
 				Reimbursement u = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
 						rs.getInt("statusid"), rs.getString("description"),
 						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
-						rs.getDate("submitDate"), rs.getDate("resolvedate"));
+						rs.getDate("submit_date"), rs.getDate("resolve_date"));
 				reimbursements.add(u);
 			}
 			conn.commit();
@@ -539,7 +539,7 @@ public class ReimburseDAO implements DAO {
 				Reimbursement u = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
 						rs.getInt("statusid"), rs.getString("description"),
 						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
-						rs.getDate("submitDate"), rs.getDate("resolvedate"));
+						rs.getDate("submit_date"), rs.getDate("resolve_date"));
 				reimbursements.add(u);
 			}
 			conn.commit();
