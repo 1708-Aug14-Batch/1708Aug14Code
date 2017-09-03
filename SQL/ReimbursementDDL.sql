@@ -28,7 +28,8 @@ CREATE TABLE reimbursement (
     resolution_notes VARCHAR2(140),
     amount NUMBER(12, 2) NOT NULL CHECK (amount > 0.0),
     CONSTRAINT fk_submitter_id FOREIGN KEY(submitter_id) REFERENCES r_user(r_user_id),
-    CONSTRAINT fk_resolver_id FOREIGN KEY(resolver_id) REFERENCES r_user(r_user_id)
+    CONSTRAINT fk_resolver_id FOREIGN KEY(resolver_id) REFERENCES r_user(r_user_id),
+    CONSTRAINT fk_status_id FOREIGN KEY(status_id) REFERENCES status(status_id)
 );
 
 CREATE SEQUENCE r_user_sequence START WITH 1 INCREMENT BY 1;
@@ -71,3 +72,8 @@ BEGIN
 END;
 /
 
+INSERT ALL
+  INTO status(status_id, name) VALUES(DEFAULT, 'Pending')
+  INTO status(status_id, name) VALUES(DEFAULT, 'Approved')
+  INTO status(status_id, name) VALUES(DEFAULT, 'Denied')
+SELECT * FROM dual;
