@@ -1,1 +1,1 @@
-"Alvin Lu's code"
+"Steven Leighton's code"
