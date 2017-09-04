@@ -82,8 +82,8 @@ function substring(someStr, length, offset){
 		return someStr.substr(parseInt(offset),parseInt(length));
 	}
 }
-$('').on('click',function(){
-	$('').text(substring($('').val(),$('').val(),$('').val()));
+$('#5out').on('click',function(){
+	$('#stringDisplay5').text(substring($('#5in1').val(),$('#5in2').val(),$('#5in3').val()));
 })
 //Even Number
 function isEven(n) {
@@ -96,8 +96,8 @@ function isEven(n) {
 	  else
 	    return isEven(n - 2);
 	}
-$('').on('click',function(){
-	$('').text(isEven($('').val()));
+$('#7out').on('click',function(){
+	$('#stringDisplay7').text(isEven($('#7in').val()));
 })
 //Palindrome
 function isPalindrome(someStr){
@@ -111,8 +111,8 @@ function isPalindrome(someStr){
 	 }
 	 return true;
 }
-$('').on('click',function(){
-	$('').text(isPalindrome($('').val()));
+$('#7out').on('click',function(){
+	$('#stringDisplay7').text(isPalindrome($('#7in').val()));
 //Shapes ****************
 function printShape(shape, height, charecter){
 	var temp = shape;
@@ -167,42 +167,44 @@ function printShape(shape, height, charecter){
 	}
 	
 }
-$('').on('click',function(){
-	$('').text(substring($('').val(),$('').val(),$('').val()));
+$('#8out').on('click',function(){
+	$('#stringDisplay8').text(substring($('#8in1').val(),$('#8in2').val(),$('#8in3').val()));
 })
 //Object literal
 function traverseObject(someObj){
 	var map = new Map(Object.entries(someObj));
 	console.log(map);
 }
-$('').on('click',function(){
-	$('').text(isPalindrome($('').val()));
+$('#9in').on('click',function(){
+	$('#stringDisplay9').text(traverseObject($('#9out').val()));
 //Delete Element
 function deleteElement(someArr){
 	someArr.pop();
 	return someArr.length;
 }
-$('').on('click',function(){
-	$('').text(isPalindrome($('').val()));
+$('#10in').on('click',function(){
+	$('#stringDisplay10').text(deleteElement($('#10out').val()));
 //Splice Element
 function spliceElement(someArr){
 	someArr.splice(5);
 	return someArr
 	
 }
-$('').on('click',function(){
-	$('').text(isPalindrome($('').val()));
+$('#10in').on('click',function(){
+	$('#stringDisplay10').text(spliceElement($('#10out').val()));
 function spliceElement3(someArr){
 	someArr.splice(2,1);
 	return someArr;
 }
-$('').on('click',function(){
-	$('').text(isPalindrome($('').val()));
+$('#11in').on('click',function(){
+	$('#stringDisplay11').text(spliceElement3($('#11out').val()));
 //Defining an object using a constructor
 function Persion(name, age){
 	this.name = name;
 	this.age = age;
 }
+$('#construct').on('click',function(){
+	$('#stringDisplay').text(Persion($('#name').val(),$('#age').val));
 //Defining an object using an object literal
 function getPerson(name, age){
 	var john = {name: "John", age: 30};
