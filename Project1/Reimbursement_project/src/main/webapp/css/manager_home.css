@@ -22,7 +22,7 @@ body {
     background-color: #ADC1D6;
 }
 
-#emp-info {
+#emp-table-heading {
     font-size: 22px;
     color: black;
 }
@@ -51,4 +51,10 @@ li.active > a {
   min-height: 185px;
   max-height: 185px;
   overflow-y: scroll;
+}
+
+table {
+    min-height: 185px;
+    max-height: 185px;
+    overflow-y: scroll;
 }
