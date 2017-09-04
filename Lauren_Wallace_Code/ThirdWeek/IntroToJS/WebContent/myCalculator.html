@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>My Calculator</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M">
+</head>
+<body style="background-color: darkkhaki;">
+<div class="calculator">
+	<p>My Calculator</p>
+	<div class="row">
+		<!-- Where the inputs will go once a button is pressed -->
+		<div class="calcScreen" display="table" width="90%">
+		0123456789
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="btn-group">
+			<button type="button" id="C">C</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="doFib">Fib</button>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="btn-group">
+			<button type="button" id="zero">0</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="one">1</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="two">2</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="three">3</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="four">4</button>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="btn-group">
+			<button type="button" id="five">5</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="six">6</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="seven">7</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="eight">8</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="nine">9</button>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="btn-group">
+			<button type="button" id="equals">=</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="add">+</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="minus">-</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="multiply">*</button>
+		</div>
+		<div class="btn-group">
+			<button type="button" id="divide">/</button>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"
+			integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			crossorigin="anonymous"></script>
+
+<script>
+	$(document).ready(function () {
+		var result = 0;
+		var preEntry = 0;
+		var ops = null;
+		var currEntry = '0';
+	});
+	
+	$('#add').on('click', function() {
+		
+	});
+	
+	$('li').click(function() {
+		$('ul#purchased').append($(this));
+	});
+	
+	function fibonanci(n){
+	    if(n<=1) return n;
+	    else return (fibonanci(n-1) + fibonanci(n-2));
+	}
+
+	function runFib() {
+		var display = document.getElementById("calScreen");
+		var n = document.getElementById("array").value;
+		display.innerHTML = fibonanci(n);
+	}
+
+	document.getElementById("doFib").addEventListener("click", runFib);
+</script>
+
+</body>
+</html>

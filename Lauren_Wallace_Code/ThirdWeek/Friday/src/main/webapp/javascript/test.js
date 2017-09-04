@@ -1,0 +1,31 @@
+/**
+ * Learning JSON
+ * JavaScript Object Notation
+ * JSON is text, not a JS Object
+ * 
+ */
+
+var myJSON = '{"name" : "Genesis", "age" : 100, "city" : "NYC"}';
+
+//this parses the var myJSON and creates a JS Object for it
+var myObject = JSON.parse(myJSON);
+console.log(myJSON);
+console.log(myObject);
+
+document.getElementById("demo").innerHTML = myObject.name;
+
+function getText() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById("things").innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET", "getText", true);
+	//HTTP method is GET, url-pattern, use Asyncronous? (always true)
+	
+	//this sends the request
+	xhr.send();
+}
+
+document.getElementById("myBtn").addEventListener("click", getText);
