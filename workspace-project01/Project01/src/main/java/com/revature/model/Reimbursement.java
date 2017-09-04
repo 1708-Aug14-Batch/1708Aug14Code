@@ -1,18 +1,27 @@
 package com.revature.model;
 
 import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class Reimbursement {
 	
 	private int rID;
 	private int submitterID;
 	private int resolverID;
-	private LocalDateTime dateSubmitted;
-	private LocalDateTime dateResolved;
+	private Date dateSubmitted;
+	private Date dateResolved;
 	private int statusID;
 	private String description;
 	private String resolutionNotes;
 	private double amount;
+	
+	public int getrID() {
+		return rID;
+	}
+
+	public void setrID(int rID) {
+		this.rID = rID;
+	}
 	
 	public int getReimbursementID() {
 		return rID;
@@ -37,23 +46,23 @@ public class Reimbursement {
 	public void setResolverID(int resolverID) {
 		this.resolverID = resolverID;
 	}
-	
-	public LocalDateTime getDateSubmitted() {
+
+	public Date getDateSubmitted() {
 		return dateSubmitted;
 	}
-	
-	public void setDateSubmitted(LocalDateTime dateSubmitted) {
+
+	public void setDateSubmitted(Date dateSubmitted) {
 		this.dateSubmitted = dateSubmitted;
 	}
-	
-	public LocalDateTime getDateResolved() {
+
+	public Date getDateResolved() {
 		return dateResolved;
 	}
-	
-	public void setDateResolved(LocalDateTime dateResolved) {
+
+	public void setDateResolved(Date dateResolved) {
 		this.dateResolved = dateResolved;
 	}
-	
+
 	public int getStatusID() {
 		return statusID;
 	}
