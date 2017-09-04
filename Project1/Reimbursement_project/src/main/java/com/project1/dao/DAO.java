@@ -4,7 +4,9 @@ public interface DAO {
 	
 	public int getUserID(String username, String pw);
 	
-	public void registerEmp(int id);
+	public boolean isMgr(int id);
+	
+	public void registerEmp(String fn, String ln, String un, String em);
 	
 	public void viewAllEmp();
 	

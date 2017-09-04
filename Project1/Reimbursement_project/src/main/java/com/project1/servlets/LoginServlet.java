@@ -15,21 +15,23 @@ public class LoginServlet extends HttpServlet {
 	static Service service = new Service();
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		System.out.println(username + " " + password);
 
 		int id = service.validateUser(username, password);
+		boolean isMgr = service.isMgr(id);
 		if (id == -1) {
 			RequestDispatcher rd = request.getRequestDispatcher("error.html");
 			rd.forward(request, response); // invalid user
+		} else if (isMgr) {
+			RequestDispatcher rd = request.getRequestDispatcher("manager_homepage.html");
+			rd.forward(request, response); // successful login
 		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("success.html");
+			RequestDispatcher rd = request.getRequestDispatcher("employee_homepage.html");
 			rd.forward(request, response); // successful login
 		}
-
 	}
 }

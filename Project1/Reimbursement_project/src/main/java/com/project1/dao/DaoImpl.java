@@ -1,13 +1,12 @@
 package com.project1.dao;
 
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-
 import com.project1.util.ConnectionFactory;
 
 public class DaoImpl implements DAO {
@@ -21,7 +20,7 @@ public class DaoImpl implements DAO {
 			ps.setString(2, pw);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				return rs.getInt(1);
+				return rs.getInt("userid");
 			} else {
 				return -1;
 			}
@@ -32,8 +31,20 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void registerEmp(int id) {
-		
+	public void registerEmp(String fn, String ln, String un, String em) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "{call registerEmp(?,?,?,?)}";
+			CallableStatement stmt = conn.prepareCall(sql);
+			conn.setAutoCommit(false);
+			stmt.setString(1, fn);
+			stmt.setString(2, ln);
+			stmt.setString(3, un);
+			stmt.setString(4, em);
+			stmt.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -165,6 +176,25 @@ public class DaoImpl implements DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean isMgr(int id) {
+	// determine if person logging in is a manager or not
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select * from users where userid = ? and isMgr = 1";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
