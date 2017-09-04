@@ -4,51 +4,83 @@
 <meta charset="ISO-8859-1">
 <title>Login</title>
 <link rel="stylesheet" href="login.css">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+	integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
 	<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="pr-wrap">
-                <div class="pass-reset">
-                    <label>
-                        Enter the email you signed up with</label>
-                    <input type="email" name="email" placeholder="Email" />
-                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
-                </div>
-            </div>
-            <div class="wrap">
-                <p class="form-title">
-                    Sign In</p>
-                <form class="login" action="login" method="post">
-                <input type="email" name="email" placeholder="Username" />
-                <input type="password" name="password" placeholder="Password" />
-                <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
-                <!-- 
-                <div class="remember-forgot">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" />
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>        
-                        <div class="col-md-6 forgot-pass-content">
-                            <a href="javascript:void(0)" class="forgot-pass">New User</a>
-                        </div>        
-                    </div>
-                </div>
-                -->
-                </form>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="pr-wrap">
+					<div class="pass-reset">
+						<label> Enter the email you signed up with</label> <input
+							type="email" name="email" placeholder="Email" /> <input
+							type="submit" value="Submit"
+							class="pass-reset-submit btn btn-success btn-sm" />
+					</div>
+				</div>
+				<div class="wrap">
+					<p class="form-title">Sign In</p>
+					<form class="login" action="login" method="post">
+						<input type="email" name="email" placeholder="Username" /> <input
+							type="password" name="password" placeholder="Password" /> <input
+							type="submit" value="Sign In" />
+						<!--  class="btn btn-success btn-sm" />-->
+
+						<div class="remember-forgot">
+							<div class="row">
+								<div class="col-md-6 forgot-pass-content">
+									<button type="button" class="forgot-pass" data-toggle="modal"
+										data-target="#newUserModal">New User</button>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog"
+		aria-labelledby="newUserModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Register New User</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="create" method="post">
+						Firstname<input type="text" name="fname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Firstname" required/>
+						Lastname<input type="text" name="lname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Lastname" required/>
+						Email<br><input type="email" name="email" placeholder="user@email.com" required/>
+						Password<input id="p" type="password" name="pword" placeholder="Password" required/>
+						Confirm Password<input id="nPwordCheck" type="password" name="pword_c" placeholder="Password" required/>
+						<br><br><input type="checkbox" name="manager">   I'm a Manager<br>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Create Account</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 

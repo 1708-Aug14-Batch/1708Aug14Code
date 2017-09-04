@@ -36,10 +36,10 @@ public class DOMParser {
 				Node cur = nodes.item(i);
 				Element e = (Element)cur;
 				System.out.println(cur.getAttributes().item(0));
-				System.out.println(e.getElementsByTagName("firstname").item(0).getTextContent());
-				System.out.println(e.getElementsByTagName("lastname").item(0).getTextContent());
-				System.out.println(e.getElementsByTagName("email").item(0).getTextContent());
-				System.out.println(e.getElementsByTagName("salary").item(0).getTextContent());
+				//System.out.println(e.getElementsByTagName("firstname").item(0).getTextContent());
+				//System.out.println(e.getElementsByTagName("lastname").item(0).getTextContent());
+				//System.out.println(e.getElementsByTagName("email").item(0).getTextContent());
+				//System.out.println(e.getElementsByTagName("salary").item(0).getTextContent());
 				System.out.println();
 			}
 			

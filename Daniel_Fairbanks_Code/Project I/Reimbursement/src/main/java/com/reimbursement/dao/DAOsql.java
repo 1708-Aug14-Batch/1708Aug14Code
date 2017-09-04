@@ -1,20 +1,56 @@
 package com.reimbursement.dao;
 
+import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.HashMap;
 
+import com.reimbursement.pojos.Reimbursement;
 import com.reimbursement.pojos.User;
 import com.reimbursement.util.ConnectionFactory;
 
 public class DAOsql implements DAO {
 	
-	public User getUser(String email) {
+	public int addUser(String fname, String lname, String email, String password, boolean isMgr) {
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO Users "
+						 + "(Firstname, Lastname, Email, Password, IsMgr) " 
+						 + "VALUES (?, ?, ?, ?, ?)";
+			String[] key = new String[1];
+			key[0] = "UserID";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, fname);
+			ps.setString(2, lname);
+			ps.setString(3, email);
+			ps.setString(4, password);
+			ps.setInt(5, isMgr == true ? 1 : 0);
+			
+			int numRowsAdded = ps.executeUpdate();
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while (pk.next()) {
+				id = pk.getInt(1);
+			}
+			conn.commit();
+			return id;
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: DAOsql - addUser");
+		}	
+		return -1;
+	}
 
+	public User getUser(String email) {
+		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM Users";
 			Statement stmt = conn.createStatement();
@@ -38,36 +74,172 @@ public class DAOsql implements DAO {
 		return null;
 	}
 	
-	public HashMap<Integer, User> getAllUsers() {
+	public int editUser(User u) {
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			
+			conn.setAutoCommit(false);
+			String sql = "{call editUser(?, ?, ?, ?, ?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setInt(1, u.getId());
+			cs.setString(2, u.getFirstname());
+			cs.setString(3, u.getLastname());
+			cs.setString(4, u.getEmail());
+			cs.setString(5, u.getPassword());
+			cs.execute();
+			conn.commit();
+			return 1;
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: DAOsql - editUser");
+		}
+		return -1;
+	}
+	
+	public HashMap<Integer, Reimbursement> getEmployeeReimbursements(User u) {
+		
+		HashMap<Integer, Reimbursement> requests = new HashMap<Integer, Reimbursement>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+	
+			String sql = "SELECT r.RID, r.Amount, r.Description, r.ResolvedNotes, "
+					+ "r.SubmitDate, r.ResolveDate, u.Firstname, u.Lastname, s.Name "
+					+ "FROM Reimbursements r "
+					+ "LEFT JOIN Users u "
+					+ "ON u.UserID = r.ResolverID "
+					+ "LEFT JOIN ReimbursementStatus s "
+					+ "ON s.StatusID = r.StatusID "
+					+ "WHERE SubmitterID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getId());
+			ResultSet rs = ps.executeQuery(sql);
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				BigDecimal amt = rs.getBigDecimal(2);
+				String desc = rs.getString(3);
+				String notes = rs.getString(4);
+				Timestamp submitDate = rs.getTimestamp(5);
+				Timestamp resolveDate = rs.getTimestamp(6);
+				String rFname = rs.getString(7);
+				String rLname = rs.getString(8);
+				String status = rs.getString(9);
+				Reimbursement tmp = new Reimbursement();
+				tmp.setId(id);
+				tmp.setAmount(amt);
+				tmp.setDescription(desc);
+				tmp.setResolve_notes(notes);
+				tmp.setSubmit_date(submitDate);
+				tmp.setResolve_date(resolveDate);
+				User resolver = new User();
+				resolver.setFirstname(rFname);
+				resolver.setLastname(rLname);
+				tmp.setResolver(resolver);
+				//tmp.setStatus(status);
+				requests.put(id, tmp);
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR: DAOsql - getEmployeeReimbursements");
+		}	
+		return requests;
+	}
+	
+	public HashMap<Integer, User> getAllEmployees() {
+		
 		HashMap<Integer, User> users = new HashMap<Integer, User>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			
-			String sql = "SELECT u.UserID, u.Firstname, u.Lastname, u.Email, u.Password, a.Balance, t.Name "
-					+ "FROM Users u "
-					+ "LEFT JOIN Account a "
-					+ "ON u.UserID = a.UserID "
-					+ "LEFT JOIN AccountType t "
-					+ "ON a.TypeID = t.TypeID";
+			String sql = "SELECT * FROM Users";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				int id = rs.getInt(1);
-				String firstname = rs.getString(2);
-				String lastname = rs.getString(3);
+				String fname = rs.getString(2);
+				String lname = rs.getString(3);
 				String email = rs.getString(4);
-				String password = rs.getString(5);
-				User tmp = new User();
-				tmp.setId(id);
-				tmp.setFirstname(firstname);
-				tmp.setLastname(lastname);
-				tmp.setEmail(email);
-				tmp.setPassword(password);
+				String pword = rs.getString(5);
+				boolean isMgr = rs.getInt(6) == 0 ? false : true;
+				User tmp = new User(id, fname, lname, email, pword, isMgr);
 				users.put(id, tmp);
 			}
 		} catch (Exception e) {
-			System.out.println("ERROR: DAOsql - getAllUsers");
+			System.out.println("ERROR: DAOsql - getAllEmployees");
 		}
 		return users;
 	}
+	
+	public int addRequest(Reimbursement r) {
 
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			
+			conn.setAutoCommit(false);
+			String sql = "INSERT INTO Reimbursements "
+						 + "(Amount, Description, SubmitDate, StatusID, SubmitterID) " 
+						 + "VALUES (?, ?, ?, ?, ?)";
+			String[] key = new String[1];
+			key[0] = "RID";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setBigDecimal(1, r.getAmount());
+			ps.setString(2, r.getDescription());
+			ps.setTimestamp(3, r.getSubmit_date());
+			ps.setInt(4, r.getStatus());
+			ps.setInt(5, r.getSubmitterId());
+			
+			int numRowsAdded = ps.executeUpdate();
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while (pk.next()) {
+				id = pk.getInt(1);
+			}
+			conn.commit();
+			return id;
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: DAOsql - addReimbursementRequest");
+		}	
+		return -1;
+	}
+	
+	public int resolveRequest(Reimbursement r) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			
+			conn.setAutoCommit(false);
+			String sql = "{call resolveRequest(?, ?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setInt(1, r.getId());
+			cs.setInt(2, r.getStatus());
+			cs.execute();
+			conn.commit();
+			return 1;
+			
+		} catch (SQLException e) {
+			System.out.println("ERROR: DAOsql - editUser");
+		}
+		return -1;
+	}
+	
+	public HashMap<Integer, Reimbursement> getAllRequests() {
+		
+		HashMap<Integer, Reimbursement> requests = new HashMap<Integer, Reimbursement>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			
+			String sql = "SELECT * FROM Reimbursements";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				int id = rs.getInt(1);
+				BigDecimal amt = rs.getBigDecimal(2);
+				String desc = rs.getString(3);
+				String notes = rs.getString(4);
+				Timestamp submitDate = rs.getTimestamp(5);
+				Timestamp resolveDate = rs.getTimestamp(6);
+				int status = rs.getInt(7);
+				int submitter = rs.getInt(8);
+				int resolver = rs.getInt(9);
+				//requests.put(id, tmp);
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR: DAOsql - getAllRequests");
+		}
+		return requests;
+	}
+	
 }

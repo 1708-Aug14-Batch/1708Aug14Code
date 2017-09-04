@@ -16,11 +16,6 @@ public class LoginServlet extends HttpServlet {
 	private Service runApp = new Service();
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-	
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -28,6 +23,7 @@ public class LoginServlet extends HttpServlet {
 		if (tmp == null) {
 			System.out.println("You are not in the system...");
 			response.sendRedirect("login.html");
+			return;
 		}
 		else {
 			if (password.equals(tmp.getPassword())) {
@@ -38,14 +34,18 @@ public class LoginServlet extends HttpServlet {
 				}
 				if (tmp.getIsManager() == true) {
 					System.out.println("You are a manager in the system!");
-					response.sendRedirect("test.html");
+					response.sendRedirect("manager.html");
+					return;
 				} else {
 					System.out.println("You are an employee in the system!");
-					response.sendRedirect("test.html");
+					response.sendRedirect("employee.html");
+					return;
 				}
 			} else {
+				System.out.println("You entered the wrong password...");
 				RequestDispatcher rd = request.getRequestDispatcher("login.html");
 				rd.forward(request, response);
+				return;
 			}
 				
 		}
