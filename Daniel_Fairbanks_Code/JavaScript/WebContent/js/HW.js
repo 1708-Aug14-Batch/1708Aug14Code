@@ -98,6 +98,44 @@ function printShape(shape, height, character)
 }
 
 
+function traverseObject(obj) 
+{
+	var keys = [];
+	for ( var key in obj) {
+		var value = obj[key];
+		console.log(key +":"+value);
+	}
+}
+
+function deleteElement(arry)
+{
+	console.log(arry.length);
+	delete arry[2];
+	console.log(arry.length);
+}
+
+function spliceElement(arry)
+{
+	console.log(arry.length);
+	arry.splice(2,1);
+	console.log(arry.length);
+}
+
+function person(name, age)
+{
+	this.name = name;
+	this.age = age;
+}
+
+function getPerson(name, age)
+{
+	var john = {"name":name, "age":age};
+	return john;
+}
+
+
+
+
 
 
 
