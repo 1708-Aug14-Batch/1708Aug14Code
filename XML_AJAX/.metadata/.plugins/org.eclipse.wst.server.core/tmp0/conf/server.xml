@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\Surplus\my_git_repos\1708Aug14Code\XML_AJAX\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Surplus\my_git_repos\1708Aug14Code\XML_AJAX\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\FridayExamples" path="/FridayExamples" reloadable="true" source="org.eclipse.jst.jee.server:FridayExamples"/><Context docBase="C:\Users\Surplus\my_git_repos\1708Aug14Code\XML_AJAX\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\PokemonViewer" path="/PokemonViewer" reloadable="true" source="org.eclipse.jst.jee.server:PokemonViewer"/></Host>
+      <Context docBase="C:\Users\Surplus\my_git_repos\Revature projects\XML_AJAX\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\Surplus\my_git_repos\Revature projects\XML_AJAX\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\FridayExamples" path="/FridayExamples" reloadable="true" source="org.eclipse.jst.jee.server:FridayExamples"/><Context docBase="C:\Users\Surplus\my_git_repos\Revature projects\XML_AJAX\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\PokemonViewer" path="/PokemonViewer" reloadable="true" source="org.eclipse.jst.jee.server:PokemonViewer"/></Host>
     </Engine>
   </Service>
 </Server>

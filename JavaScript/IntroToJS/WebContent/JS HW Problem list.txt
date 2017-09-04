@@ -165,3 +165,4 @@ random color.
 Define function walkTheDOM(node, func)
 This function should traverse every node in the DOM. Use recursion.
 On each node, call func(node).
+// https://www.w3schools.com/jquery/jquery_traversing.asp
