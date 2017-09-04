@@ -5,21 +5,26 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 import com.revature.logging.Logging;
+import com.revature.utils.ConnectionFactory;
 
 public class DBDAO {
 	private Connection dbConn;
+	private Logger log;
 	
 	public DBDAO() {
-		try {
-			Properties prop = new Properties();
-			prop.load(new FileReader("src/com/rev/utils/database.properties"));
-			dbConn = DriverManager.getConnection(prop.getProperty("url"),
-					prop.getProperty("usr"), prop.getProperty("pw"));
-		} catch (Exception ex) {
-			Logging.getLogger().fatal("Unable to make connection to database, shutting down");
-			Logging.getLogger().fatal(ex.getMessage());
-			System.exit(1);
-		}
+		log = Logging.getLogger();
+		dbConn = ConnectionFactory.getInstance().getConnection();
+		log.debug("DBDAO() instance created");
 	}
+	
+	public static void main(String[] args) {
+		DBDAO n = new DBDAO();
+	}
+	
+	
+	
 }

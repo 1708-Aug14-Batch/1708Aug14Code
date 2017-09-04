@@ -20,6 +20,7 @@ public class ConnectionFactory {
 		try {
 			Properties prop = new Properties();
 			prop.load(new FileReader("src/com/rev/utils/database.properties"));
+			Class.forName(prop.getProperty("driver"));
 			return DriverManager.getConnection(prop.getProperty("url"),
 					prop.getProperty("usr"), prop.getProperty("pw"));
 		} catch (Exception ex) {

@@ -1,0 +1,15 @@
+package com.revature.utils;
+
+public class ConnectionFactory {
+	private static ConnectionFactory instance;
+	
+	private ConnectionFactory() {
+		
+	}
+	
+	public static ConnectionFactory getInstance() {
+		if (instance == null)
+			instance = new ConnectionFactory();
+		return instance;
+	}
+}

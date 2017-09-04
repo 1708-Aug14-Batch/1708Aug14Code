@@ -1,0 +1,44 @@
+package com.revature.pojos;
+
+import java.sql.Date;
+
+public class Reimbursement {
+	private int id;
+	private User submitter, resolver;
+	private Date submissionDate, resolutionDate;
+	private Status reimbursementStatus;
+	private String description;
+	double amount;
+	
+	
+	public Reimbursement() {
+	}
+	
+	
+	public Reimbursement(int id, User submitter, User resolver, Date submissionDate,
+			Date resolutionDate, Status reimbursementStatus, String description, double amount) {
+		this.id = id;
+		this.submitter = submitter;
+		this.resolver = resolver;
+		this.submission_date = submission_date;
+		this.resolution_date = resolution_date;
+		this.reimbursement_status = reimbursement_status;
+		this.description = description;
+		this.amount = amount;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public User getSubmitter() {
+		return submitter;
+	}
+	
+	public User getResolver() {
+		return resolver;
+	}
+	
+	public Date getSubmissionDate
+	
+}

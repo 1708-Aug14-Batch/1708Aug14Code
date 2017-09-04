@@ -1,0 +1,10 @@
+package com.revature.pojos;
+
+import java.sql.Date;
+
+public class Reimbursement {
+	private int id, submitter_id, resolver_id;
+	private Date submission_date, resolution_date;
+	private Status reimbursement_status;
+	
+}

@@ -1,0 +1,8 @@
+package com.revature.pojos;
+
+public enum Status {
+	PENDING(1, 'pending'), APPROVED(2, 'approved'), DENIED(3, 'denied');
+	
+	private int id;
+	private String str;
+}

@@ -1,0 +1,18 @@
+2017-09-04 10:48:01 DEBUG root:21 - ConnectionFactory getInstance()
+2017-09-04 10:48:01 DEBUG root:17 - ConnectionFactory() instance created
+2017-09-04 10:48:01 DEBUG root:29 - ConnectionFactory getConnection()
+2017-09-04 10:48:01 FATAL root:36 - ConnectionFactory getConnection() FAILURE
+2017-09-04 10:48:01 FATAL root:37 - src\com\rev\utils\database.properties (The system cannot find the path specified)
+2017-09-04 10:48:01 DEBUG root:21 - DBDAO() instance created
+2017-09-04 10:49:14 DEBUG root:21 - ConnectionFactory getInstance()
+2017-09-04 10:49:14 DEBUG root:17 - ConnectionFactory() instance created
+2017-09-04 10:49:14 DEBUG root:29 - ConnectionFactory getConnection()
+2017-09-04 10:49:14 FATAL root:36 - ConnectionFactory getConnection() FAILURE
+2017-09-04 10:49:14 FATAL root:37 - src\com\revature\utils\database.properties (The system cannot find the path specified)
+2017-09-04 10:49:14 DEBUG root:21 - DBDAO() instance created
+2017-09-04 10:50:40 DEBUG root:21 - ConnectionFactory getInstance()
+2017-09-04 10:50:40 DEBUG root:17 - ConnectionFactory() instance created
+2017-09-04 10:50:40 DEBUG root:29 - ConnectionFactory getConnection()
+2017-09-04 10:50:40 FATAL root:36 - ConnectionFactory getConnection() FAILURE
+2017-09-04 10:50:40 FATAL root:37 - src\com\revature\utils\database.properties (The system cannot find the path specified)
+2017-09-04 10:50:40 DEBUG root:21 - DBDAO() instance created

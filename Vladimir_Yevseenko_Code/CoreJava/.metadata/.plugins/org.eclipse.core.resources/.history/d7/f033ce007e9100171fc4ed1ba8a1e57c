@@ -1,0 +1,29 @@
+package com.revature.dao;
+
+import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.util.Properties;
+
+import com.revature.logging.Logging;
+
+public class DBDAO {
+	private Connection dbConn;
+	private Logger log;
+	
+	public DBDAO() {
+		log = Logging.getLogger();
+		
+		try {
+			Properties prop = new Properties();
+			prop.load(new FileReader("src/com/rev/utils/database.properties"));
+			dbConn = DriverManager.getConnection(prop.getProperty("url"),
+					prop.getProperty("usr"), prop.getProperty("pw"));
+			
+		} catch (Exception ex) {
+			Logging.getLogger().fatal("Unable to make connection to database, shutting down");
+			Logging.getLogger().fatal(ex.getMessage());
+			System.exit(1);
+		}
+	}
+}

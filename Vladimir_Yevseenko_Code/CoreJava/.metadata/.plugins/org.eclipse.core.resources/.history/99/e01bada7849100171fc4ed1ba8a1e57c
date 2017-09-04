@@ -1,0 +1,46 @@
+package com.revature.pojos;
+
+public class User {
+	private int id;
+	private String first, last, email, password;
+	boolean isManager;
+	
+	
+	public User() {
+		
+		
+	}
+	
+	public User(int id, String first, String last, String email, String password, boolean isManager) {
+		this.id = id;
+		this.first = first;
+		this.last = last;
+		this.email = email;
+		this.password = password;
+		this.isManager = isManager;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public String getFirst() {
+		return first;
+	}
+	
+	public String getLast() {
+		return last;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public boolean getIsManager() {
+		return isManager;
+	}
+}
