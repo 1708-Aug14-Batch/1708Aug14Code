@@ -15,7 +15,7 @@ function fib(n){
 function runFib(){
 	var display = document.getElementById("fibDisplay");
 	var n = document.getElementById("fib").value;
-	display.innerHTML = fib(n);
+	display.innerHTML = "The Fibonacci value of "+n+" is "+fib(n);
 	document.getElementById("fib").value = fib(n);
 }
 document.getElementById("doFib").addEventListener("click", runFib);
@@ -47,7 +47,7 @@ function bubbleSort(numArray){
 function runBubble(){
 	var display = document.getElementById("bubbleDisplay");
 	var numArr = document.getElementById("bubble").value;
-	display.innerHTML = bubbleSort(numArr);
+	display.innerHTML = "Sorted Array: "+bubbleSort(numArr);
 }
 document.getElementById("doBubble").addEventListener("click",runBubble);
 
@@ -234,7 +234,7 @@ function printShape(shape,height,character){
 	col ="";
 	switch(shape){
 	case 0:
-		row = character.repeat(height);
+		row = (character+"&numsp;").repeat(height);
 		col = (row+"<br />").repeat(height);
 		return col;
 	case 1:
@@ -245,18 +245,9 @@ function printShape(shape,height,character){
 		}
 		return col;
 	case 2:
-		var space;
-		if(character=="%"||character=="@"){
-			space="&ensp;";
-		}
-		else if(character=="&"){
-			space="&nbsp;&thinsp;";
-		}
-		else{
-			space="&nbsp;";
-		}
+		var space="&nbsp;".repeat(character.length);
 		for(var i=1;i<=height/2;i++){
-			row2 = space.repeat(height-(i*2));
+			row2 = space.repeat((height/2)-(i)+1);
 			row = character.repeat(i);
 			row2 = row2 + row;
 			col=col+(row2+row+"<br/>");
@@ -264,14 +255,14 @@ function printShape(shape,height,character){
 			row="";
 		}
 		row="";
-		row = character.repeat(height);
-		col=col+(row+"<br/>");
+		row = character.repeat(height+1);
+		col=col+(row);
 		row=space;
 		for(var i=height/2;i>0;i--){
-			row2 = space.repeat(1+height-(i*2));
+			row2 = space.repeat((height/2)-(i)+1);
 			row=character.repeat(i);
 			row2 = row2 + row;
-			col=col+(row2+row+"<br/>");
+			col=col+("<br/>"+row2+row);
 			row2="";
 			row="";
 		}
@@ -283,7 +274,7 @@ function printShape(shape,height,character){
 }
 function runPrintShape(){
 	var display = document.getElementById("shapeDisplay");
-	var shape = document.getElementById("shape").value;
+	var shape = document.querySelector('input[name=shape]:checked').value;
 	var height = document.getElementById("height").value;
 	var character = document.getElementById("character").value;
 	display.innerHTML = printShape(shape,height,character);
@@ -296,6 +287,29 @@ document.getElementById("doShape").addEventListener("click",runPrintShape);
  * Define function traverseObject(someObj)
  * Print every property and its value.
  */
+function traverseObject(someObj){
+	var props = [];
+	for(var key in someObj){
+		props.push(" [Property: "+key+" Value: "+someObj[key]+"]");
+	}
+	return props;
+}
+function runTraverse(){
+	var display = document.getElementById("traverseDisplay");
+	var kat = getObject();
+	display.innerHTML = traverseObject(kat);
+}
+document.getElementById("doTraverse").addEventListener("click",runTraverse);
+function getObject(){
+	var myObj = new Object();
+	myObj.firstname = "Katie";
+	myObj.lastname = "Bixby";
+	myObj.age = 21;
+	myObj.haircolor = "Red";
+	myObj.favmovie = "Spirited Away";
+	return myObj;
+}
+
 
 
 
@@ -315,8 +329,11 @@ function deleteElement(deleteArr){
 }
 function runDelete(){
 	var display = document.getElementById("deleteDisplay");
-	var deleteArr = document.getElementById("deleteArr").value;
-	display.innerHTML = "Length Before: "+deleteArr.length+" || Array: "+deleteElement(deleteArr)+" || Length After: "+deleteArr.length+"!";
+	var someArr = document.getElementById("deleteArr").value;
+	var deletedArr = deleteElement(someArr);
+	var arrLen = someArr.split(',');
+	arrLen = arrLen.length
+	display.innerHTML = "Length Before: "+arrLen+" || Array: "+deletedArr+" || Length After: "+deletedArr.length+"!";
 }
 document.getElementById("doDelete").addEventListener("click",runDelete);
 
@@ -330,6 +347,21 @@ document.getElementById("doDelete").addEventListener("click",runDelete);
  * Print length
  * The lengths should be one less than the original length.
  */
+function spliceElement(someArr){
+	someArr.replace(/ /g,'');
+	someArr = someArr.split(',');
+	someArr.splice(2,1);
+	return someArr;
+}
+function runSplice(){
+	var display = document.getElementById("spliceDisplay");
+	var spliceArr = document.getElementById("spliceArr").value;
+	var splicedArr = spliceElement(spliceArr);
+	var spliceLen = spliceArr.split(',');
+	spliceLen = spliceLen.length;
+	display.innerHTML = "Length before: "+spliceLen+" || Array: "+splicedArr+" || Length After: "+splicedArr.length+"!";
+}
+document.getElementById("doSplice").addEventListener("click",runSplice);
 
 
 
@@ -339,8 +371,16 @@ document.getElementById("doDelete").addEventListener("click",runDelete);
  * The following line should set a Person object to the variable john:
  * 		var john = new Person("John",30);
  */
-
-
+function Person(name,age){
+	this.age = parseInt(age);
+	this.name = name;
+}
+function runPerson(){
+	var display = document.getElementById("personDisplay");
+	var john = new Person("John",30);
+	display.innerHTML = "Hi, here I generated a person named "+john.name+", who is "+john.age+" years old!";
+}
+document.getElementById("doRunPerson").addEventListener("click",runPerson);
 
 /**
  * 13. Define an object using an object literal
@@ -348,6 +388,19 @@ document.getElementById("doDelete").addEventListener("click",runDelete);
  * The following line should set a Person object to the variable john:
  * 		var john = getPerson("John",30);
  */
+function getPerson(name,age){
+	var myPerson = new Object();
+	myPerson.name=name;
+	myPerson.age=age;
+	return myPerson;
+}
+function runGetPerson(){
+	var display = document.getElementById("getPersonDisplay");
+	var john = getPerson("John",30);
+	display.innerHTML = "Hi, here I got a person named "+john.name+", who is "+john.age+" years old!";
+}
+document.getElementById("doGetPerson").addEventListener("click",runGetPerson);
+
 
 
 

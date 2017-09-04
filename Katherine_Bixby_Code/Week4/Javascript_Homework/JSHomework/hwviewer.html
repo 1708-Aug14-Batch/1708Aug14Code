@@ -3,15 +3,23 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>JS Homework</title>
+<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+<style>
+*{
+	font-family:"Inconsolata";
+}
+</style>
 </head>
 <body>
+	
+	<font face="inconsolata">
 
 
 	<h1>Problem 1: Fibonacci</h1>
 	<br>
 	<input type="number" id="fib" placeholder="Enter n" />
 	<button id="doFib">Fibonacc'ed!</button>
-	<b> =
+	<b>
 		<p id="fibDisplay"></p>
 	</b>
 	
@@ -22,7 +30,7 @@
 	<br>
 	<input type="text" id="bubble" placeholder="Enter Unsorted Numbers Separated by Commas"/>
 	<button id="doBubble">Bubble Sort!</button>
-	<b> =
+	<b>
 		<p id="bubbleDisplay"></p>
 	</b>
 	
@@ -33,7 +41,7 @@
 	<br>
 	<input type="text" id="reverse" placeholder="Enter String to Reverse"/>
 	<button id="doReverse">Reverse!</button>
-	<b> =
+	<b>
 		<p id="reverseDisplay"></p>
 	</b>
 	
@@ -44,7 +52,7 @@
 	<br>
 	<input type="number" id="factorial" placeholder="Enter n"/>
 	<button id="doFactorial">Factorial!</button>
-	<b> =
+	<b>
 		<p id="factorialDisplay"></p>
 	</b>
 	
@@ -57,7 +65,7 @@
 	<input type="number" id="offset" placeholder="Enter A Starting Index for Substring"/>
 	<input type="number" id="len" placeholder="Enter Length of Substring"/>
 	<button id="doSubstring">Get Substring!</button>
-	<b> =
+	<b>
 		<p id="substringDisplay"></p>
 	</b>
 	
@@ -68,7 +76,7 @@
 	<br>
 	<input type="number" id="someNum" placeholder="Enter n"/>
 	<button id="doIsEven">Is it Even?</button>
-	<b> =
+	<b>
 		<p id="isEvenDisplay"></p>
 	</b>
 	
@@ -79,7 +87,7 @@
 	<br>
 	<input type="text" id="someStrPal" placeholder="Enter a String to check"/>
 	<button id="doPalindrome">Is it a Palindrome?</button>
-	<b> =
+	<b>
 		<p id="palindromeDisplay"></p>
 	</b>
 	
@@ -87,12 +95,15 @@
 	
 	<br>
 	<h1>Problem 8: Print Shapes</h1>
-	<br>
-	<input type="number" id="shape" placeholder="Enter a shape (0-2)"/>
+		<input type="radio" id="shape0" name="shape" value=0>Square<br/>
+		<input type="radio" id="shape1" name="shape" value=1>Triangle<br/>
+		<input type="radio" id="shape2" name="shape" value=2>Diamond<br/>
+	<br/>
+	
 	<input type="number" id="height" placeholder="Enter a height"/>
 	<input type="text" id="character" placeholder="Enter a character"/>
 	<button id="doShape">Print</button>
-	<b> =
+	<b>
 		<p id="shapeDisplay"></p>
 	</b>
 	
@@ -100,7 +111,10 @@
 	
 	<br>
 	<h1>Problem 9: Object Literal</h1>
-	<br>
+	<button id="doTraverse">Traverse</button>
+	<b>
+		<p id="traverseDisplay"></p>
+	</b>
 	
 	
 	
@@ -109,25 +123,43 @@
 	<br>
 	<input type="text" id="deleteArr" placeholder="Enter Array of Things Separated by Commas"/>
 	<button id="doDelete">Delete</button>
-	<b> =
+	<b>
 		<p id="deleteDisplay"></p>
 	</b>
 	
 	
 	
+	<br>
+	<h1>Problem 11: Splice Element</h1>
+	<br>
+	<input type="text" id="spliceArr" placeholder="Enter Array of Things Separated by Commas"/>
+	<button id="doSplice">Splice</button>
+	<b>
+		<p id="spliceDisplay"></p>
+	</b>
+	
+	
+	
+	<br>
+	<h1>Problem 12: Defining an Object Using a Constructor</h1>
+	<button id="doRunPerson">Generate John</button>
+	<b>
+		<p id="personDisplay"></p>
+	</b>
+	
+	
+	
+	<br>
+	<h1>Problem 13: Defining an Object Using an Object Literal</h1>
+	<button id="doGetPerson">Generate John</button>
+	<b>
+		<p id="getPersonDisplay"></p>
+	</b>
 	
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	</font>
 	
 	<script type="text/javascript" src="homework.js"></script>
 </body>
