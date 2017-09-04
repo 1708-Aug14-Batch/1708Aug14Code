@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JS homework</title>
+
+<link rel="stylesheet" href="homeworkstyle.css">
+
+
+</head>
+<body>
+	<!-- <div id="outer" style="background-color: red">
+		<br>outer<br>
+		<div id="middle" style="background-color: blue">
+			<br>outer<br>
+			<div id="inner" style="background-color: red">
+				<br>outer<br>
+			</div>
+		</div>
+	</div>
+	<br> -->
+	
+	<nav>
+	<ul>
+		<li><a href="#home">Home</a></li>
+		<li><a href="#news">News</a></li>
+		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+			<div class="dropdown-content">
+				<a href="fib.html" target="_self">fib</a> <a href="#">Link 2</a> <a href="#">Link 3</a>
+			</div></li>
+	</ul>
+     </nav>
+	
+	<br>
+
+	<h1><!--Problem1:-->Fibonacci</h1>
+	<input type="number" id="fib" placeholder="Enter n" />
+	<button id="doFib">Fibonacc'ed!</button>
+	<br> =
+	<p id="fibDisplay"></p>
+
+
+	<h1><!--Problem2:-->BubbleSort</h1>
+	<input type="text" id="bub" placeholder="Enter Some Numbers" />
+	<button id="doBubble">Sort!</button>
+	<br> =
+	<p id="bubbleDisplay"></p>
+
+
+	<h1><!--Problem3:--> ReverseString</h1>
+	<input type="text" id="rever" placeholder="Enter String" />
+	<button id="doReverse">Reverse</button>
+	<br> =
+	<p id="reverseDisplay"></p>
+
+
+	<h1><!--Problem4:-->Factorial</h1>
+	<input type="number" id="fact" placeholder="Enter n" />
+	<button id="doFactorial">Factorial!</button>
+	<br> =
+	<p id="factorialDisplay"></p>
+
+
+
+	<div class="center">
+		<div class="row">
+			<h1><!--Problem5:-->SubString</h1>
+			<input type="text" id="sub" placeholder="Enter something" /> <input
+				type="number" id="startIndex" placeholder="Enter index number" /> <input
+				type="number" id="length"
+				placeholder=" Enter number for length of substring" />
+			<button id="doSubString">SubString</button>
+			<br> =
+			<p id="substringDisplay"></p>
+		</div>
+	</div>
+	<script type="text/javascript" src="Js/homework.js"></script>
+</body>
+</html>
