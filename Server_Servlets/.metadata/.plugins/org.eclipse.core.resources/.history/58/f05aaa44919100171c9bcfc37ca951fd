@@ -1,0 +1,19 @@
+import com.reimburse.dao.DaoImpl;
+import com.reimburse.service.Service;
+
+public class Tester {
+	
+	// FIXME use logging instead of syso
+	public static void main(String[] args) {
+		System.out.println("Begin Tester main method");
+		DaoImpl daoImpl = new DaoImpl();
+		Service serv = new Service();
+		
+		login("username", "password");
+		
+		System.out.println(serv.getAllEmployees());
+		
+		System.out.println("End Tester main method");
+	}
+
+}

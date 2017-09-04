@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Testing testing... Page 1</h1>
+	<!-- Servlet part -->
+	<form action="testerAction">
+		username = <input type="text" name="usernameText"><br> <input
+			type="submit" value="click here 1" />
+	</form>
+
+	<!-- JSP part -->
+
+
+	<input type="text" id="tester_text" placeholder="Enter some text" />
+	<button id="tester_button">JSP portion!</button>
+	<p id="error_display" style="color: red"></p>
+	<script type="text/javascript" src="tester.js"></script>
+</body>
+</html>

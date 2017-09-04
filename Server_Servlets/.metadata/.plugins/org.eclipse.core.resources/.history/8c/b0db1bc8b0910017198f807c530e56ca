@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Testing testing... Page 1</h1>
+	<!-- Servlet code -->
+	<form action="testerAction">
+		username = <input type="text" name="usernameText"><br> <input
+			type="submit" value="click here 1" />
+	</form>
+	
+	<p id="error_display" style="color:red"></p>
+
+</body>
+</html>

@@ -22,22 +22,23 @@ public class DaoImpl implements Dao {
 	// Database reference: TO_TIMESTAMP(:ts_val, 'YYYY-MM-DD_HH24:MI:SS')
 	public String getFormattedTimestamp(LocalDateTime day) {
 		// Replace the 'T' with a space, and cut off the milliseconds
-		
+
 		if (day == null)
 			return null;
-		
+
 		String time = day.toString();
-		
+
 		// Cut off the three millisecond digits and the decimal place
-		time = time.substring(0, (time.length()-1)-3);
-		
+		time = time.substring(0, (time.length() - 1) - 3);
+
 		// Replace the 'T' with ' '
 		int tIndex = time.indexOf('T');
 		char[] timeArray = time.toCharArray();
 		timeArray[tIndex] = ' ';
-		
+
 		return String.copyValueOf(timeArray);
 	}
+
 	public LocalDateTime fromFormattedTimestamp(String str) {
 		if (str == null || str.equals("null"))
 			return null;
@@ -45,21 +46,21 @@ public class DaoImpl implements Dao {
 		// Put the 'T' back in index 10 where it belongs
 		char[] timeArray = str.toCharArray();
 		timeArray[10] = 'T';
-		
+
 		return LocalDateTime.parse(String.copyValueOf(timeArray));
 	}
 
-	public Worker createWorker(String firstName, String lastName, String email,
-			String username, String password, boolean isManager, boolean isHired) {
+	public Worker createWorker(String firstName, String lastName, String email, String username, String password,
+			boolean isManager, boolean isHired) {
 		Worker work = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			// No semi-colon inside the quotes
-			String sql = "INSERT INTO worker(first_name, last_name, email, username, password, is_manager, is_hired)" + 
-					" VALUES(?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO worker(first_name, last_name, email, username, password, is_manager, is_hired)"
+					+ " VALUES(?, ?, ?, ?, ?, ?, ?)";
 			String[] key = new String[1];
 			key[0] = "worker_id";
 
@@ -69,15 +70,15 @@ public class DaoImpl implements Dao {
 			ps.setString(3, email);
 			ps.setString(4, username);
 			ps.setString(5, password);
-			ps.setInt(6, isManager?1:0);
-			ps.setInt(7, isHired?1:0);
+			ps.setInt(6, isManager ? 1 : 0);
+			ps.setInt(7, isHired ? 1 : 0);
 
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
 
 			int id = 0;
 			ResultSet pk = ps.getGeneratedKeys();
-			while(pk.next())
+			while (pk.next())
 				id = pk.getInt(1);
 
 			conn.commit();
@@ -95,9 +96,9 @@ public class DaoImpl implements Dao {
 	public Worker readWorker(int workerId) {
 		Worker work = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM worker WHERE worker_id=?";
 			String[] key = new String[1];
@@ -108,19 +109,9 @@ public class DaoImpl implements Dao {
 
 			ResultSet rs = ps.executeQuery();
 
-			while(rs.next()) {
-				workerId = rs.getInt(1);		// This line is redundant
-				String firstName = rs.getString(2);
-				String lastName = rs.getString(3);
-				String email = rs.getString(4);
-				String username = rs.getString(5);
-				String password = rs.getString(6);
-				boolean isManager = (rs.getInt(7) == 0)?false:true;
-				boolean isHired = (rs.getInt(8) == 0)?false:true;
+			while (rs.next())
+				work = getWorkerFromResultSet(rs);
 
-				work = new Worker(workerId, firstName, lastName, email, username, password, isManager, isHired);
-				
-			}
 		} catch (SQLException e) {
 			System.out.println("Database error");
 		}
@@ -131,9 +122,9 @@ public class DaoImpl implements Dao {
 	public Worker readWorker(String username) {
 		Worker work = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM worker WHERE username=?";
 			String[] key = new String[1];
@@ -144,19 +135,9 @@ public class DaoImpl implements Dao {
 
 			ResultSet rs = ps.executeQuery();
 
-			while(rs.next()) {
-				int workerId = rs.getInt(1);
-				String firstName = rs.getString(2);
-				String lastName = rs.getString(3);
-				String email = rs.getString(4);
-				username = rs.getString(5);		// This line is redundant
-				String password = rs.getString(6);
-				boolean isManager = (rs.getInt(7) == 0)?false:true;
-				boolean isHired = (rs.getInt(8) == 0)?false:true;
+			while (rs.next())
+				work = getWorkerFromResultSet(rs);
 
-				work = new Worker(workerId, firstName, lastName, email, username, password, isManager, isHired);
-				
-			}
 		} catch (SQLException e) {
 			System.out.println("Database error");
 		}
@@ -164,17 +145,32 @@ public class DaoImpl implements Dao {
 		return work;
 	}
 
+	private Worker getWorkerFromResultSet(ResultSet rs) throws SQLException {
+
+		int workerId = rs.getInt(1);
+		String firstName = rs.getString(2);
+		String lastName = rs.getString(3);
+		String email = rs.getString(4);
+		String username = rs.getString(5);
+		String password = rs.getString(6);
+		boolean isManager = (rs.getInt(7) == 0) ? false : true;
+		boolean isHired = (rs.getInt(8) == 0) ? false : true;
+
+		return new Worker(workerId, firstName, lastName, email, username, password, isManager, isHired);
+
+	}
+
 	@Override
 	public boolean updateWorker(int workerId, Worker work) {
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			// No semi-colon inside the quotes
-			String sql = "UPDATE worker SET" + 
-					" first_name=?, last_name=?, email=?, birth_date=TO_DATE(?,'yyyy-mm-dd'), deceased=?" + 
-					" WHERE worker_id=?";
+			String sql = "UPDATE worker SET"
+					+ " first_name=?, last_name=?, email=?, username=?, password=?, is_manager=?, is_hired=?"
+					+ " WHERE worker_id=?";
 			String[] key = new String[1];
 			key[0] = "worker_id";
 
@@ -182,9 +178,10 @@ public class DaoImpl implements Dao {
 			ps.setString(1, work.getFirstName());
 			ps.setString(2, work.getLastName());
 			ps.setString(3, work.getEmail());
-			ps.setString(4, getFormattedDate(work.getBirthDate()));
-			ps.setInt(5, work.isDeceased()?1:0);
-			ps.setInt(6, workerId);
+			ps.setString(4, work.getUsername());
+			ps.setString(5, work.getPassword());
+			ps.setInt(6, work.isManager() ? 1 : 0);
+			ps.setInt(7, work.isHired() ? 1 : 0);
 
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
@@ -216,28 +213,17 @@ public class DaoImpl implements Dao {
 	public ArrayList<Worker> readAllWorkers() {
 		ArrayList<Worker> list = new ArrayList<Worker>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from worker";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 
-			while(rs.next()) {
-				int workerId = rs.getInt(1);
-				String firstName = rs.getString(2);
-				String lastName = rs.getString(3);
-				String email = rs.getString(4);
-				String username = rs.getString(5);
-				String password = rs.getString(6);
-				boolean isManager = (rs.getInt(7) == 0)?false:true;
-				boolean isHired = (rs.getInt(8) == 0)?false:true;
+			while (rs.next())
+				list.add(getWorkerFromResultSet(rs));
 
-				Worker work = new Worker(workerId, firstName, lastName, email, username, password, isManager, isHired);
-
-				list.add(work);
-			}
 		} catch (SQLException e) {
 			System.out.println("Database error");
 		}
@@ -246,16 +232,16 @@ public class DaoImpl implements Dao {
 	}
 
 	@Override
-	public Reimbursement createReimbursement(int submitterId, reimbursementStatus status,
-			LocalDateTime submitDate, String description, int ammount) {
+	public Reimbursement createReimbursement(int submitterId, reimbursementStatus status, LocalDateTime submitDate,
+			String description, int ammount) {
 		Reimbursement reimburse = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
-			String sql = "INSERT INTO reimbursement(submitter_id_fk, status_id_fk, submit_date, description, ammount)" + 
-					" VALUES(?, ?, TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS'), ?, ?)";
+			String sql = "INSERT INTO reimbursement(submitter_id_fk, status_id_fk, submit_date, description, ammount)"
+					+ " VALUES(?, ?, TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS'), ?, ?)";
 			String[] key = new String[1];
 			key[0] = "reimbursement_id";
 
@@ -265,13 +251,13 @@ public class DaoImpl implements Dao {
 			ps.setString(3, getFormattedTimestamp(submitDate));
 			ps.setString(4, description);
 			ps.setInt(5, ammount);
-			
+
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
 
 			Integer id = 0;
 			ResultSet pk = ps.getGeneratedKeys();
-			while(pk.next())
+			while (pk.next())
 				id = pk.getInt(1);
 
 			conn.commit();
@@ -286,13 +272,34 @@ public class DaoImpl implements Dao {
 
 	}
 
+	private Reimbursement getReimbursementFromResultSet(ResultSet rs) throws SQLException {
+		Reimbursement reimburse = null;
+
+		int reimbursementId = rs.getInt(1);
+		int submitterId = rs.getInt(2);
+		int resolverId = rs.getInt(3);
+		reimbursementStatus status = reimbursementStatus.values()[rs.getInt(4)];
+		LocalDateTime submitDate = fromFormattedTimestamp(rs.getString(5));
+		LocalDateTime resolvedDate = fromFormattedTimestamp(rs.getString(6));
+		String description = rs.getString(7);
+		String resolveNotes = rs.getString(8);
+		int ammount = rs.getInt(9);
+
+		reimburse = new Reimbursement(reimbursementId, submitterId, status, submitDate, description, ammount);
+		reimburse.setResolverId(resolverId);
+		reimburse.setResolvedDate(resolvedDate);
+		reimburse.setResolveNotes(resolveNotes);
+
+		return reimburse;
+	}
+
 	@Override
 	public Reimbursement readReimbursement(int reimbursementId) {
 		Reimbursement reimburse = null;
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * FROM reimbursement WHERE reimbursement_id=?";
 			String[] key = new String[1];
@@ -303,22 +310,9 @@ public class DaoImpl implements Dao {
 
 			ResultSet rs = ps.executeQuery();
 
-			while(rs.next()) {
-				reimbursementId = rs.getInt(1);		// This line is redundant
-				int submitterId = rs.getInt(2);
-				int resolverId = rs.getInt(3);
-				reimbursementStatus status =  reimbursementStatus.values()[rs.getInt(4)];
-				LocalDateTime submitDate = fromFormattedTimestamp(rs.getString(5));
-				LocalDateTime resolvedDate = fromFormattedTimestamp(rs.getString(6));
-				String description = rs.getString(7);
-				String resolveNotes = rs.getString(8);
-				int ammount = rs.getInt(9);
-				
-				reimburse = new Reimbursement(reimbursementId, submitterId, status, submitDate, description, ammount);
-				reimburse.setResolverId(resolverId);
-				reimburse.setResolvedDate(resolvedDate);
-				reimburse.setResolveNotes(resolveNotes);
-			}
+			while (rs.next())
+				reimburse = getReimbursementFromResultSet(rs);
+
 		} catch (SQLException e) {
 			System.out.println("Database error");
 		}
@@ -326,29 +320,32 @@ public class DaoImpl implements Dao {
 		return reimburse;
 	}
 
+	// resolverId, status, resolvedDate, description, resolveNotes, ammount
 	@Override
 	public boolean updateReimbursement(int reimbursementId, Reimbursement reimburse) {
 
 		// A null date cannot be formatted into the sql string below
 		if (reimburse.getResolvedDate() == null)
-			updateReimbursementNoDate(reimbursementId, reimburse);
-		
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+			return updateReimbursementNoDate(reimbursementId, reimburse);
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			// No semi-colon inside the quotes
-			String sql = "UPDATE reimbursement SET" + 
-					" balance=?, level_id=?, deleted=?" + 
-					" WHERE reimbursement_id=?";
+			String sql = "UPDATE reimbursement SET"
+					+ " resolver_id_fk=?, status_id_fk=?, resolved_date=TO_TIMESTAMP(?, 'YYYY-MM-DD HH24:MI:SS'), description=?, resolve_notes=?, ammount=?"
+					+ " WHERE reimbursement_id=?";
 			String[] key = new String[1];
 			key[0] = "reimbursement_id";
 
 			PreparedStatement ps = conn.prepareStatement(sql, key);
-			ps.setString(1, reimburse.getBalance().toString());
-			ps.setInt(2, reimburse.getLevel().ordinal());
-			ps.setInt(3, reimburse.isDeleted()?1:0);
-			ps.setInt(4, reimbursementId);
+			ps.setInt(1, reimburse.getResolverId());
+			ps.setInt(2, reimburse.getStatus().ordinal());
+			ps.setString(3, getFormattedTimestamp(reimburse.getResolvedDate()));
+			ps.setString(4, reimburse.getDescription());
+			ps.setString(5, reimburse.getResolveNotes());
+			ps.setInt(6, reimbursementId);
 
 			// executeUpdate() returns the number of rows updated
 			ps.executeUpdate();
@@ -364,36 +361,54 @@ public class DaoImpl implements Dao {
 
 	}
 
+	// resolverId, status, description, resolveNotes, ammount
+	private boolean updateReimbursementNoDate(int reimbursementId, Reimbursement reimburse) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			// No semi-colon inside the quotes
+			String sql = "UPDATE reimbursement SET"
+					+ " resolver_id_fk=?, status_id_fk=?, description=?, resolve_notes=?, ammount=?"
+					+ " WHERE reimbursement_id=?";
+			String[] key = new String[1];
+			key[0] = "reimbursement_id";
+
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setInt(1, reimburse.getResolverId());
+			ps.setInt(2, reimburse.getStatus().ordinal());
+			ps.setString(3, reimburse.getDescription());
+			ps.setString(4, reimburse.getResolveNotes());
+			ps.setInt(5, reimbursementId);
+
+			// executeUpdate() returns the number of rows updated
+			ps.executeUpdate();
+
+			conn.commit();
+			return true;
+
+		} catch (SQLException e) {
+			System.out.println("Database error");
+		}
+
+		return false;
+	}
+
 	@Override
 	public ArrayList<Reimbursement> readAllReimbursements() {
 		ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
 
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();
-		AutoSetAutoCommit a = new AutoSetAutoCommit(conn,false);
-		AutoRollback tm = new AutoRollback(conn)) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
 
 			String sql = "SELECT * from reimbursement";
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 
-			while(rs.next()) {
-				int reimbursementId = rs.getInt(1);		// This line is redundant
-				int submitterId = rs.getInt(2);
-				int resolverId = rs.getInt(3);
-				reimbursementStatus status =  reimbursementStatus.values()[rs.getInt(4)];
-				LocalDateTime submitDate = fromFormattedTimestamp(rs.getString(5));
-				LocalDateTime resolvedDate = fromFormattedTimestamp(rs.getString(6));
-				String description = rs.getString(7);
-				String resolveNotes = rs.getString(8);
-				int ammount = rs.getInt(9);
-				
-				Reimbursement reimburse = new Reimbursement(reimbursementId, submitterId, status, submitDate, description, ammount);
-				reimburse.setResolverId(resolverId);
-				reimburse.setResolvedDate(resolvedDate);
-				reimburse.setResolveNotes(resolveNotes);
-				
-				list.add(reimburse);
-			}
+			while (rs.next())
+				list.add(getReimbursementFromResultSet(rs));
+
 		} catch (SQLException e) {
 			System.out.println("Database error");
 		}

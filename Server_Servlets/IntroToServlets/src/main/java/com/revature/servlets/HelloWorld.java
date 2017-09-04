@@ -12,11 +12,6 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/HelloWorld")
 public class HelloWorld extends GenericServlet{
 
-	/**
-	 * Auto-generated
-	 */
-	private static final long serialVersionUID = 1455069594855767260L;
-
 	@Override
 	public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
 		

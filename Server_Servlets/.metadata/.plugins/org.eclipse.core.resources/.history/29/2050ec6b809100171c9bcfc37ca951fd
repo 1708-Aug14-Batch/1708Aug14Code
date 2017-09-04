@@ -1,0 +1,8 @@
+package com.reimburse.service;
+
+public interface ServiceInterface {
+	
+	public boolean login(String username, String password);
+	public boolean logout();
+
+}

@@ -7,7 +7,6 @@ import com.reimburse.dao.DaoImpl;
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.Reimbursement.reimbursementStatus;
 import com.reimburse.pojos.Worker;
-import org.apache.log4j.Logger;
 
 // TODO this class is where I will checking updating variables to make
 // sure they are correct. i.e. valid emails, untaken username, etc
@@ -16,12 +15,33 @@ import org.apache.log4j.Logger;
 
 // FIXME rather than using so many daoImpl.readAllXXX() methods, make more methods in the DaoSqlImpl that are not in the DaoSql interface
 
-public class Service {
-	private static Logger log = Logger.getRootLogger();
+public class Service implements ServiceInterface {
 
+	// Worker currently logged in
+	static Integer id = null;
+	// Keeps track whether the current worker is a manager
+	static Boolean idIsManager = null;
 	DaoImpl daoImpl = new DaoImpl();
 
-	public Worker validateWorker(String username, String password) {
+	// Login must be called in order to use methods that require a login
+	public boolean login(String username, String password) {
+		Worker work = validateWorker(username, password);
+		if (work == null)
+			return false;
+
+		id = work.getWorkerId();
+		idIsManager = work.isManager();
+		return true;
+	}
+
+	// Logout must be called to reset the current user logged in
+	public boolean logout() {
+		id = null;
+		idIsManager = null;
+		return true;
+	}
+
+	private Worker validateWorker(String username, String password) {
 		if (username == null || password == null)
 			return null;
 
@@ -34,22 +54,21 @@ public class Service {
 
 		if (work.getPassword().equals(password))
 			return work;
-		else return null;
+		else
+			return null;
 	}
 
-	// FIXME an email does not need to end with .com, could be .org or others
-	//		Change to a regular expression using the method .matches()
-	public boolean isEmailValid(String email) {
+	private boolean isEmailValid(String email) {
 
-		if (email.contains("@") && email.contains(".com"))
-			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
-				return true;
+		String regex = "\\.\\w\\w\\w"; // .com, .org, .net, etc
+		if (email.contains("@") && email.matches(regex))
+			return true;
 
 		System.out.println("Email addresses must contain a valid domain such as \"something@something.com\"");
 		return false;
 	}
 
-	public boolean isEmailAvailable(String email) {
+	private boolean isEmailAvailable(String email) {
 
 		ArrayList<Worker> workerList = daoImpl.readAllWorkers();
 
@@ -80,15 +99,23 @@ public class Service {
 	}
 
 	// Tries to create a new user
-	// Fails if the uername is not unique or if the given worker is already a user
-	public Worker tryCreateWorker(String firstName, String lastName, String email, String username,
-			String password, boolean isManager) {
+	// Fails if the uername is not unique or if the given worker is already a
+	// user
+	public Worker tryCreateWorker(String firstName, String lastName, String email, String username, String password,
+			boolean isManager) {
+
+		if (!idIsManager)
+			return null;
 
 		username = username.toLowerCase();
 
 		// Check that username is unique
 		if (!isUsernameAvailable(username)) {
 			System.out.println("That username is already taken.");
+			return null;
+		}
+		if (!isEmailValid(email)) {
+			System.out.println("That email is invalid.");
 			return null;
 		}
 		if (!isEmailAvailable(email)) {
@@ -100,99 +127,105 @@ public class Service {
 	}
 
 	// Tries to create a new reimbursement
-	public Reimbursement tryCreateReimbursement(int submitterId, reimbursementStatus status,
-			LocalDateTime submitDate, String description, int ammount) {
-		
+	public Reimbursement tryCreateReimbursement(reimbursementStatus status, LocalDateTime submitDate,
+			String description, int ammount) {
+
+		if (id == null)
+			return null;
+
+		// Managers cannot create reimbursements
+		if (idIsManager || daoImpl.readWorker(id).isManager())
+			return null;
+
 		if (status == reimbursementStatus.NULL)
 			return null;
 		if (submitDate == null || ammount < 0)
 			return null;
-		
-		return daoImpl.createReimbursement(submitterId, status, submitDate, description, ammount);
+
+		return daoImpl.createReimbursement(id, status, submitDate, description, ammount);
 	}
 
-	// Updates a worker with the new worker object.
-	// Matches the old worker with the new by workerId
+	// Matches the old worker with the new by id
 	// All non-final fields of the worker object will be updated
-	public boolean updateWorker(int workerId, Worker work) {
+	public boolean updateWorker(String firstName, String lastName, String email, String username, String password) {
 
-		if (work == null)
+		if (!isEmailValid(email) || !isEmailAvailable(email))
 			return false;
 
-		return daoImpl.updateWorker(workerId, work);
+		if (!isUsernameAvailable(username))
+			return false;
 
+		Worker work = daoImpl.readWorker(id);
+		work.setFirstName(firstName);
+		work.setLastName(lastName);
+		work.setEmail(email);
+		work.setUsername(username);
+		work.setPassword(password);
+
+		return daoImpl.updateWorker(id, work);
 	}
 
-	/*
-	public boolean updateReimbursement(int reimbursementId, Reimbursement reimburse) {
-
-		// daoImpl cannot format a null date
-		if (reimburse.getSubmitDate() == null) {
-			log.warn("Cannot format a null submit date for a reimbursement request");
-			return false;
-		}
-		// A manager cannot submit a reimbursement request
-		if (daoImpl.readWorker(reimburse.getSubmitterId()).isManager()) {
-			log.warn("A manager cannot submit reimbursements");
-			return false;
-		}
-		// Reimbursement ammount cannot be negative
-		if (reimburse.getAmmount() < 0) {
-			log.warn("A reimbursement must have a reimbursement ammount >= 0");
-			return false;
-		}
-		
-		return daoImpl.updateReimbursement(reimbursementId, reimburse);
-
-	}	
-*/
 	public Worker getWorker(int workerId) {
 
 		return daoImpl.readWorker(workerId);
 	}
-	
-	// If the resolvedDate is null, gives the current dateTime as the resolvedDate
-	public boolean resolveReimbursement(int reimbursementId, int resolverId, reimbursementStatus status, LocalDateTime resolvedDate, String resolveNotes) {
-		Worker resolver = daoImpl.readWorker(resolverId);
-		
+
+	// Returns null if no worker is logged in
+	public Integer getWorkerIdLoggedIn() {
+		return id;
+	}
+
+	// If the resolvedDate is null, gives the current dateTime as the
+	// resolvedDate
+	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status, LocalDateTime resolvedDate,
+			String resolveNotes) {
+		if (id == null)
+			return false;
+		if (!idIsManager) {
+			System.out.println("You must be logged in as a manager to resolve reimbursements");
+			return false;
+		}
+
+		Worker resolver = daoImpl.readWorker(id);
+
 		if (resolver == null) {
-			log.warn("That employee is not in the system. ID: " + resolverId);
+			System.out.println("The logged in manager is not in the system. ID: " + id);
 			return false;
 		}
 		if (!resolver.isManager() || !resolver.isHired()) {
-			log.warn("That employee is not a current manager. Username: " + resolver.getUsername());
+			System.out.println("That employee is not a current manager. Username: " + resolver.getUsername());
 			return false;
 		}
 		if (status == null || status == reimbursementStatus.NULL || status == reimbursementStatus.PENDING) {
-			log.warn("Invalid status for resolving a reimbursement. Status: " + status);
+			System.out.println("Invalid status for resolving a reimbursement. Status: " + status);
 			return false;
 		}
-		
+
 		Reimbursement reimburse = daoImpl.readReimbursement(reimbursementId);
-		if (reimburse.getStatus() == reimbursementStatus.APPROVED || reimburse.getStatus() == reimbursementStatus.DENIED) {
-			log.warn("That reimbursement is alread closed. ID: " + reimburse.getReimbursementId());
+		if (reimburse == null) {
+			System.out.println("The specified reimbursement does not exist. ID: " + reimbursementId);
 			return false;
 		}
-		
+		if (reimburse.getStatus() == reimbursementStatus.APPROVED
+				|| reimburse.getStatus() == reimbursementStatus.DENIED) {
+			System.out.println("That reimbursement is alread closed. ID: " + reimburse.getReimbursementId());
+			return false;
+		}
+
 		// Resolves a null date by giving the current date/time
 		if (resolvedDate == null) {
-			log.info("Resolved date of reimbursement set to current timestamp. ID: " + reimbursementId);
+			System.out.println("Resolved date of reimbursement set to current timestamp. ID: " + reimbursementId);
 			resolvedDate = LocalDateTime.now();
 		}
-		
-		log.info("Reimbursement id " + reimbursementId + " set to status: " + status);
+
+		System.out.println("Reimbursement id " + reimbursementId + " set to status: " + status);
 		// Set the reimbursement as resolved and save it to the database
-		reimburse.setResolverId(resolverId);
+		reimburse.setStatus(status);
 		reimburse.setResolvedDate(resolvedDate);
 		reimburse.setResolveNotes(resolveNotes);
 		daoImpl.updateReimbursement(reimbursementId, reimburse);
-		
+
 		return true;
-	}
-
-	public ArrayList<Reimbursement> getReimbursements() {
-
-		return daoImpl.readAllReimbursements();
 	}
 
 	public boolean isAWorker(String username) {
@@ -200,7 +233,108 @@ public class Service {
 
 		if (work == null)
 			return false;
-		else return true;
+		else
+			return true;
+	}
+
+	public boolean isAManager(String username) {
+		Worker work = daoImpl.readWorker(username);
+
+		if (work == null)
+			return false;
+		else
+			return work.isManager();
+	}
+
+	public boolean isManagerLoggedIn() {
+		return idIsManager;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getPendingReimbursements() throws NullPointerException {
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
+		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+
+		for (Reimbursement r : reimbursements)
+			if (r.getStatus() != reimbursementStatus.PENDING)
+				removeList.add(r);
+
+		reimbursements.removeAll(removeList);
+		return reimbursements;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getResolvedReimbursements() throws NullPointerException {
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
+		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+
+		for (Reimbursement r : reimbursements)
+			if (r.getStatus() != reimbursementStatus.DENIED
+					|| r.getStatus() != reimbursementStatus.APPROVED)
+				removeList.add(r);
+
+		reimbursements.removeAll(removeList);
+		return reimbursements;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getEmployeesReimbursements(int employeeId) throws NullPointerException {
+		
+		if(daoImpl.readWorker(employeeId).isManager())
+			return null;
+		
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
+		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+
+		for (Reimbursement r : reimbursements)
+			if (r.getSubmitterId() != employeeId)
+				removeList.add(r);
+
+		reimbursements.removeAll(removeList);
+		return reimbursements;
+	}
+
+	@Override
+	public ArrayList<Worker> getAllEmployees() throws NullPointerException {
+
+		if (!idIsManager)
+			throw new NullPointerException();
+
+		ArrayList<Worker> workers = daoImpl.readAllWorkers();
+		ArrayList<Worker> removeList = new ArrayList<Worker>();
+
+		for (Worker w : workers)
+			if (w.isManager())
+				removeList.add(w);
+
+		workers.removeAll(removeList);
+		return workers;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getPendingReimbursements(int employeeId) throws NullPointerException {
+		ArrayList<Reimbursement> reimbursements = getPendingReimbursements();
+		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+
+		for (Reimbursement r : reimbursements)
+			if (r.getSubmitterId() != employeeId)
+				removeList.add(r);
+
+		reimbursements.removeAll(removeList);
+		return reimbursements;
+	}
+
+	@Override
+	public ArrayList<Reimbursement> getResolvedReimbursements(int employeeId) throws NullPointerException {
+		ArrayList<Reimbursement> reimbursements = getResolvedReimbursements();
+		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+
+		for (Reimbursement r : reimbursements)
+			if (r.getSubmitterId() != employeeId)
+				removeList.add(r);
+
+		reimbursements.removeAll(removeList);
+		return reimbursements;
 	}
 
 }
