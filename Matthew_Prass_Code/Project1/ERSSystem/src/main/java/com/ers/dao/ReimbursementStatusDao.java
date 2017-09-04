@@ -7,6 +7,6 @@ import com.ers.pojos.ReimbursementStatus;
 public interface ReimbursementStatusDao {
 	
 	public ArrayList<ReimbursementStatus> getAllStatuses();
-	public ReimbursementStatus getStatus();
+	public ReimbursementStatus getStatus(int id);
 
 }

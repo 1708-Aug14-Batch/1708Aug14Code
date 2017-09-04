@@ -90,3 +90,40 @@ constraint fk_resolver foreign key(resolverid) references employee(empid),
 constraint fk_status foreign key(statusid) references reimbursestatus(statusid)
 );
 /
+
+
+create or replace procedure updateReimbursement
+ (id in number,resolvid in number,resolvdate in timestamp,statid in number,note in varchar2)
+ as begin
+ update REIMBURSEMENT
+ set resolverid = resolvid,
+ resolved = resolvdate,
+ statusid = statid,
+ notes = note
+ where reid = id;
+ commit;
+ end;
+ /
+ 
+ create or replace procedure updateEmployee
+ (id in number,fn in varchar2,ln in varchar2,ema in varchar2,pw in varchar2, usrnm in varchar2)
+ as begin
+ update employee
+ set firstname = fn,
+ lastname = ln,
+ email = ema,
+ password = pw,
+ username = usrnm
+ where empid = id;
+ commit;
+ end;
+ /
+ 
+ create or replace procedure deleteReimbursement
+(id in number)
+as begin
+delete from reimbursement
+where reid = id;
+commit;
+end;
+/
