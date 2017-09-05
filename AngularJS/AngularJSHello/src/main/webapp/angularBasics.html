@@ -32,7 +32,7 @@
 <h1>AngularJS</h1>
 <div id="hello-world" ng-controller="myCtrl">
 
-<input type ="text" data-ng-model="whatever">
+<input type="text" data-ng-model="whatever">
 <p>{{whatever}}</p>	
 <h3 ng-bind="whatever"></h3>
 <p> here is an expression {{10+10}}</p>
@@ -47,7 +47,7 @@ First Name: <input type="text" ng-model="fn">
 Last Name: <input type="text" ng-model="ln">
 <br>
 
-<h1>Full name = {{ fullName() }}</h1>
+<h1>Full name = {{ fullName() | uppercase }}</h1>
 
 
 </div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>todo</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<script type="text/javascript" src="JS/todo.js"></script>
+
+</head>
+<body ng-app="todoApp" ng-controller="todoCtrl" >
+<input type="text" ng-model="username"/>
+<h2>Welcome {{username}}</h2>
+
+<br>
+<input type="text" ng-model="newaction">
+
+<button ng-click="addNewItem(newaction)">Add</button>
+
+<p ng-hide="incompleteCount()==0"> Items Left: {{incompleteCount()}}</p>
+<table class="table table-striped">
+	<thead>
+		<th>Description</th>
+		<th>Done</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in items | checkedItems:showComplete">
+		<td>{{item.action}}</td>
+		<td>{{item.done}}</td>
+		<td><input type="checkbox" ng-checked="{{item.done}}" ng-model="item.done"></td>
+		</tr>
+	</tbody>
+	<label>
+	<input type="checkbox" ng-model="showComplete"> 
+	Show complete</label>
+</table>
+
+</body>
+</html>

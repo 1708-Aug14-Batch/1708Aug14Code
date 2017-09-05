@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>calc</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<script type="text/javascript" src="JS/calc.js"></script>
+</head>
+<body ng-app="calcApp" ng-controller="calcCtrl">
+
+
+Value <input type="number" ng-model="value1">
+<br>
+Value <input type="number" ng-model="value2">
+<br>
+
+
+<button ng-click="addValues(value1,value2,'+')">+</button>
+<button ng-click="subValues(value1,value2,'-')">-</button>
+<button ng-click="mulValues(value1,value2,'*')">*</button>
+<button ng-click="divValues(value1,value2,'/')">/</button>
+
+<table class="table table-striped">
+	<thead>
+		<th>Description</th>
+		<th>Result</th>
+	</thead>
+	<tbody>
+		<tr ng-repeat="value in values">
+		<td>{{value.v1}}{{value.op}}{{value.v2}}</td>
+		<td>{{value.rs}}</td>
+		</tr>
+	</tbody>
+</table>
+
+</body>
+</html>
