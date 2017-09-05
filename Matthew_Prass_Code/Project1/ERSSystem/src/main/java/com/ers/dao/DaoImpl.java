@@ -25,7 +25,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			String sql = "select *" + 
-					"from reimbursementstatus";
+					"from reimbursestatus";
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
@@ -66,7 +66,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			conn.setAutoCommit(false);
-			String sql = "insert into reimbursement(empid, submitdate, description, amount)" + 
+			String sql = "insert into reimbursement(submitterid, submitdate, description, amount)" + 
 					"values(?,?,?,?)";
 			
 			String[] key = new String[1];
@@ -236,12 +236,12 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 	}
 
 	@Override
-	public int addEmployee(String fn, String ln, String email, String pass, String usrnm) {
+	public int addEmployee(String fn, String ln, String email, String pass, String usrnm,int ismnger) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();)
 		{
 			conn.setAutoCommit(false);
-			String sql = "insert into employee(firstname,lastname,email,password,username)" + 
-					"values(?,?,?,?,?)";
+			String sql = "insert into employee(firstname,lastname,email,password,username,ismanager)" + 
+					"values(?,?,?,?,?,?)";
 			String[] keys = new String[1];
 			keys[0] = "empid";
 			PreparedStatement ps = conn.prepareStatement(sql,keys);
@@ -250,6 +250,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			ps.setString(3, email);
 			ps.setString(4, pass);
 			ps.setString(5, usrnm);
+			ps.setInt(6, ismnger);
 			
 			int numRows = ps.executeUpdate();
 			int id = 0;

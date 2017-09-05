@@ -45,15 +45,15 @@ public class Service {
 		String tempPass  = ""+passNum;
 		int userNum = (int) Math.floor(10000000*Math.random());
 		String tempUsername = ""+userNum;
-		int id = dao.addEmployee(fn, ln, email, tempPass, tempUsername);
+		int id = dao.addEmployee(fn, ln, email, tempPass, tempUsername,0);
 		Employee emp = new Employee(fn,ln,email,tempPass, tempUsername,0);
 		emp.setId(id);
 		//set emp equal to e?
 	}
 	
-	public Reimbursement submitReimbursement(String descript, double amt)
+	public Reimbursement submitReimbursement(Employee emp,String descript, double amt)
 	{
-		Reimbursement r = dao.createReimbursement(e, Timestamp.valueOf(LocalDateTime.now()), descript, amt);
+		Reimbursement r = dao.createReimbursement(emp, Timestamp.valueOf(LocalDateTime.now()), descript, amt);
 		return r;
 	}
 	
@@ -72,8 +72,9 @@ public class Service {
 		return e;
 	}
 	
-	public Employee updateInfo(String fn, String ln, String email, String pass, String username)
+	public Employee updateInfo(Employee e,String fn, String ln, String email, String pass, String username)
 	{
+		//need id
 		e.setFirstname(fn);
 		e.setLastname(ln);
 		e.setEmail(email);

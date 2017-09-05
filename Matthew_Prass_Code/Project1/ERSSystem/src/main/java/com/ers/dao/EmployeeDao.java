@@ -7,7 +7,7 @@ import com.ers.pojos.Employee;
 
 public interface EmployeeDao 
 {
-	public int addEmployee(String fn, String ln, String email, String pass, String usrnm);
+	public int addEmployee(String fn, String ln, String email, String pass, String usrnm, int ismngr);
 	public ArrayList<Employee> getAllEmployees();
 	public Employee getEmployee(int id);
 	public void updateEmployeeInfo(Employee e);

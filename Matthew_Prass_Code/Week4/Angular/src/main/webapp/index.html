@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJS basics</title>
+</head>
+<body ng-app = "myApp" ng-controller = "myCtrl" ng-init = "myCol = 'pink'">
+
+<h1>AngularJS - JavaScript MVC Framework</h1>
+<div id = "hello-world"></div>
+<br>
+<input type = "text" data-ng-model = "whatever"/>
+<p>{{whatever}}</p>
+
+
+<!-- Data model-collection of data available for out app -->
+<!-- Html view - html container where angularjs app is displayed. view has access to model -->
+<br>
+<h3 ng-bind = "whatever"></h3>
+<br>
+<p>Here is an expression: {{10+10}}</p> 
+<br>
+<h2>Some more cool stuff</h2>
+<br>
+<input style = "background:{{myCol}}" ng-model = "myCol">
+<br>
+<h3>Intro to controllers</h3>
+First Name: <input type = "text" ng-model = "fn"><br>
+Last Name:  <input type = "text" ng-model = "ln">
+<br>
+Full Name = {{fullName()| uppercase}}
+
+
+<br>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script src = js/app.js></script>
+</body>
+</html>

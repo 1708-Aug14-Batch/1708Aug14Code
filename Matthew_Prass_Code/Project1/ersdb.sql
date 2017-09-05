@@ -53,7 +53,7 @@ end;
 create sequence reimb_seq
 increment by 1
 start with 1;
-
+/
 create or replace trigger reimb_trigger
 before insert on reimbursement
 for each row
@@ -127,3 +127,4 @@ where reid = id;
 commit;
 end;
 /
+
