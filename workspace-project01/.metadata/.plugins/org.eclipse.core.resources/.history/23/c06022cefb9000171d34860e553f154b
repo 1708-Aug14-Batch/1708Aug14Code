@@ -1,0 +1,25 @@
+package com.revature.dao;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+import com.revature.model.Status;
+
+public interface IStatusDAO {
+	
+	/**
+	 * READ
+	 */
+	Status read(int submitterID, LocalDateTime dateSubmitted);
+	
+	/**
+	 * READ ALL
+	 */
+	ArrayList<Reimbursement> readAll();
+	
+	/**
+	 * UPDATE
+	 */
+	void update(Reimbursement reimbursement);
+
+}

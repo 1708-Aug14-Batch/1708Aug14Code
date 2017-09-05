@@ -1,0 +1,22 @@
+package com.revature.dao;
+
+public interface IReimbursementDAO {
+	
+	/**
+	 * CREATE
+	 */
+	public void create(Reimbursement reimbursement);
+	
+	/**
+	 * READ
+	 */
+	
+	/**
+	 * READ ALL
+	 */
+	
+	/**
+	 * UPDATE
+	 */
+
+}

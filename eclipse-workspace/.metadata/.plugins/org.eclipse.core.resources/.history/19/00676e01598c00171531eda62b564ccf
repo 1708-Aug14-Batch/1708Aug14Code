@@ -1,0 +1,12 @@
+import java.lang.reflect.Method;
+
+public class Reflection {
+
+	public static void main(String[] args) {
+		Hidden myHidden = new Hidden();
+		Class class = myHidden.getClass();
+		Method method = class.getDeclaredMethod("printI", null);
+		
+	}
+
+}

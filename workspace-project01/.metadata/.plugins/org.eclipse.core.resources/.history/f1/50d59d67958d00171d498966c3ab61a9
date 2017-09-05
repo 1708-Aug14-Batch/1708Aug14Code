@@ -1,0 +1,14 @@
+package com.revature.model;
+
+import java.time.LocalDateTime;
+
+public class Reimbursement {
+	
+	private int reimbursementID;
+	private int submitterID;
+	private int resolverID;
+	private LocalDateTime dateSubmitted;
+	private LocalDateTime dateResolved;
+	
+
+}

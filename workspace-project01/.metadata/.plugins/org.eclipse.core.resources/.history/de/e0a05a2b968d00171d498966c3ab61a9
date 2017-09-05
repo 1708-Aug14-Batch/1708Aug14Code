@@ -1,0 +1,12 @@
+package com.revature.model;
+
+public class ReimbursementUser {
+	
+	private int userID;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
+	private boolean isManager;
+
+}

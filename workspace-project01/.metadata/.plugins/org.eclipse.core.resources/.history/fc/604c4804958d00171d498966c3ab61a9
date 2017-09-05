@@ -1,0 +1,12 @@
+package com.revature.model;
+
+public class Reimbursement {
+	
+	private int reimbursementID;
+	private int submitterID;
+	private int resolverID;
+	private DateTime dateSubmitted;
+	private Datetime dateResolved;
+	
+
+}

@@ -1,0 +1,15 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+public interface IDAO<T> {
+	
+	public int create(Object object);
+	
+	public ArrayList<Object> readAll();
+	
+	public Object read(int id);
+	
+	public 
+
+}

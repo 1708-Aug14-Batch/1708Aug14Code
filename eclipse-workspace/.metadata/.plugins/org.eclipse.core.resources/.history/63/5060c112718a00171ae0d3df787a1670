@@ -1,0 +1,23 @@
+package com.bank.dao;
+
+import java.util.ArrayList;
+
+public interface AccountDAO<Account> {
+
+	int create(Account account);
+
+	ArrayList<Account> readAll();
+
+	Account read(int id);
+
+	int update(Account account) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int disable(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
