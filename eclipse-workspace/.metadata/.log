@@ -5988,3 +5988,26 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 !MESSAGE Could not publish server configuration for Tomcat v8.0 Server at localhost.
 !SUBENTRY 1 org.eclipse.jst.server.tomcat.core 4 0 2017-09-03 21:36:05.469
 !MESSAGE Multiple Contexts have a path of "/IntroToJS".
+!SESSION 2017-09-05 10:58:23.479 -----------------------------------------------
+eclipse.buildId=4.7.0.I20170612-0950
+java.version=1.8.0_144
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -data C:\Users\will\my_git_repos\1708Aug14Code\eclipse-workspace -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-09-05 10:58:39.096
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\will'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2017-09-05 10:58:39.761
+!MESSAGE Removing part descriptor with the 'org.eclipse.angularjs.ui.views.AngularExplorerView' id and the 'Angular Explorer' description. Points to the invalid 'bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView' class.
+
+!ENTRY org.eclipse.e4.ui.workbench 2 0 2017-09-05 10:58:39.779
+!MESSAGE Removing part descriptor with the 'tern.eclipse.ide.ui.views.TernOutlineView' id and the 'Tern Outline' description. Points to the invalid 'bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView' class.
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2017-09-05 10:58:48.778
+!MESSAGE already installed: org.eclipse.jst.server.generic.jonas4

@@ -1,6 +1,5 @@
 package com.revature.model;
 
-import java.time.LocalDateTime;
 import java.sql.Date;
 
 public class Reimbursement {

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="myCol='pink'">
+<h1>AngularJS</h1>
+<div id="hello-world">
+<br>
+<input type="text" data-ng-model="whatever"/>
+<p>{{whatever}}</p>
+<br>
+<h3 ng-bind="whatever"></h3>
+<br>
+<p>Here is an expression {{10 + 10}}</p>
+<br><h2>Some more cool binding stuff:</h2><br>
+<input style="background:{{myCol}}" ng-model="myCol">
+
+<br>
+<h3>Intro to Controllers:</h3>
+First Name: <input type="text" ng-model="fn">
+Last Name: <input type="text" ng-model="ln">
+<br>
+
+{{hello}}
+
+<br>Full Name = {{fullName()}}
+</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>

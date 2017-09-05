@@ -7,7 +7,7 @@ CREATE TABLE r_user (
     r_user_id NUMBER NOT NULL PRIMARY KEY,
     first_name VARCHAR2(20) NOT NULL,
     last_name VARCHAR2(20) NOT NULL,
-    email VARCHAR2(40) NOT NULL,
+    email VARCHAR2(40) NOT NULL UNIQUE,
     password VARCHAR2(16) NOT NULL,
     is_manager NUMBER(1) DEFAULT 0
 );

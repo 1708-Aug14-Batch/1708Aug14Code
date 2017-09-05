@@ -1,6 +1,5 @@
 package com.revature.dao;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.revature.model.RUser;
