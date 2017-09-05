@@ -13,17 +13,23 @@
 	<button ng-click="addNewItem(newaction)">Add</button>
 
 	<br>
+	<p ng-hide="incompleteCount()==0">
+		Items Left : {{incompleteCount()}} </p>
 	<table class="table table-striped">
 		<thead>
 			<th>Description</th>
 			<th>Done</th>
 		</thead>
 		<tbody>
-		<tr ng-repeat="item in items">
+		<tr ng-repeat="item in items | checkedItems:showComplete">
 		<td>{{item.action}}</td>
+		<td><input type="checkbox" ng-model="item.done" /></td>
 		<td>{{item.done}}</td>
 		</tr>
 		</tbody>
+		<label>
+		<input type="checkbox" ng-model="showComplete"> 
+		Show Complete </label>
 
 	</table>
 
