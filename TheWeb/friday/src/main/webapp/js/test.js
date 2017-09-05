@@ -25,7 +25,7 @@ function getText(){
 	// HTTP method, urlpattern, use Asynchronous? (always true)
 	xhr.send();	
 }
-
+	
 	document.getElementById("myBtn").
-	addEventListener("click", getText, false);
+	addEventListener("click", getText);
 

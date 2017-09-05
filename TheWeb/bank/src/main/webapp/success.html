@@ -5,14 +5,22 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 </head>
 
-Welcome! <p id="fn"></p> <p id="ln"></p>
-
+Welcome! <p id="name"></p>
 
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-  // Handler when the DOM is fully loaded
-  document.getElementById("fn")
-});
+
+function getText(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById("name").innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET","login",true);
+	xhr.send();
+}
+
+document.addEventListener("DOMContentLoaded", getText);
 
 </script>
 

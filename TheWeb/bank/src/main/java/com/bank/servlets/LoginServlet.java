@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.bank.pojos.User;
 import com.bank.service.Service;
-import com.google.gson.Gson;
 
 public class LoginServlet extends HttpServlet {
 	
@@ -42,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
+		
 
 
 		String email = request.getParameter("email");
@@ -59,10 +58,14 @@ public class LoginServlet extends HttpServlet {
 				rd.forward(request, response); // password is wrong 
 			}
 			else{
+				HttpSession session = request.getSession();
+				 //j_session_id stored in a cookie on the client's browser
 				session.setAttribute("user", u);
-				//String json = new Gson().toJson(u);
-				RequestDispatcher rd = request.getRequestDispatcher("success.html");
-				rd.forward(request, response); // successful login 	
+				 //the parameters are the name, and the actual object that you want to store in the session
+				
+				System.out.println("forwarding to home");
+				response.sendRedirect("userhome");
+				
 			}
 		}
 		
