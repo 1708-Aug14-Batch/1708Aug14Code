@@ -8,25 +8,32 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="#home">Home</a></li>
+			<li><a href="jshomework.html">Home</a></li>
 			<li><a href="#news">News</a></li>
 			<li class="dropdown"><a href="javascript:void(0)"
 				class="dropbtn">Dropdown</a>
 				<div class="dropdown-content">
-					<a href="fib.html" target="_self">fib</a> <a href="#">Link 2</a> <a
-						href="#">Link 3</a>
+					<a href="fib.html" target="_parent">Fibonacci</a> 
+					<a href="bubble.html" target="_parent">BubbleSort</a>
+					 <a href="reverse.html"> ReverseString</a>
+					 <a href="factorial.html"> Factorial</a>
+					 <a href="substring.html"> SubString</a>
+					  <a href="even.html"> Even</a>
+					 <a href="palindrome.html"> Palindrome</a>
+					 <a href="printshapes.html"> PrintShapes</a>
+					 <a href="splice.html"> Splice</a>
 				</div></li>
 		</ul>
 	</nav>
 	<br>
-	
+
 	<div class="center">
 		<h1>
 			<!--Problem1:-->
 			Fibonacci
 		</h1>
 		<input type="number" id="fib" placeholder="Enter n" />
-		<button id="doFib">Fibonacc'ed!</button>
+		<button  onclick="runFib()">Fibonacc'ed!</button>
 		<br> =
 		<p id="fibDisplay"></p>
 	</div>

@@ -15,13 +15,13 @@ function fib(n){
 
 	else return fib(n-1) + fib(n-2);
 }
-function runFib(){
+function runFib(e){
 	var display = document.getElementById("fibDisplay");
 	var n = document.getElementById("fib").value;
 	display.innerHTML = fib(n);
 }
 
-document.getElementById("doFib").addEventListener("click", runFib);
+//document.getElementById("doFib").addEventListener("click", runFib);
 //document.getElementById("inner").addEventListener("click", function(){alert("inner!")})
 //document.getElementById("middle").addEventListener("click", function(){alert("middle!")})
 //document.getElementById("outer").addEventListener("click", function(){alert("outer!")})
@@ -34,7 +34,7 @@ document.getElementById("doFib").addEventListener("click", runFib);
 function bubbleSort(numString){
 	// spilts string into array of numbers. 
 	var numbers = numString.split(' ').map(Number).filter(Boolean);;
-     
+
 	var swap = true;
 	var j = 0;
 	var temp;
@@ -52,17 +52,17 @@ function bubbleSort(numString){
 			}
 		}
 	}
-return numbers;
+	return numbers;
 }
 
 
-function runBubble(){
+function runBubble(e){
 	var display = document.getElementById("bubbleDisplay");
 	var n = document.getElementById("bub").value;
 	display.innerHTML = bubbleSort(n);
 }
 
-document.getElementById("doBubble").addEventListener("click", runBubble);
+//document.getElementById("doBubble").addEventListener("click", runBubble);
 
 
 
@@ -85,7 +85,7 @@ function runReverseStr(){
 	display.innerHTML = reverseStr(n);
 }
 
-document.getElementById("doReverse").addEventListener("click", runReverseStr);
+//document.getElementById("doReverse").addEventListener("click", runReverseStr);
 
 
 //4. Factorial
@@ -106,7 +106,7 @@ function runFactorial(){
 	display.innerHTML = factorial(n);
 }
 
-document.getElementById("doFactorial").addEventListener("click",runFactorial);
+//document.getElementById("doFactorial").addEventListener("click",runFactorial);
 
 //5. Substring
 //Define function substring(someStr, length, offset)
@@ -115,22 +115,22 @@ document.getElementById("doFactorial").addEventListener("click",runFactorial);
 
 
 function substring(someStr, length, offset){
-	
+
 //	if(someStr == null ){
-//			return alert("No string was entered. please enter a string");
+//	return alert("No string was entered. please enter a string");
 //	}
 	//check if length is great than zero
 	var indexSum = offset - length;
 	if(offset < 0 || length < 0){
-			return	alert("incorrect input. please enter a number greater" +
+		return	alert("incorrect input. please enter a number greater" +
 		" than zero for both length and offset!");
 	} if (offset > someStr.length || length > someStr.length || indexSum > someStr.length){
-	return 	alert("incorrect input. please enter a number less" +
+		return 	alert("incorrect input. please enter a number less" +
 		" or equal the length of string");
 	} else{
 		var someSubString = someStr.substring(offset, length);
-	return someSubString;
-}
+		return someSubString;
+	}
 }
 
 function runSubString(){
@@ -138,11 +138,11 @@ function runSubString(){
 	var sub = document.getElementById("sub").value 
 	var s = document.getElementById("startIndex").value 
 	var l = document.getElementById("length").value
-		
+
 	display.innerHTML = substring(sub, s, l);
 }
 
-document.getElementById("doSubString").addEventListener("click", runSubString);
+//document.getElementById("doSubString").addEventListener("click", runSubString);
 
 
 
@@ -150,9 +150,42 @@ document.getElementById("doSubString").addEventListener("click", runSubString);
 //Define function: isEven(someNum)
 //Return true if even, false if odd.
 //Do not use % operator.
+function isEven(num) {
+	if((num & 1) == 0){ return true
+	}
+	return false;
+}
+
+
+function runEven(){
+	var display = document.getElementById("isEvenDisplay");
+	var n = document.getElementById("even").value;
+	display.innerHTML = isEven(n);
+}
+
+
+
+
+
+
 //7. Palindrome
 //Define function isPalindrome(someStr)
 //Return true if someStr is a palindrome, otherwise return false
+function isPalindrome(someStr) {
+	var len = Math.floor(someStr.length / 2);
+	for (var i = 0; i < len; i++){
+		if (someStr[i] !== someStr[someStr.length - i - 1]){
+			return false;
+		}
+	}
+	return true;
+}
+function runPalindrome(){
+	var display = document.getElementById("palindromeDisplay");
+	var n = document.getElementById("pal").value;
+	display.innerHTML = isPalindrome(n);
+}
+
 //8. Shapes
 //Define function: printShape(shape, height, character)
 //shape is a String and is either "Square", "Triangle", "Diamond".
@@ -162,27 +195,68 @@ document.getElementById("doSubString").addEventListener("click", runSubString);
 //Use the console.log function to print the desired shape.
 function printShape(shape, height, character){
 
-	switch('shape'){
+	switch(shape){
 
 	case 'Square':
+		var i;
+		var j;
+
+		for(i = 0; i < height; i++){
+			for(j = 0; j < height; j++){
+				if ((i == 0) || (j == 0) || (i == height - 1) || (j == height - 1) 
+						|| (i == height/ 2) || (j == height / 2) || (i == j) || (i + j == height - 1))
+				{
+					var someShapes = Console.log(character);
+					return		someShapes;
+				}
+				else
+				{ 
+					var something = Console.log(" ");
+					return	something;	
+				}
+
+			}
+		} 
+
 		break;
 
 	case 'Triangle':
 
-		for(var i = 1 ; i < height ; i++) {
+		for(var i = 0 ; i < height ; i++) {
+			var ast = [], i;
 
-
-
-			console.log(s);
+			ast[i] = new Array(i + 2).join(character);
+			var num = console.log(ast[i]);
+			return	num;
 		}
-
 
 		break;
 
 	case 'Dimond':
+
+		var y, w, space = '';
+
+		for(y = 0; y < height * 2 - 1; y++) {
+			w = y < height ? y : height * 2 - y - 2;
+			space += Array(height - w).join(' ') + Array(w + 1).join(character +'') + '*\n';
+		}
+  var j = console.log(space);
+		return j;
+		// document.write('<pre>' + space + '</pre>');
 		break;
 	}
+
+} 
+
+
+function runPrintShape(){
+var display = document.getElementById("printDisplay");
+var shape = document.getElementById("shape").value 
+var height = document.getElementById("height").value 
+var character = document.getElementById("character").value
+display.innerHTML = printShape(shape, height, character);
 }
+
 
 //Example for printShape("Square", 3, "%");
 //%%%
@@ -223,12 +297,33 @@ function traverseObject(someObj){
 //Delete the third element in the array.
 //Print length
 //The lengths should be the same.
+function deleteElement(someArr){
+	console.log(someArr.length);
+	delete someArr[1];
+	console.log(someArr.length);
+}
+
+
 //11. Splice Element
 //Define function spliceElement(someArr)
 //Print length
 //Splice the third element in the array.
 //Print length
 //The lengths should be one less than the original length.
+
+function spliceElement(someArr){
+
+	return	console.log(someArr.length);
+	someArr.splice(2, 1);
+	return	console.log(someArr.length);
+
+}
+function runSpliceElement(){
+	var display = document.getElementById("spliceElementDisplay");
+	var n = document.getElementById("splice").value;
+	display.innerHTML = spliceElement(n);
+}
+
 //12. Defining an object using a constructor
 //Define a function Person(name, age)
 //The following line should set a Person object to the variable john:
