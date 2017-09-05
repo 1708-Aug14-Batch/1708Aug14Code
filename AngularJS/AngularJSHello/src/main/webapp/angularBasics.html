@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script type="text/javascript" src="JS/app.js"></script>
+</head>
+
+<body ng-app="myApp" ng-init="myColor='pink'">
+
+<!--  
+	Angular extends HTML with ng-directives
+
+	The ng-app directive defines your ANgularJS app
+
+	AngularJS expressions: {{ }} to print out model to the page
+
+	2 way data-binding: updates the view and the model data at the same time
+	
+	custom directive: an html tag or attribute that can inject its own HTML
+	
+	ng-model directive binds the value of HTML controls (input, select, etc) to our app data
+
+	Data model - a collection of data available for our application
+
+	HTML view - html container where AngularJS app is displayed. The view has access to the model, and there are serveral ways of displaying model data in the view
+
+ -->
+
+<h1>AngularJS</h1>
+<div id="hello-world" ng-controller="myCtrl">
+
+<input type ="text" data-ng-model="whatever">
+<p>{{whatever}}</p>	
+<h3 ng-bind="whatever"></h3>
+<p> here is an expression {{10+10}}</p>
+<br>
+<h2>some more dank stuff: </h2>
+<br>
+<input style="background-color:{{myColor}}" ng-model="myColor">
+<br>
+<h3>intro to controllers:</h3>
+First Name: <input type="text" ng-model="fn">
+<br>
+Last Name: <input type="text" ng-model="ln">
+<br>
+
+<h1>Full name = {{ fullName() }}</h1>
+
+
+</div>
+
+</body>
+</html>          
