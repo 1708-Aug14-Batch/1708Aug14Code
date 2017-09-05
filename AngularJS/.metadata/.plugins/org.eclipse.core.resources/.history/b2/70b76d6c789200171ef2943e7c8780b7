@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+var app = angular.module("calcApp", []);
+
+app.controller("calcCtrl", function($scope) {
+	$scope.items = [ {x:5,y:3,OP:"*",z:15} ];
+	
+	$scope.addNewOp = function(OP) {
+		var x = $scope.x_input;
+		var y = $scope.y_input;
+		
+		if (OP == "+")
+			$scope.z_output = x + y;
+		else if (OP == "-")
+			$scope.z_output = x - y;
+		else if (OP == "*")
+			$scope.z_output = x * y;
+		else if (OP == "0")
+			$scope.z_output = x / y;
+		else $scope.z_output = NaN;
+		
+		$scope.items.unshift({
+			x : x,
+			OP : OP,
+			y : y,
+			z : $scope.z_output
+		});
+	}
+	
+});

@@ -1,0 +1,13 @@
+127.0.0.1 - - [05/Sep/2017:14:51:13 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:17 -0400] "GET /PokemonViewer/index.html HTTP/1.1" 200 248
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:17 -0400] "GET /PokemonViewer/JS/test.js HTTP/1.1" 200 723
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:29 -0400] "GET /PokemonViewer/getText HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:30 -0400] "GET /PokemonViewer/getText HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:30 -0400] "GET /PokemonViewer/getText HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:30 -0400] "GET /PokemonViewer/getText HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:31 -0400] "GET /PokemonViewer/getText HTTP/1.1" 404 1036
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:52 -0400] "GET /PokemonViewer/pokemon.html HTTP/1.1" 200 1720
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:51:53 -0400] "GET /PokemonViewer/JS/pokemon.js HTTP/1.1" 200 1319
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:52:07 -0400] "GET /PokemonViewer/pokemon.html HTTP/1.1" 200 1720
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:52:08 -0400] "GET /PokemonViewer/JS/pokemon.js HTTP/1.1" 200 1319
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:52:19 -0400] "GET /favicon.ico HTTP/1.1" 404 1016

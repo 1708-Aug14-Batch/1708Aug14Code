@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+var app = angular.module("calcApp", []);
+
+app.controller("calcCtrl", function($scope) {
+	$scope.items = [ {x:5,y:3,OP:"*",z:15} ];
+	
+	$scope.addNewOp = function(OP) {
+		$scope.z_output = $scope.x_input * $scope.y_input * $scope.y_input;
+		$scope.items.unshift({
+			x : $scope.x_input,
+			OP : OP,
+			y : $scope.y_input,
+			z : $scope.z_output
+		});
+		return $scope.x_input + $scope.y_input;
+	}
+	
+});

@@ -1,0 +1,21 @@
+/**
+ * AngularJS app
+ */
+
+/*
+ * An AngularJS module define an application.
+ * The module is the container for different parts of your app.
+ */
+
+/* The [] tells angular to create a project
+ *	with the name passed in
+ * Not providing the [] will tell angular
+ * 	that the project already exists
+ */
+var app = angular.module('myApp',[]);
+
+/*
+ * 
+ * 
+ * 
+ */

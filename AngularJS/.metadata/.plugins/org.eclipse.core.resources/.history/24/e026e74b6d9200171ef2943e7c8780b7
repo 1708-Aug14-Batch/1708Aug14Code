@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+
+var app = angular.module("todoApp", []);
+
+app.controller("todoCtrl", function($scope) {
+	$scope.username = "";
+	$scope.items = [ {
+			action : "Complete Project 1",
+			done : false
+		}, {
+			action : "Watch favorite movie",
+			done : false
+		}, {
+			action : "Practice programming",
+			done : false
+		}
+	];
+
+	$scope.addNewItem = function(action) {
+
+	}
+});

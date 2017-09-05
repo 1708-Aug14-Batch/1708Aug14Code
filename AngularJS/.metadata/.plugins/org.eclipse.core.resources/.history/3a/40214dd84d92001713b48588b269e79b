@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJS Basics</title>
+</head>
+<body ng-app="myApp">
+
+	<!-- Angular extends HTML with ng-directives
+	
+	The ng-app directive defines your AngularJS app
+	
+	AngularJS Expressions: {{ }} to print out model to the page
+	
+	2 way data-binding: updates the view and the model data at the same time
+	
+	Custom Directive: an html tag or attribute that can inject its own HTML
+
+ -->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+</body>
+</html>

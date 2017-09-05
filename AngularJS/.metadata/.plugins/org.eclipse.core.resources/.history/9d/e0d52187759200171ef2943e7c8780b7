@@ -1,0 +1,10 @@
+/**
+ * 
+ */
+var app = angular.module("calcApp", []);
+
+app.controller("calcCtrl", function($scope) {
+	$scope.items = [ {} ]
+	
+	
+});

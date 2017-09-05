@@ -1,0 +1,13 @@
+/**
+ * 
+ */
+
+var app = angular.module("todoApp", []);
+
+app.controller("todoCtrl", function($scope) {
+	$scope.username = "";
+	
+	$scope.addNewItem = function(action) {
+		
+	}
+});
