@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public interface IReimbursementDAO {
 	/**
 	 * READ
 	 */
-	Reimbursement read(int submitterID, LocalDateTime dateSubmitted);
+	Reimbursement read(int submitterID, Date dateSubmitted);
 	
 	/**
 	 * READ ALL
