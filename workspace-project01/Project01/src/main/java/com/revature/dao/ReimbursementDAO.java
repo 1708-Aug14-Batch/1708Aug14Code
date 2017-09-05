@@ -29,7 +29,7 @@ public class ReimbursementDAO implements IReimbursementDAO {
 		}
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			String sql = "INSERT INTO r_user(r_id, submitter_id, resolver_id, status_id, date_submitted, date_resolver, description, resolution_notes, amount) VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO reimbursement(r_id, submitter_id, resolver_id, status_id, date_submitted, date_resolver, description, resolution_notes, amount) VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, reimbursement.getSubmitterID());
 			statement.setInt(2, reimbursement.getResolverID());
@@ -65,7 +65,6 @@ public class ReimbursementDAO implements IReimbursementDAO {
 			statement.setDate(2, dateSubmitted);
 			ResultSet results = statement.executeQuery();
 			while(results.next()) {
-				reimbursement = new Reimbursement();
 				reimbursement = getReimbursementFromQuery(results);
 			}
 		} catch (SQLException e) {

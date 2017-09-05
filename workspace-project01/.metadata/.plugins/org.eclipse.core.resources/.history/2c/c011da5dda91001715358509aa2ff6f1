@@ -1,0 +1,34 @@
+package com.revature.dao;
+
+import java.util.ArrayList;
+
+import com.revature.model.RUser;
+
+public class RUserDAO implements IRUserDAO {
+
+	@Override
+	public void create(RUser user) {
+		if (user == null) {
+			throw new IllegalArgumentException("User cannot be null");
+		}
+	}
+
+	@Override
+	public RUser read(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<RUser> readAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void update(RUser user) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
