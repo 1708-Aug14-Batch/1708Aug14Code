@@ -169,12 +169,40 @@ function printShape(shape, height, character){
 		}
 }
 	break;
-	case("Diamond"):
-		break;
+	case("Diamond"): //Diamond was giving me issues, but here is somethhing that should produce at least the top half of the diamond.
+		var midPoint = Math.round(height/2);
+		var array = [height];
+	while(counter <= height){
+	for(var i = 0; i < array.length; i++){
+		if(array[i] == array[midpoint]){
+			array[i] = character;
+		}
+		console.log(array);
 	}
+	counter = counter + 2;
+	if(counter == height){
+		for(var i = 0 ;i < array.length; i++){
+		array[i] = character;
+		}
+		console.log(array);
+	}
+	else{
+		for(var i = 0; i < array.length; i++){
+			if(array[i] === array[midpoint - 1] || array[i] == array[midpoint + 1] || array[i] == array[midpoint]){
+				array[i] = character;
+			}
+			
+		}
+		console.log(array);
+	}
+		
+	}
+	counter = 0;
 
-	
+	}
+		break;
 }
+
 
 /*
  * Problem 9
@@ -229,7 +257,7 @@ var John = new person("John", 30);
 
 
 /*
- * Problem 13 (WORK ON LATER)
+ * Problem 13 
  */
 
 
