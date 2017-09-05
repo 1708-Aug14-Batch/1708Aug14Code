@@ -2,12 +2,14 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.ang"/>
 			<item value="com.ex"/>
 			<item value="com.rev"/>
 			<item value="com.bank"/>
 			<item value="com.revature"/>
 		</list>
 		<list key="name">
+			<item value="IntroAngular"/>
 			<item value="FridayExample"/>
 			<item value="GenServletExample"/>
 			<item value="BankingServlets"/>
@@ -16,6 +18,7 @@
 			<item value="LogginThings"/>
 		</list>
 		<list key="artifactId">
+			<item value="IntroAngular"/>
 			<item value="FridayExample"/>
 			<item value="GenServletExample"/>
 			<item value="BankingServlets"/>

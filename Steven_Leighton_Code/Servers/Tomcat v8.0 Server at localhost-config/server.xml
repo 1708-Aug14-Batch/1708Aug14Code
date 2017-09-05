@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="ServletExample" path="/ServletExample" reloadable="true" source="org.eclipse.jst.jee.server:ServletExample"/><Context docBase="BankingServlets" path="/BankingServlets" reloadable="true" source="org.eclipse.jst.jee.server:BankingServlets"/><Context docBase="ServletHelloWorld" path="/ServletHelloWorld" reloadable="true" source="org.eclipse.jst.jee.server:ServletHelloWorld"/><Context docBase="IntroJS" path="/IntroJS" reloadable="true" source="org.eclipse.jst.jee.server:IntroJS"/><Context docBase="FridayExample" path="/FridayExample" reloadable="true" source="org.eclipse.jst.jee.server:FridayExample"/></Host>
+      <Context docBase="ServletExample" path="/ServletExample" reloadable="true" source="org.eclipse.jst.jee.server:ServletExample"/><Context docBase="BankingServlets" path="/BankingServlets" reloadable="true" source="org.eclipse.jst.jee.server:BankingServlets"/><Context docBase="ServletHelloWorld" path="/ServletHelloWorld" reloadable="true" source="org.eclipse.jst.jee.server:ServletHelloWorld"/><Context docBase="IntroJS" path="/IntroJS" reloadable="true" source="org.eclipse.jst.jee.server:IntroJS"/><Context docBase="FridayExample" path="/FridayExample" reloadable="true" source="org.eclipse.jst.jee.server:FridayExample"/><Context docBase="IntroAngular" path="/IntroAngular" reloadable="true" source="org.eclipse.jst.jee.server:IntroAngular"/></Host>
     </Engine>
   </Service>
 </Server>
