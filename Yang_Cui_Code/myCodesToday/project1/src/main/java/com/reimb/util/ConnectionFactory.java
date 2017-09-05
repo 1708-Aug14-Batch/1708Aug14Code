@@ -25,7 +25,7 @@ public class ConnectionFactory {
 		Connection conn=null;
 		try{
 			Properties prop=new Properties();
-			prop.load(new FileReader("C:/Users/1Z4XS/workspace/project/src/main/java/com/reimb/util/database.properties"));
+			prop.load(new FileReader("C:/Users/1Z4XS/workspace/project1/src/main/java/com/reimb/util/database.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn=DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("usr"), prop.getProperty("pwd"));
 		}catch (Exception e){
