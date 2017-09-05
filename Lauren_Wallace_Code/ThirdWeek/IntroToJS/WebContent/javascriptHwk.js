@@ -116,24 +116,24 @@ document.getElementById("doFactorial").addEventListener("click", runFactorial);
 */
 function substring(str, length, offset) {
 
-	if (str === null) {
+	if (str == null) {
 		alert("There is no string to get a substring of!");
 	}
-	if (offset === 0) {
+	if (offset == 0) {
 		alert("What is the point of using substring to return\n the entire string?");
 	}
-	else if (str === null && offset === 0) {
+	else if (str == null && offset == 0) {
 		alert("There is no string to get a substring of!\nWhat is the point of using substring to return\n the entire string?");
 	}
-	return str.splice(offset,(offset+length));
+	return str.slice(offset,(offset+length));
 }
 
 function runSubstring() {
 	var display = document.getElementById("subDisplay");
 	//takes in string arguments for the string & offset, where offset is where the substring begins
 	var sub = document.getElementById("strarg").value;
-	var off = document.getElementById("off").value;
-	var len = document.getElementById("rlen").value;
+	var off = parseInt(document.getElementById("off").value);
+	var len = parseInt(document.getElementById("rlen").value);
 	display.innerHTML = substring(sub, len, off);
 }
 
@@ -168,17 +168,16 @@ document.getElementById("doIsEven").addEventListener("click", runIsEven);
  */
 
 function isPalindrome(cstr) {
-	var ostr = cstr;
 	var pstr = getReverse(cstr);
-	if (ostr === pstr) {
+	if (cstr == pstr) {
 		return true;
 	}
 	return false;
 }
 
-function runIsPalidrome() {
+function runIsPalindrome() {
 	var display = document.getElementById("checkDisplay");
-	var cstr = document.getElementById("strTest").value;
+	var cstr = document.getElementById("strText").value;
 	display.innerHTML = isPalindrome(cstr);
 }
 
@@ -207,38 +206,28 @@ document.getElementById("doPalindrome").addEventListener("click", runIsPalindrom
  *   *
 */
 function printShape(shape, no, img) {
-	var sstr = "";
+	var space = " ";
+	
 	switch(shape) {
-	case "square": for (var c = 0; c < no; c++) {
-					  for (var ro = 0; ro < no; ro++) {
-						  sstr.concat(sstr, img);
-					  }
-					  sstr.concat(sstr, "\n");
+	case "square": for (var c = 1; c <= no; c++) {
+						  console.log((img).repeat(no));
+						  console.log(" ");
 				   }
-				   console.log(sstr);
 				   break;
-	case "triangle": for (var co = 0; co < no; co++) {
-						 for (var row = 0; row < no; row++) {
-							 sstr.concat(img, "\n");
+	case "triangle": for (var co = 1; co <= no; co++) {
+						 for (var row = 1; row <= no; row++) {
+							 console.log(img.repeat(co));
 						 }
 					  }
-					  console.log(sstr);
 					  break;
-	case "diamond": for (var col = 0; col < no; col++) {
-						sstr.concat("");
-						if (col > no) {
-							for (var rd = no; rd > 0; rd--) {
-								sstr.concat(img);
-							}
-						}
-						else {
-							for (var rd = 0; rd < no; rd++) {
-								sstr.concat(img);
-							}
-						}
-						sstr.concat("");
+	case "diamond": for (var col = 1; col <= no; col++) {
+						console.log(thinSpace.repeat((no/2) - (col)) + img.repeat(col));
 					}
-					console.log(sstr);
+					console.log(img.repeat(no/2 + 1));
+					for (var colu = no; colu >= 1; colu--) {
+						console.log(thinSpace.repeat((no/2) - (colu)) + img.repeat(colu));
+						console.log(" ");
+					}
 					break;
 	}
 }
@@ -259,15 +248,19 @@ document.getElementById("doPrintShapes").addEventListener("click", runPrintShape
 */
 
 function traverseObject(sobj) {
-	for (var p in sobj) {
-		return sobj[p];
+	sobj = sobj.split(",");
+	var students = [];
+	var student = {name: sobj[0], alias: sobj[1], age: sobj[2]};
+	for (var p in student) {
+		students.push("Property: " + p + " Value: " + student[p] + " ");
 	}
+	return students;
 }
 
 function runTraverse() {
-	var odisplay = document.getElementById("objDisplay1");
-	var inObj = document.getElementById("ol1").value;
-	odisplay.innerHTML = traverseObject(inObj);
+	var display = document.getElementById("objDisplay1");
+	var values = document.getElementById("ol1").value;
+	display.innerHTML = traverseObject(values);
 }
 
 document.getElementById("doObjLit1").addEventListener("click", runTraverse);
@@ -280,20 +273,22 @@ document.getElementById("doObjLit1").addEventListener("click", runTraverse);
  *     The lengths should be the same.
 */
 function deleteElement(dearr) {
+	dearr.replace(/ /g, '');
 	var narr = dearr.split(",");
-	narr.replace(/ /g, '');
+	var arr1 = narr;
 	if (dearr.length < 3) {
 		alert("The String is not long enough");
 	}
 	delete narr[2];
-	return "This is your original string length: " + dearr.length +
-			"\nThis is your new string length: " + narr.length;
+	console.log(narr);
+	return "This is your original string length: " + arr1.length +
+			". This is your new string length: " + narr.length + ".";
 }
 
 function runDelete() {
-	var ddisplay = document.getElementById("dDisplay");
+	var display = document.getElementById("dDisplay");
 	var dnarr = document.getElementById("darr").value;
-	odisplay.innerHTML = deleteElement(dnarr);
+	display.innerHTML = deleteElement(dnarr);
 }
 
 document.getElementById("doDelete").addEventListener("click", runDelete);
@@ -306,22 +301,20 @@ document.getElementById("doDelete").addEventListener("click", runDelete);
  *     The lengths should be one less than the original length.
 */
 function spliceElement(sarr) {
-	sarr = sarr.split(",");
-	sarr.replace(/ /g, '');
 	var nsarr = sarr;
 	
 	if (sarr.length < 3) {
 		alert("The String is not long enough");
 	}
 	nsarr.splice(2,1);
-	return "This is your original string length: " + sarr.length +
-			"\nThis is your new string length: " + nsarr.length;
+	return ". This is your new string [" + nsarr + "] and length: " + nsarr.length + ".";
 }
 
 function runSplice() {
-	var splicedisplay = document.getElementById("splDisplay");
+	var display = document.getElementById("splDisplay");
 	var csplarr = document.getElementById("splarr").value;
-	splicedisplay.innerHTML = spliceElement(csplarr);
+	csplarr = csplarr.split(",");
+	display.innerHTML = "This is your original string [" + csplarr + "] and length: " + csplarr.length + spliceElement(csplarr);
 }
 
 document.getElementById("doSplice").addEventListener("click", runSplice);
@@ -337,18 +330,18 @@ function person(name, age) {
 }
 
 function getCPerson(rName, rAge) {
+	console.log("Name: " + rName + " Age: " + rAge);
 	return person(rName, rAge);
 }
 
 function runPerson() {
-	var ocdisplay = document.getElementById("personDisplay");
+	var display = document.getElementById("personDisplay");
 	var ocarr = document.getElementById("person").value;
 	ocarr = ocarr.split(",");
-	ocarr.replace(/ /g, '');
-	ocdisplay.innerHTML = getCPerson(ocarr[0],ocarr[1]);
+	display.innerHTML = getCPerson(ocarr[0],parseInt(ocarr[1]));
 }
 
-document.getElementById("doGetPerson").addEventListener("click", runGetPerson);
+document.getElementById("doGetPerson").addEventListener("click", runPerson);
 
 /* 13. Defining an object using an object literal
  *     Define function getPerson(name, age)
@@ -360,15 +353,16 @@ function Person(name, age) {
 }
 
 function getPerson(rName, rAge) {
-	return Person(rName, rAge);
+	var rperson = Person(rName,rAge);
+	console.log("You have created person " + rName + " who is " + rAge + " years old.");
+	return rperson;
 }
 
 function runPersonL() {
 	var display = document.getElementById("litDisplay");
 	var olarr = document.getElementById("per").value;
 	olarr = olarr.split(",");
-	olarr.replace(/ /g, '');
-	display.innerHTML = getPerson(olarr[0],olarr[1]);
+	display.innerHTML = getPerson(olarr[0],parseInt(olarr[1]));
 }
 
-document.getElementById("doGetPersonL").addEventListener("click", runGetPersonL);
+document.getElementById("doGetPersonL").addEventListener("click", runPersonL);
