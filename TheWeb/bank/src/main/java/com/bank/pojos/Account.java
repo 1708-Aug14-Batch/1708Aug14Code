@@ -6,11 +6,11 @@ public class Account {
 	private int id;
 	private double balance;
 	private User user;
-	private AccountType type;
+	private String type;
 	
 	public Account(){}
 	
-	public Account(int id, double balance, User user, AccountType type) {
+	public Account(int id, double balance, User user, String type) {
 		super();
 		this.id = id;
 		this.balance = balance;
@@ -42,11 +42,11 @@ public class Account {
 		this.user = user;
 	}
 
-	public AccountType getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(AccountType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.bank.pojos.Account;
@@ -130,6 +131,35 @@ public class DAOImpl implements DAO{
 		return a;
 	}
 	
+	public ArrayList<Account> getAccountsByUser(User u){
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			String sql = "select acc.ACCOUNTID, acc.balance, t.name"
+					+ " from account acc inner join users on users.userid = acc.userid"
+					+ " inner join accounttype t on t.typeid = acc.typeid where users.userid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getId());
+			ResultSet info = ps.executeQuery();
+			
+			while(info.next()){
+				Account temp = null;
+				temp.setId(info.getInt(1));
+				temp.setBalance(info.getDouble(2));
+				temp.setUser(u);
+				temp.setType(info.getString(3));
+				accounts.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		return accounts;
+	}
 	
 
 }

@@ -16,6 +16,10 @@ public class GetDashboardServlet extends HttpServlet{
 			HttpServletResponse resp) throws
 			ServletException, IOException{
 		
+		System.out.println("in dashboard servlet");
+		
+		resp.setContentType("text/html");
+		
 		req.getRequestDispatcher("partials/dashboard.html")
 		.forward(req, resp);
 	}

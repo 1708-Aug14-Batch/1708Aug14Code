@@ -1,5 +1,6 @@
 package com.bank.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.bank.dao.DAO;
@@ -42,4 +43,7 @@ public class Service {
 		return dao.createAccount(u, typeId);
 	}
 
+	public ArrayList<Account> getUserAccounts(User u){
+		return dao.getAccountsByUser(u);
+	}
 }
