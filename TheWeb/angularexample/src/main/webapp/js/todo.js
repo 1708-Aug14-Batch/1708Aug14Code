@@ -29,7 +29,14 @@ app.controller("todoCtrl", function($scope){
 	};
 	
 	$scope.incompleteCount = function(){
+		var count = 0;
 		
+		angular.forEach($scope.items, function(item){
+			if(!item.done){
+				count++;
+			}
+		});		
+		return count;
 	};
 
 
