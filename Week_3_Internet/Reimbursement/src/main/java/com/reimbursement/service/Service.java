@@ -54,7 +54,9 @@ public class Service {
 	//This is used to establish the User to pass through the session.
 	//It uses the same checker as the username/password to set up the user.
 	//When ran through a main method it properly creates the user.
-	public User loginUser(String email) {
+	
+	//The example used here is username: ctest123@gmail.com and password: ctest123
+	public static User loginUser(String email) {
 		ArrayList<User> list = test.getUsers();
 		User user = new User();
 		for(User u: list) {
@@ -74,9 +76,9 @@ public class Service {
 	
 	
 	public static void main(String[] args) {
-//		User temp = new User();
-//		temp = loginUser("ctest123@gmail.com");
-//		System.out.println(temp.toString());
+		User temp = new User();
+		temp = loginUser("ctest123@gmail.com");
+		System.out.println(temp.toString());
 
 	}
 	
