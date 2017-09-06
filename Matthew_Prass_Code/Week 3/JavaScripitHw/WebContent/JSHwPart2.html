@@ -124,13 +124,36 @@
 		 var found;
 
 		  for (var i = 0; i < aTags.length; i++) {
-		    if (aTags[i].textContent == searchText) {
+		    if (aTags[i+1].textContent == searchText) {
 		      found = aTags[i];
 		      if(found){
-		    	  console.log(found);
+		    	  console.log(found.innerHTML);
 		    	  console.log("\n");
 		      }
 			}
+  		}
+	}
+  
+  	//Question 3: Get Anchor
+  	function getAnchorChildren(){
+  		var aTags = document.getElementsByTagName("a");
+  		for(var i = 0; i < aTags.length; i++)
+  		{
+  			if(aTags[i].querySelector("span") != null){
+  				console.log(aTags[i].querySelector("span").innerHTML);
+  				console.log("\n");
+  			}
+  		}
+  	}
+  	
+	//Question 4: Hobbies...but it asks for skills?
+	function getHobbies(){
+		var aTags = document.getElementsByName("skills");
+		//var bTags = aTags.getElementsByTag("option");
+  		for(var i = 0; i < aTags[0].length; i++)
+  		{
+ 			console.log(aTags[0].item(i).value + " "+aTags[0].item(i).innerHTML);
+ 			console.log("\n");
   		}
 	}
   </script>
