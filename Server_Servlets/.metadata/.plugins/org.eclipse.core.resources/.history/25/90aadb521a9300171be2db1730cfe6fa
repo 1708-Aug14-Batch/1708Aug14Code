@@ -1,0 +1,9 @@
+package com.bank.servlets;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/getUserInfo")
+public class GetUserInfoServlet extends HttpServlet {
+
+}

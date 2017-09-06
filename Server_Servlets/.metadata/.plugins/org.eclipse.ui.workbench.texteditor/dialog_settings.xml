@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="method 2" key="selection"/>
+		<item value="example.com" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="method 2"/>
-			<item value="orwo"/>
-			<item value="orward"/>
-			<item value="Served"/>
-			<item value="Serv"/>
-			<item value="Iterator"/>
-			<item value="tryCreateWorker"/>
-			<item value="isManagerLogg"/>
+			<item value="example.com"/>
+			<item value="href"/>
+			<item value="console.log"/>
+			<item value="account"/>
+			<item value="dto"/>
+			<item value="getElement"/>
+			<item value="name"/>
+			<item value="view"/>
 		</list>
 		<list key="replacehistory">
+			<item value="objects.add("/>
+			<item value="ashboard"/>
+			<item value="Worker"/>
 			<item value="System.out.println"/>
 			<item value="LocalDateTime"/>
 			<item value="username"/>
 			<item value="workerId"/>
 			<item value="reimburse"/>
-			<item value="reimbursement"/>
-			<item value="Reimbursement"/>
-			<item value="reimbursementId"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="-14" key="DIALOG_X_ORIGIN"/>
+		<item value="8" key="DIALOG_X_ORIGIN"/>
 		<item value="249" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

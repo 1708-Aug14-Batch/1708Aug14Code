@@ -16,8 +16,7 @@ public interface ServiceInterface {
 	public Worker tryCreateWorker(String firstName, String lastName, String email, String username, String password,
 			boolean isManager);
 
-	public Reimbursement tryCreateReimbursement(reimbursementStatus status, LocalDateTime submitDate,
-			String description, int ammount);
+	public Reimbursement tryCreateReimbursement(String description, int ammount);
 
 	public Worker getWorker(int workerId);
 
@@ -28,16 +27,20 @@ public interface ServiceInterface {
 	public boolean isAManager(String username);
 
 	public boolean isManagerLoggedIn();
-	
+
 	public boolean updateWorker(String firstName, String lastName, String email, String username, String password);
-	
-	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status,
-			LocalDateTime resolvedDate, String resolveNotes);
+
+	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status, String resolveNotes);
 
 	public ArrayList<Reimbursement> getPendingReimbursements();
+
 	public ArrayList<Reimbursement> getResolvedReimbursements();
+
 	public ArrayList<Reimbursement> getPendingReimbursements(int employeeId);
+
 	public ArrayList<Reimbursement> getResolvedReimbursements(int employeeId);
+
 	public ArrayList<Reimbursement> getEmployeesReimbursements(int employeeId);
+
 	public ArrayList<Worker> getAllEmployees();
 }

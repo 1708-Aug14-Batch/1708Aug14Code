@@ -1,0 +1,24 @@
+/**
+ * 
+ */
+
+alert("Inside navbar.js");
+
+window.onload = function() {
+	alert("navbar.js onload");
+	loadNavBar();
+}
+
+function loadNavBar() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// Replace the "view" div with the xhr response
+			alert("xhr is ready and good to go");
+			document.getElementById("navbar_view").innerHTML = xhr.responseText;
+			getUserInformation();
+		}
+	}
+	xhr.open("GET", "../getNavBarView", true);
+	xhr.send();
+}

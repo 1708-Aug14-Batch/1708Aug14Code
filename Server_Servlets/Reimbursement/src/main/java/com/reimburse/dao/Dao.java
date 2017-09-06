@@ -1,5 +1,6 @@
 package com.reimburse.dao;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -22,7 +23,7 @@ public interface Dao {
 
 	// Reimbursement
 	public Reimbursement createReimbursement(int submitterId, reimbursementStatus status,
-			LocalDateTime submitDate, String description, int ammount);
+			LocalDateTime submitDate, String description, BigDecimal ammount);
 	public Reimbursement readReimbursement(int reimbursementId);
 	// change any reimbursement's field except their uniquely identifying keys
 	public boolean updateReimbursement(int reimbursementId, Reimbursement acc);

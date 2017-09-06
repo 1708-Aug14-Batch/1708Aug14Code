@@ -1,5 +1,6 @@
 package com.reimburse.pojos;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Reimbursement {
@@ -19,9 +20,9 @@ public class Reimbursement {
 	private LocalDateTime resolvedDate;
 	private String description;
 	private String resolveNotes;
-	private int ammount;
+	private BigDecimal ammount;
 	
-	public Reimbursement(int reimbursementId, int submitterId, reimbursementStatus status, LocalDateTime submitDate, String description, int ammount) {
+	public Reimbursement(int reimbursementId, int submitterId, reimbursementStatus status, LocalDateTime submitDate, String description, BigDecimal ammount) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.submitterId = submitterId;
@@ -83,11 +84,11 @@ public class Reimbursement {
 		this.status = status;
 	}
 
-	public int getAmmount() {
+	public BigDecimal getAmmount() {
 		return ammount;
 	}
 
-	public void setAmmount(int ammount) {
+	public void setAmmount(BigDecimal ammount) {
 		this.ammount = ammount;
 	}
 

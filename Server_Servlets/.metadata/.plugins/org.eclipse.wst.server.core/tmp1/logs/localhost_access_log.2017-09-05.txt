@@ -21,3 +21,9 @@
 0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:05:28 -0400] "GET /BankingAssignment3/success.html HTTP/1.1" 304 -
 0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:05:29 -0400] "GET /BankingAssignment3/backToLogin HTTP/1.1" 302 -
 0:0:0:0:0:0:0:1 - - [05/Sep/2017:14:05:29 -0400] "GET /BankingAssignment3/frontPage.html HTTP/1.1" 304 -
+127.0.0.1 - - [05/Sep/2017:21:38:39 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:21:38:55 -0400] "GET /Reimbursement/testerPage1.html HTTP/1.1" 200 728
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:21:38:56 -0400] "GET /Reimbursement/tester.js HTTP/1.1" 200 262
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:21:39:02 -0400] "GET /Reimbursement/testerAction?usernameText= HTTP/1.1" 200 78
+127.0.0.1 - - [05/Sep/2017:22:24:06 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [05/Sep/2017:22:24:16 -0400] "GET /Reimbursement/profile_tab/profile.html HTTP/1.1" 200 234

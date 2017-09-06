@@ -127,22 +127,19 @@ public class Service implements ServiceInterface {
 	}
 
 	// Tries to create a new reimbursement
-	public Reimbursement tryCreateReimbursement(reimbursementStatus status, LocalDateTime submitDate,
-			String description, int ammount) {
+	public Reimbursement tryCreateReimbursement(String description, int ammount) {
 
 		if (id == null)
 			return null;
 
 		// Managers cannot create reimbursements
-		if (idIsManager || daoImpl.readWorker(id).isManager())
+		if (idIsManager)
 			return null;
 
-		if (status == reimbursementStatus.NULL)
-			return null;
-		if (submitDate == null || ammount < 0)
+		if (ammount < 0)
 			return null;
 
-		return daoImpl.createReimbursement(id, status, submitDate, description, ammount);
+		return daoImpl.createReimbursement(id, reimbursementStatus.PENDING, LocalDateTime.now(), description, ammount);
 	}
 
 	// Matches the old worker with the new by id
@@ -177,8 +174,7 @@ public class Service implements ServiceInterface {
 
 	// If the resolvedDate is null, gives the current dateTime as the
 	// resolvedDate
-	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status, LocalDateTime resolvedDate,
-			String resolveNotes) {
+	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status, String resolveNotes) {
 		if (id == null)
 			return false;
 		if (!idIsManager) {
@@ -212,16 +208,10 @@ public class Service implements ServiceInterface {
 			return false;
 		}
 
-		// Resolves a null date by giving the current date/time
-		if (resolvedDate == null) {
-			System.out.println("Resolved date of reimbursement set to current timestamp. ID: " + reimbursementId);
-			resolvedDate = LocalDateTime.now();
-		}
-
 		System.out.println("Reimbursement id " + reimbursementId + " set to status: " + status);
 		// Set the reimbursement as resolved and save it to the database
 		reimburse.setStatus(status);
-		reimburse.setResolvedDate(resolvedDate);
+		reimburse.setResolvedDate(LocalDateTime.now());
 		reimburse.setResolveNotes(resolveNotes);
 		daoImpl.updateReimbursement(reimbursementId, reimburse);
 
@@ -269,8 +259,7 @@ public class Service implements ServiceInterface {
 		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
 
 		for (Reimbursement r : reimbursements)
-			if (r.getStatus() != reimbursementStatus.DENIED
-					|| r.getStatus() != reimbursementStatus.APPROVED)
+			if (r.getStatus() != reimbursementStatus.DENIED || r.getStatus() != reimbursementStatus.APPROVED)
 				removeList.add(r);
 
 		reimbursements.removeAll(removeList);
@@ -279,10 +268,10 @@ public class Service implements ServiceInterface {
 
 	@Override
 	public ArrayList<Reimbursement> getEmployeesReimbursements(int employeeId) throws NullPointerException {
-		
-		if(daoImpl.readWorker(employeeId).isManager())
+
+		if (daoImpl.readWorker(employeeId).isManager())
 			return null;
-		
+
 		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
 		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
 
