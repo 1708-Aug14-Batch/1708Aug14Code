@@ -66,6 +66,7 @@ public class LoginServlet extends HttpServlet {
 			else{
 				
 				 //j_session_id stored in a cookie on the client's browser
+				System.out.println("Logging user " + u.toString());
 				session.setAttribute("user", u);
 				 //the parameters are the name, and the actual object that you want to store in the session
 				

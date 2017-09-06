@@ -18,7 +18,6 @@ public class GetDashboardServlet extends HttpServlet{
 		
 		System.out.println("in dashboard servlet");
 		
-		resp.setContentType("text/html");
 		
 		req.getRequestDispatcher("partials/dashboard.html")
 		.forward(req, resp);

@@ -29,11 +29,13 @@ public class GetUserInfoServlet extends HttpServlet{
 		
 		HttpSession session = request.getSession();
 		User sessionUser = (User)session.getAttribute("user");
-		
+		System.out.println("getting user from session " + sessionUser.toString());
 		if(sessionUser != null){
 			ArrayList<Account> accounts = new ArrayList<Account>();
 			accounts = service.getUserAccounts(sessionUser);
-			
+			for(Account a: accounts){
+				System.out.println(a.toString());
+			}
 			System.out.println("converting our user and accounts to dto");
 			DTO dto = new DTO(sessionUser, accounts);
 			

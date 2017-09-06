@@ -144,8 +144,9 @@ public class DAOImpl implements DAO{
 			ResultSet info = ps.executeQuery();
 			
 			while(info.next()){
-				Account temp = null;
+				Account temp = new Account();
 				temp.setId(info.getInt(1));
+				System.out.println("Account " + temp.getId());
 				temp.setBalance(info.getDouble(2));
 				temp.setUser(u);
 				temp.setType(info.getString(3));

@@ -4,8 +4,6 @@ window.onload = function(){
 	
 };
 
-
-
 //Views
 function loadDashboardView(){
 	var xhr = new XMLHttpRequest();
@@ -34,8 +32,7 @@ function getUserInformation(){
 				.innerHTML = user.firstname + " " + user.lastname;
 			if (accounts.length == 0){
 				document.getElementById("accounts").style.visibility = "hidden"; 
-				console.log("null");
-				console.log("accounts");
+				
 			}
 			else{
 				console.log("not null");
