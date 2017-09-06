@@ -11,6 +11,7 @@ import com.reimbursement.pojos.User;
 
 public class Service {
 	
+	String email;
 	
 	static DAO test = new DAOImpl();
 	
@@ -24,17 +25,59 @@ public class Service {
 		
 	}
 	
-	public static void main(String[] args) {
-		ArrayList<User> pass = test.getUsers();
-		User temp = new User();
-		for(User u: pass) {
-			if(u.getUserId() == 1) {
-				temp = new User(u.getUserId(), u.getFirstname(), u.getLastname(), u.getEmail(), u.getPassword(), u.getIsManager());
+	public boolean checkEmail(String email) {
+		ArrayList<User> list = test.getUsers();
+		for(User u: list) {
+			if(u.getEmail().equals(email)) {
+				return true;
 			}
 		}
-		
-		test.ApproveOrDeny(2,23, "Denied. Try Again later");
-		
+		return false;
+
+
+	}
+
+	public boolean checkPassword(String email, String password) {
+		ArrayList<User> list = test.getUsers();
+		for(User u: list) {
+			if(u.getEmail().equals(email)) {
+				if(u.getPassword().equals(password)) {
+					
+					return true;
+				}
+					
+			}
+		}
+		return false;
+	}
+	
+	//This is used to establish the User to pass through the session.
+	//It uses the same checker as the username/password to set up the user.
+	//When ran through a main method it properly creates the user.
+	public User loginUser(String email) {
+		ArrayList<User> list = test.getUsers();
+		User user = new User();
+		for(User u: list) {
+			if(u.getEmail().equals(email)) {
+				user.setUserId(u.getUserId());
+				user.setFirstname(u.getFirstname());
+				user.setLastname(u.getLastname());
+				user.setEmail(u.getEmail());
+				user.setPassword(u.getPassword());
+				user.setIsManager(u.getIsManager());
+				System.out.println(user.toString());
+				return user;
+			}
+		}
+		return null;
+	}
+	
+	
+	public static void main(String[] args) {
+//		User temp = new User();
+//		temp = loginUser("ctest123@gmail.com");
+//		System.out.println(temp.toString());
+
 	}
 	
 	
