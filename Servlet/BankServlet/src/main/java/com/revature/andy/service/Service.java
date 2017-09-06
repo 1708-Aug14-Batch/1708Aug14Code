@@ -38,16 +38,18 @@ public class Service {
 	}
 	
 	// Get Accounts
-	public void getAccounts() {
+	public HashSet<Account> getAccounts() {
 		HashSet<Account> accountList = 	dao.getAccounts(PseudoSession.getCurrentUser());
 		if(accountList.isEmpty()) {
 			System.out.println("No Accounts");
+			return null;
 		}else {
 			System.out.println("\n------------------------------------------------------------------------"); 
 			for(Account x: accountList) {
 				System.out.println(x.toString());
 			}	
 			System.out.println("------------------------------------------------------------------------");
+			return accountList;
 		}
 	}
 	

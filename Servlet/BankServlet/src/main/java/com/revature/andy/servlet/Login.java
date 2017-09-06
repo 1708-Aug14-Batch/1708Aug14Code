@@ -15,9 +15,10 @@ import com.revature.andy.session.PseudoSession;
 public class Login extends HttpServlet{
 
 	Service s = new Service();
-	
+/*	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		PrintWriter pw = resp.getWriter();
 		pw.write("hello");
 
@@ -35,9 +36,8 @@ public class Login extends HttpServlet{
 			pw.write("Failure");
 		}
 	}
+*/
 
-
-/*
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -46,9 +46,10 @@ public class Login extends HttpServlet{
 		
 		if(PseudoSession.login(email, pass) == 1) {
 			HttpSession session = req.getSession();
+			session.setAttribute("User", PseudoSession.getCurrentUser());
 			session.setAttribute("FullName",(PseudoSession.getCurrentUser().getFName() + " " + PseudoSession.getCurrentUser().getLName()));
 			System.out.println("logged in");
-			resp.sendRedirect("success.html");
+			resp.sendRedirect("app.html");
 		}
 		else if(PseudoSession.login(email, pass) == 2){
 			System.out.println("wrong password");
@@ -58,5 +59,4 @@ public class Login extends HttpServlet{
 			resp.sendRedirect("failure.html");
 		}
 	}
-	*/
 }
