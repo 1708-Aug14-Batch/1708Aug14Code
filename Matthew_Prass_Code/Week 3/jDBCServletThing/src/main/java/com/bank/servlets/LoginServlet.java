@@ -5,15 +5,18 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bank.dao.DAO;
 import com.bank.dao.DaoImpl;
 import com.bank.pojos.User;
 import com.bank.service.Service;
 
+//@WebServlet("/login")
 public class LoginServlet extends HttpServlet{
 	
 	//Service s = new Service();
@@ -36,22 +39,23 @@ public class LoginServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
+		HttpSession sesh = req.getSession();
+		
 		String email = req.getParameter("name");
 		String pass = req.getParameter("paw");
 		int id = s.validateUser(email);
 		if(id < 0){
-			res.sendRedirect("fail.html");
+			req.getRequestDispatcher("fail.html").forward(req, res);
 		}
 		else {
 			User u = s.loginForServlet(id, pass);
 			if(u == null){
-				res.sendRedirect("fail.html");
+				req.getRequestDispatcher("fail.html").forward(req, res);
 			}
 			
 			else{
-				PrintWriter out = res.getWriter();
-				out.write(u.getFirstname());
-				//res.sendRedirect("success.jsp");
+				sesh.setAttribute("user", u);
+				req.getRequestDispatcher("success.html").forward(req, res);
 			}
 		}
 	}
