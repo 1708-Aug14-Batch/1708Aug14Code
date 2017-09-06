@@ -12,6 +12,7 @@ import java.sql.Types;
 import java.util.HashMap;
 
 import com.reimbursement.pojos.Reimbursement;
+import com.reimbursement.pojos.ReimbursementStatus;
 import com.reimbursement.pojos.User;
 import com.reimbursement.util.ConnectionFactory;
 
@@ -102,16 +103,15 @@ public class DAOsql implements DAO {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 	
 			String sql = "SELECT r.RID, r.Amount, r.Description, r.ResolvedNotes, "
-					+ "r.SubmitDate, r.ResolveDate, u.Firstname, u.Lastname, s.Name "
+					+ "r.SubmitDate, r.ResolveDate, u.Firstname, u.Lastname, r.StatusID, r.ResolverID "
 					+ "FROM Reimbursements r "
 					+ "LEFT JOIN Users u "
 					+ "ON u.UserID = r.ResolverID "
-					+ "LEFT JOIN ReimbursementStatus s "
-					+ "ON s.StatusID = r.StatusID "
 					+ "WHERE SubmitterID = ?";
+
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, u.getId());
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				BigDecimal amt = rs.getBigDecimal(2);
@@ -121,7 +121,8 @@ public class DAOsql implements DAO {
 				Timestamp resolveDate = rs.getTimestamp(6);
 				String rFname = rs.getString(7);
 				String rLname = rs.getString(8);
-				String status = rs.getString(9);
+				int status = rs.getInt(9);
+				int rid = rs.getInt(10);
 				Reimbursement tmp = new Reimbursement();
 				tmp.setId(id);
 				tmp.setAmount(amt);
@@ -130,10 +131,11 @@ public class DAOsql implements DAO {
 				tmp.setSubmit_date(submitDate);
 				tmp.setResolve_date(resolveDate);
 				User resolver = new User();
+				resolver.setId(rid);
 				resolver.setFirstname(rFname);
 				resolver.setLastname(rLname);
 				tmp.setResolver(resolver);
-				//tmp.setStatus(status);
+				tmp.setStatusById(status);
 				requests.put(id, tmp);
 			}
 		} catch (Exception e) {
@@ -171,17 +173,26 @@ public class DAOsql implements DAO {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			
 			conn.setAutoCommit(false);
-			String sql = "INSERT INTO Reimbursements "
-						 + "(Amount, Description, SubmitDate, StatusID, SubmitterID) " 
-						 + "VALUES (?, ?, ?, ?, ?)";
+			/*String sql = "INSERT INTO Reimbursements "
+						 + "(Amount, Description, StatusID, SubmitterID) " 
+						 + "VALUES (?, ?, ?, ?)";*/
+			String sql = "{call addRequest(?, ?, ?, ?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setBigDecimal(1, r.getAmount());
+			cs.setString(2, r.getDescription());
+			cs.setInt(3, r.getStatus());
+			cs.setInt(4, r.getSubmitterId());
+			cs.execute();
+			conn.commit();
+			return 1;
+			/*
 			String[] key = new String[1];
 			key[0] = "RID";
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setBigDecimal(1, r.getAmount());
 			ps.setString(2, r.getDescription());
-			ps.setTimestamp(3, r.getSubmit_date());
-			ps.setInt(4, r.getStatus());
-			ps.setInt(5, r.getSubmitterId());
+			ps.setInt(3, r.getStatus());
+			ps.setInt(4, r.getSubmitterId());
 			
 			int numRowsAdded = ps.executeUpdate();
 			int id = 0;
@@ -190,7 +201,7 @@ public class DAOsql implements DAO {
 				id = pk.getInt(1);
 			}
 			conn.commit();
-			return id;
+			return id;*/
 			
 		} catch (SQLException e) {
 			System.out.println("ERROR: DAOsql - addReimbursementRequest");

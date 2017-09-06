@@ -41,7 +41,7 @@
 						<div class="remember-forgot">
 							<div class="row">
 								<div class="col-md-6 forgot-pass-content">
-									<button type="button" class="forgot-pass" data-toggle="modal"
+									<button type="button" class="newUser" data-toggle="modal"
 										data-target="#newUserModal">New User</button>
 								</div>
 							</div>
@@ -67,11 +67,11 @@
 				</div>
 				<div class="modal-body">
 					<form action="create" method="post">
-						Firstname<input type="text" name="fname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Firstname" required/>
-						Lastname<input type="text" name="lname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Lastname" required/>
-						Email<br><input type="email" name="email" placeholder="user@email.com" required/>
-						Password<input id="p" type="password" name="pword" placeholder="Password" required/>
-						Confirm Password<input id="nPwordCheck" type="password" name="pword_c" placeholder="Password" required/>
+						Name<input type="text" name="fname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="First" required/>
+						<input type="text" name="lname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Last" required/>
+						Email<br><input type="email" name="email" placeholder="@email.com" required/>
+						Password<input id="p" type="password" name="pword" required/>
+						Confirm Password<input id="nPwordCheck" type="password" name="pword_c" required/>
 						<br><br><input type="checkbox" name="manager">   I'm a Manager<br>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

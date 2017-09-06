@@ -16,15 +16,6 @@ public class Reimbursement {
 	private Timestamp submit_date;
 	private Timestamp resolve_date;
 	
-	public Reimbursement(int id, User submitted_by, ReimbursementStatus status, String description, BigDecimal amount, Timestamp submit_date) {
-		super();
-		this.id = id;
-		this.submitted_by = submitted_by;
-		this.status = status;
-		this.description = description;
-		this.amount = amount;
-		this.submit_date = submit_date;
-	}
 	
 	public Reimbursement() {
 		super();
@@ -49,6 +40,10 @@ public class Reimbursement {
 	public int getResolverId() {
 		return resolved_by.getId();
 	}
+	
+	public User getResolver() {
+		return this.resolved_by;
+	}
 
 	public void setResolver(User resolved_by) {
 		this.resolved_by = resolved_by;
@@ -57,9 +52,30 @@ public class Reimbursement {
 	public int getStatus() {
 		return status.getStatus();
 	}
+	
+	public String getStatusName() {
+		return status.toString();
+	}
 
 	public void setStatus(ReimbursementStatus status) {
 		this.status = status;
+	}
+	
+	public void setStatusById(int id) {
+		switch (id) {
+		case 1:
+			this.status = ReimbursementStatus.PENDING;
+			return;
+		case 2:
+			this.status = ReimbursementStatus.APPROVED;
+			return;
+		case 3:
+			this.status = ReimbursementStatus.DENIED;
+			return;
+		default:
+			this.status = ReimbursementStatus.PENDING;
+			return;
+		}
 	}
 
 	public String getDescription() {

@@ -1,0 +1,8 @@
+CREATE USER reimburse
+IDENTIFIED BY p4ssw0rd;
+
+GRANT CONNECT TO reimburse;
+GRANT RESOURCE TO reimburse;
+GRANT CREATE SESSION TO reimburse;
+GRANT CREATE TABLE TO reimburse;
+GRANT CREATE VIEW TO reimburse;

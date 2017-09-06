@@ -20,8 +20,6 @@ public class Service {
 	}
 	
 	public int updateInfo(User u) {
-		if (dao.getUser(u.getEmail()) != null)
-			return -1;
 		return dao.editUser(u);
 	}
 	

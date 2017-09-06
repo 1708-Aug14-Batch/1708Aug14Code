@@ -20,44 +20,37 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 	crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+
+<script src="js/app.js"></script>
 </head>
 
 <body onload="onLoad()">
-	<div id="things"></div>
+	<div id="things"> <!-- ng-app="myApp" ng-controller="myCtrl"> -->
+	<!-- <h1>{{welcome}}</h1> -->
+	</div>
 	<div>
 		<button type="button" data-toggle="modal" data-target="#requestModal">Request
 			Reimbursement</button>
-		<button type="button">Logout</button>
+		<form action="logout" method="post">
+		<button type="submit">Logout</button>
+		</form>
 		<button type="button" data-toggle="modal"
 			data-target="#editDetailsModal">Edit Details</button>
 		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Status</th>
-					<th>Submitted On</th>
 					<th>Amount</th>
+					<th>Submitted On</th>
 					<th>Resolved On</th>
+					<th>Resolved By</th>
 				</tr>
 			</thead>
 			<tbody id="requests">
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
+			
 			</tbody>
 		</table>
 	</div>
@@ -75,7 +68,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="edit" method="post">
+					<form action="editAccountInfo" method="post">
 						Firstname<br><input type="text" name="fname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Firstname" required/>
 						<br>Lastname<br><input type="text" name="lname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Lastname" required/>
 						<br>Email<br><input type="email" name="email" placeholder="user@email.com" required/>
@@ -103,8 +96,8 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="request" method="post">
-						Amount<br><input type="number" name="amount" min="1" max="999999" placeholder="$0.00" required/>
+					<form action="makeRequest" method="post">
+						Amount<br><input type="number" name="amount" min="1" max="999999" step="0.01" placeholder="$0.00" required/>
 						<br>Description<br><textarea cols="52" rows="5" name="desc" required></textarea>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

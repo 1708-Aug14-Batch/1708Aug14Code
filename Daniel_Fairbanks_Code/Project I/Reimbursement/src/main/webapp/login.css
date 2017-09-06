@@ -1,7 +1,7 @@
 body
 {
-    background: url('http://farm3.staticflickr.com/2832/12303719364_c25cecdc28_b.jpg') fixed;
-    background-size: cover;
+    background: url('http://www.trainingmagazine.ae/wp-content/uploads/2014/07/blackboard.jpg') fixed;
+    background-size: 100% 100%;
     padding: 0;
     margin: 0;
 }
@@ -11,21 +11,21 @@ body
     width: 100%;
     height: 100%;
     min-height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: fixed;
+    top: 25%;
+    bottom: 25%;
+    left:0;
     z-index: 99;
 }
 
 p.form-title
 {
-    font-family: 'Open Sans' , sans-serif;
-    font-size: 20px;
+    font-family: 'Chalkduster' , fantasy;
+    font-size: 40px;
     font-weight: 600;
     text-align: center;
     color: #FFFFFF;
     margin-top: 5%;
-    text-transform: uppercase;
     letter-spacing: 4px;
 }
 
@@ -45,7 +45,7 @@ form.login input[type="text"], form.login input[type="password"], form.login inp
     border-bottom: 1px solid #FFFFFF;
     outline: 0;
     font-style: italic;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 5px;
@@ -167,4 +167,21 @@ form.login a:hover
 .pass-reset input[type="submit"]:hover
 {
     transition: background-color 0.5s ease;
+}
+
+.newUser
+{
+	color:#00ce00;
+	background:rgba(1,1,1,0);
+    border:none;
+    margin:0;
+    padding:0;
+    text-shadow: #ffffff0 0 10px;
+}
+
+.newUser:hover{
+	-webkit-stroke-width: 5.3px;
+    -webkit-stroke-color: #FFFFFF;
+    -webkit-fill-color: #FFFFFF;
+    text-shadow: 1px 0px 20px #ffffff;
 }
