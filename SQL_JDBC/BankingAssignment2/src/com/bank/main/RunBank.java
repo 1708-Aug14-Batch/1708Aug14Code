@@ -37,13 +37,12 @@ import com.bank.service.Service;
 //			upgrade an account
 //			Provide verification for deleting an account
 //		Clerks have two ways to log in: to access the secret clerk menu, and a temporary log in which logs out after verification for doing admin things like changing a user's username
-// TODO add transactions (transaction method which calls any transaction) - consider changing transactionType to String
 // TODO add a password recovery option. Either with optional security questions or somehow
 //			simulate sending a security code to an email address. Or simply have a clerk oversee a password reset
 
 public class RunBank {
 
-	private static Scanner scan = new Scanner(System.in);
+	private static Scanner scan;
 	private static Service bankService = new Service();
 	// Keeps track of the account currently logged into the system
 	private static Integer userIdLoggedIn = null;
@@ -55,10 +54,19 @@ public class RunBank {
 	// Implementation to actually run bank application
 	public static void main(String[] args) {
 
-		System.out.println("Hello. Welcome to the automating banking system for " + bankName + ".");
-
+		scan = new Scanner(System.in);
+		
 		try {
-			bankingSystem();
+			
+			if (Service.isConnected()) {
+				System.out.println("Hello. Welcome to the automating banking system for " + bankName + ".");
+
+				bankingSystem();
+				
+				System.out.println("Thank you for using the automating banking system. Have a wonderful day.");
+			}
+				
+			else System.out.println("Error connecting to database.");
 
 		} catch (NoSuchElementException e) {
 			System.out.println("Bad input. Exiting system...");
@@ -67,8 +75,7 @@ public class RunBank {
 			e.printStackTrace();
 		}
 
-		System.out.println("Thank you for using the automating banking system. Have a wonderful day.");
-
+		
 		scan.close();
 
 	}

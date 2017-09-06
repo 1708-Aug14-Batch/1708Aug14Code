@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
 
-import com.bank.dao.DaoSqlImpl;
+import com.bank.dao.DaoSqlImpl2;
 import com.bank.pojos.Account;
 import com.bank.pojos.Account.accountLevel;
 import com.bank.pojos.Account.accountType;
@@ -18,15 +18,17 @@ import com.bank.pojos.BankUser;
 //		ensure correctness on create as well as on update
 // TODO add methods to read particular values from database rather than always getting a list of every _____
 
-// FIXME rather than using so many daoImpl.readAllXXX() methods, make more methods in the DaoSqlImpl that are not in the DaoSql interface
-
 public class Service {
 
-	DaoSqlImpl daoImpl = new DaoSqlImpl();
+	DaoSqlImpl2 daoImpl = new DaoSqlImpl2();
 	// Used when updating an account
 	private static long maxBalance = 10000000000L;
-	private static Logger log = Logger.getRootLogger();
+	//private static Logger log = Logger.getRootLogger();
 
+	public static boolean isConnected() {
+		return DaoSqlImpl2.connection;
+	}
+	
 	public BankUser validateBankUser(String username, String password) {
 		if (username == null || password == null)
 			return null;
@@ -57,13 +59,13 @@ public class Service {
 
 	public boolean isEmailAvailable(String email) {
 
-		ArrayList<Person> peopleList = daoImpl.readAllPersons();
+		ArrayList<String> emailList = daoImpl.readAllEmails();
 
-		if (peopleList.size() == 0)
+		if (emailList.size() == 0)
 			return true;
 
-		for (Person per : peopleList)
-			if (per.getEmail() != null && per.getEmail().equals(email)) {
+		for (String myEmail : emailList)
+			if (email != null && myEmail.equals(email)) {
 				System.out.println("Email unavailable");
 				return false;
 			}
@@ -74,10 +76,10 @@ public class Service {
 	private boolean isUsernameAvailable(String username) {
 		username = username.toLowerCase();
 
-		ArrayList<BankUser> userList = daoImpl.readAllBankUsers();
+		ArrayList<String> usernameList = daoImpl.readAllUsernames();
 
-		for (BankUser guy : userList) {
-			if (guy.getUsername().equals(username))
+		for (String myUsername : usernameList) {
+			if (myUsername.equals(username))
 				return false;
 		}
 
@@ -199,10 +201,10 @@ public class Service {
 
 	private boolean personIsAUser(Person per) {
 
-		ArrayList<BankUser> userList = daoImpl.readAllBankUsers();
+		ArrayList<Integer> personIdList = daoImpl.readAllPersonIds();
 
-		for (BankUser guy : userList)
-			if (guy.getPersonId() == (per.getPersonId()))
+		for (int id : personIdList)
+			if (id == per.getPersonId())
 				return true;
 
 		return false;
