@@ -55,7 +55,7 @@ public class LoginMessageServlet extends HttpServlet{
 		if(id<0){ // if user DNE
 			json = "Invalid user. Please try again";
 		}
-		else
+		else{
 			User u = service.login(id, pass);
 			if(u == null){
 				json = "Incorrect Password. Please try again";

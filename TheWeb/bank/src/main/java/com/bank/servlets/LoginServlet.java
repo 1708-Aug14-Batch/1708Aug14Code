@@ -80,7 +80,7 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(id);
 		if(id < 0){
 
-			String json = "Invalid User. Please try again.";
+			String json = "pass";
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
 			out.write(json);
@@ -89,14 +89,15 @@ public class LoginServlet extends HttpServlet {
 		else{
 			User u = service.login(id, pass);
 			if(u == null){
-				String json = "Incorrect Password. Please try again.";
+				String json = "fail";
 				PrintWriter out = response.getWriter();
 				response.setContentType("application/json");
 				out.write(json);
 			}
 			else{
-
-				String json = "success";
+				ObjectMapper mapper = new ObjectMapper();
+				
+				String json = mapper.writeValueAsString(u);
 				PrintWriter out = response.getWriter();
 				response.setContentType("application/json");
 				out.write(json);
