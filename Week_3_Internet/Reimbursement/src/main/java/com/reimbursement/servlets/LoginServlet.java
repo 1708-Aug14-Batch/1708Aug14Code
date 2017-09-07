@@ -38,17 +38,27 @@ public class LoginServlet extends HttpServlet{
 		User u = service.loginUser(email);
 		System.out.println("Logging user " + u.toString());
 		if(check == true && passCheck == true) {
+			if(u.getIsManager() == 0) {
 			System.out.println("Logging user " + u.toString());
 			session.setAttribute("user", u); //Use this to persist the data throughout the server
 			// The parameter is the name, and the actual object.
 			
 			RequestDispatcher rd = req.getRequestDispatcher("HomePage.html");
 			rd.forward(req, res);
+			}
+			else if(u.getIsManager() == 1) {
+				
+				session.setAttribute("user", u); //Use this to persist the data throughout the server
+				// The parameter is the name, and the actual object.
+				
+				RequestDispatcher rd = req.getRequestDispatcher("ManagerHomePage.html");
+				rd.forward(req, res);
+			}
 		}
-//		else {
-//			res.sendRedirect("Failure.html");
-//
-//		}
+		else {
+			res.sendRedirect("Failure.html");
+
+		}
 		
 		
 		

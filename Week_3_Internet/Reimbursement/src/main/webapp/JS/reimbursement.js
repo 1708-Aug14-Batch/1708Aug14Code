@@ -51,6 +51,35 @@ function getReimbursement(){
 	}
 	xhr.open("GET", "UserReimbursement", true);
 	xhr.send();
-	
-	
 }
+
+
+$(document).ready(function(){
+	$('button').click(function(){
+		
+		var email = $('#inputEmail3').val();
+		var password = $('#inputPassword3').val();
+		var reason = $('#inputReason').val();
+		var amount = $("#inputAmount").val();
+		
+		var tx = [email,password,reason,amount];
+		
+		tx = JSON.stringify(tx);
+		
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				
+				
+			}
+		}
+		
+		xhr.open("POST", "whatever", true);
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.send(tx);
+		
+		
+	});
+
+});
+
