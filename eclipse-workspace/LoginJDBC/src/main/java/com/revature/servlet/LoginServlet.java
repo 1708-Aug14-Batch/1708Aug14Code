@@ -1,10 +1,8 @@
 package com.revature.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.revature.dao.UserDAO;
 import com.revature.dao.UserDAOImpl;
 import com.revature.model.User;
-import com.revature.service.BankService;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	
 	private UserDAO<User> dao = new UserDAOImpl();

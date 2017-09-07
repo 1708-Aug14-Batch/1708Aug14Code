@@ -17,6 +17,7 @@ import com.revature.model.RUser;
  * This servlet handles login requests
  * @author Will Underwood
  */
+//@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	
 	private RUserDAO dao = new RUserDAO();

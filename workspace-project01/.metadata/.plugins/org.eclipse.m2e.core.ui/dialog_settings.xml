@@ -5,9 +5,11 @@
 			<item value="com.revature"/>
 		</list>
 		<list key="name">
+			<item value="TomcatTest"/>
 			<item value="Project01"/>
 		</list>
 		<list key="artifactId">
+			<item value="TomcatTest"/>
 			<item value="Project01"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -52,6 +54,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\will\my_git_repos\1708Aug14Code\workspace-project01\Project01"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
