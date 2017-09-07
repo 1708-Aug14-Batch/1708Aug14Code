@@ -6,6 +6,11 @@ window.onload = function() {
 	loadDashBoardView();
 }
 
+function loadNavBar() {
+	// $('#navbar').show();
+	// $('#navbar').hide();
+}
+
 // Views
 function loadDashBoardView() {
 	var xhr = new XMLHttpRequest();

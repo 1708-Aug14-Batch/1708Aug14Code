@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 		} else if (!user.getPassword().equals(request.getParameter("password"))) {
 				request.getRequestDispatcher("/bad_password.html").forward(request, response);
 		} else {
-			response.sendRedirect("http://www.youtube.com/");
+			response.sendRedirect("/home-employee");
 		}
 	}
 

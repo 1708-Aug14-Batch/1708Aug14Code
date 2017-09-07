@@ -21,9 +21,7 @@ import com.revature.model.User;
  */
 public class BankService {
 	
-	//private DAO dao;
 	private AccountDAO<Account> accountDAO;
-	//private AccountTypeDAO<AccountType> accountTypeDAO;
 	private UserDAO<User> userDAO;
 	private Scanner scanner;
 	private User loggedInUser;
@@ -36,9 +34,26 @@ public class BankService {
 	 */
 	public BankService() {
 		this.accountDAO = new AccountDAOImpl();
-		//this.accountTypeDAO = new AccountTypeDAOImpl();
 		this.userDAO = new UserDAOImpl();
 		this.scanner = new Scanner(System.in);
+	}
+	
+	public boolean checkUserExists(String email) {
+		if (email == null) {
+			throw new IllegalArgumentException("Email cannot be null");
+		}
+		return (this.userDAO.readUser(email) != null);
+	}
+	
+	public boolean validateUserCredentials(String email, String password) {
+		if (email == null) {
+			throw new IllegalArgumentException("Email cannot be null");
+		}
+		if (password == null) {
+			throw new IllegalArgumentException("Password cannot be null");
+		}
+		User user = this.userDAO.readUser(email);
+		return password.equals(user.getPassword());
 	}
 	
 	public ArrayList<Account> getAllAccountsForUser(User user) {
