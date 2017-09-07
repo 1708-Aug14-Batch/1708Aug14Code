@@ -16,12 +16,18 @@ public class Service {
 	static DAO test = new DAOImpl();
 	
 	
-	public void submitReimbursement() {
+	public void submitReimbursement(User u, Reimbursement r) {
 		ArrayList<User> list = test.getUsers();
 		
-		
-		
-		
+		for(User t: list){
+			if(t.getEmail() == u.getEmail()) {
+				System.out.println("Before ID: " + t.getUserId());
+				u.setUserId(t.getUserId());
+			}
+		}
+		System.out.println("After ID: " + u.getUserId());
+		test.createReimbursement(u, r.getAmount(), r.getDescription());
+		System.out.println("We got here after the DAO");
 		
 	}
 	

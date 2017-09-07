@@ -3,7 +3,10 @@ package com.reimbursement.pojos;
 public class User {
 
 	public User() {};
-	
+	public User(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
 	public User(int userId, String firstname, String lastname, String email, String password, int isManager) {
 		super();
 		this.userId = userId;

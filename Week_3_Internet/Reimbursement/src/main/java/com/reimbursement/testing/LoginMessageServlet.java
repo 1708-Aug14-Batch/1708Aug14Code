@@ -20,6 +20,19 @@ import com.reimbursement.service.Service;
 @WebServlet("/loginmessagetest")
 public class LoginMessageServlet extends HttpServlet {
 
+	
+	
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+		
+		System.out.println("Testing -- GET");
+		
+		req.getRequestDispatcher("partials/testloginpartial.html").forward(req, res);
+	}
+	
+	
+	
+	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		
 		System.out.println("Testing -- POST");
@@ -53,12 +66,7 @@ public class LoginMessageServlet extends HttpServlet {
 			
 		}
 		else {
-			if(check != true) {
-				json = "Invalid email. Please try again";
-			}
-			if(passCheck != true) {
-				json = "Invalid Password. Please try again";
-			}
+			json = "Invalid Email and/or Password";
 		}
 		PrintWriter out = res.getWriter();
 		res.setContentType("application/json");

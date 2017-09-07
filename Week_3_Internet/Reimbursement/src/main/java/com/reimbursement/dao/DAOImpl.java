@@ -112,6 +112,7 @@ public class DAOImpl implements DAO {
 	}
 	
 	public void createReimbursement(User u ,int amt, String desc) {
+	
 		int amount = amt;
 		
 		String description = desc;
@@ -127,7 +128,9 @@ public class DAOImpl implements DAO {
 			ps.setString(2, description);
 			ps.setInt(3, amount);
 			ps.executeUpdate();
-
+			
+			conn.commit();
+			System.out.println("Submittal Successful");
 			
 			
 		} catch (SQLException e) {

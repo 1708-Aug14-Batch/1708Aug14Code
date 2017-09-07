@@ -19,6 +19,13 @@ public class Reimbursement {
 		this.notes = notes;
 		this.amount = amount;
 	}
+	public Reimbursement(String description, Integer amount) {
+		this.description = description;
+		this.amount = amount;
+	}
+	public Reimbursement() {
+		// TODO Auto-generated constructor stub
+	}
 	private int r_id;
 	private int sub_id;
 	private int res_id;
