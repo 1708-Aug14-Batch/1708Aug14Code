@@ -26,16 +26,16 @@ function runFib(){
 	display.innerHTML = fib(n);
 }
   
-document.getElementById("doFib").addEventListener("click",runFib);
-
-document.getElementById("inner").addEventListener("click", 
-		function(){alert("inner!")});
-
-document.getElementById("middle").addEventListener("click", 
-		function(){alert("middle!")});
-
-document.getElementById("outer").addEventListener("click", 
-		function(){alert("outer!")});
+//document.getElementById("doFib").addEventListener("click",runFib);
+//
+//document.getElementById("inner").addEventListener("click", 
+//		function(){alert("inner!")});
+//
+//document.getElementById("middle").addEventListener("click", 
+//		function(){alert("middle!")});
+//
+//document.getElementById("outer").addEventListener("click", 
+//		function(){alert("outer!")});
 
 
 /*
@@ -268,6 +268,45 @@ function getPerson(name, age){
 
 
 
+/*
+ * PART 2
+ */
+
+/*
+ * Problem 1
+ */
+
+
+
+function getUSA(){
+	var usa = document.querySelector('[data-customAttr="USA"]');
+	console.log(usa);
+};
+
+console.log(getUSA());
+
+
+/*
+ * Problem 2 (NOT ACTUALLY DONE NEED TO GET SALES PEOPLE ONLY)
+ */
+
+
+
+
+function getPeopleInSales(){
+	
+	var list = document.getElementsByClassName("empName").getChild("Sales");
+	return list;
+}
+var list = getPeopleInSales();
+for(var i = 0; i <= list.length; i++){
+	console.log(list[i]);
+}
+
+/*
+ * Problem 3
+ * 
+ */
 
 
 
