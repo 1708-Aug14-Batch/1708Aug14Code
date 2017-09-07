@@ -11,7 +11,7 @@ public interface DAO {
 	void createUser();
 	void createReimbursement(User u, int amt, String desc);
 	ArrayList<Reimbursement> getAllReimbursements();
-	void getReimbursement(int id);
+	ArrayList<Reimbursement> getReimbursement(User u);
 	void getPendingReimbursements();
 	void getResolvedReimbursements();
 	void UpdateUser(User u);

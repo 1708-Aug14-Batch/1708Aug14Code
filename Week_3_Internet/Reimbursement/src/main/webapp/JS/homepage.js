@@ -33,7 +33,6 @@ function getUserInformation(){
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.reim;
-			
 			document.getElementById("name").innerHTML = user.firstname + " " + user.lastname;
 		}
 	}

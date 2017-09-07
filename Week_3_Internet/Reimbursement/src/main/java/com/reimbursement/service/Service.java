@@ -56,7 +56,7 @@ public class Service {
 	//When ran through a main method it properly creates the user.
 	
 	//The example used here is username: ctest123@gmail.com and password: ctest123
-	public static User loginUser(String email) {
+	public User loginUser(String email) {
 		ArrayList<User> list = test.getUsers();
 		User user = new User();
 		for(User u: list) {
@@ -73,12 +73,23 @@ public class Service {
 		}
 		return null;
 	}
+	public ArrayList<Reimbursement> getUserReimbursements(User u) {
+		ArrayList<Reimbursement> list = test.getAllReimbursements();
+		ArrayList<Reimbursement> test = new ArrayList<Reimbursement>();
+		for(Reimbursement r: list) {
+			if(r.getSub_id() == u.getUserId()) {
+				test.add(r);
+			}
+		}
+		return test;
+		
+	}
 	
 	
 	public static void main(String[] args) {
-		User temp = new User();
-		temp = loginUser("ctest123@gmail.com");
-		System.out.println(temp.toString());
+//		User temp = new User();
+//		temp = loginUser("ctest123@gmail.com");
+//		System.out.println(temp.toString());
 
 	}
 	

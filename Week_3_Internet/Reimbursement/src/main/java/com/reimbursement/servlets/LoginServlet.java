@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet{
 		System.out.println(email);
 		User u = service.loginUser(email);
 		System.out.println("Logging user " + u.toString());
-		if(u != null) {
+		if(check == true && passCheck == true) {
 			System.out.println("Logging user " + u.toString());
 			session.setAttribute("user", u); //Use this to persist the data throughout the server
 			// The parameter is the name, and the actual object.
@@ -45,13 +45,10 @@ public class LoginServlet extends HttpServlet{
 			RequestDispatcher rd = req.getRequestDispatcher("HomePage.html");
 			rd.forward(req, res);
 		}
-		else {
-			RequestDispatcher rf = req.getRequestDispatcher("FrontDesk.html");
-			rf.forward(req, res);
-//			System.out.println("Its null bro");
-//			RequestDispatcher rf = req.getRequestDispatcher("Failure.html");
-//			rf.forward(req, res);
-		}
+//		else {
+//			res.sendRedirect("Failure.html");
+//
+//		}
 		
 		
 		

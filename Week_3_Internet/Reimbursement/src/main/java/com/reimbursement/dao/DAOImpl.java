@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -112,19 +113,19 @@ public class DAOImpl implements DAO {
 	
 	public void createReimbursement(User u ,int amt, String desc) {
 		int amount = amt;
-		Date date = new Date(Calendar.getInstance().getTime().getTime());
+		
 		String description = desc;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
 			String sql = "insert into Reimbursement(submit_id, submit_date, description, amount) " + 
-					"values(?,?, ?, ?) ";
+					"values(?,CURRENT_TIMESTAMP,?, ?) ";
 			String[] keys = new String[1];
 			keys[0] = "re_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, u.getUserId());
-			ps.setDate(2, date);
-			ps.setString(3, description);
-			ps.setInt(4, amount);
+			
+			ps.setString(2, description);
+			ps.setInt(3, amount);
 			ps.executeUpdate();
 
 			
@@ -148,12 +149,14 @@ public class DAOImpl implements DAO {
 				int id = rs.getInt(1);
 				int sID = rs.getInt(2);
 				int rID = rs.getInt(3);
+				Timestamp sDate = rs.getTimestamp(4);
+				Timestamp rDate = rs.getTimestamp(5);
 				int statusID = rs.getInt(6);
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				int amount = rs.getInt(9);
 				
-				Reimbursement r = new Reimbursement(id,sID,rID,statusID,desc,notes,amount);
+				Reimbursement r = new Reimbursement(id,sID,rID,sDate,rDate,statusID,desc,notes,amount);
 				list.add(r);
 			}
 			
@@ -168,19 +171,19 @@ public class DAOImpl implements DAO {
 		
 	}
 	
-	public void getReimbursement(int id) {
+	public ArrayList<Reimbursement> getReimbursement(User u) {
 		
 		
 		
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-			
+			ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
 			
 			String sql = "select users.firstname, users.lastname, Reimbursement.RE_ID, Reimbursement.SUBMIT_DATE, Reimbursement.DESCRIPTION, Reimbursement.AMOUNT, R_status.name from users " + 
 					"Left Join Reimbursement inner join R_status on Reimbursement.STATUS_ID = R_Status.st_id on users.user_id = reimbursement.submit_id " + 
 					"Where users.user_id = ? ";
 			PreparedStatement state = conn.prepareStatement(sql);
-			state.setInt(1, id);
+			state.setInt(1, u.getUserId());
 			ResultSet rs = state.executeQuery();
 			System.out.println("Here");
 			while(rs.next()) {
@@ -191,11 +194,12 @@ public class DAOImpl implements DAO {
 				+ " Amount: " + rs.getInt(6)
 				+ " Status: " + rs.getString(7) + "\n");
 			}
-			
+			return list;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	public void getPendingReimbursements() {
 		

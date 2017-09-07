@@ -1,13 +1,19 @@
 package com.reimbursement.pojos;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
+
 public class Reimbursement {
 
-	public Reimbursement(int r_id, int sub_id, int res_id, int status_id, String description, String notes,
+	public Reimbursement(int r_id, int sub_id, int res_id, Timestamp subDate,Timestamp resDate, int status_id, String description, String notes,
 			int amount) {
 		super();
 		this.r_id = r_id;
 		this.sub_id = sub_id;
 		this.res_id = res_id;
+		this.subDate = subDate;
+		this.resDate = resDate;
 		this.status_id = status_id;
 		this.description = description;
 		this.notes = notes;
@@ -20,8 +26,21 @@ public class Reimbursement {
 	private String description;
 	private String notes;
 	private int amount;
+	private Timestamp subDate;
+	private Timestamp resDate;
 	
-	
+	public Timestamp getSubDate() {
+		return subDate;
+	}
+	public void setSubDate(Timestamp subDate) {
+		this.subDate = subDate;
+	}
+	public Timestamp getResDate() {
+		return resDate;
+	}
+	public void setResDate(Timestamp resDate) {
+		this.resDate = resDate;
+	}
 	public int getR_id() {
 		return r_id;
 	}
@@ -66,7 +85,7 @@ public class Reimbursement {
 	}
 	@Override
 	public String toString() {
-		return "Reimbursement [r_id=" + r_id + ", sub_id=" + sub_id + ", res_id=" + res_id + ", status_id=" + status_id
+		return "Reimbursement [r_id=" + r_id + ", sub_id=" + sub_id + ", SubDate=" + subDate + ",ResDate="+ resDate + ",  res_id=" + res_id + ", status_id=" + status_id
 				+ ", description=" + description + ", notes=" + notes + ", amount=" + amount + "]";
 	}
 	
