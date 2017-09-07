@@ -1,5 +1,10 @@
 package com.bank3.dao;
 
+import java.util.ArrayList;
+
+import com.bank3.pojos.Account;
+import com.bank3.pojos.User;
+
 public interface DAO {
 	// adduser
 	// add account
@@ -13,10 +18,14 @@ public interface DAO {
 	
 	public int getUserID(String username, String pw);
 	
+	public User getUser(int id);
+	
 	public double getBalance(int id, int typeid);
 	
 	public void updateBalance(int id, int typeid, double deposit);
 	
 	public void deleteAcct(int id, int typeid);
+	
+	public ArrayList<Account> getAccountsByUser(int id);
 
 }

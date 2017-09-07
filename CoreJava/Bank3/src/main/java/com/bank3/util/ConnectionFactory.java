@@ -34,8 +34,6 @@ public class ConnectionFactory {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		return conn;
 	}
 }

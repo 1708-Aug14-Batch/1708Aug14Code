@@ -19,8 +19,6 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		System.out.println(username + " " + password);
-
 		int id = service.validateUser(username, password);
 		boolean isMgr = service.isMgr(id);
 		if (id == -1) {

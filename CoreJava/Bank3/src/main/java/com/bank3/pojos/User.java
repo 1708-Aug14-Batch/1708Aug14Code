@@ -1,39 +1,19 @@
 package com.bank3.pojos;
 
 public class User {
-	private int userid;
 	private String firstname;
 	private String lastname;
 	private String username;
 	private String password;
 	
 	public User() {}
-	
+
 	public User(String firstname, String lastname, String username, String password) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.username = username;
 		this.password = password;
-	}
-
-
-
-	public User(int userid, String firstname, String lastname, String username, String password) {
-		super();
-		this.userid = userid;
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.username = username;
-		this.password = password;
-	}
-
-	public int getUserid() {
-		return userid;
-	}
-
-	public void setUserid(int userid) {
-		this.userid = userid;
 	}
 
 	public String getFirstname() {
@@ -70,8 +50,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", firstname=" + firstname + ", lastname=" + lastname + ", username="
-				+ username + ", password=" + password + "]";
+		return "User [firstname=" + firstname + ", lastname=" + lastname + ", username=" + username + ", password="
+				+ password + "]";
 	}
-	
+
 }

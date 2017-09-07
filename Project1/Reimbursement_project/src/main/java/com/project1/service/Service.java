@@ -20,7 +20,6 @@ public class Service {
 		return dao.isMgr(id);
 	}
 
-
 	public void logout() {
 //		System.out.println("Logging out, Bye");
 //		login = false;

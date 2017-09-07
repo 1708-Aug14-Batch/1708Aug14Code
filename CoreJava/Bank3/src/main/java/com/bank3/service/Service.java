@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.bank3.dao.DAO;
 import com.bank3.dao.DaoImpl;
+import com.bank3.pojos.Account;
 import com.bank3.pojos.User;
 
 public class Service {
@@ -13,8 +14,11 @@ public class Service {
 
 	public int validateUser(String username, String pw) {
 		id = dao.getUserID(username, pw);
-		System.out.println("the userid from service is: " + id);
 		return id;
+	}
+	
+	public User getUser(int id) {
+		return dao.getUser(id);
 	}
 
 	public void createSavings() {
@@ -109,6 +113,10 @@ public class Service {
 		if(success) {
 			depositFunds();
 		}
+	}
+	
+	public ArrayList<Account> getUserAccounts(int id){
+		return dao.getAccountsByUser(id);
 	}
 
 	public void logout() {

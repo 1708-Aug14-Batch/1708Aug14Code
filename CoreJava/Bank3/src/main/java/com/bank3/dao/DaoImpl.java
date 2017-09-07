@@ -1,6 +1,10 @@
 package com.bank3.dao;
 
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -139,4 +143,51 @@ public class DaoImpl implements DAO {
 		}
 	}
 
+	@Override
+	public User getUser(int id) {
+		User user = new User();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select firstname, lastname, username, password from users where userid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				user.setFirstname(rs.getString("firstname"));
+				user.setLastname(rs.getString("lastname"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	public ArrayList<Account> getAccountsByUser(int id) {
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select acc.ACCTID, acc.balance, t.name"
+					+ " from account acc inner join users on users.userid = acc.userid"
+					+ " inner join accounttype t on t.typeid = acc.typeid where users.userid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet info = ps.executeQuery();
+			
+			while(info.next()){
+				Account temp = new Account();
+				temp.setAcctid(info.getInt(1));
+				temp.setBalance(info.getDouble(2));
+				temp.setUserid(id);
+				temp.setTypeid(info.getInt(3));
+				accounts.add(temp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
 }
