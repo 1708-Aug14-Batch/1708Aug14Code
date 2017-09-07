@@ -128,3 +128,4 @@ commit;
 end;
 /
 
+select * from reimbursement where submitterid = 2;

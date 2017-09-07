@@ -135,11 +135,11 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			String sql = "select *" + 
-					"from reimbursement" +
-					"where empid = ?";
+					" from reimbursement" +
+					" where submitterid = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, empid);
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next())
 			{

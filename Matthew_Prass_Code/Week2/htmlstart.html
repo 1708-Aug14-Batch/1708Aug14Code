@@ -41,7 +41,7 @@
 <th class = "text-center"> Number of unawesome people who have visted this site</th>
 </tr>
 <tr>
-<td> +1 </td>
+<td> 10000+1 </td>
 <td> 0 </td>
 </tr>
 </table>
@@ -52,11 +52,11 @@
 
 
 
-<h3> There are 3 different kinds of design patterns used in Java</h3>
+<h3 style = "color: yellow"> There are 3 different kinds of design patterns used in Java</h3>
 <ol>
-<li class = "h4">Creational</li>
-<li class = "h4">Structural</li>
-<li class = "h4">Behavioral</li>
+<li class = "h4 list-group-item list-group-item-info">Creational</li>
+<li class = "h4 list-group-item list-group-item-info">Structural</li>
+<li class = "h4 list-group-item list-group-item-info">Behavioral</li>
 </ol>
 <br>
 <br>
@@ -68,54 +68,57 @@
 <br>
 <br>
 <h1>Creational</h1>
+<div class = "card">
 <div class="card-body">
-    Creational design patterns are concerned with the way of creating objects. These design patterns are used when a decision must be made at the time of instantiation of a class (i.e. creating an object of a class)
+<h4>Creational design patterns are concerned with the way of creating objects. These design patterns are used when a decision must be made at the time of instantiation of a class (i.e. creating an object of a class)</h4>
 </div>
-<ul class = "h4"> <u>Examples</u> <br>
+</div>
+<ol class = "h4"> <u>Examples</u> <br>
 <br>
 <br>
 <li>Singleton</li>
 <img src="singleton.jpg" class="img-fluid" alt="Responsive image">
-<h6>Singleton Pattern says that just"define a class that has only one instance and provides a global point of access to it".<br>
+<h6>Singleton Pattern "defines a class that has only one instance and provides a global point of access to it".<br>
 
 In other words, a class must ensure that only single instance should be created and single object can be used by all other classes.
 </h6>
 <li>Factory</li>
 <img src="factorymethod.jpg" class="img-fluid" alt="Responsive image">
-<h6>A Factory Pattern or Factory Method Pattern says that just define an interface or abstract class for creating an object but let the subclasses <br>
+<h6>A Factory Pattern or Factory Method Pattern defines an interface or abstract class for creating an object but let the subclasses <br>
 decide which class to instantiate. In other words, subclasses are responsible to create the instance of the class.
 
 The Factory Method Pattern is also known as Virtual Constructor.</h6>
 <li>Abstract Factory</li>
 <img src="abstractfactory.jpg" class="img-fluid" alt="Responsive image">
-<h6>Abstract Factory Pattern says that just define an interface or abstract class for creating families of related (or dependent) <br>
+<h6>Abstract Factory Pattern defines an interface or abstract class for creating families of related (or dependent) <br>
 objects but without specifying their concrete sub-classes.That means Abstract Factory lets a class returns a factory of classes. <br>
-So, this is the reason that Abstract Factory Pattern is one level higher than the Factory Pattern.<br>
 
 An Abstract Factory Pattern is also known as Kit.</h6>
 </ol>
 
 <h1>Structural</h1>
+<div class = "card">
 <div class="card-body">
-Structural design patterns are concerned with how classes and objects can be composed, to form larger structures.<br>
+<h4>Structural design patterns are concerned with how classes and objects can be composed, to form larger structures.<br>
 
 The structural design patterns simplifies the structure by identifying the relationships.<br>
 
-These patterns focus on, how the classes inherit from each other and how they are composed from other classes.
+These patterns focus on, how the classes inherit from each other and how they are composed from other classes.</h4>
+</div>
 </div>
 <ol class = "h4"> <u>Examples</u> <br>
 <br>
 <br>
 <li>Bridge</li>
 <img src="bridgeuml.jpg" class="img-fluid" alt="Responsive image">
-<h6>A Bridge Pattern says that just "decouple the functional abstraction from the implementation so that the two can vary independently".<br>
+<h6>A Bridge Pattern "decouples the functional abstraction from the implementation so that the two can vary independently".<br>
 
 The Bridge Pattern is also known as Handle or Body.
 
 .</h6>
 <li>Decorator</li>
 <img src="decoratoruml.jpg" class="img-fluid" alt="Responsive image">
-<h6>A Decorator Pattern says that just "attach a flexible additional responsibilities to an object dynamically".<br>
+<h6>A Decorator Pattern "attaches some flexible, additional responsibilities to an object dynamically".<br>
 
 In other words, The Decorator Pattern uses composition instead of inheritance to extend the functionality of an object at runtime.<br>
 
@@ -124,7 +127,7 @@ The Decorator Pattern is also known as Wrapper.
 .</h6>
 <li>Facade</li>
 <img src="facadeuml.jpg" class="img-fluid" alt="Responsive image">
-<h6>A Facade Pattern says that just "just provide a unified and simplified interface to a set of interfaces in a subsystem, <br>
+<h6>A Facade Pattern "provides a unified and simplified interface to a set of interfaces in a subsystem, <br>
 therefore it hides the complexities of the subsystem from the client".<br>
 
 In other words, Facade Pattern describes a higher-level interface that makes the sub-system easier to use.
@@ -134,26 +137,28 @@ Practically, every Abstract Factory is a type of Facade.</h6>
 
 
 <h1>Behavioral</h1>
+<div class = "card">
 <div class="card-body">
-   Behavioral design patterns are concerned with the interaction and responsibility of objects.<br>
+ <h4>Behavioral design patterns are concerned with the interaction and responsibility of objects.<br>
 
 In these design patterns,the interaction between the objects should be in such a way that they can easily talk to each other and still should be loosely coupled.<br>
 
-That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.
+That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.</h4>
+</div>
 </div>
 <ol class = "h4"> <u>Examples</u> <br>
 <br>
 <br>
 <li>Command</li>
 <img src="commanduml.jpg" class="img-fluid" alt="Responsive image">
-<h6> Command Pattern says that "encapsulate a request under an object as a command and pass it to invoker object.<br> 
-Invoker object looks for the appropriate object which can handle this command and pass the command to the <br>
+<h6> Command Pattern encapsulates a request under an object as a command and pass it to the invoker object.<br> 
+Invoker object looks for the appropriate object which can handle this command and passes the command to the <br>
 corresponding object and that object executes the command".<br>
 
 It is also known as Action or Transaction.</h6>
 <li>Interpreter</li>
 <img src="interpreteruml.jpg" class="img-fluid" alt="Responsive image">
-<h6>An Interpreter Pattern says that "to define a representation of grammar of a given language, along with an <br>
+<h6>An Interpreter defines a representation of grammar of a given language, along with an <br>
 interpreter that uses this representation to interpret sentences in the language".<br>
 
 Basically the Interpreter pattern has limited area where it can be applied. We can discuss the Interpreter pattern only in terms of formal grammars but <br>
