@@ -17,48 +17,58 @@ function getInfo() {
 function showNameAndAccounts(json) {
 	  var i;
 	  var response = json.responseText;
-	  var table="<tr><th>ID</th><th>Status</th><th>Amount</th><th>Description</th><th>Manager Notes</th><th>Submitted</th></tr>";
 	  var user_info = JSON.parse(response);
-	  document.getElementById("username").innerHTML = "Welcome " + user_info.user.firstname + " " + user_info.user.lastname;
+	  document.getElementById("username").innerHTML = "Welcome " + user_info.user.firstname + " " + user_info.user.lastname + ".";
 	  
-	  
+	  var table="<thead><th>ID</th><th>Amount</th><th>Description</th><th>Submitted</th></thead>";
+	  var table2="<thead><th>ID</th><th>Amount</th><th>Description</th><th>Reason</th></thead>";
+	  var table3="<thead><th>ID</th><th>Amount</th><th>Description</th><th>Reason</th></thead>";
 	  for (i = 0; i <user_info.reimbursements.length; i++) { 
-	    table += "<tr><td>" + user_info.reimbursements[i].reimbursementId +"</td><td>";
+		var add = "";
+	    add +="<tr><td>";
+		  
+	    add += user_info.reimbursements[i].reimbursementId +"</td><td>$";
 	    
-	    if(user_info.reimbursements[i].statusId == 0){
-	    	table+= "Pending </td><td>";
-	    }
-	    else if(user_info.reimbursements[i].statusId == 1){
-	    	table+= "Approved </td><td>";
-	    }
-	    else{
-	    	table+= "Denied </td><td>";
-	    }
-	    table+=user_info.reimbursements[i].amount +"</td><td>";
+	    add += user_info.reimbursements[i].amount +"</td><td>";
 	    
 	    if(user_info.reimbursements[i].description != null){
-	    	table+=user_info.reimbursements[i].description +"</td><td>";
+	    	add += user_info.reimbursements[i].description +"</td><td>";
 	    }
 	    else{
-	    	table+="</td><td>";
+	    	add += "</td><td>";
 	    }
 	    
-	    if(user_info.reimbursements[i].managerNotes != null){
-	    	table+=user_info.reimbursements[i].managerNotes +"</td><td>";
+	    if(user_info.reimbursements[i].statusId == 0){
+	    	var date = new Date(parseInt(user_info.reimbursements[i].submitDate));
+		    add += date.toLocaleDateString() + "</td></tr>";
+		    table += add;
 	    }
 	    else{
-	    	table+="</td><td>";
+		    if(user_info.reimbursements[i].managerNotes != null){
+		    	add += user_info.reimbursements[i].managerNotes +"</td></tr>";
+		    }
+		    else{
+		    	add += "</td></tr>";
+		    }
+		    
+		    if(user_info.reimbursements[i].statusId == 1){
+		    	table2 += add;
+		    }
+		    else{
+		    	table3 += add;
+		    }
 	    }
-	    
-	    var date = new Date(parseInt(user_info.reimbursements[i].submitDate));
-	    table+= date.toLocaleDateString() + "</td></tr>";
-	    
 	  }
 	  if(user_info.reimbursements.length==0){
-		  document.getElementById("user-table").style.visibility = "hidden";
+		  document.getElementById("pending-table").style.visibility = "hidden";
+		  document.getElementById("approved-table").style.visibility = "hidden";
+		  document.getElementById("denied-table").style.visibility = "hidden";
 	  }
 	  else{
-		  document.getElementById("user-table").innerHTML = table;
+		  document.getElementById("pending-table").innerHTML = table;
+		  document.getElementById("approved-table").innerHTML = table2;
+		  document.getElementById("denied-table").innerHTML = table3;
+		  
 	  }
 }
 

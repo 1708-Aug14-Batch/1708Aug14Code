@@ -294,15 +294,16 @@ public class ReimburseDAO implements DAO {
 		// update user via DB procedure
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
-			String sql = "{ call updateUser(?,?,?,?) }";
+			String sql = "{ call updateUser(?,?,?,?,?) }";
 
 
 			CallableStatement cs = conn.prepareCall(sql);
 			//set second ? to findPerson for variable name
 			cs.setString(1, user.getFirstname());
 			cs.setString(2, user.getLastname());
-			cs.setString(3, user.getPwd());
-			cs.setInt(4, user.getUserId());
+			cs.setString(3, user.getEmail());
+			cs.setString(4, user.getPwd());
+			cs.setInt(5, user.getUserId());
 			//execute
 			cs.execute();
 
@@ -396,7 +397,7 @@ public class ReimburseDAO implements DAO {
 
 			conn.setAutoCommit(false);
 			String sql = "select * from reimbursements "
-					+ "where submitid = ? ";
+					+ "where submitid = ? order by submit_date desc";
 
 			//setup prepared with sql and allocate space for key
 			PreparedStatement ps = conn.prepareStatement(sql);
