@@ -36,15 +36,7 @@ public class Test {
 		case(2): {
 
 		}
-		case(5) :{ // create account
-			System.out.println("What kind of account would you like to create today?");
-			System.out.println("1. Checking\n2.Savings\n3.Credit");
-			Integer type = Integer.parseInt(scan.next());
-			Account acc = service.addAccount(u, type);
-			System.out.println("Congratulations on your new account. Here is its information: \n"
-					+ acc.toString() );
-
-		}
+		
 		}
 
 	}

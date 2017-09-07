@@ -15,7 +15,7 @@ public class Service {
 	public int validateUser(String email){
 		int id = -1;
 		HashMap<Integer, String> users = dao.getEmails();
-
+System.out.println("in validate user");
 		for(Integer n:users.keySet()){
 			if(users.get(n).equalsIgnoreCase(email)){
 				id = n;
@@ -39,8 +39,22 @@ public class Service {
 		return u;
 	}
 	
-	public Account addAccount(User u, int typeId){
-		return dao.createAccount(u, typeId);
+	public Account addAccount(User u, String type){
+		int id;
+		if(type.equalsIgnoreCase("checking")){
+			id = 1;
+		}
+		else if(type.equalsIgnoreCase("savings")){
+			id = 2;
+		}
+		else if(type.equalsIgnoreCase("credit")){
+			id = 3;
+		}
+		else{
+			return null;
+		}
+		
+		return dao.createAccount(u, id);
 	}
 
 	public ArrayList<Account> getUserAccounts(User u){
