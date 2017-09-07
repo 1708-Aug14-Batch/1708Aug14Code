@@ -1,0 +1,7 @@
+var myJSON = '{"name": "Jathmel", "age": 10, "city": "Baltimore"}';
+
+var myObj = JSON.parse(myJSON);
+console.log(myJSON);
+console.log(myObj);
+
+document.getElementById("demo").innerHTML = myObj.name;

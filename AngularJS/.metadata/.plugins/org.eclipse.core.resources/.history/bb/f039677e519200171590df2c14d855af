@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJS Basics</title>
+</head>
+<body ng-app="myApp">
+
+		<h1>AngularJS - JavaScript MVC FrameWork</h1>
+		<div id="hello-world"></div>
+		
+		
+		
+		<br>
+		<input type="text" data-ng-model="whatever"/>
+		<p>{{whatever}}</p>
+		<br>
+		<h3 ng-bind ="whatrver"></h3>
+		<br>
+		<p>Here is an expression:{{10 +10}}</p>
+		
+		<br>
+		<h2>Some more cool binding Stuff:</h2>
+		<br>
+		<input style="backgroung:{{myCol}}"ng-model="myCol">
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+<script type="js/app.js"></script>
+</body>
+</html>

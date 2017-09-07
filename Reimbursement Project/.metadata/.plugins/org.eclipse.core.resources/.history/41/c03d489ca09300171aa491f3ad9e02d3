@@ -1,0 +1,4 @@
+driver= oracle.jdbc.driver.OracleDriver
+url=jdbc\:oracle\:thin\:@//my-database1.cr7euu4dryoc.us-east-2.rds.amazonaws.com\:1521/ORCL
+usr=jathmel@gmail.com
+pwd=Mutton00

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JS homework</title>
+
+</head>
+<body>	
+<div id = "outer" style="background-color:red">
+<br>outer<br>
+	<div id = "middle" style="background-color:red">
+<br>outer<br>
+		<div id = "inner" style="background-color:red">
+<br>outer<br>
+</div>
+</div>
+</div>																																																																																																																																			
+<br>
+<h1>Problem 1: Fibonacci</h1>
+	<input type="number" id="fib" placeholder="Enter n"/>
+	<button id="doFib">Fibonacc'ed!</button>
+	<br>	= <p id="fibDisplay"> </p>
+
+<h2>Problem 2: BubbleSort</h2>
+<h3>Problem 3: reverse String</h3>
+	<input type = "text" id = "rev" placeholder = "Enter a word"/>
+	<button id = "doReverse">Reverse Word</button><br>
+	<p id= "reverseString"> </p>
+	
+<h4>Problem 4:</h4>
+	<input type="number" id="fac" placeholder="Enter n"/>
+	<button id="doFact">Factorial</button>
+	<br>	= <p id="Fact"> </p>
+	
+
+
+
+<script type="text/javascript" src="JS/hw.js"></script>
+</body>
+</html> 

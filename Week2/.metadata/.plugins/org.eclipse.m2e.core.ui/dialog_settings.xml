@@ -2,11 +2,14 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.revature"/>
 			<item value="revature"/>
 		</list>
 		<list key="name">
+			<item value="ServletExample"/>
 		</list>
 		<list key="artifactId">
+			<item value="ServletExample"/>
 			<item value="simple"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -52,6 +55,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\jathm\my_git_repos\1708Aug14Code\Week2\Servers\Tomcat v8.0 Server at localhost-config\server.xml"/>
 			<item value="C:\Users\jathm\my_git_repos\1708Aug14Code\Week2\HelloJDBCIntro\src\com\ex\dao\DAOImpl.java"/>
 		</list>
 		<list key="projectNameTemplate">

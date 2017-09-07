@@ -1,0 +1,40 @@
+/*
+*todo app
+*/
+var app =angular.module("todoApp", []);
+
+app.controller("todoCtrl", function($scope) {
+	$scope.username = "New User";
+	
+	$scope.items = [
+	      {
+		action: "Complete P1",
+		done: false},
+		{action: "watch GOT",
+			done:false},
+		{action: "Make Dinner",
+			done:false}
+		];
+	$scope.addNewItem = function(action){
+		$scope.items.push({
+			action: action,
+		done:false})
+	};
+	$scope.imcomplete
+});
+
+app.fliter("checkedItems", function(){
+	return function(items, showComplete){
+		var resultArr = [];
+		angular.forEach(items, function(item) {
+			if(item.done == false || showComplete == true){
+				resultArr.push(item);
+			}
+			
+		});
+		
+		return resultArr;
+		
+	} 
+	
+});

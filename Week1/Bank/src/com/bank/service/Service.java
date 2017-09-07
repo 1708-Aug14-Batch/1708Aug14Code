@@ -6,7 +6,7 @@ import java.util.Scanner;
 import com.bank.dao.DAO;
 import com.bank.dao.DAOTextImpl;
 import com.bank.pojos.User;
-//import com.ex.pojos.Stude
+
 
 
 public class Service {
@@ -24,7 +24,9 @@ public class Service {
 				return i ;
 			}
 			else
-				System.out.println("You don't have an Account, ");			
+				System.out.println("You don't have an Account, ");
+				
+			
 				
 		}
 		return null;

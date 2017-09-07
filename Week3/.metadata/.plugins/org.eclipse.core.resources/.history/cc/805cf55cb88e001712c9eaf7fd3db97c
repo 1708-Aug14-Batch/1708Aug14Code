@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JS homework</title>
+
+</head>
+<body>	
+<div id = "outer" style="background-color:red">
+<br>outer<br>
+	<div id = "middle" style="background-color:red">
+<br>outer<br>
+		<div id = "inner" style="background-color:red">
+<br>outer<br>
+</div>
+</div>
+</div>																																																																																																																																			
+<br>
+<h1>Problem1: Fibonacci</h1>
+<input type="number" id="fib" placeholder="Enter n"/>
+<button id="doFib">Fibonacc'ed!</button>
+<b>	= <p id="fibDisplay"> </p>
+
+
+
+
+<script type="text/javascript" src="JS/hw.js"></script>
+</body>
+</html> 

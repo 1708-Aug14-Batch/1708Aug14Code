@@ -11,11 +11,13 @@ public class RunBank {
 	static DAOTextImpl g;
 	static Scanner scan = new Scanner(System.in);
 	static Service bankService = new Service();
+	static int option;
 
 	public static void main(String[] args) {
 		
 		Service bankService = new Service();
 		System.out.println("Welcom to THE BANK:");
+		int option;
 		boolean here = true;
 		Menu();
 		
@@ -28,8 +30,8 @@ public class RunBank {
 		 System.out.println("1:Login");
 		 System.out.println("2:Create Account");
 		 System.out.print("Enter you choice here:");
-		 int n = scan.nextInt();
-		 switch(n){
+		 option = scan.nextInt();
+		 switch(option){
 			 case 1:
 				 String email, password;
 				 System.out.println("Enter your Email:");
@@ -66,11 +68,24 @@ public class RunBank {
 		 System.out.println("3:View Account Blance");
 		 System.out.println("4:Edit Account");
 		 System.out.println("5:Logout");
-		 //switch (option{
-			// case 1:
-				 
+		 option = scan.nextInt();
+		 switch (option){
+			case 1:
+				double amount;
+				amount = scan.nextDouble();
+				bankService.withdraw(null, amount);
+				break;
+			case 2:
+			double amt;
+			amt = scan.nextDouble();
+			bankService.deposit(null, amt);
+			case 3:
+			case 4:
+			case 5:
 		 }
 	 }
+}
+	 
 		//static void login(){}	
 		
 		/*

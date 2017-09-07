@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type="number" id="x" placeholder="Enter x" />
+	<input type="number" id="y" placeholder="Enter y" />
+	<br>
+	<br>
+
+	<select id="operation">
+		<option id="Add">Add</option>
+		<option value="Subtract">Subtract</option>
+		<option value="Multiply">Multiply</option>
+		<option value="Divide">Divide</option>
+	</select>
+	<button id="calculate">Execute!</button>
+
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		 crossorigin="anonymous"></script>
+	<script>
+		$('#calculate').on('click', function() {
+			var x = $('#x').val();
+			var y = $('#y').val();
+			var op = $('#operation option:selected').attr('id');
+			if (op == 'Add') {
+				//	(x+y);
+				alert(x + y);
+			}
+			if (op == 'Subtract') {
+				//	(x-y);
+				alert(x - y);
+			}
+		});
+	</script>
+
+
+
+
+</body>
+</html>

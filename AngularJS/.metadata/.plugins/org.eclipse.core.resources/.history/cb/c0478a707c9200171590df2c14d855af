@@ -1,0 +1,8 @@
+/*
+ * My Calculator
+ */
+var app =angular.module('myCalc', []);
+
+app.controller("myCtrl", function(){
+	
+})

@@ -1,0 +1,5 @@
+package com.test;
+@WebServlet("/testing")
+public class LogginMessageServlet {
+
+}

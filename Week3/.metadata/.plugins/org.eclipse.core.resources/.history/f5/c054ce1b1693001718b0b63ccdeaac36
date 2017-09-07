@@ -1,0 +1,11 @@
+package com.bank.servlet;
+
+import javax.servlet.http.HttpServlet;
+
+
+@WebServlet("/dashboard")
+public class GetDashboardServlet extends HttpServlet{
+	
+	protected void doGet(Http)
+	
+}

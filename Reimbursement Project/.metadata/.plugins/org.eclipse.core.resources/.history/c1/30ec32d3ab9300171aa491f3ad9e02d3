@@ -1,0 +1,40 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+  background-image:url("https://www.google.com/imgres?imgurl=http%3A%2F%2Fwww.ninjaaccounting.com%2Fwp-content%2Fuploads%2F2013%2F04%2Freimbursement-resized-6001-resized-600.png&imgrefurl=http%3A%2F%2Fwww.ninjaaccounting.com%2Fquestions%2Fhow-to-account-for-customer-reimbursed-advertising%2F&docid=DJx6wCybljXN8M&tbnid=vc-BNSLhF6cIvM%3A&vet=10ahUKEwjq__e52ZLWAhVK4YMKHZfhCwMQMwiMASgAMAA..i&w=333&h=299&bih=806&biw=1440&q=reimbursement&ved=0ahUKEwjq__e52ZLWAhVK4YMKHZfhCwMQMwiMASgAMAA&iact=mrc&uact=8")
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
