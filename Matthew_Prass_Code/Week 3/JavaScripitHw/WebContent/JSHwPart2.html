@@ -156,6 +156,33 @@
  			console.log("\n");
   		}
 	}
+  	
+  	//Question 5: Custome attribute
+  	function getCustomAttribute(){
+  		var aTags = document.querySelectorAll('[data-customAttr]');
+  		for(var i = 0; i < aTags.length; i++)
+  		{
+ 			console.log(aTags[i].value + " " +aTags[i]);
+ 			console.log("\n");
+  		}
+  	}
+	
+	//Question 6: Sum Event
+	function add(){
+		var x = document.getElementById("num1").value;
+  		var y = document.getElementById("num2").value;
+  		var z = document.getElementById("sum");
+  		//z.value = x.value+y.value;
+  		z.innerHTML = +x + +y;
+	}
+  	document.addEventListener("change",add);
+  	
+  	//Question 7: Skills Event
+  	function skillalert(){
+  		var aTags = document.getElementsByName("skills");
+  		alert("Are you sure " + aTags[0].value+ " is one of your skills?")
+  	}
+  	document.addEventListener("change",skillalert)
   </script>
   
 </body>
