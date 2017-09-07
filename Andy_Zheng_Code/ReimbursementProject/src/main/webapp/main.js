@@ -58,6 +58,25 @@ function loginRequest(){
 	xhr.send();
 }
 
+
+function getUserInfo(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			console.log(dto);
+			var use = dto.user;
+			//document.getElementById('name').innerHTML = dto.user.fname + " " + dto.user.lname;
+			document.getElementById('fn').innerHTML = use.fname;
+			document.getElementById('ln').innerHTML = use.lname;
+			document.getElementById('email').innerHTML = use.email;
+			}
+		}
+		xhr.open("GET", "userInfo", true);
+		xhr.send();
+}
+
 //document.getElementById("login").addEventListener("click",loginRequest);
 
 //$('#login').click(loginRequest);
@@ -96,6 +115,7 @@ function loadUser(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
+			getUserInfo();
 		}
 	}
 	xhr.open("GET", "loadUser", true);

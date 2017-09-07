@@ -42,14 +42,18 @@ public class Service {
 		currentUser = null;
 	}
 	
+	public User getUserByID(int userID) {
+		return dao.getUser(userID);
+	}
+
+/*
 	public User getCurrentUser() {
 		return currentUser;
 	}
-
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
-	
+	*/
 	public boolean getIsLoggedIn(){
 		return isLoggedIn;
 	}
@@ -67,7 +71,7 @@ public class Service {
 	
 	// Create Reimbursement
 	public boolean createReimbursement(User u, String description, int amount) {
-		int x = dao.addReimbursement(PseudoSession.getCurrentUser(), description, amount);
+		int x = dao.addReimbursement(u, description, amount);
 		if(x > 1) {
 			return true;
 		}else {
@@ -87,43 +91,43 @@ public class Service {
 	}
 	
 	// Get User's Reimbursements
-	public boolean getUserReimbursement(int userID) {
+	public HashSet<Reimbursement> getUserReimbursement(int userID) {
 		HashSet<Reimbursement> userReims = dao.getReimbursement(userID);
 		
-		return false;
+		return userReims;
 	}
 	
 	// Get Reimbursements of certain status
-	public boolean getReimbursementsOfStatus(int statusID) {
+	public HashSet<Reimbursement> getReimbursementsOfStatus(int statusID) {
 		HashSet<Reimbursement> reimOfStatus = dao.getReimbursements(statusID);
 		
-		return false;
+		return reimOfStatus;
 	}
 	
 	// Get User's Reimbursements by status
-	public boolean getUserReimbursementOfStatus(int userID, int statusID ) {
+	public HashSet<Reimbursement> getUserReimbursementOfStatus(int userID, int statusID ) {
 		HashSet<Reimbursement> userReimOfStatus = dao.getUserReimbursements(userID, statusID);
 		
-		return false;
+		return userReimOfStatus;
 	}
 	
 	// Update user information
-	public boolean updateUserInfo(int position, String change) {
+	public boolean updateUserInfo(User u, int position, String change) {
 
 		position = position-1;
 		
 		switch(position) {
 		case 1:
-			PseudoSession.getCurrentUser().setFName(change);
+			u.setFName(change);
 			break;
 		case 2:
-			PseudoSession.getCurrentUser().setLName(change);
+			u.setLName(change);
 			break;
 		case 3:
-			PseudoSession.getCurrentUser().setEmail(change);
+			u.setEmail(change);
 			break;
 		case 4:
-			PseudoSession.getCurrentUser().setPassword(change);
+			u.setPassword(change);
 			break;
 			/* promotion?
 		case 5:
@@ -133,7 +137,7 @@ public class Service {
 			return false;
 		}
 		
-		int x = dao.updateUser(PseudoSession.getCurrentUser());
+		int x = dao.updateUser(u);
 		if(x == 1) {
 			return true;
 		}else {
@@ -141,103 +145,13 @@ public class Service {
 		}
 	}
 	
-	public boolean updateReimbursements(int reimID, int statusID, String notes) {
+	public boolean updateReimbursements(int reimID, User u, int statusID, String notes) {
 		
-		int x = dao.updateReimbursement(reimID, PseudoSession.getCurrentUser(), dao.getReimStatusFromID(statusID), notes);
+		int x = dao.updateReimbursement(reimID, u, dao.getReimStatusFromID(statusID), notes);
 		if(x == 1) {
 			return true;
 		}else {
 			return false;
 		}
 	}
-	
-	/*
-	
-	// Get Accounts
-	public void getAccounts() {
-		HashSet<Reimbursement> accountList = 	dao.getAccounts(PseudoSession.getCurrentUser());
-		if(accountList.isEmpty()) {
-			System.out.println("No Accounts");
-		}else {
-			System.out.println("\n------------------------------------------------------------------------"); 
-			for(Reimbursement x: accountList) {
-				System.out.println(x.toString());
-			}	
-			System.out.println("------------------------------------------------------------------------");
-		}
-	}
-	
-	// Change User info
-	public boolean changeInformation(int position, String change) {
-		
-		position = position-1;
-		
-		switch(position) {
-		case 1:
-			PseudoSession.getCurrentUser().setFName(change);
-			break;
-		case 2:
-			PseudoSession.getCurrentUser().setLName(change);
-			break;
-		case 3:
-			PseudoSession.getCurrentUser().setEmail(change);
-			break;
-		case 4:
-			PseudoSession.getCurrentUser().setPassword(change);
-			break;
-		default:
-			return false;
-		}
-		
-		int x = dao.updateUser(PseudoSession.getCurrentUser());
-		if(x == 1) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	// Change Balance
-	public boolean changeBalance(int accountID, double amt, boolean w) {
-		if(w) {
-			amt = amt * -1;
-		}
-		amt = amt + dao.getAccount(PseudoSession.getCurrentUser(), accountID).getBalance();
-		if(amt < 0) {
-			return false;
-		}
-		int x = dao.updateAccount(PseudoSession.getCurrentUser(), accountID, amt);
-		if(x == 1) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	// Transfer Funds
-	public boolean transferFunds(int accountID1, int accountID2, double amt) {
-		
-		int x;
-		int y;
-		
-		// Check if enough to withdraw
-		if(dao.getAccount(PseudoSession.getCurrentUser(), accountID2).getBalance()-amt < 0) {
-			return false;
-		}else {
-			x =dao.updateAccount(PseudoSession.getCurrentUser(), accountID1, 
-					dao.getAccount(PseudoSession.getCurrentUser(), accountID1).getBalance() + amt);
-			y = dao.updateAccount(PseudoSession.getCurrentUser(), accountID2, 
-					dao.getAccount(PseudoSession.getCurrentUser(), accountID2).getBalance() - amt);
-			
-		}
-		
-		if(x == 1 && y == 1) {
-			return true;
-		}else {
-			return false;
-		}
-		
-	}
-	
-	*/
 }

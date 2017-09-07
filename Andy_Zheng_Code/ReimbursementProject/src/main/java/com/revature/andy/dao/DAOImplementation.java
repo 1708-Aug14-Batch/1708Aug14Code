@@ -84,6 +84,8 @@ public class DAOImplementation implements DAOInterface {
 			ps.setString(4, u.getPassword());
 			ps.setInt(5, u.getIsManager());
 
+			ps.executeUpdate();
+			
 			int id = 0;
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -261,17 +263,17 @@ public class DAOImplementation implements DAOInterface {
 			return null;
 		}
 	}
-
+	
 	// select all reimbursement based of a user
 	public HashSet<Reimbursement> getReimbursement(int userID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM REIMBURSEMENT WHERE SUBMITTERID = ?";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE SUBMITTERID = (?)";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, userID);
 
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 
 			HashSet<Reimbursement> reimList = new HashSet<>();
 
@@ -299,12 +301,12 @@ public class DAOImplementation implements DAOInterface {
 	public HashSet<Reimbursement> getReimbursements(int statusID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM REIMBURSEMENT WHERE STATUSID = ?";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE STATUSID = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, statusID);
 
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 
 			HashSet<Reimbursement> reimList = new HashSet<>();
 
@@ -332,13 +334,13 @@ public class DAOImplementation implements DAOInterface {
 	public HashSet<Reimbursement> getUserReimbursements(int userID, int statusID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM REIMBURSEMENT WHERE USERID = ? AND STATUSID = ?";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE USERID = ? AND STATUSID = ?";
 
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, userID);
 			ps.setInt(2, statusID);
 
-			ResultSet rs = ps.executeQuery(sql);
+			ResultSet rs = ps.executeQuery();
 
 			HashSet<Reimbursement> reimList = new HashSet<>();
 

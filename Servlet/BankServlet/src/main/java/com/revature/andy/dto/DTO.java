@@ -1,7 +1,6 @@
 package com.revature.andy.dto;
 
 import java.util.HashSet;
-
 import com.revature.andy.pojos.Account;
 import com.revature.andy.pojos.User;
 
