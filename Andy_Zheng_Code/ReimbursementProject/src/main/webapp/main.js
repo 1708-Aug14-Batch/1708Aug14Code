@@ -53,6 +53,23 @@ function loginRequest(){
  	var to =[email,password];
 
  	to = JSON.stringify(to);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			if(xhr.responseText == "0" || xhr.responseText == "1"){
+				loadMenu(xhr.responseText);
+			}else if(xhr.responseText == "Incorrect Password"){
+				document.getElementById('fail').innerHTML = xhr.responseText;
+			}else if(xhr.responseText == "Incorrect Credentials"){
+				document.getElementById('fail').innerHTML = xhr.responseText;
+			}
+		}	
+	}
+	xhr.open("POST", "loginRequest", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	xhr.send(to);
+
 /*
  	$.ajax({
  		type: "POST",
@@ -84,23 +101,6 @@ function loginRequest(){
 
 */
 
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
-			if(xhr.responseText == 1){
-				document.getElementById('content').innerHTML = xhr.responseText;
-				loadMenu();
-			}else if(xhr.responseText == 2){
-				document.getElementById('fail').innerHTML = xhr.responseText;
-			}else{
-				document.getElementById('fail').innerHTML = xhr.responseText;
-			}
-		}	
-	}
-	xhr.open("POST", "loginRequest", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	xhr.send(to);
 /*
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -137,17 +137,22 @@ function getUserInfo(){
 
 //$('#login').click(loginRequest);
 
-function loadMenu(){
+function loadMenu(value){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content').innerHTML = xhr.responseText;
 			loadHome();
-			$('#one').click(loadHome);
+			console.log(value);
+			if(value == "0"){
+				$('#five').click(loadSubmitReim);
+			}else if(value == "1"){
+				$('#five').click(loadRegisterEmployee);
+			}
+			//$('#one').click(loadHome);
 			$('#two').click(loadUser);
 			$('#three').click(loadUpdateUser);
 			$('#four').click(loadReim);
-			$('#five').click(loadSubmitReim);
 			$('#six').click(loadLogin);
 		}
 	}
@@ -198,6 +203,17 @@ function loadReim(){
 		}
 	}
 	xhr.open("GET", "loadReim", true);
+	xhr.send();
+}
+
+function loadRegisterEmployee(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET", "loadRegisterEmployee", true);
 	xhr.send();
 }
 
