@@ -6,7 +6,6 @@ import org.apache.log4j.*;
 
 import com.revature.andy.dao.DAOImplementation;
 import com.revature.andy.service.Service;
-import com.revature.andy.session.PseudoSession;
 
 public class RunReim {
 

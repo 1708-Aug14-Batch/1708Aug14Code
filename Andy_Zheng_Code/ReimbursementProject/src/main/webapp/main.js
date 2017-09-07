@@ -34,53 +34,106 @@ function loginRequest(){
 }
 */
 
-function loginRequest(){
-	console.log("hello");
+function loadLogin(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content').innerHTML = xhr.responseText;
+			$('#login').click(loginRequest);
 		}
 	}
-	xhr.open("GET", "loadMenuPage", true);
+	xhr.open("GET", "loadLogin", true);
 	xhr.send();
-
 }
+
+function loginRequest(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content').innerHTML = xhr.responseText;
+			loadMenu();
+		}
+	}
+	xhr.open("GET", "loadMenu", true);
+	xhr.send();
+}
+
+//document.getElementById("login").addEventListener("click",loginRequest);
 
 //$('#login').click(loginRequest);
 
-function loadLoginPage(){
+function loadMenu(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content').innerHTML = xhr.responseText;
+			loadHome();
+			$('#one').click(loadHome);
+			$('#two').click(loadUser);
+			$('#three').click(loadUpdateUser);
+			$('#four').click(loadReim);
+			$('#five').click(loadSubmitReim);
+			$('#six').click(loadLogin);
 		}
 	}
-		xhr.open("GET", "loadLoginPage", true);
-		xhr.send();
+	xhr.open("GET", "loadMenu", true);
+	xhr.send();
 }
 
-function loadMenuPage(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('content').innerHTML = xhr.responseText;
-		}
-	}
-		xhr.open("GET", "loadMenuPage", true);
-		xhr.send();
-
-}
-
-function loadUserPage(){
+function loadHome(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
 		}
 	}
-		xhr.open("GET", "loadUserPage", true);
-		xhr.send();
+	xhr.open("GET", "loadHome", true);
+	xhr.send();
+}
+
+function loadUser(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET", "loadUser", true);
+	xhr.send();
+}
+
+function loadUpdateUser(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET", "loadUpdateUser", true);
+	xhr.send();
+
+}
+
+function loadReim(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET", "loadReim", true);
+	xhr.send();
+}
+
+function loadSubmitReim(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET", "loadSubmitReim", true);
+	xhr.send();
 }
 
 // Gets user info and accounts
@@ -116,17 +169,6 @@ function getUserInfo(){
 		xhr.send();
 }*/
 
-function loadReimPage(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('content1').innerHTML = xhr.responseText;
-		}
-	}
-	xhr.open("GET", "loadAccountPage", true);
-	xhr.send();
-}
-
 /*
 function getUserSettings(){
 	var xhr = new XMLHttpRequest();
@@ -152,9 +194,9 @@ function getUserSettings(){
 
 //document.getElementById("accounts").addEventListener("click",loadMain);
 
-window.onload = function(){
-	loadLoginPage();
-};
+$(document).ready(function(){
+	loadLogin();
+});
 
 /*
 console.log(document.getElementById("login"));
