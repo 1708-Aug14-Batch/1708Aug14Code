@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="example.com" key="selection"/>
+		<item value="view" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="example.com"/>
-			<item value="href"/>
-			<item value="console.log"/>
-			<item value="account"/>
-			<item value="dto"/>
-			<item value="getElement"/>
-			<item value="name"/>
 			<item value="view"/>
+			<item value="backTo"/>
+			<item value="loadDashb"/>
+			<item value="loadDashBoard"/>
+			<item value="ashboard"/>
+			<item value="loadHomeView"/>
+			<item value="xhr.open"/>
+			<item value="getLoginView"/>
 		</list>
 		<list key="replacehistory">
+			<item value="loggedIn"/>
+			<item value="req"/>
+			<item value="resp"/>
 			<item value="objects.add("/>
 			<item value="ashboard"/>
 			<item value="Worker"/>
 			<item value="System.out.println"/>
 			<item value="LocalDateTime"/>
-			<item value="username"/>
-			<item value="workerId"/>
-			<item value="reimburse"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

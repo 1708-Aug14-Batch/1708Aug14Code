@@ -1,0 +1,40 @@
+/**
+ * 
+ */
+
+// Do the following thing when the document is ready
+$(document).ready(function() {
+	document.getElementById("login_button")
+			.addEventListener("click", login);
+	document.getElementById("password_input")
+			.addEventListener("handleKeyPress", login);
+});
+
+// Validates login and returns a useful error message if there is a mistake
+function login() {
+	var username = document.getElementById("username_input").value;
+	var password = document.getElementById("password_input").value;
+	
+	var dto = [username, password];
+	
+	dto = JSON.stringify(dto);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById("message").innerHTML = xhr.responseText;
+			
+		}
+	}
+	
+	xhr.open("POST", "../loginMessageTest", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(dto);
+}
+
+// Called when the user presses a key in the password field
+function handleKeyPress(event) {
+	var PRESS_ENTER = 13;
+	if (event.keyCode == PRESS_ENTER)
+		login();
+}

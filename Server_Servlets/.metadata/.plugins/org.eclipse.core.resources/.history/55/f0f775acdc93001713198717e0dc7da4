@@ -1,0 +1,11 @@
+/**
+ * 
+ */
+
+// Do the following thing when the document is ready
+$(document).ready(function() {
+	document.getElementById("login_button")
+			.addEventListener("click", function() {
+		
+	});
+});

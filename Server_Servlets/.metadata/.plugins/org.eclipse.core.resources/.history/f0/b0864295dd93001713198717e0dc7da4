@@ -1,0 +1,8 @@
+package com.bank.testing;
+
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/loginMessageTest")
+public class LoginMessageServlet {
+
+}
