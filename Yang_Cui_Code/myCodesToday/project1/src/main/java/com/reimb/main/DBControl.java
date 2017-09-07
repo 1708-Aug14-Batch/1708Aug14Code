@@ -1,5 +1,6 @@
 package com.reimb.main;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 
@@ -23,6 +24,14 @@ public class DBControl {
 				return null;
 		}else
 			return null;
+	}
+	
+	public ArrayList<Remibursment> getRemibs(Users user){
+		if(user.getIsMananger()){
+			return dao.getAllRemib();
+		}else{
+			return dao.getUserRemib(user.getID());
+		}
 	}
 	
 	public boolean SumbitRemib(String userID, String description, String amount){

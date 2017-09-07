@@ -15,6 +15,7 @@ import com.reimb.util.ConnectionFactory;
 
 public class DAOImpl implements DAO{
 
+	@Override
 	public Users getUser(int userID) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql="select * from Users where userID=?";
@@ -44,6 +45,7 @@ public class DAOImpl implements DAO{
 		return null;
 	}
 	
+	@Override
 	public int getUserID(String userName){
 		int userID=-1;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -60,6 +62,7 @@ public class DAOImpl implements DAO{
 		return userID;
 	}
 
+	@Override
 	public Remibursment getRemib(int remibID) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql="select * from Reimbursment where reimID=?";
@@ -85,7 +88,35 @@ public class DAOImpl implements DAO{
 		}
 		return null;
 	}
+	
+	@Override
+	public ArrayList<Remibursment> getAllRemib() {
+		ArrayList<Remibursment> remibs= new ArrayList<Remibursment>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql="select * from Reimbursment";
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			
+			while(rs.next()){
+				int remibID=rs.getInt(1);
+				int sID=rs.getInt(2);
+				int rID=rs.getInt(3);
+				Timestamp sDate=rs.getTimestamp(4);
+				Timestamp rDate=rs.getTimestamp(5);
+				int statID=rs.getInt(6);
+				String describ=rs.getString(7);
+				String note=rs.getString(8);
+				double amount=rs.getDouble(9);
+				
+				remibs.add(new Remibursment(remibID,getUser(sID),getUser(rID),getStatus(statID),sDate,rDate,describ,note,amount));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return remibs;
+	}
 
+	@Override
 	public ApproveStat getStatus(int statID) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql="select * from Status where statID=?";
@@ -243,5 +274,33 @@ public class DAOImpl implements DAO{
 			e.printStackTrace();
 		}
 		return -1;
+	}
+
+	@Override
+	public ArrayList<Remibursment> getUserRemib(int userID) {
+		ArrayList<Remibursment> remibs= new ArrayList<Remibursment>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			String sql="select * from Reimbursment where reimID=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, userID);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				int remibID=rs.getInt(1);
+				int sID=rs.getInt(2);
+				int rID=rs.getInt(3);
+				Timestamp sDate=rs.getTimestamp(4);
+				Timestamp rDate=rs.getTimestamp(5);
+				int statID=rs.getInt(6);
+				String describ=rs.getString(7);
+				String note=rs.getString(8);
+				double amount=rs.getDouble(9);
+				
+				remibs.add(new Remibursment(remibID,getUser(sID),getUser(rID),getStatus(statID),sDate,rDate,describ,note,amount));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return remibs;
 	}
 }
