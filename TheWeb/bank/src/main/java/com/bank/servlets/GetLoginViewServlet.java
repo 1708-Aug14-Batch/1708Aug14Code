@@ -19,7 +19,7 @@ public class GetLoginViewServlet extends HttpServlet{
 		System.out.println("in loginview servlet");
 		
 		
-		req.getRequestDispatcher("home.html")
+		req.getRequestDispatcher("login.html")
 		.forward(req, resp);
 	}
 }

@@ -1,65 +1,182 @@
-/**
- * 
- */
+var logged = false;
 window.onload = function(){
-	//addScript('features/dashboard/dashboard.js');
-	loadNavbar();
-	loadDashboardView();
+
+	loadHomeView();
+	
+	if(logged == false){
+		$("#navbar").hide();
+	}
+	else{
+		$("#navbar").show();};
+
+		document.getElementById("homePage")
+		.addEventListener("click", loadDashboardView);
+
+		document.getElementById("accPage")
+		.addEventListener("click", loadAccountPageView);
+
+
 };
 
-function loadNavbar(){ // partial function to load the navbar to html
+
+function loadHomeView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
-		if(xhr.readystate == 4 && xhr.status == 200){
-			//load navbar as response from get request from ajaxnavbar servlet via ajax request
-			document.getElementById('navbar').innerHTML = xhr.responseText;
-			// when tx is clicked, load the tx view. functionality in function defined below
-			//document.getElementById('tx').addEventListener('click', loadTxView, false);
-			document.getElementById('dashboard').addEventListener('click', loadDashboardView, false);
+		if(xhr.readyState == 4 && xhr.status == 200){
+			//console.log(xhr.responseText);
+			document.getElementById('view').innerHTML = xhr.responseText;		
+			document.getElementById("login")
+				.addEventListener("click", login);
 		}
 	}
-	console.log("loading navbar")
-	xhr.open("GET", "ajaxNavbar", true);
+	console.log("getting homepage")
+	xhr.open("GET", "getLoginView", true);
 	xhr.send();
-	
 };
 
-//----------------------------------Views
+
+function login(){
+	var email = document.getElementById("email").value;
+	var pass = document.getElementById("pass").value;
+	var tx = [email, pass];
+	tx = JSON.stringify(tx);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var response =  xhr.responseText;
+
+			if (response == "fail"){
+				document.getElementById("message")
+				.innerHTML = "Invalid credentials. Please try again";
+			}
+			else if(response == "pass"){
+				document.getElementById("message")
+				.innerHTML = "Invalid user. Please try again";
+			}
+			else{
+				logged = true;
+				console.log(response);
+				loadDashboardView();
+				$("#navbar").show();
+			}
+		}
+	}
+
+	xhr.open("POST", "login", true);
+	xhr.setRequestHeader("Content-type",
+	"application/x-www-form-urlencoded");
+	xhr.send(tx);
+};
+
+
 function loadDashboardView(){
+	console.log("in load dashboard view");
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState == 4 && xhr.status ==200){
-			document.getElementById('view').innerHTML = xhr.responseText;
-			retrieveBankUserAccountInfo();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').
+			innerHTML = xhr.responseText;
+			getUserPageInfo(); // loads user info by calling function
+
 		}
 	}
-	xhr.open("GET", "ajaxDashboard", true);
+	console.log("getting dash");
+	xhr.open("GET", "getDashboard", true);
+	xhr.send();
+};
+
+
+
+
+function loadAccountPageView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').
+			innerHTML = xhr.responseText;
+			getAcctPageInfo(); // loads user info by calling function
+			
+		}
+	}
+	console.log("getting accts")
+	xhr.open("GET", "getAccPage", true);
 	xhr.send();
 }
 
-function loadTxView(){
+function getAcctPageInfo(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState == 4 && xhr.status ==200){
-			document.getElementById('view').innerHTML = xhr.responseText;
-			document.getElementById('txBtn').addEventListener("click",processTx, false)
-		}
-	}
-	xhr.open("GET", "ajaxDoTransaction", true);
-	xhr.send();
-}
-
-function retrieveBankUserAccountInfo(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
-		if(xhr.readyState == 4 && xhr.status ==200){
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-			document.getElementById('name').innerHTML = user.firstname + " " + user.lastname;
+
+
+			if (accounts.length == 0){
+				document.getElementById("accounts").style.visibility = "hidden"; 
+
+			}
+			else{
+
+				for(var i = 0; i < accounts.length; i++){
+					// populate accounts table
+					var table = document.getElementById("accTable");
+					var row = table.insertRow();
+					var acc = row.insertCell(0);
+					var type = row.insertCell(1);
+					var bal = row.insertCell(2);
+					acc.innerHTML = "Account No. " + accounts[i].id;
+					type.innerHTML = accounts[i].type;
+					bal.innerHTML = "$" + accounts[i].balance;
+				}
+			}
 		}
 	}
-	xhr.open("GET", "ajaxBankInfo", true);
+	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
+	
 }
+
+
+function getUserPageInfo(){ // loads basic user info and account info into html
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			var user = dto.user;
+			document.getElementById('name')
+			.innerHTML = user.firstname + " " + user.lastname;
+		}
+	}
+	xhr.open("GET", "getUserInfo", true);
+	xhr.send();
+
+};
+
+
+
+function addAccount(){ // allows us to acc new accounts 
+	var accType = document.getElementById("accType").value;
+	console.log(accType);
+
+	var type = JSON.stringify(accType);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+
+		}
+	}
+
+	xhr.open("POST", "addAccount", true);
+	//set the header to tell the server you have data for it to process
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
+	xhr.send(input); //include your post data in the send()
+
+}
+
+
