@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetDashboardServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("dashboard.html").forward(request, response);
+		request.getRequestDispatcher("/dashboard.html").forward(request, response);
 	}
 
 }

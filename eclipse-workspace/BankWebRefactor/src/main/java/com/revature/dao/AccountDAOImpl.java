@@ -110,6 +110,27 @@ public class AccountDAOImpl implements AccountDAO<Account> {
 		}
 		return account;
 	}
+	
+	public ArrayList<Account> readAllAccountsForUser(User user) {
+		if (user == null) {
+			throw new IllegalArgumentException("User cannot be null");
+		}
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
+			String sql = "SELECT has_checking, has_savings, has_credit FROM user WHERE user_id = ?";
+			PreparedStatement statement = conn.prepareStatement(sql);
+			statement.setInt(1, user.getUserID());
+			ResultSet results = statement.executeQuery();
+			while (results.next()) {
+				boolean hasChecking = (0 != results.getInt("has_checking"));
+				boolean hasSavings = (0 != results.getInt("has_savings"));
+				boolean hasCredit = (0 != results.getInt("has_credit"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
 
 	/**
 	 * Edits the data of the specified account.

@@ -26,8 +26,7 @@ public class GetUserInfoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User sessionUser = (User) session.getAttribute("user");
 		if (sessionUser != null) {
-			/*ArrayList<Account> accounts = new ArrayList<Account>();
-			accounts = service.getUserAccounts(sessionUser);
+			/*ArrayList<Account> accounts = service.getAllAccounts(sessionUser);
 			System.out.println("Converting user and account to DTO");
 			DTO dto = new DTO(sessionUser, accounts);
 			ObjectMapper mapper = new ObjectMapper();

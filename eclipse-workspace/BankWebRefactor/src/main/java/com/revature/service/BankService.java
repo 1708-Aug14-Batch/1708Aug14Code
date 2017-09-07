@@ -40,6 +40,11 @@ public class BankService {
 		this.userDAO = new UserDAOImpl();
 		this.scanner = new Scanner(System.in);
 	}
+	
+	public ArrayList<Account> getAllAccountsForUser(User user) {
+		ArrayList<Account> accounts = new ArrayList<Account>();
+		return accounts;
+	}
 
 	/**
 	 * Displays the initial menu when the app is started.
@@ -47,6 +52,7 @@ public class BankService {
 	 * @param None.
 	 * @postcondition Showing the initial menu to the user
 	 */
+	@Deprecated
 	public void run() {
 		this.displayInitialMenu();
 	}
