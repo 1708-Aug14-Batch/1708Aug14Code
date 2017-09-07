@@ -95,17 +95,20 @@ public class LoginServlet extends HttpServlet {
 				out.write(json);
 			}
 			else{
+				session.setAttribute("user", u);
+				
+				
 				ObjectMapper mapper = new ObjectMapper();
 				
 				String json = mapper.writeValueAsString(u);
 				PrintWriter out = response.getWriter();
 				response.setContentType("application/json");
 				out.write(json);
-				
+			
 				/*
 				// stored in a cookie on the client's browser
 				System.out.println("Logging user " + u.toString());
-				session.setAttribute("user", u);
+			
 				// the parameters are the name, and the actual object that you want to store in the session
 
 				System.out.println("forwarding to home");

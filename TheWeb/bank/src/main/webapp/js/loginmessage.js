@@ -38,9 +38,7 @@ function loadHomeView(){
 function login(){
 	var email = document.getElementById("email").value;
 	var pass = document.getElementById("pass").value;
-
 	var tx = [email, pass];
-
 	tx = JSON.stringify(tx);
 
 	var xhr = new XMLHttpRequest();
@@ -57,10 +55,11 @@ function login(){
 				.innerHTML = "Invalid user. Please try again";
 			}
 			else{
-				//logged = true;
+				logged = true;
 				console.log(response);
 				console.log("calling success function");
-				successfulLogin(response);// w params
+				loadDashboardView();
+				$("#navbar").show();
 			}
 		}
 	}
@@ -71,27 +70,27 @@ function login(){
 	xhr.send(tx);
 };
 
-function successfulLogin(userInfo){ // essentially load dasboard but for the first time
-	console.log("in success function");
-	console.log(userInfo);
-//	var tx = JSON.stringify(userInfo);
-	
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('view').
-			innerHTML = xhr.responseText;
-			loadDashboardView(); // loads user info by calling function
-			logged = true;
-			$("#navbar").show();
-		}
-	}
-	xhr.open("POST", "loginsuccess", true);
-	xhr.setRequestHeader("Content-type",
-	"application/x-www-form-urlencoded");
-	xhr.send(userInfo);
-
-};
+//function successfulLogin(userInfo){ // essentially load dasboard but for the first time
+//	console.log("in success function");
+//	console.log(userInfo);
+////	var tx = JSON.stringify(userInfo);
+//	
+//	var xhr = new XMLHttpRequest();
+//	xhr.onreadystatechange = function(){
+//		if(xhr.readyState == 4 && xhr.status == 200){
+//			document.getElementById('view').
+//			innerHTML = xhr.responseText;
+//			loadDashboardView(); // loads user info by calling function
+//			logged = true;
+//			$("#navbar").show();
+//		}
+//	}
+//	xhr.open("POST", "loginsuccess", true);
+//	xhr.setRequestHeader("Content-type",
+//	"application/x-www-form-urlencoded");
+//	xhr.send(userInfo);
+//
+//};
 
 
 
