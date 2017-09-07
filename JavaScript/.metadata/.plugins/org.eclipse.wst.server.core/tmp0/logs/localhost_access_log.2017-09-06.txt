@@ -1,0 +1,10 @@
+127.0.0.1 - - [06/Sep/2017:20:44:01 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:20:44:09 -0400] "GET /IntroToJS/JavaScript%20homework/indexJavascript.html HTTP/1.1" 200 6364
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:20:45:46 -0400] "GET /IntroToJS/JavaScript%20homework/indexJavascript.html HTTP/1.1" 200 6364
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:21:04:03 -0400] "GET /PokemonViewer/pokemon.html HTTP/1.1" 404 1046
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:21:08:41 -0400] "GET /IntroToJS/JavaScript%20homework/indexJavascript.html HTTP/1.1" 200 6403
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:21:09:12 -0400] "GET /IntroToJS/JavaScript%20homework/indexJavascript.html HTTP/1.1" 200 6389
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:21:09:44 -0400] "GET /BankingAssignment3/LoginServlet HTTP/1.1" 404 1056
+127.0.0.1 - - [06/Sep/2017:22:52:59 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:22:53:02 -0400] "GET /IntroToJS/JavaScript%20homework/indexJavascript.html HTTP/1.1" 200 7360
+0:0:0:0:0:0:0:1 - - [06/Sep/2017:22:53:07 -0400] "GET /IntroToJS/JavaScript%20homework/indexJavascript.html HTTP/1.1" 200 7360

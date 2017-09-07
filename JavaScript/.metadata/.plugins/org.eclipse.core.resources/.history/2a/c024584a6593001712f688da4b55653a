@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>Draggable example</title>
+<link rel="stylesheet" href="CSS intro.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+
+	<style>
+	#outer{
+	
+	background: #000000;
+	color: white;
+	margin: 10px;
+	padding: 15px;
+	text-align: center;
+	}
+	
+		#inner{
+	
+	background: #ff9a00;
+	margin: 10px;
+	padding: 15px;
+	text-align: center;
+	}
+	
+		#innerMost{
+	
+	background: #09ff00;
+	color: #000;
+	margin: 10px;
+	padding: 15px;
+	text-align: center;
+	}
+	
+	</style>
+	
+	</head>
+<body>
+
+<div id="outer">
+
+<h1 draggable="true" id="hava">Hava a</h1>
+
+<div id="inner">
+
+<h1 draggable="true" id="happy">Happy</h1>
+<div id="innerMost"><h1 draggable="true" id="halloween">Halloween</h1></div>
+
+</div>
+
+</div>
+
+<script src="draggable.js"></script>
+
+</body>
+</html>

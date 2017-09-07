@@ -1,0 +1,220 @@
+<!DOCTYPE>
+<!-- -------------------------------------------------->
+<!-- NOTE: This is NOT the JS Homework Assignment    -->
+<!-- More specifically this is an earlier version    -->
+<!-- where I was playing around with some features   -->
+<!-- The actual assignment is in IntroToJS/WebContent/HW.js  AND hwViewer.html
+<!--           FOR REFERENCE ONLY!!					 -->
+<!-- -------------------------------------------------->
+<!-- https://getbootstrap.com/ -->
+<html>
+<head>
+<title>JS Homework Assignment</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+
+<script type="text/javascript">
+<!--
+	// Problem 1 Fibonacci
+	function displayFibonacci(n) {
+		alert("The " + n + " value in the fibonacci sequence is: "
+				+ fibonacci(n));
+	}
+	function fibonacci(n) {
+		if (n <= 1)
+			return n;
+		else
+			return (fibonacci(n - 1) + fibonacci(n - 2));
+	}
+
+	// Problem 2 Bubble Sort
+	function displayBubbleSort(numArray) {
+		numArray = bubbleSort(numArray)
+		alert("Sorted array: " + numArray);
+	}
+	function bubbleSort(numArray) {
+		var swapped = true;
+
+		while (swapped) {
+			// Set to false by default. If nothing is swapped then loop will end
+			swapped = false;
+
+			// Current index for searching through the array
+			var i;
+			/*
+			 * Bubble sort will be looking at numbers in pairs
+			 * so the loop ends at one previous to the last element
+			 */
+			for (i = 0; i < numArray.length - 1; i++) {
+				if (numArray[i] > numArray[i + 1]) {
+					swapped = true;
+
+					// Swapping two elements requires a third
+					// temporary variable
+					temp = numArray[i];
+					numArray[i] = numArray[i + 1];
+					numArray[i + 1] = temp;
+				}
+			}
+
+		}
+
+		return numArray;
+	}
+
+	// Problem 3 Reverse String
+	function reverseString(someStr) {
+		var i;
+		var resultStr = "";
+
+		for (i = someStr.length - 1; i >= 0; i--)
+			resultStr = resultStr.concat(someStr.charAt(i));
+		//resultStr = resultStr.concat(someStr.charAt(i));
+
+		return resultStr;
+	}
+	
+	// Problem 4 Factorial
+	function factorial(someNum) {
+		if (someNum == 1)
+			return someNum;
+		
+		return someNum * factorial(someNum-1);
+	}
+		
+	// Problem 5 Substring
+	function displaySubstring(someStr, length, offset) {
+		var str = substring(someStr, length, offset);
+		
+		// Display if it is not null
+		if (str)
+			alert(str);
+	}
+	function substring(someStr, length, offset) {
+		var i;
+		var resultStr = "";
+		if (length != parseInt(length)) {
+			alert("Error: length needs to be a number");
+			return null;
+		}
+		if (offset != parseInt(offset)) {
+			alert("Error: offset needs to be a number");
+			return null;
+		}
+		
+		// Length and offset are both numbers at this point
+		length = parseInt(length);
+		offset = parseInt(offset);
+
+		if (length < 0 || length > someStr.length) {
+			alert("Error: length must be greater than 0 and less than the string length");
+			return null;
+		}
+		if (offset < 0 || offset > someStr.length) {
+			alert("Error: offset must be greater than 0 and less than the string length");
+			return null;
+		}
+		if (offset+length > someStr.length) {
+			alert("Error: offset+length must be less than the string length");
+			return null;
+		}
+		
+		
+		for (i = offset; i < (offset+length); i++)
+			resultStr = resultStr.concat(someStr.charAt(i));
+		//resultStr = resultStr.concat(someStr.charAt(i));
+
+		return resultStr;
+	}
+// -->
+</script>
+
+</head>
+<body>
+	<p>
+		1. Fibonacci<br> Define function: fib(n) <br> Return the nth
+		number in the fibonacci sequence.
+	</p>
+
+	<form>
+		<input type="text" id="fibonacci_text" placeholder="Enter n">
+		<input type="button"
+			onclick="displayFibonacci($('#fibonacci_text').val())"
+			value="Get Fibonacci value">
+	</form>
+
+	<p>
+		2. Bubble Sort<br> Define function: bubbleSort(numArray)<br>
+		Use the bubble sort algorithm to sort the array.<br> Return the
+		sorted array.<br>
+	</p>
+
+	<form>
+		<input type="text" id="bubble_array"
+			placeholder="[1, 4, 6, 8, 7, 9, 5, 3, 2]" disabled> <input
+			type="button"
+			onclick="displayBubbleSort([1, 4, 6, 8, 7, 9, 5, 3, 2])"
+			value="Get sorted array">
+	</form>
+
+	<p>
+		3. Reverse String<br> Define function: reverseStr(someStr)<br>
+		Reverse and return the String.<br>
+	</p>
+
+	<form>
+		<input type="text" id="reverse_text" placeholder="Enter a string">
+		<input type="button"
+			onclick="alert(reverseString($('#reverse_text').val()))"
+			value="Reverse string">
+	</form>
+
+	<p>
+		4. Factorial<br> Define function: factorial(someNum)<br> Use
+		recursion to compute and return the factorial of someNum.<br>
+	</p>
+
+	<form>
+		<input type="text" id="factorial_text" placeholder="Enter a number">
+		<input type="button"
+			onclick="alert(factorial($('#factorial_text').val()))"
+			value="Compute Factorial">
+	</form>
+
+	<p>
+		5. Substring<br> Define function substring(someStr, length,
+		offset)<br> Return the substring contained between offset and
+		(offset + length) <br> inclusively.<br> If incorrect input
+		is entered, use the alert function and describe why the <br>
+		input was incorrect.<br>
+	</p>
+
+	<form>
+		<input type="text" id="substring_text" placeholder="Enter a String">
+		<input type="text" id="substring_length" placeholder="Enter a length">
+		<input type="text" id="substring_offset" placeholder="Enter an offset">
+		<input type="button"
+			onclick="displaySubstring($('#substring_text').val(), $('#substring_length').val(), $('#substring_offset').val())"
+			value="Compute Substring">
+	</form>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
+
+</body>
+
+</html>
