@@ -47,6 +47,61 @@ function loadLogin(){
 }
 
 function loginRequest(){
+ 	var email = $('#email').val();
+ 	var password = $('#password').val();
+
+ 	var to =[email,password];
+
+ 	to = JSON.stringify(to);
+/*
+ 	$.ajax({
+ 		type: "POST",
+ 		url: "loginRequest",
+ 		data:to,
+		contentType: "application/json",
+ 		success: function (data){
+ 			if(data.success){
+ 				loadMenu();
+ 			}
+ 		},
+ 		error: function (data){
+ 			console.log(data);
+ 			if(data == "2"){
+				document.getElementById('fail').innerHTML = xhr.responseText;
+			}else{
+				document.getElementById('fail').innerHTML = xhr.responseText;
+			}
+ 		}
+ 	});
+
+
+ 		data:{
+ 			email: $('#email').val(),
+ 			password: $('#password').val()
+ 		},
+ 		dataType : "json",
+
+
+*/
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			if(xhr.responseText == 1){
+				document.getElementById('content').innerHTML = xhr.responseText;
+				loadMenu();
+			}else if(xhr.responseText == 2){
+				document.getElementById('fail').innerHTML = xhr.responseText;
+			}else{
+				document.getElementById('fail').innerHTML = xhr.responseText;
+			}
+		}	
+	}
+	xhr.open("POST", "loginRequest", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	xhr.send(to);
+/*
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -56,6 +111,7 @@ function loginRequest(){
 	}
 	xhr.open("GET", "loadMenu", true);
 	xhr.send();
+	*/
 }
 
 
