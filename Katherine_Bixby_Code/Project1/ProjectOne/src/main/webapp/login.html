@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Diplomata" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Balthazar" rel="stylesheet">
+<script src="https://www.w3schools.com/lib/w3color.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<title>Login</title>
+<style>
+p{
+	text-align:center;
+}
+input[type=submit] {
+    padding:5px 15px; 
+    background:#FFCF46; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+ }
+.jumbotron{
+	background-color:RGBA(10,20,60,0.95);
+	
+}
+body{
+	background-image: url("http://1-background.com/images/meteorites/meteorite-background-seamless-crystals.jpg");
+}
+</style>
+</head>
+<body>
+	<br>
+	<div class="container-fluid">
+		<div class="jumbotron">
+			<h1 class="text-center"><font face="Diplomata" color="#FFCF46">Login</font></h1><br/>
+			<div align="center">
+			<font face="Balthazar" color="black">
+				<input type="text" id="username" name="username" placeholder="Enter username"><br /> <br />
+				<input type="password" id="password" name="password" placeholder="Password"><br />
+				<br/>
+				<input type="submit" value="Login" id="loginSubmit"/>
+			</font>
+			<br><br>
+			</div>
+			<font face="Balthazar" color="#FFCF46"><p id="message"></p></font>
+		</div>
+	</div>
+	
+	<div class "alert alert-info" id="message"></div>
+	
+	
+	<script src="js/loginmessage.js"></script>
+</body>
+</html>
