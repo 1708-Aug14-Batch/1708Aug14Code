@@ -111,6 +111,14 @@
 	<section name="BuildPathsPropertyPage">
 		<item value="3" key="pageIndex"/>
 	</section>
+	<section name="nls_accessor_history">
+		<section name="0">
+			<item value="Messages" key="accessorName"/>
+			<item value="=BankingServlets/src\/main\/java&lt;com.bank.pojo" key="bundlePackage"/>
+			<item value="messages.properties" key="bundleName"/>
+			<item value="=BankingServlets/src\/main\/java&lt;com.bank.pojo" key="accessorPackage"/>
+		</section>
+	</section>
 	<section name="completion_proposal_size">
 	</section>
 	<section name="AddGetterSetterDialog">
