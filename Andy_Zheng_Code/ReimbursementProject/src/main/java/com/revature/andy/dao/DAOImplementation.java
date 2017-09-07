@@ -240,11 +240,10 @@ public class DAOImplementation implements DAOInterface {
 		}
 	}
 
-	// change to statement?
 	// select all users
 	public HashSet<User> getUsers() {
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM USERS WHERE ISMANAGER = 0";
+			String sql = "SELECT * FROM USERS";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 
@@ -262,6 +261,32 @@ public class DAOImplementation implements DAOInterface {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	// Change to prepared statement later
+	public HashSet<User> getEmployees(){
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM USERS WHERE ISMANAGER = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, 0);
+			
+			ResultSet rs = ps.executeQuery();
+
+			HashSet<User> userList = new HashSet<>();
+
+			while (rs.next()) {
+				User temp = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+						rs.getInt(6));
+				userList.add(temp);
+			}
+
+			return userList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	// select all reimbursement based of a user

@@ -14,24 +14,36 @@ public class Service {
 	boolean isLoggedIn = false;
 	User currentUser = null;
 	
-	public int login(String email, String pwd) {
-		currentUser = dao.getUser(email, pwd);
+	public User login(String email, String pwd) {
 		
-		if(currentUser != null && currentUser.getUserID()!=0){
+		User newUser = null;
+		return newUser = dao.getUser(email, pwd);
+		/*
+		User newUser = null;
+		if(validateLogin(email)==1) {
+			newUser = dao.getUser(email, pwd);
+			if(newUser == null) {
+				
+			}
+		}
+		if(newUser != null && newUser.getUserID()!=0){
 			isLoggedIn = true;
 			return 1;
 		}else {
 			return validateLogin(email);
-		}
+		}*/
 	}
 	
-	public int validateLogin(String email) {
+	public int validateLogin(String email, String pwd) {
 		
 		HashSet<User> users = dao.getUsers();
-		
 		for(User x:users) {
 			if(x.getEmail().equalsIgnoreCase(email)) {
-				return 2;
+				if(login(email, pwd) == null){
+					return 2;
+				}else{
+					return 1;
+				}
 			}
 		}
 		return 0;

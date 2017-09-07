@@ -34,7 +34,6 @@ public class UserInfoServlet extends HttpServlet{
 		
 		System.out.println(sessionUser.getUserID());
 		
-		
 		if(sessionUser!=null) {
 			HashSet<Reimbursement> reims = null;
 			reims = s.getUserReimbursement(sessionUser.getUserID());
@@ -52,8 +51,9 @@ public class UserInfoServlet extends HttpServlet{
 			
 			out.write(json);
 		}
+		/*
 		else {
 			resp.setStatus(418);
-		}
+		}*/
 	}
 }

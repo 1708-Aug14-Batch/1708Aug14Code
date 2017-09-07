@@ -7,18 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.revature.andy.pojos.User;
-import com.revature.andy.service.Service;
+@WebServlet("/loadRegisterEmployee")
+public class RegisterEmployeeServlet extends HttpServlet {
 
-@WebServlet("/loadLogin")
-public class LoginServlet extends HttpServlet {
-
-	Service s = new Service();
-		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("login.html").forward(req, resp);
+		// TODO Auto-generated method stub
+		System.out.println();
+		req.getRequestDispatcher("registerEmployee.html").forward(req, resp);
 	}
 }

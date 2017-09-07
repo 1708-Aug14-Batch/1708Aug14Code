@@ -27,6 +27,40 @@ function loadMain(){
 		xhr.send();
 }
 
+function loadLogin(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;
+ 			$("#login").click(login);
+			//$('#view').text() = xhr.responseText;
+		}
+	}
+		xhr.open("GET", "getLogin", true);
+		xhr.send();
+}
+
+ function login(){
+ 	var email = $('#email').val();
+ 	var password = $('#password').val();
+
+ 	var to =[email,password];
+
+ 	to = JSON.stringify(to);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			document.getElementById('fail').innerHTML = xhr.responseText;
+		}	
+	}
+	xhr.open("POST", "testLogin", true);
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
+	xhr.send(to);
+
+ }
+
 // really acccounts
 function getUserInfo(){
 	var xhr = new XMLHttpRequest();
@@ -96,10 +130,9 @@ document.getElementById("userSettings").addEventListener("click",loadUserSetting
 
 document.getElementById("accounts").addEventListener("click",loadMain);
 
-window.onload = function(){
-	loadMain();
-};
-
+$(document).ready(function(){
+	loadLogin();
+});
 
 
 

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
 @WebServlet("/loginRequest")
@@ -21,8 +22,6 @@ public class LoginRequestServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("testing Post");
-		
 		Map<String, String[]> myMap = req.getParameterMap();
 		
 		Set<String> transObject = myMap.keySet();
@@ -32,26 +31,28 @@ public class LoginRequestServlet extends HttpServlet{
 		Object obj = transObject.toArray()[0];
 		ArrayList<String> to = jackson.readValue((String) obj, ArrayList.class);
 	
-		HttpSession session = req.getSession();
 		Service s= new Service();
 		
 		String email = to.get(0);
 		String password = to.get(1);
 		
+		HttpSession session = req.getSession();
 		
-		int id = s.login(email, password);
+		int id = s.validateLogin(email, password);
 		String json = null;
 		if(id==1) {
-			json = "success";
+			User newUser = null;
+			newUser = s.login(email, password);
+			session.setAttribute("User", newUser);
+			json = Integer.toString(newUser.getIsManager());
 		}else if(id==2) {
-			json = "wrong password";
+			json = "Incorrect Password";
 		}else if(id==0) {
-			json = "wrong information";
+			json = "Incorrect Credentials";
 		}
 			
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(json);
 	}
-
 }

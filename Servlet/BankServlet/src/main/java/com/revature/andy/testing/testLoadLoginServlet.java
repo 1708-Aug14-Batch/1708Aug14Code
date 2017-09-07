@@ -1,4 +1,4 @@
-package com.revature.andy.servlet;
+package com.revature.andy.testing;
 
 import java.io.IOException;
 
@@ -7,18 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.revature.andy.pojos.User;
-import com.revature.andy.service.Service;
+@WebServlet("/getLogin")
+public class testLoadLoginServlet extends HttpServlet{
 
-@WebServlet("/loadLogin")
-public class LoginServlet extends HttpServlet {
-
-	Service s = new Service();
-		
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("login.html").forward(req, resp);
-	}
+		req.getRequestDispatcher("testlogin.html").forward(req, resp);
+	}	
 }
