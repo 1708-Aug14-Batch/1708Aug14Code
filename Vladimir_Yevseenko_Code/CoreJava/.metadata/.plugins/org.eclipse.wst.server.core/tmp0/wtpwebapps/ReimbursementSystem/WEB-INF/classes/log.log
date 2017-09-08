@@ -1,0 +1,15 @@
+2017-09-07 15:57:54 DEBUG root:28 - LoginServlet doPost()
+2017-09-07 15:57:54 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-07 15:57:54 DEBUG root:20 - ConnectionFactory() instance created
+2017-09-07 15:57:54 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-07 15:57:54 DEBUG root:25 - DBDAO() instance created
+2017-09-07 15:57:54 DEBUG root:218 - DBDAO attemptLogin()
+2017-09-07 15:57:54 DEBUG root:231 - DBDAO attemptLogin() unsuccessful
+2017-09-07 15:58:04 DEBUG root:28 - LoginServlet doPost()
+2017-09-07 15:58:04 DEBUG root:218 - DBDAO attemptLogin()
+2017-09-07 15:58:04 DEBUG root:31 - User(id, ...) created
+2017-09-07 15:58:39 DEBUG root:28 - LoginServlet doPost()
+2017-09-07 15:58:39 DEBUG root:218 - DBDAO attemptLogin()
+2017-09-07 15:58:39 DEBUG root:31 - User(id, ...) created
+2017-09-07 15:59:13 DEBUG root:21 - User(...) created
+2017-09-07 15:59:13 DEBUG root:164 - DBDAO addUser()

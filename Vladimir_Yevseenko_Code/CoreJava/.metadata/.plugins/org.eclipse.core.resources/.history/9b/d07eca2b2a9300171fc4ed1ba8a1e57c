@@ -1,0 +1,17 @@
+/**
+ * 
+ */
+
+window.onload = loadDashboardView;
+
+function loadDashBoardView() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xh.readyState == 4 && xhr.status == 200) {
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.reponse);
+			var user = dto.user;
+			document.getElementById("firstName").innerHtml = user.firstName;
+		}
+	};
+}

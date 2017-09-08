@@ -1,0 +1,40 @@
+<!DOCTYPE html5>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Calculator</title>
+	</head>
+	
+	<body ng-app="calcApp">
+	
+	
+		Number 1:<input type="number" onkeyup="this.value=this.value.replace(/[\D+]/,'')" ng-model="num2" class="form-control"/>
+		<br/>
+		Number 2:<input type="number" onkeyup="this.value=this.value.replace(/[\D+]/,'')" ng-model="num1" class="form-control"/>
+	
+		
+		<h3>Sum = {{num1 + num2}} </h3>
+		<br/>
+		<h3>Difference = {{ (num1 - num2) | absFilter}}</h3>
+		<br/>
+		<h3>Product = {{num1 * num2}}</h3>
+		<br/>
+		<h3>Quotient (Number 1 / Number 2) = {{ (num1 / num2) | wholePartFilter}}</h3>
+		<br/>
+		<h3>Remainder (Number 1 % Number 2) = {{ (num1 % num2) | wholePartFilter}}</h3>
+		<br/>
+		<h3>Quotient (Number 2 / Number 1) = {{ (num2 / num1) | wholePartFilter}}</h3>
+		<br/>
+		<h3>Remainder (Number 2 % Number 1) = {{ (num1 % num2) | wholePartFilter}}</h3>
+	
+		
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-h3eme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="calc.js"></script>
+	</body>
+</html>

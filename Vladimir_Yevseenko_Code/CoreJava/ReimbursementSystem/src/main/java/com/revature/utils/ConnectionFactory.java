@@ -13,6 +13,9 @@ public class ConnectionFactory {
 	private static Logger log = Logging.getLogger();
 	private static ConnectionFactory instance;
 	
+	private static final String DB_PROP_PATH =
+			"C:/Users/vlad/my_git_repos/1708Aug14Code/Vladimir_Yevseenko_Code/CoreJava/ReimbursementSystem/src/main/resources/database.properties";
+	
 	private ConnectionFactory() {
 		log.debug("ConnectionFactory() instance created");
 	}
@@ -29,7 +32,7 @@ public class ConnectionFactory {
 		log.debug("ConnectionFactory getConnection()");
 		try {
 			Properties prop = new Properties();
-			prop.load(new FileReader("src/main/resources/database.properties"));
+			prop.load(new FileReader(DB_PROP_PATH));
 			Class.forName(prop.getProperty("driver"));
 			return DriverManager.getConnection(prop.getProperty("url"),
 					prop.getProperty("usr"), prop.getProperty("pw"));

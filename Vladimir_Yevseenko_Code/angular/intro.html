@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+
+
+<html>
+	<head>
+		<title>Page Title</title>
+	<head>
+
+
+	<body ng-app="myApp" ng-controller="myController" ng-init="myCol='pink'">
+	
+		<!-- 
+			use ng-directives to extend HMTL
+			ng-app defines your angular js app
+			{{ }} to print out model to the page
+			{{ }} can contain expressions you want to do
+			
+			2 way data binding updates both the view and model at the same time
+			
+			the data model is the collection of data out application uses
+			the view is what is displayed on the front end, the HTML container
+			The view has access to the model and the model data is displayed accordingly
+		-->
+		
+		<h1>AngularJS Intro</h1>
+		
+		<div id="helloWorld">
+		
+		
+		</div>
+		<input type="text" ng-model="whatever"/>
+		
+		<p>{{whatever}}</p>
+		
+		<br/>
+		
+		<h3 ng-bind="whatever"></h3>
+		
+		<br/>
+		
+		<p>Here is an expression: {{10 + 10}}</p>
+		
+		<br/>
+		
+		<h2>Some more cool binding stuff:</h2>
+		
+		<br/>
+		
+		<input style="background:{{myCol}}" ng-model="myCol"/> 
+		
+		<br>
+		
+		<h3>Intro to Controllers</h3>
+		First Name: <input type="text" ng-model="firstName" ng-init="firstName=''"/>
+		<br/>
+		Last Name: <input type="text" ng-model="lastName" ng-init="lastName=''"/>
+		
+		<br>
+		
+		Full Name = {{ fullName() | uppercase }}
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+		<script src="intro.js"></script>
+	</body>
+</html>

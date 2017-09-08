@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,300,600" rel="stylesheet" type="text/css>
+	</head>
+	<body>
+		<h1>Post</h1>
+		<form action="loginServlet" method="post">
+			email = <input type="text" name="email"/><br/>
+			password = <input type="password" name="password"/><br/>
+			<input type="submit" value="Login"/>
+		</form>
+		
+		<a href="register.html">
+			<button>Manager Registration</button>
+		</a>
+	
+	</body>
+</html>

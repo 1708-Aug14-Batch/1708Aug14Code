@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\CoreJava\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\CoreJava\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\FridayXML" path="/FridayXML" reloadable="true" source="org.eclipse.jst.jee.server:FridayXML"/></Host>
+      <Context docBase="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\CoreJava\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\CoreJava\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\FridayXML" path="/FridayXML" reloadable="true" source="org.eclipse.jst.jee.server:FridayXML"/><Context docBase="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\CoreJava\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\ReimbursementSystem" path="/ReimbursementSystem" reloadable="true" source="org.eclipse.jst.jee.server:ReimbursementSystem"/></Host>
     </Engine>
   </Service>
 </Server>

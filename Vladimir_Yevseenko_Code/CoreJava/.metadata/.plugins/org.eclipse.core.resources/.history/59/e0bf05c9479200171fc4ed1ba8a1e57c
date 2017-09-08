@@ -1,0 +1,63 @@
+package com.revature.tests;
+
+
+import java.util.List;
+
+
+import org.junit.BeforeClass;
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.revature.dao.DBDAO;
+import com.revature.pojos.User;
+
+public class DBDAOTests {
+	
+	private static DBDAO dbdao;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		dbdao = new DBDAO();
+	}
+
+
+
+	@Test
+	@Ignore
+	public void getAllUsersTest() {
+		List<User> list = dbdao.getAllUsers();
+		System.out.println("getAllUsersTest()");
+		System.out.println(list.size());
+		for (User u: list) {
+			System.out.printf("%d %s %s %s %s %b\n", u.getId(), u.getFirst(), u.getLast(),
+					u.getEmail(), u.getPassword(), u.getIsManager());
+		}
+	}
+	
+	@Test
+	@Ignore
+	public void getAllUsersTest() {
+		List<User> list = dbdao.getAllUsers();
+		System.out.println("getAllUsersTest()");
+		System.out.println(list.size());
+		for (User u: list) {
+			System.out.printf("%d %s %s %s %s %b\n", u.getId(), u.getFirst(), u.getLast(),
+					u.getEmail(), u.getPassword(), u.getIsManager());
+		}
+	}
+	
+	@Test
+	@Ignore
+	public void getAllUsersTest() {
+		List<User> list = dbdao.getAllUsers();
+		System.out.println("getAllUsersTest()");
+		System.out.println(list.size());
+		for (User u: list) {
+			System.out.printf("%d %s %s %s %s %b\n", u.getId(), u.getFirst(), u.getLast(),
+					u.getEmail(), u.getPassword(), u.getIsManager());
+		}
+	}
+	
+	
+
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Angular To Do List</title>
+	</head>
+
+	<body ng-app="toDoApp" ng-controller="toDoController">
+		
+		<input type="text" ng-model="username"/>
+		<h2>Welcome {{username}}!</h2>
+		
+		<br/>
+		
+		<input type="text" ng-model="newItem"/>
+		<button ng-click="addNewItem(newItem)"/>Add</button>
+		
+		<br>
+		
+		<p ng-hide="count() == 0">Items Left: {{count()}}</p>
+		
+		<table class="table table-striped">
+			<thead>
+				<th>Description</th>
+				<th>Done</th>
+			</thead>
+			
+			<tbody>
+				<tr ng-repeat="item in toDoItems | checkedItems:showAll">
+					<td> {{item.description}} </td>
+					<td> {{item.done}} </td>
+					<td> <input type="checkbox" ng-model="item.done"/> </td>
+				</tr>
+			</tbody>
+			
+			<label> Show Complete
+				<input type="checkbox" ng-model="showAll"/>
+			</label>
+		</table>
+		
+	
+	
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="todo.js"></script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+package com.revature.tests;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import com.revature.dao.DBDAO;
+import com.revature.pojos.User;
+
+public class DBDAOTests {
+	
+	private static DBDAO dbdao;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		dbdao = new DBDAO();
+	}
+
+
+
+	@Test
+	public void getAllUsersTest() {
+		List<User> list = dbdao.getAllUsers();
+		System.out.println("getAllUsersTest()");
+		for (User l: list) {
+			System.out.printf("%d %s %s %s %s %b\n", args)
+		}
+	}
+
+}

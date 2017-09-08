@@ -7,19 +7,28 @@ import org.apache.log4j.Logger;
 import com.revature.logging.Logging;
 
 public class Reimbursement {
-	private int id;
-	private User submitter, resolver;
-	private Date submissionDate, resolutionDate;
-	private Status status;
-	private String description;
-	double amount;
+	private final int id;
+	private final User submitter, resolver;
+	private final Date submissionDate, resolutionDate;
+	private final Status status;
+	private final String description;
+	private final double amount;
 	
 	private static Logger log = Logging.getLogger();
 	
-	public Reimbursement() {
-		log.debug("Reimbursement() created");
-	}
 	
+	public Reimbursement(User submitter, User resolver, Date submissionDate,
+			Date resolutionDate, Status reimbursementStatus, String description, double amount) {
+		this.id = -1;
+		this.submitter = submitter;
+		this.resolver = resolver;
+		this.submissionDate = submissionDate;
+		this.resolutionDate = resolutionDate;
+		this.status = reimbursementStatus;
+		this.description = description;
+		this.amount = amount;
+		log.debug("Reimbursement(...) created");
+	}
 	
 	public Reimbursement(int id, User submitter, User resolver, Date submissionDate,
 			Date resolutionDate, Status reimbursementStatus, String description, double amount) {
@@ -31,7 +40,7 @@ public class Reimbursement {
 		this.status = reimbursementStatus;
 		this.description = description;
 		this.amount = amount;
-		log.debug("Reimbursement(...) created");
+		log.debug("Reimbursement(id, ...) created");
 	}
 	
 	public int getId() {
@@ -62,4 +71,7 @@ public class Reimbursement {
 		return description;
 	}
 	
+	public double getAmount() {
+		return amount;
+	}
 }

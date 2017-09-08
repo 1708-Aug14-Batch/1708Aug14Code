@@ -1,0 +1,149 @@
+package com.revature.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.revature.logging.Logging;
+import com.revature.pojos.Reimbursement;
+import com.revature.pojos.Status;
+import com.revature.pojos.User;
+import com.revature.utils.ConnectionFactory;
+
+public class DBDAO {
+	private Connection dbConn;
+	private Logger log;
+	
+	public DBDAO() {
+		log = Logging.getLogger();
+		dbConn = ConnectionFactory.getInstance().getConnection();
+		log.debug("DBDAO() instance created");
+	}
+
+	
+	public List<User> getAllUsers() {
+		final String sql = "SELECT * FROM users";
+		try (Statement s = dbConn.createStatement()) {
+			List<User> users = new ArrayList<>();
+			ResultSet res = s.executeQuery(sql);
+			while (res.next()) {		
+				users.add(new User(res.getInt("id"), res.getString("first_name"),
+						res.getString("last_name"), res.getString("email"),
+						res.getString("password"), res.getInt("is_manager") == 1));
+			}
+			res.close();
+			return users;
+		} catch (SQLException ex) {
+			log.fatal("getAllEmployees() SQLException");
+			log.fatal(ex.getMessage());
+			return null;
+		}
+	}
+	
+	
+	public List<User> getAllNonManagers() {
+		final String sql = "SELECT * FROM users WHERE is_manager = 0";
+		try (Statement s = dbConn.createStatement()) {
+			List<User> users = new ArrayList<>();
+			ResultSet res = s.executeQuery(sql);
+			while (res.next()) {		
+				users.add(new User(res.getInt("id"), res.getString("first_name"),
+						res.getString("last_name"), res.getString("email"),
+						res.getString("password"), res.getInt("is_manager") == 1));
+			}
+			res.close();
+			return users;
+		} catch (SQLException ex) {
+			log.fatal("getAllEmployees() SQLException");
+			log.fatal(ex.getMessage());
+			return null;
+		}
+	}
+	
+	public List<User> getAllManagers() {
+		final String sql = "SELECT * FROM users WHERE is_manager = 1";
+		try (Statement s = dbConn.createStatement()) {
+			List<User> users = new ArrayList<>();
+			ResultSet res = s.executeQuery(sql);
+			while (res.next()) {		
+				users.add(new User(res.getInt("id"), res.getString("first_name"),
+						res.getString("last_name"), res.getString("email"),
+						res.getString("password"), res.getInt("is_manager") == 1));
+			}
+			res.close();
+			return users;
+		} catch (SQLException ex) {
+			log.fatal("getAllEmployees() SQLException");
+			log.fatal(ex.getMessage());
+			return null;
+		}
+	}
+	
+	public List<Reimbursement> getAllReimbursements() {
+		final String sql = "SELECT * FROM reimbursements";
+		try (Statement s = dbConn.createStatement()){
+			List<Reimbursement> reimbs = new ArrayList<>();
+			try (ResultSet rs = s.executeQuery(sql)) {
+				while (rs.next()) {
+					reimbs.add(new Reimbursement(rs.getInt("id"), 
+							getUserById(rs.getInt("submitter_id")), 
+							getUserById(rs.getInt("resolver_id")),
+							rs.getDate("submission_date"), 
+							rs.getDate("resolution_date"),
+							Status.getStatus(rs.getInt("reimbursement_status_id")),
+							rs.getString("description"),
+							rs.getDouble("amount")));
+				}
+				return reimbs;
+			}
+		} catch (SQLException ex) {
+			log.fatal("getAllReimbursements() SQLException");
+			log.fatal(ex.getMessage());
+			return null;
+		}
+	}
+	
+	
+	public User getUserById(int id) {
+		final String sql = "SELECT * FROM users WHERE id = ?";
+		try (PreparedStatement ps = dbConn.prepareCall(sql)) {
+			ps.setInt(1, id);
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					return new User(id, rs.getString("first_name"), rs.getString("last_name"),
+								rs.getString("email"), rs.getString("password"),
+								rs.getInt("is_manager") == 1);
+				} else {
+					log.warn("getUserById() user not found");
+				}
+			}
+			return null;
+		} catch (SQLException ex) {
+			log.fatal("getUserById() SQLException");
+			log.fatal(ex.getMessage());
+			return null;
+		}
+	}
+	
+	
+	public void addUser(User u) {
+		final String sql = "INSERT INTO users (first_name, last_name, email, password, is_manager)"
+				+ " VALUES (?, ?, ?, ?, ?)";
+		try (PreparedStatement ps = dbConn.prepareStatement(sql)) {
+		 	ps.setString(1, u.getFirst());
+		 	ps.setString(2, u.getLast());
+		 	ps.setString(3, u.getEmail());
+		 	ps.setString(4, u.getPassword());
+		} catch (SQLException ex) {
+			log.fatal("addUser() SQLException");
+			log.fatal(ex.getMessage());
+		}
+	}
+	
+}
