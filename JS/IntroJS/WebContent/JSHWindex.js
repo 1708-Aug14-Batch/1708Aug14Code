@@ -82,8 +82,26 @@ getCustomAttribute();
 
 // 6
 // ??
-$('#num1').on("change",function(){
-	console.log(this.value);
+
+var num1;
+var num2;
+
+$('#num1').on("keyup",function(){
+	num1 = this.value;
+	if(isNaN(num1) || isNaN(num2)){
+		$('#sum').text("Cannot add");
+	}else{
+		$('#sum').text(parseInt(num1)+parseInt(num2));
+	}
+})
+
+$('#num2').on("keyup",function(){
+	num2 = this.value;
+	if(isNaN(num1) || isNaN(num2)){
+		$('#sum').text("Cannot add");
+	}else{
+		$('#sum').text(parseInt(num1)+parseInt(num2));
+	}
 })
 
 //7
@@ -150,5 +168,16 @@ $("#helloWorld").click(function(){
 //12
 
 function walkTheDOM(node, func){
-	
-}
+    func(node);
+    node = node.firstChild;
+    while(node) {
+        walkTheDOM(node, func);
+        node = node.nextSibling;
+	}
+};
+
+/*
+console.log("12. Walk the DOM")
+walkTheDOM(document,function(node){
+	console.log(node);
+})*/
