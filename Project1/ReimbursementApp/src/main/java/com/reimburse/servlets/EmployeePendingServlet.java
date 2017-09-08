@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.dto.DTO;
@@ -22,11 +23,12 @@ public class EmployeePendingServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException ,IOException {
 		//session + outwriter + service
+		HttpSession session = req.getSession();
 		PrintWriter writer = res.getWriter();
 		Service bankService = new Service();
 		
 		//user + reimbursements + dto
-		int userid = Integer.valueOf(req.getParameter("userid"));
+		int userid = (int)session.getAttribute("userid");
 		User user = bankService.getUser(userid);
 		ArrayList<Reimbursement> reimbursements = bankService.getEmployeePendingReimbursements(user.getUserId());
 		DTO dto = new DTO(user,reimbursements);
