@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.bank.dao.*;
 import com.bank.pojos.Account;
 import com.bank.pojos.Account.accountLevel;
@@ -21,7 +23,8 @@ import com.bank.pojos.BankUser;
 public class Service {
 
 	DaoImpl daoImpl = new DaoImpl();
-
+	static Logger log = Logger.getRootLogger();
+	
 	private static long maxBalance = 10000000000L;
 
 	public BankUser validateBankUser(String username, String password) {

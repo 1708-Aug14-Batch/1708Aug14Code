@@ -47,8 +47,6 @@ run anywhere
 	<li>A runtime instance of the JVM. This is analogous to an instance of a java class.</li>
 </ul>
 <p>	There are many different implementations of the JVM, though each one conforms to the abstract specification of a JVM.</p>
-<p>	Most programming languages convert source code directly into machine code. Jave converts source code into its own machine code known as bytecode. This runs on a virtual machine which integrates system calls with the unique operating system it is run on.</p>
-<p>	Since the Java Virtual Machine chooses how to interpret the bytecode (based on the Operating System of the machine it is on), it can run the same set of bytecode on any machine. This is how java code is Write Once, Run Anywhere.</p>
 <p>	Different JVMs are allowed flexibility in how they handle things like...</p>
 <ul>
 	<li>Garbage collection: A JVM is not technically required to implement garbage collection at all-- this is why garbage collection cannot be forced.</li>
@@ -57,6 +55,8 @@ run anywhere
 	</ul>
 	<li>Thread scheduling: Depends heavily on the OS threading and as such it is loosely restricted by the JVM.</li>
 </ul>
+<p>	Most programming languages convert source code directly into machine code. Jave converts source code into its own machine code known as bytecode. This runs on a virtual machine which integrates system calls with the unique operating system it is run on.</p>
+<p>	Since the Java Virtual Machine chooses how to interpret the bytecode (based on the Operating System of the machine it is on), it can run the same set of bytecode on any machine. This is how java code is Write Once, Run Anywhere.</p>
 <p>	The greatest advantage that the JVM gives us is encapsulating the Operating System's implementation of machine code. Without that Java would be platform-dependant.</p>
 <p>	The JVM has limited support for booleans, so most compilers will convert booleans into ints or bytes before creating bytecode.</p>
 <p>	The JVM uses an extra primitive type which is unavailable to a Java programmer: the returnAddress type. This primitive is used to implement <i>finally</i> clauses.</p>
