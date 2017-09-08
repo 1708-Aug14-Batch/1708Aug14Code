@@ -1,39 +1,22 @@
-/*
-$(document).ready(function(){
-	$('loginRequest()';
-})
- var loginRequest = function(){
+
+
+function loadLogin(){
 	$.ajax({
-	   type: 'POST',
-	   url: '/login',
-	   data: {
-	      "username" : $('exampleInputEmail1').val,
-	      "password" : $('exampleInputPassword1').val
-	   },
-	   success: function(data) {
-	      console.log(data);
-	   },
-	});
+		type: 'GET',
+		url: 'loadLogin',
+		success: function(response){
+			document.getElementById('content').innerHTML = response;
+			$('#login').click(loginRequest);
+			$('#keyBubble').keypress(function(e){
+				if(e.which == 13){
+					$('#login').click(loginRequest());
+				}
+			})
+		}
+	})
 }
-*/
 
 /*
-function loginRequest(){
-	console.log("tacooooo");
-	$.ajax({
-	   type: 'POST',
-	   url: '/login',
-	   data: {
-	      "username" : $('#email').val(),
-	      "password" : $('#password').val()
-	   },
-	   success: function(data) {
-	      console.log(data);
-	   },
-	});
-}
-*/
-
 function loadLogin(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -44,7 +27,7 @@ function loadLogin(){
 	}
 	xhr.open("GET", "loadLogin", true);
 	xhr.send();
-}
+}*/
 
 function loginRequest(){
  	var email = $('#email').val();
@@ -69,49 +52,6 @@ function loginRequest(){
 	xhr.open("POST", "loginRequest", true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
 	xhr.send(to);
-
-/*
- 	$.ajax({
- 		type: "POST",
- 		url: "loginRequest",
- 		data:to,
-		contentType: "application/json",
- 		success: function (data){
- 			if(data.success){
- 				loadMenu();
- 			}
- 		},
- 		error: function (data){
- 			console.log(data);
- 			if(data == "2"){
-				document.getElementById('fail').innerHTML = xhr.responseText;
-			}else{
-				document.getElementById('fail').innerHTML = xhr.responseText;
-			}
- 		}
- 	});
-
-
- 		data:{
- 			email: $('#email').val(),
- 			password: $('#password').val()
- 		},
- 		dataType : "json",
-
-
-*/
-
-/*
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('content').innerHTML = xhr.responseText;
-			loadMenu();
-		}
-	}
-	xhr.open("GET", "loadMenu", true);
-	xhr.send();
-	*/
 }
 
 
@@ -133,9 +73,6 @@ function getUserInfo(){
 		xhr.send();
 }
 
-//document.getElementById("login").addEventListener("click",loginRequest);
-
-//$('#login').click(loginRequest);
 
 function loadMenu(value){
 	var xhr = new XMLHttpRequest();
@@ -200,6 +137,7 @@ function loadReim(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
+			$('#reim').DataTable();
 		}
 	}
 	xhr.open("GET", "loadReim", true);

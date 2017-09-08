@@ -15,10 +15,15 @@
 
 .azborder{
 	/*
-		add bootstrap rounded
+		add bootstrap - rounded
 	*/
     padding: 3%;
     border: 1px solid;	
+}
+
+.azborderr{
+	padding-right: 3%;
+	border-right: 1px solid;
 }
 
 .azheight100{
