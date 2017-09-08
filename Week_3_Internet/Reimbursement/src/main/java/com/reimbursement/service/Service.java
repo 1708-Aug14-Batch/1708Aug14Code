@@ -30,7 +30,10 @@ public class Service {
 		System.out.println("We got here after the DAO");
 		
 	}
-	
+	public ArrayList<Reimbursement> getAllReimbursements(){
+		ArrayList<Reimbursement> list = test.getAllReimbursements();
+		return list;
+	}
 	public boolean checkEmail(String email) {
 		ArrayList<User> list = test.getUsers();
 		for(User u: list) {
