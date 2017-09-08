@@ -14,10 +14,24 @@ public class DBControl {
 	static private DAO dao = new DAOImpl();
 	static private Date date= new Date();
 	
+	public int VarifyUser(String userName){
+		return dao.getUserID(userName);
+	}
+	
 	public Users Authentication(String userName, String password){
 		Users user = dao.getUser(dao.getUserID(userName));
-		if(user!=null)
-		{
+		if(user!=null){
+			if(user.getPassword().equals(password))
+				return user;
+			else
+				return null;
+		}else
+			return null;
+	}
+	
+	public Users Authentication(int userID, String password){
+		Users user = dao.getUser(userID);
+		if(user!=null){
 			if(user.getPassword().equals(password))
 				return user;
 			else

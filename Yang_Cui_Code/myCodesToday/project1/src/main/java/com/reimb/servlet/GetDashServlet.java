@@ -7,11 +7,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.reimb.pojo.Users;
 
 @SuppressWarnings("serial")
 @WebServlet("/getDashboard")
 public class GetDashServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		req.getRequestDispatcher("dashboard.html").forward(req, res);
+		HttpSession session =req.getSession();
+		Users sessionUser=(Users)session.getAttribute("user");
+		
+		if(sessionUser.getIsMananger())
+			req.getRequestDispatcher("partials/dashManager.html").forward(req, res);
+		else
+			req.getRequestDispatcher("partials/dashEmployee.html").forward(req, res);
 	}
 }
