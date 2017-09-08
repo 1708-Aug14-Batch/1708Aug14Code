@@ -20,7 +20,7 @@ public class Service {
 		ArrayList<User> list = test.getUsers();
 		
 		for(User t: list){
-			if(t.getEmail() == u.getEmail()) {
+			if(t.getEmail().equals(u.getEmail())) {
 				System.out.println("Before ID: " + t.getUserId());
 				u.setUserId(t.getUserId());
 			}
