@@ -5,10 +5,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
 
-
 public class ConnectionFactory {
+	
 	private static ConnectionFactory cf = null;
-	private static Boolean build = true;
+	private static boolean build = true;
 	
 	private ConnectionFactory(){
 		build = false;
@@ -31,7 +31,7 @@ public class ConnectionFactory {
 		try{
 			Properties prop = new Properties();
 			// location for properties file will be wherever you create it. include full file path
-			prop.load(new FileReader("C:/Users/Genesis/my_git_repos/1708Aug14Code/SQL/Bank/src/com/bank/util/database.properties"));
+			prop.load(new FileReader("C:/Users/Rev/my_git_repos/1708Aug14Code/SQL/Bank/src/com/bank/util/database.properties"));
 			// register JDBC driver
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(
@@ -52,6 +52,4 @@ public class ConnectionFactory {
 		return conn;
 	}
 	
-	
-
 }

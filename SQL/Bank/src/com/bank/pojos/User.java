@@ -8,8 +8,8 @@ public class User {
 	private String email;
 	private String password;
 	
-	private User(){}
-
+	public User(){}
+	
 	public User(String firstname, String lastname, String email, String password) {
 		super();
 		this.firstname = firstname;
@@ -58,11 +58,9 @@ public class User {
 		this.password = password;
 	}
 
-	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
 				+ ", password=" + password + "]";
 	}
-	
 	
 }
