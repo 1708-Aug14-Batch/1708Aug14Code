@@ -1,5 +1,6 @@
 package com.bank.dao;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -143,3 +144,9 @@ public class DaoTextImpl implements DAO {
 	}
 
 }
+=======
+public class DaoTextImpl implements DAO{
+
+	//file = located in data package
+}
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c

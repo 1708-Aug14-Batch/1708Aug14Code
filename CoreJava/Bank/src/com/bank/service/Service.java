@@ -1,5 +1,6 @@
 package com.bank.service;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -155,3 +156,19 @@ public class Service {
 	}
 
 }
+=======
+import com.bank.dao.DAO;
+import com.bank.dao.DaoTextImpl;
+
+public class Service {
+	
+	DAO dao = new DaoTextImpl();
+	
+	
+	
+	//login functionality
+	//what do you want to do functionality
+	// 
+
+}
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c

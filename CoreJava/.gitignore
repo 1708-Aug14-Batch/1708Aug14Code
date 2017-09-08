@@ -1,2 +1,22 @@
+<<<<<<< HEAD
 /.metadata/
 /.recommenders/
+=======
+*/Servers/*
+/bin/
+*/RemoteSystemsTempFiles/*
+
+.settings
+/
+target/
+
+build/
+
+*/.metadata/*	
+.metadata
+.recommenders
+*/.plugins/*
+*_Code
+*_code
+
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c

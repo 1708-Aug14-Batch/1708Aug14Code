@@ -3,6 +3,10 @@ package com.bank.pojos;
 import java.math.BigDecimal;
 
 public class User {
+<<<<<<< HEAD
+=======
+	
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c
 	private int id;
 	private String firstname;
 	private String lastname;
@@ -10,6 +14,7 @@ public class User {
 	private String password;
 	private double balance;
 	
+<<<<<<< HEAD
 	public User() {}
 	
 	public User(int id, String firstname, String lastname, String email, String password, double balance) {
@@ -71,4 +76,12 @@ public class User {
 	}
 	
 	
+=======
+	// add constructors, getters, setters
+	
+	public User(double balance){
+		this.balance = 0.00;
+	}
+
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c
 }

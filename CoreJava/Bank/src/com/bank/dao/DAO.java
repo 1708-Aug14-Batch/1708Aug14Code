@@ -1,9 +1,12 @@
 package com.bank.dao;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import com.bank.pojos.User;
 
+=======
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c
 public interface DAO {
 	
 	// The contract we make for the information that
@@ -12,6 +15,7 @@ public interface DAO {
 	// addUser
 	// editUser - change fn, ln, email, PW, or balance
 	// getuser
+<<<<<<< HEAD
 	
 	public void addUser(User user);
 	
@@ -29,3 +33,6 @@ public interface DAO {
 	
 	public void deleteFile();
 }
+=======
+}
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c

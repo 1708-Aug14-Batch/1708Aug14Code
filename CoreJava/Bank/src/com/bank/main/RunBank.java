@@ -1,5 +1,6 @@
 package com.bank.main;
 
+<<<<<<< HEAD
 import java.util.Scanner;
 
 import com.bank.service.Service;
@@ -20,10 +21,16 @@ public class RunBank {
 	 */
 
 	public static boolean login;
+=======
+import com.bank.service.Service;
+
+public class RunBank {
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c
 
 	// implementation to actually run bank application
 	public static void main(String[] args) {
 		Service bankService = new Service();
+<<<<<<< HEAD
 
 		bankService.login();
 		while (login) {
@@ -68,3 +75,23 @@ public class RunBank {
 	}
 
 }
+=======
+	}
+	static void login(){}
+	
+	/*
+	 * Requirements: As a user I can,
+	 * 	- login
+	 * 	- create an account
+	 * 	- logout
+	 * 	- withdraw or deposit funds
+	 * 	- view my* account balance
+	 * 	- edit my* information
+	 * 
+	 * Tech-Specs
+	 * - core java, file i/o
+	 */
+	
+
+}
+>>>>>>> a3d401426b647d7925ad2c6a5500154ce783b45c
