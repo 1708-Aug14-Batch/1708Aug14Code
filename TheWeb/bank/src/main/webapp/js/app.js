@@ -2,7 +2,7 @@ var logged = false;
 window.onload = function(){
 
 	loadHomeView();
-	
+
 	if(logged == false){
 		$("#navbar").hide();
 	}
@@ -13,7 +13,7 @@ window.onload = function(){
 		.addEventListener("click", loadDashboardView);
 
 		document.getElementById("accPage")
-		.addEventListener("click", loadAccountPageView);
+		.addEventListener("click", ajaxGetPage);
 
 
 };
@@ -26,7 +26,7 @@ function loadHomeView(){
 			//console.log(xhr.responseText);
 			document.getElementById('view').innerHTML = xhr.responseText;		
 			document.getElementById("login")
-				.addEventListener("click", login);
+			.addEventListener("click", login);
 		}
 	}
 	console.log("getting homepage")
@@ -86,8 +86,21 @@ function loadDashboardView(){
 	xhr.send();
 };
 
+function ajaxGetPage(){
+	return $.ajax({
+		url: 'getAccPage',
+		data: {
+			format: 'html'
+		},
+		type: 'GET',
+		success: function(result){
+			console.log("inside ajax GET");
+		$('#view').html(result);
+		getAcctPageInto(); }
+	})
 
-
+};
+//https://stackoverflow.com/questions/8840257/jquery-ajax-handling-continue-responses-success-vs-done
 
 function loadAccountPageView(){
 	var xhr = new XMLHttpRequest();
@@ -96,7 +109,7 @@ function loadAccountPageView(){
 			document.getElementById('view').
 			innerHTML = xhr.responseText;
 			getAcctPageInfo(); // loads user info by calling function
-			
+
 		}
 	}
 	console.log("getting accts")
@@ -136,7 +149,7 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 	}
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
-	
+
 }
 
 
@@ -177,6 +190,63 @@ function addAccount(){ // allows us to acc new accounts
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
 	xhr.send(input); //include your post data in the send()
 
-}
+};
+
+//function createUser(){
+
+//// load pageview
+//validatePass();
+//$("#submitNewUser").onclick(){
+//// validate emai
+//}
+
+//};
+
+function validatePass(){
+	$('input[type=password]').keyup(function() {
+		var pswd = $(this).val();
+
+		//validate the length
+		if ( pswd.length < 8 ) {
+			$('#length').removeClass('valid').addClass('invalid');
+		} else {
+			$('#length').removeClass('invalid').addClass('valid');
+		}
+
+		//validate letter
+		if ( pswd.match(/[A-z]/) ) {
+			$('#letter').removeClass('invalid').addClass('valid');
+		} else {
+			$('#letter').removeClass('valid').addClass('invalid');
+		}
+
+		//validate capital letter
+		if ( pswd.match(/[A-Z]/) ) {
+			$('#capital').removeClass('invalid').addClass('valid');
+		} else {
+			$('#capital').removeClass('valid').addClass('invalid');
+		}
+
+		//validate number
+		if ( pswd.match(/\d/) ) {
+			$('#number').removeClass('invalid').addClass('valid');
+		} else {
+			$('#number').removeClass('valid').addClass('invalid');
+		}
+
+		//validate space
+		if ( pswd.match(/[^a-zA-Z0-9\-\/]/) ) {
+			$('#space').removeClass('invalid').addClass('valid');
+		} else {
+			$('#space').removeClass('valid').addClass('invalid');
+		}
+
+	}).focus(function() {
+		$('#pswd_info').show();
+	}).blur(function() {
+		$('#pswd_info').hide();
+	});
+
+};
 
 
