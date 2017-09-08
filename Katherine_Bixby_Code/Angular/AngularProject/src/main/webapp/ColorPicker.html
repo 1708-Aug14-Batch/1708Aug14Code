@@ -1,0 +1,61 @@
+<!DOCTYPE html-5>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Color Picker</title>
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-app="myCP">
+	<div class="container-fluid">
+		<br>
+		<div ng-controller="myCtrl">
+			<h3>Red Value: {{redVal}}</h3>
+			<div class="well well-sm" style="background: linear-gradient(to right, RGB(0,{{greenVal}},{{blueVal}}),RGB(255,{{greenVal}},{{blueVal}})"></div>
+			<input type="range" ng-model="redVal" min="0" max="255" /> <br>
+			<h3>Green Value: {{greenVal}}</h3>
+			<div class="well well-sm" style="background: linear-gradient(to right, RGB({{redVal}},0,{{blueVal}}),RGB({{redVal}},255,{{blueVal}})"></div>
+			<input type="range" ng-model="greenVal" min="0" max="255" /> <br>
+			<h3>Blue Value: {{blueVal}}</h3>
+			<div class="well well-sm" style="background: linear-gradient(to right, RGB({{redVal}},{{greenVal}},0),RGB({{redVal}},{{greenVal}},255)"></div>
+			<input type="range" ng-model="blueVal" min="0" max="255" /> <br><br>
+			<h3>My Color:</h3>
+			<div class="well" style="background: {{myRGB()}}"></div>
+			RGB Value: {{myRGB()}} <br>
+			Hex Value: #{{rgbToHex()}}
+			<br><br>
+			<canvas id="myCanvas" width="1000" height="500" style="border: 10px solid {{myRGB()}};">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+			
+			
+			
+			
+			
+			
+			<br> <br> <br> <br> <br> <br>
+			
+		</div>
+		
+		<script>
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			ctx.beginPath();
+			ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+			ctx.stroke();
+		</script>
+		
+		
+		
+	</div>
+
+
+
+
+	<script src="https://www.w3schools.com/lib/w3color.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="js/cp.js"></script>
+</body>
+</html>
