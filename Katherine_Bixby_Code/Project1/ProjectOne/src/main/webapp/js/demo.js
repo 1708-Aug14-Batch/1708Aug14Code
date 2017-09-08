@@ -3,8 +3,6 @@ window.onload = function(){
 	
 	loadDashboardView();
 	
-	
-	
 };
 
 
@@ -37,7 +35,7 @@ function getUserInformation(){
 			var aUser = dto.auser;
 			var reimbursements = dto.reimbursements;
 			
-			document.getElementById('name').innerHTML = aUser.firstName + " " + aUser.lastName;
+			//document.getElementById('name').innerHTML = aUser.firstName + " " + aUser.lastName;
 			if (reimbursements.length == 0&&aUser.isManager==0){
 				document.getElementById("reimbursements").style.visibility = "hidden"; 
 				//console.log("null");
@@ -66,7 +64,7 @@ function getUserInformation(){
 					statid.innerHTML = reimbursements[i].statusId;
 					desc.innerHTML = reimbursements[i].description;
 					resnotes.innerHTML = reimbursements[i].resolveNotes;
-					amt.innerHTML = reimbursements[i].amount;
+					amt.innerHTML = "$"+reimbursements[i].amount;
 					
 				}
 			}

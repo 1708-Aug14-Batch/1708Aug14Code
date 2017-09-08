@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pone.pojos.AUser;
 import com.pone.service.Service;
 
-@WebServlet("/loginmessagetest")
+@WebServlet("/loginmessage")
 public class LoginMessageServlet extends HttpServlet {
 	
 	static Service service = new Service();
@@ -59,6 +59,7 @@ public class LoginMessageServlet extends HttpServlet {
 			}
 			else {
 				json = "Success";
+				session.setAttribute("auser", u);
 			}
 		}
 		PrintWriter out = resp.getWriter();

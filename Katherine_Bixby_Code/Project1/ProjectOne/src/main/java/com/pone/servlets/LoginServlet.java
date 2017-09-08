@@ -1,18 +1,24 @@
 package com.pone.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pone.pojos.AUser;
 import com.pone.service.Service;
 
-
+@WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 	
 	static Service service = new Service();
@@ -21,20 +27,26 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, 
 			HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
+		
 		//System.out.println(session);
-		String email = request.getParameter("email");
-		String pass = request.getParameter("pass");
-		int id = service.validateUser(email);
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		int id = service.validateUser(username);
+		
+		String alert = "";
+		
 		if(id < 0){
-			RequestDispatcher rd = request.getRequestDispatcher("error.html");
-			rd.forward(request, response); // invalid user
+			alert = "window.alert(\"Invalid user. Please try again\")";
+			request.setAttribute("loginAlert", "Invalid Username! Please try again.");
+			request.getRequestDispatcher("login.jsp").forward(request, response); // invalid user
 		}
 		else{
-			AUser u = service.login(id, pass);
+			AUser u = service.login(id, password);
 			if(u == null){
-				RequestDispatcher rd = request.getRequestDispatcher("error.html");
-				rd.forward(request, response); // password is wrong 
+				request.setAttribute("loginAlert", "Invalid password! Please try again.");
+				request.getRequestDispatcher("login.jsp").forward(request, response); // invalid password
 			}
 			else{
 				if(u.getIsManager()==0) { // is not a manager
