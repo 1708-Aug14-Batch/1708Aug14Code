@@ -1,0 +1,16 @@
+window.onload = function(){
+	document.getElementById("outer").addEventListener("click", handler, false); 
+	document.getElementById("inner").addEventListener("click", handler, false); 	
+	document.getElementById("innerMost").addEventListener("click", handler, false); 
+	
+	document.getElementById("outer").addEventListener("drop", drop, false); 
+	document.getElementById("inner").addEventListener("drop", drop, false); 	
+	document.getElementById("innerMost").addEventListener("drop", drop, false); 	
+	
+	document.getElementById("outer").addEventListener("dragover", allowDrop, false); 
+	document.getElementById("inner").addEventListener("dragover", allowDrop, false); 	
+	document.getElementById("innerMost").addEventListener("dragover", allowDrop, false); 	
+	
+	
+	
+}

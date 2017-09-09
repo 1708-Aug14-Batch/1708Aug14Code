@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Grocery List</h1>
+	<div class="jumbotron">
+		<div class="row justify-content-start">
+			<div class="col-6">
+		
+
+		<input type="text" id="newItem" class="form-con" placeholder="Anything Else?" /> <br>
+		<button>id="add" class="btn btn-primary"> Add Item</button>
+       
+		<ul>
+			<li id="one">figs</li>
+			<li id="two">steak</li>
+			<li id="three">rice</li>
+		</ul>
+	</div>
+	<div class="col-6">
+	<h3> Purchased:</h3>
+	</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous"></script>
+	<script>
+	('#li').on('click', function() {
+		$('ul#bought').append(%(this));
+	})
+	$('#add').on('click', function() {
+			var temp = document.createElement('li');
+			temp.innerHTML = $('#newItem').val();
+			$('ul#toBuy').append(temp);
+			$('#newItem').val('');
+			
+
+			/*('#li').on('click', function() {
+				$(this).remove();*/
+				
+				('#li').on('click', function() {
+					$('ul#bought').append(%(this));
+				})
+			})
+		})
+	</script>
+</body>
+</html>

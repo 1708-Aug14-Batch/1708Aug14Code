@@ -1,0 +1,11 @@
+package com.revature.dao;
+
+import java.util.HashMap;
+
+import com.revature.model.User;
+
+public interface DAO {
+	public HashMap<Integer, String> getEmails();
+	public User getUserById(int id);
+	public int addUser(String fn, String ln, String email, String pass);
+}

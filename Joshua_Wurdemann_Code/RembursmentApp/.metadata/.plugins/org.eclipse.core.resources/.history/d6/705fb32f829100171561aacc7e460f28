@@ -1,0 +1,67 @@
+package com.revature.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
+import com.revature.model.Reimbursement;
+import com.revature.util.ConnectionFactory;
+
+public class DAOReimbursement {
+   //Reimbursement create = new Reimbursement();
+  public int createReimbursement(Reimbursement create){
+    try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+      conn.setAutoCommit(false);
+    /*  (int rId, int submitterID, int resolverID, Timestamp submitDate, Timestamp resolvedDate,
+          int statusID, String description, String resolvedNote, double amount)*/
+     
+      
+      String sql = "insert into reimbursements " + "(SUBMITTERID, "
+          + "RESOLVERID, SUBMITDATE, RESOLVED, STATUSID, DESCRIPTION, RESOLVNOTES, AMOUNT)"
+          + "values(?, ?, ?, ?, ?, ?, ?, ?)";
+      String[] key = new String[1];
+      key[0] = "reimburseid";
+     
+      
+      PreparedStatement ps = conn.prepareStatement(sql, key);
+      ps.setInt(1, create.getSubmitterID() ); //do not really need summitter id?
+      ps.setInt(2, create.getResolverID());  // may not need this?
+      ps.setTimestamp(3, create.getSubmitDate());// may not need this?
+      ps.setTimestamp(4, create.getResolvedDate());// may not need this?
+      ps.setInt(5, create.getStatusID());
+      ps.setString(6, create.getDescription());
+      ps.setString(5, create.getResolvedNote());// This is only for the manger to send.
+      ps.setDouble(6, create.getAmount());
+     
+      
+      
+      ps.executeUpdate();
+      int id = 0;
+      ResultSet pk = ps.getGeneratedKeys();
+      while (pk.next()) {
+        id = pk.getInt(1);
+      }
+
+      conn.commit();
+      return id;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return 0;
+  }
+}
+    
+    
+    
+    
+    
+    return 0;
+    
+  }
+  
+  
+}

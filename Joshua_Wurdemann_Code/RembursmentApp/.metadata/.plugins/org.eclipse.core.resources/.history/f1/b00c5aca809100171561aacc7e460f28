@@ -1,0 +1,61 @@
+package com.revature.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
+import com.revature.model.Reimbursement;
+import com.revature.util.ConnectionFactory;
+
+public class DAOReimbursement {
+   //Reimbursement create = new Reimbursement();
+  public int createReimbursement(Reimbursement create){
+    try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+      conn.setAutoCommit(false);
+    /*  (int rId, int submitterID, int resolverID, Timestamp submitDate, Timestamp resolvedDate,
+          int statusID, String description, String resolvedNote, double amount)*/
+     
+      
+      String sql = "insert into reimbursements " + "(SUBMITTERID, "
+          + "RESOLVERID, SUBMITDATE, RESOLVED, STATUSID, DESCRIPTION, RESOLVNOTES, AMOUNT)"
+          + "values(?, ?, ?, ?, ?, ?, ?, ?)";
+      String[] key = new String[1];
+      key[0] = "reimburseid";
+     
+      
+      PreparedStatement ps = conn.prepareStatement(sql, key);
+      ps.setString(1, create.getrId());
+      ps.setString(2, ln);
+      ps.setString(3, email);
+      ps.setString(4, pass);
+
+      ps.executeUpdate();
+      int id = 0;
+      ResultSet pk = ps.getGeneratedKeys();
+      while (pk.next()) {
+        id = pk.getInt(1);
+      }
+
+      conn.commit();
+      return id;
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return 0;
+  }
+}
+    
+    
+    
+    
+    
+    return 0;
+    
+  }
+  
+  
+}
