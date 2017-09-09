@@ -1,6 +1,8 @@
 /**
  * 
- */function getUSA(){
+ */
+
+function getUSA(){
 	$('*').each(function(){
 		$.each(this.attributes,function(){
 			if(this.value=="USA"){
