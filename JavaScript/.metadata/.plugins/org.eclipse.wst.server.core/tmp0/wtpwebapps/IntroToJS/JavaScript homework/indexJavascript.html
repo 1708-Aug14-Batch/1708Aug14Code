@@ -150,7 +150,7 @@ Find all checked options in the 'skills' select element.
 Print the value and the contents.
 */
 function getHobbies() {
-	var elements = document.querySelector("select[name='skills']");
+	var elements = document.querySelector("select[name='skills']:selected");
 	
 	for (var i = 0; i < elements.length; i++)
         if (elements[i].selected)
@@ -171,7 +171,7 @@ function getCustomAttribute() {
 	for (var i = 0; i < elements.length; i++)
 		for (var j = 0; j < elements[i].attributes.length; j++)
 	    	if (elements[i].attributes[j].localName == "data-customattr")
-				console.log(elements[i].attributes[j].value);
+				console.log(elements[i].tagName + " " + elements[i].attributes[j].value);
 }
 
 
