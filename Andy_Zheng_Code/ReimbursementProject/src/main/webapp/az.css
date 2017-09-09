@@ -26,6 +26,14 @@
 	border-right: 1px solid;
 }
 
+.azpaddingr10{
+	padding-right: 10%;
+}
+
+.azpaddingl10{
+	padding-left: 10%;
+}
+
 .azheight100{
 	height: 100%;
 }
@@ -33,30 +41,30 @@
 .azwidth50{
 	width: 50%
 }
-.azwidth60{
+.azwidth55{
 	width: 55%
 }
 .azwidth60{
 	width: 60%
 }
-.azwidth60{
+.azwidth65{
 	width: 65%
 }
-.azwidth60{
+.azwidth70{
 	width: 70%
 }
 .azwidth75{
 	width: 75%
 }
-.azwidth75{
+.azwidth80{
 	width: 80%
 }
-.azwidth75{
+.azwidth85{
 	width: 85%
 }
-.azwidth75{
+.azwidth90{
 	width: 90%
 }
-.azwidth99{
+.azwidth95{
 	width: 95%
 }

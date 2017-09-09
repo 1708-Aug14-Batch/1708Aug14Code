@@ -97,9 +97,9 @@ public class DAOImplementation implements DAOInterface {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return -1;
 		}
 
-		return -1;
 	}
 
 	// Update User by pass object
@@ -128,7 +128,7 @@ public class DAOImplementation implements DAOInterface {
 	}
 
 	// Insert Reimbursement
-	public int addReimbursement(User u, String description, int amount) {
+	public int addReimbursement(User u, String description, double amount) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			con.setAutoCommit(false);
@@ -136,11 +136,11 @@ public class DAOImplementation implements DAOInterface {
 			String sql = "INSERT INTO REIMBURSEMENTS(SUBMITTERID, DESCRIPTION, AMOUNT) VALUES(?,?,?)";
 
 			String[] key = new String[1];
-			key[0] = "ACCOUNTID";
+			key[0] = "REIMID";
 			PreparedStatement ps = con.prepareStatement(sql, key);
 			ps.setInt(1, u.getUserID());
 			ps.setString(2, description);
-			ps.setInt(3, amount);
+			ps.setDouble(3, amount);
 
 			ps.executeUpdate();
 
@@ -290,7 +290,7 @@ public class DAOImplementation implements DAOInterface {
 	}
 	
 	// select all reimbursement based of a user
-	public HashSet<Reimbursement> getReimbursement(int userID) {
+	public HashSet<Reimbursement> getUserReim(int userID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM REIMBURSEMENTS WHERE SUBMITTERID = (?)";
@@ -323,7 +323,7 @@ public class DAOImplementation implements DAOInterface {
 	}
 
 	// selects all reimbursements based on status
-	public HashSet<Reimbursement> getReimbursements(int statusID) {
+	public HashSet<Reimbursement> getStatusReim(int statusID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM REIMBURSEMENTS WHERE STATUSID = ?";
@@ -356,7 +356,7 @@ public class DAOImplementation implements DAOInterface {
 	}
 
 	// selects all reimbursements based on user and status
-	public HashSet<Reimbursement> getUserReimbursements(int userID, int statusID) {
+	public HashSet<Reimbursement> getUserStatusReim(int userID, int statusID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM REIMBURSEMENTS WHERE USERID = ? AND STATUSID = ?";

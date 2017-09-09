@@ -15,7 +15,7 @@ public interface DAOInterface {
 	
 	public int updateUser(User u);
 
-	public int addReimbursement(User u, String description, int amount);
+	public int addReimbursement(User u, String description, double amount);
 
 	public int updateReimbursement(int reimID, User user, ReimStatus rs, String notes);
 
@@ -25,11 +25,11 @@ public interface DAOInterface {
 
 	public HashSet<User> getUsers();
 
-	public HashSet<Reimbursement> getReimbursement(int userID);
+	public HashSet<Reimbursement> getUserReim(int userID);
 
-	public HashSet<Reimbursement> getReimbursements(int statusID);
+	public HashSet<Reimbursement> getStatusReim(int statusID);
 
-	public HashSet<Reimbursement> getUserReimbursements(int userID, int statusID);
+	public HashSet<Reimbursement> getUserStatusReim(int userID, int statusID);
 
 	public ReimStatus getReimStatusFromID(int statusID);
 }

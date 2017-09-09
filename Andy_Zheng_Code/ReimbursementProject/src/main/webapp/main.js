@@ -16,19 +16,6 @@ function loadLogin(){
 	})
 }
 
-/*
-function loadLogin(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('content').innerHTML = xhr.responseText;
-			$('#login').click(loginRequest);
-		}
-	}
-	xhr.open("GET", "loadLogin", true);
-	xhr.send();
-}*/
-
 function loginRequest(){
  	var email = $('#email').val();
  	var password = $('#password').val();
@@ -54,25 +41,92 @@ function loginRequest(){
 	xhr.send(to);
 }
 
-
 function getUserInfo(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
-			var dto = JSON.parse(xhr.responseText);
-			console.log(dto);
-			var use = dto.user;
-			//document.getElementById('name').innerHTML = dto.user.fname + " " + dto.user.lname;
-			document.getElementById('fn').innerHTML = use.fname;
-			document.getElementById('ln').innerHTML = use.lname;
-			document.getElementById('email').innerHTML = use.email;
-			}
+	$.ajax({
+		type: 'GET',
+		url: 'userInfo',
+		success: function(response){
+			//var dto = JSON.parse(response);
+			var user = response;
+			$('#fn').text(user.fname);
+			$('#ln').text(user.lname);
+			$('#email').text(user.email);
+			$('#password').text(user.pwd);
 		}
-		xhr.open("GET", "userInfo", true);
-		xhr.send();
+	})
 }
 
+function getReimInfo(){
+	$.ajax({
+		type: 'GET',
+		url: 'reimInfo',
+		success: function(response){
+			var reim = response;
+			var acctTable = document.getElementById('acctTable');
+			for(var x = 0; x<reim.length; x++){
+				var row = acctTable.insertRow(x+1);
+				var col1 = row.insertCell(0);
+				var col2 = row.insertCell(1);
+				var col3 = row.insertCell(2);
+				var col4 = row.insertCell(3);
+				var col4 = row.insertCell(4);
+				var col4 = row.insertCell(5);
+				var col4 = row.insertCell(6);
+
+				col1.innerHTML = accounts[x].reimID;
+				col2.innerHTML = accounts[x].submitterID;
+				col3.innerHTML = accounts[x].user.fname + " " + accounts[x].user.lname;
+				col4.innerHTML = accounts[x].type.type;
+				console.log(accounts[x]);
+			}
+		}
+	})
+}
+
+function registerEmployee(){
+	var fn = $('#fn').val();
+	var ln = $('#ln').val();
+ 	var email = $('#email').val();
+ 	var password = $('#password').val();
+
+ 	var to = [fn,ln,email,password];
+
+ 	to = JSON.stringify(to);
+
+	$.ajax({
+		type: 'POST',
+		url: 'registerEmployee',
+		data: to,
+		dataType: 'JSON',
+		success: function(response){
+			if(response == "Employee Registered"){
+				alert("Employee Registered");	
+			}else if(response == "Failed Registration"){
+				alert("Failed Registration");	
+			}
+		}
+	})
+}
+
+function submitReim(){
+	var description = $('#description').val();
+	var amount = $('#amount').val();
+
+ 	var to = [description,amount];
+
+ 	to = JSON.stringify(to);
+ 	$.ajax({
+ 		type: 'POST',
+ 		url: 'submitReim',
+ 		data: to,
+ 		dataType: 'JSON',
+ 		success: function(response){
+			if(response == "Reimbursement Submitted"){
+				alert("Reimbursement Submitted");
+ 			}
+ 		}
+	})
+}
 
 function loadMenu(value){
 	var xhr = new XMLHttpRequest();
@@ -80,7 +134,6 @@ function loadMenu(value){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content').innerHTML = xhr.responseText;
 			loadHome();
-			console.log(value);
 			if(value == "0"){
 				$('#five').click(loadSubmitReim);
 			}else if(value == "1"){
@@ -149,6 +202,7 @@ function loadRegisterEmployee(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
+			$('#register').click(registerEmployee);
 		}
 	}
 	xhr.open("GET", "loadRegisterEmployee", true);
@@ -160,11 +214,14 @@ function loadSubmitReim(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
+			$('#submit').click(submitReim);
 		}
 	}
 	xhr.open("GET", "loadSubmitReim", true);
 	xhr.send();
 }
+
+
 
 // Gets user info and accounts
 /*

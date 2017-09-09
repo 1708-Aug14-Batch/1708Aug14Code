@@ -10,8 +10,6 @@ public class DTO {
 	private User user;
 	private HashSet<Reimbursement> reim;
 	
-	public DTO() {};
-	
 	public DTO(User user, HashSet<Reimbursement> reim) {
 		super();
 		this.user = user;

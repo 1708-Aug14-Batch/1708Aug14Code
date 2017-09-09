@@ -17,22 +17,7 @@ public class Service {
 	public User login(String email, String pwd) {
 		
 		User newUser = null;
-		return newUser = dao.getUser(email, pwd);
-		/*
-		User newUser = null;
-		if(validateLogin(email)==1) {
-			newUser = dao.getUser(email, pwd);
-			if(newUser == null) {
-				
-			}
-		}
-		if(newUser != null && newUser.getUserID()!=0){
-			isLoggedIn = true;
-			return 1;
-		}else {
-			return validateLogin(email);
-		}*/
-	}
+		return newUser = dao.getUser(email, pwd);}
 	
 	public int validateLogin(String email, String pwd) {
 		
@@ -58,22 +43,14 @@ public class Service {
 		return dao.getUser(userID);
 	}
 
-/*
-	public User getCurrentUser() {
-		return currentUser;
-	}
-	public void setCurrentUser(User currentUser) {
-		this.currentUser = currentUser;
-	}
-	*/
 	public boolean getIsLoggedIn(){
 		return isLoggedIn;
 	}
 	
 	// Create User
-	public boolean createUser(String fname, String lname, String email, String pwd, int isManager) {
+	public boolean createUser(User user) {
 		
-		int x = dao.addUser(fname,lname,email,pwd,isManager);
+		int x = dao.addUser(user);
 		if(x > 1) {
 			return true;
 		}else {
@@ -82,7 +59,7 @@ public class Service {
 	}
 	
 	// Create Reimbursement
-	public boolean createReimbursement(User u, String description, int amount) {
+	public boolean createReimbursement(User u, String description, double amount) {
 		int x = dao.addReimbursement(u, description, amount);
 		if(x > 1) {
 			return true;
@@ -90,35 +67,28 @@ public class Service {
 			return false;
 		}
 	}
-	
-	/*
-	// Get User Information from session
-	public void getUser() {
-		System.out.println(PseudoSession.getCurrentUser().toString());
-	}
-	*/
-	
+		
 	public HashSet<User> getAllUsers(){
 		return dao.getUsers();
 	}
 	
 	// Get User's Reimbursements
 	public HashSet<Reimbursement> getUserReimbursement(int userID) {
-		HashSet<Reimbursement> userReims = dao.getReimbursement(userID);
+		HashSet<Reimbursement> userReims = dao.getUserReim(userID);
 		
 		return userReims;
 	}
 	
 	// Get Reimbursements of certain status
 	public HashSet<Reimbursement> getReimbursementsOfStatus(int statusID) {
-		HashSet<Reimbursement> reimOfStatus = dao.getReimbursements(statusID);
+		HashSet<Reimbursement> reimOfStatus = dao.getStatusReim(statusID);
 		
 		return reimOfStatus;
 	}
 	
 	// Get User's Reimbursements by status
 	public HashSet<Reimbursement> getUserReimbursementOfStatus(int userID, int statusID ) {
-		HashSet<Reimbursement> userReimOfStatus = dao.getUserReimbursements(userID, statusID);
+		HashSet<Reimbursement> userReimOfStatus = dao.getUserStatusReim(userID, statusID);
 		
 		return userReimOfStatus;
 	}
