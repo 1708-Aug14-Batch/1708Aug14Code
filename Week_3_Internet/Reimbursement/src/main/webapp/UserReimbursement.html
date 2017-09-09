@@ -28,14 +28,24 @@
     </ul>
   </div>
 </nav>
-
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Choose Reimbursement Status
+  </button>
+  <div class="dropdown-menu" id = "dropdownlist" aria-labelledby="dropdownMenuButton" onclick="getReimbursement()">
+    <a class="dropdown-item" id = "all">All Reimbursements</a>
+    <a class="dropdown-item" id = "pending">Pending Reimbursements</a>
+    <a class="dropdown-item" id = "resolved">Resolved Reimbursements</a>
+  </div>
+</div>
 <div id = "accounts">
 		<table class="table" id = "list">
-			<thead class="thead-inverse">
+			<thead class="thead-inverse" id = "listhead">
 				<tr>
 					<th>First Name</th>
 					<th>Last Name</th>
 					<th>Reimbursement ID#</th>
+					<th>Status</th>
 					<th>Submit Date</th>
 					<th>Resolved Date</th>
 					<th>Reason</th>
