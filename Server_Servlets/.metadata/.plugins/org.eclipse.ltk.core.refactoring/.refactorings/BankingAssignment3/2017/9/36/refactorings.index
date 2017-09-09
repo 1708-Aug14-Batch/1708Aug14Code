@@ -12,3 +12,12 @@
 1504797862410	Infer generic type arguments
 1504815908967	Move compilation units
 1504815936436	Move 6 resources to 'oldcode'
+1504918244104	Move 'GetUserInfoServlet.java' to 'servlets'
+1504918285091	Move 'LogoutServlet.java' to 'servlets'
+1504923347986	Move 'LoginServlet.java' to 'servlets'
+1504923517805	Move 'LoginServlet.java' to 'oldcode'
+1504923628948	Move 'LoginMessageServlet.java' to 'servlets'
+1504928045073	Move 'GetAccPageServlet.java' to 'oldcode'
+1504928114231	Move 'GetUserInfo.java' to 'oldcode'
+1504928164805	Rename resource 'GetUserInfo.java'
+1504968887187	Rename compilation unit 'UpdateAccountServlet.java'

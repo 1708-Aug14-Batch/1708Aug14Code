@@ -131,21 +131,49 @@ public class Service {
 	// All non-final fields of the person object
 	// will be updated
 	public boolean updatePerson(int personId, Person per) {
-
-		// If the person-to-be updated on file is deceased, their records cannot be updated
-		if (daoImpl.readPerson(per.getPersonId()).isDeceased()) {
+		Person myPerson = daoImpl.readPerson(personId);
+		
+		// If the person-to-be updated on file is deceased, their records cannot
+		// be updated
+		if (myPerson.isDeceased()) {
 			System.out.println("That person is deceased and their records cannot be updated");
 			return false;
 		}
 
+		if (!isEmailValid(per.getEmail()))
+			return false;
+		// If the email was changed and is not available
+		if (!myPerson.getEmail().equals(per.getEmail()) && !isEmailAvailable(per.getEmail()))
+			return false;
+
 		return daoImpl.updatePerson(personId, per);
-
 	}
-
+	
 	public boolean updateBankUser(int userId, BankUser guy) {
-
-		return daoImpl.updateBankUser(userId, guy);
-
+		
+		
+		BankUser myUser = daoImpl.readBankUser(userId);
+		if (myUser == null)
+			return false;
+		Person per = daoImpl.readPerson(myUser.getPersonId());
+		if (per == null)
+			return false;
+		
+		// If the username was changed and is not available
+		if (!myUser.getUsername().equals(guy.getUsername()) && !isUsernameAvailable(guy.getUsername()))
+			return false;
+		
+		// Set values for updating the person
+		per.setBirthDate(guy.getBirthDate());
+		per.setDeceased(guy.isDeceased());
+		per.setEmail(guy.getEmail());
+		per.setFirstName(guy.getFirstName());
+		per.setLastName(guy.getLastName());
+		// Update both the Person and the BankUser
+		if(updatePerson(per.getPersonId(), per))
+			return daoImpl.updateBankUser(userId, guy);
+		
+		return false;
 	}
 
 	public boolean updateAccount(int accountId, Account acc) {
@@ -162,7 +190,7 @@ public class Service {
 
 		return daoImpl.updateAccount(accountId, acc);
 
-	}	
+	}
 
 	public BankUser getBankUser(int userId) {
 

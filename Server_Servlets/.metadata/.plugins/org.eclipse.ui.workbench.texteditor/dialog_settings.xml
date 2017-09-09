@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="view" key="selection"/>
+		<item value="session" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="view"/>
-			<item value="backTo"/>
-			<item value="loadDashb"/>
-			<item value="loadDashBoard"/>
-			<item value="ashboard"/>
-			<item value="loadHomeView"/>
-			<item value="xhr.open"/>
-			<item value="getLoginView"/>
+			<item value="session"/>
+			<item value="isplaying"/>
+			<item value="displaying"/>
+			<item value="Timeout"/>
+			<item value="check"/>
+			<item value="profile"/>
+			<item value="message_e"/>
+			<item value="message_edit"/>
 		</list>
 		<list key="replacehistory">
+			<item value=".text("/>
+			<item value="navbarDiv"/>
+			<item value=""/>
+			<item value="loadDashboard"/>
+			<item value=".attr(&quot;hidden&quot;, true)"/>
+			<item value=".attr(&quot;hidden&quot;, false)"/>
 			<item value="loggedIn"/>
 			<item value="req"/>
-			<item value="resp"/>
-			<item value="objects.add("/>
-			<item value="ashboard"/>
-			<item value="Worker"/>
-			<item value="System.out.println"/>
-			<item value="LocalDateTime"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
