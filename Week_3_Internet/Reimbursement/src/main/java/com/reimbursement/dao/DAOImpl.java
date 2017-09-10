@@ -90,6 +90,7 @@ public class DAOImpl implements DAO {
 	
 	public void UpdateUser(User u) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			conn.setAutoCommit(false);
 			String sql = "update users " + 
 					"set firstname = ?, lastname = ?, email = ?, password = ? " + 
 					"where user_id = ? ";
@@ -101,6 +102,7 @@ public class DAOImpl implements DAO {
 			state.setString(3, u.getEmail());
 			state.setString(4, u.getPassword());
 			state.executeUpdate();
+			conn.commit();
 			System.out.println("Update success?");
 			
 		} catch (SQLException e) {

@@ -30,32 +30,37 @@ public class UpdateUserServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 
 		
-		User temp = new User();
+		User temp = (User)session.getAttribute("user");
+		
 		
 		String fname = list.get(0);
-		if(fname == " ") {
+		if(fname == "") {
 			fname = temp.getFirstname();
 		}
 		System.out.println("Firstname " + fname);
 		String lname = list.get(1);
-		if(lname == " ") {
+		if(lname == "") {
 			lname = temp.getLastname();
 		}
 		System.out.println("Lastname: " + lname);
 		String email = list.get(2);
-		if(email == " ") {
+		if(email == "") {
 			email = temp.getEmail();
 		}
 		System.out.println("email: " + email);
 		String password = list.get(3);
-		if(password == " ") {
+		if(password == "") {
 			password = temp.getPassword();
 		}
 		System.out.println("Password:" + password);
 		temp.setFirstname(fname);
+		System.out.println("First name being set:" + temp.getFirstname());
 		temp.setLastname(lname);
+		System.out.println("Last name being set:" + temp.getLastname());
 		temp.setEmail(email);
+		System.out.println("Email being set: " + temp.getEmail());
 		temp.setPassword(password);
+		System.out.println("Password being set: " + temp.getPassword());
 		Service service = new Service();
 		service.updateUser(temp);
 		System.out.println("Submittal Success?");

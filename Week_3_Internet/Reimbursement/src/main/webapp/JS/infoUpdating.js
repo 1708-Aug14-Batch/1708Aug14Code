@@ -21,11 +21,11 @@ function updateInfo(){
 	var passwordTwo = document.getElementById("passwordtwo").value;
 	console.log(passwordTwo);
 	if(password != passwordTwo){
-		$('#firstname').text(" ");
-		$("#lastname").text(" ");
-		$("#email").text(" ");
-		$("#password").text(" ");
-		$("#passwordtwo").text(" ");
+		$('#firstname').text("");
+		$("#lastname").text("");
+		$("#email").text("");
+		$("#password").text("");
+		$("#passwordtwo").text("");
 		alert("Please provide a matching password.");
 		}
 	else{

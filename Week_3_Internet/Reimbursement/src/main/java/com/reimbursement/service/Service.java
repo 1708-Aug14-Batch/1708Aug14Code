@@ -94,6 +94,7 @@ public class Service {
 		
 	}
 	public void updateUser(User u) {
+		System.out.println(u.toString());
 		test.UpdateUser(u);
 	}
 	
