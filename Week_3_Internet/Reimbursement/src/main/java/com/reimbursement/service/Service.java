@@ -98,6 +98,11 @@ public class Service {
 		test.UpdateUser(u);
 	}
 	
+	public ArrayList<User> getAllUsers(){
+		ArrayList<User> list = test.getUsers();
+		return list;
+	}
+	
 	public static void main(String[] args) {
 //		User temp = new User();
 //		temp = loginUser("ctest123@gmail.com");

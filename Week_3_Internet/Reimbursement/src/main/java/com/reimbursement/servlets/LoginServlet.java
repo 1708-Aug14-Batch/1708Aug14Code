@@ -1,6 +1,7 @@
 package com.reimbursement.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,8 +48,8 @@ public class LoginServlet extends HttpServlet{
 			rd.forward(req, res);
 			}
 			else if(u.getIsManager() == 1) {
-				
-				session.setAttribute("user", u); //Use this to persist the data throughout the server
+
+				session.setAttribute("user", u);//Use this to persist the data throughout the server
 				// The parameter is the name, and the actual object.
 				
 				RequestDispatcher rd = req.getRequestDispatcher("ManagerHomePage.html");

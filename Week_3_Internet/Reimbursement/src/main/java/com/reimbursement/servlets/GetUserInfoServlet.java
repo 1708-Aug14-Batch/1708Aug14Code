@@ -28,11 +28,13 @@ public class GetUserInfoServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("user");
+		DTO dto = new DTO();
 //		System.out.println("getting user from session " + sessionUser.toString());
 		if(sessionUser != null) {
 			ArrayList<Reimbursement> reim = new ArrayList<Reimbursement>();
 			System.out.println("Converting our user and accounts to dto");
-			DTO dto = new DTO(sessionUser, reim);
+			dto.setUser(sessionUser);
+			dto.setAccounts(reim);
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(dto);

@@ -9,9 +9,23 @@ public class DTO {
 
 	private User user;
 	private ArrayList<Reimbursement> accounts;
-	
+	private ArrayList<User> userList;
 	public DTO() {}
 	
+	public ArrayList<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(ArrayList<User> userList) {
+		this.userList = userList;
+	}
+
+	public DTO(ArrayList<Reimbursement> accounts, ArrayList<User> userList) {
+		super();
+		this.accounts = accounts;
+		this.userList = userList;
+	}
+
 	public DTO(User user, ArrayList<Reimbursement> accounts) {
 		super();
 		this.user = user;

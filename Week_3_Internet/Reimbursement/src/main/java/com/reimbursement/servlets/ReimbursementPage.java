@@ -29,6 +29,7 @@ public class ReimbursementPage extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("user");
+		ArrayList<User> userLists = (ArrayList<User>) session.getAttribute("userlist");
 		DTO dto = new DTO();
 		ArrayList<Reimbursement> reim = new ArrayList<Reimbursement>();
 //		System.out.println("getting user from session " + sessionUser.toString());
@@ -36,20 +37,26 @@ public class ReimbursementPage extends HttpServlet{
 			if(sessionUser.getIsManager() == 0) {
 			reim = service.getUserReimbursements(sessionUser);
 			dto.setUser(sessionUser);
-			dto.setAccounts(reim);
+			
 			}
 			else if(sessionUser.getIsManager() == 1) {
+				System.out.println("This dude is a manager");
+				dto.setUserList(userLists);
 				reim = service.getAllReimbursements();
+				dto.setAccounts(reim);
 			}
+			
 			System.out.println("Converting our user and accounts to dto");
 			System.out.println(dto.getAccounts().toString());
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(dto);
+			
 			System.out.println(sessionUser.toString());
 			System.out.println(reim.size());
 			PrintWriter out = res.getWriter();
 			res.setContentType("application/json");
 			out.write(json);
+			
 		}
 		else {
 			res.setStatus(418);
