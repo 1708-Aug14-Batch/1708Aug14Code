@@ -13,21 +13,23 @@ public interface Dao {
 	
 	public boolean hasUser(int userId);
 	
-	public void addUser(User user, String password);
+	public int addUser(User user);
+	
+	public boolean setEmail(int userId, String email);
 		
-	public void setPassword(int userId, String password);
+	public boolean setPassword(int userId, String password);
 	
-	public void setFirstName(int userId, String firstName);
+	public boolean setFirstName(int userId, String firstName);
 	
-	public void setLastName(int userId, String lastName);
+	public boolean setLastName(int userId, String lastName);
 	
-	public void submitRequest(int userId, Request request);
+	public boolean submitRequest(int userId, float amount, String description);
 	
 	public List<Request> getUserRequests(int userId);
 	
-	public List<Request> getPendingUserRequests(int userId);
+	public List<Request> getPendingRequests(int userId);
 	
-	public List<Request> getResolvedUserRequests(int userId);
+	public List<Request> getResolvedRequests(int userId);
 	
 	public List<Request> getAllRequests();
 	
@@ -35,5 +37,5 @@ public interface Dao {
 	
 	public List<Request> getAllResolvedRequests();
 	
-	public List<User> getAllEmployees();
+	public List<User> getAllUsers();
 }

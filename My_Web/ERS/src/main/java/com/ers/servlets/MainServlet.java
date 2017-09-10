@@ -10,17 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("")
+public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(LoginServlet.class);
+	private static final Logger log = Logger.getLogger(MainServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		log.trace("in doGet");
 		
-		request.getRequestDispatcher("login.html").forward(request, response);
-		log.trace("forwarded to login.html");
+		request.getRequestDispatcher("home").forward(request, response);
 	}
 }

@@ -1,44 +1,27 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="ISO-8859-1">
 <title>Revature RES</title>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="css/res.css" />
+<link rel="stylesheet" href="css/datatables.css" type="text/css" />
+<link rel="stylesheet" href="css/res.css" type="text/css" />
 </head>
 
 <body>
 	<div id="navContainer">
-		<!-- Insert navbar with NavbarServlet -->
+		<!-- Fill in Navbar with AJAX request -->
 	</div>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-center input-block">
-				<br>
-				<h3>Login</h3>
-				<br>
-				<div id="message" class="alert alert-info row" style="display: none">
-					<!-- Filled by GetLoginMessageServlet -->
-				</div>
-				<div class="form-group row">
-					<input type="text" id="email" class="form-control"
-						placeholder="Email" name="email" />
-				</div>
-				<div class="form-group row">
-					<input type="password" id="password" class="form-control"
-						placeholder="Password" name="password" />
-				</div>
-				<br>
-				<div class="form-group row">
-					<input type="submit" id="submitLogin"
-						class="btn-primary btn-block" value="Log In" />
-				</div>
-			</div>
-		</div>
+	<br>
+	<h1>Login successful</h1>
+	<br>
+	<div id="view">
+		<!-- Use AJAX to inject HTML here -->
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -52,8 +35,9 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 	<script src="js/uni.js"></script>
-	<script src="js/login.js"></script>
+	<script src="js/home.js"></script>
 </body>
-
 </html>
