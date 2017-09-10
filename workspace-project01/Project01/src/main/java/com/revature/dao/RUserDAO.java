@@ -58,7 +58,7 @@ public class RUserDAO implements IRUserDAO {
 		user.setLastName(results.getString("last_name"));
 		user.setEmail(results.getString("email"));
 		user.setPassword(results.getString("password"));
-		user.setManager(results.getBoolean("is_manager"));
+		user.setManager(0 != results.getInt("is_manager"));
 		return user;
 	}
 

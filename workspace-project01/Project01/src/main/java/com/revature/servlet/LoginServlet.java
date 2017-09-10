@@ -50,7 +50,6 @@ public class LoginServlet extends HttpServlet {
 				json = mapper.writeValueAsString(user);
 				System.out.println("Inside LoginServlet doPost");
 				response.sendRedirect(response.encodeRedirectURL("home.html"));
-				//request.getRequestDispatcher("/home.html").forward(request, response);
 			} else {
 				json = "password-incorrect";
 				PrintWriter writer = response.getWriter();
@@ -62,33 +61,6 @@ public class LoginServlet extends HttpServlet {
 			PrintWriter writer = response.getWriter();
 			response.setContentType("application/json");
 			writer.write(json);
-		}
-
-		/*
-						// stored in a cookie on the client's browser
-						System.out.println("Logging user " + u.toString());
-
-						// the parameters are the name, and the actual object that you want to store in the session
-						System.out.println("forwarding to home");
-						request.getRequestDispatcher("app.html")
-						.forward(request, response);
-
-		/*RUser user = this.dao.read(request.getParameter("email"));
-		if (user == null) {
-			request.getRequestDispatcher("/bad_email.html").forward(request, response);
-		} else if (!user.getPassword().equals(request.getParameter("password"))) {
-			request.getRequestDispatcher("/bad_password.html").forward(request, response);
-		} else {
-			this.checkIfUserIsManager(request, response, user);
-		}*/
-	}
-
-	private void checkIfUserIsManager(HttpServletRequest request, HttpServletResponse response, RUser user)
-			throws ServletException, IOException {
-		if (user.isManager()) {
-			request.getRequestDispatcher("/home.html").forward(request, response);
-		} else {
-			request.getRequestDispatcher("/home.html").forward(request, response);
 		}
 	}
 
