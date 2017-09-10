@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="session" key="selection"/>
+		<item value="submitReimb" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="session"/>
-			<item value="isplaying"/>
-			<item value="displaying"/>
-			<item value="Timeout"/>
-			<item value="check"/>
-			<item value="profile"/>
-			<item value="message_e"/>
-			<item value="message_edit"/>
+			<item value="submitReimb"/>
+			<item value="username_e"/>
+			<item value="eimburse"/>
+			<item value="submitReim"/>
+			<item value="_button"/>
+			<item value="eposit"/>
+			<item value="submitReimDiv"/>
+			<item value="viewAccounts"/>
 		</list>
 		<list key="replacehistory">
+			<item value="reimTableDiv"/>
+			<item value="service"/>
+			<item value="viewResolvedReim"/>
+			<item value="viewPendingReim"/>
+			<item value="submitReimbursement"/>
+			<item value="&apos;"/>
 			<item value=".text("/>
 			<item value="navbarDiv"/>
-			<item value=""/>
-			<item value="loadDashboard"/>
-			<item value=".attr(&quot;hidden&quot;, true)"/>
-			<item value=".attr(&quot;hidden&quot;, false)"/>
-			<item value="loggedIn"/>
-			<item value="req"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

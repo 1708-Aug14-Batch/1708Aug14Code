@@ -1,7 +1,10 @@
 package com.reimburse.service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import org.apache.log4j.Logger;
 
 import com.reimburse.dao.DaoImpl;
 import com.reimburse.pojos.Reimbursement;
@@ -17,31 +20,12 @@ import com.reimburse.pojos.Worker;
 
 public class Service implements ServiceInterface {
 
-	// Worker currently logged in
-	static Integer id = null;
-	// Keeps track whether the current worker is a manager
-	static Boolean idIsManager = null;
+	// Logger
+	static Logger log = Logger.getRootLogger();
+
 	DaoImpl daoImpl = new DaoImpl();
-
-	// Login must be called in order to use methods that require a login
-	public boolean login(String username, String password) {
-		Worker work = validateWorker(username, password);
-		if (work == null)
-			return false;
-
-		id = work.getWorkerId();
-		idIsManager = work.isManager();
-		return true;
-	}
-
-	// Logout must be called to reset the current user logged in
-	public boolean logout() {
-		id = null;
-		idIsManager = null;
-		return true;
-	}
-
-	private Worker validateWorker(String username, String password) {
+	
+	public Worker validateWorker(String username, String password) {
 		if (username == null || password == null)
 			return null;
 
@@ -60,10 +44,10 @@ public class Service implements ServiceInterface {
 
 	private boolean isEmailValid(String email) {
 
-		String regex = "\\.\\w\\w\\w"; // .com, .org, .net, etc
-		if (email.contains("@") && email.matches(regex))
-			return true;
-
+		if (email.contains("@") && email.contains(".com"))
+			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
+				return true;
+		
 		System.out.println("Email addresses must contain a valid domain such as \"something@something.com\"");
 		return false;
 	}
@@ -101,10 +85,10 @@ public class Service implements ServiceInterface {
 	// Tries to create a new user
 	// Fails if the uername is not unique or if the given worker is already a
 	// user
-	public Worker tryCreateWorker(String firstName, String lastName, String email, String username, String password,
-			boolean isManager) {
+	public Worker tryCreateWorker(int managerId, String firstName, String lastName, String email,
+			String username, String password, boolean isManager) {
 
-		if (!idIsManager)
+		if (!isManager(managerId))
 			return null;
 
 		username = username.toLowerCase();
@@ -127,39 +111,44 @@ public class Service implements ServiceInterface {
 	}
 
 	// Tries to create a new reimbursement
-	public Reimbursement tryCreateReimbursement(String description, int ammount) {
-
-		if (id == null)
-			return null;
+	public Reimbursement tryCreateReimbursement(int employeeId, String description, BigDecimal ammount) {
 
 		// Managers cannot create reimbursements
-		if (idIsManager)
+		if (isManager(employeeId))
 			return null;
 
-		if (ammount < 0)
+		// Negative-value check
+		if (ammount.abs() != ammount)
 			return null;
 
-		return daoImpl.createReimbursement(id, reimbursementStatus.PENDING, LocalDateTime.now(), description, ammount);
+		return daoImpl.createReimbursement(employeeId, reimbursementStatus.PENDING, LocalDateTime.now(), description, ammount);
 	}
 
 	// Matches the old worker with the new by id
 	// All non-final fields of the worker object will be updated
-	public boolean updateWorker(String firstName, String lastName, String email, String username, String password) {
+	public boolean updateWorker(int id, String firstName, String lastName, String email, String username,
+			String password) {
 
-		if (!isEmailValid(email) || !isEmailAvailable(email))
+		Worker myWorker = daoImpl.readWorker(id);
+		username = username.toLowerCase();
+		
+		// If the given user's new email is different from their old email
+		if (!email.equals(myWorker.getEmail()))
+			// If the email is invalid or unavailable
+			if (!isEmailValid(email) || !isEmailAvailable(email))
+				return false;
+
+		// If the given username is not available and different from the old username
+		if (!isUsernameAvailable(username) && !username.equals(myWorker.getUsername()))
 			return false;
 
-		if (!isUsernameAvailable(username))
-			return false;
+		myWorker.setFirstName(firstName);
+		myWorker.setLastName(lastName);
+		myWorker.setEmail(email);
+		myWorker.setUsername(username);
+		myWorker.setPassword(password);
 
-		Worker work = daoImpl.readWorker(id);
-		work.setFirstName(firstName);
-		work.setLastName(lastName);
-		work.setEmail(email);
-		work.setUsername(username);
-		work.setPassword(password);
-
-		return daoImpl.updateWorker(id, work);
+		return daoImpl.updateWorker(id, myWorker);
 	}
 
 	public Worker getWorker(int workerId) {
@@ -167,25 +156,18 @@ public class Service implements ServiceInterface {
 		return daoImpl.readWorker(workerId);
 	}
 
-	// Returns null if no worker is logged in
-	public Integer getWorkerIdLoggedIn() {
-		return id;
-	}
-
 	// If the resolvedDate is null, gives the current dateTime as the
 	// resolvedDate
-	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status, String resolveNotes) {
-		if (id == null)
-			return false;
-		if (!idIsManager) {
+	public boolean resolveReimbursement(int managerId, int reimbursementId, reimbursementStatus status, String resolveNotes) {
+		if (!isManager(managerId)) {
 			System.out.println("You must be logged in as a manager to resolve reimbursements");
 			return false;
 		}
 
-		Worker resolver = daoImpl.readWorker(id);
+		Worker resolver = daoImpl.readWorker(managerId);
 
 		if (resolver == null) {
-			System.out.println("The logged in manager is not in the system. ID: " + id);
+			System.out.println("The logged in manager is not in the system. ID: " + managerId);
 			return false;
 		}
 		if (!resolver.isManager() || !resolver.isHired()) {
@@ -236,8 +218,8 @@ public class Service implements ServiceInterface {
 			return work.isManager();
 	}
 
-	public boolean isManagerLoggedIn() {
-		return idIsManager;
+	public boolean isManager(int id) {
+		return daoImpl.readWorker(id).isManager();
 	}
 
 	@Override
@@ -284,9 +266,9 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public ArrayList<Worker> getAllEmployees() throws NullPointerException {
+	public ArrayList<Worker> getAllEmployees(int managerId) throws NullPointerException {
 
-		if (!idIsManager)
+		if (!isManager(managerId))
 			throw new NullPointerException();
 
 		ArrayList<Worker> workers = daoImpl.readAllWorkers();

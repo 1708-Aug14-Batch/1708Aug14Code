@@ -1,0 +1,18 @@
+<div id='loginDivDivDiv' class='jumbotron'
+	style='background-color: white'>
+	<div>
+		<img height='100' width='100'
+			src='http://cliparting.com/wp-content/uploads/2016/06/Photos-of-vertical-scroll-banner-clip-art-parchment.jpg'
+			align='left'>
+	</div>
+	<div>
+		<input type='text' id='username_input' placeholder='Username'
+			style='background-color: lightblue'><br> <br> <input
+			type='password' id='password_input' placeholder='Password'
+			style='background-color: lightblue'><br> <br> <input
+			type='submit' id='login_button' value='Login' class='btn btn-primary' />
+		<input type='submit' id='create_button' value='Create account'
+			class='btn btn-primary' />
+		<p id='message' style='color: red'></p>
+	</div>
+</div>

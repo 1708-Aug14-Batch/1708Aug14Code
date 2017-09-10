@@ -1,6 +1,6 @@
 package com.reimburse.service;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.reimburse.pojos.Reimbursement;
@@ -9,28 +9,24 @@ import com.reimburse.pojos.Worker;
 
 public interface ServiceInterface {
 
-	public boolean login(String username, String password);
+	public Worker validateWorker(String username, String password);
+	
+	public Worker tryCreateWorker(int managerId, String firstName, String lastName,
+			String email, String username, String password,	boolean isManager);
 
-	public boolean logout();
-
-	public Worker tryCreateWorker(String firstName, String lastName, String email, String username, String password,
-			boolean isManager);
-
-	public Reimbursement tryCreateReimbursement(String description, int ammount);
+	public Reimbursement tryCreateReimbursement(int employeeId, String description, BigDecimal ammount);
 
 	public Worker getWorker(int workerId);
-
-	public Integer getWorkerIdLoggedIn();
 
 	public boolean isAWorker(String username);
 
 	public boolean isAManager(String username);
 
-	public boolean isManagerLoggedIn();
+	public boolean isManager(int id);
 
-	public boolean updateWorker(String firstName, String lastName, String email, String username, String password);
+	public boolean updateWorker(int id, String firstName, String lastName, String email, String username, String password);
 
-	public boolean resolveReimbursement(int reimbursementId, reimbursementStatus status, String resolveNotes);
+	public boolean resolveReimbursement(int managerId, int reimbursementId, reimbursementStatus status, String resolveNotes);
 
 	public ArrayList<Reimbursement> getPendingReimbursements();
 
@@ -42,5 +38,5 @@ public interface ServiceInterface {
 
 	public ArrayList<Reimbursement> getEmployeesReimbursements(int employeeId);
 
-	public ArrayList<Worker> getAllEmployees();
+	public ArrayList<Worker> getAllEmployees(int managerId);
 }

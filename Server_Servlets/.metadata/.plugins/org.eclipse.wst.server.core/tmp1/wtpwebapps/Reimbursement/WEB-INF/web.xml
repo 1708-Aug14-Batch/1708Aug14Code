@@ -9,33 +9,5 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.reimburse.servlets.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/loginAction</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>LogoutServlet</display-name>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.reimburse.servlets.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logoutAction</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>TesterServlet</display-name>
-    <servlet-name>TesterServlet</servlet-name>
-    <servlet-class>com.reimburse.servlets.TesterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TesterServlet</servlet-name>
-    <url-pattern>/testerAction</url-pattern>
-  </servlet-mapping>
+
 </web-app>
