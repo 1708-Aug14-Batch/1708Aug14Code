@@ -18,7 +18,7 @@ public class LoginServlet  extends HttpServlet{
 
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
 		HttpSession sesh = req.getSession();
 		
 		
@@ -26,13 +26,14 @@ public class LoginServlet  extends HttpServlet{
 		String username = req.getParameter("username");
 		String pass = req.getParameter("paw");
 		int id = s.validateEmployee(email,username);
+		System.out.println(id);
 		if(id < 0){
 			req.getRequestDispatcher("fail.html").forward(req, res);
 		}
 		else {
 			Employee e = s.login(id, pass);
 			if(e == null){
-				//req.getRequestDispatcher("fail.html").forward(req, res);
+				req.getRequestDispatcher("fail.html").forward(req, res);
 			}
 			
 			else{

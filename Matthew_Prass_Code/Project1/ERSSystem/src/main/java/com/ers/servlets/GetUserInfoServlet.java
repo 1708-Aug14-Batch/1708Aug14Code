@@ -28,7 +28,7 @@ public class GetUserInfoServlet extends HttpServlet {
 		
 		HttpSession sesh = req.getSession();
 		Employee seshuser = (Employee)sesh.getAttribute("employee");
-		
+		System.out.println(seshuser);
 		if(seshuser != null)
 		{
 			ArrayList<Reimbursement> reimbs = new ArrayList<Reimbursement>();

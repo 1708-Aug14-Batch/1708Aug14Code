@@ -25,7 +25,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			String sql = "select *" + 
-					"from reimbursestatus";
+					" from reimbursestatus";
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			
@@ -48,7 +48,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 
 	@Override
 	public ReimbursementStatus getStatus(int id) {
-		ArrayList<ReimbursementStatus> list = new ArrayList<ReimbursementStatus>();
+		ArrayList<ReimbursementStatus> list = getAllStatuses();
 		ReimbursementStatus result = null;
 		for(ReimbursementStatus r: list)
 		{
