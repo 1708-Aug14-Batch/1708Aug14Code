@@ -17,7 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-@WebServlet("/loginRequest")
+//@WebServlet("/loginRequest")
+@WebServlet(name="loginRequest", urlPatterns="/loginRequest", loadOnStartup=2)
 public class LoginRequestServlet extends HttpServlet{
 
 	@Override
@@ -38,16 +39,16 @@ public class LoginRequestServlet extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		
-		int id = s.validateLogin(email, password);
+		int valid = s.validateLogin(email, password);
 		String json = null;
-		if(id==1) {
+		if(valid==1) {
 			User newUser = null;
 			newUser = s.login(email, password);
 			session.setAttribute("User", newUser);
 			json = Integer.toString(newUser.getIsManager());
-		}else if(id==2) {
+		}else if(valid==2) {
 			json = "Incorrect Password";
-		}else if(id==0) {
+		}else if(valid==0) {
 			json = "Incorrect Credentials";
 		}
 			

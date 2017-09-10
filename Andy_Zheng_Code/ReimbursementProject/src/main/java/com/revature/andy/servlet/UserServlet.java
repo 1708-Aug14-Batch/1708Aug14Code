@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/loadUser")
+//@WebServlet("/loadUser")
+@WebServlet(name="loadUser", urlPatterns="/loadUser", loadOnStartup=4)
 public class UserServlet extends HttpServlet {
 
 	@Override
@@ -17,5 +18,4 @@ public class UserServlet extends HttpServlet {
 		System.out.println();
 		req.getRequestDispatcher("user.html").forward(req, resp);
 	}
-
 }

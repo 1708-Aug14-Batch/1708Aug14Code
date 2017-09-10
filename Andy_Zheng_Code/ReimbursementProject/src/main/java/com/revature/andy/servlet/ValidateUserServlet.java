@@ -17,9 +17,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/submitReim")
-@WebServlet(name="submitReim", urlPatterns="/submitReim", loadOnStartup=9)
-public class SubmitReimRequestServlet extends HttpServlet{
+//@WebServlet("/validateUser")
+@WebServlet(name="validateUser", urlPatterns="/validateUser", loadOnStartup=12)
+public class ValidateUserServlet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,22 +33,22 @@ public class SubmitReimRequestServlet extends HttpServlet{
 		ArrayList<String> to = jackson.readValue((String) obj, ArrayList.class);
 	
 		Service s= new Service();
-
+		
+		String password = to.get(0);
+		
 		HttpSession session = req.getSession();
-		User sessionUser = (User) session.getAttribute("User");
 
-		if(sessionUser!=null) {
-			String description = to.get(0);
-			double amount = Double.parseDouble(to.get(1));
-			
-			ObjectMapper mapper = new ObjectMapper();
-			
-			if(s.createReimbursement(sessionUser, description, amount)) {
-				String json = mapper.writeValueAsString("Reimbursement Submitted");
-				PrintWriter out = resp.getWriter();
-				resp.setContentType("application/json");
-				out.write(json);
-			}	
+		User sessionUser = (User) session.getAttribute("User");
+		
+		String json = null;
+		if(sessionUser.getPassword().equals(password)) {
+			json = "true";
+		}else {
+			json = "false";
 		}
+			
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
+		out.write(json);
 	}
 }

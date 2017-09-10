@@ -32,11 +32,6 @@ public class Service {
 			}
 		}
 		return 0;
-		}
-	
-	public void logout() {
-		isLoggedIn = false;
-		currentUser = null;
 	}
 	
 	public User getUserByID(int userID) {
@@ -72,6 +67,11 @@ public class Service {
 		return dao.getUsers();
 	}
 	
+	public HashSet<Reimbursement> getReimbursements(){
+		HashSet<Reimbursement> reims = dao.getReims();
+		return reims;
+	}
+	
 	// Get User's Reimbursements
 	public HashSet<Reimbursement> getUserReimbursement(int userID) {
 		HashSet<Reimbursement> userReims = dao.getUserReim(userID);
@@ -94,31 +94,7 @@ public class Service {
 	}
 	
 	// Update user information
-	public boolean updateUserInfo(User u, int position, String change) {
-
-		position = position-1;
-		
-		switch(position) {
-		case 1:
-			u.setFName(change);
-			break;
-		case 2:
-			u.setLName(change);
-			break;
-		case 3:
-			u.setEmail(change);
-			break;
-		case 4:
-			u.setPassword(change);
-			break;
-			/* promotion?
-		case 5:
-			PseudoSession.getCurrentUser().setIsManager(change);
-			*/
-		default:
-			return false;
-		}
-		
+	public boolean updateUserInfo(User u) {
 		int x = dao.updateUser(u);
 		if(x == 1) {
 			return true;

@@ -17,7 +17,8 @@ import com.revature.andy.pojos.Reimbursement;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-@WebServlet("/reimInfo")
+//@WebServlet("/reimInfo")
+@WebServlet(name="reimInfo", urlPatterns="/reimInfo", loadOnStartup=7)
 public class ReimInfoServlet extends HttpServlet{
 
 	@Override
@@ -29,18 +30,28 @@ Service s = new Service();
 		
 		if(sessionUser!=null) {
 			HashSet<Reimbursement> reims = null;
-			reims = s.getUserReimbursement(sessionUser.getUserID());
-			
 			ObjectMapper mapper = new ObjectMapper();
 			
-			String json = mapper.writeValueAsString(reims);
+			if(sessionUser.getIsManager() == 0) {
 			
-			System.out.println(json);
+			reims = s.getUserReimbursement(sessionUser.getUserID());
+			
+			String json = mapper.writeValueAsString(reims);
 			
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("application/json");
 			
-			out.write(json);
+			out.write(json);	
+			}else if(sessionUser.getIsManager() == 1) {
+				reims = s.getReimbursements();
+
+				String json = mapper.writeValueAsString(reims);
+				
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("application/json");
+				
+				out.write(json);	
+			}
 		}
 		/*
 		else {

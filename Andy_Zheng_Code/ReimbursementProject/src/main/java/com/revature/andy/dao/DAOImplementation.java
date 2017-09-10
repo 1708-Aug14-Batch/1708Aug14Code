@@ -188,14 +188,15 @@ public class DAOImplementation implements DAOInterface {
 	public User getUser(int userID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "{call getUserInfo(?,?,?,?,?)}";
+			String sql = "{call getUserInfo(?,?,?,?,?,?)}";
 			CallableStatement cs = con.prepareCall(sql);
 
 			cs.setInt(1, userID);
 			cs.registerOutParameter(2, java.sql.Types.VARCHAR);
 			cs.registerOutParameter(3, java.sql.Types.VARCHAR);
 			cs.registerOutParameter(4, java.sql.Types.VARCHAR);
-			cs.registerOutParameter(5, java.sql.Types.NUMERIC);
+			cs.registerOutParameter(5, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(6, java.sql.Types.NUMERIC);
 
 			cs.executeQuery();
 
@@ -204,7 +205,8 @@ public class DAOImplementation implements DAOInterface {
 			temp.setFName(cs.getString(2));
 			temp.setLName(cs.getString(3));
 			temp.setEmail(cs.getString(4));
-			temp.setIsManager(cs.getInt(5));
+			temp.setPassword(cs.getString(5));
+			temp.setIsManager(cs.getInt(6));
 
 			return temp;
 
@@ -263,7 +265,7 @@ public class DAOImplementation implements DAOInterface {
 		}
 	}
 	
-	// Change to prepared statement later
+	// get all employees
 	public HashSet<User> getEmployees(){
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM USERS WHERE ISMANAGER = ?";
@@ -289,7 +291,41 @@ public class DAOImplementation implements DAOInterface {
 		
 	}
 	
-	// select all reimbursement based of a user
+	// select all reimbursements
+	public HashSet<Reimbursement> getReims(){
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM REIMBURSEMENTS";
+
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+			
+			HashSet<Reimbursement> reimList = new HashSet<>();
+
+			while (rs.next()) {
+
+				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
+				User tempSub = getUser(rs.getInt(2));
+				User tempRes = null;
+				if(rs.getInt(3) > 0) {
+					tempRes = getUser(rs.getInt(3));
+				}
+
+				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
+						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));
+
+				reimList.add(tempReim);
+			}
+
+			return reimList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	// select all reimbursements based of a user
 	public HashSet<Reimbursement> getUserReim(int userID) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
@@ -306,7 +342,10 @@ public class DAOImplementation implements DAOInterface {
 
 				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
 				User tempSub = getUser(rs.getInt(2));
-				User tempRes = getUser(rs.getInt(3));
+				User tempRes = null;
+				if(rs.getInt(3) > 0) {
+					tempRes = getUser(rs.getInt(3));
+				}
 
 				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
 						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));

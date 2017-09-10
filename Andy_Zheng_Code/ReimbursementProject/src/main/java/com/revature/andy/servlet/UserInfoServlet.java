@@ -15,7 +15,8 @@ import com.revature.andy.dto.DTO;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-@WebServlet("/userInfo")
+//@WebServlet("/userInfo")
+@WebServlet(name="userInfo", urlPatterns="/userInfo", loadOnStartup=5)
 public class UserInfoServlet extends HttpServlet{
 
 	
@@ -25,22 +26,21 @@ public class UserInfoServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("User");
 		
+		//System.out.println(sessionUser.toString());
+		
 		if(sessionUser!=null) {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			
 			String json = mapper.writeValueAsString(sessionUser);
 			
-			System.out.println(json);
-			
 			PrintWriter out = resp.getWriter();
 			resp.setContentType("application/json");
 			
 			out.write(json);
 		}
-		/*
 		else {
 			resp.setStatus(418);
-		}*/
+		}
 	}
 }

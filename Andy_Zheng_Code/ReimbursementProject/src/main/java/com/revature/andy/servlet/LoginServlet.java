@@ -12,11 +12,10 @@ import javax.servlet.http.HttpSession;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-@WebServlet("/loadLogin")
+//@WebServlet("/loadLogin")
+@WebServlet(name="loadLogin", urlPatterns="/loadLogin", loadOnStartup=1)
 public class LoginServlet extends HttpServlet {
-
-	Service s = new Service();
-		
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("login.html").forward(req, resp);

@@ -13,6 +13,10 @@
 	transform: translate(-25%, -25%);
 }
 
+input[readonly].form-control {
+    background-color: #fff;
+}
+
 .azborder{
 	/*
 		add bootstrap - rounded
@@ -34,37 +38,37 @@
 	padding-left: 10%;
 }
 
-.azheight100{
+.azh100{
 	height: 100%;
 }
 
-.azwidth50{
+.azw50{
 	width: 50%
 }
-.azwidth55{
+.azw55{
 	width: 55%
 }
-.azwidth60{
+.azw60{
 	width: 60%
 }
-.azwidth65{
+.azw65{
 	width: 65%
 }
-.azwidth70{
+.azw70{
 	width: 70%
 }
-.azwidth75{
+.azw75{
 	width: 75%
 }
-.azwidth80{
+.azw80{
 	width: 80%
 }
-.azwidth85{
+.azw85{
 	width: 85%
 }
-.azwidth90{
+.azw90{
 	width: 90%
 }
-.azwidth95{
+.azw95{
 	width: 95%
 }

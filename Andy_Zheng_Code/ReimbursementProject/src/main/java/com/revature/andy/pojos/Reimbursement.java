@@ -1,14 +1,15 @@
 package com.revature.andy.pojos;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Reimbursement {
 			 
 	private int reimID;
 	private User submitterID;
 	private User resolverID;
-	private Date submitDate;
-	private Date resolveDate;
+	private String submitDate;
+	private String resolveDate;
 	private ReimStatus statusID;
 	private String description;
 	private String notes;
@@ -19,11 +20,14 @@ public class Reimbursement {
 	public Reimbursement(int reimID, User submitterID, User resolverID, Date submitDate, Date resolveDate,
 			ReimStatus statusID, String description, String notes, double amount) {
 		super();
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy h:mm:ss a");
 		this.reimID = reimID;
 		this.submitterID = submitterID;
 		this.resolverID = resolverID;
-		this.submitDate = submitDate;
-		this.resolveDate = resolveDate;
+		this.submitDate = sdf.format(submitDate);
+		if(resolveDate != null) {
+		this.resolveDate = sdf.format(resolveDate);
+		}
 		this.statusID = statusID;
 		this.description = description;
 		this.notes = notes;
@@ -54,19 +58,19 @@ public class Reimbursement {
 		this.resolverID = resolverID;
 	}
 
-	public Date getSubmitDate() {
+	public String getSubmitDate() {
 		return submitDate;
 	}
 
-	public void setSubmitDate(Date submitDate) {
+	public void setSubmitDate(String submitDate) {
 		this.submitDate = submitDate;
 	}
 
-	public Date getResolveDate() {
+	public String getResolveDate() {
 		return resolveDate;
 	}
 
-	public void setResolveDate(Date resolveDate) {
+	public void setResolveDate(String resolveDate) {
 		this.resolveDate = resolveDate;
 	}
 
