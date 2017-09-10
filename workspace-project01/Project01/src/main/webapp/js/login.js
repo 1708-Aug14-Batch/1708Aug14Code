@@ -5,19 +5,20 @@ $(document).ready(function() {
 
 function login() {
 	console.log("Inside login function");
-	var email = document.getElementById("email").value;
-	var password = document.getElementById("password").value;
+	var email = $('#email').val();
+	var password = $('#password').val();
 	var transaction = [email, password];
 	transaction = JSON.stringify(transaction);
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
-			var response = request.responseText;
-			if (response == "user-not-exist") {
+			var responseText = request.responseText;
+			if (responseText == "user-not-exist") {
 				$('#bad-login-message').innerHTML = "Login failed. Please re-enter email and password";
-			}
-			if (response == "password-incorrect") {
+			} else if (responseText == "password-incorrect") {
 				$('#bad-login-message').innerHTML = "That email was not found. Please re-enter email";
+			} else {
+				window.location.href = request.responseURL;
 			}
 		}
 	}

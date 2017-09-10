@@ -32,10 +32,11 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String[]> parameterMap = request.getParameterMap();
-		Set<String> keys = parameterMap.keySet();
+		Set<String> transactionKeys = parameterMap.keySet();
+		Object obj = transactionKeys.toArray()[0];
 		ObjectMapper jackson = new ObjectMapper();
-		Object obj = keys.toArray()[0];
-		ArrayList<String> transaction =  jackson.readValue((String) obj, ArrayList.class);
+		@SuppressWarnings("unchecked")
+		ArrayList<String> transaction = jackson.readValue((String)obj, ArrayList.class);
 		HttpSession session = request.getSession();
 		ReimbursementService service = new ReimbursementService();
 		String email = transaction.get(0);
@@ -47,16 +48,21 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", user);
 				ObjectMapper mapper = new ObjectMapper();
 				json = mapper.writeValueAsString(user);
-				request.getRequestDispatcher("/app.html").forward(request, response);
+				System.out.println("Inside LoginServlet doPost");
+				response.sendRedirect(response.encodeRedirectURL("home.html"));
+				//request.getRequestDispatcher("/home.html").forward(request, response);
 			} else {
 				json = "password-incorrect";
+				PrintWriter writer = response.getWriter();
+				response.setContentType("application/json");
+				writer.write(json);
 			}
 		} else {
 			json = "user-not-exist";
+			PrintWriter writer = response.getWriter();
+			response.setContentType("application/json");
+			writer.write(json);
 		}
-		PrintWriter writer = response.getWriter();
-		response.setContentType("application/json");
-		writer.write(json);
 
 		/*
 						// stored in a cookie on the client's browser
