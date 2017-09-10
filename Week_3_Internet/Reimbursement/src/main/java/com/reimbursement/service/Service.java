@@ -93,7 +93,9 @@ public class Service {
 		return test;
 		
 	}
-	
+	public void updateUser(User u) {
+		test.UpdateUser(u);
+	}
 	
 	public static void main(String[] args) {
 //		User temp = new User();
