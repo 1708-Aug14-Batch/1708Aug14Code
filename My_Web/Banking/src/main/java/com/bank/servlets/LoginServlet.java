@@ -2,31 +2,26 @@ package com.bank.servlets;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bank.dao.DatabaseDao;
+import com.bank.pojos.User;
 import com.bank.service.Service;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-	
-	/**
-	 * KEH
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		
-	}
-	
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
 		
 		// Redirect
 		String email = (String) request.getParameter("email");
@@ -40,11 +35,14 @@ public class LoginServlet extends HttpServlet {
 		}
 		
 		if (Service.loginUser(email, password) == null) {
-			response.sendRedirect("success.html");
+			
+			session.setAttribute("user", Service.getCurrentUser());
+			request.getRequestDispatcher("success.html").forward(request, response);
 			return;
 		}
 		else {
-			response.sendRedirect("fail.html");
+			session.setAttribute("message", "Incorrect password");
+			request.getRequestDispatcher("fail.html").forward(request, response);
 			return;
 		}
 	}

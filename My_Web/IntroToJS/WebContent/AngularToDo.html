@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>To Do List</title>
+</head>
+
+<body ng-app="todoApp" ng-controller="todoCtlr">
+	<h1>To Do:</h1>
+	<input type="text" ng-model="newAction" />
+	<button ng-click="addNewItem(newAction)">Add</button>
+	<br>
+
+	<table class="table table-striped">
+		<label>
+			<input type="checkbox" ng-model="showDone" /><!--ng-if="showDone || !item.done" />-->
+			Show complete
+		</label>
+		<thead>
+			<th>Description</th>
+			<th>Done</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in items | doneItems:showDone">
+				<td>{{ item.action }}</td>
+				<td><input type="checkbox" ng-model="item.done"/></td>
+				<td>{{ item.done }}</td>
+			</tr>
+		</tbody>
+	</table>
+	<br>
+
+	<p ng-if="incompleteCount()!=0">Items left: {{ incompleteCount() }}</p>
+	<br>
+	 
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="js/todo.js"></script>
+</body>
+</html

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Drag and Drop</title>
+<style>
+    #outer {
+        background: black;
+        color: white;
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+    }
+    #inner {
+        background: orange;
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+    }
+    #innerMost {
+        background: lime;
+        color: black;
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <h1>JavaScript Drag and Drop</h1>
+
+    <div id="outer">
+        <h1 draggable="true" id="hava">Have a</h1>
+
+        <div id="inner">
+            <h1 draggable="true" id="happy">Happy</h1>
+            <div id="innerMost" draggable="true" id="halloween">Halloween</div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/draganddrop.js"></script>
+</body>
+</html>

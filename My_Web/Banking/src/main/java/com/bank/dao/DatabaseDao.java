@@ -12,7 +12,7 @@ import com.bank.pojos.Account;
 import com.bank.pojos.User;
 import com.bank.util.ConnectionFactory;
 
-public class DatabaseDao implements Dao {
+public class DatabaseDao implements DAO {
 
 	public int addUser(User user, String password) {
 		int id = -1;

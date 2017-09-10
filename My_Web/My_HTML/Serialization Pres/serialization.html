@@ -18,10 +18,10 @@
         </style>
     </head>
 
-    <body style="">
+    <body style="font-size:110%">
         <div class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="navbar-nav">
-                <a class="navbar-brand">Serialization</a>
+                <a class="navbar-brand" href="#">Serialization</a>
             
                 <a class="nav-item nav-link" href="#Overview">Overview</a>
                 <a class="nav-item nav-link" href="#Implementation">Implementation</a>
@@ -29,9 +29,9 @@
             </div>
         </div>
 
-        <div style="padding: 30px 200px 70px 200px">
+        <div style="padding: 30px 240px 70px 240px">
             <div class="overview" id="Overview">
-                <h2 class="header">Overview</h1>
+                <h1 class="header">Overview</h1>
                 <br>
                 <ul>
                     <li>
@@ -59,9 +59,9 @@
             </div>
             <br>
             <div class="implementation" id="Implementation">
-                <h2>Implementation</h1>
+                <h1>Implementation</h1>
                 <br>
-                <h4>Creating the class</h4>
+                <h3>Creating the class</h3>
                 <br>
                 <pre class="code">
     public class Example implements Serializable {
@@ -73,7 +73,7 @@
         private static final long serialVersionUID = 1L;
     }
                 </pre>
-                <h4>Serializing the object</h4>
+                <h3>Serializing the object</h3>
                 <br>
                 <pre class="code">
     String filename = "file.txt";
@@ -87,7 +87,7 @@
         e.printStackTrace();
     }
                 </pre>
-                <h4>Deserializing the object</h4>
+                <h3>Deserializing the object</h3>
                 <br>
                 <pre class="code">
     String filename = "file.txt";
@@ -106,7 +106,7 @@
             </div>
 
             <div class="qanda" id="QandA">
-                <h2></h1>
+                <h1></h1>
                 <br>
                 <table class="table">
                     <tr class="row">
@@ -116,13 +116,13 @@
                     <tr class="row question">
                         <td class="col">
                             How many methods Serializable has?
-                            If no method then what is the purpose
+                            If no methods, then what is the purpose
                             of Serializable interface?
                         </td>
                         <td class="col answer">
                             java.io.Serializable doesn't have any method and is called Marker Interface.
                             Creating a class that implements Serializable gives the compiler
-                            an indication that it is possible serialize this object.
+                            an indication that it is possible to serialize this object.
                         </td>
                     </tr>
                     <tr class="row question">

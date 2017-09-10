@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>AngularJS Basics</title>
+</head>
+<body ng-app="myApp" ng-controller="myController" ng-init="myColor='pink'">
+
+	<!-- 
+		AngularJS Expressions: {{ }} to print out model to the page (SAME AS 'ng-bind' DIRECTIVE)
+		
+		The ng-app directive defines your AngularJS app
+		
+		2 way data-binging: updates the view and the model data at the same time
+		
+		Custom Directive: an html tag or attribute that can inject its own HTML
+		
+		The ng-model directive binds the value of HTML controls (input, select, etc) to our app data
+		
+		Data model - a collection of data available for our application
+		
+		HTML view - html container where AngularJS app is displayed. The view has access to the model,
+					and there are several ways of displaying model data in the view
+		
+	 -->
+
+	<h1>AngularJS - JavaScript MVC Framework</h1>
+	<div id="helloworld"></div>
+	<br>
+	
+	<input type="text" ng-model="input" />
+	<p>{{input}}</p>
+	<br>
+	
+	<h3 ng-bind="input"></h3>
+	<br>
+	
+	<p>Here is an expression: {{10+10}}</p>
+	<br>
+	
+	<h2>Some more cool binding stuff:</h2>
+	<input style="background: {{myColor}}" ng-model="myColor" />
+	<br>
+	
+	<h3>Intro to controllers: </h3>
+	First name: <input type="text" ng-model="fname">
+	<br>
+	Last name (Uppercase): <input type="text" ng-model="lname">
+	 <br>
+	 <p> Full name: {{ fullName() | uppercase }}
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="JS/app.js"></script>
+</body>
+</html>

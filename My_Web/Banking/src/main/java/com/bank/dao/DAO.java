@@ -11,7 +11,7 @@ import com.bank.pojos.User;
  * @author Nathan Koszuta
  *
  */
-public interface Dao {
+public interface DAO {
 
 	/**
 	 * Creates a new User in the database
