@@ -4,34 +4,34 @@ import java.sql.Timestamp;
 
 public class Reimbursement {
 
-	private int R_ID;
-	private int Sub_ID;
-	private int Res_ID;
-	private Timestamp SubDate;
-	private Timestamp ResDate;
-	private int StatusID = 0; //If asking for string name this should "print" out via switch statement
-	private String Desc;
-	private String ResNote;
-	private double Amount;
+	private int R_ID; //Reimbursement ID
+	private String Sub; //Submitter Name
+	private String Res; //Resolver Name
+	private String SubDate; //Submit Date
+	private String ResDate; //Resolve Date
+	private String Status; //If asking for string name this should "print" out via switch statement
+	private String Desc; //Description
+	private String ResNote; //Resolve Note
+	private double Amount; //Amount
 	
-	public Reimbursement(int sub_ID, Timestamp subDate, int statusID, String desc, double amount) {
+	public Reimbursement(String sub, String subDate, int statusID, String desc, double amount) {
 		super();
-		Sub_ID = sub_ID;
+		Sub = sub;
 		SubDate = subDate;
-		StatusID = statusID;
+		Status = getStatusName(statusID);
 		Desc = desc;
 		Amount = amount;
 	}
 
-	public Reimbursement(int r_ID, int sub_ID, int res_ID, Timestamp subDate, Timestamp resDate, int statusID, String desc,
+	public Reimbursement(int r_ID, String sub, String res, String subDate, String resDate, int statusID, String desc,
 			String resNote, double amount) {
 		super();
 		R_ID = r_ID;
-		Sub_ID = sub_ID;
-		Res_ID = res_ID;
+		Sub = sub;
+		Res = res;
 		SubDate = subDate;
 		ResDate = resDate;
-		StatusID = statusID;
+		Status = getStatusName(statusID);
 		Desc = desc;
 		ResNote = resNote;
 		Amount = amount;
@@ -45,44 +45,44 @@ public class Reimbursement {
 		R_ID = r_ID;
 	}
 
-	public int getSub_ID() {
-		return Sub_ID;
+	public String getSub() {
+		return Sub;
 	}
 
-	public void setSub_ID(int sub_ID) {
-		Sub_ID = sub_ID;
+	public void setSub(String sub) {
+		Sub = sub;
 	}
 
-	public int getRes_ID() {
-		return Res_ID;
+	public String getRes() {
+		return Res;
 	}
 
-	public void setRes_ID(int res_ID) {
-		Res_ID = res_ID;
+	public void setRes_ID(String res) {
+		Res = res;
 	}
 
-	public Timestamp getSubDate() {
+	public String getSubDate() {
 		return SubDate;
 	}
 
-	public void setSubDate(Timestamp subDate) {
+	public void setSubDate(String subDate) {
 		SubDate = subDate;
 	}
 
-	public Timestamp getResDate() {
+	public String getResDate() {
 		return ResDate;
 	}
 
-	public void setResDate(Timestamp resDate) {
+	public void setResDate(String resDate) {
 		ResDate = resDate;
 	}
 
-	public int getStatusID() {
-		return StatusID;
+	public String getStatus() {
+		return Status;
 	}
 
-	public void setStatusID(int statusID) {
-		StatusID = statusID;
+	public void setStatusID(String status) {
+		Status = status;
 	}
 
 	public String getDesc() {
@@ -111,12 +111,12 @@ public class Reimbursement {
 
 	@Override
 	public String toString() {
-		return "Reimbursement [R_ID=" + R_ID + ", Sub_ID=" + Sub_ID + ", Res_ID=" + Res_ID + ", SubDate=" + SubDate.toString()
-				+ ", ResDate=" + ResDate.toString() + ", StatusID=" + StatusID + ", Desc=" + Desc + ", ResNote=" + ResNote
+		return "Reimbursement [R_ID=" + R_ID + ", Sub_ID=" + Sub + ", Res_ID=" + Res + ", SubDate=" + SubDate
+				+ ", ResDate=" + ResDate + ", StatusID=" + Status + ", Desc=" + Desc + ", ResNote=" + ResNote
 				+ ", Amount=" + Amount + "]";
 	}
 	
-	public String getStatusName() {
+	public String getStatusName(int StatusID) {
 		switch(StatusID) {
 		case 0:
 			return "Pending";

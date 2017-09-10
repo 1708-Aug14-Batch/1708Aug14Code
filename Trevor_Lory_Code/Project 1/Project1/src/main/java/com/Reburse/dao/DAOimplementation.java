@@ -1,9 +1,15 @@
 package com.Reburse.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.Reburse.pojos.Reimbursement;
 import com.Reburse.pojos.User;
+import com.Reburse.util.ConnectionFactory;
 
 public class DAOimplementation implements DAO {
 
@@ -13,8 +19,31 @@ public class DAOimplementation implements DAO {
 	}
 
 	public User getUser(String email, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User u = null;
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select userid, firstname, lastname, email, password, ismanager from users where email = ? and password = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				String fn = rs.getString(2);
+				String ln = rs.getString(3);
+				String em = rs.getString(4);
+				String pass = rs.getString(5);
+				int Mng = rs.getInt(6);
+				if(Mng == 0) {
+					u = new User(id, fn, ln, em, pass, false);
+				}
+				else {
+					u = new User(id, fn, ln, em, pass, true);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return u;
 	}
 	
 	public ArrayList<User> getAllUsers() {
@@ -33,8 +62,40 @@ public class DAOimplementation implements DAO {
 	}
 
 	public ArrayList<Reimbursement> getUserReimbursements(User u) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Reimbursement> rem = new ArrayList<Reimbursement>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String sql = "select Reimbursements.R_ID, Users1.FIRSTNAME || ' ' || users1.LASTNAME, users2.FIRSTNAME || ' ' || users2.LASTNAME, " + 
+					"Reimbursements.SUBDATE, Reimbursements.RESDATE, Reimbursements.STATUSID, Reimbursements.DESCRIPTION, Reimbursements.RESNOTE, Reimbursements.AMOUNT " + 
+					"from Reimbursements " + 
+					"left join USERS Users1 " + 
+					"on Reimbursements.SUB_ID = USERS1.USERID " + 
+					"left join USERS Users2 " + 
+					"on Reimbursements.RES_ID = USERS2.USERID " + 
+					"where SUB_ID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserID());
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				String subName = rs.getString(2);
+				String resName = rs.getString(3);
+				Timestamp subdate = rs.getTimestamp(4);
+				String subDateStr = subdate.toLocalDateTime().toString();
+				Timestamp resdate = rs.getTimestamp(5);
+				String resDateStr = "";
+				if(resdate != null) {
+					resDateStr = resdate.toLocalDateTime().toString();
+				}
+				int stID = rs.getInt(6);
+				String desc = rs.getString(7);
+				String note = rs.getString(8);
+				double amount = rs.getDouble(9);
+				rem.add(new Reimbursement(id, subName, resName, subDateStr, resDateStr, stID, desc, note, amount));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rem;
 	}
 
 	public ArrayList<Reimbursement> getAllReimbursements() {

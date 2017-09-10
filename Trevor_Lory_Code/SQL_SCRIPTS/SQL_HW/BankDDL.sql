@@ -74,5 +74,5 @@ select * from users;
 select * from accounttypes;
 select * from accounts;
 
-insert into users (firstname, lastname, email, password) values('Trevor', 'Lory', 'trevorlory@gmail.com', 'p4ssw0rd');
+
 

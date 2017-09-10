@@ -67,8 +67,22 @@ insert into Status values (2, 'Denied');
 ---------------------Test Code---------------------
 ---------------------------------------------------
 
-insert into users (FirstName, LastName, Email, Password, IsManager) values('Trevor', 'Lory', 'trevorlory@gmail.com', 'p4ssw0rd', 1);
-insert into users (FirstName, LastName, Email, Password, IsManager) values('Genesis', 'Bonds', 'trevorlory@att.net', 'p4ssw0rd', 0);
+insert into users (firstname, lastname, email, password, ismanager) values('Trevor', 'Lory', 'trevorlory@gmail.com', 'p4ssw0rd', 1);
+insert into users (firstname, lastname, email, password, ismanager) values('Test', 'Employee', 'email', 'pass', 0);
+insert into users (firstname, lastname, email, password, ismanager) values('Test', 'Manager', 'Memail', 'Mpass', 1);
+
+insert into Reimbursements (SUB_ID, RES_ID, SUBDATE, RESDATE, STATUSID, DESCRIPTION, RESNOTE, AMOUNT) values (23, null, CURRENT_TIMESTAMP, null, 0, 'Yo, need this done', null, 100.32);
+insert into Reimbursements (SUB_ID, RES_ID, SUBDATE, RESDATE, STATUSID, DESCRIPTION, RESNOTE, AMOUNT) values (23, 24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 'Yo, need this done 2', 'This is done', 500.67);
+insert into Reimbursements (SUB_ID, RES_ID, SUBDATE, RESDATE, STATUSID, DESCRIPTION, RESNOTE, AMOUNT) values (23, 24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 'Yo, need this done 3', 'This is not done', 1337.29);
+
+select Reimbursements.R_ID, Users1.FIRSTNAME || ' ' || users1.LASTNAME as subname, users2.FIRSTNAME || ' ' || users2.LASTNAME as resname, 
+Reimbursements.SUBDATE, Reimbursements.RESDATE, Reimbursements.STATUSID, Reimbursements.DESCRIPTION, Reimbursements.RESNOTE, Reimbursements.AMOUNT
+from Reimbursements
+left join USERS Users1
+on Reimbursements.SUB_ID = USERS1.USERID
+left join USERS Users2
+on Reimbursements.RES_ID = USERS2.USERID
+where SUB_ID = 23;
 
 ---------------------------------------------------
 ---------------------------------------------------
@@ -77,3 +91,18 @@ insert into users (FirstName, LastName, Email, Password, IsManager) values('Gene
 select * from Users;
 select * from Reimbursements;
 select * from Status;
+
+commit;
+
+
+
+
+
+
+
+
+
+
+
+
+
