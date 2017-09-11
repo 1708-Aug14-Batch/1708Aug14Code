@@ -11,7 +11,7 @@ INSERT INTO USERS (FIRSTNAME,LASTNAME,EMAIL,PASSWORD,ISMANAGER)
 VALUES ('Aaron', 'Rodgers', 'arod@packers.com', 'gopackgo', 1);
 
 INSERT INTO USERS (FIRSTNAME,LASTNAME,EMAIL,PASSWORD,ISMANAGER)
-VALUES ('Aaron', 'Rodgers', 'cat', 'cat', 1);
+VALUES ('Aaron', 'Rodgers', 'dog', 'dog', 0);
 
 SELECT * FROM USERS WHERE USERID = 1;
 

@@ -31,4 +31,24 @@
     <servlet-name>GetTablesServlet</servlet-name>
     <url-pattern>/GetTablesServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProfileServlet</display-name>
+    <servlet-name>GetProfileServlet</servlet-name>
+    <servlet-class>com.ers.servlets.GetProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProfileServlet</servlet-name>
+    <url-pattern>/GetProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetAddUserServlet</display-name>
+    <servlet-name>GetAddUserServlet</servlet-name>
+    <servlet-class>com.ers.servlets.GetAddUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAddUserServlet</servlet-name>
+    <url-pattern>/GetAddUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

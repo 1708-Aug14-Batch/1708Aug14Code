@@ -40,7 +40,7 @@ public class CheckCredentialsServlet extends HttpServlet {
 
 		String errorMessage = Service.loginUser(email, password);
 
-		User user = new User("test@test.com","password","Nathan","Koszuta", true);
+		User user = Service.getCurrentUser();
 
 		if (errorMessage == null || "".equals(errorMessage)) {
 			log.trace("login successful");
@@ -49,6 +49,7 @@ public class CheckCredentialsServlet extends HttpServlet {
 			
 			log.trace("session= "+session.getId());
 			session.setAttribute("user", user);
+			log.trace("user= "+user);
 
 		} else {		
 			log.trace(errorMessage);

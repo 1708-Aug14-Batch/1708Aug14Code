@@ -38,7 +38,7 @@ public class DatabaseDao implements Dao {
 				String first = rs.getString(2);
 				String last = rs.getString(3);
 				int isManager = rs.getInt(4);
-				user = new User(email, password, first, last, 0 == isManager);
+				user = new User(email, password, first, last, 0 != isManager);
 				user.setUserId(userId);
 				
 				break;

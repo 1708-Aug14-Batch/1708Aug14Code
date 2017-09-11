@@ -1,0 +1,41 @@
+<div class="col-center input-block">
+	<br>
+	<h3>Add a New Employee</h3>
+	<br>
+	<div class="alert alert-info row" id="message" style="display: none">
+		<!-- Filled by GetRegisterMessageServlet -->
+	</div>
+	<br>
+	<div class="form-group row">
+		<input type="text" class="col-5 form-control" id="firstname"
+			placeholder="First name" name="firstname" />
+		<div class="col-1"></div>
+		<input type="text" class="col-6 form-control" id="lastname"
+			placeholder="Last name" name="lastname" />
+	</div>
+	<div class="form-group row">
+		<input type="email" class="form-control" id="email"
+			placeholder="Email" name="email" />
+	</div>
+	<div class="form-group row">
+		<input type="password" class="form-control" id="password"
+			placeholder="Password" name="password" />
+	</div>
+	<div class="form-group row">
+		<input type="password" class="form-control" id="confirmPw"
+			placeholder="Confirm password" name="confirmPw" />
+	</div>
+	<div class="form-group row">
+		<div class="col-8">Is this employee a manager?</div>
+		<div class="col-2">
+			<input type="checkbox" class="form-control" id="isManager"
+				name="isManager" />
+		</div>
+	</div>
+	<br>
+	<div class="form-group row">
+		<input type="submit" class="btn-primary btn-block" id="register"
+			value="Register" />
+	</div>
+	<br>
+</div>

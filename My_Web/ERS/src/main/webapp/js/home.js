@@ -1,10 +1,10 @@
 /**
  * 
  */
-console.log("in home.js")
+log("in home.js")
 
 $(document).ready(function () {
-	console.log("document ready");
+	log("document ready");
 	
 	loadNavbar();
 	loadHome();
@@ -23,4 +23,8 @@ function loadHome() {
 	};
 	
 	xhr.send();
+}
+
+function log(message) {
+	console.log('home.js -- '+message);
 }
