@@ -255,17 +255,17 @@ public class DAOImpl implements DAO {
 		}
 	}
 	
-	public void ApproveOrDeny(int stat_id, int id, String notes) {
+	public void ApproveOrDeny(Reimbursement r) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			Date date = new Date(Calendar.getInstance().getTime().getTime());
 			String sql = "update reimbursement " + 
 					"set status_id = ?, resolved_date = ? ,notes = ? " + 
 					"where re_id = ? ";
 			PreparedStatement state = conn.prepareStatement(sql);
-			state.setInt(1,stat_id);
+			state.setInt(1,r.getStatus_id());
 			state.setDate(2, date);
-			state.setString(3, notes);
-			state.setInt(4, id);
+			state.setString(3, r.getNotes());
+			state.setInt(4, r.getR_id());
 			state.executeUpdate();
 			
 			System.out.println("Updated!");

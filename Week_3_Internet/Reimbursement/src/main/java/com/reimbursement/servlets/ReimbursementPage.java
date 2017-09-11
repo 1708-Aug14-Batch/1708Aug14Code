@@ -29,13 +29,18 @@ public class ReimbursementPage extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("user");
-		ArrayList<User> userLists = (ArrayList<User>) session.getAttribute("userlist");
+		ArrayList<User> userLists = service.getAllUsers();
 		DTO dto = new DTO();
 		ArrayList<Reimbursement> reim = new ArrayList<Reimbursement>();
 //		System.out.println("getting user from session " + sessionUser.toString());
 		if(sessionUser != null) {
 
+			if(sessionUser.getIsManager() == 0) {
 			reim = service.getUserReimbursements(sessionUser);
+			}
+			else if(sessionUser.getIsManager() == 1) {
+				reim = service.getAllReimbursements();
+			}
 			dto.setUser(sessionUser);
 			
 			dto.setAccounts(reim);

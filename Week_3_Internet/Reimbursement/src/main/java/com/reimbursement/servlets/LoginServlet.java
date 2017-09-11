@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet{
 		System.out.println(email);
 		User u = service.loginUser(email);
 		ArrayList<User> list = service.getAllUsers();
-		System.out.println("Logging user " + u.toString());
+
 		if(check == true && passCheck == true) {
 			if(u.getIsManager() == 0) {
 			System.out.println("Logging user " + u.toString());
@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet{
 			rd.forward(req, res);
 			}
 			else if(u.getIsManager() == 1) {
-				session.setAttribute("userlist", list);
+				
 				session.setAttribute("user", u);//Use this to persist the data throughout the server
 				// The parameter is the name, and the actual object.
 				

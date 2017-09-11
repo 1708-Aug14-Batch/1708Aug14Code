@@ -100,6 +100,7 @@ public class Service {
 	
 	public ArrayList<User> getAllUsers(){
 		ArrayList<User> list = test.getUsers();
+		System.out.println("User list: " + list.toString());
 		return list;
 	}
 	

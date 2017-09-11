@@ -37,6 +37,7 @@ $('#selectList').on('click',function(){
 			var userlist = dto.userList;
 			console.log("User: " + user);
 			console.log("UserList: "+ userlist);
+			console.log("Accounts: " + accounts)
 //			document.getElementById("name").innerHTML = user.firstname + " " + user.lastname;
 			if(accounts.length == 0){
 			document.getElementById("accounts").style.visiblity = "hidden";
@@ -44,7 +45,7 @@ $('#selectList').on('click',function(){
 			else{
 				
 				for (var i = 0; i < accounts.length; i++){
-
+					console.log(accounts);
 					if(accounts[i].status_id === 0 || accounts[i].status_id === 1 || accounts[i].status_id === 2){
 						var table = document.getElementById("list");
 						var row = table.insertRow();
@@ -79,6 +80,7 @@ $('#selectList').on('click',function(){
 						}
 						else if(selection === "Resolved Reimbursements"){
 							console.log("Resolved ID: " + accounts[i].status_id)
+							
 							if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
 							}
@@ -90,8 +92,13 @@ $('#selectList').on('click',function(){
 						}
 						if(userlist != null){
 						console.log("We here?");
-						fname.innerHTML = userlist[i].firstname;
-						lname.innerHTML = userlist[i].lastname;
+							for(var j = 0; j < userlist.length; j++){
+							if(userlist[j].userId == accounts[i].sub_id){
+								console.log(userlist[j]);
+								fname.innerHTML = userlist[j].firstname;
+								lname.innerHTML = userlist[j].lastname;
+							}
+						}
 						}
 						else{
 							console.log("WE GOT HERE");
@@ -104,6 +111,8 @@ $('#selectList').on('click',function(){
 						reason.innerHTML = accounts[i].description;
 						amount.innerHTML = "$" + accounts[i].amount;
 						resID.innerHTML = accounts[i].res_id;
+							
+						
 						console.log(accounts);
 					}
 				}

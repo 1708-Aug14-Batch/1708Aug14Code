@@ -16,5 +16,5 @@ public interface DAO {
 	void getResolvedReimbursements();
 	void UpdateUser(User u);
 	void getSingleUser(User u);
-	void ApproveOrDeny(int stat_id, int id, String notes);
+	void ApproveOrDeny(Reimbursement r);
 }
