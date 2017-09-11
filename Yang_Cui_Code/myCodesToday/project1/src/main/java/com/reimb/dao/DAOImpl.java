@@ -47,8 +47,10 @@ public class DAOImpl implements DAO{
 	
 	@Override
 	public int getUserID(String userName){
+		System.out.println("in getUserID(userName)");
 		int userID=-1;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			System.out.println("connected to db");
 			String sql="select userID from Users where username=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, userName);
@@ -59,6 +61,7 @@ public class DAOImpl implements DAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("returned= "+userID);
 		return userID;
 	}
 
@@ -119,7 +122,7 @@ public class DAOImpl implements DAO{
 	@Override
 	public ApproveStat getStatus(int statID) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-			String sql="select * from Status where statID=?";
+			String sql="select * from Status where statusID=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, statID);
 			ResultSet rs = ps.executeQuery();

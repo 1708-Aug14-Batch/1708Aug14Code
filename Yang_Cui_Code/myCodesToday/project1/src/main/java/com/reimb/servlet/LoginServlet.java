@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 
-
+		System.out.println("session= "+session);
 
 		String uname = tx.get(0);
 		String pass = tx.get(1);

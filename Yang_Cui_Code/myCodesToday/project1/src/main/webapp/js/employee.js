@@ -22,7 +22,8 @@ function loadHomeView(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			//console.log(xhr.responseText);
-			document.getElementById('view').innerHTML = xhr.responseText;		
+			document.getElementById('view').innerHTML = xhr.responseText;
+			console.log($("#login"));
 			document.getElementById("login").addEventListener("click", login);
 		}
 	}
@@ -41,6 +42,7 @@ function login(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log("got login response");
 			var response =  xhr.responseText;
 
 			if (response == "fail"){
@@ -87,6 +89,7 @@ function loadEmployeeInfoView(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
+			console.log($('#empInfo'));
 			getEmployeeInfo(); // loads user info by calling function
 
 		}
@@ -174,8 +177,13 @@ function getEmployeeInfo(){
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
-			document.getElementById('userid').innerHTML = user.userID;
-			document.getElementById('firstname').innerHTML =user.firstName;
+			console.log(user);
+			document.getElementById('userid').innerHTML = user.id;
+			console.log(user.firstName);
+			console.log($("#firstn"));
+			console.log($('p.fuckoff'));
+			//$('#firstname').text(user.firstName);
+			document.getElementById("firstname").innerHTML =user.firstName;
 			document.getElementById('lastname').innerHTML =user.lastName;
 			document.getElementById('username').innerHTML =user.userName;
 			document.getElementById('email').innerHTML =user.email;
