@@ -3,6 +3,7 @@ package com.reimburse.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,7 @@ import com.reimburse.service.Service;
 public class LoginServlet extends HttpServlet {
 	
 	@Override protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
-		//RequestDispatcher sd;
+		RequestDispatcher sd;
 
 		//session + writer + service + mapper
 		HttpSession session = req.getSession();
@@ -54,12 +55,14 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("userid", user.getUserId());
 		    session.setAttribute("usertype",user.getIsManager());
 		    
-		    if(user.getIsManager() == (byte) 0){
-		    	res.sendRedirect("homepage.html");
-		    }
-		    else{
-		    	res.sendRedirect("manager_homepage.html");
-		    }
+		    sd = req.getRequestDispatcher("homepage");
+		    sd.forward(req, res);
+//		    if(user.getIsManager() == (byte) 0){
+//		    	res.sendRedirect("homepage.html");
+//		    }
+//		    else{
+//		    	res.sendRedirect("manager_homepage.html");
+//		    }
 		}
 	}
 }

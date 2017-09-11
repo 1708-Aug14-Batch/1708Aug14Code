@@ -109,6 +109,9 @@ public class Service {
 	public ArrayList<Reimbursement> getEmployeeReimbursements(int userid){
 		return dao.getEmployeeReimbursements(userid);
 	}
+	public ArrayList<Reimbursement> getEmployeeReimbursements(String name){
+		return dao.getEmployeeReimbursements(name);
+	}
 	public ArrayList<Reimbursement> getEmployeePendingReimbursements(int userid){
 		return dao.getEmployeePendingReimbursements(userid);
 	}

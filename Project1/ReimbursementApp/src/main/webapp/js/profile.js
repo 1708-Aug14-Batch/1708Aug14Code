@@ -19,6 +19,10 @@ function showNameAndAccounts(json) {
 	  var response = json.responseText;
 	  var user_info = JSON.parse(response);
 	  
+	  if(user_info.user.isManager == 0){
+		  document.getElementById("reimburseButton").style.display = 'block';
+	  }
+	  
 	  document.getElementById("name").innerHTML = user_info.user.firstname + " " +user_info.user.lastname;
 	  document.getElementById("username").innerHTML = user_info.user.username;
 	  document.getElementById("email").innerHTML = user_info.user.email;
@@ -27,6 +31,8 @@ function showNameAndAccounts(json) {
 	  document.getElementById("inputfn").value = user_info.user.firstname;
 	  document.getElementById("inputln").value = user_info.user.lastname;
 	  document.getElementById("inputemail").value = user_info.user.email;
+	  
+	  
 }
 
 window.onload = function(){

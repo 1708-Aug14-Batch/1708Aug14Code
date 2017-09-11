@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+</head>
+<body>
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-dark bg-dark">
+
+		<p class="text-light mb-0">
+			<span class="h3" class="navbar-brand mb-0">Home</span>
+		</p>
+		<div class="nav align-right">
+			<form action="manager_homepage.html" id="manager_home_form">
+				<button type="submit" class="btn btn-light mx-1">Home</button>
+			</form>
+			<form action="profile.html" id="profile_form">
+				<button type="submit" class="btn btn-light mx-1">Profile</button>
+			</form>
+
+
+			<form action="logout" id="logout_form">
+				<button type="submit" class="btn btn-light mx-1">Logout</button>
+			</form>
+		</div>
+	</nav>
+	<!-- /.navbar -->
+
+	<div class="container-fluid">
+
+		<br>
+		<p class="display-4 text-justify text-center" id="welcome"></p>
+		<br>
+
+		<p class="h6 text-muted text-center">What would you like to do?</p>
+		<br>
+
+		<div class="text-center">
+			<div class="btn-group">
+				<button id="quickresolve" class="btn btn-primary btn-lg">Quick
+					Resolve</button>
+				<button id="viewallresolved" class="btn btn-primary btn-lg">View
+					All Resolved</button>
+				<button id="viewallemployees" class="btn btn-primary btn-lg">View
+					All Employees</button>
+				<button id="resolveemployee" class="btn btn-primary btn-lg">Resolve
+					Employee</button>
+				<button id="registeremployee" class="btn btn-primary btn-lg">Register
+					Employee</button>
+			</div>
+		</div>
+		<br> <br>
+
+		<div class="border border-dark rounded m-2 p-3">
+			<span class="h4" id="heading"></span>
+			<hr>
+			<div id="content">
+				<table id="dataTable" class="display cell-border">
+					
+				</table>
+			</div>
+		</div>
+
+	</div>
+	<!-- /container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="js/manager_homepage.js"></script>
+</body>
+</html>

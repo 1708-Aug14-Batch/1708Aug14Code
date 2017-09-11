@@ -1,13 +1,11 @@
 package com.reimburse.dao;
 
-import java.math.BigDecimal;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.User;
@@ -402,6 +400,43 @@ public class ReimburseDAO implements DAO {
 			//setup prepared with sql and allocate space for key
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, userID);
+
+			//execute and get values
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()){
+				Reimbursement u = new Reimbursement(rs.getInt("reimbursementid"), rs.getInt("submitid"), rs.getInt("resolveid"),
+						rs.getInt("statusid"), rs.getString("description"),
+						rs.getString("manager_notes"), rs.getBigDecimal("amount"), 
+						rs.getDate("submit_date"), rs.getDate("resolve_date"));
+				reimbursements.add(u);
+			}
+			conn.commit();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return reimbursements;
+	}
+	
+	@Override
+	public ArrayList<Reimbursement> getEmployeeReimbursements(String fullname) {
+
+		ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+
+			conn.setAutoCommit(false);
+			String sql = "select * from reimbursements  r "
+                        +"inner join users u "
+                        +"on u.USERID = r.SUBMITID "
+                        +"where firstname || ' ' || lastname like ? "
+                        + "order by submit_date desc";
+
+			//setup prepared with sql and allocate space for key
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, fullname);
 
 			//execute and get values
 			ResultSet rs = ps.executeQuery();

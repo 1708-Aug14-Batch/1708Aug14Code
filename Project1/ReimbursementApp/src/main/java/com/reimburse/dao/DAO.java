@@ -26,12 +26,14 @@ public interface DAO {
 	int addReimbursement(Reimbursement r);  //add new reimbursement
 	Reimbursement getReimbursement(int id); //get a reimbursement based on id
 	ArrayList<Reimbursement> getEmployeeReimbursements(int userID); //get all reimbursements via employee ID
+	ArrayList<Reimbursement> getEmployeeReimbursements(String fullname); //get all reimbursement via employee full name
 	ArrayList<Reimbursement> getEmployeePendingReimbursements(int userID); //get pending reimbursements via employee ID
 	ArrayList<Reimbursement> getEmployeeResolvedReimbursements(int userID); //get resolved reimbursements via employee ID
 	ArrayList<Reimbursement> getAllPending(); //returns all pending reimbursements
 	ArrayList<Reimbursement> getAllResolved(); //returns all pending reimbursements
 	void resolveReimbursement(Reimbursement r); //takes reimbursement and updates info within table
 	void deleteReimbursement(Reimbursement r); //remove this reimbursement from table
+	
 	
 	
 }

@@ -15,10 +15,10 @@
 	
   <p class="text-light mb-0"><span class="h3" class="navbar-brand mb-0">Profile</span></p>
   <div class="nav align-right">
-        <form action="homepage.html"><button type="submit" class="btn btn-light mx-1">Home</button></form>
+        <form action="homepageredirect"><button type="submit" class="btn btn-light mx-1">Home</button></form>
         <form action="profile.html"><button type="submit" class="btn btn-light mx-1">Profile</button></form>
         
-		<div class="dropdown mx-1">
+		<div class="dropdown mx-1" id="reimburseButton" style="display: none">
  		<button class="btn btn-light dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
         >Reimbursements</button>
         	
@@ -31,13 +31,7 @@
 						new</a>
     
 		  	</div>
-		 </div>
-
-        <form action="logout"><button type="submit" class="btn btn-light mx-1">Logout</button></form>
- </div>
-</nav>
-<!-- /.navbar -->
-<!-- Modal -->
+		  	<!-- Modal -->
 <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -73,6 +67,13 @@
   </div>
 </div>
 	<!-- /modal -->
+		 </div>
+
+        <form action="logout"><button type="submit" class="btn btn-light mx-1">Logout</button></form>
+ </div>
+</nav>
+<!-- /.navbar -->
+
 <div class="container">
 		<br>
 		<p class="display-4 text-justify text-center">Profile Information</p>

@@ -15,6 +15,8 @@ public class Reimbursement {
 	private BigDecimal amount; //amount of request
 	private Date submitDate; 
 	private Date resolveDate;
+	private String resolveName;
+	private String submitName;
 	
 	//constructors
 	public Reimbursement() {
@@ -106,7 +108,24 @@ public class Reimbursement {
 		this.resolveDate = resolveDate;
 	}
 	
+	
 	//tostring override for easy read
+
+	public String getSubmitName() {
+		return submitName;
+	}
+
+	public void setSubmitName(String submitName) {
+		this.submitName = submitName;
+	}
+
+	public String getResolveName() {
+		return resolveName;
+	}
+
+	public void setResolveName(String resolveName) {
+		this.resolveName = resolveName;
+	}
 
 	@Override
 	public String toString() {
