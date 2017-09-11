@@ -12,6 +12,13 @@ public class DTO {
 	private ArrayList<User> userList;
 	public DTO() {}
 	
+	public DTO(User user, ArrayList<Reimbursement> accounts, ArrayList<User> userList) {
+		super();
+		this.user = user;
+		this.accounts = accounts;
+		this.userList = userList;
+	}
+
 	public ArrayList<User> getUserList() {
 		return userList;
 	}

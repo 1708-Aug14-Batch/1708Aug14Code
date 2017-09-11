@@ -37,9 +37,12 @@ public class ReimbursementPage extends HttpServlet{
 
 			reim = service.getUserReimbursements(sessionUser);
 			dto.setUser(sessionUser);
-			dto.setAccounts(reim);
 			
+			dto.setAccounts(reim);
 
+			dto.setUserList(userLists);
+			System.out.println(userLists);
+			
 			System.out.println("Converting our user and accounts to dto");
 			
 			ObjectMapper mapper = new ObjectMapper();

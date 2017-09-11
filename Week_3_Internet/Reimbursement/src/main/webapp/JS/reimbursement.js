@@ -34,7 +34,7 @@ $('#selectList').on('click',function(){
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-			var userlist = dto.userlist;
+			var userlist = dto.userList;
 			console.log("User: " + user);
 			console.log("UserList: "+ userlist);
 //			document.getElementById("name").innerHTML = user.firstname + " " + user.lastname;
@@ -88,19 +88,17 @@ $('#selectList').on('click',function(){
 							else if(accounts[i].status_id === 0)
 								continue;
 						}
-						if(user != null){
-						fname.innerHTML = user.firstname;
-						lname.innerHTML = user.lastname;
+						if(userlist != null){
+						console.log("We here?");
+						fname.innerHTML = userlist[i].firstname;
+						lname.innerHTML = userlist[i].lastname;
 						}
 						else{
 							console.log("WE GOT HERE");
-							fname.innerHTML = userlist[i].firstname;
-							lname.innerHTML = userlist[i].lastname;
+							fname.innerHTML = user.firstname;
+							lname.innerHTML = user.lastname;
 						}
 						rID.innerHTML = accounts[i].r_id;
-						
-						
-
 						subDate.innerHTML = accounts[i].subDate;
 						ResDate.innerHTML = accounts[i].resDate;
 						reason.innerHTML = accounts[i].description;
