@@ -1,0 +1,20 @@
+1504478541328	Delete element
+1504478545476	Delete element
+1504572101176	Extract method 'getReimbursementFromQuery'
+1504576343444	Extract method 'getRUserFromQuery'
+1504984820825	Extract method 'checkIfUserIsManager'
+1504987282358	Delete element
+1504987830924	Rename resource 'app.js'
+1504988052121	Rename resource 'home.js'
+1504988490167	Rename local variable 'myMap'
+1504988505218	Rename local variable 'map'
+1504988519797	Rename local variable 'txObject'
+1504988597587	Rename local variable 'transaction'
+1504988636213	Rename local variable 'tx'
+1504988775022	Rename type 'Service'
+1504989852254	Extract method 'errorCheckEmail'
+1504989878110	Extract method 'errorCheckPassword'
+1504990207264	Delete element
+1505000606940	Rename local variable 'keys'
+1505001447372	Infer generic type arguments
+1505001455268	Infer generic type arguments

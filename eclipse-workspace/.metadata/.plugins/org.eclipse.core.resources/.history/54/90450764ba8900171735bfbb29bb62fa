@@ -1,0 +1,9 @@
+package com.bank.dao;
+
+public class UserDAO implements IDAO<T> {
+
+	public UserDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

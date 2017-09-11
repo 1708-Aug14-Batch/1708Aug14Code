@@ -1,0 +1,9 @@
+package com.bank.dao;
+
+public class AccountTypeDAO implements IDAO<T> {
+
+	public AccountTypeDAO() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

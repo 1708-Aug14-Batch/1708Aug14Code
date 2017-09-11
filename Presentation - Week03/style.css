@@ -1,0 +1,23 @@
+/*
+body {
+	margin-top: 5%;
+	margin-bottom: 10%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+*/
+
+h1 {
+	text-align: center;
+	padding-top: 1%;
+	padding-bottom: 2%;
+	color: white;
+}
+
+.jumbotron {
+	border-radius: 10px;
+}
+
+img {
+	padding: 2%;
+}

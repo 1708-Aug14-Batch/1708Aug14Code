@@ -1,0 +1,32 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+public class Reflection {
+
+	public static void main(String[] args) {
+		Hidden myHidden = new Hidden();
+		Class myClass = myHidden.getClass();
+		Method myMethod = null;
+		try {
+			myMethod = myClass.getDeclaredMethod("printI", null);
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		myMethod.setAccessible(true);
+		try {
+			myMethod.invoke(myHidden, null);
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

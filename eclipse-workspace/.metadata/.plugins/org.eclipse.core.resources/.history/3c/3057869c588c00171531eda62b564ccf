@@ -1,0 +1,10 @@
+
+public class HideMe {
+	
+	private String hello = "Hello World!";
+	
+	private void printI() {
+		System.out.println();
+	}
+
+}
