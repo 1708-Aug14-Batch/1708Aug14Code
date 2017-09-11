@@ -7,12 +7,8 @@ public class Tester {
 		System.out.println("Begin Tester main method");
 		Service serv = new Service();
 		
-		// Log in a manager
-		serv.login("user name", "pass word");
+		System.out.println("Error: Tests are not implemented yet");
 		
-		System.out.println(serv.getAllEmployees());
-		
-		serv.logout();
 		System.out.println("End Tester main method");
 	}
 

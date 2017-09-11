@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="submitReimb" key="selection"/>
+		<item value="Submit" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="submitReimb"/>
-			<item value="username_e"/>
-			<item value="eimburse"/>
-			<item value="submitReim"/>
-			<item value="_button"/>
-			<item value="eposit"/>
-			<item value="submitReimDiv"/>
-			<item value="viewAccounts"/>
+			<item value="Submit"/>
+			<item value="viewReimIdDiv"/>
+			<item value="viewEmployeesReim"/>
+			<item value="viewAllResolvedReim"/>
+			<item value="viewResolvedReim"/>
+			<item value="iew Res"/>
+			<item value="undefined"/>
+			<item value="getReimbursements"/>
 		</list>
 		<list key="replacehistory">
+			<item value="registerEmployeeView"/>
+			<item value="updateProfile"/>
 			<item value="reimTableDiv"/>
 			<item value="service"/>
 			<item value="viewResolvedReim"/>
 			<item value="viewPendingReim"/>
 			<item value="submitReimbursement"/>
 			<item value="&apos;"/>
-			<item value=".text("/>
-			<item value="navbarDiv"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -307,5 +307,16 @@ public class Service implements ServiceInterface {
 		reimbursements.removeAll(removeList);
 		return reimbursements;
 	}
+	
+	@Override
+	public ArrayList<Reimbursement> getAllReimbursements() {
 
+		return daoImpl.readAllReimbursements();
+	}
+
+	@Override
+	public Reimbursement getReimbursement(int id) {
+		
+		return daoImpl.readReimbursement(id);
+	}
 }

@@ -47,18 +47,25 @@ public class UpdateProfileServlet extends HttpServlet {
 
 		Service service = new Service();
 
-		// Parameters in the following order: [userId, firstName, lastName, email, username, password]
+		// Parameters in the following order: [userId, firstName, lastName, email, username, password, managerId, isManager]
 		int userId = Integer.parseInt(tx.get(0));
 		String firstName = tx.get(1);
 		String lastName = tx.get(2);
 		String email = tx.get(3);
 		String username = tx.get(4);
 		String password = tx.get(5);
+		int managerId = Integer.parseInt(tx.get(6));
+		boolean isManager = tx.get(7).equals("true")? true : false; 
 
 		HttpSession session = request.getSession();
 		Worker user = service.getWorker(userId);
 
 		String json = "";
+		if (userId == -1) {
+			// Create a new worker
+			
+			service.tryCreateWorker(managerId, firstName, lastName, email, username, password, isManager);
+		}
 		if (user == null) {
 			// userId does not correspond to a Bank User.
 			// This should never happen

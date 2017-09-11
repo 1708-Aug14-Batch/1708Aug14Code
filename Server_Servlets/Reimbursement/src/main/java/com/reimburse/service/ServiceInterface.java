@@ -39,4 +39,8 @@ public interface ServiceInterface {
 	public ArrayList<Reimbursement> getEmployeesReimbursements(int employeeId);
 
 	public ArrayList<Worker> getAllEmployees(int managerId);
+
+	ArrayList<Reimbursement> getAllReimbursements();
+	
+	public Reimbursement getReimbursement(int id);
 }

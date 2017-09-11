@@ -1,0 +1,14 @@
+package com.reimburse.servlets;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+@WebServlet("/getReimbursements")
+public class GetReimbursementsServlet extends HttpServlet {
+
+	/**
+	 * Auto-generated
+	 */
+	private static final long serialVersionUID = -3282075575789709210L;
+
+}
