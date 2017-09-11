@@ -2,6 +2,9 @@ package com.ers.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.ers.pojos.Employee;
 import com.ers.service.Service;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoginServlet  extends HttpServlet{
 	
@@ -19,32 +23,48 @@ public class LoginServlet  extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)throws ServletException,IOException{
+		
 		HttpSession sesh = req.getSession();
+		Service s = new Service();
 		
-		
+		System.out.println("------------------");
 		String email = req.getParameter("name");
-		String username = req.getParameter("username");
 		String pass = req.getParameter("paw");
-		int id = s.validateEmployee(email,username);
-		System.out.println(id);
-		if(id < 0){
-			req.getRequestDispatcher("fail.html").forward(req, res);
+		String username = req.getParameter("username");
+		System.out.println(email + " " + pass+ " " + username);
+		int id = s.validateEmployee(email, username);
+		System.out.println("id = " + id);
+		
+		if(id<0)
+		{	
+			String json = "fail";
+			PrintWriter out = res.getWriter();
+			res.setContentType("application/json");
+			out.write(json);
 		}
 		else {
-			Employee e = s.login(id, pass);
-			if(e == null){
-				req.getRequestDispatcher("fail.html").forward(req, res);
+			Employee u = s.login(id, pass);
+			if(u == null)
+			{
+				String json = "pass";
+				PrintWriter out = res.getWriter();
+				res.setContentType("application/json");
+				out.write(json);
 			}
-			
-			else{
-				if(e.getIsManager() == 0) {
-					sesh.setAttribute("employee", e);
-					req.getRequestDispatcher("employee.html").forward(req, res);
-				}
-				else 
-					req.getRequestDispatcher("manager.html").forward(req, res);
+			else {
+				
+				sesh.setAttribute("employee", u);
+				
+				
+				ObjectMapper mapper = new ObjectMapper();
+				
+				String json = mapper.writeValueAsString(u);
+				PrintWriter out = res.getWriter();
+				res.setContentType("application/json");
+				out.write(json);
 			}
 		}
+		
 	}
 
 }

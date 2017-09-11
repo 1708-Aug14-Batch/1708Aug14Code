@@ -1,22 +1,29 @@
+var formdata;
+
 $(document).ready(function(){
-	document.getElementById("submit").addEventListener("click",login);
+	$('#submitform').on('submit', function(e){
+		e.preventDefault();
+		formdata = $(this).serialize();
+		login();
+	})
+	//document.getElementById("submitform").addEventListener("submit",login);
 });
 
 
 function login(){
-	var email = document.getElementById("name").value;
-	var pass = document.getElementById("paw").value;
-	var username = document.getElementById("username").value;
+//	var email = document.getElementById("name").value;
+//	var pass = document.getElementById("paw").value;
+//	var username = document.getElementById("username").value;
+//	
+//	var tx = [email, pass, username];
 	
-	var tx = [email, pass, username];
-	
-	tx = JSON.stringify(tx);
-	
+	//tx = JSON.stringify(tx);
+	console.log(formdata);
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var response =  xhr.responseText;
-
+			
 			if (response == "fail"){
 				document.getElementById("message")
 				.innerHTML = "Invalid credentials. Please try again";
@@ -26,26 +33,33 @@ function login(){
 				.innerHTML = "Invalid user. Please try again";
 			}
 			else{
-				loadEmployeePage();
-				console.log(responseText);
+				var emp = JSON.parse(response);
+				if(emp.isManager == 0){
+					console.log(response.text);
+					window.location = "employee.html";
+				}
+				else{
+					console.log(response.text);
+					window.location = "manager.html";
+				}
 			}
 		}
 	}
-	xhr.open("POST","login",true);
+	xhr.open("GET","login?"+formdata,true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(tx);
+	xhr.send();
 };
 
-function loadEmployeePage(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var response =  xhr.responseText;
-			//console.log(responseText);
-		}
-	}
-	xhr.open("POST","getEmployeePage",true);
-	xhr.send();
-}
+//function loadEmployeePage(){
+//	var xhr = new XMLHttpRequest();
+//	xhr.onreadystatechange = function(){
+//		if(xhr.readyState == 4 && xhr.status == 200){
+//			var response =  xhr.responseText;
+//			//console.log(responseText);
+//		}
+//	}
+//	xhr.open("POST","getEmployeePage",true);
+//	xhr.send();
+//}
 
 

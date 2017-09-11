@@ -100,7 +100,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			String sql = "select *" + 
-					"from reimbursement";
+					" from reimbursement";
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery(sql);
 			

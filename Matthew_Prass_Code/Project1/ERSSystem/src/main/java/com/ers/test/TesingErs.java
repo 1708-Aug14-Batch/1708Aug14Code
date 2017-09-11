@@ -3,6 +3,7 @@ package com.ers.test;
 import java.util.ArrayList;
 
 import com.ers.dao.DaoImpl;
+import com.ers.pojos.Employee;
 import com.ers.pojos.Reimbursement;
 import com.ers.pojos.ReimbursementStatus;
 import com.ers.service.Service;
@@ -21,12 +22,17 @@ public class TesingErs {
 		
 //		System.out.println(s.updateInfo(dao.getEmployee(2),"matt", "prass", "something", "somethingelse", "mprass"));
 //		s.submitReimbursement(dao.getEmployee(2), "test", 10000);
-		ArrayList<Reimbursement> list = dao.getAllReimbursementsFromEmployee(2);
+		ArrayList<Reimbursement> list = dao.getAllReimbursements();
 		for(Reimbursement r: list)
 		{
 			System.out.println(r);
 		}
 		
+		ArrayList<Employee> list2 = s.getAllEmployees();
+		for(Employee r: list2)
+		{
+			System.out.println(r);
+		}
 	}
 
 }
