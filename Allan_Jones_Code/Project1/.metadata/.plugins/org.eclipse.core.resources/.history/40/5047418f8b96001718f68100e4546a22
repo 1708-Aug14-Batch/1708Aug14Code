@@ -1,0 +1,3 @@
+//sessionStorage.setItem("userid", 1);  // the 1 needs to be retrieved from login somehow
+
+$("#unameid").text("Abe Lincoln");

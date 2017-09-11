@@ -1,0 +1,11 @@
+127.0.0.1 - - [08/Sep/2017:16:48:22 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:23 -0400] "GET /Reimbursement_project/login.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:23 -0400] "GET /Reimbursement_project/css/bootstrap.min.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:23 -0400] "GET /Reimbursement_project/css/bootstrap-theme.min.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:23 -0400] "GET /Reimbursement_project/css/login.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:23 -0400] "GET /Reimbursement_project/images/bkgrnd6.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:35 -0400] "POST /Reimbursement_project/login HTTP/1.1" 200 5932
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:35 -0400] "GET /Reimbursement_project/js/employee_home.js HTTP/1.1" 200 115
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:35 -0400] "GET /Reimbursement_project/css/employee_home.css HTTP/1.1" 200 901
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:35 -0400] "GET /Reimbursement_project/images/bkgrnd4.jpg HTTP/1.1" 200 23238
+0:0:0:0:0:0:0:1 - - [08/Sep/2017:16:48:46 -0400] "GET /Reimbursement_project/submit.html HTTP/1.1" 404 1060

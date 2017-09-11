@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<!-- If IE use the latest rendering engine -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Set the page to the width of the device and set the zoon level -->
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+
+<title>Oracle </title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/cursors.css">
+
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- page-header adds space aroundtext and enlarges it. It also adds an underline at the end -->
+        <div class="page-header">
+            <h1>Fetching from an explicit cursor</h1>
+        </div>
+    </div>
+    
+    <div class="container">
+
+        <!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
+        <!-- <nav class="navbar navbar-fixed-top"> -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+
+                    <!-- Button that toggles the navbar on and off on small screens -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+
+                        <!-- Hides information from screen readers -->
+                        <span class="sr-only"></span>
+
+                        <!-- Draws 3 bars in navbar button when in small mode -->
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- You'll have to add padding in your image on the top and right of a few pixels (CSS Styling will break the navbar) -->
+                    <!--<a class="pull-left" href="#"><img src="logo.png"></a>-->
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a href="cursors.html">Home <span class="sr-only">(current)</span></a></li>
+                        <li><a href="selectInto.html">Select Into</a></li>
+                        <li class="active"><a href="fetching.html">Fetching</a></li>
+                        <li><a href="forLoop.html">For Loop</a></li>
+                        <li><a href="dynamicQueries.html">Dynamic Queries</a></li>
+                        <li><a href="cursorVariables.html">Cursor Variables</a></li>
+                        <li><a href="summary.html">In Summary</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    
+        <div class="well well-lg">
+            <h3>
+                <p>
+                    A SELECT-INTO is also referred to as an implicit query, because Oracle Database implicitly opens a cursor for the SELECT statement, fetches the row, and then closes the cursor when it finishes doing that (or when an exception is raised).
+                </p><br>
+                <p>
+                    You can, alternatively, explicitly declare a cursor and then perform the open, fetch, and close operations yourself.
+                </p>
+            </h3>
+            <h4>
+                <br>
+                <p>
+                    <b>Code Listing 1:</b> Block and description of explicit cursor implementation
+                </p>
+                <p>DECLARE</p>
+                <p>l_total       INTEGER := 10000;</p><br>
+                <p>CURSOR employee_id_cur IS</p>
+                <p>&nbsp;&nbsp;SELECT employee_id</p>
+                <p>&nbsp;&nbsp;FROM plch_employees</p>
+                <p>&nbsp;&nbsp;ORDER BY salary ASC;</p><br>
+                <p>l_employee_id   employee_id_cur%ROWTYPE;</p><br>
+                <p>BEGIN</p>
+                <p>&nbsp;&nbsp;OPEN employee_id_cur;</p>
+                <p>&nbsp;&nbsp;LOOP</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;FETCH employee_id_cur INTO l_employee_id;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;EXIT WHEN employee_id_cur%NOTFOUND;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;assign_bonus (l_employee_id, l_total);</p>
+                <p>&nbsp;&nbsp;EXIT WHEN l_total &lt;&#61; 0;</p>
+                <p>&nbsp;&nbsp;END LOOP;</p><br>
+                <p>&nbsp;&nbsp;CLOSE employees_cur;</p>
+                <p>END;</p>
+            </h4>
+        </div>
+    </div>
+
+    
+    
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+</body>
+</html>

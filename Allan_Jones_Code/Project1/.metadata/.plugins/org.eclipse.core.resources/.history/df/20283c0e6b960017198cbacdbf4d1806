@@ -1,0 +1,24 @@
+var btn = document.getElementById("registerEmp");
+//var fn = document.getElementById("fname").value;
+var ln = document.getElementById("lname");
+var cn = document.getElementById("uname");
+var em = document.getElementById("email");
+
+var temp = "Alika";
+
+var fn = $("#fname").val();
+
+alert("the name: " + $("#fname"));
+
+btn.addEventListener("click", function() {
+	var fn = document.getElementById("fname").value;
+	alert("the firstname entered was: " + fn);
+	alert("the name is: " + $("#fname").val());
+});
+	
+	
+	
+	//Packages.com.project1.dao.DaoImpl.registerEmp(fn, ln, cn, em);
+
+
+//document.getElementById("registerEmp").addEventListener("click", runRegEmp);

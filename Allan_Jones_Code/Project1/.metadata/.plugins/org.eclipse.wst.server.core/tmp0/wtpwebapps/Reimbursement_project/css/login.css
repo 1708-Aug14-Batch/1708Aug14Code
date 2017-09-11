@@ -1,0 +1,35 @@
+body {
+	background-image: url(../images/bkgrnd6.jpg);
+	background-size: cover;
+	color: white;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+form {
+	background: rgba(26, 131, 62, 0.58);
+	color: whitesmoke;
+	padding: 40px;
+	margin-top: 200px;
+	padding-bottom: 60px;
+	box-shadow: 10px 10px 5px rgba(6, 1, 1, 0.43)
+}
+
+h1, h2 {
+	text-align: center;
+}
+
+.btn {
+	width: 100%;
+	font-size: 20px;
+	border-radius: 0px;
+}
+
+.form-control {
+	border-radius: 0px;
+	font-size: 20px;
+	background-color: rgba(23, 3, 3, 0.48);
+	color: white;
+	border-radius: 1px solid #291212
+}

@@ -1,0 +1,12 @@
+127.0.0.1 - - [30/Aug/2017:12:52:39 -0400] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [30/Aug/2017:13:19:04 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:19:05 -0400] "GET /Reimbursement_project/index.html HTTP/1.1" 200 2629
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:19:05 -0400] "GET /Reimbursement_project/bkgrnd6.jpg HTTP/1.1" 200 67630
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:19:23 -0400] "POST /Reimbursement_project/login HTTP/1.1" 200 139
+127.0.0.1 - - [30/Aug/2017:13:21:24 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:21:24 -0400] "GET /Reimbursement_project/login HTTP/1.1" 405 1108
+127.0.0.1 - - [30/Aug/2017:13:23:31 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:23:31 -0400] "GET /Reimbursement_project/login HTTP/1.1" 405 1108
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:23:45 -0400] "GET /Reimbursement_project/index.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:23:45 -0400] "GET /Reimbursement_project/bkgrnd6.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [30/Aug/2017:13:24:14 -0400] "POST /Reimbursement_project/login HTTP/1.1" 200 162

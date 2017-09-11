@@ -1,0 +1,54 @@
+body {
+    background-image: url(../images/bkgrnd4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-attachment: fixed;
+} 
+
+#box-wrapper {
+    background-image: url(../images/bkgrnd4.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-attachment: fixed;
+}
+
+#emp-header {
+    border-bottom: 1px solid black;
+}
+
+#lg-item-header {
+    background-color: #ADC1D6;
+}
+
+#emp-info {
+    font-size: 22px;
+    color: black;
+}
+
+li {
+    font-size: 18px;
+}
+
+#emp-nav {
+    background-color: #ADC1D6;
+}
+
+li.active > a {
+    background-color: #7297BA;
+}
+
+#emp-well {
+    background-color: #CFD6DE;
+}
+
+#tshadow {
+    text-shadow: 3px 3px #ADC1D6;
+}
+
+.fixed-group {
+  min-height: 185px;
+  max-height: 185px;
+  overflow-y: scroll;
+}

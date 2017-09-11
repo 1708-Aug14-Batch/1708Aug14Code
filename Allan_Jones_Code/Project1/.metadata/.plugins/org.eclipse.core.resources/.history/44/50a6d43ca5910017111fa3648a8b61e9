@@ -1,0 +1,6 @@
+window.onload = function() {
+	
+	alert('this is an alert');
+	var empFN = document.getElementById('EmpFirstName');
+	empFN.innerHTML = 'Allan';
+}

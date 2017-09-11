@@ -1,0 +1,27 @@
+var userContainer = document.getElementById("unameid");  // the empty element in register.html for logged in username
+
+var ourRequest = new XMLHttpRequest();
+ourRequest.open('POST', 'register');
+ourRequest.onload = function() {
+	if(ourData.status >= 200 && ourRequest.status < 400) {
+		var ourData = JSON.parse(ourRequest.responseText);  // this parses the responseText into JSON
+		renderHTML(ourData);   // pass the JSON string object to the renderHTML function
+	} else {
+		console.log("We connected but the server responded with an error!");
+	}
+};
+	
+// handling connection failures ...  done before the send();
+ourRequest.onerror = function() {
+	console.log = ("A connection error has occurred!")
+}
+	
+ourRequest.send();
+
+var btn = document.getElementById("registerEmp");
+btn.addEventListener("click", function() {
+	var fn = document.getElementById("fname").value;
+	var ln = document.getElementById("lname").value;
+	var un = document.getElementById("uname").value;
+	var em = document.getElementById("email").value;
+});

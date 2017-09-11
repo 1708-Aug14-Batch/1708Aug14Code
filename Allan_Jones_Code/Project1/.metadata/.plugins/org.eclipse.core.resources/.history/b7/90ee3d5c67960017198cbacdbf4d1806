@@ -1,0 +1,16 @@
+var btn = document.getElementById("registerEmp");
+var fn = document.getElementById("fname");
+var ln = document.getElementById("lname");
+var cn = document.getElementById("uname");
+var em = document.getElementById("email");
+
+btn.addEventListener("click", function(e) {
+	alert("the firstname entered was: " + e.fn.value);
+});
+	
+	
+	
+	//Packages.com.project1.dao.DaoImpl.registerEmp(fn, ln, cn, em);
+
+
+//document.getElementById("registerEmp").addEventListener("click", runRegEmp);

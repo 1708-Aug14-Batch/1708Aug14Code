@@ -1,0 +1,17 @@
+var animalContainer = document.getElementById("animal-info");  // the empty div element in index.html
+var btn = document.getElementById("btn");
+btn.addEventListener("click", function() {
+	var ourRequest = new XMLHttpRequest();
+	ourRequest.open('GET', 'https://learnwebcode.github.io/json-example/animals-1.json');
+	ourRequest.onload = function() {
+		//var ourData = ourRequest.responseText;  // this only gets a string of data.. it is not JSON
+		var ourData = JSON.parse(ourRequest.responseText);  // this parses the responseText into JSON
+		renderHTML(ourData);   // pass the JSON string object to the renderHTML function
+	};
+	ourRequest.send();
+});
+
+function renderHTML(data) {
+	var htmlString = "This is a test";
+	animalContainer.insertAdjacentHTML('beforeend', "this is a test");
+}
