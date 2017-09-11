@@ -295,7 +295,7 @@ console.log(getUSA());
 
 function getPeopleInSales(){
 	
-	var list = document.getElementsByClassName("empName").getChild("Sales");
+	var list = document.getElementsByClassName("empName");
 	return list;
 }
 var list = getPeopleInSales();
@@ -309,4 +309,32 @@ for(var i = 0; i <= list.length; i++){
  */
 
 
+var spanList= $('span').text();
+console.log(spanList + " ");
+
+/*
+ * 
+ * Problem 4
+ * 
+ */
+
+
+var skillsSelection = $('#skills').text();
+console.log(skillsSelection);
+
+$("#skills").on('click',function(){
+	var select = $("option:selected").text()
+	console.log(select);
+})
+
+
+/*
+ * 
+ * Question 5 
+ * 
+ */
+
+
+var getCustomAttribute = $(this).data("customAttr");
+console.log(getCustomAttribute);
 
