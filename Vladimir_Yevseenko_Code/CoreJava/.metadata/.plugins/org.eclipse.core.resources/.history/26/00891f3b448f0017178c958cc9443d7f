@@ -1,8 +1,0 @@
-var myJSON = ' { "vlad" : { "first": "Vladimir", "last": "Yevseenko", "age": 21" } }';
-
-
-var myObj = JSON.parse(myJSON);
-
-
-console.log(myJSON);
-console.log(myObj);

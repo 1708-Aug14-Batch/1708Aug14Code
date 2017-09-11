@@ -1,0 +1,28 @@
+package com.revature.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
+
+import com.revature.pojos.Reimbursement;
+import com.revature.service.Service;
+
+public class AllReimbursementsServlet extends HttpServlet {
+	private static final long serialVersionUID = 6316653884762516242L;
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Service s = Service.getFromSession(req.getSession());
+		
+		JSONObject obj = new JSONObject();
+		
+		Reimbursement[] reimbs = s.getAllReimbursements();
+		obj.put("reimbs", reimbs)
+		resp.getWriter().println(obj);
+	}
+}

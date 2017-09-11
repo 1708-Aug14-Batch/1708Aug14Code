@@ -113,6 +113,31 @@ public class DBDAO {
 	}
 	
 	
+	public List<Reimbursement> getUsersReimbursements(User u) {
+		log.debug("DBDAO getUsersReimbursements()");
+		final String sql = "SELECT * FROM reimbursements WHERE submitter_id = ?";
+		try (PreparedStatement s = dbConn.prepareStatement(sql)){
+			List<Reimbursement> reimbs = new ArrayList<>();
+			s.setInt(1, u.getId());
+			try (ResultSet rs = s.executeQuery()) {
+				while (rs.next()) {
+					reimbs.add(new Reimbursement(rs.getInt("id"), 
+							u, getUserById(rs.getInt("resolver_id")),
+							rs.getDate("submission_date"), 
+							rs.getDate("resolution_date"),
+							Status.getStatus(rs.getInt("reimbursement_status_id")),
+							rs.getString("description"),
+							rs.getDouble("amount")));
+				}
+				return reimbs;
+			}
+		} catch (SQLException ex) {
+			log.fatal("DBDAO getUsersReimbursements() SQLException");
+			log.fatal(ex.getMessage());
+			return null;
+		}
+	}
+	
 	public User getUserById(int id) {
 		log.debug("DBDAO getUserById()");
 		final String sql = "SELECT * FROM users WHERE id = ?";

@@ -1,0 +1,9 @@
+
+$(function() {
+	$.post('http://localhost:8181/ReimbursementSystem/yourReimbursementsServlet',
+			{},
+			function(data) {
+				console.log(data);
+				var arr = data.reimbs;
+			});
+});

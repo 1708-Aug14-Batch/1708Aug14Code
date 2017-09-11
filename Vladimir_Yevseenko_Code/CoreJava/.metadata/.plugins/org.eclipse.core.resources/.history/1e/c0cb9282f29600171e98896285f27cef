@@ -1,0 +1,13 @@
+
+$(function() {
+	$.post('http://localhost:8181/ReimbursementSystem/allReimbursementsServlet',
+			{},
+			function(data) {
+				console.log(data);
+				var arr = data.reimbs;
+				for (var reimb in arr) {
+					$('#reimbursementList').append('<li>' + reimb.id + '</li>');
+				}
+			},
+			'JSON');
+});

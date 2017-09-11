@@ -1,0 +1,4 @@
+
+$(function() {
+	$.post('http://localhost:8181/ReimbursementSystem/yourReimbursementsServlet')
+});

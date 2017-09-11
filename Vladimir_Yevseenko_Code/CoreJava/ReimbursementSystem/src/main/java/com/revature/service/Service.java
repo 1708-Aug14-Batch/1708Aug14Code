@@ -1,8 +1,11 @@
 package com.revature.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import com.revature.dao.DBDAO;
+import com.revature.pojos.Reimbursement;
 import com.revature.pojos.User;
 
 public class Service {
@@ -34,5 +37,15 @@ public class Service {
 			return newServ;
 		}
 		return serv;
+	}
+	
+	public Reimbursement[] getUsersReimbursements(User u) {
+		List<Reimbursement> reimbs = dao.getUsersReimbursements(u);
+		return reimbs.toArray(new Reimbursement[reimbs.size()]);
+	}
+	
+	public Reimbursement[] getAllReimbursements() {
+		List<Reimbursement> reimbs = dao.getAllReimbursements();
+		return reimbs.toArray(new Reimbursement[reimbs.size()]);
 	}
 }

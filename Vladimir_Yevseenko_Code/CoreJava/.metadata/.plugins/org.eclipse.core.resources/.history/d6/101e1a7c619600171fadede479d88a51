@@ -1,0 +1,9 @@
+
+$(function() {
+	$.post('http://localhost:8181/ReimbursementSystem/userInfoServlet',
+			function(data) {
+		
+			});
+});
+
+

@@ -1,0 +1,10 @@
+
+$(function() {
+	$.post('http://localhost:8181/ReimbursementSystem/userInfoServlet',
+			function(data) {
+				let curUser = data.user;
+				if (!curUser.isManager)
+			});
+});
+
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1"/>
+		<title>Reimbursement System</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+	</head>
+	<body>
+		<input type="button" value="Home" id="homeBtn"/>
+		<input type="button" value="View Your Reimbursements" id="viewOwnReimbursementsBtn"/>
+		<input type="button" value="View All Reimbursements" id="viewAllReimbursementsBtn"/>
+		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
+	
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/loggedIn.js"></script>
+	</body>
+</html>

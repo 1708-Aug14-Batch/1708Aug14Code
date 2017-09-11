@@ -1,0 +1,11 @@
+127.0.0.1 - - [10/Sep/2017:22:37:40 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:37:48 -0400] "GET /ReimbursementSystem/login HTTP/1.1" 404 1044
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:37:56 -0400] "POST /ReimbursementSystem/loginServlet HTTP/1.1" 404 1058
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:05 -0400] "POST /ReimbursementSystem/loginServlet HTTP/1.1" 404 1058
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:06 -0400] "POST /ReimbursementSystem/loginServlet HTTP/1.1" 404 1058
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:07 -0400] "POST /ReimbursementSystem/loginServlet HTTP/1.1" 404 1058
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:09 -0400] "POST /ReimbursementSystem/loginServlet HTTP/1.1" 404 1058
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:13 -0400] "POST /ReimbursementSystem/loginServlet HTTP/1.1" 404 1058
+127.0.0.1 - - [10/Sep/2017:22:38:33 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:37 -0400] "GET /ReimbursementSystem/login.html HTTP/1.1" 404 1054
+0:0:0:0:0:0:0:1 - - [10/Sep/2017:22:38:39 -0400] "GET /ReimbursementSystem/login.html HTTP/1.1" 404 1054

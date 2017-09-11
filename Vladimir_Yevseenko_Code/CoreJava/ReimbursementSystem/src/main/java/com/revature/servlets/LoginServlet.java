@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
 		
 		obj.put("success", s.attemptLogin(email, password));
 		
+		req.getSession().setAttribute("curUser", s.getCurUser());
+		
 		resp.getWriter().println(obj);
 	}
 }

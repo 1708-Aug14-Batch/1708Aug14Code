@@ -1,0 +1,18 @@
+$(function() {
+	$.post('http://localhost:8181/ReimbursementSystem/userInfoServlet',
+			function(data) {
+				let curUser = data.user;
+				console.log(data);
+				if (!curUser.isManager) {
+					$('#viewAllReimbursementsBtn').hide();
+					$('#registerEmployeeBtn').hide();
+				} else {
+					$('#viewOwnReimbursementsBtn').hide();
+				}
+			});
+	
+	$('#homeBtn').click(function() {
+		window.location.replace('loggedIn.html')
+	});
+});
+
