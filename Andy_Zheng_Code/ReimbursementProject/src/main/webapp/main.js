@@ -134,12 +134,15 @@ function validateUpdateUserInfo(){
 				 		dataType: 'JSON',
 				 		success: function(response2){
 							if(response2 == "User Information Updated"){
-								$('#updateStatus').text("User Information Updated");
+								//$('#updateStatus').text("User Information Updated");
 								$("#fn").prop('readonly', true);
 								$("#ln").prop('readonly', true);
 								$("#email").prop('readonly', true);
 								$("#password").prop('readonly', true);
 								$('#edit').text("Edit");
+								$('#myModal').modal('hide');
+								$('#password1').val("");
+								$('#password2').val("");
 				 			}
 				 		}
 					})	
@@ -159,7 +162,6 @@ function loadReim(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
-			$('#reimTable').DataTable();
 			getReimInfo();
 		}
 	}
@@ -173,9 +175,152 @@ function getReimInfo(){
 		url: 'reimInfo',
 		success: function(response){
 			var reim = response;
-			console.log(reim);
+
+			for(var x = 0; x<reim.length; x++){
+				var tr = "<tr>";
+				tr += "<td>" + reim[x].reimID + "</td>";
+				tr += "<td>" + (reim[x].submitterID.fname + " " + reim[x].submitterID.lname) + "</td>";
+				if(reim[x].resolverID){
+					tr += "<td>" + (reim[x].resolverID.fname + " " + reim[x].resolverID.lname) + "</td>";
+				}
+				else{
+					tr += "<td></td>";
+				}
+				tr += "<td>" + reim[x].submitDate + "</td>";
+				if(reim[x].resolveDate){
+					tr += "<td>" + reim[x].resolveDate + "</td>";
+				}
+				else{
+					tr += "<td></td>";
+				}
+				// status class for onclick
+				tr += "<td class='statusClick'>" + reim[x].statusID.statusName + "</td>";
+				/*const status0 = "Pending";
+				const status1 = "Approved";
+				const status2 = "Denied";
+				let option0 = "<option value=" + status0 + ">" + status0 + "</option>";
+				let option1 = "<option value=" + status1 + ">" + status1 + "</option>";
+				let option2 = "<option value=" + status2 + ">" + status2 + "</option>";
+				if(reim[x].amount == status0){
+					option0 = "<option value=" + status0 + " selected='selected'>" + status0 + "</option>";
+				}else if(reim[x].amount == status1){
+					option0 = "<option value=" + status1 + " selected='selected'>" + status1 + "</option>";
+				}else if(reim[x].amount == status2){
+					option0 = "<option value=" + status2 + " selected='selected'>" + status2 + "</option>";
+				}
+				tr += "<td><select>" + option0 + option1 + option2 + "</select></td>";
+				*/
+				tr += "<td>" + reim[x].amount + "</td>";
+				tr += "</tr>"
+				$( "#reimTable tbody" ).append(tr);
+			}
+
+			var status = [
+				"Pending",
+				"Approved",
+				"Denied"
+			]
+
+			var reimTable = $('#reimTable').DataTable({
+				"pageLength": 5,
+    			"bLengthChange": false,
+    			/*
+    			"columns": [
+    				null,
+    				null,
+    				null,
+    				null,
+    				null,
+    				{
+    					render: function(data, type, row, meta){
+    						/*
+    						var $select = $("<select></select>", {
+    							"id": row[0]+"start",
+    							"value": data
+    						});
+    						$.each(status, function(key, value){
+    							var $option = $("<option></option>", {
+    								"text": value,
+    								"value": value
+    							});
+    							if(data === value){
+    								$option.attr("selected", "selected")
+    							}
+    							$select.append($option);
+    						});
+    						console.log()
+    						return $select.prop("outerHTML");*//*
+    						var selectStatus = "<select>";
+    						for(y in status){
+    							if(data === status[y]){
+    								selectStatus += "<option value=\'"+status[y]+"\'' selected='selected'>"+status[y]+"</option>";
+    							}else{
+    								selectStatus += "<option value=\'"+status[y]+"\''>"+status[y]+"</option>";
+    							}
+    						}
+    						selectStatus += "</select>";
+
+    						return selectStatus;
+    					}
+    				},
+    				null	
+    			],*/
+				initComplete: function () {
+					this.api().columns([0,1,2,5]).every( function () {
+						var column = this;
+						var select = $('<select><option value="">Show all</option></select>');
+						select.appendTo($(column.footer()).empty()).on( 'change', function () {
+							var val = $.fn.dataTable.util.escapeRegex($(this).val());
+							// ?????????
+							//column.search(val).draw();
+							column.search( val ? '^'+val+'$' : '', true, false ).draw();
+						} );
+						column.cells('', column[0]).render('display').sort().unique().each( function ( d, j )
+						//column.data().unique().sort().each( function ( d, j ) 
+						{
+							select.append( '<option value="'+d+'">'+d+'</option>' )
+						} );
+					} );
+				}
+			} );
+
+			$('#reimTable').on('click','tr .statusClick', function(){
+				var cell = reimTable.cell(this);
+				var data = cell.data();
+				$('#statusModal').modal('show');
+				if(data == "Pending"){
+					$('[value="Pending"]').attr('selected',true);
+				}else if(data == "Approved"){
+					$('[value="Approved"]').attr('selected',true);
+				}else if(data == "Denied"){
+					$('[value="Denied"]').attr('selected',true);
+				}
+				$('#statusUpdate').one("click",function(){
+					cell.data($('#statusSelected option:selected').text()).draw();
+					$('#statusModal').modal('hide');
+					$('#notes').val("");
+				})
+			})
+/*
+			var selectStatus = "<select>";
+			selectStatus += "<option value='Show All' selected='selected'>Show All</option>";
+			for(y in status){
+				selectStatus += "<option value=\'"+status[y]+"\''>"+status[y]+"</option>"
+			}
+			selectStatus += "</select>";
+
+			console.log(selectStatus);
+			$('#selectStatus').append(selectStatus).on("change",function(){
+				
+
+				//console.log(reimTable.columns(5));
+				//reimTable.columns(5).search("Pending").draw();
+			});
+*/
+/*
 			var reimTable = document.getElementById('reimTable');
 			console.log(reimTable);
+			
 			for(var x = 0; x<reim.length; x++){
 				var row = reimTable.insertRow(x+1);
 				var col1 = row.insertCell(0);
@@ -200,6 +345,31 @@ function getReimInfo(){
 				col7.innerHTML = reim[x].amount;
 				console.log(reim[x]);
 			}
+*/
+
+/*
+			for(var x = 0; x<reim.length; x++){
+				var resID;
+				if(reim[x].resolverID){
+					resID = (reim[x].resolverID.fname + " " + reim[x].resolverID.lname);
+				}
+				else{
+					resID = (reim[x].resolverID);
+				}
+
+				reimTable.row.add([
+					reim[x].reimID,
+					(reim[x].submitterID.fname + " " + reim[x].submitterID.lname),
+					resID,
+					reim[x].submitDate,
+					reim[x].resolveDate,
+					reim[x].statusID.statusName,
+					reim[x].amount,
+				]).draw(true);
+
+			}
+*/
+
 		}
 	})
 }
@@ -209,7 +379,10 @@ function loadSubmitReim(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
-			$('#submit').click(submitReim);
+			$('#submit').click(function(){
+				submitReim();
+				$('#submitModal').modal('show');
+			});
 		}
 	}
 	xhr.open("GET", "loadSubmitReim", true);
@@ -230,7 +403,8 @@ function submitReim(){
  		dataType: 'JSON',
  		success: function(response){
 			if(response == "Reimbursement Submitted"){
-				alert("Reimbursement Submitted");
+				$('#submitStatus').text("Reimbursement Submitted");
+				$('body').one("click", loadSubmitReim);
  			}
  		}
 	})
@@ -241,7 +415,10 @@ function loadRegisterEmployee(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
-			$('#register').click(registerEmployee);
+			$('#register').click(function(){
+				registerEmployee();
+				$('#registerModal').modal('show');
+			});
 		}
 	}
 	xhr.open("GET", "loadRegisterEmployee", true);
@@ -265,9 +442,11 @@ function registerEmployee(){
 		dataType: 'JSON',
 		success: function(response){
 			if(response == "Employee Registered"){
-				alert("Employee Registered");	
+				$('#registerStatus').text("Employee Registered");
+				$('body').one("click", loadRegisterEmployee);
 			}else if(response == "Failed Registration"){
-				alert("Failed Registration");	
+				$('#registerStatus').text("Failed Registration");
+				$('body').one("click", loadRegisterEmployee);
 			}
 		}
 	})
