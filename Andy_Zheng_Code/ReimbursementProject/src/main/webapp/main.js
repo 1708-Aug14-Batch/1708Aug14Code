@@ -149,7 +149,7 @@ function validateUpdateUserInfo(){
 				}else if(response == false){
 					$('#updateStatus').text("Invalid Password");
 				}
-	 		}
+	 		}	
 		})
  	}
 	else{
