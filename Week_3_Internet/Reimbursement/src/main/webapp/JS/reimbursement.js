@@ -34,7 +34,9 @@ $('#selectList').on('click',function(){
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-			var userList = dto.userlist;
+			var userlist = dto.userlist;
+			console.log("User: " + user);
+			console.log("UserList: "+ userlist);
 //			document.getElementById("name").innerHTML = user.firstname + " " + user.lastname;
 			if(accounts.length == 0){
 			document.getElementById("accounts").style.visiblity = "hidden";
@@ -92,8 +94,8 @@ $('#selectList').on('click',function(){
 						}
 						else{
 							console.log("WE GOT HERE");
-							fname.innerHTML = userList[i].firstname;
-							lname.innerHTML = userList[i].lastname;
+							fname.innerHTML = userlist[i].firstname;
+							lname.innerHTML = userlist[i].lastname;
 						}
 						rID.innerHTML = accounts[i].r_id;
 						
