@@ -200,7 +200,7 @@ public class DAOImpl implements DAO{
 	public int submitRemib(Remibursment reimb) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
-			String sql="insert into Reimbursment (submitID, approveID, submitDate, approveDate, statusID, description, resolveNote, amount) "
+			String sql="insert into Reimbursment (submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount) "
 					+ "values (?,?,?,?,?,?,?,?)";
 			String[] key= new String[1];
 			key[0]="userid";

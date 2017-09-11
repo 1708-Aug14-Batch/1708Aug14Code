@@ -11,15 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/getLoginView")
 public class GetLoginViewServlet extends HttpServlet{
 
-	
-	protected void doGet(HttpServletRequest req, 
-			HttpServletResponse resp) throws
-			ServletException, IOException{
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		System.out.println("in loginview servlet");
-		
-		
-		req.getRequestDispatcher("LoginPage.html")
-		.forward(req, resp);
+		req.getRequestDispatcher("login.html").forward(req, resp);
 	}
 }

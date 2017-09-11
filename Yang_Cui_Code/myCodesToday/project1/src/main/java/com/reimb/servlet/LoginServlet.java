@@ -28,8 +28,7 @@ public class LoginServlet extends HttpServlet {
 	//		
 	//	}
 
-	protected void doGet(HttpServletRequest request, 
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
@@ -51,8 +50,7 @@ public class LoginServlet extends HttpServlet {
 	//DAO dao = new DaoImpl();
 	DBControl dbcon = new DBControl();
 	@Override
-	protected void doPost(HttpServletRequest request, 
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("logging in - log in servlet");
 
 		//Grab all paramenters, in this case only 1 JSON String
