@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.pojos.Worker;
 import com.reimburse.service.Service;
 
 @WebServlet("/updateProfile")
 public class UpdateProfileServlet extends HttpServlet {
-	// FIXME
-	private final int STATUS_CODE_FAILED = 418;
 
 	/**
 	 * Auto-generated
@@ -31,19 +31,7 @@ public class UpdateProfileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("doPost in UpdateProfileServlet"); // DEBUG
 
-		// Grab all params, even though in this case it is 1 JSON String
-		// name values
-		Map<String, String[]> myMap = request.getParameterMap();
-
-		// Get the keyset from the map
-		Set<String> dtoObject = myMap.keySet();
-
-		// use Jackson. API for converting JSON to java
-		ObjectMapper jackson = new ObjectMapper();
-
-		// Convert our keyset into an array, then get what we need
-		Object obj = dtoObject.toArray()[0];
-		ArrayList<String> tx = jackson.readValue((String) obj, ArrayList.class);
+		ArrayList<String> tx = readValuesFromRequest(request);
 
 		Service service = new Service();
 
@@ -89,8 +77,28 @@ public class UpdateProfileServlet extends HttpServlet {
 
 		}
 
-		PrintWriter out = response.getWriter();
-		response.setContentType("application/json");
+		writeValueToResponse(response, json);
+	}
+	
+	private ArrayList<String> readValuesFromRequest(HttpServletRequest req) throws JsonParseException, JsonMappingException, IOException {
+		// Grab all params, even though in this case it is 1 JSON String
+		// name values
+		Map<String, String[]> myMap = req.getParameterMap();
+
+		// Get the keyset from the map
+		Set<String> dtoObject = myMap.keySet();
+
+		// use Jackson. API for converting JSON to java
+		ObjectMapper jackson = new ObjectMapper();
+
+		// Convert our keyset into an array, then get what we need
+		Object obj = dtoObject.toArray()[0];
+		return jackson.readValue((String) obj, ArrayList.class);
+	}
+	
+	private void writeValueToResponse(HttpServletResponse resp, String json) throws IOException {
+		PrintWriter out = resp.getWriter();
+		resp.setContentType("application/json");
 		out.write(json);
 	}
 }

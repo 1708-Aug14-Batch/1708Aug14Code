@@ -27,11 +27,13 @@ function setEventListeners() {
 	// Employee navbar
 	$("#home").click(loadDashboard);
 	$("#profile").click(loadProfileView);
+	$("#submitReim").click(loadSubmitReimView);
 	$("#viewPendingReim").click(viewPendingReim);
 	$("#viewResolvedReim").click(viewResolvedReim);
 
 	// Miscellaneous
-	$("#submit_button").click(submitReim);
+	$("#submit_button").click(submitReimbursement);
+//	$("#submit_description").click(submitReimbursement);
 
 	// Manager
 	// Manager navbar
@@ -40,9 +42,10 @@ function setEventListeners() {
 	$("#resolveReim").click(resolveReim);
 	$("#viewPendingReimManager").click(viewAllPendingReim);
 	$("#viewResolvedReimManager").click(viewAllResolvedReim);
-	$("#viewEmployeesReim").click(viewEmployeesReim);
+	$("#viewEmployeesReim").click(loadViewEmployeesReim);
 	$("#viewEmployees").click(viewEmployees);
 	$("#registerEmployee").click(registerEmployeeView);
+	$("#viewReimIdButton").click(loadEmployeesReims);
 
 	// Miscellaneous
 
@@ -59,6 +62,10 @@ function setEventListeners() {
 	$("#update_profile2").click(createWorker);
 
 	$("#view_button").click(getOneReimbursement);
+}
+
+function loadEmployeesReims() {
+	viewReimbursements("#viewReimIdDisplay", "", ""+employee_id_text);
 }
 
 function getOneReimbursement() {
@@ -88,6 +95,7 @@ function hideAllViews() {
 	$("#viewReimIdDiv").attr("hidden", true);
 	$("#viewReimDiv").attr("hidden", true);
 	$("#registerEmployeeDiv").attr("hidden", true);
+	$("#resolveReimDiv").attr("hidden", true);
 }
 
 function loadLoginView() {
@@ -156,17 +164,11 @@ function loadProfileView() {
 
 function viewPendingReim() {
 	hideAllViews();
-	var localId;
-	// If a manger is logged in, they are viewing reimbursements of an employee
-	if (isManager)
-		localId = $("#employee_id_text").value;
-	else
-		localId = id; // An employee views their own reimbursements
 
 	console
 			.log("View reimbursements for the following employee id: "
-					+ localId);
-	viewReimbursements("#viewReimDiv", "PENDING", localId);
+					+ id);
+	viewReimbursements("#viewReimDiv", "PENDING", id);
 
 }
 function viewAllPendingReim() {
@@ -176,23 +178,16 @@ function viewAllPendingReim() {
 function viewResolvedReim() {
 	hideAllViews();
 	// If a manger is logged in, they are viewing reimbursements of an employee
-	if (isManager)
-		localId = $("#employee_id_text").value;
-	else
-		localId = id; // An employee views their own reimbursements
-
-	viewReimbursements("#viewReimDiv", "RESOLVED", localId);
+	
+	viewReimbursements("#viewReimDiv", "RESOLVED", id);
 }
 function viewAllResolvedReim() {
 	hideAllViews();
 	viewReimbursements("#viewReimDiv", "RESOLVED");
 }
-function viewEmployeesReim() {
+function loadViewEmployeesReim() {
 	hideAllViews();
 	$("#viewReimIdDiv").attr("hidden", false);
-
-	viewReimbursements("#viewReimIdDisplay", "");
-	alert("Not functioning properly yet");
 }
 function resolveReim() {
 	hideAllViews();
@@ -201,11 +196,10 @@ function resolveReim() {
 	view_reimbursement_id
 
 }
-function submitReim() {
+function loadSubmitReimView() {
 	hideAllViews();
 	$("#submitReimDiv").attr("hidden", false);
 
-	submitReimbursement()
 }
 
 function togglePasswordView() {
@@ -261,28 +255,27 @@ function viewReimbursements(div, type, id) {
 }
 
 function submitReimbursement() {
-	var employeeId = $("#id_text").text();
 	var description = $("#submit_description")[0].value;
 	var ammount = $("#submit_ammount")[0].value;
 
-	var dto = [ employeeId, description, ammount ];
-
+	var dto = [ description, ammount ];
+	
 	dto = JSON.stringify(dto);
-	console.log("updateProfile dto: " + dto);
+	console.log("createReimbursement dto: " + dto);
 	sendReceiveXMLResponse("POST", "createReimbursement", dto, function(
 			responseText) {
 		// Message arrived
 		var response = JSON.parse(responseText);
 
-		console.log("xhr response arrived in updateProfile()");
+		console.log("xhr response arrived in createReimbursement()");
 		if (response == "false") {
-			$("#message_edit").text("Information could not be updated");
-			$("#message_edit").attr("style", "color:red");
+			$("#submit_error_text").text("Reimbursement could not be created");
+			$("#submit_error_text").attr("style", "color:red");
 		} else {
-			setTimeout(loadProfileView(), 0);
+			setTimeout(loadSubmitReimView(), 0);
 
-			$("#message_edit").text("Information updated.");
-			$("#message_edit").attr("style", "color:green");
+			$("#submit_error_text").text("Reimbursement created.");
+			$("#submit_error_text").attr("style", "color:green");
 		}
 
 	});
@@ -467,7 +460,7 @@ function createUpdateEmployee(dto) {
 			dto,
 			function(responseText) {
 				// Message arrived
-				var response = xhr.responseText;
+				var response = responseText;
 
 				console.log("xhr response arrived in updateProfile()");
 				if (response == "false") {

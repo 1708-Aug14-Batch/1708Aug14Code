@@ -1,0 +1,15 @@
+package com.ex.beans;
+
+import java.time.LocalDate;
+
+public class Student {
+
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private LocalDate birthDay;
+	private String favoriteColor;
+	
+	
+}
