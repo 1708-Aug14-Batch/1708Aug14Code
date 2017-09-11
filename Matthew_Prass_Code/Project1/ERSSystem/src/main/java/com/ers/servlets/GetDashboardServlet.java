@@ -13,6 +13,7 @@ public class GetDashboardServlet extends HttpServlet{
 
 	
 	protected void doGet (HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+		//System.out.println("here!");
 		req.getRequestDispatcher("partials/dashboard.html").forward(req, res);
 	}
 }
