@@ -21,7 +21,7 @@ import com.reimbursement.service.Service;
 public class GetDashboardServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("partials/dashboard.html").forward(request, response);
+		request.getRequestDispatcher("partials/login.html").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

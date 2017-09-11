@@ -1,5 +1,8 @@
 window.onload = function(){
 	loadDashboardView();
+	document.getElementById('navbar').innerHTML = "";
+	document.getElementById("loginSubmit").
+	addEventListener("click", login);
 };
 
 function loadDashboardView(){

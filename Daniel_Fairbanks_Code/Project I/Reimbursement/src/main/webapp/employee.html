@@ -21,24 +21,48 @@
 	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 	crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-
+<script src="js/functionality.js"></script>
 <script src="js/app.js"></script>
 </head>
 
 <body onload="onLoad()">
+
+	<div id="navbar">
+		<nav class="navbar sticky-top navbar-dark bg-dark">
+			<span class="navbar-brand"> <img src="images/Apple.png"
+				width="30" height="30" class="d-inline-block align-top" alt="">
+				Reimbursements
+			</span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarText" aria-controls="navbarText"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<button type="button" style=background-color:Transparent;border:none; class="nav-link" data-toggle="modal" data-target="#requestModal">Request Reimbursement</button>
+					</li>
+					<li class="nav-item">
+						<button type="button" style=background-color:Transparent;border:none; class="nav-link" data-toggle="modal" data-target="#editDetailsModal">Edit Details</button>
+					</li>
+					<li class="nav-item"> 
+						<form class="nav-link" action="logout" method="post" style=display:inline>
+							<button type="submit" style=background-color:Transparent;border:none; class="nav-link">Logout</button>
+						</form>
+					</li>
+				</ul>
+		</nav>
+	</div>
+
 	<div id="things"> <!-- ng-app="myApp" ng-controller="myCtrl"> -->
 	<!-- <h1>{{welcome}}</h1> -->
 	</div>
+	
 	<div>
-		<button type="button" data-toggle="modal" data-target="#requestModal">Request
-			Reimbursement</button>
-		<form action="logout" method="post">
-		<button type="submit">Logout</button>
-		</form>
-		<button type="button" data-toggle="modal"
-			data-target="#editDetailsModal">Edit Details</button>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -47,6 +71,7 @@
 					<th>Submitted On</th>
 					<th>Resolved On</th>
 					<th>Resolved By</th>
+					<th>Details</th>
 				</tr>
 			</thead>
 			<tbody id="requests">
@@ -109,23 +134,5 @@
 		</div>
 	</div>
 </body>
-
-<script src="js/functionality.js">
-	//function onLoad() {
-	//console.log("Bob");
-	//var xhr = new XMLHttpRequest();
-	//xhr.onreadystatechange = function(){
-	//if (xhr.readyState == 4 && xhr.status == 200) {
-	//document.getElementById("things").innerHTML =
-	//xhr.responseText;
-	//}
-	//}
-	//xhr.open("GET", "employee_home", true); //HTTP method, url-pattern, use asynchronously
-	//xhr.send(); 
-	//if(!sessionStorage.user) {
-
-	//}
-	//};
-</script>
 
 </html>

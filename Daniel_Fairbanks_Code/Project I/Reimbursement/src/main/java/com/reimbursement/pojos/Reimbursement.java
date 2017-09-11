@@ -61,7 +61,7 @@ public class Reimbursement {
 		this.status = status;
 	}
 	
-	public void setStatusById(int id) {
+	public void setStatus(int id) {
 		switch (id) {
 		case 1:
 			this.status = ReimbursementStatus.PENDING;

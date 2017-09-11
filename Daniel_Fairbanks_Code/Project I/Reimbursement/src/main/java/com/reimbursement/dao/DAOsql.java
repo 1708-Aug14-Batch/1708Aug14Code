@@ -135,7 +135,7 @@ public class DAOsql implements DAO {
 				resolver.setFirstname(rFname);
 				resolver.setLastname(rLname);
 				tmp.setResolver(resolver);
-				tmp.setStatusById(status);
+				tmp.setStatus(status);
 				requests.put(id, tmp);
 			}
 		} catch (Exception e) {

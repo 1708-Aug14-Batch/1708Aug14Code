@@ -23,20 +23,30 @@ public class EmployeeServlet  extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		StringBuilder sb = new StringBuilder("");
 		HttpSession session = request.getSession(false);
-		User tmp = (User)session.getAttribute("user");
-		if (tmp == null) {
-			response.sendRedirect("login.html");
+		if (session == null) {
+			sb.append("Invalid"); // response.setStatus(418);
 		}
 		else {
-			StringBuilder sb = new StringBuilder("");
+			User tmp = (User)session.getAttribute("user");
 			HashMap<Integer, Reimbursement> requests = runApp.getRequestsByEmployee(tmp);
 
 			for (HashMap.Entry<Integer, Reimbursement> entry : requests.entrySet()) {
 			    Integer id = entry.getKey();
 			    Reimbursement rq = entry.getValue();
 			    sb.append("<tr>\n");
-			    sb.append("\t<th>"+rq.getStatusName()+"</th>\n");
+			    switch (rq.getStatus()) {
+		    	case 1:
+		    		sb.append("\t<th style=color:gray>"+rq.getStatusName()+"</th>\n");
+		    		break;
+		    	case 2:
+		    		sb.append("\t<th style=color:green>"+rq.getStatusName()+"</th>\n");
+		    		break;
+		    	case 3:
+		    		sb.append("\t<th style=color:red>"+rq.getStatusName()+"</th>\n");
+		    		break;
+			    }
 			    sb.append("\t<th>$"+rq.getAmount()+"</th>\n");
 			    sb.append("\t<th>"+rq.getSubmit_date()+"</th>\n");
 			    if (rq.getResolve_date() == null) {
@@ -47,12 +57,14 @@ public class EmployeeServlet  extends HttpServlet {
 				    sb.append("\t<th>"+rq.getResolve_date()+"</th>\n");
 				    sb.append("\t<th>"+rq.getResolver().getFirstname()+" "+rq.getResolver().getLastname()+"</th>\n");
 			    }
+			    sb.append("\t<th><button type=\"button\" class=\"btn btn-secondary\" data-container=\"body\" data-toggle=\"popover\" "
+			    		+ "data-placement=\"left\" data-content=\""+rq.getDescription()+"\">Info</button></th>\n");
 			    sb.append("</tr>\n");
 			}
-			PrintWriter out = response.getWriter();
-			out.write(sb.toString());
-			out.close();
 		}
+		PrintWriter out = response.getWriter();
+		out.write(sb.toString());
+		out.close();
 	}
 	
 	@Override

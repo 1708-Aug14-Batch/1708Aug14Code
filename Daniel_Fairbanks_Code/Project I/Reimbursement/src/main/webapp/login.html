@@ -16,6 +16,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 	crossorigin="anonymous"></script>
+<script src="js/loginMsg.js"></script>
 </head>
 
 <body>
@@ -32,10 +33,13 @@
 				</div>
 				<div class="wrap">
 					<p class="form-title">Sign In</p>
+					<!-- 
 					<form class="login" action="login" method="post">
-						<input type="email" name="email" placeholder="Username" /> <input
-							type="password" name="password" placeholder="Password" /> <input
-							type="submit" value="Sign In" />
+					-->
+					<div class="login">
+						<input type="email" name="email" id="email" placeholder="Username" /> <input
+							type="password" name="password" id="password" placeholder="Password" /> <input
+							type="submit" id="loginSubmit" value="Sign In" />
 						<!--  class="btn btn-success btn-sm" />-->
 
 						<div class="remember-forgot">
@@ -46,8 +50,10 @@
 								</div>
 							</div>
 						</div>
-
+					</div>
+					<!-- 
 					</form>
+					-->
 				</div>
 			</div>
 		</div>

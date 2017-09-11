@@ -1,0 +1,60 @@
+<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrap">
+					<p class="form-title">Sign In</p>
+					<!-- 
+					<form class="login" action="login" method="post">
+					-->
+					<div class="login">
+						<input type="email" name="email" id="email" placeholder="Username" /> <input
+							type="password" name="password" id="password" placeholder="Password" /> <input
+							type="submit" id="loginSubmit" value="Sign In" />
+						<!--  class="btn btn-success btn-sm" />-->
+
+						<div class="remember-forgot">
+							<div class="row">
+								<div class="col-md-6 forgot-pass-content">
+									<button type="button" class="newUser" data-toggle="modal"
+										data-target="#newUserModal">New User</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 
+					</form>
+					-->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog"
+		aria-labelledby="newUserModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Register New User</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="create" method="post">
+						Name<input type="text" name="fname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="First" required/>
+						<input type="text" name="lname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Last" required/>
+						Email<br><input type="email" name="email" placeholder="@email.com" required/>
+						Password<input id="p" type="password" name="pword" required/>
+						Confirm Password<input id="nPwordCheck" type="password" name="pword_c" required/>
+						<br><br><input type="checkbox" name="manager">   I'm a Manager<br>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Create Account</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>

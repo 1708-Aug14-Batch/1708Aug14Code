@@ -4,6 +4,9 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<display-name>Reimbursement</display-name>
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
 
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>
@@ -44,7 +47,7 @@
 		<servlet-name>EditAccountInfoServlet</servlet-name>
 		<url-pattern>/editAccountInfo</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>RequestReimbursementServlet</servlet-name>
 		<servlet-class>com.reimbursement.servlets.RequestReimbursementServlet</servlet-class>
