@@ -10,7 +10,6 @@
     <meta name="viewport" content="width = device-width, initial-scale = 1">
 
     <title>Reimbursements</title>
-    <script type="text/javascript" src="js/register.js"></script>   
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
@@ -22,7 +21,7 @@
             <div class="page-header" id="emp-header">
                 <div class="row">
                     <div class="col-md-6" id="tshadow"><h1>Manager</h1></div>
-                    <div class="col-md-6 text-right"><h3>Welcome</h3></div>
+                    <div class="col-md-6 text-right"><h3>Welcome, <a id="unameid"></a></h3></div>
                 </div>
             </div>
         </div>
@@ -66,31 +65,38 @@
                 <h2 class="text-center">Register Employee</h2>
                 <div class="well well-lg" id="emp-well">
                     <div class="row">
+                    <form action="register" method="post">
                         <div class="input-group input-group-lg">
-                            <span class="input-group-addon" id="fname">Firstname:</span>
-                            <input type="text" class="form-control" placeholder="First Name">
+                            <span class="input-group-addon" >Firstname:</span>
+                            <input type="text" name="fn" class="form-control" id="fname" placeholder="First Name">
                         </div>
                         <div class="input-group input-group-lg">
-                            <span class="input-group-addon" id="lname">Lastname:</span>
-                            <input type="text" class="form-control" placeholder="Last Name">
+                            <span class="input-group-addon" >Lastname:</span>
+                            <input type="text" name="ln" class="form-control" id="lname" placeholder="Last Name">
                         </div>
                         <div class="input-group input-group-lg">
-                            <span class="input-group-addon" id="uname">Username:</span>
-                            <input type="text" class="form-control" placeholder="Username">
+                            <span class="input-group-addon" >Username:</span>
+                            <input type="text" name="un" class="form-control" id="uname" placeholder="Username">
                         </div>
                         <div class="input-group input-group-lg">
-                            <span class="input-group-addon" id="email">Email:</span>
-                            <input type="text" class="form-control" placeholder="Email">
+                            <span class="input-group-addon" >Email:</span>
+                            <input type="text" name="em" class="form-control" id="email" placeholder="Email">
                         </div><br>
+                        <p id="regMessage"></p>
                         <div class="form-actions">
-                            <button type="button" class="btn btn-primary btn-lg" id="registerEmp">Create</button>
+                        	<input type="submit" class="btn btn-primary btn-lg" id="registerEmp" value="Create">
+                            <!-- <button type="submit" class="btn btn-primary btn-lg" id="registerEmp">Create</button>  -->
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
+    </div> 
+     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
+    <script type="text/javascript" src="js/register.js"></script>   
+    
 </body>
 </html>

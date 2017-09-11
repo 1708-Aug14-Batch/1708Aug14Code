@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
 		
 		int id = service.validateUser(username, password);
 		boolean isMgr = service.isMgr(id);
+		
 		if (id == -1) {
 			RequestDispatcher rd = request.getRequestDispatcher("error.html");
 			rd.forward(request, response); // invalid user

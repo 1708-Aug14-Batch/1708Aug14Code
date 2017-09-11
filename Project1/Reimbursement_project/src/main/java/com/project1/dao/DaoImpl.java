@@ -31,7 +31,7 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void registerEmp(String fn, String ln, String un, String em) {
+	public boolean registerEmp(String fn, String ln, String un, String em) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "{call registerEmp(?,?,?,?)}";
 			CallableStatement stmt = conn.prepareCall(sql);
@@ -42,9 +42,11 @@ public class DaoImpl implements DAO {
 			stmt.setString(4, em);
 			stmt.executeUpdate();
 			conn.commit();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	@Override

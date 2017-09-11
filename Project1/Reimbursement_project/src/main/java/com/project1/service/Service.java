@@ -19,6 +19,10 @@ public class Service {
 	public boolean isMgr(int id) {
 		return dao.isMgr(id);
 	}
+	
+	public boolean registerEmp(String fn, String ln, String un, String email) {
+		return dao.registerEmp(fn, ln, un, email);
+	}
 
 	public void logout() {
 //		System.out.println("Logging out, Bye");

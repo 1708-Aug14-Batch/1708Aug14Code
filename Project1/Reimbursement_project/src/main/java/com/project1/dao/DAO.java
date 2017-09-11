@@ -6,7 +6,7 @@ public interface DAO {
 	
 	public boolean isMgr(int id);
 	
-	public void registerEmp(String fn, String ln, String un, String em);
+	public boolean registerEmp(String fn, String ln, String un, String em);
 	
 	public void viewAllEmp();
 	
