@@ -322,7 +322,25 @@ function getReimInfo(){
 
 					var to = [reimID, status, notes];
 				 	to = JSON.stringify(to);
-					updateReim(to);
+
+					$.ajax({
+				 		type: 'POST',
+				 		url: 'updateReim',
+				 		data: to,
+				 		dataType: 'JSON',
+				 		success: function(response){
+				 			console.log(response);
+				 			if(response == "Success"){
+
+				 			console.log("Hello");
+				 			$('#statusModal').modal('hide');
+							$('#notes').val("");
+							cell.data($('#statusSelected option:selected').text()).draw();
+				 			
+				 			}
+				 		}
+					})
+					//updateReim(to);
 					//loadReim();
 				})
 			})
@@ -396,28 +414,6 @@ function getReimInfo(){
 */
 
 		}
-	})
-}
-
-function updateReim(to){
-	console.log("inside update reim");
-
-	$.ajax({
- 		type: 'POST',
- 		url: 'updateReim',
- 		data: to,
- 		dataType: 'JSON',
- 		success: function(response){
- 			console.log("response finally received");
- 			if(response == "success"){
-
- 			console.log("Hello");
- 			$('#statusModal').modal('hide');
-			$('#notes').val("");
-			cell.data($('#statusSelected option:selected').text()).draw();
- 		
- 			}
- 		}
 	})
 }
 

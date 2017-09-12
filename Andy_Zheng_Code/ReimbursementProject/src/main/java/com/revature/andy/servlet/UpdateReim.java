@@ -18,7 +18,7 @@ import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
 // change laodonstart up number later
-@WebServlet(name="registerEmployee", urlPatterns="/registerEmployee", loadOnStartup=11)
+@WebServlet(name="updateReim", urlPatterns="/updateReim", loadOnStartup=11)
 public class UpdateReim extends HttpServlet{
 	
 	@Override
@@ -42,12 +42,13 @@ public class UpdateReim extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		User u = (User) session.getAttribute("User");
-		
+
+		ObjectMapper mapper = new ObjectMapper();
 		if(s.updateReimbursements(reimID, u, status, notes)) {
-			json = "Success";
+			json = mapper.writeValueAsString("Success");
 		}
 		else {
-			json = "Failure";
+			json = mapper.writeValueAsString("Failure");
 		}
 			
 		System.out.println(json);
