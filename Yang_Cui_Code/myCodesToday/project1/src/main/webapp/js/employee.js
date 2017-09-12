@@ -13,8 +13,7 @@ window.onload = function(){
 		document.getElementById("homePage").addEventListener("click", loadEmployeeView);
 		document.getElementById("myInfo").addEventListener("click", loadEmployeeInfoView);
 		document.getElementById("myReq").addEventListener("click", loadReimbursmentView);
-		
-
+		//document.getElementById("sendRemib").addEventListener("click", newRemib);
 };
 
 
@@ -108,7 +107,9 @@ function loadReimbursmentView(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
+			document.getElementById("sendRemib").addEventListener("click", sendNewRemib);
 			getReimbRageInfo(); // loads user info by calling function
+			//addRemib();
 			
 		}
 	}
@@ -194,17 +195,17 @@ function getEmployeeInfo(){
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
 }
-/*
-function addAccount(){ // allows us to acc new accounts 
-	//var accType = document.querySelector('input[id="accType"]:checked').value;
-	var accType= document.getElementById("accType").value;
-	console.log(accType);
 
-	//var type = JSON.stringify(accType);
-	//var type = JSON.stringify("checking");
-	var dummyType=["checking", "dummy"];
-	dummyType=JSON.stringify(dummyType);
-
+function sendNewRemib(){
+	var reason=document.getElementById("reason").value;
+	var amount=document.getElementById("amount").value;
+	
+	console.log(reason);
+	console.log(amount);
+	
+	var remibInput=[reason, amount];
+	var remibSend=JSON.stringify(remibInput);
+	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -213,10 +214,8 @@ function addAccount(){ // allows us to acc new accounts
 		}
 	}
 
-	xhr.open("POST", "addAccount", true);
+	xhr.open("POST", "newRemib", true);
 	//set the header to tell the server you have data for it to process
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
-	xhr.send(input); //include your post data in the send()
-
+	xhr.send(remibSend); //include your post data in the send()
 }
-*/

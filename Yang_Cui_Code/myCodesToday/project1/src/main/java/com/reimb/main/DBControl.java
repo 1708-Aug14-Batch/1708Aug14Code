@@ -54,14 +54,16 @@ public class DBControl {
 		return rv;
 	}
 	
-	public boolean SumbitRemib(String userID, String description, String amount){
+	public boolean SumbitRemib(int userID, String description, double amount){
 		Remibursment reimb= new Remibursment();
-		reimb.setSender(dao.getUser(Integer.parseInt(userID)));;
+		//reimb.setSender(dao.getUser(Integer.parseInt(userID)));;
+		reimb.setSender(dao.getUser(userID));
 		reimb.setResolver(null);
 		reimb.setSumbitDate(new Timestamp(date.getTime()));
 		reimb.setStatus(new ApproveStat(0, "pending"));
 		reimb.setDescription(description);
-		reimb.setAmount(Double.parseDouble(amount));
+		//reimb.setAmount(Double.parseDouble(amount));
+		reimb.setAmount(amount);
 		
 		int result=dao.submitRemib(reimb);
 		

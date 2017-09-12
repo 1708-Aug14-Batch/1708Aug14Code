@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimb.main.DBControl;
+import com.reimb.pojo.Users;
 
+@WebServlet("/newRemib")
 public class SumbitServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -37,9 +40,11 @@ public class SumbitServlet extends HttpServlet{
 	
 		
 		//HttpSession session = req.getSession();
-		String userID=tx.get(0);
-		String description=tx.get(1);
-		String amount=tx.get(2);
+		HttpSession session =req.getSession();
+		Users sessionUser=(Users)session.getAttribute("user");
+		int userID=sessionUser.getID();
+		String description=tx.get(0);
+		double amount=Double.parseDouble(tx.get(1));
 		
 		DBControl dbcon=new DBControl();
 		boolean sucess=dbcon.SumbitRemib(userID, description, amount);

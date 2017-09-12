@@ -199,18 +199,62 @@ public class DAOImpl implements DAO{
 		return statRemib;
 	}
 
-	@SuppressWarnings("null")
+	
 	@Override
 	public int submitRemib(Remibursment reimb) {
+		System.out.println(reimb.getSender().getID());
+		System.out.println(reimb.getResolver());
+		System.out.println(reimb.getSumbitDate());
+		System.out.println(reimb.getResolveDate());
+		System.out.println(reimb.getStatus().getID());
+		System.out.println(reimb.getDescription());
+		System.out.println(reimb.getNote());
+		System.out.println(reimb.getAmount());
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
-			String sql="insert into Reimbursment (submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount) "
-					+ "values (?,?,?,?,?,?,?,?)";
+			String sql="insert into Reimbursment (submitID, submitDate, statusID, description, amount) values (?,?,?,?,?)";
 			String[] key= new String[1];
-			key[0]="userid";
+			key[0]="reimid";
 			PreparedStatement ps= conn.prepareStatement(sql, key);
 			ps.setInt(1, reimb.getSender().getID());
-			ps.setInt(2, (Integer) null);
+			ps.setTimestamp(2, reimb.getSumbitDate());
+			ps.setInt(3, reimb.getStatus().getID());
+			ps.setString(4, reimb.getDescription());
+			ps.setDouble(5, reimb.getAmount());
+			ps.executeUpdate();
+			int id=0;
+			ResultSet pk =ps.getGeneratedKeys();
+			while(pk.next()){
+				id=pk.getInt(1);
+			}
+			conn.commit();
+			return id;
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	/*
+	 * 	@Override
+	public int submitRemib(Remibursment reimb) {
+		System.out.println(reimb.getSender().getID());
+		System.out.println(reimb.getResolver());
+		System.out.println(reimb.getSumbitDate());
+		System.out.println(reimb.getResolveDate());
+		System.out.println(reimb.getStatus().getID());
+		System.out.println(reimb.getDescription());
+		System.out.println(reimb.getNote());
+		System.out.println(reimb.getAmount());
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			conn.setAutoCommit(false);
+			String sql="insert into Reimbursment (submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount) values (?,?,?,?,?,?,?,?)";
+			String[] key= new String[1];
+			key[0]="reimid";
+			PreparedStatement ps= conn.prepareStatement(sql, key);
+			ps.setInt(1, reimb.getSender().getID());
+			//ps.setInt(2, (Integer) null);
+			ps.setNull(2, java.sql.Types.INTEGER);
 			ps.setTimestamp(3, reimb.getSumbitDate());
 			ps.setTimestamp(4, null);
 			ps.setInt(5, reimb.getStatus().getID());
@@ -229,8 +273,9 @@ public class DAOImpl implements DAO{
 			e.printStackTrace();
 		}
 		return -1;
-	}
-
+	}(non-Javadoc)
+	 * @see com.reimb.dao.DAO#resolveRemib(com.reimb.pojo.Remibursment)
+	 */
 	@Override
 	public int resolveRemib(Remibursment reimb) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -292,7 +337,13 @@ public class DAOImpl implements DAO{
 			while(rs.next()){
 				int remibID=rs.getInt(1);
 				int sID=rs.getInt(2);
-				int rID=rs.getInt(3);
+				int rID=-1;
+					if(rs.getString(3)==null)
+						rID=-1;
+					else
+						rID=rs.getInt(3);
+				System.out.println(rs.getString(3));
+				System.out.println(rID);
 				Timestamp sDate=rs.getTimestamp(4);
 				Timestamp rDate=rs.getTimestamp(5);
 				int statID=rs.getInt(6);
@@ -300,7 +351,10 @@ public class DAOImpl implements DAO{
 				String note=rs.getString(8);
 				double amount=rs.getDouble(9);
 				
-				remibs.add(new Remibursment(remibID,getUser(sID),getUser(rID),getStatus(statID),sDate,rDate,describ,note,amount));
+				if(rID<0)
+					remibs.add(new Remibursment(remibID,getUser(sID),null,getStatus(statID),sDate,rDate,describ,note,amount));
+				else
+					remibs.add(new Remibursment(remibID,getUser(sID),getUser(rID),getStatus(statID),sDate,rDate,describ,note,amount));
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -324,12 +378,30 @@ public class DAOImpl implements DAO{
 		for(Remibursment eachRemib : remib){
 			remibID=String.valueOf(eachRemib.getID());
 			sender=String.valueOf(eachRemib.getSender().getFirstName()+eachRemib.getSender().getID());
-			resolver=String.valueOf(eachRemib.getResolver().getFirstName()+eachRemib.getResolver().getID());
-			stat=String.valueOf(eachRemib.getStatus().getState());
+			
+			if(eachRemib.getResolver()==null)
+				resolver="N/A";
+			else
+				resolver=String.valueOf(eachRemib.getResolver().getFirstName()+eachRemib.getResolver().getID());
+			if(eachRemib.getStatus().getState()==null)
+				stat="N/A";
+			else
+				stat=String.valueOf(eachRemib.getStatus().getState());
+			
 			sumbitDate=String.valueOf(eachRemib.getSumbitDate());
-			resolveDate=String.valueOf(eachRemib.getResolveDate());
+			
+			if(eachRemib.getResolveDate()==null)
+				resolveDate="N/A";
+			else
+				resolveDate=String.valueOf(eachRemib.getResolveDate());
+			
 			description=String.valueOf(eachRemib.getDescription());
-			note=String.valueOf(eachRemib.getNote());
+			
+			if(eachRemib.getNote()==null)
+				note="N/A";
+			else
+				note=String.valueOf(eachRemib.getNote());
+			
 			amount=String.valueOf(eachRemib.getAmount());
 			rv.add(new RemibView(remibID, sender, resolver, stat, sumbitDate, resolveDate, description, note, amount));
 		}
