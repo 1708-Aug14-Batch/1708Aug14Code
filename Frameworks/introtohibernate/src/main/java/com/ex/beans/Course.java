@@ -22,7 +22,7 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="C_ID_SEQ")
 	private int id;
 	
-	@Column(name="COURSE_NAME")
+	@Column(name="COURSE_NAME", nullable = false)
 	private String name;
 	
 	//
