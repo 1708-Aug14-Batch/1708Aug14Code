@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.revature.model.Reimbursement;
@@ -59,7 +60,7 @@ public class ReimbursementDAO implements IReimbursementDAO {
 		}
 		Reimbursement reimbursement = null;
 		try (Connection conn = ConnectionSingleton.getInstance().getConnection()) {
-			String sql = "SELECT * FROM r_user WHERE submitter_id = ? AND date_submitted = ?";
+			String sql = "SELECT * FROM reimbursement WHERE submitter_id = ? AND date_submitted = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, submitterID);
 			statement.setDate(2, dateSubmitted);
@@ -94,9 +95,9 @@ public class ReimbursementDAO implements IReimbursementDAO {
 	public ArrayList<Reimbursement> readAll() {
 		ArrayList<Reimbursement> allReimbursements = new ArrayList<Reimbursement>();
 		try (Connection conn = ConnectionSingleton.getInstance().getConnection()) {
-			String sql = "SELECT * FROM r_user";
-			PreparedStatement statement = conn.prepareStatement(sql);
-			ResultSet results = statement.executeQuery();
+			String sql = "SELECT * FROM reimbursement";
+			Statement statement = conn.createStatement();
+			ResultSet results = statement.executeQuery(sql);
 			while(results.next()) {
 				Reimbursement reimbursement = this.getReimbursementFromQuery(results);
 				allReimbursements.add(reimbursement);

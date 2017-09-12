@@ -3,7 +3,10 @@
  */
 package com.revature.service;
 
+import java.util.ArrayList;
+
 import com.revature.dao.RUserDAO;
+import com.revature.dao.ReimbursementDAO;
 import com.revature.model.*;
 
 /**
@@ -13,6 +16,8 @@ import com.revature.model.*;
 public class ReimbursementService {
 	
 	private RUserDAO userDAO;
+	private ReimbursementDAO reimbDAO;
+	private static final int PENDING = 1;
 	
 	/**
 	 * Makes a new Service for managing bank accounts
@@ -22,6 +27,7 @@ public class ReimbursementService {
 	 */
 	public ReimbursementService() {
 		this.userDAO = new RUserDAO();
+		this.reimbDAO = new ReimbursementDAO();
 	}
 	
 	public boolean checkUserExists(String email) {
@@ -51,5 +57,16 @@ public class ReimbursementService {
 	public RUser getUser(String email) {
 		this.errorCheckEmail(email);
 		return this.userDAO.read(email);
+	}
+	
+	public ArrayList<Reimbursement> getPendingReimbs(int userID) {
+		ArrayList<Reimbursement> allReimbs = this.reimbDAO.readAll();
+		ArrayList<Reimbursement> pendingReimbs = new ArrayList<Reimbursement>();
+		for (Reimbursement reimb : allReimbs) {
+			if (reimb.getSubmitterID() == userID && reimb.getStatusID() == PENDING) {
+				pendingReimbs.add(reimb);
+			}
+		}
+		return pendingReimbs;
 	}
 }

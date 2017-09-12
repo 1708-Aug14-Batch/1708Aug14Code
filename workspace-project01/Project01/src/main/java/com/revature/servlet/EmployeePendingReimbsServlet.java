@@ -1,0 +1,44 @@
+package com.revature.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dto.UserPendingReimbsDTO;
+import com.revature.model.RUser;
+import com.revature.model.Reimbursement;
+import com.revature.service.ReimbursementService;
+
+@WebServlet("/employee-pending-reimbs")
+public class EmployeePendingReimbsServlet extends HttpServlet {
+
+	private static final long serialVersionUID = -6580522119763970959L;
+	ReimbursementService service = new ReimbursementService();
+	private static final int FORBIDDEN = 403;
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		RUser loggedInUser = (RUser) request.getSession().getAttribute("user");
+		if (loggedInUser != null) {
+			System.out.println("Inside pending reimbursements do get");
+			int userID = loggedInUser.getRUserID();
+			ArrayList<Reimbursement> reimbs = this.service.getPendingReimbs(userID);
+			UserPendingReimbsDTO dto = new UserPendingReimbsDTO(loggedInUser, reimbs);
+			ObjectMapper mapper = new ObjectMapper();
+			String json = mapper.writeValueAsString(dto);
+			PrintWriter writer = response.getWriter();
+			response.setContentType("application/json");
+			writer.write(json);
+			request.getRequestDispatcher("partial/employee-pending-reimbursements.html").forward(request, response);
+		} else {
+			response.setStatus(FORBIDDEN);
+		}
+	}
+
+}
