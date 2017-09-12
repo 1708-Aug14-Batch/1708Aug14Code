@@ -7,20 +7,41 @@
 var reset = 0;
 
 
-
+$(document).ready(function(){
+	
+	var xhr2 = new XMLHttpRequest();
+	xhr2.onreadystatechange = function(){
+		if(xhr2.readyState == 4 && xhr2.status == 200){
+			var dto2 = JSON.parse(xhr2.responseText);
+			var user2 = dto2.user
+			if(user2.isManager == 1){
+				$("#addReimbursement").remove();
+			}
+		}
+		
+	}
+	xhr2.open("GET", "UserReimbursement", true);
+	xhr2.send();
+	
+	
+	
+	
+	
+	
 $('#selectList').on('click',function(){
 	
 	var selection = $("option:selected").text();
 
-//var restriction;
-//if (selection === "Pending Reimbursements"){
-//	restriction = 0;
-//}
-//else if(selection === "All Reimbursements"){
-//	restriction = 3;
-//}
-//else if(selection === "Resolved Reimbursements"){
-//	restriction = 1;
+var restriction;
+if (selection === "Pending Reimbursements"){
+	restriction = 0;
+}
+else if(selection === "All Reimbursements"){
+	restriction = 3;
+}
+else if(selection === "Resolved Reimbursements"){
+	restriction = 1;
+}
 ////}	console.log("Selection: " + selection);
 //	console.log("Restriction: " + restriction);
 	
@@ -45,7 +66,9 @@ $('#selectList').on('click',function(){
 			else{
 				
 				for (var i = 0; i < accounts.length; i++){
-					console.log(accounts);
+					if(accounts[i].status_id != restriction || ){
+						continue;
+					}
 					if(accounts[i].status_id === 0 || accounts[i].status_id === 1 || accounts[i].status_id === 2){
 						var table = document.getElementById("list");
 						var row = table.insertRow();
@@ -125,7 +148,19 @@ $('#selectList').on('click',function(){
 							fname.innerHTML = user.firstname;
 							lname.innerHTML = user.lastname;
 						}
+						
+						
+						
 						rID.innerHTML = accounts[i].r_id;
+						if(accounts[i].status_id == 1 || accounts[i].status_id == 2){
+							rID.setAttribute("class","resolvedID");
+							rID.setAttribute("data-toggle","modal");
+							rID.setAttribute("data-target","#exampleModal");
+							$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
+						}
+						
+						
+						
 						var date = new Date(parseInt(accounts[i].subDate));
 						accounts[i].subDate = date.toLocaleDateString();
 						console.log(accounts[i].subDate);
@@ -146,6 +181,7 @@ $('#selectList').on('click',function(){
 					}
 				}
 			}
+
 		}
 	}
 	xhr.open("GET", "UserReimbursement", true);
@@ -153,24 +189,8 @@ $('#selectList').on('click',function(){
 	reset = reset + 1;
 });
 
-$(document).ready(function(){
-
-	var xhr2 = new XMLHttpRequest();
-	xhr2.onreadystatechange = function(){
-		if(xhr2.readyState == 4 && xhr2.status == 200){
-			
-			var dto2 = JSON.parse(xhr.responseText);
-			var user2 = dto2.user;
-			
-			if(user2.isManager == 1){
-				$("#addReimbursement").hide();
-			}
-			
-		}
-		
-	}
-	
 })
+
 
 
 
