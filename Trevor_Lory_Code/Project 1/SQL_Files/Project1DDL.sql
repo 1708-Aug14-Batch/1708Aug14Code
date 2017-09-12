@@ -72,6 +72,17 @@ as begin
   commit;
 end add_reim;
 /
+create or replace procedure upd_Emp(sidt in number, EM in varchar2, fn in varchar2, ln in varchar2, pss in varchar2)
+as begin
+  UPDATE USERS
+  SET FIRSTNAME = fn,
+  LASTNAME = ln,
+  EMAIL = EM,
+  PASSWORD = pss
+  WHERE USERID = sidt;
+  commit;
+end upd_Emp;
+/
 
 ---------------------Test Code---------------------
 ---------------------------------------------------

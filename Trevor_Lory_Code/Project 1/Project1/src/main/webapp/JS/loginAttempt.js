@@ -166,10 +166,6 @@ function loadMyReimView() {
 	xhr.send();
 }
 
-function updateSettingsData() {
-	console.log('Yo, you still need to do this');
-}
-
 function loadSettingsData() {
 	console.log('Getting Settings Data');
 	var xhr = new XMLHttpRequest();
@@ -189,6 +185,42 @@ function loadSettingsData() {
 	};
 	xhr.open('GET', 'getSettingsData', true);
 	xhr.send();
+}
+
+function updateSettingsData() {
+	console.log('Updating Settings Data');
+	var xhr = new XMLHttpRequest();
+	var Email = document.getElementById('SetUpEmail').value;
+	var FirstName = document.getElementById('SetUpFirst').value;
+	var LastName = document.getElementById('SetUpLast').value;
+	var NewPass = document.getElementById('SetUpPass').value;
+	var OldPass = document.getElementById('SetUpPassCon').value;
+	var tx = [Email, FirstName, LastName, NewPass, OldPass];
+	tx = JSON.stringify(tx);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			loadSettingsData();
+			if(xhr.responseText == 'true') {
+				document.getElementById('SetUpEmail').value = '';
+				document.getElementById('SetUpFirst').value = '';
+				document.getElementById('SetUpLast').value = '';
+				document.getElementById('SetUpPass').value = '';
+				document.getElementById('SetUpPassCon').value = '';
+			}
+			else if(xhr.responseText == 'false'){
+				//Notiify that update has failed
+			}
+			else if(xhr.responseText == 'pass') {
+				//Notify that Con Pass is wrong
+			}
+			else {
+				console.log('THE HECK!');
+			}
+		}
+	};
+	xhr.open('POST', 'updateEmpSet', true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(tx);
 }
 
 function loadSettingsView() {

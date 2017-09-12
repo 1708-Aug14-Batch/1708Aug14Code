@@ -58,7 +58,19 @@ public class DAOimplementation implements DAO {
 	}
 	
 	public boolean updateUser(User u) {
-		// TODO Auto-generated method stub
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			CallableStatement cs = conn.prepareCall("{call upd_Emp(?,?,?,?,?)}");
+			cs.setInt(1, u.getUserID());
+			cs.setString(2, u.getEmail());
+			cs.setString(3, u.getFirstName());
+			cs.setString(4, u.getLastName());
+			cs.setString(5, u.getPassword());
+			cs.executeUpdate();
+			System.out.println("Updated Emp Settings Added");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

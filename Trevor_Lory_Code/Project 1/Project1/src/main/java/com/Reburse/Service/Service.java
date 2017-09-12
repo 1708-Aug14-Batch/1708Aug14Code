@@ -23,4 +23,7 @@ public class Service {
 		return dao.addReimbursement(SubID, desc, Amt);
 	}
 	
+	public boolean UpdateEmp(User u) {
+		return dao.updateUser(u);
+	}
 }

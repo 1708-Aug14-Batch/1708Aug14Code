@@ -17,11 +17,11 @@ import com.Reburse.Service.Service;
 import com.Reburse.pojos.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/addNewReim")
-public class addNewReimServlet extends HttpServlet{
+@WebServlet("/updateEmpSet")
+public class updateEmpSettingsServlet extends HttpServlet{
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("in MyReimData servlet");
+		System.out.println("in updateEmpSet servlet");
 		
 		Service ser = new Service();
 		
@@ -35,14 +35,38 @@ public class addNewReimServlet extends HttpServlet{
 			ObjectMapper jackson = new ObjectMapper();
 			Object obj = txObject.toArray()[0];
 			ArrayList<String> tx = jackson.readValue((String)obj, ArrayList.class);
-			double Amt = Double.parseDouble(tx.get(0));
-			String desc = tx.get(1);
-			boolean val = ser.AddReim(sessionUser.getUserID(), desc, Amt);
+//			[Email, FirstName, LastName, NewPass, OldPass]
 			PrintWriter p = response.getWriter();
+			String pssOld = tx.get(4);
+			if(!pssOld.equals(sessionUser.getPassword())) {
+				p.write("pass");
+				return;
+			}
+			String email = sessionUser.getEmail();
+			String firstName = sessionUser.getFirstName();
+			String lastName = sessionUser.getLastName();
+			String password = sessionUser.getPassword();
+			if(!tx.get(0).equals("") && tx.get(0) != null) {
+				sessionUser.setEmail(tx.get(0));
+			}
+			if(!tx.get(1).equals("") && tx.get(1) != null) {
+				sessionUser.setFirstName(tx.get(1));
+			}
+			if(!tx.get(2).equals("") && tx.get(2) != null) {
+				sessionUser.setLastName(tx.get(2));
+			}
+			if(!tx.get(3).equals("") && tx.get(3) != null) {
+				sessionUser.setPassword(tx.get(3));
+			}
+			boolean val = ser.UpdateEmp(sessionUser);
 			if(val) {
 				p.write("true");
 			}
 			else {
+				sessionUser.setEmail(email);
+				sessionUser.setFirstName(firstName);
+				sessionUser.setLastName(lastName);
+				sessionUser.setPassword(password);
 				p.write("false");
 			}
 		}
