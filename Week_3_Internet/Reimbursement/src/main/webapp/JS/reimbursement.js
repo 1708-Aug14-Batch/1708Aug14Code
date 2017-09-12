@@ -37,7 +37,7 @@ if (selection === "Pending Reimbursements"){
 	restriction = 0;
 }
 else if(selection === "All Reimbursements"){
-	restriction = 3;
+	restriction = 2;
 }
 else if(selection === "Resolved Reimbursements"){
 	restriction = 1;
@@ -66,9 +66,17 @@ else if(selection === "Resolved Reimbursements"){
 			else{
 				
 				for (var i = 0; i < accounts.length; i++){
-					if(accounts[i].status_id != restriction || ){
-						continue;
+					
+					if(restriction == 0){
+						if(accounts[i].status_id != 0)
+							continue;
 					}
+					else if(restriction == 1){
+						if(accounts[i].status_id != 1 && accounts[i].status_id != 2)
+							continue;
+					}
+
+
 					if(accounts[i].status_id === 0 || accounts[i].status_id === 1 || accounts[i].status_id === 2){
 						var table = document.getElementById("list");
 						var row = table.insertRow();
