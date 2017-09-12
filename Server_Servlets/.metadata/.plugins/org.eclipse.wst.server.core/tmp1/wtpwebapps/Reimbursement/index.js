@@ -33,19 +33,20 @@ function setEventListeners() {
 
 	// Miscellaneous
 	$("#submit_button").click(submitReimbursement);
-//	$("#submit_description").click(submitReimbursement);
+	// $("#submit_description").click(submitReimbursement);
 
 	// Manager
 	// Manager navbar
 	$("#homeManager").click(loadDashboard);
 	$("#profileManager").click(loadProfileView);
-	$("#resolveReim").click(resolveReim);
+	$("#resolveReim").click(resolveReimView);
 	$("#viewPendingReimManager").click(viewAllPendingReim);
 	$("#viewResolvedReimManager").click(viewAllResolvedReim);
 	$("#viewEmployeesReim").click(loadViewEmployeesReim);
 	$("#viewEmployees").click(viewEmployees);
 	$("#registerEmployee").click(registerEmployeeView);
 	$("#viewReimIdButton").click(loadEmployeesReims);
+	$("#resolve_button").click(resolveReim);
 
 	// Miscellaneous
 
@@ -64,19 +65,40 @@ function setEventListeners() {
 	$("#view_button").click(getOneReimbursement);
 }
 
+function viewEmployees() {
+	hideAllViews();
+	$("#viewEmployeesDiv").attr("hidden", false);
+	showEmployeesTable();
+}
+
+function resolveReimView() {
+	hideAllViews();
+	$("#resolveReimDiv").attr("hidden", false);
+}
+
 function loadEmployeesReims() {
-	viewReimbursements("#viewReimIdDisplay", "", ""+employee_id_text);
+	viewReimbursements("#viewReimIdDisplay", "", $("#employee_id_text")[0].value);
 }
 
 function getOneReimbursement() {
-	var id = $("#view_reimbursement_id").value;
+	var id = $("#view_reimbursement_id")[0].value;
 
-	dto = [ "" + id ]; // dto must only contain String objects
-	sendReceiveXMLResponse("GET", "getOneReimbursement", dto, function(
+	if (typeof id === "undefined")
+		id = -1;	// There are no reimbursements with negative numbers
+	
+	var dto = [ ""+id ]; // dto must only contain String objects
+	console.log("Get one reimbursement dto: " + dto);
+	dto = JSON.stringify(dto);
+	sendReceiveXMLResponse("POST", "getOneReimbursement", dto, function(
 			responseText) {
 		var reimbursement = JSON.parse(responseText);
 
-		populateReimbursementsTable("#viewReimDiv", [ reimbursement ]);
+		var div = "#viewReimDiv";
+		
+		$(div).attr("hidden", false);
+		if (reimbursement == null)
+			$(div).html("That id does not correspond to a reimbursement<br><br>");
+		else populateReimbursementsTable(div, [ reimbursement ]);
 	});
 }
 
@@ -96,6 +118,7 @@ function hideAllViews() {
 	$("#viewReimDiv").attr("hidden", true);
 	$("#registerEmployeeDiv").attr("hidden", true);
 	$("#resolveReimDiv").attr("hidden", true);
+	$("#viewEmployeesDiv").attr("hidden", true);
 }
 
 function loadLoginView() {
@@ -143,7 +166,7 @@ function createWorker() {
 	var dto = [ "-1", firstName, lastName, email, username, password, "" + id,
 			"" + thisIsManager ];
 
-	createUpdateEmployee(dto);
+	createUpdateEmployee("#message_edit2", dto);
 }
 
 function loadCreateAccount() {
@@ -165,9 +188,7 @@ function loadProfileView() {
 function viewPendingReim() {
 	hideAllViews();
 
-	console
-			.log("View reimbursements for the following employee id: "
-					+ id);
+	console.log("View reimbursements for the following employee id: " + id);
 	viewReimbursements("#viewReimDiv", "PENDING", id);
 
 }
@@ -177,8 +198,7 @@ function viewAllPendingReim() {
 }
 function viewResolvedReim() {
 	hideAllViews();
-	// If a manger is logged in, they are viewing reimbursements of an employee
-	
+
 	viewReimbursements("#viewReimDiv", "RESOLVED", id);
 }
 function viewAllResolvedReim() {
@@ -190,10 +210,38 @@ function loadViewEmployeesReim() {
 	$("#viewReimIdDiv").attr("hidden", false);
 }
 function resolveReim() {
-	hideAllViews();
-	$("#resolveReimDiv").attr("hidden", false);
+	var reimbursement_id = $("#view_reimbursement_id")[0].value
+	if (reimbursement_id == "")
+		reimbursement_id = -1;
+	var status
+	if (document.getElementById('status_approved').checked) {
+		status = "APPROVED";
+	} else if (document.getElementById('status_denied').checked) {
+		status = "DENIED";
+	}
+	var notes = $("#resolve_notes")[0].value;
 
-	view_reimbursement_id
+	var dto = [ ""+reimbursement_id, status, notes];
+	
+	console.log("Resolving reimbursement with dto: " + dto);
+	
+	dto = JSON.stringify(dto);
+	sendReceiveXMLResponse("POST", "updateReimbursement", dto, function(responseText) {
+		var response = JSON.parse(responseText);
+		
+		console.log("Response recieved in resolveReimbursement: " + response);
+		
+		if (response == true)	{ // Success
+			$("#resolve_error_message").text("Reimbursement resolved");
+			$("#resolve_error_message").attr("style", "color:green");
+		}
+		else {
+			$("#resolve_error_message").text(response);
+			$("#resolve_error_message").attr("style", "color:red");
+		}
+	});
+			
+			
 
 }
 function loadSubmitReimView() {
@@ -237,15 +285,15 @@ function viewReimbursements(div, type, id) {
 
 	var dto = [ ""+id, type ]; // Both of these must be Strings
 
-	console.log("Getting list of reimbursements" + div + " " + type + " " + id);
+	console.log("Getting list of reimbursements" + div + " " + dto);
 
 	dto = JSON.stringify(dto);
 	sendReceiveXMLResponse("POST", "getReimbursements", dto, function(
 			responseText) {
 		var reimbursements = JSON.parse(responseText);
 
-		if (reimbursements.length == 0)
-			$(div).text("You have no " + type + " reimbursements");
+		if (reimbursements === null || reimbursements.length === 0)
+			$(div).text("There are no " + type + " reimbursements");
 		else {
 
 			populateReimbursementsTable(div, reimbursements);
@@ -258,8 +306,8 @@ function submitReimbursement() {
 	var description = $("#submit_description")[0].value;
 	var ammount = $("#submit_ammount")[0].value;
 
-	var dto = [ description, ammount ];
-	
+	var dto = [ description, ""+ammount ];
+
 	dto = JSON.stringify(dto);
 	console.log("createReimbursement dto: " + dto);
 	sendReceiveXMLResponse("POST", "createReimbursement", dto, function(
@@ -268,7 +316,7 @@ function submitReimbursement() {
 		var response = JSON.parse(responseText);
 
 		console.log("xhr response arrived in createReimbursement()");
-		if (response == "false") {
+		if (response == false) {
 			$("#submit_error_text").text("Reimbursement could not be created");
 			$("#submit_error_text").attr("style", "color:red");
 		} else {
@@ -301,42 +349,6 @@ function displayProfileInformation() {
 		$("#email_edit").attr("value", user.email);
 	});
 
-}
-
-// FIXME how to make the table not so wide OR be able to dynamically shrink
-// horizontally
-function populateReimbursementsTable(div, reimbursements) {
-	var html = "<h3>Reimbursements</h3>";
-	console.log("Populating reimbursements table...");
-	// Table head
-	html += "<table class='table table-striped'><thead>	"
-			+ "<th>Reimbursement ID</th>" + "<th>Submitter ID</th>"
-			+ "<th>Resolver ID</th>" + "<th>Description</th>"
-			+ "<th>Ammount</th>" + "<th>Date opened</th>"
-			+ "<th>Date closed</th>" + "<th>Status</th>" + "<th>Notes</th>"
-			+ "<tbody>";
-
-	// Table rows
-	for (var i = 0; i < reimbursements.length; i++) {
-
-		html += "<tr>"
-		html += "<td>" + reimbursements[i].reimbursementId + "</td>";
-		html += "<td>" + reimbursements[i].submitterId + "</td>";
-		html += "<td>" + reimbursements[i].resolverId + "</td>";
-		html += "<td>" + reimbursements[i].description + "</td>";
-		html += "<td>$" + reimbursements[i].ammount + "</td>";
-		html += "<td>" + formatDate(reimbursements[i].submitDate) + "</td>";
-		html += "<td>" + formatDate(reimbursements[i].resolvedDate) + "</td>";
-		html += "<td>" + reimbursements[i].status + "</td>";
-		html += "<td>" + setNotes(reimbursements[i].resolveNotes) + "</td>";
-
-		html += "</tr>";
-	}
-
-	// Table end
-	html += "</tbody></thead></table>";
-
-	$(div).html(html);
 }
 
 function formatDate(day) {
@@ -448,10 +460,10 @@ function updateProfile() {
 	var dto = [ userId, firstName, lastName, email, username, password, "-1",
 			"null" ];
 
-	createUpdateEmployee(dto);
+	createUpdateEmployee("#message_edit", dto);
 }
 
-function createUpdateEmployee(dto) {
+function createUpdateEmployee(div, dto) {
 	dto = JSON.stringify(dto);
 	console.log("updateProfile dto: " + dto);
 	sendReceiveXMLResponse(
@@ -463,17 +475,27 @@ function createUpdateEmployee(dto) {
 				var response = responseText;
 
 				console.log("xhr response arrived in updateProfile()");
-				if (response == "false") {
-					$("#message_edit").text("Information could not be updated");
-					$("#message_edit").attr("style", "color:red");
+				if (response == false) {
+					$(div).text("Information could not be updated");
+					$(div).attr("style", "color:red");
 				} else {
 					setTimeout(loadProfileView(), 0);
 
-					$("#message_edit").text("Information updated.");
-					$("#message_edit").attr("style", "color:green");
+					$(div).text("Information updated.");
+					$(div).attr("style", "color:green");
 				}
 
 			});
+}
+
+function showEmployeesTable() {
+	
+	getXMLResponse("GET", "getEmployees", function(responseText) {
+		var employees = JSON.parse(responseText);
+
+		populateEmployeesTable(employees);
+	});
+	
 }
 
 // type should be "GET" or "POST"
@@ -500,10 +522,77 @@ function sendReceiveXMLResponse(type, myurl, dto, callback) {
 			callback(xmlhttp.responseText);
 		} else if (xmlhttp.status == 500)
 			$("#message").text("Something went wrong"); // Meant to show on the
-														// login page
+		// login page
 	}
 	xmlhttp.open(type, myurl, true);
 	xmlhttp.setRequestHeader("Content-type",
 			"application/x-www-form-urlencoded");
 	xmlhttp.send(dto);
+}
+
+//FIXME how to make the table not so wide OR be able to dynamically shrink
+//horizontally
+function populateReimbursementsTable(div, reimbursements) {
+	var html = "<h3>Reimbursements</h3>";
+	console.log("Populating reimbursements table..." + reimbursements.length);
+	// Table head
+	html += "<table class='table table-striped'><thead>	"
+			+ "<th>Reimbursement ID</th>" + "<th>Submitter ID</th>"
+			+ "<th>Resolver ID</th>" + "<th>Description</th>"
+			+ "<th>Ammount</th>" + "<th>Date opened</th>"
+			+ "<th>Date closed</th>" + "<th>Status</th>" + "<th>Notes</th>"
+			+ "<tbody>";
+
+	// Table rows
+	for (var i = 0; i < reimbursements.length; i++) {
+
+		html += "<tr>"
+		html += "<td>" + reimbursements[i].reimbursementId + "</td>";
+		html += "<td>" + reimbursements[i].submitterId + "</td>";
+		html += "<td>" + reimbursements[i].resolverId + "</td>";
+		html += "<td>" + reimbursements[i].description + "</td>";
+		html += "<td>$" + reimbursements[i].ammount + "</td>";
+		html += "<td>" + formatDate(reimbursements[i].submitDate) + "</td>";
+		html += "<td>" + formatDate(reimbursements[i].resolvedDate) + "</td>";
+		html += "<td>" + reimbursements[i].status + "</td>";
+		html += "<td>" + setNotes(reimbursements[i].resolveNotes) + "</td>";
+
+		html += "</tr>";
+	}
+
+	// Table end
+	html += "</tbody></thead></table>";
+
+	$(div).html(html);
+}
+
+function populateEmployeesTable(employees) {
+	
+	var html = "<h3>Employees</h3>";
+	console.log("Populating employees table...");
+	// Table head
+	html += "<table class='table table-striped'><thead>	"
+			+ "<th>Worker ID</th>" + "<th>First name</th>"
+			+ "<th>Last name</th>" + "<th>Email</th>"
+			+ "<th>Username</th>" + "<th>is Manager</th>"
+			+ "<tbody>";
+	
+	// Table rows
+	for (var i = 0; i < employees.length; i++) {
+
+		html += "<tr>"
+		html += "<td>" + employees[i].workerId + "</td>";
+		html += "<td>" + employees[i].firstName + "</td>";
+		html += "<td>" + employees[i].lastName + "</td>";
+		html += "<td>" + employees[i].email + "</td>";
+		html += "<td>" + employees[i].username + "</td>";
+		html += "<td>" + employees[i].isManager + "</td>";
+
+		html += "</tr>";
+	}
+
+	// Table end
+	html += "</tbody></thead></table>";
+
+	$(viewEmployeesDiv).html(html);
 }

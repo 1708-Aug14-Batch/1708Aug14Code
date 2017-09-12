@@ -46,21 +46,21 @@ public class GetReimbursementsServlet extends HttpServlet {
 		Worker user = service.getWorker(id);
 
 		ArrayList<Reimbursement> reimbursements;	// result to be returned
-		if (user == null) {
+		if (id == -1) {
 			// No user is specified
 			if (type.equals("PENDING"))
 				reimbursements = service.getPendingReimbursements();
 			else if (type.equals("RESOLVED"))
 				reimbursements = service.getResolvedReimbursements();
 			else reimbursements = service.getAllReimbursements();
-		} else {
+		} else if (user != null) {
 			// Get reimbursements for a particular worker
 			if (type.equals("PENDING"))
 				reimbursements = service.getPendingReimbursements(id);
 			else if (type.equals("RESOLVED"))
 				reimbursements = service.getResolvedReimbursements(id);
-			else reimbursements = service.getAllReimbursements();
-		}
+			else reimbursements = service.getEmployeesReimbursements(id);
+		} else reimbursements = new ArrayList<Reimbursement>();	// Empty
 		
 		System.out.println("Returning reimbursements: " + reimbursements);
 		writeValueToResponse(resp, reimbursements);

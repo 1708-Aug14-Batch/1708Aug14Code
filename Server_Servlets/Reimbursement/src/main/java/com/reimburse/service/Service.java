@@ -12,22 +12,30 @@ import com.reimburse.pojos.Reimbursement.reimbursementStatus;
 import com.reimburse.pojos.Worker;
 
 // TODO this class is where I will checking updating variables to make
-// sure they are correct. i.e. valid emails, untaken username, etc
+// 		sure they are correct. i.e. valid emails, untaken username, etc
 //		ensure correctness on create as well as on update
 // TODO add methods to read particular values from database rather than always getting a list of every _____
 
-// FIXME rather than using so many daoImpl.readAllXXX() methods, make more methods in the DaoSqlImpl that are not in the DaoSql interface
+// FIXME rather than using so many daoImpl.readAllXXX() methods,
+//	make more methods in the DaoSqlImpl that are not in the DaoSql interface
 
 public class Service implements ServiceInterface {
 
 	// Logger
-	static Logger log = Logger.getRootLogger();
+	final static Logger logger = Logger.getLogger(Service.class);
 
 	DaoImpl daoImpl = new DaoImpl();
 	
 	public Worker validateWorker(String username, String password) {
-		if (username == null || password == null)
+		
+		// TODO make a method that logs information by appending filename and method nae to a message
+		System.out.println( Thread.currentThread().getStackTrace());
+		// TODO
+		
+		if (username == null || password == null) {
+			logger.info("Username or password not supplied");
 			return null;
+		}
 
 		username = username.toLowerCase();
 
@@ -36,8 +44,10 @@ public class Service implements ServiceInterface {
 		if (work == null)
 			return null;
 
-		if (work.getPassword().equals(password))
+		if (work.getPassword().equals(password)) {
+			logger.info("User logged in");
 			return work;
+		}
 		else
 			return null;
 	}
@@ -48,7 +58,7 @@ public class Service implements ServiceInterface {
 			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
 				return true;
 		
-		System.out.println("Email addresses must contain a valid domain such as \"something@something.com\"");
+		logger.info("Email addresses must contain a valid domain such as \"something@something.com\"");
 		return false;
 	}
 
@@ -61,7 +71,7 @@ public class Service implements ServiceInterface {
 
 		for (Worker work : workerList)
 			if (work.getEmail() != null && work.getEmail().equalsIgnoreCase(email)) {
-				System.out.println("Email unavailable");
+				logger.info("Email unavailable");
 				return false;
 			}
 
@@ -95,15 +105,15 @@ public class Service implements ServiceInterface {
 
 		// Check that username is unique
 		if (!isUsernameAvailable(username)) {
-			System.out.println("That username is already taken.");
+			logger.info("That username is already taken.");
 			return null;
 		}
 		if (!isEmailValid(email)) {
-			System.out.println("That email is invalid.");
+			logger.info("That email is invalid.");
 			return null;
 		}
 		if (!isEmailAvailable(email)) {
-			System.out.println("That email is already taken.");
+			logger.info("That email is already taken.");
 			return null;
 		}
 
@@ -160,44 +170,43 @@ public class Service implements ServiceInterface {
 	// resolvedDate
 	public boolean resolveReimbursement(int managerId, int reimbursementId, reimbursementStatus status, String resolveNotes) {
 		if (!isManager(managerId)) {
-			System.out.println("You must be logged in as a manager to resolve reimbursements");
+			logger.info("You must be logged in as a manager to resolve reimbursements");
 			return false;
 		}
 
 		Worker resolver = daoImpl.readWorker(managerId);
 
 		if (resolver == null) {
-			System.out.println("The logged in manager is not in the system. ID: " + managerId);
+			logger.info("The logged in manager is not in the system. ID: " + managerId);
 			return false;
 		}
 		if (!resolver.isManager() || !resolver.isHired()) {
-			System.out.println("That employee is not a current manager. Username: " + resolver.getUsername());
+			logger.info("That employee is not a current manager. Username: " + resolver.getUsername());
 			return false;
 		}
 		if (status == null || status == reimbursementStatus.NULL || status == reimbursementStatus.PENDING) {
-			System.out.println("Invalid status for resolving a reimbursement. Status: " + status);
+			logger.info("Invalid status for resolving a reimbursement. Status: " + status);
 			return false;
 		}
 
 		Reimbursement reimburse = daoImpl.readReimbursement(reimbursementId);
 		if (reimburse == null) {
-			System.out.println("The specified reimbursement does not exist. ID: " + reimbursementId);
+			logger.info("The specified reimbursement does not exist. ID: " + reimbursementId);
 			return false;
 		}
 		if (reimburse.getStatus() == reimbursementStatus.APPROVED
 				|| reimburse.getStatus() == reimbursementStatus.DENIED) {
-			System.out.println("That reimbursement is alread closed. ID: " + reimburse.getReimbursementId());
+			logger.info("That reimbursement is alread closed. ID: " + reimburse.getReimbursementId());
 			return false;
 		}
 
-		System.out.println("Reimbursement id " + reimbursementId + " set to status: " + status);
+		logger.info("Reimbursement id " + reimbursementId + " set to status: " + status);
 		// Set the reimbursement as resolved and save it to the database
 		reimburse.setStatus(status);
 		reimburse.setResolvedDate(LocalDateTime.now());
 		reimburse.setResolveNotes(resolveNotes);
-		daoImpl.updateReimbursement(reimbursementId, reimburse);
+		return daoImpl.updateReimbursement(reimbursementId, reimburse);
 
-		return true;
 	}
 
 	public boolean isAWorker(String username) {
@@ -241,7 +250,7 @@ public class Service implements ServiceInterface {
 		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
 
 		for (Reimbursement r : reimbursements)
-			if (r.getStatus() != reimbursementStatus.DENIED || r.getStatus() != reimbursementStatus.APPROVED)
+			if (r.getStatus() != reimbursementStatus.DENIED && r.getStatus() != reimbursementStatus.APPROVED)
 				removeList.add(r);
 
 		reimbursements.removeAll(removeList);
@@ -266,11 +275,14 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public ArrayList<Worker> getAllEmployees(int managerId) throws NullPointerException {
+	public ArrayList<Worker> getAllEmployees() {
 
-		if (!isManager(managerId))
-			throw new NullPointerException();
-
+		return daoImpl.readAllWorkers();
+	}
+	
+	@Override
+	public ArrayList<Worker> getAllNonManagers() {
+		
 		ArrayList<Worker> workers = daoImpl.readAllWorkers();
 		ArrayList<Worker> removeList = new ArrayList<Worker>();
 

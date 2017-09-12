@@ -1,0 +1,13 @@
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:41 - entering main(String[])
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:42 - args: [Ljava.lang.String;@4e50df2e
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:56 - entering execute()
+2017-09-12 14:00:21 TRACE Log4jConsoleTest:62 - Test: TRACE level message.
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:65 - Test: DEBUG level message.
+2017-09-12 14:00:21 INFO  Log4jConsoleTest:68 - Test: INFO level message.
+2017-09-12 14:00:21 WARN  Log4jConsoleTest:71 - Test: WARN level message.
+2017-09-12 14:00:21 ERROR Log4jConsoleTest:74 - Test: ERROR level message.
+2017-09-12 14:00:21 FATAL Log4jConsoleTest:77 - Test: FATAL level message.
+2017-09-12 14:00:21 INFO  Log4jConsoleTest:81 - Logging stuff should go here
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:83 - exiting execute()
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:47 - exiting main()
+2017-09-12 14:02:41 INFO  Service:40 - User logged in

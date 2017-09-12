@@ -9,6 +9,9 @@
 <fullyQualifiedTypeName name="com.bank.service.Service"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
-<fullyQualifiedTypeName name="com.reimburse.service.Service"/>
 <fullyQualifiedTypeName name="com.reimburse.pojos.Reimbursement"/>
+<fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+<fullyQualifiedTypeName name="com.reimburse.service.Service"/>
+<fullyQualifiedTypeName name="org.apache.log4j.LogManager"/>
+<fullyQualifiedTypeName name="org.apache.log4j.Appender"/>
 </qualifiedTypeNameHistroy>

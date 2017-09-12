@@ -70,6 +70,10 @@ public class Worker {
 	public boolean isManager() {
 		return isManager;
 	}
+	
+	public boolean getIsManager() {
+		return isManager;
+	}
 
 	public void setManager(boolean isManager) {
 		this.isManager = isManager;

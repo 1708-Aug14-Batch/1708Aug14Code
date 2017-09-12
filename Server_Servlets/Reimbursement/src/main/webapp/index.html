@@ -34,7 +34,7 @@
 								<a class="dropdown-item" id="viewPendingReim">
 								View Pending Reimbursements </a>
 								<a class="dropdown-item"
-								id="viewResolvedReimManager"> View Resolved Reimbursements </a>
+								id="viewResolvedReim"> View Resolved Reimbursements </a>
 						</div></li>
 					<a href="logout"> Logout </a>
 
@@ -65,7 +65,7 @@
 							<a class="dropdown-item" id="resolveReim"> Resolve
 								Reimbursement </a> <a class="dropdown-item"
 								id="viewPendingReimManager"> View Pending Reimbursements </a> <a
-								class="dropdown-item" id="viewResolvedReim"> View Resolved
+								class="dropdown-item" id="viewResolvedReimManager"> View Resolved
 								Reimbursements </a> <a class="dropdown-item" id="viewEmployeesReim">
 								View Reimbursements by Employee </a>
 						</div></li>
@@ -111,6 +111,9 @@
 	<div id="viewReimDiv" hidden=true>
 		<h3>View Reimbursements</h3>
 	</div>
+	<div id="viewEmployeesDiv" hidden=true>
+		<h3>View Employees</h3>
+	</div>
 	<div id="viewReimIdDiv" hidden=true>
 		Employee ID: <input type="number" id="employee_id_text" /><br>
 		<br> <input type="button" id="viewReimIdButton" value="View"
@@ -147,7 +150,7 @@
 			min="0" step="1" style="background-color: AntiqueWhite" /> <input
 			type='submit' id='view_button' value='View Reimbursement' class='btn btn-primary' /><br>
 		<br> Status: <br><input type="radio" name="status_radio"
-			id="status_approved" value="APPROVED" />APPROVED<br> <input type="radio"
+			id="status_approved" value="APPROVED" checked="checked"/>APPROVED<br> <input type="radio"
 			name="status_radio" id="status_denied" value="DENIED" />DENIED<br>
 		<br> Notes: <input type="text" id="resolve_notes"
 			placeholder="notes" style="background-color: AntiqueWhite" /><br>
@@ -174,7 +177,7 @@
 			<input type="checkbox" id="view_password_check2" /><br> <input
 				type="checkbox" id=create_manager_check />Manager?<br> <br>
 			<input type="submit" id="update_profile2" class='btn btn-primary'
-				value="Update information" /><br>
+				value="Register employee" /><br>
 			<p id="message_edit2" style="color: red"></p>
 			<br>
 			<!-- for displaying an error message when the user enters the wrong information -->

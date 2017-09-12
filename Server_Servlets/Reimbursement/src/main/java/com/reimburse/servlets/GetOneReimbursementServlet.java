@@ -41,6 +41,8 @@ public class GetOneReimbursementServlet extends HttpServlet {
 		
 		Reimbursement reimburse = service.getReimbursement(id);
 		
+		System.out.println("Get one reimbursement: " + reimburse);
+		
 		writeValueToResponse(resp, reimburse);
 
 	}
@@ -61,9 +63,9 @@ public class GetOneReimbursementServlet extends HttpServlet {
 		return jackson.readValue((String) obj, ArrayList.class);
 	}
 	
-	private void writeValueToResponse(HttpServletResponse resp, Reimbursement reimbursements) throws IOException {
+	private void writeValueToResponse(HttpServletResponse resp, Reimbursement reimbursement) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
-		String json = mapper.writeValueAsString(reimbursements);	// reimbursements may be null
+		String json = mapper.writeValueAsString(reimbursement);	// reimbursements may be null
 		
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
