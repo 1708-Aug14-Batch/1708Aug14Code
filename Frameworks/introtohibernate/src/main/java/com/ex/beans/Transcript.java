@@ -25,7 +25,7 @@ public class Transcript {
 	private int id;
 	
 	//MANY TO MANY
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="STUDENT_COURSES",
 	joinColumns=@JoinColumn(name="T_ID"),
 	inverseJoinColumns=@JoinColumn(name="C_ID"))
@@ -33,6 +33,7 @@ public class Transcript {
 
 	public Transcript(){
 	}
+	
 	public Transcript(int id, Set<Course> courses) {
 		super();
 		this.id = id;
