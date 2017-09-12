@@ -129,6 +129,7 @@ else if(selection === "Resolved Reimbursements"){
 										resID.innerHTML = userlist[j].firstname + " " + userlist[j].lastname;
 									}
 								}
+								
 							}
 							else if(accounts[i].status_id === 2){
 								status.innerHTML = "Denied";
@@ -165,6 +166,15 @@ else if(selection === "Resolved Reimbursements"){
 							rID.setAttribute("data-toggle","modal");
 							rID.setAttribute("data-target","#exampleModal");
 							$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
+							
+						}
+						if(user.isManager == 1){
+							if(accounts[i].status_id == 0){
+								rID.setAttribute("class","resolvedID");
+								rID.setAttribute("data-toggle","modal");
+								rID.setAttribute("data-target","#pendingModal");
+								$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
+							}
 						}
 						
 						
@@ -182,6 +192,7 @@ else if(selection === "Resolved Reimbursements"){
 						ResDate.innerHTML = accounts[i].resDate;
 						reason.innerHTML = accounts[i].description;
 						amount.innerHTML = "$" + accounts[i].amount;
+						
 //						resID.innerHTML = accounts[i].res_id;
 							
 						
@@ -190,6 +201,23 @@ else if(selection === "Resolved Reimbursements"){
 				}
 			}
 
+			$(".resolvedID").on('click',function(){
+				var value = $(this).text();
+				console.log(value);
+				for(var i = 0; i < accounts.length; i++){
+					if(accounts[i].r_id == value){
+						
+						$("#modalAmount").val("$" + accounts[i].amount);
+						$("#modalNotes").val(accounts[i].notes);
+						for(var j = 0; j < userlist.length; j++){
+							if(userlist[j].userId === accounts[i].res_id){
+								$("#modalResolved").val(userlist[j].firstname + " " + userlist[j].lastname);
+							}
+						}
+						
+					}
+				}
+			})
 		}
 	}
 	xhr.open("GET", "UserReimbursement", true);
