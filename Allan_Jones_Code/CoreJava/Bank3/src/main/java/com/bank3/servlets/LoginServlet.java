@@ -33,6 +33,8 @@ public class LoginServlet extends HttpServlet {
 			User u = service.getUser(id);
 			session.setAttribute("user", u);
 			
+			String fn = (String) session.getAttribute(u.getFirstname());
+			
 			String uname = session.getAttribute("user").toString();
 			
 			System.out.println("The session username is: " + uname);

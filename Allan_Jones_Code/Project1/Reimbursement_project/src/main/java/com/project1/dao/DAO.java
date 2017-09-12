@@ -1,8 +1,12 @@
 package com.project1.dao;
 
+import com.project1.pojos.Users;
+
 public interface DAO {
 	
 	public int getUserID(String username, String pw);
+	
+	public Users getUser(int id);
 	
 	public boolean isMgr(int id);
 	

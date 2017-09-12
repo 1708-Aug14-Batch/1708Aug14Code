@@ -7,7 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.project1.pojos.Users;
 import com.project1.service.Service;
 
 public class LoginServlet extends HttpServlet {
@@ -22,6 +24,17 @@ public class LoginServlet extends HttpServlet {
 		int id = service.validateUser(username, password);
 		boolean isMgr = service.isMgr(id);
 		
+		Users user = new Users();
+		user = service.getUser(id);
+		String name = user.getFirstName().toString() + " " + user.getLastName().toString();
+		
+		System.out.println("Name from loginServlet is: " + name);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("name", name);
+		
+		//response.sendRedirect("./LoginMessageServlet");  // can be used to redirect to a different servlet
+		
 		if (id == -1) {
 			RequestDispatcher rd = request.getRequestDispatcher("error.html");
 			rd.forward(request, response); // invalid user
@@ -29,8 +42,10 @@ public class LoginServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("manager_homepage.html");
 			rd.forward(request, response); // successful login
 		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("employee_homepage.html");
-			rd.forward(request, response); // successful login
+//			RequestDispatcher rd = request.getRequestDispatcher("employee_homepage.html");
+//			RequestDispatcher rd = request.getRequestDispatcher("./EmployeeHome");
+//			rd.forward(request, response); // successful login
+			response.sendRedirect("./EmployeeHome");
 		}
 	}
 }

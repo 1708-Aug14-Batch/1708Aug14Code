@@ -3,6 +3,7 @@ package com.project1.servlets;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +22,7 @@ public class LogoutServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession(false);
 		if(session != null){
-			session.removeAttribute("user");
+			session.removeAttribute("Username");
 			session.invalidate();
 			System.out.println("Session invalidated!");
 		}

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import com.project1.pojos.Users;
 import com.project1.util.ConnectionFactory;
 
 public class DaoImpl implements DAO {
@@ -28,6 +30,29 @@ public class DaoImpl implements DAO {
 			e.printStackTrace();
 		}
 		return -1;
+	}
+
+	@Override
+	public Users getUser(int id) {
+		Users user = new Users();
+
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "select firstname, lastname, username, password from users where userid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				user.setFirstName(rs.getString("firstname"));
+				user.setLastName(rs.getString("lastname"));
+				user.setUserName(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	@Override

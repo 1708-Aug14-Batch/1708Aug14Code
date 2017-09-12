@@ -25,7 +25,7 @@ public class ConnectionFactory {
 		Connection conn = null;
 		try {
 			Properties prop = new Properties();
-			prop.load(new FileReader("C://Users//oracl//my_git_repos//1708Aug14Code//project1//Reimbursement_project//src//main//java//com//project1//util//database.properties"));
+			prop.load(new FileReader("C:\\Users\\oracl\\my_git_repos\\1708Aug14Code\\Allan_Jones_Code\\Project1\\Reimbursement_project\\src\\main\\java\\com\\project1\\util\\database.properties"));
 			Class.forName(prop.getProperty("driver"));
 			conn = DriverManager.getConnection(
 					prop.getProperty("url"),

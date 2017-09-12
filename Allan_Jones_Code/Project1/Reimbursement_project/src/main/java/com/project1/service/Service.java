@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import com.project1.dao.DAO;
 import com.project1.dao.DaoImpl;
+import com.project1.pojos.Users;
 
 public class Service {
 	static int id;
@@ -23,10 +24,9 @@ public class Service {
 	public boolean registerEmp(String fn, String ln, String un, String email) {
 		return dao.registerEmp(fn, ln, un, email);
 	}
-
-	public void logout() {
-//		System.out.println("Logging out, Bye");
-//		login = false;
+	
+	public Users getUser(int id) {
+		return dao.getUser(id);
 	}
 
 }
