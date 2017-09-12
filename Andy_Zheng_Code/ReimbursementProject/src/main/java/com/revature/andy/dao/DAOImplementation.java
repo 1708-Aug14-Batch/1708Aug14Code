@@ -170,10 +170,10 @@ public class DAOImplementation implements DAOInterface {
 
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1, reimID);
-			ps.setInt(2, user.getUserID());
-			ps.setInt(3, rs.getStatusID());
-			ps.setString(4, notes);
+			ps.setInt(1, user.getUserID());
+			ps.setInt(2, rs.getStatusID());
+			ps.setString(3, notes);
+			ps.setInt(4, reimID);
 
 			ps.executeQuery();
 			con.commit();

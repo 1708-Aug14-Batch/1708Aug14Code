@@ -103,8 +103,18 @@ public class Service {
 		}
 	}
 	
-	public boolean updateReimbursements(int reimID, User u, int statusID, String notes) {
+	public boolean updateReimbursements(int reimID, User u, String status, String notes) {
 		
+		int statusID = 0;
+		System.out.println("table value" + status);
+		if(status.equals("Pending")) {
+			statusID = 0;
+		}else if(status.equals("Approved")) {
+			statusID = 1;
+		}else if(status.equals("Denied")) {
+			statusID = 2;
+		}
+		System.out.println("status update" + statusID);
 		int x = dao.updateReimbursement(reimID, u, dao.getReimStatusFromID(statusID), notes);
 		if(x == 1) {
 			return true;

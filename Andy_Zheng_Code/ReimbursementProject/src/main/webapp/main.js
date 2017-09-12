@@ -308,10 +308,26 @@ function getReimInfo(){
 				}else if(data == "Denied"){
 					$('[value="Denied"]').attr('selected',true);
 				}
+				var reimID = reimTable.row(this).data()[0];
 				$('#statusUpdate').one("click",function(){
+					var notes = $('#notes').val();
+					var status = $('#statusSelected option:selected').val();
+
+					var to = [reimID, status, notes];
+				 	to = JSON.stringify(to);
+
+					$.ajax({
+				 		type: 'POST',
+				 		url: 'updateReim',
+				 		data: to,
+				 		dataType: 'JSON',
+				 		success: function(response){
+				 			$('#statusModal').modal('hide');
+							$('#notes').val("");
+				 		}
+					})
+
 					cell.data($('#statusSelected option:selected').text()).draw();
-					$('#statusModal').modal('hide');
-					$('#notes').val("");
 				})
 			})
 /*
