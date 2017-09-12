@@ -18,10 +18,11 @@ td{
 	font-size: 13px
 }*/
 
+/*
 table{
 	table-layout: fixed;
   	word-wrap:break-word;
-}
+}*/
 
 input[readonly].form-control {
     background-color: #fff;

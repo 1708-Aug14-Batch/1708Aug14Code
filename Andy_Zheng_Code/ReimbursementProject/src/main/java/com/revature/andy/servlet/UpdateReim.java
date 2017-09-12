@@ -37,9 +37,6 @@ public class UpdateReim extends HttpServlet{
 		String status = to.get(1);
 		String notes = to.get(2);
 		
-		System.out.println(reimID);
-		System.out.println(notes);
-		
 		String json = null;
 		
 		HttpSession session = req.getSession();

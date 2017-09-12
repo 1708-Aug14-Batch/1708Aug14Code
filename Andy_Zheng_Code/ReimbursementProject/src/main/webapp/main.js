@@ -175,12 +175,17 @@ function getReimInfo(){
 		url: 'reimInfo',
 		success: function(response){
 			var reim = response;
-			console.log(reim);
 
 			for(var x = 0; x<reim.length; x++){
 				var tr = "<tr>";
 				tr += "<td>" + reim[x].reimID + "</td>";
 				tr += "<td>" + reim[x].description + "</td>";
+				if(reim[x].notes){
+					tr += "<td>" + reim[x].notes + "</td>";
+				}
+				else{
+					tr += "<td></td>";
+				}
 				tr += "<td>" + (reim[x].submitterID.fname + " " + reim[x].submitterID.lname) + "</td>";
 				if(reim[x].resolverID){
 					tr += "<td>" + (reim[x].resolverID.fname + " " + reim[x].resolverID.lname) + "</td>";
@@ -226,6 +231,7 @@ function getReimInfo(){
 			var reimTable = $('#reimTable').DataTable({
 				"pageLength": 5,
     			"bLengthChange": false,	
+    			/*
     			"columnDefs": [
     			{ "width": "15px", "targets": 0 },
     			{ "width": "150px", "targets": 1 },
@@ -236,6 +242,7 @@ function getReimInfo(){
     			{ "width": "40px", "targets": 6 },
     			{ "width": "60px", "targets": 7 },
     			],
+    			*/
     			/*
     			"columns": [
     				null,
@@ -278,7 +285,7 @@ function getReimInfo(){
     				null	
     			],*/
 				initComplete: function () {
-					this.api().columns([0,2,3,6]).every( function () {
+					this.api().columns([0,3,4,7]).every( function () {
 						var column = this;
 						var select = $('<select><option value="">Show all</option></select>');
 						select.appendTo($(column.footer()).empty()).on( 'change', function () {
@@ -315,19 +322,20 @@ function getReimInfo(){
 
 					var to = [reimID, status, notes];
 				 	to = JSON.stringify(to);
-
+				 	console.log("inside updateclick")
 					$.ajax({
 				 		type: 'POST',
 				 		url: 'updateReim',
 				 		data: to,
 				 		dataType: 'JSON',
-				 		success: function(response){
+				 		success: function(response2){
+				 			console.log("Hello");
 				 			$('#statusModal').modal('hide');
 							$('#notes').val("");
+							cell.data($('#statusSelected option:selected').text()).draw();
 				 		}
 					})
-
-					cell.data($('#statusSelected option:selected').text()).draw();
+					//loadReim();
 				})
 			})
 /*
