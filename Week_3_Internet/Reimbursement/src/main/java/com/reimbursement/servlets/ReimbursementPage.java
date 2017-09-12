@@ -69,7 +69,7 @@ public class ReimbursementPage extends HttpServlet{
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
-		
+		Service service = new Service();
 		System.out.println("In the approve or deny post");
 		
 		Map<String,String[]> myMap = req.getParameterMap();
@@ -82,6 +82,8 @@ public class ReimbursementPage extends HttpServlet{
 		Integer resId = Integer.parseInt(list.get(0));
 		String notes = list.get(1);
 		Integer r_id = Integer.parseInt(list.get(2));
+		Integer re_id = Integer.parseInt(list.get(3));
+		service.ApporDeny(resId, notes, r_id, re_id);
 
 		
 	}

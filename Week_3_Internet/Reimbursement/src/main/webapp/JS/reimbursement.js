@@ -216,6 +216,7 @@ else if(selection === "Resolved Reimbursements"){
 							if(userlist[j].userId == accounts[i].sub_id){
 								$("#modalSubmitted").val(userlist[j].firstname + " " + userlist[j].lastname);
 								$("#modalDescription").val(accounts[i].description);
+								$("#reID").val(accounts[i].r_id);
 							}
 						}
 						
@@ -240,7 +241,8 @@ $("approve").on('click', function(){
 	var approver = user3.userId;
 	var notes = document.getElementById("modalGivenNotes");
 	var appID = 1;
-	var tx = [approver,notes,appID];
+	var re_id = document.getElementById("reID");
+	var tx = [approver,notes,appID, re_id];
 	
 	tx = JSON.stringify(tx);
 	
@@ -255,6 +257,8 @@ $("approve").on('click', function(){
 	xhr3.open("POST", "UserReimbursement", true);
 	xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr3.send(tx);
+	
+	
 })
 
 
