@@ -50,9 +50,7 @@ public class UpdateReim extends HttpServlet{
 		else {
 			json = mapper.writeValueAsString("Failure");
 		}
-			
-		System.out.println(json);
-		
+				
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(json);
