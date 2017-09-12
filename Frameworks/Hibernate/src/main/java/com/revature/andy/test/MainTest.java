@@ -1,5 +1,7 @@
 package com.revature.andy.test;
 
+import java.util.List;
+
 import com.revature.andy.ex.beans.Instructor;
 import com.revature.andy.ex.beans.Student;
 import com.revature.andy.ex.dao.HibernateDao;
@@ -10,19 +12,39 @@ public class MainTest {
 		HibernateDao dao = new HibernateDao();
 		Student s = new Student();
 		
-		s.setFirstname("Jeff");
-		s.setLastname("Zheng");
-		s.setEmail("az@email.com");
+		s.setFirstname("Hellol");
+		s.setLastname("World");
+		s.setEmail("az@taco.com");
 		
-		dao.addStudent(s);
+		//dao.addStudent(s);
 		
-		Instructor i = new Instructor();
+		//Instructor i = new Instructor();
+		//i.setName("Dr. Bonds");
+		//dao.addInstructor(i);
 		
-		i.setName("Dr. Bonds");
+		/*
+		List<Student> testStudent = dao.getAll();
+		for(Student x : testStudent) {
+			System.out.println(x.toString());
+		}*/
 		
-		dao.addInstructor(i);
+		//System.out.println(testStudent.get(1).toString());
 		
-		System.out.println(dao.getAll().toString());
-	}
+		/*
+		List<Student> testStudent2 = dao.criteriaDemo();
+		
+		for(Student x : testStudent2) {
+			System.out.println(x.toString());
+		}*/
+		
+		/*????????????
+		List<Student> testStudent3 = dao.queryDemo("Hellol");
+		for(Student x : testStudent3) {
+			System.out.println(x.toString());
+		}*/
+		
+		//dao.deleteStudent(400);
 	
+	
+	}
 }

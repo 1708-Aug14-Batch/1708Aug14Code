@@ -26,7 +26,7 @@ public class Transcript {
 	
 	//joinColumns=@JoinColumn(name="TRANSCRIPT_ID"),
 	//inverseJoinColumns=@JoinColumn(name="COURSE_ID")
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="STUDENT_COURSES",
     joinColumns=@JoinColumn(name="T_ID"),
     inverseJoinColumns=@JoinColumn(name="C_ID"))

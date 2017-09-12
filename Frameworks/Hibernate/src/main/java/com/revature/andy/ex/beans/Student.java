@@ -30,7 +30,7 @@ public class Student {
 	@Column(nullable = false,unique=true)
 	private String email;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="TRANSCRIPT_ID")
 	private Transcript transcript;
 	
@@ -85,6 +85,12 @@ public class Student {
 
 	public void setTranscript(Transcript transcript) {
 		this.transcript = transcript;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
+				+ ", transcript=" + transcript + "]";
 	}
 	
 	
