@@ -30,7 +30,7 @@
 --);
 
 insert into auser(u_id,firstname,lastname,username,email,password,ismanager)
-values(-1,'no','no','no','no','no',0);
+values(3,'Hercule','Satan','champ','champion@hercule.com','pan',1);
 
 insert into rstatus(st_id,stname) values (0,'Pending');
 

@@ -14,11 +14,13 @@ function loadDashboardView(){
 		if(xhr.readyState==4 && xhr.status==200){
 			document.getElementById('view').innerHTML = xhr.responseText;
 			getUserInformation();
+			
 		}
 	}
 	xhr.open("GET","getDashboard",true);
 	xhr.send();
 }
+
 
 
 
@@ -34,12 +36,18 @@ function getUserInformation(){
 			var dto = JSON.parse(xhr.responseText);
 			var aUser = dto.auser;
 			var reimbursements = dto.reimbursements;
+			console.log(aUser);
 			
-			//document.getElementById('name').innerHTML = aUser.firstName + " " + aUser.lastName;
+			var fullName = aUser.firstName+" "+aUser.lastName;
+			console.log(fullName);
+			document.getElementById('fullname').innerHTML = fullName;
+			document.getElementById('theiruname').innerHTML = aUser.userName;
+			document.getElementById('theiremail').innerHTML = aUser.email;
+			document.getElementById('theiruid').innerHTML = aUser.u_id;
+			
 			if (reimbursements.length == 0&&aUser.isManager==0){
 				document.getElementById("reimbursements").style.visibility = "hidden"; 
-				//console.log("null");
-				//console.log("reimbursements");
+				
 			}
 			else{
 				var table = document.getElementById("reimbTable");

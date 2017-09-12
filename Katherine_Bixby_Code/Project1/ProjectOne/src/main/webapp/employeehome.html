@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Employee Home</title>
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Balthazar" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Arya"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Asar" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arya" rel="stylesheet">
 <style>
 .header {
 	background-color: #d6edff
@@ -17,6 +16,7 @@
 }
 body{
 	background-image: url("https://inspirationhut.net/wp-content/uploads/2013/05/14.png");
+	min-height: 100%;
 }
 img {
 	max-width: 100%;
@@ -27,17 +27,18 @@ img {
 	border:3px solid #23222B;
 }
 table{
-	font-family: "Arya";
+	font-family: "Asar";
 }
 .panel-default{
-	font-family: "Arya";
+	font-family: "Asar";
 }
 .panel-heading{
+	font-family: "Asar";
 	font-size:150%;
 }
 
 .footer {
-	position: absolute;
+	position: relative;
 	right: 0;
 	bottom: 0;
 	left: 0;
@@ -45,6 +46,18 @@ table{
 	background-color: #efefef;
 	text-align: center;
 }
+label{
+	display:inline-block;
+	width:200px;
+}
+input[type=submit] {
+	padding: 5px 15px;
+	border: 0 none;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
 /* navbar */
 .navbar-inverse{
 	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt_IzMTuDrclTeTYtP0QHnsjQaua7lhdlPwCxjW_sEnFLJlmWL");
@@ -118,13 +131,29 @@ table{
 	
 	<div class="container-fluid">
 		<div class="jumbotron">
-			<img src="images/icon.png" class="img-thumbnail" alt="Cinque Terre" width="200" height="200">
+			<img style="float:left" src="images/icon.png" class="img-thumbnail" alt="Profile Pic" width="200" height="200"><br>
+			<font face="Asar" size="6"><b> &nbsp&nbspUser:</b> </font><font face="Arya" size="5"><span id="fullname"></span></font><br>
+			<font face="Asar" size="6"><b> &nbsp&nbspUsername:</b> </font><font face="Arya" size="5"><span id="theiruname"></span></font><br>
+			<font face="Asar" size="6"><b> &nbsp&nbspEmail:</b> </font><font face="Arya" size="5"><span id="theiremail"></span></font><br>
+			<font face="Asar" size="6"><b> &nbsp&nbspUser ID:</b> </font><font face="Arya" size="5"><span id="theiruid"/></span></font><br><br>
+		
 		</div>
-	
-	
 	</div>
 	
 	
+	<div class="container-fluid">
+		<form action="editEmp" method="post">
+		<div class="jumbotron">
+			<font face="Asar" size="7">Edit Account:</font><br><br>
+			<label><font face="Asar" size="6"><b>First Name:</b></font></label><font face="Arya" size="4"><input type="text" name="editfirst" id="editfirst"></span></font><br>
+			<label><font face="Asar" size="6"><b>Last Name:</b></font></label><font face="Arya" size="4"><input type="text" name="editlast" id="editlast"></span></font><br>
+			<label><font face="Asar" size="6"><b>Username:</b></font></label><font face="Arya" size="4"><input type="text" name="edituname" id="edituname"></span></font><br>
+			<label><font face="Asar" size="6"><b>Email:</b></font></label><font face="Arya" size="4"><input type="text" name="editemail" id="editemail"></span></font><br>
+			<label><font face="Asar" size="6"><b>Password:</b></font></label><font face="Arya" size="4"><input type="text" name="editpassword" id="editpassword"/></span></font><br><br><br>
+			<font face="Arya" size="4"><input type="submit" id="editEmp" value="Make Changes"/></font>
+		</div>
+		</form>
+	</div>
 	
 	
 	

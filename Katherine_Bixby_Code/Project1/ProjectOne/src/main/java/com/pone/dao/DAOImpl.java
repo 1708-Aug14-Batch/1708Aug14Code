@@ -11,6 +11,7 @@ import java.sql.Types;
 import java.util.ArrayList;
 
 import com.pone.pojos.AUser;
+import com.pone.pojos.RStatus;
 import com.pone.pojos.Reimbursement;
 import com.pone.util.ConnectionFactory;
 
@@ -157,10 +158,6 @@ public class DAOImpl implements DAO{
 		
 		return rem;
 	}
-	
-	
-	
-	// Get Reimbursement
 	
 	
 	
@@ -369,10 +366,144 @@ public class DAOImpl implements DAO{
 	
 	
 	// getAllUsers
+	public ArrayList<AUser> getAllUsers(){
+		ArrayList<AUser> theUsers = new ArrayList<AUser>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM AUSER");
+			AUser temp = new AUser();
+			while (rs.next()) {
+				temp = new AUser();
+				int u_id = rs.getInt("u_id");
+				String firstname = rs.getString("firstname");
+				String lastname = rs.getString("lastname");
+				String username = rs.getString("username");
+				String email = rs.getString("email");
+				String password = rs.getString("password");
+				int isManager = rs.getInt("isManager");
+				
+				temp.setU_id(u_id);
+				temp.setFirstName(firstname);
+				temp.setLastName(lastname);
+				temp.setUserName(username);
+				temp.setEmail(email);
+				temp.setPassword(password);
+				temp.setIsManager(isManager);
+				
+				theUsers.add(temp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return theUsers;
+	}
 	
 	
 	
 	
-	// getReimbursementTypes
+
+	public ArrayList<RStatus> getReimbursementStatuses(){
+		ArrayList<RStatus> theStati = new ArrayList<RStatus>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM RSTATUS");
+			RStatus temp = new RStatus();
+			while (rs.next()) {
+				temp = new RStatus();
+				int st_id = rs.getInt("st_id");
+				String stName = rs.getString("stname");
+				
+				temp.setSt_id(st_id);
+				temp.setStName(stName);
+				
+				theStati.add(temp);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return theStati;
+	}
+	
+	
+	/*
+	 * EDIT REIMBURSEMENTS
+	 */
+	// editResolverId
+	public void editResolverId(int resId, int solverId) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			String sql = "update REIMBURSEMENT set resolverid = ? where r_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, solverId);
+			ps.setInt(2, resId);
+			ps.executeUpdate();
+			conn.commit();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 
+	public void editResolveDate(int resId) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			String sql = "update REIMBURSEMENT set resolvedate = ? where r_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			Timestamp ts = new Timestamp(System.currentTimeMillis());
+			ps.setTimestamp(1, ts);
+			ps.setInt(2, resId);
+			ps.executeUpdate();
+			conn.commit();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 
+	public void editStatusId(int resId, int statId) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			String sql = "update REIMBURSEMENT set statusid = ? where r_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, statId);
+			ps.setInt(2, resId);
+			ps.executeUpdate();
+			conn.commit();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	// 
+	public void editResolveNotes(int resId, String resNotes) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()){
+			conn.setAutoCommit(false);
+			String sql = "update REIMBURSEMENT set resolvenotes = ? where r_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, resNotes);
+			ps.setInt(2, resId);
+			ps.executeUpdate();
+			conn.commit();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

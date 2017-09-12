@@ -25,6 +25,7 @@ function loadDashboardView(){
 
 
 
+
 function getReimbursements(){
 	console.log("here");
 	var xhr = new XMLHttpRequest();
@@ -33,12 +34,28 @@ function getReimbursements(){
 			console.log(xhr.responseText);
 			var dto2 = JSON.parse(xhr.responseText);
 			var theReimbursements = dto2.reimbursements;
+			var reimbStatuses = dto2.statuses;
+			console.log(reimbStatuses);
+			/*
+			 * OKAY SO I HAVE THE STATUSES HERE
+			 * NOW HOW DO I MAP THEM TO THE IDS SO THAT I CAN
+			 * CHANGE IT FROM STATUS ID TO JUST STATUS
+			 * 
+			 * 
+			 * ALSO DO THIS WITH LIKE
+			 * SUBMITTER ID
+			 * AND RESOLVER ID
+			 * YAAAAAY
+			 */
+
 			if (theReimbursements.length == 0){
 				document.getElementById("reimbursements").style.visibility = "hidden"; 
 				//console.log("null");
 				//console.log("reimbursements");
 			}
 			else{
+				console.log("AAAAAAAAAAAAAAA");
+				console.log("Statuses: "+reimbStatuses);
 				var table = document.getElementById("allReimbTable");
 				for(var i = 0; i < theReimbursements.length; i++){
 					// populate accounts table

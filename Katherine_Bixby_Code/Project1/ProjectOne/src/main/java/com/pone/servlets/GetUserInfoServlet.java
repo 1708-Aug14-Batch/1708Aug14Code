@@ -14,32 +14,36 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pone.dto.DTO;
 import com.pone.pojos.AUser;
+import com.pone.pojos.RStatus;
 import com.pone.pojos.Reimbursement;
 import com.pone.service.Service;
 
 @WebServlet("/getUserInfo")
 public class GetUserInfoServlet extends HttpServlet{
+	
+	
+	/*
+	 * I NEED ONE OF THESE BUT FOR MANAGERS FRIG
+	 */
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
 	throws ServletException, IOException{
 		
-		//System.out.println("GetUserInfoServlet -- GET");
 		Service service = new Service();
 		
 		HttpSession session = request.getSession();
-		//System.out.println(session);
-		//System.out.println(session.getAttribute("auser"));
+
 		AUser sessionUser = (AUser)session.getAttribute("auser");
-		//System.out.println("getting user from session " + sessionUser.toString());
+
 		if(sessionUser != null){
 			ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 			reimbursements = service.getUserReimbursements(sessionUser);
-//			for(Reimbursement r: reimbursements){
-//				System.out.println(r.toString());
-//			}
-			//System.out.println("converting our user and accounts to dto");
-			DTO dto = new DTO(sessionUser, reimbursements);
+
+			
+			ArrayList<RStatus> allStatuses = service.getReimbursementStatuses();
+			System.out.println("Statuses: "+allStatuses.toString());
+			DTO dto = new DTO(sessionUser, reimbursements,allStatuses);
 			
 			ObjectMapper mapper = new ObjectMapper();
 			

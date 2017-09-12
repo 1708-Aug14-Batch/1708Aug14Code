@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pone.dto.DTO;
 import com.pone.pojos.AUser;
+import com.pone.pojos.RStatus;
 import com.pone.pojos.Reimbursement;
 import com.pone.service.Service;
 
@@ -34,7 +35,10 @@ public class GetReimbursementsServlet extends HttpServlet{
 			reimbursements = service.getAllReimbursements();
 			System.out.println("Reimbursements: "+reimbursements);
 			
-			DTO adto = new DTO(sessionUser, reimbursements);
+			ArrayList<RStatus> allStatuses = service.getReimbursementStatuses();
+			System.out.println("Statuses: "+allStatuses.toString());
+			DTO adto = new DTO(sessionUser, reimbursements,allStatuses);
+			
 			
 			ObjectMapper mapper = new ObjectMapper();
 			

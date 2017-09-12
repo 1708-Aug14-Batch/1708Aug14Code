@@ -4,19 +4,15 @@ import java.util.ArrayList;
 
 import com.pone.dao.DAOImpl;
 import com.pone.pojos.AUser;
+import com.pone.pojos.RStatus;
 import com.pone.pojos.Reimbursement;
 
 public class Service {
 
 	DAOImpl dao = new DAOImpl();
-	// create an array list of the reimbursements
-	// create an array list of the users
-	// create an array list of the reimbursement types?
-	
-	
-	/*
-	 * Methods for propogating all of the 3 array lists
-	 */
+	static ArrayList<Reimbursement> reimbArr;
+	static ArrayList<AUser> userArr;
+	static ArrayList<RStatus> statArr;
 	
 	
 	
@@ -83,29 +79,70 @@ public class Service {
 	
 	
 	
-	/*
-	 * addReimbursementType
-	 */
 	
+	/*
+	 * Edit Reimbursement Methods
+	 */
+	public void editResolverId(int resId, int solverId) {
+		dao.editResolverId(resId, solverId);
+	}
+	public void  editResolveDate(int resId) {
+		dao.editResolveDate(resId);
+	}
+	public void editStatusId(int resId, int statId) {
+		dao.editStatusId(resId, statId);
+	}
+	public void editResolveNotes(int resId,String resNotes) {
+		dao.editResolveNotes(resId, resNotes);
+	}
 	
 	
 	/*
 	 * Edit a user methods
 	 */
+	public void editFirstName(int theUID, String newFn) {
+		dao.editFirstName(theUID, newFn);
+	}
+	public void editLastName(int theUID, String newLn) {
+		dao.editLastName(theUID, newLn);
+	}
+	public void editUserName(int theUID, String newUName) {
+		dao.editUserName(theUID, newUName);
+	}
+	public void editEmail(int theUID, String email) {
+		dao.editEmail(theUID, email);
+	}
+	public void editPassword(int theUID, String password) {
+		dao.editPassword(theUID, password);
+	}
 	
 	
 	
 	/*
-	 * Get methods for whatever aspects of whatever
+	 * 
 	 */
+	public String idToName(int theUID) {
+		userArr = dao.getAllUsers();
+		String fullName = "";
+		for(AUser i:userArr) {
+			if(i.getU_id()==theUID) {
+				fullName = i.getFirstName()+" "+i.getLastName();
+			}
+		}
+		return fullName;
+	}
 	
 	
 	
 	/*
 	 * Get user/request/reimbursementtype - use the arrays to get an individual one
 	 */
+	public AUser getUser(int theUID) {
+		AUser theUser = dao.getAUser(theUID);
+		//System.out.println("The User: "+theUser.toString());
+		return theUser;
+	}
 	
-	/////////////////////////// DO ////////////////////////////
 	// getUserReimbursements
 	public ArrayList<Reimbursement> getUserReimbursements(AUser theUser){
 		ArrayList<Reimbursement> theReimbursements = dao.getUserReimbursements(theUser.getU_id());;
@@ -115,6 +152,11 @@ public class Service {
 	public ArrayList<Reimbursement> getAllReimbursements(){
 		ArrayList<Reimbursement> allReimbursements = dao.allReimbursements();
 		return allReimbursements;
+	}
+	
+	public ArrayList<RStatus> getReimbursementStatuses(){
+		ArrayList<RStatus> allStatus = dao.getReimbursementStatuses();
+		return allStatus;
 	}
 	
 	

@@ -7,17 +7,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Manager Home</title>
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Balthazar" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Arya"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Asar" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Arya" rel="stylesheet">
 <style>
 .jumbotron {
 	background-color: #d6edff
 }
-
+body{
+	background-image: url("https://inspirationhut.net/wp-content/uploads/2013/05/14.png");
+	min-height: 100%;
+}
+/* navbar */
+.navbar-inverse{
+	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt_IzMTuDrclTeTYtP0QHnsjQaua7lhdlPwCxjW_sEnFLJlmWL");
+}
+table{
+	font-family: "Asar";
+}
+.panel-default{
+	font-family: "Asar";
+}
+.panel-heading{
+	font-family: "Asar";
+	font-size:150%;
+}
 img {
 	max-width: 100%;
 	max-height: 100%;
+}
+.img-responsive{
+	background:transparent;
+	border:3px solid #23222B;
+}
+.footer {
+	position: relative;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1rem;
+	background-color: #efefef;
+	text-align: center;
 }
 </style>
 </head>
@@ -26,32 +55,41 @@ img {
 	<nav class="navbar navbar-inverse navbar-static-top">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="managerhome.html"><font face="Balthazar">Manager Home</font></a>
+				<a class="navbar-brand" href="managerhome.html"><font face="Arya">Manager Home</font></a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Balthazar">Employees</font>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Arya">Employees</font>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewemployees.html"><font face="Balthazar">View All</font></a></li>
-						<li><a href="addemployee.html"><font face="Balthazar">Add New</font></a></li>
+						<li><a href="viewemployees.html"><font face="Arya">View All</font></a></li>
+						<li><a href="addemployee.html"><font face="Arya">Add New</font></a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Balthazar">Reimbursements</font>
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Arya">Reimbursements</font>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewreimbursement.html"><font face="Balthazar">View Requests</font></a></li>
-						<li><a href="managereimbursement.html"><font face="Balthazar">Handle Reimbursements</font></a></li>
+						<li><a href="viewreimbursement.html"><font face="Arya">View Requests</font></a></li>
+						<li><a href="managereimbursement.html"><font face="Arya">Handle Reimbursements</font></a></li>
 					</ul>
 				</li>
-				<li><a href="login.jsp"><font face="Balthazar">Logout</font></a></li>
+				<li><a href="login.jsp"><font face="Arya">Logout</font></a></li>
 			</ul>
 		</div>
 	</nav>
 	
+	<div class="container-fluid">
+		<div class="header">
+			<div class="media">
+					<div class="media-middle">
+						<img class="img-responsive" src="images/option1.jpg">
+					</div>
+				</div>
+		</div>
+	</div>
 	
-	<br><br>
+	<br>
 
 	<div class="container-fluid" id="view">
 	<!-- USE AJAX TO INJECT HTML TO VIEW -->

@@ -10,7 +10,6 @@
 <script src="https://www.w3schools.com/lib/w3color.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 <title>Login</title>
 <style>
 p {
@@ -45,11 +44,11 @@ body {
 			<br />
 			<div align="center">
 				<form action="login" method="post" class="text-center">
-					<font face="Balthazar" color="black"> <input type="text"
-						id="username" name="username" placeholder="Enter username"><br />
-						<br /> <input type="password" id="password" name="password"
-						placeholder="Password"><br /> <br /> <input type="submit"
-						value="Login" id="loginSubmit" />
+					<font face="Balthazar" color="black">
+					<input type="text" id="username" name="username" placeholder="Enter username"><br />
+						<br />
+						<input type="password" id="password" name="password" placeholder="Password"><br /> <br />
+						<input type="submit" value="Login" id="loginSubmit" />
 					</font> <br>
 					<br>
 				</form>
@@ -61,14 +60,9 @@ body {
 					${loginAlert}
 				</font>
 			</div>
-			<script>
-				if($("#loginAlert").val()){
-					console.log("hi!");
-				}
-			</script>
 		</div>
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	
 </body>
 </html>

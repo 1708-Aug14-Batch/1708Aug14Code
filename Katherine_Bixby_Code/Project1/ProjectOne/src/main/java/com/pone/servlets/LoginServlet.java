@@ -1,10 +1,7 @@
 package com.pone.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pone.pojos.AUser;
+import com.pone.pojos.RStatus;
 import com.pone.service.Service;
 
 @WebServlet("/Login")
@@ -34,6 +31,7 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		int id = service.validateUser(username);
+		ArrayList<RStatus> allStatus = service.getReimbursementStatuses();
 		
 		String alert = "";
 		
@@ -52,11 +50,13 @@ public class LoginServlet extends HttpServlet {
 				if(u.getIsManager()==0) { // is not a manager
 					RequestDispatcher rd = request.getRequestDispatcher("employeehome.html");
 					session.setAttribute("auser", u);
+					session.setAttribute("rstatuses", allStatus);
 					rd.forward(request, response); // successful login
 				}
 				else { // is a manager
 					RequestDispatcher rd = request.getRequestDispatcher("managerhome.html");
 					session.setAttribute("auser", u);
+					session.setAttribute("rstatuses", allStatus);
 					rd.forward(request, response); // successful login
 				}
 			}

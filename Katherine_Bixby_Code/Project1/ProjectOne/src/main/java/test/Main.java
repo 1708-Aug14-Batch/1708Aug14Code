@@ -1,5 +1,6 @@
 package test;
 
+import com.pone.pojos.AUser;
 import com.pone.service.Service;
 
 public class Main {
@@ -8,10 +9,19 @@ public class Main {
 	
 	public static void main(String[] args) {
 		remService = new Service();
-		//AUser videl = remService.addUser("Videl", "Satan", "videl", "videl@hercule.com", "gohan");
-		//remService.addReimbursement(5, "Gohan's dad broke my laptop, and I need a new one to do my job.", 1000);
-		//int uid = remService.getUID("saiyaman");
-		//System.out.println(uid);
+//		
+		AUser chichi = remService.addUser("Pen", "Satan", "penny", "pen@hercule.com", "pazz");
+//		int chiId = chichi.getU_id();
+//		remService.addReimbursement(chiId, "Goku, please stop destroying the laptops. I need a new one.", 1000);
+//		
+//		remService.editUserName(1,"kakarot");
+//		
+//		ArrayList<Reimbursement> theReimbursements = remService.getAllReimbursements();
+//		for (Reimbursement i:theReimbursements) {
+//			System.out.println(i.toString());
+//		}
+//		
+//		
 	}
 	
 }
