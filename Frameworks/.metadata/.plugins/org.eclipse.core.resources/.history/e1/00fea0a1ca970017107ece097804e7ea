@@ -1,0 +1,22 @@
+package com.ex.beans;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COURSES")
+public class Course {
+	
+	private int id;
+	
+	private String name;
+	
+	private String instructor;
+	
+	private String description;
+	
+	private int numCredits;
+	
+	
+
+}

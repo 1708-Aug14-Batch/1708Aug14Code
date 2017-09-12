@@ -1,0 +1,39 @@
+package com.ex.dao;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.ex.beans.*;
+import com.ex.util.ConnectionUtil;
+
+public class HibernateDao {
+
+	// CREATE
+	public void addStudent(Student student) {
+		Session session = ConnectionUtil.getSession();
+		Transcript transcript = new Transcript();
+		
+		try {
+			Transaction tx = (Transaction) session.beginTransaction();
+			session.save(transcript);
+			student.setTranscript(transcript);
+			session.save(student);
+			tx.commit();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void addInstructor(Instructor instructor) {
+		Session session = ConnectionUtil.getSession();
+
+		try {
+			Transaction tx = (Transaction) session.beginTransaction();
+			session.save(instructor);
+			tx.commit();
+		} finally {
+			session.close();
+		}
+	}
+
+}

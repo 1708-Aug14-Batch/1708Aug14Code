@@ -1,0 +1,58 @@
+package com.ex.dao;
+
+import java.util.ArrayList;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.ex.beans.Instructor;
+import com.ex.beans.Student;
+import com.ex.beans.Transcript;
+import com.ex.util.ConnectionUtil;
+
+public class HibernateDao {
+
+	// CREATE
+	public void addStudent(Student student) {
+		Session session = ConnectionUtil.getSession();
+		Transcript transcript = new Transcript();
+		
+		try {
+			Transaction tx = (Transaction) session.beginTransaction();
+			session.save(transcript);
+			student.setTranscript(transcript);
+			session.save(student);
+			tx.commit();
+		} finally {
+			session.close();
+		}
+	}
+
+	public void addInstructor(Instructor instructor) {
+		Session session = ConnectionUtil.getSession();
+
+		try {
+			Transaction tx = (Transaction) session.beginTransaction();
+			session.save(instructor);
+			tx.commit();
+		} finally {
+			session.close();
+		}
+	}
+	
+	// Get All
+	public ArrayList<Instructor> getAllInstructors() {
+		Session session = ConnectionUtil.getSession();
+
+		try {
+			Transaction tx = (Transaction) session.beginTransaction();
+			session.get(clazz, id);
+			tx.commit();
+		} finally {
+			session.close();
+		}
+	}
+	
+	// TODO make a generic add method
+
+}
