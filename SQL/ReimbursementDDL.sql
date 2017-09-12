@@ -77,3 +77,4 @@ INSERT ALL
   INTO status(status_id, name) VALUES(DEFAULT, 'Approved')
   INTO status(status_id, name) VALUES(DEFAULT, 'Denied')
 SELECT * FROM dual;
+
