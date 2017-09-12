@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import com.reimb.dao.DAO;
 import com.reimb.dao.DAOImpl;
 import com.reimb.pojo.ApproveStat;
+import com.reimb.pojo.RemibView;
 import com.reimb.pojo.Remibursment;
 import com.reimb.pojo.Users;
 
@@ -46,6 +47,11 @@ public class DBControl {
 		}else{
 			return dao.getUserRemib(user.getID());
 		}
+	}
+	
+	public ArrayList<RemibView> getRemibView(ArrayList<Remibursment> remib){
+		ArrayList<RemibView> rv=dao.getUserReimbView(remib);
+		return rv;
 	}
 	
 	public boolean SumbitRemib(String userID, String description, String amount){

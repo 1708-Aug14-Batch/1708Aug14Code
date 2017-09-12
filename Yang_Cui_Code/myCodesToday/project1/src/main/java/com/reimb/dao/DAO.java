@@ -3,6 +3,7 @@ package com.reimb.dao;
 import java.util.ArrayList;
 
 import com.reimb.pojo.ApproveStat;
+import com.reimb.pojo.RemibView;
 import com.reimb.pojo.Remibursment;
 import com.reimb.pojo.Users;
 
@@ -14,6 +15,7 @@ public interface DAO {
 	public Remibursment getRemib(int reimbID);
 	public ArrayList<Remibursment> getAllRemib();
 	public ArrayList<Remibursment> getUserRemib(int userID);
+	public ArrayList<RemibView> getUserReimbView(ArrayList<Remibursment> remib);
 	public ArrayList<Remibursment> getStatRemib(int statID);
 	public int submitRemib(Remibursment reimb);
 	public int resolveRemib(Remibursment reimb);

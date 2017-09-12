@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.reimb.pojo.ApproveStat;
+import com.reimb.pojo.RemibView;
 import com.reimb.pojo.Remibursment;
 import com.reimb.pojo.Users;
 import com.reimb.util.ConnectionFactory;
@@ -283,7 +284,7 @@ public class DAOImpl implements DAO{
 	public ArrayList<Remibursment> getUserRemib(int userID) {
 		ArrayList<Remibursment> remibs= new ArrayList<Remibursment>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-			String sql="select * from Reimbursment where reimID=?";
+			String sql="select * from Reimbursment where submitID=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, userID);
 			ResultSet rs = ps.executeQuery();
@@ -305,5 +306,33 @@ public class DAOImpl implements DAO{
 			e.printStackTrace();
 		}
 		return remibs;
+	}
+
+	@Override
+	public ArrayList<RemibView> getUserReimbView(ArrayList<Remibursment> remib) {
+		// TODO Auto-generated method stub
+		ArrayList<RemibView> rv=new ArrayList<RemibView>();
+		String remibID;
+		String sender;
+		String resolver;
+		String stat;
+		String sumbitDate;
+		String resolveDate;
+		String description;
+		String note;
+		String amount;
+		for(Remibursment eachRemib : remib){
+			remibID=String.valueOf(eachRemib.getID());
+			sender=String.valueOf(eachRemib.getSender().getFirstName()+eachRemib.getSender().getID());
+			resolver=String.valueOf(eachRemib.getResolver().getFirstName()+eachRemib.getResolver().getID());
+			stat=String.valueOf(eachRemib.getStatus().getState());
+			sumbitDate=String.valueOf(eachRemib.getSumbitDate());
+			resolveDate=String.valueOf(eachRemib.getResolveDate());
+			description=String.valueOf(eachRemib.getDescription());
+			note=String.valueOf(eachRemib.getNote());
+			amount=String.valueOf(eachRemib.getAmount());
+			rv.add(new RemibView(remibID, sender, resolver, stat, sumbitDate, resolveDate, description, note, amount));
+		}
+		return rv;
 	}
 }

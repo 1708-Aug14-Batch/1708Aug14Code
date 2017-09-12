@@ -18,7 +18,7 @@ public class GetReimbPageServlet extends HttpServlet{
 		System.out.println("in reimb view servlet");
 		
 		
-		req.getRequestDispatcher("partials/EmploueeReimb.html")
+		req.getRequestDispatcher("partials/EmployeeReimb.html")
 		.forward(req, resp);
 	}
 }

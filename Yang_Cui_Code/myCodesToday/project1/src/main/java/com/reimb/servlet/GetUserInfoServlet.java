@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimb.dto.DTO;
 import com.reimb.main.DBControl;
+import com.reimb.pojo.RemibView;
 import com.reimb.pojo.Remibursment;
 import com.reimb.pojo.Users;
 @SuppressWarnings("serial")
@@ -29,8 +30,9 @@ public class GetUserInfoServlet extends HttpServlet {
 		
 		if(sessionUser !=null){
 			ArrayList<Remibursment> remibs=dbcon.getRemibs(sessionUser);
+			ArrayList<RemibView> rv=dbcon.getRemibView(remibs);
 			System.out.println("converting our user and accounts to dto");
-			DTO dto =new DTO(sessionUser,remibs);
+			DTO dto =new DTO(sessionUser,remibs,rv);
 			ObjectMapper mapper= new ObjectMapper();
 			String json=mapper.writeValueAsString(dto);
 			PrintWriter out=res.getWriter();

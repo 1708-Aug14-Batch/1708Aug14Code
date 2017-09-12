@@ -9,10 +9,11 @@ window.onload = function(){
 	else{
 		$("#navbar").show();};
 
+		console.log($("#myReq"));
 		document.getElementById("homePage").addEventListener("click", loadEmployeeView);
 		document.getElementById("myInfo").addEventListener("click", loadEmployeeInfoView);
-		//document.getELementById("myReq").addEventListener("click", loadReimbursmentView);
-
+		document.getElementById("myReq").addEventListener("click", loadReimbursmentView);
+		
 
 };
 
@@ -123,7 +124,7 @@ function getReimbRageInfo(){ // loads basic user info and account info into html
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
-			var reimbs = dto.reimbs;
+			var reimbs = dto.rv;
 
 
 			for(var i = 0; i < reimbs.length; i++){
@@ -139,11 +140,11 @@ function getReimbRageInfo(){ // loads basic user info and account info into html
 				var discrib = row.insertCell(6);
 				var note = row.insertCell(7);
 				reimbID.innerHTML = reimbs[i].remibID;
-				resolve.innerHTML = reimbs[i].resolver.userID+" "+reimbs[i].resolver.firstName;
+				resolve.innerHTML = reimbs[i].resolver;
 				sumbitDate.innerHTML = reimbs[i].sumbitDate;
 				resolveDate.innerHTML = reimbs[i].resolveDate;
 				amount.innerHTML = reimbs[i].amount;
-				status.innerHTML = reimbs[i].stat.state;
+				status.innerHTML = reimbs[i].stat;
 				discrib.innerHTML = reimbs[i].description;
 				note.innerHTML = reimbs[i].note;		
 			}
@@ -180,7 +181,7 @@ function getEmployeeInfo(){
 			console.log(user);
 			document.getElementById('userid').innerHTML = user.id;
 			console.log(user.firstName);
-			console.log($("#firstn"));
+			console.log($("#firstname"));
 			console.log($('p.fuckoff'));
 			//$('#firstname').text(user.firstName);
 			document.getElementById("firstname").innerHTML =user.firstName;
