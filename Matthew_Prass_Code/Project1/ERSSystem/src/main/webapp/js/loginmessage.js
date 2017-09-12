@@ -36,11 +36,11 @@ function login(){
 				var emp = JSON.parse(response);
 				if(emp.isManager == 0){
 					console.log(response.text);
-					window.location = "employee.html";
+					window.location ="employee.html";
 				}
 				else{
 					console.log(response.text);
-					window.location = "manager.html";
+					window.location="manager.html";
 				}
 			}
 		}

@@ -194,6 +194,18 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		}
 		return result;
 	}
+	
+	public Reimbursement getReimbursement(int id) {
+		ArrayList<Reimbursement> list = getAllReimbursements();
+		Reimbursement re = null;
+		for(Reimbursement r : list) {
+			if(r.getId() == id) {
+				re = r;
+				break;
+			}
+		}
+		return re;
+	}
 
 	@Override
 	public void updateReimbursement(Reimbursement r) {

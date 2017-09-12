@@ -84,7 +84,7 @@ public class Service {
 		return e;
 	}
 	
-	public Reimbursement resolve(Reimbursement r, String notes, int status)
+	public Reimbursement resolve(Reimbursement r, Employee e,String notes, int status)
 	{
 		r.setResolver(e);
 		r.setResolveddate(Timestamp.valueOf(LocalDateTime.now()));
