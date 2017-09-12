@@ -64,9 +64,19 @@ $('#selectList').on('click',function(){
 							}
 							else if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
+								for(var j = 0; j < userlist.length; j++){
+									if(userlist[j].userId === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstname +" " +userlist[j].lastname;
+									}
+								}
 							}
 							else if(accounts[i].status_id === 2){
 								status.innerHTML = "Denied";
+								for(var j = 0; j < userlist.length; j++){
+									if(userlist[j].userId === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstname +" " +userlist[j].lastname;
+									}
+								}
 							}
 							else
 								continue;
@@ -83,9 +93,19 @@ $('#selectList').on('click',function(){
 							
 							if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
+								for(var j = 0; j < userlist.length; j++){
+									if(userlist[j].userId === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstname + " " + userlist[j].lastname;
+									}
+								}
 							}
 							else if(accounts[i].status_id === 2){
 								status.innerHTML = "Denied";
+								for(var j = 0; j < userlist.length; j++){
+									if(userlist[j].userId === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstname +" " +userlist[j].lastname;
+									}
+								}
 							}
 							else if(accounts[i].status_id === 0)
 								continue;
@@ -106,11 +126,20 @@ $('#selectList').on('click',function(){
 							lname.innerHTML = user.lastname;
 						}
 						rID.innerHTML = accounts[i].r_id;
+						var date = new Date(parseInt(accounts[i].subDate));
+						accounts[i].subDate = date.toLocaleDateString();
+						console.log(accounts[i].subDate);
 						subDate.innerHTML = accounts[i].subDate;
+						var resDate = new Date(parseInt(accounts[i].resDate));
+						accounts[i].resDate = resDate.toLocaleDateString();
+						console.log("Res date: " +accounts[i].resDate)
+						if(isNaN(accounts[i].resDate) == false){
+							ResDate.innerHTML = " ";
+						}
 						ResDate.innerHTML = accounts[i].resDate;
 						reason.innerHTML = accounts[i].description;
 						amount.innerHTML = "$" + accounts[i].amount;
-						resID.innerHTML = accounts[i].res_id;
+//						resID.innerHTML = accounts[i].res_id;
 							
 						
 						console.log(accounts);

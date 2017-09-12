@@ -143,6 +143,7 @@ public class DAOImpl implements DAO {
 	}
 	
 	public ArrayList<Reimbursement> getAllReimbursements(){
+		
 		ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
