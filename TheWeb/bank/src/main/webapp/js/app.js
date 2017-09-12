@@ -13,11 +13,10 @@ window.onload = function(){
 		.addEventListener("click", loadDashboardView);
 
 		document.getElementById("accPage")
-		.addEventListener("click", ajaxGetPage);
+		.addEventListener("click", loadAccountPageView);
 
 
 };
-
 
 function loadHomeView(){
 	var xhr = new XMLHttpRequest();
@@ -86,20 +85,20 @@ function loadDashboardView(){
 	xhr.send();
 };
 
-function ajaxGetPage(){
-	return $.ajax({
-		url: 'getAccPage',
-		data: {
-			format: 'html'
-		},
-		type: 'GET',
-		success: function(result){
-			console.log("inside ajax GET");
-		$('#view').html(result);
-		getAcctPageInto(); }
-	})
-
-};
+//function ajaxGetPage(){
+//	return $.ajax({
+//		url: 'getAccPage',
+//		data: {
+//			format: 'html'
+//		},
+//		type: 'GET',
+//		success: function(result){
+//			console.log("inside ajax GET");
+//		$('#view').html(result);
+//		getAcctPageInto(); }
+//	})
+//
+//};
 //https://stackoverflow.com/questions/8840257/jquery-ajax-handling-continue-responses-success-vs-done
 
 function loadAccountPageView(){
@@ -118,6 +117,7 @@ function loadAccountPageView(){
 }
 
 function getAcctPageInfo(){ // loads basic user info and account info into html
+	$("#accountForm").hide();
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -125,7 +125,8 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-
+			
+			document.getElementById("name").innerHTML = user.firstname;
 
 			if (accounts.length == 0){
 				document.getElementById("accounts").style.visibility = "hidden"; 
@@ -149,6 +150,8 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 	}
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
+	console.log("in account page info after XHR send");
+	$("#makeAccount").click(addAcount());
 
 }
 
@@ -172,10 +175,10 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 
 
 function addAccount(){ // allows us to acc new accounts 
+	$("#accountForm").show();
+	$("#accounts").hide();
 	var accType = document.getElementById("accType").value;
 	console.log(accType);
-
-	var type = JSON.stringify(accType);
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -188,9 +191,9 @@ function addAccount(){ // allows us to acc new accounts
 	xhr.open("POST", "addAccount", true);
 	//set the header to tell the server you have data for it to process
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
-	xhr.send(input); //include your post data in the send()
+	xhr.send(accType); //include your post data in the send()
 
-};
+}; 
 
 //function createUser(){
 

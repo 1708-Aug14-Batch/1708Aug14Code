@@ -23,20 +23,10 @@ public class CreateAccountServlet extends HttpServlet{
 		
 		System.out.println("posting new account to db");
 		
-		// grab all parameters - in this case, only 1 JSON string
-		Map<String, String[]> myMap = request.getParameterMap();
 		
-		// get the key set from the map of params and vals
-		Set<String> txObj = myMap.keySet();
-		
-		//API For converting JSON to java obj
-		ObjectMapper jackson = new ObjectMapper();
-		
-		Object obj = txObj.toArray()[0];
-		
-		//convert the JSON string into the class specified in the 2nd argument
-		String accType = (String) jackson.readValue((String)obj, String.class);
-		
+				//convert the JSON string into the class specified in the 2nd argument
+		String accType = request.getParameter("accType");
+		System.out.println("creating account of type " + accType);
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		
