@@ -133,7 +133,7 @@ $('#selectList').on('click',function(){
 						var resDate = new Date(parseInt(accounts[i].resDate));
 						accounts[i].resDate = resDate.toLocaleDateString();
 						console.log("Res date: " +accounts[i].resDate)
-						if(isNaN(accounts[i].resDate) == false){
+						if(accounts[i].ResDate == null){
 							ResDate.innerHTML = " ";
 						}
 						ResDate.innerHTML = accounts[i].resDate;
@@ -153,6 +153,24 @@ $('#selectList').on('click',function(){
 	reset = reset + 1;
 });
 
+$(document).ready(function(){
+
+	var xhr2 = new XMLHttpRequest();
+	xhr2.onreadystatechange = function(){
+		if(xhr2.readyState == 4 && xhr2.status == 200){
+			
+			var dto2 = JSON.parse(xhr.responseText);
+			var user2 = dto2.user;
+			
+			if(user2.isManager == 1){
+				$("#addReimbursement").hide();
+			}
+			
+		}
+		
+	}
+	
+})
 
 
 
