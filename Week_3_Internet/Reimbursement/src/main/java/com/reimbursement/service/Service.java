@@ -104,6 +104,10 @@ public class Service {
 		return list;
 	}
 	
+	public void ApporDeny(int resId, String notes, int r_id, int re_id) {
+		test.ApproveOrDeny(resId,notes,r_id,re_id);
+	}
+	
 	public static void main(String[] args) {
 //		User temp = new User();
 //		temp = loginUser("ctest123@gmail.com");

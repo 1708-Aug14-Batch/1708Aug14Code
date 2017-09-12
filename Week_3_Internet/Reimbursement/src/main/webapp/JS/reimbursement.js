@@ -166,7 +166,6 @@ else if(selection === "Resolved Reimbursements"){
 							rID.setAttribute("data-toggle","modal");
 							rID.setAttribute("data-target","#exampleModal");
 							$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
-							
 						}
 						if(user.isManager == 1){
 							if(accounts[i].status_id == 0){
@@ -208,10 +207,15 @@ else if(selection === "Resolved Reimbursements"){
 					if(accounts[i].r_id == value){
 						
 						$("#modalAmount").val("$" + accounts[i].amount);
+						$("#modalreAmount").val("$" + accounts[i].amount);
 						$("#modalNotes").val(accounts[i].notes);
 						for(var j = 0; j < userlist.length; j++){
 							if(userlist[j].userId === accounts[i].res_id){
 								$("#modalResolved").val(userlist[j].firstname + " " + userlist[j].lastname);
+							}
+							if(userlist[j].userId == accounts[i].sub_id){
+								$("#modalSubmitted").val(userlist[j].firstname + " " + userlist[j].lastname);
+								$("#modalDescription").val(accounts[i].description);
 							}
 						}
 						
@@ -227,6 +231,30 @@ else if(selection === "Resolved Reimbursements"){
 
 })
 
+$("approve").on('click', function(){
 
+	var xhr3 = new XMLHttpRequest();
+	var dto3 = JSON.parse(xhr3.responseText);
+	var user3 = dto3.user;
+	
+	var approver = user3.userId;
+	var notes = document.getElementById("modalGivenNotes");
+	var appID = 1;
+	var tx = [approver,notes,appID];
+	
+	tx = JSON.stringify(tx);
+	
+	
+//	xhr3.onreadystatechange = function(){
+//		if(xhr3.readyState == 4, xhr3.status == 200){
+//			
+//			
+//			
+//		}
+//	}
+	xhr3.open("POST", "UserReimbursement", true);
+	xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr3.send(tx);
+})
 
 

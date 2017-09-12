@@ -108,22 +108,29 @@
         </button>
       </div>
       <div class="modal-body">
+      <div class = "form-group">
+      <!-- CONTINUE HERE! ADD THE REIMBURSEMENT ID -->
+      </div>
                <div class="form-group">
             <label for="recipient-name" class="form-control-label"  >Amount:</label>
-            <input type="text" class="form-control" id = "modalAmount" >
+            <input type="text" class="form-control" id = "modalreAmount" disabled>
           </div>
           <div class = "form-group">
           <label class = "form-control-label">Submitted by:</label>
-          <input type="text" class="form-control" id = "modalSubmitted" >
+          <input type="text" class="form-control" id = "modalSubmitted" disabled>
           </div>
           <div class="form-group">
             <label for="message-text" class="form-control-label">Description:</label>
-            <textarea class="form-control" id="modalDescription" ></textarea>
+            <textarea class="form-control" id="modalDescription" disabled></textarea>
+          </div>
+          <div class = "form-group">
+          <label for="message-text" class="form-contorl-label">Please enter additional notes:</label>
+          <textarea class = "form-control" id = "modalGivenNotes"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Approve</button>
+        <button type="button" class="btn btn-success" id="approve">Approve</button>
 		<button type="button" class = "btn btn-danger">Deny</button>
 		<button type="button" class = "btn btn-secondary" data-dismiss="modal">Close</button>
       </div>

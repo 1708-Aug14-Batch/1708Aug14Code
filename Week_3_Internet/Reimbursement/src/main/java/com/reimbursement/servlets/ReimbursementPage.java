@@ -3,6 +3,8 @@ package com.reimbursement.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -63,6 +65,24 @@ public class ReimbursementPage extends HttpServlet{
 		else {
 			res.setStatus(418);
 		}
+		
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+		
+		System.out.println("In the approve or deny post");
+		
+		Map<String,String[]> myMap = req.getParameterMap();
+		Set<String> keys = myMap.keySet();
+		
+		ObjectMapper jackson = new ObjectMapper();
+		Object obj = keys.toArray()[0];
+		
+		ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
+		Integer resId = Integer.parseInt(list.get(0));
+		String notes = list.get(1);
+		Integer r_id = Integer.parseInt(list.get(2));
+
 		
 	}
 	
