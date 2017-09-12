@@ -25,6 +25,7 @@ public class ResolveServlet extends HttpServlet{
 			Integer rid = Integer.valueOf(req.getParameter("reimbursementid"));
 			int sId = Integer.valueOf(req.getParameter("statusid"));
 		}catch(NumberFormatException e){
+			e.printStackTrace();
 			return;
 		}
 		//get reimbursement

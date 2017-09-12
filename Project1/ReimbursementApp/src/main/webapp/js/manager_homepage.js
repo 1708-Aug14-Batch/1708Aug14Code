@@ -34,7 +34,7 @@ function quickResolve(){
 	$('#heading').text('Quick Resolve');
 	//setup headers
 	var headers="<thead><tr><th>ID</th><th>Employee</th><th>Amount</th><th>Description</th>";
-	headers += "<th>Submitted</th><th>Approve</th><th>Deny</th></tr></thead>";
+	headers += "<th>Submitted</th><th>Resolve</th></tr></thead>";
 	
 	//setup data body
 	var body = "<tbody>";
@@ -53,24 +53,63 @@ function quickResolve(){
 		
 		//create buttons and forms for resolving this row
 		
-		//approve button
-		body += '<td><form>'; 
-		body += '<input type="hidden" name="reimbursementid" value=' + data.pending[i].reimbursementId + '>';
-		body += '<input type="hidden" name="reason" value="none given" >';
-		body += '<input type="hidden" name="managerid" value=' +data.user.userId+ '>';
-		body += '<input type="hidden" name="statusid" value=1>';
-		body += '<button type="submit" id="approveBtn' + data.pending[i].reimbursementId +'" '; 
-		body +=	'class="btn btn-success" >Approve </button></form></td>';
+//		//approve button
+//		body += '<td><form>'; 
+//		body += '<input type="hidden" name="reimbursementid" value=' + data.pending[i].reimbursementId + '>';
+//		body += '<input type="hidden" name="reason" value="none given" >';
+//		body += '<input type="hidden" name="managerid" value=' +data.user.userId+ '>';
+//		body += '<input type="hidden" name="statusid" value=1>';
+//		body += '<button type="submit" id="approveBtn' + data.pending[i].reimbursementId +'" '; 
+//		body +=	'class="btn btn-success" >Approve </button></form></td>';
+//		
+//		//deny button
+//		body += '<td><form>';
+//		body += '<input type="hidden" name="reimbursementid" value=' + data.pending[i].reimbursementId + '>';
+//		body += '<input type="hidden" name="reason" value="none given" >';
+//		body += '<input type="hidden" name="managerid" value=' +data.user.userId+ '>';
+//		body += '<input type="hidden" name="statusid" value=2>';
+//		body += '<button type="submit id="denyBtn' + data.pending[i].reimbursementId +'" '; 
+//		body += 'class="btn btn-danger" ">Deny </button></form></td>';
 		
-		//deny button
-		body += '<td><form>';
-		body += '<input type="hidden" name="reimbursementid" value=' + data.pending[i].reimbursementId + '>';
-		body += '<input type="hidden" name="reason" value="none given" >';
-		body += '<input type="hidden" name="managerid" value=' +data.user.userId+ '>';
-		body += '<input type="hidden" name="statusid" value=2>';
-		body += '<button type="submit id="denyBtn' + data.pending[i].reimbursementId +'" '; 
-		body += 'class="btn btn-danger" ">Deny </button></form></td>';
+		//modal button
+		//body+= '<td><button class="btn btn-primary" data-toggle="modal" data-target="#submitModal'+data.pending[i].reimbursementId+'>Resolve</button></td>';
+		body += '<td><button class="btn btn-primary" data-toggle="modal" data-target="#submitModal'+data.pending[i].reimbursementId+'">Resolve</button>';
+		//modal
+		body+= '<div class="modal fade" id="submitModal'+data.pending[i].reimbursementId+'" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">';
+		body+= '<div class="modal-dialog" role="document">';
+		body+= '<div class="modal-content">';
+		body+= '<div class="modal-header">';
+		body+= '<h5 class="modal-title" id="submitModalLabel">Resolve Reimbursement </h5>';
+		body+= '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+		body+= '<span aria-hidden="true">&times;</span>';
+		body+= '</button></div>';
 		
+		//description
+		body+= '<div class="form-group col-10 mt-1"> <label for="description"><p class="lead">Description:</p></label>';
+        body+= '<textarea class="form-control" rows="5" id="description" disabled>'+data.pending[i].description+'</textarea></div>';
+        
+       
+		//accept or deny
+		body+= '<form id="resolveForm'+data.pending[i].reimbursementId+'">';
+		body+= '<div class="modal-body"><div class="form-group col-10">';
+		body+= '<label for="approveordeny"><p class="lead">Resolve to: </p></label> ';
+		body+= '<select name="statusid" id="approveordeny" class="selectpicker ml-2" form="resolveForm'+data.pending[i].reimbursementId+'">';
+		body+= '<option value="1" selected>Approve</option>';
+		body+= '<option value="2">Deny</option></select></div>';  
+		//reason
+		body+= '<div class="form-group col-10"><label for="reasoninput"><p class="lead">Reason:</p></label>';       
+		body+= '<textarea class="form-control" name="reason" id="reasoninput" placeholder="Describe your reason" rows="3"></textarea>';			
+		body+= '</div></div>';
+		//reimbursement id
+		body += '<input type="hidden" name="reimbursementid" value=' + data.pending[i].reimbursementId + '>';
+		
+		//close modal with submit/close buttons
+		body+= '<div class="modal-footer">';
+		body+= '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+		body+= '<button type="submit" class="btn btn-primary">Submit</button>';
+		body+= '</div></form></div></div></div></td>';
+							
+	
 		//end row
 		body += "</tr>";
 	}
@@ -81,6 +120,7 @@ function quickResolve(){
 	table.append(body);
 	
 	$('#content').html(table);
+	
 	$('#dataTable').DataTable({
 	    "aaSorting": [0,'desc']
 	  });
@@ -92,7 +132,7 @@ function quickResolve(){
 			console.log(this);
 			var details = $(this).serialize();
 			console.log(details);
-			$.post('resolveReimbursement', details, loadDash);
+//			$.post('resolveReimbursement', details, loadDash);
 		});
 	});
 
