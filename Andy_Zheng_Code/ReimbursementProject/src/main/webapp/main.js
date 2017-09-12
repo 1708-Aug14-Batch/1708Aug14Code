@@ -175,10 +175,12 @@ function getReimInfo(){
 		url: 'reimInfo',
 		success: function(response){
 			var reim = response;
+			console.log(reim);
 
 			for(var x = 0; x<reim.length; x++){
 				var tr = "<tr>";
 				tr += "<td>" + reim[x].reimID + "</td>";
+				tr += "<td>" + reim[x].description + "</td>";
 				tr += "<td>" + (reim[x].submitterID.fname + " " + reim[x].submitterID.lname) + "</td>";
 				if(reim[x].resolverID){
 					tr += "<td>" + (reim[x].resolverID.fname + " " + reim[x].resolverID.lname) + "</td>";
@@ -223,7 +225,17 @@ function getReimInfo(){
 
 			var reimTable = $('#reimTable').DataTable({
 				"pageLength": 5,
-    			"bLengthChange": false,
+    			"bLengthChange": false,	
+    			"columnDefs": [
+    			{ "width": "15px", "targets": 0 },
+    			{ "width": "150px", "targets": 1 },
+    			{ "width": "70px", "targets": 2 },
+    			{ "width": "70px", "targets": 3 },
+    			{ "width": "60px", "targets": 4 },
+    			{ "width": "60px", "targets": 5 },
+    			{ "width": "40px", "targets": 6 },
+    			{ "width": "60px", "targets": 7 },
+    			],
     			/*
     			"columns": [
     				null,
@@ -266,7 +278,7 @@ function getReimInfo(){
     				null	
     			],*/
 				initComplete: function () {
-					this.api().columns([0,1,2,5]).every( function () {
+					this.api().columns([0,2,3,6]).every( function () {
 						var column = this;
 						var select = $('<select><option value="">Show all</option></select>');
 						select.appendTo($(column.footer()).empty()).on( 'change', function () {
