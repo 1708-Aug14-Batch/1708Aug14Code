@@ -300,6 +300,7 @@ function getReimInfo(){
 				var cell = reimTable.cell(this);
 				var data = cell.data();
 				$('#statusModal').modal('show');
+				$('#reimDescription').val(reimTable.row(this).data()[1]);
 				if(data == "Pending"){
 					$('[value="Pending"]').attr('selected',true);
 				}else if(data == "Approved"){
