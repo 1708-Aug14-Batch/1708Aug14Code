@@ -17,7 +17,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-@WebServlet("/updateReim")
+// change laodonstart up number later
+@WebServlet(name="registerEmployee", urlPatterns="/registerEmployee", loadOnStartup=11)
 public class UpdateReim extends HttpServlet{
 	
 	@Override
