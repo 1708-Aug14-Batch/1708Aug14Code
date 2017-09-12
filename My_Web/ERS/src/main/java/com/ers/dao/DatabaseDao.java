@@ -320,8 +320,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, NOTES, AMOUNT FROM REQUESTS "
-					   + "WHERE USERID = ?";
+					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
+					   + "WHERE SUBMITTERID = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -356,15 +356,14 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, NOTES, AMOUNT FROM REQUESTS "
-					   + "WHERE USERID = ? AND STATUS = ?";
+					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
+					   + "		 WHERE SUBMITTERID = ? AND STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
 			ps.setInt(2, Status.PENDING);
 			
-			ResultSet rs = ps.executeQuery();
-			
+			ResultSet rs = ps.executeQuery();			
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
 				int subId = rs.getInt(2);
@@ -393,8 +392,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, NOTES, AMOUNT FROM REQUESTS "
-					   + "WHERE USERID = ? AND NOT STATUS = ?";
+					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
+					   + "WHERE SUBMITTERID = ? AND NOT STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -424,13 +423,13 @@ public class DatabaseDao implements Dao {
 		return resolvedRequests;
 	}
 
-	public List<Request> getAllRequests() {
+	public List<Request> getAllUserRequests() {
 		List<Request> allRequests = new ArrayList<>();
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, NOTES, AMOUNT FROM REQUESTS";
+					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
@@ -464,7 +463,7 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, NOTES, AMOUNT FROM REQUESTS "
+					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
 					   + "WHERE STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -500,7 +499,7 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, NOTES, AMOUNT FROM REQUESTS "
+					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
 					   + "WHERE NOT STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);

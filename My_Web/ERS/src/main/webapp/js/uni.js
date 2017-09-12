@@ -3,46 +3,6 @@
  */
 log('in uni.js');
 
-function toHome() {
-	log('toHome');
-	log($('#logout')[0]);
-
-	location.href = $('#logout')[0] ? 'home' : 'login';
-}
-
-function addUser() {
-	log('addUser');
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'getadduser', true);
-	
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState === 4 && xhr.status === 200) {
-			
-			$('#view').html(xhr.responseText);
-		}
-	};
-	xhr.send();
-}
-
-function viewProfile() {
-	log('viewProfile');
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'getprofile', true);
-	
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState === 4 && xhr.status === 200) {
-			
-			$('#view').html(xhr.responseText);
-		}
-	};
-	xhr.send();
-}
-
-function logout() {
-	log('logout');
-	location.href = 'logout';
-}
-
 function loadNavbar() {
 	'use strict';
 	let xhr = new XMLHttpRequest();
@@ -53,7 +13,7 @@ function loadNavbar() {
 
 			$('#navContainer').html(xhr.responseText);
 			loadNavItems();
-			$('#navImg').on('click', toHome);
+			$('#navImg').on('click', function () { location.href = 'home' });
 		}
 	};
 	xhr.send();
@@ -75,11 +35,11 @@ function loadNavItems() {
 					$('#navItems').append(items[0]);
 				}
 				$('#home').on('click', toHome);
-				$('#addUser').on('click', addUser);
-				$('#profile').on('click', viewProfile);
+				$('#addUser').on('click', loadAddUser);
+				$('#profile').on('click', loadProfile);
 				$('#logout').on('click', logout);
 			}
-			
+
 			if (!$('#logout')[0] && !$('#submitLogin')[0]) {
 
 				log('redirecting to login');
@@ -90,7 +50,77 @@ function loadNavItems() {
 	xhr.send();
 }
 
+function checkHome() {
+	'use strict';
+	log('check if menu selected on login');
+	if (location.href.split('/').pop() === 'login') {
+		log('go to home first');
+		toHome();
+	}
+}
+
+function toHome() {
+	'use strict';
+	log('toHome');
+
+	if ($('#logout')[0]) {
+		if (location.href.split('/').pop() === 'login') {
+
+			location.href =  'home';
+		} else {
+
+			loadHome();
+		}
+	} else {
+		location.href = 'login';
+	}
+}
+
+function loadAddUser() {
+	'use strict';
+	log('loadAddUser');
+	
+	checkHome();
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'getadduser', true);
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+
+			$('#view').html(xhr.responseText);
+			doAddUser();
+		}
+	};
+	xhr.send();
+}
+
+function loadProfile() {
+	'use strict';
+	log('loadProfile');
+	checkHome();
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'getprofile', true);
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4 && xhr.status === 200) {
+
+			$('#view').html(xhr.responseText);
+			doViewProfile();
+		}
+	};
+	xhr.send();
+}
+
+function logout() {
+
+	log('logout');
+	location.href = 'logout';
+}
+
 function log(message) {
+
 	console.log('uni.js -- '+message);
 }
 

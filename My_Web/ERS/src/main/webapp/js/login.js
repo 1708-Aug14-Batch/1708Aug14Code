@@ -5,9 +5,9 @@ log('in login.js');
 
 $(document).ready(function () {
 	log('document ready');
-	
+
 	loadNavbar();
-	
+
 	$('#submitLogin').on('click', checkCredentials);
 });
 
@@ -33,20 +33,16 @@ function checkCredentials() {
 	xhr.open('POST', 'checkCredentials', true);
 
 	xhr.onreadystatechange = function () {
-		if (xhr.readyState === 4) {
-			if (xhr.status === 200) {
-				log('got response= ' + xhr.responseText);
+		if (xhr.readyState === 4 && xhr.status === 200) {
+			log('got response= ' + xhr.responseText);
 
-				if (xhr.responseText) {
-					log('set message');
-					$('#message').html(xhr.responseText).show();
+			if (xhr.responseText) {
+				log('set error message');
+				$('#message').html(xhr.responseText).show();
 
-				} else {
-					log('no response');
-					location.href = 'home';
-				}
 			} else {
-				log('something went wrong with request= status '+xhr.status);
+				log('no error on login');
+				location.href = 'home';
 			}
 		}
 	};

@@ -25,7 +25,7 @@ public class GetUserInfoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		User sessionUser = (User) session.getAttribute("user");
 		
 		if (sessionUser != null) {
@@ -40,7 +40,7 @@ public class GetUserInfoServlet extends HttpServlet {
 			
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
-			out.write(json);			
+			out.write(json);
 		}
 		else {
 			response.setStatus(418);

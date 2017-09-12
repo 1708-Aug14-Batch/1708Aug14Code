@@ -31,7 +31,7 @@ public interface Dao {
 	
 	public List<Request> getResolvedRequests(int userId);
 	
-	public List<Request> getAllRequests();
+	public List<Request> getAllUserRequests();
 	
 	public List<Request> getAllPendingRequests();
 	

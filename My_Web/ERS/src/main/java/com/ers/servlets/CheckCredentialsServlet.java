@@ -26,18 +26,16 @@ public class CheckCredentialsServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		log.trace("in doPost");
-
-		ObjectMapper mapper = new ObjectMapper();
-		String rawParams = request.getParameterMap().keySet().toArray()[0].toString();		
+		String rawParams = request.getParameterMap().keySet().toArray()[0].toString();
+		ObjectMapper mapper = new ObjectMapper();	
 		@SuppressWarnings("unchecked")
 		List<String> params = mapper.readValue(rawParams, ArrayList.class);
 		
 		String email = params.get(0);
 		String password = params.get(1);
 		
-		log.info("checking credentials for email= "+email);
-
 		String errorMessage = Service.loginUser(email, password);
 
 		User user = Service.getCurrentUser();
@@ -52,8 +50,7 @@ public class CheckCredentialsServlet extends HttpServlet {
 			log.trace("user= "+user);
 
 		} else {		
-			log.trace(errorMessage);
-			log.trace("session= "+request.getSession(false));
+			log.trace("Fail to log in "+email+": "+errorMessage);
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
 			out.write(errorMessage);

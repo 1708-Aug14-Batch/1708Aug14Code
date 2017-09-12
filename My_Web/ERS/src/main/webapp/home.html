@@ -9,7 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous" />
-<link rel="stylesheet" href="css/datatables.css" type="text/css" />
+<!-- <link rel="stylesheet" href="css/datatables.css" type="text/css" /> -->
 <link rel="stylesheet" href="css/res.css" type="text/css" />
 </head>
 
@@ -18,8 +18,25 @@
 		<!-- Fill in Navbar with AJAX request -->
 	</div>
 	<br>
-	<div id="view">
-		<!-- Use AJAX to inject HTML here -->
+	<div class="row">
+		<div class="col-sm-3 col-md-2">
+			<div class="col-11 col-center">
+			
+				<br> Choose status:				
+				<br> <input type="checkbox" class="chooseStatus"
+					id="chooseAll" /> All
+				<br> <input type="checkbox" class="chooseStatus"
+					id="choosePending" /> Pending
+				<br> <input type="checkbox" class="chooseStatus"
+					id="chooseApproved" /> Approve
+				<br> <input type="checkbox" class="chooseStatus"
+					id="chooseDenied" /> Denied
+			</div>
+		</div>
+		<div class="col-9" id="view">
+		
+			<!-- Use AJAX to inject HTML here -->
+		</div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -35,6 +52,9 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript"
 		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+	<script src="js/profile.js"></script>
+	<script src="js/adduser.js"></script>
 	<script src="js/uni.js"></script>
 	<script src="js/home.js"></script>
 </body>

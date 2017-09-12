@@ -1,6 +1,9 @@
 package com.ers.service;
 
+import java.util.List;
+
 import com.ers.dao.DatabaseDao;
+import com.ers.pojos.Request;
 import com.ers.pojos.User;
 
 public class Service {
@@ -63,6 +66,36 @@ public class Service {
 		else {
 			return "Incorrect email or password";
 		}
+	}
+	
+	public static List<Request> getUserRequests(User user) {
+		
+		return dao.getUserRequests(user.getUserId());
+	}
+	
+	public static List<Request> getPendingRequests(User user) {
+		
+		return dao.getPendingRequests(user.getUserId());
+	}
+	
+	public static List<Request> getResolvedRequests(User user) {
+		
+		return dao.getResolvedRequests(user.getUserId());
+	}
+	
+	public static List<Request> getAllUserRequests() {
+		
+		return dao.getAllUserRequests();
+	}
+	
+	public static List<Request> getAllPendingRequests() {
+		
+		return dao.getAllPendingRequests();
+	}
+	
+	public static List<Request> getAllResolvedRequests() {
+		
+		return dao.getAllResolvedRequests();
 	}
 	
 	private static boolean hasUser(String email) {

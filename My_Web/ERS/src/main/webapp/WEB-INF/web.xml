@@ -51,4 +51,24 @@
     <servlet-name>GetAddUserServlet</servlet-name>
     <url-pattern>/GetAddUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddUserServlet</display-name>
+    <servlet-name>AddUserServlet</servlet-name>
+    <servlet-class>com.ers.servlets.AddUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddUserServlet</servlet-name>
+    <url-pattern>/AddUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetTableServlet</display-name>
+    <servlet-name>GetTableServlet</servlet-name>
+    <servlet-class>com.ers.servlets.GetTableServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTableServlet</servlet-name>
+    <url-pattern>/GetTableServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
