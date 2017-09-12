@@ -1,5 +1,6 @@
 package com.Reburse.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,8 +104,18 @@ public class DAOimplementation implements DAO {
 		return null;
 	}
 
-	public boolean addReimbursement(Reimbursement r) {
-		// TODO Auto-generated method stub
+	public boolean addReimbursement(int SubID, String desc, double Amt) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			CallableStatement cs = conn.prepareCall("{call add_Reim(?,?,?)}");
+			cs.setInt(1, SubID);
+			cs.setString(2, desc);
+			cs.setDouble(3, Amt);
+			cs.executeUpdate();
+			System.out.println("New Reim Added");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

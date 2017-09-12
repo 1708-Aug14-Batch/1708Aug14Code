@@ -27,7 +27,45 @@ function getUserNavInfo() {
 	xhr.send();
 }
 
-var reims;
+var reims = [];
+var Penreims = [];
+
+function reloadMyReim() {
+	if(document.getElementById('ResCheck').checked) {
+		$('#ReimTable').DataTable( {
+			destroy: true,
+	        "order": [[ 0, "desc" ]],
+	        data: reims,
+	        columns: [
+	            { title: "Submitter" },
+	            { title: "Resolver" },
+	            { title: "Submit Date" },
+	            { title: "Resolve Date" },
+	            { title: "Status" },
+	            { title: "Submit Note" },
+	            { title: "Resolve Note" },
+	            { title: "Amount" }
+	        ]
+	    } );
+	}
+	else {
+		$('#ReimTable').DataTable( {
+			destroy: true,
+	        "order": [[ 0, "desc" ]],
+	        data: Penreims,
+	        columns: [
+	            { title: "Submitter" },
+	            { title: "Resolver" },
+	            { title: "Submit Date" },
+	            { title: "Resolve Date" },
+	            { title: "Status" },
+	            { title: "Submit Note" },
+	            { title: "Resolve Note" },
+	            { title: "Amount" }
+	        ]
+	    } );
+	}
+}
 
 function getUserReim() {
 	console.log('Getting Reim Base Data');
@@ -35,77 +73,73 @@ function getUserReim() {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			var dto = JSON.parse(xhr.responseText);
-			reims = dto.reims;
-			var ch1 = document.getElementById('ResCheck').checked;
-			for(var i = 0; i < reims.length; i++) {
-				if(ch1 || reims[i].status == 'Pending') {
-					var row = document.getElementById('ReimTableBody').insertRow(0);
-					var col1 = row.insertCell(0);
-					col1.innerHTML = reims[i].sub;
-					var col2 = row.insertCell(1);
-					col2.innerHTML = reims[i].res;
-					var col3 = row.insertCell(2);
-					col3.innerHTML = reims[i].subDate;
-					var col4 = row.insertCell(3);
-					col4.innerHTML = reims[i].resDate;
-					var col5 = row.insertCell(4);
-					col5.innerHTML = reims[i].status;
-					if(reims[i].status == 'Pending') {
-						col5.style.color = 'orange';
-					}
-					else if(reims[i].status == 'Approved') {
-						col5.style.color = 'green';
-					}
-					else {
-						col5.style.color = 'red';
-					}
-					var col6 = row.insertCell(5);
-					col6.innerHTML = reims[i].desc;
-					var col7 = row.insertCell(6);
-					col7.innerHTML = reims[i].resNote;
-					var col8 = row.insertCell(7);
-					col8.innerHTML = reims[i].amount;
-				}
-			}
 			console.log(dto);
-		}
-		document.getElementById('ResCheck').onchange = function() {
-			document.getElementById('ReimTableBody').innerHTML = "";
-			var ch = document.getElementById('ResCheck').checked;
-			for(var i = 0; i < reims.length; i++) {
-				if(ch || reims[i].status == 'Pending') {
-					var row = document.getElementById('ReimTableBody').insertRow(0);
-					var col1 = row.insertCell(0);
-					col1.innerHTML = reims[i].sub;
-					var col2 = row.insertCell(1);
-					col2.innerHTML = reims[i].res;
-					var col3 = row.insertCell(2);
-					col3.innerHTML = reims[i].subDate;
-					var col4 = row.insertCell(3);
-					col4.innerHTML = reims[i].resDate;
-					var col5 = row.insertCell(4);
-					if(reims[i].status == 'Pending') {
-						col5.style.color = 'orange';
-					}
-					else if(reims[i].status == 'Approved') {
-						col5.style.color = 'green';
-					}
-					else {
-						col5.style.color = 'red';
-					}
-					col5.innerHTML = reims[i].status;
-					var col6 = row.insertCell(5);
-					col6.innerHTML = reims[i].desc;
-					var col7 = row.insertCell(6);
-					col7.innerHTML = reims[i].resNote;
-					var col8 = row.insertCell(7);
-					col8.innerHTML = reims[i].amount;
+			reims = [];
+			Penreims = [];
+			for(var i = 0; i < dto.reims.length; i++) {
+				var arr = [ dto.reims[i].sub, dto.reims[i].res, dto.reims[i].subDate, dto.reims[i].resDate, dto.reims[i].status, dto.reims[i].desc, dto.reims[i].resNote, dto.reims[i].amount];
+				reims.push(arr);
+				if(dto.reims[i].status == 'Pending') {
+					Penreims.push(arr);
 				}
 			}
-		};
+			console.log(dto.reims[0][0]);
+			console.log(reims);
+			$('#ReimTable').DataTable( {
+				destroy: true,
+		        "order": [[ 0, "desc" ]],
+		        data: reims,
+		        columns: [
+		            { title: "Submitter" },
+		            { title: "Resolver" },
+		            { title: "Submit Date" },
+		            { title: "Resolve Date" },
+		            { title: "Status" },
+		            { title: "Submit Note" },
+		            { title: "Resolve Note" },
+		            { title: "Amount" }
+		        ]
+		    } );
+			
+			document.getElementById('ResCheck').onchange = function() {
+				reloadMyReim();
+			};
+		}
 	};
 	xhr.open('GET', 'getMyReimData', true);
 	xhr.send();
+}
+
+function addNewReim() {
+	console.log('Adding new Reim');
+	var xhr = new XMLHttpRequest();
+	var Amt = document.getElementById('amount').value;
+	var desc = document.getElementById('desc').value;
+	if(desc == null || desc == '' || Amt == null || Amt == 0) {
+		document.getElementById('failText').style.display = 'inline';
+		document.getElementById('passText').style.display = 'none';
+		return;
+	}
+	var tx = [Amt, desc];
+	tx = JSON.stringify(tx);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			if(xhr.responseText == 'true') {
+				document.getElementById('failText').style.display = 'none';
+				document.getElementById('passText').style.display = 'inline';
+				getUserReim();
+			}
+			else if(xhr.responseText == 'false') {
+				document.getElementById('failText').style.display = 'inline';
+			}
+			else {
+				console.log('THE HECK!');
+			}
+		}
+	};
+	xhr.open('POST', 'addNewReim', true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(tx);
 }
 
 function loadMyReimView() {
@@ -115,9 +149,45 @@ function loadMyReimView() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('view').innerHTML = xhr.responseText;
 			getUserReim();
+			document.getElementById('AddReimButt').onclick = function() {
+				if(document.getElementById('AddReimView').style.display == 'none') {
+					document.getElementById('AddReimView').style.display = 'inline';
+				}
+				else {
+					document.getElementById('AddReimView').style.display = 'none';
+				}
+			};
+			document.getElementById('AddReimButtAct').onclick = function() {
+				addNewReim();
+			}
 		}
 	};
 	xhr.open('GET', 'getMyReim', true);
+	xhr.send();
+}
+
+function updateSettingsData() {
+	console.log('Yo, you still need to do this');
+}
+
+function loadSettingsData() {
+	console.log('Getting Settings Data');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var dto = JSON.parse(xhr.responseText);
+			console.log(dto);
+			document.getElementById('SetEmail').innerHTML = dto.email;
+			document.getElementById('SetFirst').innerHTML = dto.firstName;
+			document.getElementById('SetLast').innerHTML = dto.lastName;
+			var tempPass = '';
+			for(var i = 0; i < dto.password.length; i++) {
+				tempPass += '*';
+			}
+			document.getElementById('SetPass').innerHTML = tempPass;
+		}
+	};
+	xhr.open('GET', 'getSettingsData', true);
 	xhr.send();
 }
 
@@ -127,6 +197,28 @@ function loadSettingsView() {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('view').innerHTML = xhr.responseText;
+			document.getElementById('SetPassButt').onclick = function() {
+				if(document.getElementById('SetUpEmail').style.display == 'none') {
+					document.getElementById('SetUpText').style.display = 'inline';
+					document.getElementById('SetUpEmail').style.display = 'inline';
+					document.getElementById('SetUpFirst').style.display = 'inline';
+					document.getElementById('SetUpLast').style.display = 'inline';
+					document.getElementById('SetUpPass').style.display = 'inline';
+					document.getElementById('SetUpPassCon').style.display = 'inline';
+					document.getElementById('SetUpSubmit').style.display = 'inline';
+				}
+				else {
+					document.getElementById('SetUpText').style.display = 'none';
+					document.getElementById('SetUpEmail').style.display = 'none';
+					document.getElementById('SetUpFirst').style.display = 'none';
+					document.getElementById('SetUpLast').style.display = 'none';
+					document.getElementById('SetUpPass').style.display = 'none';
+					document.getElementById('SetUpPassCon').style.display = 'none';
+					document.getElementById('SetUpSubmit').style.display = 'none';
+				}
+			};
+			loadSettingsData();
+			document.getElementById('SetUpSubmit').addEventListener('click', updateSettingsData);
 		}
 	};
 	xhr.open('GET', 'getSettings', true);

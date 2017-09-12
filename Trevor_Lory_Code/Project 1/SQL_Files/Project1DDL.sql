@@ -64,6 +64,15 @@ insert into Status values (0, 'Pending');
 insert into Status values (1, 'Approved');
 insert into Status values (2, 'Denied');
 
+-- Procedures
+/
+create or replace procedure add_reim(EmpID in number, descrip in varchar2, amt in number)
+as begin
+  insert into Reimbursements (SUB_ID, SUBDATE, DESCRIPTION, AMOUNT) values (EmpID, CURRENT_TIMESTAMP, descrip, amt);
+  commit;
+end add_reim;
+/
+
 ---------------------Test Code---------------------
 ---------------------------------------------------
 

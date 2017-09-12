@@ -19,4 +19,8 @@ public class Service {
 		return dao.getUserReimbursements(u);
 	}
 	
+	public boolean AddReim(int SubID, String desc, double Amt) {
+		return dao.addReimbursement(SubID, desc, Amt);
+	}
+	
 }

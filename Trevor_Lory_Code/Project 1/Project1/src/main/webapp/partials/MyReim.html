@@ -1,14 +1,14 @@
 <div>
-	<table class="table table-striped" id="ReimTable">
+	<p id="passText" style="display: none; background-color: #62fc5f;" class="alert alert-info" >Reimbursement successfully added</p>
+	<p id="failText" style="display: none; background-color: #f93131;" class="alert alert-info" >Reimbursement request failed</p>
+	<button id="AddReimButt">Add Reimbursement</button> <br>
+	<div id="AddReimView" style="display: none">
+		<input type="number" id="amount" placeholder="$0.00" name="amount"/> <br>
+		<textarea id="desc" placeholder="Please add a note here" name="Text1" cols="40" rows="5"></textarea> <br>
+		<input type="submit" id="AddReimButtAct"/> <br>
+	</div>
+	<table id="ReimTable" class="display">
 		<thead>
-			<th>Submitter</th>
-			<th>Resolver</th>
-			<th>Submit Date</th>
-			<th>Resolve Date</th>
-			<th>Status</th>
-			<th>Submit Note</th>
-			<th>Resolve Note</th>
-			<th>Amount</th>
 		</thead>
 		<tbody id="ReimTableBody">
 		</tbody>

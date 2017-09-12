@@ -14,7 +14,7 @@ public interface DAO {
 	public boolean updateUser(User u);
 	public ArrayList<Reimbursement> getUserReimbursements(User u);
 	public ArrayList<Reimbursement> getAllReimbursements();
-	public boolean addReimbursement(Reimbursement r);
+	public boolean addReimbursement(int SubID, String desc, double Amt);
 	public boolean updateReimbursement(Reimbursement r);
 	public ArrayList<String> getAllEmails();
 	
