@@ -14,7 +14,7 @@ public interface ServiceInterface {
 	public Worker tryCreateWorker(int managerId, String firstName, String lastName,
 			String email, String username, String password,	boolean isManager);
 
-	public Reimbursement tryCreateReimbursement(int employeeId, String description, BigDecimal ammount);
+	public Reimbursement tryCreateReimbursement(int workerId, String description, BigDecimal ammount);
 
 	public Worker getWorker(int workerId);
 
@@ -32,13 +32,13 @@ public interface ServiceInterface {
 
 	public ArrayList<Reimbursement> getResolvedReimbursements();
 
-	public ArrayList<Reimbursement> getPendingReimbursements(int employeeId);
+	public ArrayList<Reimbursement> getPendingReimbursements(int workerId);
 
-	public ArrayList<Reimbursement> getResolvedReimbursements(int employeeId);
+	public ArrayList<Reimbursement> getResolvedReimbursements(int workerId);
 
-	public ArrayList<Reimbursement> getEmployeesReimbursements(int employeeId);
+	public ArrayList<Reimbursement> getWorkersReimbursements(int workerId);
 
-	public ArrayList<Worker> getAllEmployees();
+	public ArrayList<Worker> getAllWorkers();
 
 	ArrayList<Reimbursement> getAllReimbursements();
 	

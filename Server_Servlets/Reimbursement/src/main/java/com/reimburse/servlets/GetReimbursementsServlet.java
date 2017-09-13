@@ -59,7 +59,7 @@ public class GetReimbursementsServlet extends HttpServlet {
 				reimbursements = service.getPendingReimbursements(id);
 			else if (type.equals("RESOLVED"))
 				reimbursements = service.getResolvedReimbursements(id);
-			else reimbursements = service.getEmployeesReimbursements(id);
+			else reimbursements = service.getWorkersReimbursements(id);
 		} else reimbursements = new ArrayList<Reimbursement>();	// Empty
 		
 		System.out.println("Returning reimbursements: " + reimbursements);

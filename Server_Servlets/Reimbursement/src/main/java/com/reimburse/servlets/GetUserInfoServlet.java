@@ -37,7 +37,7 @@ public class GetUserInfoServlet extends HttpServlet {
 		Worker sessionUser = (Worker)session.getAttribute("user");
 		
 		if (sessionUser != null) {
-			ArrayList<Reimbursement> reimburseList = service.getEmployeesReimbursements(sessionUser.getWorkerId());
+			ArrayList<Reimbursement> reimburseList = service.getWorkersReimbursements(sessionUser.getWorkerId());
 			
 			System.out.println("Converting our user and accounts to a DTO");	// DEBUG
 			DTO dto = new DTO(sessionUser, reimburseList);

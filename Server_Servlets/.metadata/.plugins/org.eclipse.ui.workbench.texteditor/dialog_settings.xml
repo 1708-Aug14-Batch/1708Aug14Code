@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="logger.info" key="selection"/>
+		<item value="resolveReim" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="System.out.println"/>
-			<item value="System.out"/>
-			<item value="log"/>
-			<item value="Reim"/>
-			<item value="\"/>
-			<item value="logger name"/>
-			<item value="com.reimburse"/>
-			<item value="Reimbursement"/>
+			<item value="resolveReim"/>
+			<item value="resolve_button"/>
+			<item value="rofile"/>
+			<item value="managerId"/>
+			<item value="updateReim"/>
+			<item value="update"/>
+			<item value="logger.info(e.getStackTrace());"/>
+			<item value="logger.info(e.stackTrace());"/>
 		</list>
 		<list key="replacehistory">
+			<item value="logger.error(e);"/>
+			<item value="Worker"/>
+			<item value="worker"/>
+			<item value="log"/>
 			<item value="logger.info"/>
 			<item value="logger."/>
 			<item value="logger"/>
 			<item value="Reim"/>
-			<item value="Reimbursement"/>
-			<item value="log"/>
-			<item value="loadViewEmployeesReim"/>
-			<item value="registerEmployeeView"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="380" key="DIALOG_HEIGHT"/>
-		<item value="8" key="DIALOG_X_ORIGIN"/>
-		<item value="249" key="DIALOG_Y_ORIGIN"/>
+		<item value="-63" key="DIALOG_X_ORIGIN"/>
+		<item value="329" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

@@ -229,11 +229,12 @@ function resolveReim() {
 	sendReceiveXMLResponse("POST", "updateReimbursement", dto, function(responseText) {
 		var response = JSON.parse(responseText);
 		
-		console.log("Response recieved in resolveReimbursement: " + response);
+		console.log("Response recieved in resolveReimbursement: " + response + " of type: " + typeof response);
 		
-		if (response == true)	{ // Success
+		if (response == "true" || response === true)	{ // Success
 			$("#resolve_error_message").text("Reimbursement resolved");
 			$("#resolve_error_message").attr("style", "color:green");
+			setTimeout(resolveReimView(), 0);
 		}
 		else {
 			$("#resolve_error_message").text(response);

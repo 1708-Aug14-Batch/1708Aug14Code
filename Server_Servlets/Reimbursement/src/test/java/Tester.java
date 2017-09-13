@@ -7,6 +7,9 @@ public class Tester {
 		System.out.println("Begin Tester main method");
 		Service serv = new Service();
 		
+		int num = serv.getNumReimbursements();
+		System.out.println("Number of reimbursements: " + num);
+		
 		System.out.println("Error: Tests are not implemented yet");
 		
 		System.out.println("End Tester main method");

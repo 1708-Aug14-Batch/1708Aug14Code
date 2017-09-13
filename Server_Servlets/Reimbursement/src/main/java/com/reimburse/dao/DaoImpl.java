@@ -1,16 +1,21 @@
 package com.reimburse.dao;
 
 import java.math.BigDecimal;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
+
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.Reimbursement.reimbursementStatus;
+import com.reimburse.service.Service;
 import com.reimburse.pojos.Worker;
 import com.reimburse.util.ConnectionFactory;
 
@@ -20,6 +25,7 @@ import com.reimburse.util.ConnectionFactory;
 public class DaoImpl implements Dao {
 
 	public static boolean connection;
+	final static Logger logger = Logger.getLogger(Service.class);
 
 	// Attempt to connect to database upfront.
 	static {
@@ -30,7 +36,8 @@ public class DaoImpl implements Dao {
 			connection = true;
 
 		} catch (Exception e) {
-			System.out.println("Error! Could not connect to database!");
+			logger.info("Error! Could not connect to database!");
+			logger.error(e);
 			connection = false;
 		}
 
@@ -110,7 +117,8 @@ public class DaoImpl implements Dao {
 			conn.commit();
 
 		} catch (SQLException e) {
-			System.out.println("Database error on create");
+			logger.info("Database error on create");
+			logger.error(e);
 		}
 
 		return id;
@@ -189,7 +197,8 @@ public class DaoImpl implements Dao {
 				obj = objectList.get(0);
 
 		} catch (SQLException e) {
-			System.out.println("Database error on read");
+			logger.info("Database error on read");
+			logger.error(e);
 		}
 
 		return obj;
@@ -301,7 +310,8 @@ public class DaoImpl implements Dao {
 			return true;
 
 		} catch (SQLException e) {
-			System.out.println("Database error on update");
+			logger.info("Database error on update");
+			logger.error(e);
 		}
 
 		return false;
@@ -409,7 +419,8 @@ public class DaoImpl implements Dao {
 			list = getObjectsFromResultSet(rs, key[0]);
 
 		} catch (SQLException e) {
-			System.out.println("Database error on readAll");
+			logger.info("Database error on readAll");
+			logger.error(e);
 		}
 
 		return list;
@@ -441,5 +452,32 @@ public class DaoImpl implements Dao {
 
 		return reimburseList;
 	}
+	
+	public int getNumReimbursements() {
+		String sql = "call countReimbursements()";
+		int num = -1;
+		
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();
+				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
+				AutoRollback tm = new AutoRollback(conn)) {
+
+			CallableStatement cstmt = conn.prepareCall("{? = call countReimbursements()}");
+			cstmt.registerOutParameter(1, Types.INTEGER);
+			cstmt.execute();
+			num = cstmt.getInt(1);
+			
+		} catch (SQLException e) {
+			logger.info("Database error on getNumReimbursements");
+			logger.error(e);
+		}
+
+		return num;
+	}
+	
+	// getResolvedReimbursements
+	// getResolvedReimbursements(int id)
+	// getPendingReimbursements
+	// getPendingReimbursements(int id)
+
 
 }

@@ -29,7 +29,7 @@ public class GetEmployeesServlet extends HttpServlet {
 
 		Service service = new Service();
 				
-		ArrayList<Worker> workers = service.getAllEmployees();
+		ArrayList<Worker> workers = service.getAllWorkers();
 
 		System.out.println("Returning employees: " + workers);
 		writeValueToResponse(resp, workers);
