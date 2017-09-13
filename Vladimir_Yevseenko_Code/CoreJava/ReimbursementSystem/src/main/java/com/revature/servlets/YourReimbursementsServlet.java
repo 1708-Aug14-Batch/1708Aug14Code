@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import com.revature.pojos.Reimbursement;
@@ -18,14 +19,15 @@ public class YourReimbursementsServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Service s = Service.getFromSession(req.getSession());
-		User curUser = (User) req.getSession().getAttribute("curUser");
+		Service service = Service.getFromSession(req.getSession());
 		
-		JSONObject obj = new JSONObject();
-		Reimbursement[] reimbs = s.getUsersReimbursements(curUser);
+		JSONArray arr = new JSONArray();
+		Reimbursement[] reimbursements = service.getUsersReimbursements();
 		
-		obj.put("reimbs", reimbs);
+		for (Reimbursement reimbursement: reimbursements)
+			arr.add(new JSONObject(reimbursement.toMap()));
+		
 		resp.setContentType("application/json");
-		resp.getWriter().println(reimbs);
+		resp.getWriter().println(arr);
 	}
 }

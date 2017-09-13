@@ -1,0 +1,29 @@
+$(function() {
+	$.post('userInfoServlet',
+			{},
+			function(data) {
+				let curUser = data.curUser;
+				console.log(curUser);
+				if (!curUser.isManager) {
+					$('#viewAllReimbursementsBtn').hide();
+					$('#registerEmployeeBtn').hide();
+				} else {
+					$('#viewOwnReimbursementsBtn').hide();
+				}
+			}); 
+	
+	
+	$.post('yourReimbursementsServlet',
+			JSON.stringify({}),
+			function(data) {
+				console.log(data);
+				for (let i=0; i<data.length; i++) {
+					let reimb = data[i];
+					console.log(reimb);
+					console.log(reimb.resolver);
+					console.log(reimb.submitter);
+					$('#reimbursementList').append('<li>' + reimb.id + '</li>');
+				}
+			},
+			'JSON');
+});

@@ -1,0 +1,38 @@
+package com.revature.beans;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="STUDENTS")
+public class Student {
+	
+	@Id
+	@Column(name="ID")
+	@SequenceGenerator(name="student_id_seq", sequenceName="student_id_seq", initialValue=0)
+	@GeneratedValue(generator="student_id_seq")
+	private int id;
+	
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String email;
+	
+	
+	public Student() {
+		
+	}
+	
+	public Student(int id, String firstName, String lastname, String email) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+	}
+}

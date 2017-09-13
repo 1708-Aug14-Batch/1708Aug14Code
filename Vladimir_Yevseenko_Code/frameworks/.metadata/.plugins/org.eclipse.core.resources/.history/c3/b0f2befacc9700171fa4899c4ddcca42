@@ -1,0 +1,19 @@
+package com.revature.beans;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="instructors")
+public class Instructor {
+
+		@Id
+		@Column
+		private int id;
+		
+		@Column
+		private String firstName;
+		
+		@Column
+		private String lastName;
+}

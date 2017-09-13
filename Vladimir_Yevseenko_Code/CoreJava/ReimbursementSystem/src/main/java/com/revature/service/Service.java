@@ -39,8 +39,15 @@ public class Service {
 		return serv;
 	}
 	
-	public Reimbursement[] getUsersReimbursements(User u) {
-		List<Reimbursement> reimbs = dao.getUsersReimbursements(u);
+	
+	public boolean updateUserInfo(String first, String last, String email, String password) {
+		curUser = new User(curUser.getId(), first, last, email, password, curUser.getIsManager());
+		return dao.updateUserInfo(curUser.getId(), first, last, email, password);
+	}
+	
+	
+	public Reimbursement[] getUsersReimbursements() {
+		List<Reimbursement> reimbs = dao.getUsersReimbursements(curUser);
 		return reimbs.toArray(new Reimbursement[reimbs.size()]);
 	}
 	

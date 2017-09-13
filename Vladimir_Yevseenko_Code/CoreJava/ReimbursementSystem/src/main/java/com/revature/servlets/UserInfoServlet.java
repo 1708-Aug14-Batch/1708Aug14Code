@@ -9,15 +9,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import com.revature.service.Service;
+
 public class UserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = -793845528597489145L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		JSONObject obj = new JSONObject();
-		System.out.println("userinfoservlet curuser: " + req.getSession().getAttribute("curUser"));
-		obj.put("curUser", req.getSession().getAttribute("curUser"));
 		resp.setContentType("application/json");
-		resp.getWriter().println(obj);
+		
+		JSONObject obj = new JSONObject();
+		
+		Service s = Service.getFromSession(req.getSession());
+		
+		System.out.println("userinfoservlet curuser: " + s.getCurUser());
+		
+		
+		resp.getWriter().println(new JSONObject(s.getCurUser().toMap()));
 	}
 }

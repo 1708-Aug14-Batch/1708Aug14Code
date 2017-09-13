@@ -1,0 +1,39 @@
+package com.revature.beans;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="COURSES")
+public class Course {
+	
+	@Id
+	@Column
+	@SequenceGenerator(name="course_id_seq", sequenceName="course_id_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="course_id_seq")
+	private int id;
+	
+	@Column(nullable = false)
+	private String name;
+	
+	
+	@Column(nullable = false)
+	private Instructor instructor;
+	
+	@Column(nullable = false)
+	private String description;
+	
+	
+	public Course() {
+		
+	}
+	
+	public Course(int id, String name, String instructor, String description) {
+		
+	}
+}

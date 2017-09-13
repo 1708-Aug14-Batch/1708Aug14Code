@@ -1,0 +1,18 @@
+package com.revature.main;
+
+import com.revature.beans.Instructor;
+import com.revature.beans.Student;
+import com.revature.dao.HibernateDAO;
+
+public class Main {
+	public static void main(String[] args) {
+		HibernateDAO hibernateDAO = new HibernateDAO();
+		
+		Student student = new Student("Vladimir", "Yevseenko",
+				"yevseenko.vladimir@gmail.com");
+		
+		Instructor instructor = new Instructor();
+		
+		hibernateDAO.addInstructor(instructor);
+	}
+}

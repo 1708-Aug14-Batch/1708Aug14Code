@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+	</head>
+	<body>
+		<input type="button" value="Home" id="homeBtn"/>
+		<input type="button" value="View Your Reimbursements" id="viewOwnReimbursementsBtn"/>
+		<input type="button" value="View All Reimbursements" id="viewAllReimbursementsBtn"/>
+		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
+		<input type="button" value="Register Employee" id="registerEmployeeBtn"/>
+		<input type="button" value="Logout" id="logoutBtn"/>
+		
+		<br/>
+		
+		<table id="reimbursementsTable">
+		
+		</table>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script src="js/yourReimbursements.js"></script>
+	</body>
+</html>

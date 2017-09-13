@@ -1,0 +1,34 @@
+package com.revature.beans;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="transcripts")
+public class Transcript {
+	
+	@Id
+	@Column
+	private int id;
+	
+	/*
+	 * Transcript to Course is a many to many relationship
+	 */
+	private Set<Course> courses;
+	
+	
+	
+	public Transcript() {
+		
+	}
+	
+	public Transcript(int id, Set<Course> courses) {
+		this.id = id;
+		this.courses = courses;
+	}
+	
+}

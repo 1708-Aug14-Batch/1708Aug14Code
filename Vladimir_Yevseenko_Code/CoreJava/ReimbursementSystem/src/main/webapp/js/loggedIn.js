@@ -1,24 +1,23 @@
 $(function() {
-	$.post('http://localhost:8181/ReimbursementSystem/userInfoServlet',
+	$.post('userInfoServlet',
 			{},
-			function(data) {
-				console.log(data);
-				let curUser = data.curUser;
+			function(curUser) {
+				console.log(curUser);
 				if (!curUser.isManager) {
 					$('#viewAllReimbursementsBtn').hide();
 					$('#registerEmployeeBtn').hide();
 				} else {
 					$('#viewOwnReimbursementsBtn').hide();
 				}
-			},
-			'JSON');
+			}); 
+	
 	
 	$('#homeBtn').click(function() {
 		window.location.replace('loggedIn.html')
 	});
 	
 	$('#logoutBtn').click(function() {
-		$.post('http://localhost:8181/ReimbursementSystem/logoutServlet',
+		$.post('logoutServlet',
 				{},
 				function(data) {
 					window.location.replace('login.html');

@@ -1,0 +1,9 @@
+package com.revature.main;
+
+import com.revature.dao.HibernateDAO;
+
+public class Main {
+	public static void main(String[] args) {
+		HibernateDAO hibernateDAO = new HibernateDAO();
+	}
+}

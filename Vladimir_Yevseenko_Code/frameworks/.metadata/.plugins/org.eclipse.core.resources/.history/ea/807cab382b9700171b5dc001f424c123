@@ -1,0 +1,14 @@
+package com.revature.dao;
+
+import org.hibernate.Session;
+
+import com.revature.beans.Student;
+import com.revature.util.ConnectionUtil;
+
+public class HibernateDAO {
+	
+	public void addStudent(Student student) {
+		Session session = ConnectionUtil.getSession();
+		
+	}
+}

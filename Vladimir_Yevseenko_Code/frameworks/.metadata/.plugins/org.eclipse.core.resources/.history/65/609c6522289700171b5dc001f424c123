@@ -1,0 +1,9 @@
+package com.revature.util;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class ConnectionUtil {
+	
+	private static SessionFactory sessionFactory = new Configuration().buildSessionFactory();
+}

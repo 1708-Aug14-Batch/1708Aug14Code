@@ -1,0 +1,51 @@
+$(function() {
+	$.post('userInfoServlet',
+			{},
+			function(curUser) {
+				console.log(curUser)
+				if (!curUser.isManager) {
+					$('#viewAllReimbursementsBtn').hide();
+					$('#registerEmployeeBtn').hide();
+				} else {
+					$('#viewOwnReimbursementsBtn').hide();
+				}
+			}); 
+	
+	$.post('http://localhost:8181/ReimbursementSystem/allReimbursementsServlet',
+			{},
+			function(data) {
+				console.log(data);
+				var arr = data.reimbs;
+				for (var reimb in arr)
+					$('#reimbursementList').append('<li>' + reimb.amount + '</li>');
+			
+			});
+	
+	$('#homeBtn').click(function() {
+		window.location.replace('loggedIn.html')
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(data) {
+					window.location.replace('login.html');
+				});
+	});
+	
+	$('#viewOwnReimbursementsBtn').click(function() {
+		window.location.replace('yourReimbursements.html');
+	});
+	
+	$('#viewAllReimbursementsBtn').click(function() {
+		window.location.replace('allReimbursements.html')
+	});
+	
+	$('#updateAccInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#registerEmployeeBtn').click(function() {
+		window.location.replace('registerEmployee.html');
+	});
+});

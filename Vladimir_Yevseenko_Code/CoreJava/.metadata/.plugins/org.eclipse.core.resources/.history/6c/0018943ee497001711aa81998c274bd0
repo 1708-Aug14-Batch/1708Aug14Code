@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<input type="button" value="Home" id="homeBtn"/>
+		<input type="button" value="View Your Reimbursements" id="viewOwnReimbursementsBtn"/>
+		<input type="button" value="View All Reimbursements" id="viewAllReimbursementsBtn"/>
+		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
+		<input type="button" value="Register Employee" id="registerEmployeeBtn"/>
+		<input type="button" value="Logout" id="logoutBtn"/>
+		
+		<br/>
+		
+		<table id="reimbursementsTable">
+			<thead>
+				<tr>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Resolver</th>
+					<th>Submission Date</th>
+					<th>Resolution date</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Resolver</th>
+					<th>Submission Date</th>
+					<th>Resolution date</th>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/allReimbursements.js"></script>
+	</body>
+</html>

@@ -1,24 +1,7 @@
-2017-09-11 09:07:23 DEBUG root:28 - LoginServlet doPost()
-2017-09-11 09:07:23 DEBUG root:24 - ConnectionFactory getInstance()
-2017-09-11 09:07:23 DEBUG root:20 - ConnectionFactory() instance created
-2017-09-11 09:07:23 DEBUG root:32 - ConnectionFactory getConnection()
-2017-09-11 09:07:23 DEBUG root:25 - DBDAO() instance created
-2017-09-11 09:07:23 DEBUG root:243 - DBDAO attemptLogin()
-2017-09-11 09:07:24 DEBUG root:31 - User(id, ...) created
-2017-09-11 09:07:26 DEBUG root:117 - DBDAO getUsersReimbursements()
-2017-09-11 09:07:26 DEBUG root:142 - DBDAO getUserById()
-2017-09-11 09:07:26 DEBUG root:31 - User(id, ...) created
-2017-09-11 09:07:26 DEBUG root:43 - Reimbursement(id, ...) created
-2017-09-11 09:07:26 DEBUG root:142 - DBDAO getUserById()
-2017-09-11 09:07:26 DEBUG root:31 - User(id, ...) created
-2017-09-11 09:07:26 DEBUG root:43 - Reimbursement(id, ...) created
-2017-09-11 09:10:13 DEBUG root:28 - LoginServlet doPost()
-2017-09-11 09:10:13 DEBUG root:243 - DBDAO attemptLogin()
-2017-09-11 09:10:13 DEBUG root:31 - User(id, ...) created
-2017-09-11 09:10:17 DEBUG root:117 - DBDAO getUsersReimbursements()
-2017-09-11 09:10:17 DEBUG root:142 - DBDAO getUserById()
-2017-09-11 09:10:17 DEBUG root:31 - User(id, ...) created
-2017-09-11 09:10:17 DEBUG root:43 - Reimbursement(id, ...) created
-2017-09-11 09:10:17 DEBUG root:142 - DBDAO getUserById()
-2017-09-11 09:10:17 DEBUG root:31 - User(id, ...) created
-2017-09-11 09:10:17 DEBUG root:43 - Reimbursement(id, ...) created
+2017-09-12 10:41:48 DEBUG root:28 - LoginServlet doPost()
+2017-09-12 10:41:48 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-12 10:41:48 DEBUG root:20 - ConnectionFactory() instance created
+2017-09-12 10:41:48 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-12 10:41:48 DEBUG root:25 - DBDAO() instance created
+2017-09-12 10:41:48 DEBUG root:243 - DBDAO attemptLogin()
+2017-09-12 10:41:49 DEBUG root:34 - User(id, ...) created

@@ -1,6 +1,0 @@
-2017-09-04 10:53:09 DEBUG root:21 - ConnectionFactory getInstance()
-2017-09-04 10:53:09 DEBUG root:17 - ConnectionFactory() instance created
-2017-09-04 10:53:09 DEBUG root:29 - ConnectionFactory getConnection()
-2017-09-04 10:53:09 FATAL root:36 - ConnectionFactory getConnection() FAILURE
-2017-09-04 10:53:09 FATAL root:37 - src\main\database.properties (The system cannot find the file specified)
-2017-09-04 10:53:09 DEBUG root:21 - DBDAO() instance created

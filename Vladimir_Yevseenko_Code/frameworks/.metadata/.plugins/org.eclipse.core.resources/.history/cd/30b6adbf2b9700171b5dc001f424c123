@@ -1,0 +1,27 @@
+package com.revature.dao;
+
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.Transaction;
+
+import org.hibernate.Session;
+
+import com.revature.beans.Student;
+import com.revature.util.ConnectionUtil;
+
+public class HibernateDAO {
+	
+	public void addStudent(Student student) {
+		try (Session session = ConnectionUtil.getSession()) {
+			Transaction transaction = (Transaction) session.beginTransaction();
+			
+			session.save(student);
+			
+			transaction.commit();
+		} catch (Exception ex) {
+			
+		}
+	}
+}

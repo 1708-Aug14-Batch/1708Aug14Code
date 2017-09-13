@@ -1,0 +1,14 @@
+$(function() {
+	$.post('yourReimbursementsServlet',
+			JSON.stringify({}),
+			function(data) {
+				console.log(data);
+				for (let i=0; i<data.length; i++) {
+					let reimb = data[i];
+					reimb.replace('\\', ' ');
+					console.log(reimb);
+					//$('#reimbursementList').append('<li>' + reimb.id + '</li>');
+				}
+			},
+			'JSON');
+});
