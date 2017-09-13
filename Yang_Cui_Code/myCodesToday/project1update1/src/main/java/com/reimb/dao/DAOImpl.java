@@ -101,7 +101,7 @@ public class DAOImpl implements DAO{
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			
-			while(rs.next()){
+			/*while(rs.next()){
 				int remibID=rs.getInt(1);
 				int sID=rs.getInt(2);
 				int rID=rs.getInt(3);
@@ -111,7 +111,23 @@ public class DAOImpl implements DAO{
 				String describ=rs.getString(7);
 				String note=rs.getString(8);
 				double amount=rs.getDouble(9);
-				
+				*/
+			while(rs.next()){
+				int remibID=rs.getInt(1);
+				int sID=rs.getInt(2);
+				int rID=-1;
+					if(rs.getString(3)==null)
+						rID=-1;
+					else
+						rID=rs.getInt(3);
+				System.out.println(rs.getString(3));
+				System.out.println(rID);
+				Timestamp sDate=rs.getTimestamp(4);
+				Timestamp rDate=rs.getTimestamp(5);
+				int statID=rs.getInt(6);
+				String describ=rs.getString(7);
+				String note=rs.getString(8);
+				double amount=rs.getDouble(9);
 				remibs.add(new Remibursment(remibID,getUser(sID),getUser(rID),getStatus(statID),sDate,rDate,describ,note,amount));
 			}
 		}catch (SQLException e) {

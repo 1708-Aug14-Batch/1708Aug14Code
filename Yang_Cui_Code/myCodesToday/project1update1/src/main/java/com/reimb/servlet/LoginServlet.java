@@ -97,6 +97,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", u);
 				
 				
+				
 				ObjectMapper mapper = new ObjectMapper();
 				
 				String json = mapper.writeValueAsString(u);

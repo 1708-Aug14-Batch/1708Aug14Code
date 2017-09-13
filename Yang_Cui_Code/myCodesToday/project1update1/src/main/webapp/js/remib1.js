@@ -5,27 +5,28 @@ window.onload = function(){
 	loadHomeView();
 	
 	if(logged == false){
-		$("#navEmployee").hide();
-		$("#navMananger").hide();
+		$("#navbar").hide();
 	}
 	else{
 		if(user=="employee"){
-			$("#navEmployee").show();
+			$("#navbar").show();
+			$("#userInfo").hide();
+			$("#resolve").hide();
 		}else if(user=="mananger"){
-			$("#navMananger").show();
+			$("#navbar").show();
 			//document.getElementById("userInfo").addEventListener("click", loadUserListView);
 			//document.getElementById("resolve").addEventListener("click", loadResolveiew);
 		}else{
-			$("#navEmployee").hide();
-			$("#navMananger").hide();
+			$("#navbar").hide();
 		}
-	}
 
-		console.log($("#myReq"));
-		document.getElementById("homePage").addEventListener("click", loadEmployeeView);
-		document.getElementById("myInfo").addEventListener("click", loadEmployeeInfoView);
-		document.getElementById("myReq").addEventListener("click", loadReimbursmentView);
-		//document.getElementById("sendRemib").addEventListener("click", newRemib);
+
+	}
+	console.log($("#myReq"));
+	document.getElementById("homePage").addEventListener("click", loadEmployeeView);
+	document.getElementById("myInfo").addEventListener("click", loadEmployeeInfoView);
+	document.getElementById("myReq").addEventListener("click", loadReimbursmentView);
+	//document.getElementById("sendRemib").addEventListener("click", newRemib);
 };
 
 
@@ -75,13 +76,13 @@ function login(){
 					current="mananger";
 					console.log(response);
 					loadEmployeeView();
-					$("#navMananger").show();
+					$("#navbar").show();
 				}else{
 					logged = true;
 					current="employee";
 					console.log(response);
 					loadEmployeeView();
-					$("navEmployee").show();
+					$("#navbar").show();
 				}
 			}
 		}
@@ -151,6 +152,33 @@ function getReimbRageInfo(){ // loads basic user info and account info into html
 			var user = dto.user;
 			var reimbs = dto.rv;
 
+		if(user.isMananger==true){
+			for(var i = 0; i < reimbs.length; i++){
+				console.log(reimbs[i].sender.charAt(reimbs[i].sender.length-1));
+				console.log(user.id);
+				console.log(reimbs[i].sender.charAt(reimbs[i].sender.length-1)==user.id);
+				if(reimbs[i].sender.charAt(reimbs[i].sender.length-1)==user.id){
+					var table = document.getElementById("reqListEmployee");
+					var row = table.insertRow();
+					var reimbID = row.insertCell(0);
+					var resolve = row.insertCell(1);
+					var sumbitDate = row.insertCell(2);
+					var resolveDate = row.insertCell(3);
+					var amount = row.insertCell(4);
+					var status = row.insertCell(5);
+					var discrib = row.insertCell(6);
+					var note = row.insertCell(7);
+					reimbID.innerHTML = reimbs[i].remibID;
+					resolve.innerHTML = reimbs[i].resolver;
+					sumbitDate.innerHTML = reimbs[i].sumbitDate;
+					resolveDate.innerHTML = reimbs[i].resolveDate;
+					amount.innerHTML = reimbs[i].amount;
+					status.innerHTML = reimbs[i].stat;
+					discrib.innerHTML = reimbs[i].description;
+					note.innerHTML = reimbs[i].note;
+				}
+			}
+		}else{
 
 			for(var i = 0; i < reimbs.length; i++){
 				// populate accounts table
@@ -173,6 +201,7 @@ function getReimbRageInfo(){ // loads basic user info and account info into html
 				discrib.innerHTML = reimbs[i].description;
 				note.innerHTML = reimbs[i].note;		
 			}
+		}
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);

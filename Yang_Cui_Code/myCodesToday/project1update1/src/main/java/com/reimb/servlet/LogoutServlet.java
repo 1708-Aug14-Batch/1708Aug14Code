@@ -18,7 +18,7 @@ public class LogoutServlet extends HttpServlet{
 
 		System.out.println("Logging out user");
 		if(req.getSession(false) == null){
-			resp.sendRedirect("home.html");
+			resp.sendRedirect("updateHome.html");
 		}
 		
 		HttpSession session = req.getSession(false);
@@ -27,7 +27,7 @@ public class LogoutServlet extends HttpServlet{
 			session.invalidate();
 			System.out.println("Session invalidated!");
 		}
-		resp.sendRedirect("home.html");
+		resp.sendRedirect("updateHome.html");
 		
 	
 	}

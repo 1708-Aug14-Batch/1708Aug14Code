@@ -47,6 +47,11 @@ public class DBControl {
 		}else{
 			return dao.getUserRemib(user.getID());
 		}
+		//return dao.getUserRemib(user.getID());
+	}
+	
+	public ArrayList<Remibursment> getEveryRemib(){
+		return dao.getAllRemib();
 	}
 	
 	public ArrayList<RemibView> getRemibView(ArrayList<Remibursment> remib){
