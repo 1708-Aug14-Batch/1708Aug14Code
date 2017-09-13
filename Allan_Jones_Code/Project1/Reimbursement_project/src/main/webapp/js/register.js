@@ -1,13 +1,16 @@
-//var userContainer = document.getElementById("unameid");  // the empty element in register.html for logged in username
+window.onload = function() {
+	getLoginInfo();
+}
 
-//userContainer.text("Allan Jones");
-
-$("#unameid").text("Abe Lincoln");
-
-//var btn = document.getElementById("registerEmp");
-//btn.addEventListener("click", function() {
-//	var fn = document.getElementById("fname").value;
-//	var ln = document.getElementById("lname").value;
-//	var un = document.getElementById("uname").value;
-//	var em = document.getElementById("email").value;
-//});
+function getLoginInfo() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200)  {
+			var user = xhr.responseText;
+			console.log(user);
+			document.getElementById("uname").innerHTML = user;
+		}
+	}
+	xhr.open('Get', "homePage", true);
+	xhr.send();
+}

@@ -1,8 +1,14 @@
 package com.ex.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import com.ex.beans.Course;
 import com.ex.beans.Instructor;
@@ -80,5 +86,57 @@ public class HibDAO {
 			session.close();
 		}
 		return i;
+	}
+	
+	public List<Student> getAllStudents() {
+		Session session = ConnectionUtil.getSession();
+		Criteria criteria = session.createCriteria(Student.class);
+		List<Student> students = criteria.list();
+		session.close();
+		return students;
+	}
+	
+	//Criteria Demo for more specifics
+	public List<Student> criteriaDemo() {
+		Session session = ConnectionUtil.getSession();
+		Criteria criteria = session.createCriteria(Student.class).
+				add(Restrictions.ilike("firstname", "test%"));
+		List<Student> students = criteria.list();
+		session.close();
+		return students;
+	}
+
+	public List<Student> queryDemo(String like) {
+		Session session = ConnectionUtil.getSession();
+		String hql = "from Student where lower(firstname) like :name";
+		Query query = session.createQuery(hql);
+		query.setParameter("name", like);
+		List<Student> students = query.list();
+		session.close();
+		return students;
+	}
+	
+	public Student getStudentById(int id) {
+		Session session = ConnectionUtil.getSession();
+		Student s = null;
+		
+		try {
+			s = (Student) session.get(Student.class, id);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return s;
+	}
+	
+	public void deleteStudentById(int id) {
+		Session session = ConnectionUtil.getSession();
+		Student s = getStudentById(id);
+		Transaction tx = (Transaction)session.beginTransaction();
+		session.delete(s.getTranscript());
+		session.delete(s);
+		tx.commit();
+		session.close();
 	}
 }

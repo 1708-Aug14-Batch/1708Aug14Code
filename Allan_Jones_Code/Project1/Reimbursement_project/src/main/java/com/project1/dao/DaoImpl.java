@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.project1.pojos.Users;
 import com.project1.util.ConnectionFactory;
@@ -75,18 +76,26 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void viewAllEmp() {
+	public ArrayList<Users> viewAllEmp() {
 	// A Manager can view all Employees
+		ArrayList<Users> employees = new ArrayList<>();
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select firstname, lastname, email, username from users where ismgr = 1";
+			String sql = "select firstname, lastname, email, username from users where ismgr = 0";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				//output return rows here
+				Users user = new Users();
+				user.setFirstName(rs.getString("firstname"));
+				user.setLastName(rs.getString("lastname"));
+				user.setUserName(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				employees.add(user);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return employees;
 	}
 
 	@Override

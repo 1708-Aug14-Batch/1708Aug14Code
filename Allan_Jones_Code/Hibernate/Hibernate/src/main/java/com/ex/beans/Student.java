@@ -29,7 +29,7 @@ public class Student {
 	@Column(nullable=false)
 	private String email;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="TRANSCRIPT_ID")
 	private Transcript transcript;
 	

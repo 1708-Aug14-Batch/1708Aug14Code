@@ -1,5 +1,7 @@
 package com.project1.dao;
 
+import java.util.ArrayList;
+
 import com.project1.pojos.Users;
 
 public interface DAO {
@@ -12,7 +14,7 @@ public interface DAO {
 	
 	public boolean registerEmp(String fn, String ln, String un, String em);
 	
-	public void viewAllEmp();
+	public ArrayList<Users> viewAllEmp();
 	
 	public void viewPendingRequestsByMgr();
 	

@@ -27,22 +27,22 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ProfileServlet</display-name>
-    <servlet-name>ProfileServlet</servlet-name>
-    <servlet-class>com.project1.servlets.ProfileServlet</servlet-class>
+    <display-name>HomePageServlet</display-name>
+    <servlet-name>HomePageServlet</servlet-name>
+    <servlet-class>com.project1.servlets.HomePageServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ProfileServlet</servlet-name>
-    <url-pattern>/ProfileServlet</url-pattern>
+    <servlet-name>HomePageServlet</servlet-name>
+    <url-pattern>/homePage</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EmployeeHomeServlet</display-name>
-    <servlet-name>EmployeeHomeServlet</servlet-name>
-    <servlet-class>com.project1.servlets.EmployeeHomeServlet</servlet-class>
+    <display-name>AllEmpServlet</display-name>
+    <servlet-name>AllEmpServlet</servlet-name>
+    <servlet-class>com.project1.servlets.AllEmpServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>EmployeeHomeServlet</servlet-name>
-    <url-pattern>/EmployeeHome</url-pattern>
+    <servlet-name>AllEmpServlet</servlet-name>
+    <url-pattern>/allEmployees</url-pattern>
   </servlet-mapping>
 </web-app>

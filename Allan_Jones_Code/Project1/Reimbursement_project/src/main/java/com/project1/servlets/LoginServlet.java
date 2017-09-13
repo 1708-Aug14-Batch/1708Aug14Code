@@ -22,7 +22,10 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		int id = service.validateUser(username, password);
-		boolean isMgr = service.isMgr(id);
+		if (id == -1) {
+			RequestDispatcher rd = request.getRequestDispatcher("error.html");
+			rd.forward(request, response); // invalid user
+		}
 		
 		Users user = new Users();
 		user = service.getUser(id);
@@ -32,20 +35,15 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("name", name);
-		
-		//response.sendRedirect("./LoginMessageServlet");  // can be used to redirect to a different servlet
-		
-		if (id == -1) {
-			RequestDispatcher rd = request.getRequestDispatcher("error.html");
-			rd.forward(request, response); // invalid user
-		} else if (isMgr) {
+		session.setAttribute("User", user);
+
+		boolean isMgr = service.isMgr(id);
+		if (isMgr) {
 			RequestDispatcher rd = request.getRequestDispatcher("manager_homepage.html");
 			rd.forward(request, response); // successful login
 		} else {
-//			RequestDispatcher rd = request.getRequestDispatcher("employee_homepage.html");
-//			RequestDispatcher rd = request.getRequestDispatcher("./EmployeeHome");
-//			rd.forward(request, response); // successful login
-			response.sendRedirect("./EmployeeHome");
+			RequestDispatcher rd = request.getRequestDispatcher("employee_homepage.html");
+			rd.forward(request, response); // successful login
 		}
 	}
 }

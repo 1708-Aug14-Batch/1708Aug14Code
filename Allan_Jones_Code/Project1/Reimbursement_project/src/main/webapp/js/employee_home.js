@@ -1,17 +1,16 @@
-//var user = session.getAttribute("Username");
+window.onload = function() {
+	getLoginInfo();
+}
 
-//var user = "CaptKirk";
-
-//alert("Session User is: " + user);
-
-//alert("Why doesn't this work?");
-
-//$("#uname").text(user);
-
-
-//window.onload = function() {
-//	var empName = session.getAttribute("name");
-//	var empName = document.getElementById('uname');
-//	alert("EmpName is: " + empName);
-//	empName.innerHTML = session.getAttribute("name");
-//}
+function getLoginInfo() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200)  {
+			var user = xhr.responseText;
+			console.log(user);
+			document.getElementById("uname").innerHTML = user;
+		}
+	}
+	xhr.open('Get', "homePage", true);
+	xhr.send();
+}
