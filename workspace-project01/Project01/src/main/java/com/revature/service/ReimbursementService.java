@@ -59,14 +59,17 @@ public class ReimbursementService {
 		return this.userDAO.read(email);
 	}
 	
-	public ArrayList<Reimbursement> getPendingReimbs(int userID) {
+	public ArrayList<Reimbursement> getEmployeeReimbs(int userID) {
+		if (userID < 1) {
+			throw new IllegalArgumentException("User ID cannot be less than 1");
+		}
 		ArrayList<Reimbursement> allReimbs = this.reimbDAO.readAll();
-		ArrayList<Reimbursement> pendingReimbs = new ArrayList<Reimbursement>();
+		ArrayList<Reimbursement> empReimbs = new ArrayList<Reimbursement>();
 		for (Reimbursement reimb : allReimbs) {
-			if (reimb.getSubmitterID() == userID && reimb.getStatusID() == PENDING) {
-				pendingReimbs.add(reimb);
+			if (reimb.getSubmitterID() == userID) {
+				empReimbs.add(reimb);
 			}
 		}
-		return pendingReimbs;
+		return empReimbs;
 	}
 }

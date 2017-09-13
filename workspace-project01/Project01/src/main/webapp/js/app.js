@@ -5,7 +5,7 @@ window.onload = function() {
 };
 
 $(document).ready(function() {
-	$('#btnViewPending').click(viewPending);
+	$('#btnViewMyReimbs').click(viewMyReimbs);
 	$('#btnMyInfo').click(viewMyInfo);
 	$('#btnLogout').click(logout);
 });
@@ -14,7 +14,7 @@ function loadHomeView() {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
-			document.getElementById("view").innerHTML = request.responseText;
+			$('#view').html(request.responseText);
 		}
 	}
 	request.open("GET", "homepage", true);
@@ -22,35 +22,54 @@ function loadHomeView() {
 	request.send();
 };
 
-function viewPending() {
-	console.log("Inside view pending");
+function viewMyReimbs() {
+	console.log("Inside viewMyReimbs");
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			console.log(request.responseText);
+			$('#view').html(request.responseText);
+			//getMyReimbs();
+		}
+	}
+	request.open("GET", "employee-view-all-reimbs", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getMyReimbs() {
+	console.log("Inside getMyReimbs");
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
-			$('#view').innerHTML = request.responseText;
+			console.log(request.responseText);
 			var dto = JSON.parse(request.responseText);
 			var user = dto.user;
-			var reimbs = dto.pendingReimbs;
+			var reimbs = dto.reimbs;
 
 			if (reimbs.length == 0) {
 				console.log("Reimbs of length 0");
+				$('#noReimbs').show();
 				$('#reimbsTable').hide();
 			} else {
 				console.log("Displaying reimbs");
+				$('#noReimbs').hide();
+				$('#reimbsTable').show();
 				for(var i = 0; i < reimbs.length; i++){
 					var table = $('#reimbsTable');
 					var row = table.insertRow();
 					var submitted = row.insertCell(0);
 					var description = row.insertCell(1);
 					var amount = row.insertCell(2);
-					submitted.innerHTML = reimbs[i].dateSubmitted;
-					description.innerHTML = reimbs[i].description;
-					amount.innerHTML = "$" + reimbs[i].amount;
+					submitted.html(reimbs[i].dateSubmitted);
+					description.html(reimbs[i].description);
+					amount.html("$" + reimbs[i].amount);
 				}
 			}
 		}
 	}
-	request.open("GET", "employee-pending-reimbs", true);
+	request.open("GET", "employee-get-all-reimbs", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send();
 }
 
@@ -58,7 +77,7 @@ function sendRequest(servlet) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
-			$('#view').innerHTML = request.responseText;
+			$('#view').html(request.responseText);
 		}
 	}
 	request.open("GET", servlet, true);

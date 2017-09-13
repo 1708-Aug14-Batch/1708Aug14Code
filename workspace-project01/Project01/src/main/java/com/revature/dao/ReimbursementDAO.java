@@ -15,7 +15,7 @@ import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionSingleton;
 
 /**
- * @author will
+ * @author Will Underwood
  *
  */
 public class ReimbursementDAO implements IReimbursementDAO {
