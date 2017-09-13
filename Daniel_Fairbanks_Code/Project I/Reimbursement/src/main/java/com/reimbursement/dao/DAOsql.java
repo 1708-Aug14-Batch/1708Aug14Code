@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.reimbursement.pojos.Reimbursement;
@@ -227,14 +228,21 @@ public class DAOsql implements DAO {
 		return -1;
 	}
 	
-	public HashMap<Integer, Reimbursement> getAllRequests() {
+	public ArrayList<Reimbursement> getAllRequests() {
 		
-		HashMap<Integer, Reimbursement> requests = new HashMap<Integer, Reimbursement>();
+		ArrayList<Reimbursement> requests = new ArrayList<Reimbursement>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			
-			String sql = "SELECT * FROM Reimbursements";
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			String sql = "SELECT r.RID, r.Amount, r.Description, r.ResolvedNotes, "
+					+ "r.SubmitDate, r.ResolveDate, ur.Firstname, ur.Lastname, r.StatusID, r.ResolverID, "
+					+ "r.SubmitterID, us.Firstname, us.Lastname, us.Email "
+					+ "FROM Reimbursements r "
+					+ "LEFT JOIN Users ur "
+					+ "ON ur.UserID = r.ResolverID "
+					+ "LEFT JOIN Users us "
+					+ "ON us.UserID = r.SubmitterID";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				BigDecimal amt = rs.getBigDecimal(2);
@@ -242,10 +250,34 @@ public class DAOsql implements DAO {
 				String notes = rs.getString(4);
 				Timestamp submitDate = rs.getTimestamp(5);
 				Timestamp resolveDate = rs.getTimestamp(6);
-				int status = rs.getInt(7);
-				int submitter = rs.getInt(8);
-				int resolver = rs.getInt(9);
-				//requests.put(id, tmp);
+				String rFname = rs.getString(7);
+				String rLname = rs.getString(8);
+				int status = rs.getInt(9);
+				int rid = rs.getInt(10);
+				int sid = rs.getInt(11);
+				String sFname = rs.getString(12);
+				String sLname = rs.getString(13);
+				String sEmail = rs.getString(14);
+				Reimbursement tmp = new Reimbursement();
+				tmp.setId(id);
+				tmp.setAmount(amt);
+				tmp.setDescription(desc);
+				tmp.setResolve_notes(notes);
+				tmp.setSubmit_date(submitDate);
+				tmp.setResolve_date(resolveDate);
+				User resolver = new User();
+				resolver.setId(rid);
+				resolver.setFirstname(rFname);
+				resolver.setLastname(rLname);
+				tmp.setResolver(resolver);
+				User submitter = new User();
+				submitter.setId(sid);
+				submitter.setFirstname(sFname);
+				submitter.setLastname(sLname);
+				submitter.setEmail(sEmail);
+				tmp.setSubmitter(submitter);
+				tmp.setStatus(status);
+				requests.add(tmp);
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR: DAOsql - getAllRequests");

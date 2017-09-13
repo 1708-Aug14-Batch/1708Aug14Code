@@ -28,7 +28,11 @@ public class Reimbursement {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
+	public User getSubmitter() {
+		return submitted_by;
+	}
+	
 	public int getSubmitterId() {
 		return submitted_by.getId();
 	}

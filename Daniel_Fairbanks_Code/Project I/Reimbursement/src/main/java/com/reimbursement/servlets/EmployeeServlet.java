@@ -38,13 +38,15 @@ public class EmployeeServlet  extends HttpServlet {
 			    sb.append("<tr>\n");
 			    switch (rq.getStatus()) {
 		    	case 1:
-		    		sb.append("\t<th style=color:gray>"+rq.getStatusName()+"</th>\n");
+		    		sb.append("\t<th class=\"pending\">"+rq.getStatusName()+"</th>\n");
 		    		break;
 		    	case 2:
-		    		sb.append("\t<th style=color:green>"+rq.getStatusName()+"</th>\n");
+		    		sb.append("\t<th class=\"accepted\" data-container=\"body\" data-toggle=\"popover\" " + 
+		    				"\"data-placement=\"right\" data-content=\""+rq.getResolve_notes()+"\">"+rq.getStatusName()+"</th>\n");
 		    		break;
 		    	case 3:
-		    		sb.append("\t<th style=color:red>"+rq.getStatusName()+"</th>\n");
+		    		sb.append("\t<th class=\"denied\" data-container=\"body\" data-toggle=\"popover\" " +
+		    				"\"data-placement=\"right\" data-content=\""+rq.getResolve_notes()+"\">"+rq.getStatusName()+"</th>\n");
 		    		break;
 			    }
 			    sb.append("\t<th>$"+rq.getAmount()+"</th>\n");

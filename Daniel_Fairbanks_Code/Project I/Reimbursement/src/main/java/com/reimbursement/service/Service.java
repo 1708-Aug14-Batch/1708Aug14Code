@@ -1,5 +1,6 @@
 package com.reimbursement.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.reimbursement.dao.DAOsql;
@@ -35,7 +36,7 @@ public class Service {
 		return dao.getEmployeeReimbursements(u);
 	}
 	
-	public HashMap<Integer, Reimbursement> getAllRequests() {
+	public ArrayList<Reimbursement> getAllRequests() {
 		return dao.getAllRequests();
 	}
 	

@@ -4,14 +4,135 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Manager</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<style>
+.accept {
+	color:white;
+	background-color:green;
+	border-color:green;
+}
+.deny {
+	color:white;
+	background-color:red;
+	border-color:red;
+}
+th.pending {
+	color:gray;
+}
+th.accepted {
+	color:green;
+}
+th.accepted:hover {
+	text-decoration:underline;
+}
+th.denied {
+	color:red;
+}
+th.denied:hover {
+	text-decoration:underline;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+	integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+	crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="js/manager.js"></script>
 </head>
 
 <body>
 
+<div id="navbar">
+		<nav class="navbar sticky-top navbar-dark bg-dark">
+			<span class="mr-auto navbar-brand"> <img src="images/Apple.png"
+				width="30" height="30" class="d-inline-block align-top" alt="">
+				Teacher Reimbursements
+			</span>
+			<span class="navbar-text" text-align="right" style="margin:0 20px" id="welcome"></span>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarText" aria-controls="navbarText"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<button type="button" style=background-color:Transparent;border:none; class="nav-link" data-toggle="modal" data-target="#editDetailsModal">Edit Details</button>
+					</li>
+					<li class="nav-item"> 
+						<form class="nav-link" action="logout" method="post" style=display:inline>
+							<button type="submit" style=background-color:Transparent;border:none; class="nav-link">Logout</button>
+						</form>
+					</li>
+				</ul>
+		</nav>
+	</div>
+
+	<div id="view">
+	<!-- This can be All Reimbursements, All Employees, or Single Employee -->
+	</div>
+	
+	<div>
+		<table class="table table-striped" align="center" style="width:75%">
+			<thead>
+				<tr>
+					<th>Resolve</th>
+					<th>Status</th>
+					<th>Amount</th>
+					<th>Submitted On</th>
+					<th>Submitted By</th>
+					<th>Resolved On</th>
+					<th>Resolved By</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody id="requests">
+			
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="editDetailsModal" tabindex="-1" role="dialog"
+		aria-labelledby="editDetailsModal" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Personal Information</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="editAccountInfo" method="post">
+						Firstname<br><input type="text" name="fname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Firstname" required/>
+						<br>Lastname<br><input type="text" name="lname" pattern="[a-zA-Z]{2,25}" required title="Alphabetic characters only. Length between 2 and 25." placeholder="Lastname" required/>
+						<br>Email<br><input type="email" name="email" placeholder="user@email.com" required/>
+						<br>Password<br><input id="p" type="password" name="pword" placeholder="Password" required/>
+						<br>Confirm Password<br><input id="nPwordCheck" type="password" name="pword_c" placeholder="Password" required/>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="submit" class="btn btn-primary">Confirm</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
-
-<script>
-
-</script>
 
 </html>

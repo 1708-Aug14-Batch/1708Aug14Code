@@ -9,6 +9,23 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
+<style>
+th.pending {
+	color:gray;
+}
+th.accepted {
+	color:green;
+}
+th.accepted:hover {
+	text-decoration:underline;
+}
+th.denied {
+	color:red;
+}
+th.denied:hover {
+	text-decoration:underline;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -31,7 +48,7 @@
 		<nav class="navbar sticky-top navbar-dark bg-dark">
 			<span class="navbar-brand"> <img src="images/Apple.png"
 				width="30" height="30" class="d-inline-block align-top" alt="">
-				Reimbursements
+				Teacher Reimbursements
 			</span>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarText" aria-controls="navbarText"
@@ -63,7 +80,7 @@
 	</div>
 	
 	<div>
-		<table class="table table-striped">
+		<table class="table table-striped" align="center" style="width:75%">
 			<thead>
 				<tr>
 					<th>Status</th>
