@@ -29,7 +29,7 @@ function viewMyReimbs() {
 		if (request.readyState == 4 && request.status == 200) {
 			console.log(request.responseText);
 			$('#view').html(request.responseText);
-			//getMyReimbs();
+			getMyReimbs();
 		}
 	}
 	request.open("GET", "employee-view-all-reimbs", true);
@@ -56,14 +56,15 @@ function getMyReimbs() {
 				$('#noReimbs').hide();
 				$('#reimbsTable').show();
 				for(var i = 0; i < reimbs.length; i++){
-					var table = $('#reimbsTable');
-					var row = table.insertRow();
+					var table = document.getElementById("reimbsTable");
+					var row = table.insertRow(0);
 					var submitted = row.insertCell(0);
 					var description = row.insertCell(1);
 					var amount = row.insertCell(2);
-					submitted.html(reimbs[i].dateSubmitted);
-					description.html(reimbs[i].description);
-					amount.html("$" + reimbs[i].amount);
+					console.log(reimbs[i]);
+					submitted.innerHTML = reimbs[i].dateSubmitted;
+					description.innerHTML = reimbs[i].description;
+					amount.innerHTML = reimbs[i].amount;
 				}
 			}
 		}

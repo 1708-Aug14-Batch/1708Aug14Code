@@ -78,7 +78,7 @@ public class ReimbursementDAO implements IReimbursementDAO {
 		Reimbursement reimbursement = new Reimbursement();
 		reimbursement.setrID(results.getInt("r_id"));
 		reimbursement.setSubmitterID(results.getInt("submitter_id"));
-		reimbursement.setSubmitterID(results.getInt("resolver_id"));
+		reimbursement.setResolverID(results.getInt("resolver_id"));
 		reimbursement.setStatusID(results.getInt("status_id"));
 		reimbursement.setDateSubmitted(results.getDate("date_submitted"));
 		reimbursement.setDateResolved(results.getDate("date_resolved"));
