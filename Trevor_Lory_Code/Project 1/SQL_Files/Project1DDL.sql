@@ -83,12 +83,19 @@ as begin
   commit;
 end upd_Emp;
 /
+create or replace procedure add_Emp(EM in varchar2, fn in varchar2, ln in varchar2, pss in varchar2, man in NUMBER)
+as begin
+  insert into users (firstname, lastname, email, password, ismanager) values (fn, ln, EM, pss, man);
+  commit;
+end add_Emp;
+/
 
 ---------------------Test Code---------------------
 ---------------------------------------------------
 
 insert into users (firstname, lastname, email, password, ismanager) values('Trevor', 'Lory', 'trevorlory@gmail.com', 'p4ssw0rd', 1);
 insert into users (firstname, lastname, email, password, ismanager) values('Test', 'Employee', 'email', 'pass', 0);
+insert into users (firstname, lastname, email, password, ismanager) values('Test2', 'Employee2', 'email2', 'pass2', 0);
 insert into users (firstname, lastname, email, password, ismanager) values('Test', 'Manager', 'Memail', 'Mpass', 1);
 
 insert into Reimbursements (SUB_ID, RES_ID, SUBDATE, RESDATE, STATUSID, DESCRIPTION, RESNOTE, AMOUNT) values (23, null, CURRENT_TIMESTAMP, null, 0, 'Yo, need this done', null, 100.32);
@@ -103,6 +110,14 @@ on Reimbursements.SUB_ID = USERS1.USERID
 left join USERS Users2
 on Reimbursements.RES_ID = USERS2.USERID
 where SUB_ID = 23;
+
+select Reimbursements.R_ID, Users1.FIRSTNAME || ' ' || users1.LASTNAME as subname, users2.FIRSTNAME || ' ' || users2.LASTNAME as resname, 
+Reimbursements.SUBDATE, Reimbursements.RESDATE, Reimbursements.STATUSID, Reimbursements.DESCRIPTION, Reimbursements.RESNOTE, Reimbursements.AMOUNT
+from Reimbursements
+left join USERS Users1
+on Reimbursements.SUB_ID = USERS1.USERID
+left join USERS Users2
+on Reimbursements.RES_ID = USERS2.USERID;
 
 ---------------------------------------------------
 ---------------------------------------------------

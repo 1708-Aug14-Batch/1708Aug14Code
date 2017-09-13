@@ -9,6 +9,8 @@ public class User {
 	private String Password;
 	private boolean IsManager;
 	
+	public User() {}
+	
 	public User(int userID, String firstName, String lastName, String email, String password, boolean isManager) {
 		super();
 		UserID = userID;

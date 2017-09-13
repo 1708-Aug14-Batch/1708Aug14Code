@@ -15,8 +15,24 @@ public class Service {
 		return dao.getUser(email, password);
 	}
 	
+	public ArrayList<User> getAllUsers() {
+		return dao.getAllUsers();
+	}
+	
+	public boolean addUser(User u) {
+		return dao.addUser(u);
+	}
+	
+	public ArrayList<String> getAllPass() {
+		return dao.getAllPasswords();
+	}
+	
 	public ArrayList<Reimbursement> getReimByUser(User u) {
 		return dao.getUserReimbursements(u);
+	}
+	
+	public ArrayList<Reimbursement> getAllReim() {
+		return dao.getAllReimbursements();
 	}
 	
 	public boolean AddReim(int SubID, String desc, double Amt) {

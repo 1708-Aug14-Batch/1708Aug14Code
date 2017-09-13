@@ -40,8 +40,19 @@ public class attemptLoginServlet extends HttpServlet {
 		User u = ser.getUser(email, password);
 		if(u != null) {
 			ses.setAttribute("User", u);
-			System.out.println("Forwarding to home");
-			request.getRequestDispatcher("app.html").forward(request, response);
+			PrintWriter out = response.getWriter();
+			response.setContentType("application/json");
+			String json;
+			if(u.isIsManager()) {
+				System.out.println("Is a Manager");
+				json = "true";
+				out.write(json);
+			}
+			else {
+				System.out.println("Isn't a Manager");
+				json = "false";
+				out.write(json);
+			}
 		}
 		else {
 			PrintWriter out = response.getWriter();

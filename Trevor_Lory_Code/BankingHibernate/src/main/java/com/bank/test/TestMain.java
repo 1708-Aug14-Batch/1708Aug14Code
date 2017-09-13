@@ -25,6 +25,14 @@ public class TestMain {
 		for(int i = 0; i < list3.size(); i++) {
 			System.out.println(list3.get(i).toString());
 		}
+		
+		User u = new User();
+		u.setEMAIL("HibernateTest");
+		u.setFIRSTNAME("Hib");
+		u.setLASTNAME("bernate");
+		u.setPASSWORD("hib");
+		dao.addUser(u);
+		System.out.println(u.getUSERID());
 	}
 	
 }

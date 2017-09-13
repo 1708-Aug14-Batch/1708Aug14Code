@@ -206,12 +206,19 @@ function updateSettingsData() {
 				document.getElementById('SetUpLast').value = '';
 				document.getElementById('SetUpPass').value = '';
 				document.getElementById('SetUpPassCon').value = '';
+				document.getElementById('failText').style.display = 'none';
+				document.getElementById('passText').style.display = 'inline';
+				document.getElementById('failpassText').style.display = 'none';
 			}
 			else if(xhr.responseText == 'false'){
-				//Notiify that update has failed
+				document.getElementById('failText').style.display = 'inline';
+				document.getElementById('passText').style.display = 'none';
+				document.getElementById('failpassText').style.display = 'none';
 			}
 			else if(xhr.responseText == 'pass') {
-				//Notify that Con Pass is wrong
+				document.getElementById('failText').style.display = 'none';
+				document.getElementById('passText').style.display = 'none';
+				document.getElementById('failpassText').style.display = 'inline';
 			}
 			else {
 				console.log('THE HECK!');
@@ -274,6 +281,225 @@ function loadNavBarView() {
 	xhr.send();
 }
 
+function loadDashboardViewMan() {
+	console.log('Getting Dash Man');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('view').innerHTML = xhr.responseText;
+		}
+	};
+	xhr.open('GET', 'getDashboardMan', true);
+	xhr.send();
+}
+
+var Manreims = [];
+var ManPenreims = [];
+
+function reloadManReim() {
+	if(document.getElementById('ResCheck').checked) {
+		$('#ReimTable').DataTable( {
+			destroy: true,
+	        "order": [[ 0, "desc" ]],
+	        data: Manreims,
+	        columns: [
+	            { title: "Submitter" },
+	            { title: "Resolver" },
+	            { title: "Submit Date" },
+	            { title: "Resolve Date" },
+	            { title: "Status" },
+	            { title: "Submit Note" },
+	            { title: "Resolve Note" },
+	            { title: "Amount" }
+	        ]
+	    } );
+	}
+	else {
+		$('#ReimTable').DataTable( {
+			destroy: true,
+	        "order": [[ 0, "desc" ]],
+	        data: ManPenreims,
+	        columns: [
+	            { title: "Submitter" },
+	            { title: "Resolver" },
+	            { title: "Submit Date" },
+	            { title: "Resolve Date" },
+	            { title: "Status" },
+	            { title: "Submit Note" },
+	            { title: "Resolve Note" },
+	            { title: "Amount" }
+	        ]
+	    } );
+	}
+}
+
+function getManReim() {
+	console.log('Getting Reim Base Data');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var dto = JSON.parse(xhr.responseText);
+			console.log(dto);
+			Manreims = [];
+			ManPenreims = [];
+			for(var i = 0; i < dto.reims.length; i++) {
+				var arr = [ dto.reims[i].sub, dto.reims[i].res, dto.reims[i].subDate, dto.reims[i].resDate, dto.reims[i].status, dto.reims[i].desc, dto.reims[i].resNote, dto.reims[i].amount];
+				Manreims.push(arr);
+				if(dto.reims[i].status == 'Pending') {
+					ManPenreims.push(arr);
+				}
+			}
+			console.log(dto.reims[0][0]);
+			console.log(Manreims);
+			$('#ReimTable').DataTable( {
+				destroy: true,
+		        "order": [[ 0, "desc" ]],
+		        data: Manreims,
+		        columns: [
+		            { title: "Submitter" },
+		            { title: "Resolver" },
+		            { title: "Submit Date" },
+		            { title: "Resolve Date" },
+		            { title: "Status" },
+		            { title: "Submit Note" },
+		            { title: "Resolve Note" },
+		            { title: "Amount" }
+		        ]
+		    } );
+			
+			document.getElementById('ResCheck').onchange = function() {
+				reloadManReim();
+			};
+		}
+	};
+	xhr.open('GET', 'getReimManData', true);
+	xhr.send();
+}
+
+function loadMyReimManView() {
+	console.log('Getting Man Reim');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('view').innerHTML = xhr.responseText;
+			getManReim();
+		}
+	};
+	xhr.open('GET', 'getReimMan', true);
+	xhr.send();
+}
+
+function loadAccData() {
+	console.log('Getting Account Base Data');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var dto = JSON.parse(xhr.responseText);
+			console.log(dto);
+			var ManAcc = [];
+			for(var i = 0; i < dto.users.length; i++) {
+				var temp = '';
+				for(var e = 0; e < dto.users[i].password.length; e++) {
+					temp += '*';
+				}
+				if(dto.users[i].isManager) {
+					var arr = [ dto.users[i].firstName, dto.users[i].lastName, dto.users[i].email, temp,'Manager' ];
+					ManAcc.push(arr);
+				}
+				else {
+					var arr = [ dto.users[i].firstName, dto.users[i].lastName, dto.users[i].email, temp, 'Employee' ];
+					ManAcc.push(arr);
+				}
+			}
+			console.log(ManAcc);
+			$('#AccTable').DataTable( {
+				destroy: true,
+		        "order": [[ 0, "desc" ]],
+		        data: ManAcc,
+		        columns: [
+		            { title: "First Name" },
+		            { title: "Last Name" },
+		            { title: "Email" },
+		            { title: "Password" },
+		            { title: "Job" }
+		        ]
+		    } );
+		}
+	};
+	xhr.open('GET', 'getAccData', true);
+	xhr.send();
+}
+
+function addNewEmp() {
+	console.log('Attempting Login');
+	var xhr = new XMLHttpRequest();
+	var first = document.getElementById('AddFirst').value;
+	var last = document.getElementById('AddLast').value;
+	var email = document.getElementById('AddEmail').value;
+	var man = document.getElementById('AddMan').checked;
+	var tx = [];
+	if(man) {
+		tx = [first, last, email, 'true'];
+	}
+	else {
+		tx = [first, last, email, 'false'];
+	}
+	tx = JSON.stringify(tx);
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			if(xhr.responseText != null || xhr.responseText != "") {
+				loadAccData();
+				alert("New Employee's temp password: " + xhr.responseText);
+			}
+			else {
+				//TODO Add in negative feedback
+			}
+		}
+	};
+	xhr.open('POST', 'addNewEmp', true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(tx);
+}
+
+function loadManAccView() {
+	console.log('Getting Accounts');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('view').innerHTML = xhr.responseText;
+			loadAccData();
+			document.getElementById('AddEmpButt').onclick = function() {
+				if(document.getElementById('AddDiv').style.display == 'none') {
+					document.getElementById('AddDiv').style.display = 'inline';
+				}
+				else {
+					document.getElementById('AddDiv').style.display = 'none';
+				}
+			};
+			document.getElementById('AddEmpButtSub').addEventListener('click', addNewEmp);
+		}
+	};
+	xhr.open('GET', 'getAccounts', true);
+	xhr.send();
+}
+
+function loadNavBarManView() {
+	console.log('Getting NavBar');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			document.getElementById('AppView').innerHTML = xhr.responseText;
+			getUserNavInfo();
+			document.getElementById('HomeBut').addEventListener('click', loadDashboardViewMan);
+			document.getElementById('Reim').addEventListener('click', loadMyReimManView);
+			document.getElementById('ManAcc').addEventListener('click', loadManAccView);
+			loadDashboardViewMan();
+		}
+	};
+	xhr.open('GET', 'getNavBarMan', true);
+	xhr.send();
+}
+
 function attemptLoginFunc() {
 	console.log('Attempting Login');
 	var xhr = new XMLHttpRequest();
@@ -287,9 +513,16 @@ function attemptLoginFunc() {
 				console.log('ResponseText: ' + xhr.responseText);
 				document.getElementById("passText").style.visibility = "visible";
 			}
-			else {
+			else if(xhr.responseText == 'false') {
 				document.getElementById('bodyTag').setAttribute('background', '');
 				loadNavBarView();
+			}
+			else if(xhr.responseText == 'true') {
+				document.getElementById('bodyTag').setAttribute('background', '');
+				loadNavBarManView();
+			}
+			else {
+				console.log('I am sorry BUT HOW????');
 			}
 		}
 	};

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.bank.beans.Account;
 import com.bank.beans.AccountType;
@@ -23,6 +24,18 @@ public class BankHibDAOImp {
 			session.close();
 		}
 		return list;
+	}
+	
+	public void addUser(User u) {
+		Session session = ConnectionUtil.getSession();
+		try {
+			Transaction tx = (Transaction)session.beginTransaction();
+			u.setUSERID((Integer) session.save(u));
+			tx.commit();
+		}
+		finally {
+			session.close();
+		}
 	}
 	
 	public List<Account> getAllAccounts() {
