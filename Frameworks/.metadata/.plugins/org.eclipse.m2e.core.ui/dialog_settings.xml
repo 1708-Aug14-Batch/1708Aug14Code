@@ -2,11 +2,13 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.bank"/>
 			<item value="com.ex.frameworks"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="BankingAssignment4"/>
 			<item value="Frameworks"/>
 		</list>
 		<list key="projectNameTemplate">

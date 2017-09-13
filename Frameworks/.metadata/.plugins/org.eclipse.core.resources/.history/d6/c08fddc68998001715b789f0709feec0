@@ -1,0 +1,63 @@
+package com.bank.test;
+
+import java.time.LocalDate;
+
+import com.bank.beans.Account;
+import com.bank.beans.Account.accountType;
+import com.bank.beans.BankUser;
+import com.bank.beans.Clerk;
+import com.bank.beans.Person;
+import com.bank.dao.HibernateDao;
+
+public class MainTest {
+	
+	public static void main(String[] args) {
+		
+		HibernateDao dao = new HibernateDao();
+
+		Person per1 = new Person("Mike", "Walter", "mikey@mail.com");
+		Person per2 = new Person("Luana", "Quet", "Louie@mail.com");
+		BankUser user = new BankUser(per1, "mikey", "password");
+		Clerk cler = new Clerk(per2, "pass word");
+		Account acc1 = new Account(user, accountType.CHECKING);
+		Account acc2 = new Account(user, );
+		Account acc3 = new Account(user, );
+		
+		dao.create(per1);
+		dao.create(per2);
+		dao.create(user);
+		dao.create(cler);
+		dao.create(acc1);
+		dao.create(acc2);
+		dao.create(acc3);
+		
+		Course c = new Course();
+		c.setInstructor(dao.getInstructorByID(100));
+		c.setDescription("This is a great class!");
+		c.setName("Intro to Java 101");
+		dao.addCourse(c);
+//		Transcript t = st.getTranscript();
+//		dao.addCourseToTranscript(t, c);
+	}
+	
+	private static Student createStudent() {
+		Student student = new Student();
+		
+		student.setFirstName("Zack");
+		student.setLastName("Montgomry");
+		student.setEmail("zack.attack@hotmail.com");
+		student.setBirthDay(LocalDate.now());
+		student.setFavoriteColor("Yellow");
+		
+		return student;
+	}
+	
+	private static Instructor createInstructor() {
+		Instructor instructor = new Instructor();
+		
+		instructor.setName("Monty");
+		
+		return instructor;
+	}
+
+}

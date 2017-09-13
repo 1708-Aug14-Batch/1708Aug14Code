@@ -1,0 +1,48 @@
+package com.bank.beans;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
+// A BankUser can have many acounts
+// Only has access to their own data
+
+public class BankUser extends Person {
+
+	@Id
+	@Column(name = "STUDENT_ID")
+	@SequenceGenerator(name = "STUDENT_ID_SEQ", sequenceName = "STUDENT_ID_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "STUDENT_ID_SEQ")
+	private final int userId;
+	private final String username;
+	private String password;
+	
+	public BankUser(Person per, int userId, String username, String password) {
+		super(per.getPersonId(), per.getFirstName(), per.getLastName(), per.getEmail());
+		this.userId = userId;
+		this.username = username;
+		this.password = password;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getUserId() {
+		return userId;
+	}
+	public String getUsername() {
+		return username;
+	}
+
+	@Override
+	public String toString() {
+		return "BankUser [userId=" + userId + ", username=" + username + ", password=" + password 
+				+ "]";
+	}
+	
+}

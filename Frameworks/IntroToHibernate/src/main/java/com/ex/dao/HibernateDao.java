@@ -1,7 +1,6 @@
 package com.ex.dao;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -176,10 +175,4 @@ public class HibernateDao {
 //		}
 //	}
 
-	/*
-	 * HW to research tonight 9/12/17:
-	 * Criteria
-	 * Query
-	 * GET vs LOAD
-	 */
 }
