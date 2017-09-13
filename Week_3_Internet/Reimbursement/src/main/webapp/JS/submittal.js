@@ -9,6 +9,9 @@ $(document).ready(function(){
 
 function submitReimbursement(){
 	
+	var xhr = new XMLHttpRequest();
+	
+	
 	var email = document.getElementById("email").value;
 	console.log(email);
 	var password = document.getElementById("password").value;
@@ -22,7 +25,7 @@ function submitReimbursement(){
 	
 	tx = JSON.stringify(tx);
 	
-	var xhr = new XMLHttpRequest();
+	
 //	xhr.onreadystatechange = function(){
 //		if(xhr.readyState == 4 && xhr.status == 200){
 //			//Do things
@@ -34,7 +37,10 @@ function submitReimbursement(){
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(tx);
 	
+	$("#success").append("#success", + "Reimbursement Request Successfuly Submitted. Check the Reimbursement Page for Status");
 	
-
-
 }
+
+
+
+
