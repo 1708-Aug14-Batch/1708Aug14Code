@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>ResortApp</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description>Allows a user to login to their respective home page</description>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.resort.servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/resortLogin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LoginTest</display-name>
+    <servlet-name>LoginTest</servlet-name>
+    <servlet-class>com.resort.testing.LoginTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginTest</servlet-name>
+    <url-pattern>/LoginTest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetUsers</display-name>
+    <servlet-name>GetUsers</servlet-name>
+    <servlet-class>com.resort.servlets.GetUsers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetUsers</servlet-name>
+    <url-pattern>/GetUsers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewEmployees</display-name>
+    <servlet-name>ViewEmployees</servlet-name>
+    <servlet-class>com.resort.servlets.ViewEmployees</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewEmployees</servlet-name>
+    <url-pattern>/ViewEmployees</url-pattern>
+  </servlet-mapping>
+</web-app>
