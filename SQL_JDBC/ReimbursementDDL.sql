@@ -58,6 +58,24 @@ VALUES(2, 'Denied');
 INSERT INTO reimbursement_status(status_id, name)
 VALUES(3, 'Approved');
 
+CREATE OR REPLACE FUNCTION countReimbursements
+RETURN number IS
+   totalReims NUMBER := 0;
+BEGIN
+   SELECT COUNT(*) INTO totalReims
+   FROM reimbursement;
+   RETURN totalReims;
+END;
+/
+
 SELECT * FROM worker;
 SELECT * FROM reimbursement;
 SELECT * FROM reimbursement_status;
+
+DECLARE 
+   c number(2); 
+BEGIN 
+   c := countReimbursements(); 
+   dbms_output.put_line('Total no. of Reimbursements: ' || c); 
+END; 
+/
