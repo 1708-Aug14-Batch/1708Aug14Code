@@ -45,10 +45,48 @@
 		</table>
 
 	</div>
-<button id = "EditUserInfo"><a href="EditUserInfo.html" >Edit Your Information</a></button>
+<button id = "EditUserInfo"><a href="EditUserInfo.html">Edit Your Information</a></button>
+<button id = "AddNewUser">Add New User</button>
 
 
 
+
+
+<div class="modal fade" id="AddingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class = "form-group">
+      <label for = "from-control-label" class = "form-control-label">First Name:</label>
+      <input type = "text" class = "form-control" id = "firstname" >
+      </div>
+               <div class="form-group">
+            <label for="recipient-name" class="form-control-label"  >Last Name:</label>
+            <input type="text" class="form-control" id = "lastname">
+          </div>
+          <div class = "form-group">
+          <label class = "form-control-label">Email:</label>
+          <input type="text" class="form-control" id = "email">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="form-control-label">Password:</label>
+            <input type = "password" class="form-control" id="password"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="create">Create User</button>
+		<button type="button" class = "btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

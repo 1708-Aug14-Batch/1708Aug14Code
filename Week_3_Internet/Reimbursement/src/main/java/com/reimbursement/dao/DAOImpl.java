@@ -67,7 +67,7 @@ public class DAOImpl implements DAO {
 		}
 		
 	}
-	public void createUser() {
+	public void createUser(String fname, String lname, String email, String password) {
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
@@ -77,8 +77,14 @@ public class DAOImpl implements DAO {
 			String [] keys = new String[1];
 			keys[0] = "user_id";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			
-			
+			ps.setString(1, fname);
+			ps.setString(2, lname);
+			ps.setString(3, email);
+			ps.setString(4, password);
+			ps.setInt(5, 0);
+			ps.executeUpdate();
+			System.out.println("New user entered");
+			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

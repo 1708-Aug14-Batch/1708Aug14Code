@@ -228,37 +228,53 @@ else if(selection === "Resolved Reimbursements"){
 	xhr.open("GET", "UserReimbursement", true);
 	xhr.send();
 	reset = reset + 1;
+	
 });
 
-})
 
-$("approve").on('click', function(){
+$("#approve").on('click', function(){
 
-	var xhr3 = new XMLHttpRequest();
-	var dto3 = JSON.parse(xhr3.responseText);
-	var user3 = dto3.user;
+
 	
-	var approver = user3.userId;
-	var notes = document.getElementById("modalGivenNotes");
-	var appID = 1;
-	var re_id = document.getElementById("reID");
-	var tx = [approver,notes,appID, re_id];
+	var xhr3= new XMLHttpRequest();
+	var notes = $("#modalGivenNotes").val();
+	console.log(notes);
+	var appID = "1";
+	var re_id = $("#reID").val();
+	console.log(re_id);
+	var tx = [notes,appID,re_id];
 	
 	tx = JSON.stringify(tx);
 	
-	
-//	xhr3.onreadystatechange = function(){
-//		if(xhr3.readyState == 4, xhr3.status == 200){
-//			
-//			
-//			
-//		}
-//	}
+	console.log(tx);
 	xhr3.open("POST", "UserReimbursement", true);
 	xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr3.send(tx);
 	
+	$('#pendingModal').modal("toggle");
+})
+
+$("#denied").on('click', function(){
+	var xhr4= new XMLHttpRequest();
+	var notes = $("#modalGivenNotes").val();
+	console.log(notes);
+	var appID = "2";
+	var re_id = $("#reID").val();
+	console.log(re_id);
+	var tx = [notes,appID,re_id];
 	
+	tx = JSON.stringify(tx);
+	
+	console.log(tx);
+	xhr4.open("POST", "UserReimbursement", true);
+	xhr4.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr4.send(tx);
+	
+	$('#pendingModal').modal("toggle");
+})
+
+
+
 })
 
 

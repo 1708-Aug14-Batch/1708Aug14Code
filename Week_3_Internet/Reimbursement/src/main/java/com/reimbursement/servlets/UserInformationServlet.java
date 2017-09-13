@@ -3,6 +3,8 @@ package com.reimbursement.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,4 +42,31 @@ public class UserInformationServlet extends HttpServlet{
 		
 	}
 	
-}
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
+		Service service = new Service();
+
+		System.out.println("In the new user post");
+		
+		
+			
+			Map<String,String[]> myMap = req.getParameterMap();
+			Set<String> keys = myMap.keySet();
+
+			ObjectMapper jackson = new ObjectMapper();
+			Object obj = keys.toArray()[0];
+
+			ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
+			
+			String fname = list.get(0);
+			String lname = list.get(1);
+			String email = list.get(2);
+			String password = list.get(3);
+
+			service.createUser(fname, lname, email, password);
+			
+
+
+		}
+	}
+	
+

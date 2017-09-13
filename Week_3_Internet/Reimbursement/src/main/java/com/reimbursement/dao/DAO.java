@@ -8,7 +8,7 @@ import com.reimbursement.pojos.User;
 public interface DAO {
 	
 	ArrayList<User> getUsers();
-	void createUser();
+	void createUser(String fname, String lname, String email, String password);
 	void createReimbursement(User u, int amt, String desc);
 	ArrayList<Reimbursement> getAllReimbursements();
 	ArrayList<Reimbursement> getReimbursement(User u);

@@ -67,26 +67,32 @@ public class ReimbursementPage extends HttpServlet{
 		}
 		
 	}
-	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException{
 		Service service = new Service();
+		HttpSession session = req.getSession();
+		User sessionUser = (User) session.getAttribute("user");
 		System.out.println("In the approve or deny post");
 		
-		Map<String,String[]> myMap = req.getParameterMap();
-		Set<String> keys = myMap.keySet();
-		
-		ObjectMapper jackson = new ObjectMapper();
-		Object obj = keys.toArray()[0];
-		
-		ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
-		Integer resId = Integer.parseInt(list.get(0));
-		String notes = list.get(1);
-		Integer r_id = Integer.parseInt(list.get(2));
-		Integer re_id = Integer.parseInt(list.get(3));
-		service.ApporDeny(resId, notes, r_id, re_id);
+		if (sessionUser.getIsManager() == 1){
+			int resId = sessionUser.getUserId();
+			Map<String,String[]> myMap = req.getParameterMap();
+			Set<String> keys = myMap.keySet();
 
-		
+			ObjectMapper jackson = new ObjectMapper();
+			Object obj = keys.toArray()[0];
+
+			ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
+
+			System.out.println(list.toString());
+			String notes = new String(list.get(0));
+			String r_id = list.get(1);
+			int Sr_id = Integer.parseInt(r_id);
+			int re_id = Integer.parseInt(list.get(2));
+			service.ApporDeny(resId, notes, Sr_id, re_id);
+
+		}
 	}
+
 	
 	
 	

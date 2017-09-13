@@ -108,6 +108,10 @@ public class Service {
 		test.ApproveOrDeny(resId,notes,r_id,re_id);
 	}
 	
+	public void createUser(String fname, String lname, String email, String password) {
+		test.createUser(fname, lname, email, password);
+	}
+	
 	public static void main(String[] args) {
 //		User temp = new User();
 //		temp = loginUser("ctest123@gmail.com");
