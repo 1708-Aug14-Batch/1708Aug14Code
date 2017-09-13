@@ -32,8 +32,7 @@ public class LoginServlet extends HttpServlet {
 		
 		if(!bankService.existsUsername(username)){
 			String response = "username";
-//			sd = req.getRequestDispatcher("/login_fail_username.html");
-//			sd.forward(req, res);
+
 			System.out.println(response);
 			res.setContentType("application/json");
 			writer.print(response);
@@ -47,8 +46,6 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(response);
 			res.setContentType("application/json");
 			writer.print(response);
-//			sd = req.getRequestDispatcher("/login_fail_password.html");
-//			sd.forward(req, res);
 		}
 		else{
 		    
@@ -57,12 +54,6 @@ public class LoginServlet extends HttpServlet {
 		    
 		    sd = req.getRequestDispatcher("homepage");
 		    sd.forward(req, res);
-//		    if(user.getIsManager() == (byte) 0){
-//		    	res.sendRedirect("homepage.html");
-//		    }
-//		    else{
-//		    	res.sendRedirect("manager_homepage.html");
-//		    }
 		}
 	}
 }

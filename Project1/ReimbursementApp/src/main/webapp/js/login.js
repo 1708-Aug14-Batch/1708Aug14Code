@@ -36,7 +36,8 @@ function doResponse(json){
 }
 
 window.onload = function(){
-	document.getElementById("loginButton").addEventListener("click", function(){
+	$('#loginButton').click(function(e){
+		e.preventDefault();
 		getInfo();
-	});
+	})
 }
