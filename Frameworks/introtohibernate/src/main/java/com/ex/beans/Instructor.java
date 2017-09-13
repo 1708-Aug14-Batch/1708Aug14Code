@@ -44,6 +44,11 @@ public class Instructor {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "Instructor [id=" + id + ", name=" + name + "]";
+	}
 	
 	
 	
