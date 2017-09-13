@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.dto.UserPendingReimbsDTO;
+import com.revature.dto.UserReimbsDTO;
 import com.revature.model.RUser;
 import com.revature.model.Reimbursement;
 import com.revature.service.ReimbursementService;
@@ -29,7 +29,7 @@ public class EmployeePendingReimbsServlet extends HttpServlet {
 			System.out.println("Inside pending reimbursements do get");
 			int userID = loggedInUser.getRUserID();
 			ArrayList<Reimbursement> reimbs = this.service.getPendingReimbs(userID);
-			UserPendingReimbsDTO dto = new UserPendingReimbsDTO(loggedInUser, reimbs);
+			UserReimbsDTO dto = new UserReimbsDTO(loggedInUser, reimbs);
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(dto);
 			PrintWriter writer = response.getWriter();

@@ -21,11 +21,14 @@
 			somberlain
 		</property>
 		<property name="hibernate.hbm2ddl.auto">
-			create
+			update
 		</property>
 		<property name="show_sql">
 			true
 		</property>
 		<mapping class="com.revature.model.Student"/>
+		<mapping class="com.revature.model.Course"/>
+		<mapping class="com.revature.model.Instructor"/>
+		<mapping class="com.revature.model.Transcript"/>
 	</session-factory>
 </hibernate-configuration>

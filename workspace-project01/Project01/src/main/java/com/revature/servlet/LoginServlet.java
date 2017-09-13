@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -48,8 +49,11 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", user);
 				ObjectMapper mapper = new ObjectMapper();
 				json = mapper.writeValueAsString(user);
-				System.out.println("Inside LoginServlet doPost");
-				response.sendRedirect(response.encodeRedirectURL("home.html"));
+				if (user.isManager()) {
+					response.sendRedirect(response.encodeRedirectURL("manager-home.html"));
+				} else {
+					response.sendRedirect(response.encodeRedirectURL("employee-home.html"));
+				}
 			} else {
 				json = "password-incorrect";
 				PrintWriter writer = response.getWriter();
