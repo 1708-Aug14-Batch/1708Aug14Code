@@ -22,9 +22,14 @@
 			p4ssw0rd
 		</property>
 		<property name="hibernate.hbm2ddl.auto">
-			create
+			update
 		</property>
-		<property name="show.sql">true</property>
-		<mapping class = "com.ex.beans.Student"/>
+		<property name="show_sql">true</property>
+		
+		<mapping class="com.ex.beans.Student" />
+		<mapping class="com.ex.beans.Course" />
+		<mapping class="com.ex.beans.Instructor" />
+		<mapping class="com.ex.beans.Transcript" />
+
 	</session-factory>
 </hibernate-configuration>
