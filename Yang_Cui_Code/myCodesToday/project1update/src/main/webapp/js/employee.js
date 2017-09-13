@@ -1,86 +1,9 @@
-var logged = false;
 window.onload = function(){
 
-	loadHomeView();
-	
-	if(logged == false){
-		$("#navbar").hide();
-	}
-	else{
-		$("#navbar").show();};
-
-		console.log($("#myReq"));
-		document.getElementById("homePage").addEventListener("click", loadEmployeeView);
-		document.getElementById("myInfo").addEventListener("click", loadEmployeeInfoView);
-		document.getElementById("myReq").addEventListener("click", loadReimbursmentView);
-		//document.getElementById("sendRemib").addEventListener("click", newRemib);
-};
-
-
-function loadHomeView(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			//console.log(xhr.responseText);
-			document.getElementById('view').innerHTML = xhr.responseText;
-			console.log($("#login"));
-			document.getElementById("login").addEventListener("click", login);
-		}
-	}
-	console.log("getting homepage")
-	xhr.open("GET", "getLoginView", true);
-	xhr.send();
-};
-
-
-function login(){
-	var uname = document.getElementById("uname").value;
-	var pass = document.getElementById("pass").value;
-	var tx = [uname, pass];
-	tx = JSON.stringify(tx);
-
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log("got login response");
-			var response =  xhr.responseText;
-
-			if (response == "fail"){
-				document.getElementById("message").innerHTML = "Invalid credentials. Please try again";
-				console.log("login fial");
-			}
-			else if(response == "pass"){
-				document.getElementById("message").innerHTML = "Invalid user. Please try again";
-				console.log("login fial");
-			}
-			else{
-				logged = true;
-				console.log(response);
-				loadEmployeeView();
-				$("#navbar").show();
-			}
-		}
-	}
-
-	xhr.open("POST", "login", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	xhr.send(tx);
-};
-
-
-function loadEmployeeView(){
-	console.log("in load dashboard view");
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('view').innerHTML = xhr.responseText;
-			getEmployeeName(); // loads user info by calling function
-
-		}
-	}
-	console.log("getting dash");
-	xhr.open("GET", "getDashboard", true);
-	xhr.send();
+	getEmployeeName();
+	loadEmployeeInfoView();
+	document.getElementById("myInfo").addEventListener("click", loadEmployeeInfoView);
+	document.getElementById("myReq").addEventListener("click", loadReimbursmentView);
 };
 
 function loadEmployeeInfoView(){
@@ -88,7 +11,7 @@ function loadEmployeeInfoView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('view').innerHTML = xhr.responseText;
+			document.getElementById("employeeview").innerHTML = xhr.responseText;
 			console.log($('#empInfo'));
 			getEmployeeInfo(); // loads user info by calling function
 
@@ -106,7 +29,7 @@ function loadReimbursmentView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('view').innerHTML = xhr.responseText;
+			document.getElementById('employeeview').innerHTML = xhr.responseText;
 			document.getElementById("sendRemib").addEventListener("click", sendNewRemib);
 			getReimbRageInfo(); // loads user info by calling function
 			//addRemib();
@@ -164,7 +87,7 @@ function getEmployeeName(){ // loads basic user info and account info into html
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
-			document.getElementById('employee').innerHTML = user.firstName + " " + user.lastName;
+			document.getElementById("welcome").innerHTML = user.firstName + " " + user.lastName;
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);
