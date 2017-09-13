@@ -13,9 +13,9 @@
 		<property name="hibernate.connection.password">p4ssw0rd</property>
 		<property name="hibernate.hbm2ddl.auto">update</property> <!-- Default is update -->
 		<property name="show_sql">true</property>
-		<mapping class="com.ex.beans.Student" />
-		<mapping class="com.ex.beans.Course" />
-		<mapping class="com.ex.beans.Instructor" />
-		<mapping class="com.ex.beans.Transcript" />
+		<!-- Need to add table inclusion here -->
+		<mapping class="com.bank.beans.Account" />
+		<mapping class="com.bank.beans.AccountType" />
+		<mapping class="com.bank.beans.User" />
 	</session-factory>
 </hibernate-configuration>
