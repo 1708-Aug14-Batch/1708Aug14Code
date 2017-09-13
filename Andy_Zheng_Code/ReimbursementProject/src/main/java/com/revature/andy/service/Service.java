@@ -3,10 +3,8 @@ package com.revature.andy.service;
 import java.util.HashSet;
 
 import com.revature.andy.dao.DAOImplementation;
-import com.revature.andy.pojos.ReimStatus;
 import com.revature.andy.pojos.Reimbursement;
 import com.revature.andy.pojos.User;
-import com.revature.andy.session.PseudoSession;
 
 public class Service {
 

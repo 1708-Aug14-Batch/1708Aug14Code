@@ -339,6 +339,7 @@ function getReimInfo(){
 							//console.log(reimTable.row())
 							//reimTable.cell({row:(cell.index().row), column:(cell.index().column)}).data();
 							//console.log(reimTable.cell({row:(cell.index().row), column:(cell.index().column)}).data());
+							
 							cell.data($('#statusSelected option:selected').text());
 				 			}
 				 		}
