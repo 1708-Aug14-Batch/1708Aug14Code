@@ -329,14 +329,17 @@ function getReimInfo(){
 				 		data: to,
 				 		dataType: 'JSON',
 				 		success: function(response){
-				 			console.log(response);
 				 			if(response == "Success"){
 
-				 			console.log("Hello");
 				 			$('#statusModal').modal('hide');
 							$('#notes').val("");
-							cell.data($('#statusSelected option:selected').text()).draw();
-				 			
+							// fix this........
+							// cell.index().row/column
+							//reimTable.row(cell.index().row).data($('#notes').text());
+							//console.log(reimTable.row())
+							//reimTable.cell({row:(cell.index().row), column:(cell.index().column)}).data();
+							//console.log(reimTable.cell({row:(cell.index().row), column:(cell.index().column)}).data());
+							cell.data($('#statusSelected option:selected').text());
 				 			}
 				 		}
 					})

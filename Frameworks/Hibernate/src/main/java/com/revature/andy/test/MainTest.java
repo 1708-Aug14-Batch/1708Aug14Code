@@ -3,14 +3,14 @@ package com.revature.andy.test;
 import java.util.List;
 
 import com.revature.andy.ex.beans.Instructor;
-import com.revature.andy.ex.beans.Student;
+import com.revature.andy.ex.beans.User;
 import com.revature.andy.ex.dao.HibernateDao;
 
 public class MainTest {
 
 	public static void main(String[] args) {
 		HibernateDao dao = new HibernateDao();
-		Student s = new Student();
+		User s = new User();
 		
 		s.setFirstname("Hellol");
 		s.setLastname("World");

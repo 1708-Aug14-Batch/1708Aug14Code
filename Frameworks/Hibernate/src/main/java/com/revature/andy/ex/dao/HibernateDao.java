@@ -8,17 +8,17 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.revature.andy.ex.beans.Instructor;
-import com.revature.andy.ex.beans.Student;
-import com.revature.andy.ex.beans.Transcript;
+import com.revature.andy.ex.beans.User;
+import com.revature.andy.ex.beans.Account;
 import com.revature.andy.ex.util.ConnectionUtil;
 
 public class HibernateDao {
 	
 	//CREATE
-	public Student addStudent(Student student) {
+	public User addStudent(User student) {
 		Session session = ConnectionUtil.getSession();
 		
-		Transcript script = new Transcript();
+		Account script = new Account();
 		try {
 		Transaction tx = (Transaction) session.beginTransaction();
 		int scriptId = (Integer) session.save(script);
@@ -47,11 +47,11 @@ public class HibernateDao {
 		}
 	}
 	
-	public List<Student> getAll() {
+	public List<User> getAll() {
 		Session session = ConnectionUtil.getSession();
 		try {
 		Transaction tx =(Transaction) session.beginTransaction();
-		List<Student> students = session.createCriteria(Student.class).list();
+		List<User> students = session.createCriteria(User.class).list();
 		return students;
 		
 		}finally {
@@ -73,12 +73,12 @@ public class HibernateDao {
 	}
 	
 	//Criteria Demo for more specifics
-	public List<Student> criteriaDemo(){
+	public List<User> criteriaDemo(){
 
 		Session session = ConnectionUtil.getSession();
 		try {
 		Transaction tx =(Transaction) session.beginTransaction();
-		List<Student> students = session.createCriteria(Student.class).add(Restrictions.ilike("firstname", "Hellol")).list();
+		List<User> students = session.createCriteria(User.class).add(Restrictions.ilike("firstname", "Hellol")).list();
 		return students;
 		}finally {
 			session.close();
@@ -86,14 +86,14 @@ public class HibernateDao {
 	}
 	
 	// doesnt work for some reason?
-	public List<Student> queryDemo(String like){
+	public List<User> queryDemo(String like){
 		
 		Session session = ConnectionUtil.getSession();
 		// student object must be proper spelling in hql
 		String hql = "from Student where lower(firstname) like:name";
 		Query query = session.createQuery(hql);
 		query.setParameter("name", like);
-		List<Student> students = query.list();
+		List<User> students = query.list();
 		//session.close();
 		return students;	
 	}
@@ -104,7 +104,7 @@ public class HibernateDao {
 		Session session = ConnectionUtil.getSession();
 		try {
 		Transaction tx =(Transaction) session.beginTransaction();
-		Student s = (Student) session.get(Student.class, id);
+		User s = (User) session.get(User.class, id);
 		session.delete(s.getTranscript());
 		session.delete(s);
 		tx.commit();
