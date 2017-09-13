@@ -57,8 +57,6 @@ public class HibernateDAO {
 		
 		List<Student> students = criteria.list();
 		
-		
-		
 		session.close();
 		return students;
 	}
