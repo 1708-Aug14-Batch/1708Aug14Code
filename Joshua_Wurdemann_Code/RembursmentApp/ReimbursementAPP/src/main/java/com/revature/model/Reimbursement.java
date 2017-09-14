@@ -1,6 +1,7 @@
 package com.revature.model;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  * Creating the requirements for reimbursement.
@@ -72,6 +73,8 @@ public class Reimbursement {
   }
 
   public Timestamp getSubmitDate() {
+    submitDate = new Timestamp(Calendar.getInstance().getTime().getTime());
+    
     return submitDate;
   }
 

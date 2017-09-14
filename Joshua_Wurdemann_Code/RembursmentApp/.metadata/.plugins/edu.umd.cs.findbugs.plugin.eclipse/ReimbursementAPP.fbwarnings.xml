@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<BugCollection version="3.0.1-dev-20150306-5afe4d1" sequence="1" timestamp="1504468386417" analysisTimestamp="1504468367216" release="">
+<BugCollection version="3.0.1-dev-20150306-5afe4d1" sequence="2" timestamp="1505088714450" analysisTimestamp="1505088696366" release="">
   <Project projectName="ReimbursementAPP">
-    <Jar>C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\target\classes</Jar>
-    <Jar>C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\target\test-classes</Jar>
+    <Jar>C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\target\classes\com\revature\servlets</Jar>
     <AuxClasspathEntry>C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\target\classes</AuxClasspathEntry>
     <AuxClasspathEntry>C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\target\test-classes</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\javax\servlet\javax.servlet-api\3.1.0\javax.servlet-api-3.1.0.jar</AuxClasspathEntry>
     <AuxClasspathEntry>C:\Users\joshw\.m2\repository\com\github\noraui\ojdbc7\12.1.0.2\ojdbc7-12.1.0.2.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\com\google\code\gson\gson\2.8.1\gson-2.8.1.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.9.0.pr4\jackson-core-2.9.0.pr4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.9.0.pr4\jackson-databind-2.9.0.pr4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.9.0.pr4\jackson-annotations-2.9.0.pr4.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\junit\junit\4.12\junit-4.12.jar</AuxClasspathEntry>
+    <AuxClasspathEntry>C:\Users\joshw\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar</AuxClasspathEntry>
     <AuxClasspathEntry>C:\Users\joshw\Downloads\eclipse-jee-mars-2-win32-x86_64\eclipse\plugins\org.junit_4.12.0.v201504281640\junit.jar</AuxClasspathEntry>
     <AuxClasspathEntry>C:\Users\joshw\Downloads\eclipse-jee-mars-2-win32-x86_64\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar</AuxClasspathEntry>
     <AuxClasspathEntry>C:\Program Files\Java\jre1.8.0_60\lib\rt.jar</AuxClasspathEntry>
@@ -234,6 +240,47 @@
     <SourceLine classname="com.revature.model.Reimbursement" start="61" end="61" startBytecode="2" endBytecode="2" sourcefile="Reimbursement.java" sourcepath="com/revature/model/Reimbursement.java"/>
     <SourceLine classname="com.revature.model.Reimbursement" start="61" end="61" startBytecode="2" endBytecode="2" sourcefile="Reimbursement.java" sourcepath="com/revature/model/Reimbursement.java"/>
   </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="1" rank="15" abbrev="DLS" category="STYLE" first="2">
+    <Class classname="com.revature.servlets.CreateReimbursementServlet">
+      <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    </Class>
+    <Method classname="com.revature.servlets.CreateReimbursementServlet" name="doPost" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false">
+      <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" start="27" end="63" startBytecode="0" endBytecode="75" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    </Method>
+    <LocalVariable name="jackson" register="5" pc="32" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" start="36" end="36" startBytecode="30" endBytecode="30" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" start="36" end="36" startBytecode="30" endBytecode="30" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.DEAD_OBJECT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="jackson"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="2" rank="17" abbrev="DLS" category="STYLE" first="2">
+    <Class classname="com.revature.servlets.CreateReimbursementServlet">
+      <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    </Class>
+    <Method classname="com.revature.servlets.CreateReimbursementServlet" name="doPost" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false">
+      <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" start="27" end="63" startBytecode="0" endBytecode="75" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    </Method>
+    <LocalVariable name="obj" register="6" pc="43" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" start="38" end="38" startBytecode="41" endBytecode="41" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    <SourceLine classname="com.revature.servlets.CreateReimbursementServlet" start="38" end="38" startBytecode="41" endBytecode="41" sourcefile="CreateReimbursementServlet.java" sourcepath="com/revature/servlets/CreateReimbursementServlet.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="obj"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.NO_LOADS" value="true"/>
+  </BugInstance>
+  <BugInstance type="DLS_DEAD_LOCAL_STORE" priority="1" rank="15" abbrev="DLS" category="STYLE" first="2">
+    <Class classname="com.revature.servlets.HomeServlet">
+      <SourceLine classname="com.revature.servlets.HomeServlet" sourcefile="HomeServlet.java" sourcepath="com/revature/servlets/HomeServlet.java"/>
+    </Class>
+    <Method classname="com.revature.servlets.HomeServlet" name="doGet" signature="(Ljavax/servlet/http/HttpServletRequest;Ljavax/servlet/http/HttpServletResponse;)V" isStatic="false">
+      <SourceLine classname="com.revature.servlets.HomeServlet" start="26" end="47" startBytecode="0" endBytecode="41" sourcefile="HomeServlet.java" sourcepath="com/revature/servlets/HomeServlet.java"/>
+    </Method>
+    <LocalVariable name="service" register="3" pc="16" role="LOCAL_VARIABLE_NAMED"/>
+    <SourceLine classname="com.revature.servlets.HomeServlet" start="27" end="27" startBytecode="15" endBytecode="15" sourcefile="HomeServlet.java" sourcepath="com/revature/servlets/HomeServlet.java"/>
+    <SourceLine classname="com.revature.servlets.HomeServlet" start="27" end="27" startBytecode="15" endBytecode="15" sourcefile="HomeServlet.java" sourcepath="com/revature/servlets/HomeServlet.java"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.DEAD_OBJECT_STORE" value="true"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.LOCAL_NAME" value="service"/>
+    <Property name="edu.umd.cs.findbugs.detect.DeadLocalStoreProperty.METHOD_RESULT" value="true"/>
+  </BugInstance>
   <BugInstance type="DMI_HARDCODED_ABSOLUTE_FILENAME" priority="2" rank="17" abbrev="DMI" category="STYLE" first="1">
     <Class classname="com.revature.util.ConnectionFactory">
       <SourceLine classname="com.revature.util.ConnectionFactory" sourcefile="ConnectionFactory.java" sourcepath="com/revature/util/ConnectionFactory.java"/>
@@ -293,37 +340,37 @@
     <SourceLine classname="com.revature.util.ConnectionFactory" start="32" end="32" startBytecode="11" endBytecode="11" sourcefile="ConnectionFactory.java" sourcepath="com/revature/util/ConnectionFactory.java"/>
   </BugInstance>
   <Errors errors="0" missingClasses="0"></Errors>
-  <FindBugsSummary timestamp="Sun, 3 Sep 2017 12:52:05 -0700" total_classes="6" referenced_classes="31" total_bugs="18" total_size="219" num_packages="3" java_version="1.8.0_60" vm_version="25.60-b23" cpu_seconds="18.12" clock_seconds="19.21" peak_mbytes="763.48" alloc_mbytes="910.50" gc_seconds="0.04" priority_2="17" priority_1="1">
-    <PackageStats package="com.revature.dao" total_bugs="8" total_types="3" total_size="69" priority_2="8">
-      <ClassStats class="com.revature.dao.DAO" sourceFile="DAO.java" interface="true" size="4" bugs="0"/>
-      <ClassStats class="com.revature.dao.DAOimp" sourceFile="DAOimp.java" interface="false" size="57" bugs="8" priority_2="8"/>
-      <ClassStats class="com.revature.dao.DAOimpTest" sourceFile="DAOimpTest.java" interface="false" size="8" bugs="0"/>
-    </PackageStats>
-    <PackageStats package="com.revature.model" total_bugs="6" total_types="2" total_size="123" priority_2="6">
-      <ClassStats class="com.revature.model.Reimbursement" sourceFile="Reimbursement.java" interface="false" size="71" bugs="6" priority_2="6"/>
-      <ClassStats class="com.revature.model.User" sourceFile="User.java" interface="false" size="52" bugs="0"/>
-    </PackageStats>
-    <PackageStats package="com.revature.util" total_bugs="4" total_types="1" total_size="27" priority_2="3" priority_1="1">
-      <ClassStats class="com.revature.util.ConnectionFactory" sourceFile="ConnectionFactory.java" interface="false" size="27" bugs="4" priority_2="3" priority_1="1"/>
+  <FindBugsSummary timestamp="Sun, 10 Sep 2017 20:07:23 -0400" total_classes="9" referenced_classes="52" total_bugs="21" total_size="144" num_packages="4" java_version="1.8.0_60" vm_version="25.60-b23" cpu_seconds="16.03" clock_seconds="18.11" peak_mbytes="679.20" alloc_mbytes="910.50" gc_seconds="0.11" priority_2="18" priority_1="3">
+    <PackageStats package="com.revature.servlets" total_bugs="3" total_types="9" total_size="144" priority_2="1" priority_1="2">
+      <ClassStats class="com.revature.servlets.CreateReimbursementServlet" sourceFile="CreateReimbursementServlet.java" interface="false" size="22" bugs="2" priority_2="1" priority_1="1"/>
+      <ClassStats class="com.revature.servlets.GetDashboardServlet" sourceFile="GetDashboardServlet.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.revature.servlets.GetLoginViewServlet" sourceFile="GetLoginViewServlet.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.revature.servlets.GetReimbursementpageSeverlet" sourceFile="GetReimbursementpageSeverlet.java" interface="false" size="8" bugs="0"/>
+      <ClassStats class="com.revature.servlets.GetUserInfoServlet" sourceFile="GetUserInfoServlet.java" interface="false" size="20" bugs="0"/>
+      <ClassStats class="com.revature.servlets.HomeServlet" sourceFile="HomeServlet.java" interface="false" size="18" bugs="1" priority_1="1"/>
+      <ClassStats class="com.revature.servlets.LoginServlet" sourceFile="LoginServlet.java" interface="false" size="46" bugs="0"/>
+      <ClassStats class="com.revature.servlets.MainPageServlet" sourceFile="MainPageServlet.java" interface="false" size="6" bugs="0"/>
+      <ClassStats class="com.revature.servlets.NavBarServlet" sourceFile="NavBarServlet.java" interface="false" size="8" bugs="0"/>
     </PackageStats>
     <FindBugsProfile>
-      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="576" invocations="2" avgMicrosecondsPerInvocation="288046" maxMicrosecondsPerInvocation="376750" standardDeviationMircosecondsPerInvocation="88702"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="171" invocations="399" avgMicrosecondsPerInvocation="429" maxMicrosecondsPerInvocation="15210" standardDeviationMircosecondsPerInvocation="1008"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="156" invocations="399" avgMicrosecondsPerInvocation="392" maxMicrosecondsPerInvocation="12781" standardDeviationMircosecondsPerInvocation="1287"/>
-      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="60" invocations="138" avgMicrosecondsPerInvocation="434" maxMicrosecondsPerInvocation="6104" standardDeviationMircosecondsPerInvocation="787"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="57" invocations="31" avgMicrosecondsPerInvocation="1861" maxMicrosecondsPerInvocation="11610" standardDeviationMircosecondsPerInvocation="2845"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="42" invocations="49" avgMicrosecondsPerInvocation="859" maxMicrosecondsPerInvocation="34471" standardDeviationMircosecondsPerInvocation="4857"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="41" invocations="31" avgMicrosecondsPerInvocation="1340" maxMicrosecondsPerInvocation="10477" standardDeviationMircosecondsPerInvocation="2126"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="40" invocations="50" avgMicrosecondsPerInvocation="814" maxMicrosecondsPerInvocation="7392" standardDeviationMircosecondsPerInvocation="1589"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.IsNullValueDataflowFactory" totalMilliseconds="39" invocations="46" avgMicrosecondsPerInvocation="860" maxMicrosecondsPerInvocation="10223" standardDeviationMircosecondsPerInvocation="1928"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.ValueNumberDataflowFactory" totalMilliseconds="34" invocations="50" avgMicrosecondsPerInvocation="682" maxMicrosecondsPerInvocation="9458" standardDeviationMircosecondsPerInvocation="1461"/>
-      <ClassProfile name="edu.umd.cs.findbugs.detect.BuildObligationPolicyDatabase" totalMilliseconds="32" invocations="31" avgMicrosecondsPerInvocation="1060" maxMicrosecondsPerInvocation="13157" standardDeviationMircosecondsPerInvocation="2414"/>
-      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="30" invocations="54" avgMicrosecondsPerInvocation="557" maxMicrosecondsPerInvocation="15588" standardDeviationMircosecondsPerInvocation="2142"/>
-      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="29" invocations="46" avgMicrosecondsPerInvocation="646" maxMicrosecondsPerInvocation="4277" standardDeviationMircosecondsPerInvocation="1109"/>
+      <ClassProfile name="de.tobject.findbugs.builder.FindBugs2Eclipse" totalMilliseconds="588" invocations="2" avgMicrosecondsPerInvocation="294227" maxMicrosecondsPerInvocation="405936" standardDeviationMircosecondsPerInvocation="111709"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine" totalMilliseconds="236" invocations="559" avgMicrosecondsPerInvocation="423" maxMicrosecondsPerInvocation="24328" standardDeviationMircosecondsPerInvocation="1172"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.ClassDataAnalysisEngine" totalMilliseconds="130" invocations="561" avgMicrosecondsPerInvocation="232" maxMicrosecondsPerInvocation="1084" standardDeviationMircosecondsPerInvocation="103"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FieldItemSummary" totalMilliseconds="93" invocations="52" avgMicrosecondsPerInvocation="1792" maxMicrosecondsPerInvocation="15869" standardDeviationMircosecondsPerInvocation="3144"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FindNoSideEffectMethods" totalMilliseconds="64" invocations="52" avgMicrosecondsPerInvocation="1246" maxMicrosecondsPerInvocation="10395" standardDeviationMircosecondsPerInvocation="1937"/>
+      <ClassProfile name="edu.umd.cs.findbugs.OpcodeStack$JumpInfoFactory" totalMilliseconds="55" invocations="129" avgMicrosecondsPerInvocation="428" maxMicrosecondsPerInvocation="5845" standardDeviationMircosecondsPerInvocation="649"/>
+      <ClassProfile name="edu.umd.cs.findbugs.ba.npe.NullDerefAndRedundantComparisonFinder" totalMilliseconds="51" invocations="21" avgMicrosecondsPerInvocation="2476" maxMicrosecondsPerInvocation="33985" standardDeviationMircosecondsPerInvocation="7213"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.MethodGenFactory" totalMilliseconds="45" invocations="21" avgMicrosecondsPerInvocation="2145" maxMicrosecondsPerInvocation="41572" standardDeviationMircosecondsPerInvocation="8818"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.CFGFactory" totalMilliseconds="40" invocations="21" avgMicrosecondsPerInvocation="1948" maxMicrosecondsPerInvocation="32135" standardDeviationMircosecondsPerInvocation="6767"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.JavaClassAnalysisEngine" totalMilliseconds="33" invocations="91" avgMicrosecondsPerInvocation="372" maxMicrosecondsPerInvocation="14665" standardDeviationMircosecondsPerInvocation="1572"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.NoteDirectlyRelevantTypeQualifiers" totalMilliseconds="33" invocations="52" avgMicrosecondsPerInvocation="646" maxMicrosecondsPerInvocation="6226" standardDeviationMircosecondsPerInvocation="1250"/>
+      <ClassProfile name="edu.umd.cs.findbugs.classfile.engine.bcel.TypeDataflowFactory" totalMilliseconds="32" invocations="21" avgMicrosecondsPerInvocation="1569" maxMicrosecondsPerInvocation="21108" standardDeviationMircosecondsPerInvocation="4454"/>
+      <ClassProfile name="edu.umd.cs.findbugs.detect.FunctionsThatMightBeMistakenForProcedures" totalMilliseconds="29" invocations="52" avgMicrosecondsPerInvocation="569" maxMicrosecondsPerInvocation="7601" standardDeviationMircosecondsPerInvocation="1344"/>
     </FindBugsProfile>
   </FindBugsSummary>
   <ClassFeatures></ClassFeatures>
   <History>
     <AppVersion sequence="0" timestamp="1504468386391" release="" codeSize="0" numClasses="0"/>
+    <AppVersion sequence="1" timestamp="1504468386417" release="" codeSize="219" numClasses="6"/>
   </History>
 </BugCollection>

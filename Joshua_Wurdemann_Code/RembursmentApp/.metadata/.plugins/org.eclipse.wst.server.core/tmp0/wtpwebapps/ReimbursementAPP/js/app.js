@@ -12,10 +12,9 @@ window.onload = function(){
 		document.getElementById("homePage")
 		.addEventListener("click", loadDashboardView);
 
-		document.getElementById("accPage")
-		.addEventListener("click", loadAccountPageView);
-
-
+		document.getElementById("remPage")
+		.addEventListener("click", loadReimbursmentPageView);
+	
 };
 
 
@@ -78,7 +77,7 @@ function loadDashboardView(){
 			document.getElementById('view').
 			innerHTML = xhr.responseText;
 			getUserPageInfo(); // loads user info by calling function
-
+			getReimbursmentPageInfo();
 		}
 	}
 	console.log("getting dash");
@@ -89,51 +88,55 @@ function loadDashboardView(){
 
 
 
-function loadAccountPageView(){
+function loadReimbursmentPageView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').
 			innerHTML = xhr.responseText;
-			getAcctPageInfo(); // loads user info by calling function
+			getReimbursmentPageInfo(); // loads user info by calling function
 			
 		}
 	}
-	console.log("getting accts")
-	xhr.open("GET", "getAccPage", true);
+	console.log("getting user reimbursments")
+	xhr.open("GET", "getRemPage", true);
 	xhr.send();
 }
 
-function getAcctPageInfo(){ // loads basic user info and account info into html
+function getReimbursmentPageInfo(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log("inside reimbursement page info js function");
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
-			var user = dto.user;
-			var accounts = dto.accounts;
+			var someUser = dto.user;
+			var rem = dto.reimbursement;
 
-
-			if (accounts.length == 0){
-				document.getElementById("accounts").style.visibility = "hidden"; 
+			//document.getElementById("username").innerHTML = "Welcome " + someUser.user.firstname + " " + someUser.user.lastname + ".";
+			if (rem.length == 0){
+				document.getElementById("reimbursements").style.visibility = "hidden"; 
 
 			}
 			else{
 
-				for(var i = 0; i < accounts.length; i++){
+				for(var i = 0; i < rem.length; i++){
 					// populate accounts table
-					var table = document.getElementById("accTable");
+					var table = document.getElementById("remTable");
 					var row = table.insertRow();
-					var acc = row.insertCell(0);
-					var type = row.insertCell(1);
-					var bal = row.insertCell(2);
-					acc.innerHTML = "Account No. " + accounts[i].id;
-					type.innerHTML = accounts[i].type;
-					bal.innerHTML = "$" + accounts[i].balance;
+					var remid = row.insertCell(0);
+					var amount = row.insertCell(1);
+					var sumitdate = row.insertCell(2);
+					var description = row.insertCell(3);
+     				remid.innerHTML = rem[i].reimburseid;
+					amount.innerHTML = "$" + rem[i].amount;
+					sumitdate.innerHTML = rem[i].submitDate;
+					description.innerHTML =  rem[i].description;
 				}
 			}
 		}
 	}
+					
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
 	
@@ -141,14 +144,14 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 
 
 function getUserPageInfo(){ // loads basic user info and account info into html
+	console.log("in user page info function");
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			console.log(xhr.responseText);
-			var dto = JSON.parse(xhr.responseText);
-			var user = dto.user;
-			document.getElementById('name')
-			.innerHTML = user.firstname + " " + user.lastname;
+			var someUser = JSON.parse(xhr.responseText);
+			var user = someUser.user;
+			document.getElementById('name').innerHTML = user.firstName + " " + user.lastNAme;
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);
@@ -157,12 +160,11 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 };
 
 
+function addRemibursement(){ // allows us to add new reimbursements 
+	var rem = document.getElementbyId("addRem").value;
+	console.log(rem);
 
-function addAccount(){ // allows us to acc new accounts 
-	var accType = document.getElementById("accType").value;
-	console.log(accType);
-
-	var type = JSON.stringify(accType);
+	var type = JSON.stringify(rem);
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -172,9 +174,10 @@ function addAccount(){ // allows us to acc new accounts
 		}
 	}
 
-	xhr.open("POST", "addAccount", true);
+	xhr.open("POST", "addReimbursement" , true);
 	//set the header to tell the server you have data for it to process
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
-	xhr.send(input); //include your post data in the send()
+	xhr.send(type); //include your post data in the send()
 
 }
+

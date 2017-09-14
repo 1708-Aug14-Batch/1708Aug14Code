@@ -14,11 +14,11 @@ CREATE TABLE USERS
   CREATE TABLE Reimbursements(
     reimburseid NUMBER PRIMARY KEY,
     submitterid NUMBER NOT NULL,
-    resolverid  NUMBER NOT NULL,
+    resolverid  NUMBER,
     submitdate TIMESTAMP NOT NULL,
-    resolved   TIMESTAMP NOT NULL,
+    resolved   TIMESTAMP,
     statusid   Number DEFAULT(0),
-    description VARCHAR2(500),
+    desc VARCHAR2(500),
     resolvnotes VARCHAR2(500),
     amount NUMBER(12,2) NOT NULL,
     CHECK (amount >0),
@@ -55,7 +55,7 @@ THEN
 END IF;
 END;/
 -- Sequences for Status
-CREATE OR REPLACE TRIGGER reimbursement_seq_TRIGGER 
+CREATE OR REPLACE TRIGGER reimbursements_seq_TRIGGER 
 BEFORE INSERT ON Reimbursements
 FOR EACH ROW 
 BEGIN IF :new.reimburseid IS NULL 

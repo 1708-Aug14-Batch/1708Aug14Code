@@ -1,0 +1,67 @@
+package com.revature.servlets;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+import com.revature.service.Service;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+@WebServlet("/addReimbursement")
+public class CreateReimbursementServlet extends HttpServlet{
+
+
+  @Override
+  protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
+    System.out.println("posting new Reimbursement to db");
+   
+    HttpSession session = req.getSession(false);
+    if(session != null){
+    Service remService = new Service();
+
+    User user = remService.getUser((int)session.getAttribute("userid"));//Null pointer exception
+    Reimbursement newReimbursement = new Reimbursement();
+
+    newReimbursement.setAmount(new Double(req.getParameter("amount")));
+    newReimbursement.setDescription(req.getParameter("description"));
+    newReimbursement.setSubmitterID(user.getUserId());
+
+    remService.addReimbursment(newReimbursement);
+
+    System.out.println(remService.toString());
+
+    session.setAttribute("user", user);
+    session.setAttribute("newrem", remService);
+
+    req.getRequestDispatcher("partials/dashboard.html");
+    }
+ 
+   
+   
+    
+    
+    }
+
+  
+  
+  
+  }
+
+
+
+
+
+
+
