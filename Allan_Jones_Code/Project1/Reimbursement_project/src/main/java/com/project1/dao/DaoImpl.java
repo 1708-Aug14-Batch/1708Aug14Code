@@ -38,13 +38,14 @@ public class DaoImpl implements DAO {
 		Users user = new Users();
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select firstname, lastname, username, password from users where userid = ?";
+			String sql = "select firstname, lastname, email, username, password from users where userid = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				user.setFirstName(rs.getString("firstname"));
 				user.setLastName(rs.getString("lastname"));
+				user.setEmail(rs.getString("email"));
 				user.setUserName(rs.getString("username"));
 				user.setPassword(rs.getString("password"));
 			} else {
@@ -108,7 +109,7 @@ public class DaoImpl implements DAO {
 				user.setFirstName(rs.getString("firstname"));
 				user.setLastName(rs.getString("lastname"));
 				user.setUserName(rs.getString("username"));
-				user.setPassword(rs.getString("email"));
+				user.setEmail(rs.getString("email"));
 				employees.add(user);
 			}
 		} catch (SQLException e) {

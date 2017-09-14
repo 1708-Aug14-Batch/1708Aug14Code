@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("name", name);
+		session.setAttribute("User", user);
 
 		boolean isMgr = service.isMgr(id);
 		if (isMgr) {

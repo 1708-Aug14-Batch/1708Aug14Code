@@ -55,4 +55,14 @@
     <servlet-name>SubmitReqServlet</servlet-name>
     <url-pattern>/submitRequest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmpInfoServlet</display-name>
+    <servlet-name>EmpInfoServlet</servlet-name>
+    <servlet-class>com.project1.servlets.EmpInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmpInfoServlet</servlet-name>
+    <url-pattern>/empInfo</url-pattern>
+  </servlet-mapping>
 </web-app>
