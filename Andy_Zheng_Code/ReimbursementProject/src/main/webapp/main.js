@@ -61,7 +61,9 @@ function loadMenu(value){
 			//$('#one').click(loadHome);
 			$('#two').click(loadUser);
 			$('#five').click(invalidateSession);
-			$('#emp').click(loadEmployee);
+			if(value == "1"){
+				$('#emp').click(loadEmployee);
+			}
 		}
 	}
 	xhr.open("GET", "loadMenu", true);
@@ -575,6 +577,17 @@ function submitReim(){
 }
 
 function loadEmployee(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+			loadEmployeeInfo();
+			
+		}
+	}
+	xhr.open("GET", "loadEmployee", true);
+	xhr.send();
+/*
 	console.log("loadEmployee")
 	$.ajax({
 		type: 'GET',
@@ -582,8 +595,7 @@ function loadEmployee(){
 		success: function(){
 			loadEmployeeInfo();
 		}
-	})
-
+	})*/
 }
 
 function loadEmployeeInfo(){
@@ -592,6 +604,7 @@ function loadEmployeeInfo(){
 		type: 'GET',
 		url: 'employeeInfo',
 		success: function(response){
+			console.log(response);
 			var emps = response;
 			for(var x = 0; x<emps.length; x++){
 				var tr = "<tr>";
