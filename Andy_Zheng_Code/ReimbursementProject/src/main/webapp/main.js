@@ -221,7 +221,7 @@ function getReimInfoE(){
 					tr += "<td></td>";
 				}
 				tr += "<td class='statusClick'>" + reim[x].statusID.statusName + "</td>";
-				tr += "<td>" + reim[x].amount + "</td>";
+				tr += "<td class='money'>$" + reim[x].amount.toFixed(2) + "</td>";
 				tr += "</tr>"	
 				$( "#reimTable tbody" ).append(tr);
 			}
@@ -315,7 +315,7 @@ function getReimInfoM(){
 				}
 				tr += "<td><select>" + option0 + option1 + option2 + "</select></td>";
 				*/
-				tr += "<td>" + reim[x].amount + "</td>";
+				tr += "<td class='money'>$" + reim[x].amount.toFixed(2) + "</td>";
 				tr += "</tr>"	
 				$( "#reimTable tbody" ).append(tr);
 			}

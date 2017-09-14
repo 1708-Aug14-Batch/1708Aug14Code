@@ -24,6 +24,10 @@ table{
   	word-wrap:break-word;
 }*/
 
+.money{
+	text-align: right;
+}
+
 input[readonly].form-control {
     background-color: #fff;
 }
