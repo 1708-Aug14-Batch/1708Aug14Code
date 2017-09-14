@@ -27,7 +27,12 @@ public class SubmitReimbursementServlet extends HttpServlet{
 		Reimbursement newReimbursement = new Reimbursement();
 		
 		newReimbursement.setAmount(new BigDecimal(req.getParameter("amount")));
-		newReimbursement.setDescription(req.getParameter("description"));
+		
+		String description = req.getParameter("description");
+		if(description.equals("")){
+			description = "N/A";
+		}
+		newReimbursement.setDescription(description);
 		newReimbursement.setSubmitId(user.getUserId());
 		
 		bankService.addReimbursement(newReimbursement);

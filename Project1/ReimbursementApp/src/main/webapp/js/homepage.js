@@ -29,7 +29,7 @@ function showNameAndAccounts(json) {
 		  
 	    add += user_info.reimbursements[i].reimbursementId +"</td><td>$";
 	    
-	    add += user_info.reimbursements[i].amount +"</td><td>";
+	    add += user_info.reimbursements[i].amount.toFixed(2) +"</td><td>";
 	    
 	    if(user_info.reimbursements[i].description != null){
 	    	add += user_info.reimbursements[i].description +"</td><td>";

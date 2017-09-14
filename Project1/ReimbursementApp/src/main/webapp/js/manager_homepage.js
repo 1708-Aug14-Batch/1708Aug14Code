@@ -49,7 +49,7 @@ function quickResolve(){
 		//basic data about reimbursement
 		body += "<td>#" + data.pending[i].reimbursementId + "</td>";
 		body += "<td>" + data.pending[i].submitName + "</td>";
-		body += "<td>$" + data.pending[i].amount + "</td>";
+		body += '<td>$' + data.pending[i].amount.toFixed(2) + '</td>';
 		body += "<td>" + data.pending[i].description + "</td>";
 
 		//add date
@@ -177,7 +177,7 @@ function viewResolved(){
 		//basic data about reimbursement
 		body += "<td>#" + data.resolved[i].reimbursementId + "</td>";
 		body += "<td>" + data.resolved[i].submitName + "</td>";
-		body += "<td>$" + data.resolved[i].amount + "</td>";
+		body += "<td>$" + data.resolved[i].amount.toFixed(2) + "</td>";
 		body += "<td>" + data.resolved[i].description + "</td>";
 		body += "<td>" + data.resolved[i].resolveName + "</td>";
 		body += "<td>" + data.resolved[i].managerNotes + "</td>";
@@ -291,7 +291,7 @@ function getEmployeeReimbursements(){
 
 			//basic data about reimbursement
 			body += "<td>#" + reimbursements[i].reimbursementId + "</td>";
-			body += "<td>$" + reimbursements[i].amount + "</td>";
+			body += "<td>$" + reimbursements[i].amount.toFixed(2) + "</td>";
 			body += "<td>" + reimbursements[i].description + "</td>";
 
 			//add date
@@ -427,12 +427,12 @@ function registerEmployee(){
 
 	form += '<div class="form-group m-2"> ';
 	form += '<p class="lead">Name</p>';
-	form += '<input class="form-control" type="text" name="fn" placeholder="First name">';
-	form += '<input class="form-control" type="text" name="ln" placeholder="Last name"><hr>';
+	form += '<input class="form-control" type="text" name="fn" placeholder="First name" required>';
+	form += '<input class="form-control" type="text" name="ln" placeholder="Last name" required><hr>';
 	form += '<p class="lead">Username</p>';
-	form += '<input class="form-control" type="text" name="username" id="usernameinput" placeholder="Username"><hr>';
+	form += '<input class="form-control" type="text" name="username" id="usernameinput" placeholder="Username" required><hr>';
 	form += '<p class="lead">Email</p>';
-	form += '<input class="form-control" type="email" name="email" id="emailinput" placeholder="Email"><hr>';
+	form += '<input class="form-control" type="email" name="email" id="emailinput" placeholder="Email" required><hr>';
 	form += '<p class="text-muted">Pass will be auto-generated</p>';
 
 	form += '<button type="submit" class="btn btn-primary">Submit</button>';
@@ -454,6 +454,7 @@ function registerEmployee(){
 			alert('Success! Their pass is: "'+pwd + '". And Id is '+response.userId);
 			registerEmployee();
 		});
+		resetData();
 	});
 }
 

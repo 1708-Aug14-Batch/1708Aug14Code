@@ -25,9 +25,10 @@ public class EditProfileServlet extends HttpServlet{
 		user.setFirstname((String)req.getParameter("inputfn"));
 		user.setLastname((String)req.getParameter("inputln"));
 		user.setEmail((String)req.getParameter("inputemail"));
+		user.setPwd((String)req.getParameter("inputpass1"));
 		
 		bankService.updateUser(user);
-
-		res.sendRedirect("profile.html");
+		System.out.println("Update: " + user.toString());
+		//res.sendRedirect("profile.html");
 	}
 }

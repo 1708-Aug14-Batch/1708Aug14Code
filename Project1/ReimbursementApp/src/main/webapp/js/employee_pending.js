@@ -17,7 +17,7 @@ function showPending(json) {
 	  var user_info = JSON.parse(response);
 	  var list_items = "";
 	  for (i = 0; i <user_info.reimbursements.length; i++) { 
-		  list_items += '<li class="list-group-item m-1"> <div class="row"><div class="col-3"><h5>Amount: $<span>' + user_info.reimbursements[i].amount;
+		  list_items += '<li class="list-group-item m-1"> <div class="row"><div class="col-3"><h5>Amount: $<span>' + user_info.reimbursements[i].amount.toFixed(2);
 		  list_items += '</span></h5><a class="btn btn-info m-3" data-toggle="collapse" href="#collapseItem' + user_info.reimbursements[i].reimbursementId;
 		  list_items += '" aria-expanded="false" aria-controls="collapseExample"> More info </a></div><div class="col"><p>Description: <span>';
 		  list_items += user_info.reimbursements[i].description;
