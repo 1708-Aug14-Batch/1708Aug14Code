@@ -23,20 +23,32 @@
         <a class="nav-link" href="UserInformation.html">View User Information</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="FrontDesk.html">Logout</a>
+        <form action = "logout"><a class="nav-link" href="logout">Logout</a></form>
       </li>
     </ul>
   </div>
 </nav>
+
+
+
 <div>
+<h5>
+Select Reimbursements for All Employees
+</h5>
 <select class="custom-select" id="selectList">
-  <option selected disabled>Choose a Reimbursement Option</option>
+  <option selected disabled id ="selectDefault">Choose a Reimbursement Option</option>
   <option value="1">All Reimbursements</option>
   <option value="2">Pending Reimbursements</option>
   <option value="3">Resolved Reimbursements</option>
 </select>
+</div>
+<br/>
+<div>
+<h5>
+Select Pending Reimbursements for Specific Employee
+</h5>
 <select class = "custom-select" id = "userlist">
-<option selected disabled>Choose an Employee</option>
+<option selected disabled id="userDefault">Choose an Employee</option>
 </select>
 </div>
 <div id = "accounts">

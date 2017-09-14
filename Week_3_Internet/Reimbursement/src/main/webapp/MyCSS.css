@@ -1,5 +1,10 @@
 @charset "ISO-8859-1";
 
+html body{
+	background: url("./../../../../../../../Desktop/Revature Work/housebackground.jpg") no-repeat center;
+}
+
+
 #head{
   text-align: center;
 }

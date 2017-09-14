@@ -34,6 +34,8 @@ $(document).ready(function(){
 	
 $("#userlist").on('click',function(){
 	
+	$("#selectlist").val("#selectDefault");
+	
 	var userselection = $("#userlist option:selected").text();
 	
 	console.log(userselection);
@@ -47,8 +49,11 @@ $("#userlist").on('click',function(){
 	xhr5.onreadystatechange = function(){
 		if(xhr5.readyState == 4 && xhr5.status == 200){
 			
+			
+			
+			
 			var dto = JSON.parse(xhr5.responseText);
-			var user = dto.user;
+			var user = dto.user; 
 			var accounts = dto.accounts;
 			var userlist = dto.userList;
 			var restriction;
@@ -95,7 +100,17 @@ $("#userlist").on('click',function(){
 								continue;
 						}
 					}
-					rID.innerHTML = accounts[i].r_id;
+					
+					/*
+					 * Ok, so rID is what Javascript is using to set the cell value
+					 * to the current iteration of the reimbursement id in my accounts loop.
+					 * 
+					 * Then I take the rID element and use setAttribute to turn it into a class
+					 * as well as a quasi-button for displaying a modal.
+					 * 
+					 * Then, using the .class I gave it, I style it accordingly to make it look more like a link.
+					 */
+					rID.innerHTML = accounts[i].r_id; 
 					rID.setAttribute("class","resolvedID");
 					rID.setAttribute("data-toggle","modal");
 					rID.setAttribute("data-target","#pendingModal");
