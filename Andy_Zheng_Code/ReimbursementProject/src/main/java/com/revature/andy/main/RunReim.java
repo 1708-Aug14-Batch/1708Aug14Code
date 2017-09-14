@@ -15,7 +15,6 @@ import com.revature.andy.util.ConnectionFactory;
 
 public class RunReim {
 
-
 	private static Logger log = Logger.getRootLogger();
 	static Service s = new Service();
 	static DAOImplementation d = new DAOImplementation();
@@ -30,11 +29,15 @@ public class RunReim {
 				
 		try {
 			HashSet<Reimbursement> emp = d.getReims2(con);
+			
+			for(Reimbursement x : emp ) {
+				log.debug(x.toString());
+			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		//con.getI
 		
 		//HashSet<User> emp = d.getEmployees();

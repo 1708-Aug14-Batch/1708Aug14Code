@@ -1,10 +1,13 @@
 package com.revature.andy.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashSet;
 
 import com.revature.andy.dao.DAOImplementation;
 import com.revature.andy.pojos.Reimbursement;
 import com.revature.andy.pojos.User;
+import com.revature.andy.util.ConnectionFactory;
 
 public class Service {
 
@@ -66,8 +69,16 @@ public class Service {
 	}
 	
 	public HashSet<Reimbursement> getReimbursements(){
-		HashSet<Reimbursement> reims = dao.getReims();
-		return reims;
+		Connection con = ConnectionFactory.getInstance().getConnection();
+		HashSet<Reimbursement> reims;
+		try {
+			reims = dao.getReims2(con);
+			return reims;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	// Get User's Reimbursements

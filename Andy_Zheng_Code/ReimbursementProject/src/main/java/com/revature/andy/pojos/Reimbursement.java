@@ -104,6 +104,15 @@ public class Reimbursement {
 
 	public void setAmount(double amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [reimID=" + reimID + ", submitterID=" + submitterID.toString() + ", resolverID=" + resolverID.toString()
+				+ ", submitDate=" + submitDate + ", resolveDate=" + resolveDate + ", statusID=" + statusID.toString()
+				+ ", description=" + description + ", notes=" + notes + ", amount=" + amount + "]";
 	};
+	
+	
 	
 }

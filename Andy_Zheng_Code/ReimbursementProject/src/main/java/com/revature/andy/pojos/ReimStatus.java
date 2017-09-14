@@ -27,6 +27,11 @@ public class ReimStatus {
 
 	public void setStatusName(String statusName) {
 		this.statusName = statusName;
+	}
+
+	@Override
+	public String toString() {
+		return "ReimStatus [statusID=" + statusID + ", statusName=" + statusName + "]";
 	};
 	
 	
