@@ -73,4 +73,11 @@ public class ReimbursementService {
 		return empReimbs;
 	}
 	
+	public int editUser(RUser user) {
+		if (user == null) {
+			throw new IllegalArgumentException("User cannot be null");
+		}
+		return this.userDAO.update(user);
+	}
+	
 }

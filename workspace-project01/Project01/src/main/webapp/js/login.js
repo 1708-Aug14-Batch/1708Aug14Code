@@ -4,7 +4,6 @@ $(document).ready(function() {
 });
 
 function login() {
-	console.log("Inside login function");
 	var email = $('#email').val();
 	var password = $('#password').val();
 	var transaction = [email, password];

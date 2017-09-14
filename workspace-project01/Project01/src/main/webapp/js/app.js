@@ -1,13 +1,16 @@
 
 var loggedIn = false;
 window.onload = function() {
-	
+
 };
 
 $(document).ready(function() {
 	$('#btnViewMyReimbs').click(viewMyReimbs);
-	$('#btnMyInfo').click(viewMyInfo);
+	$('#btnMyInfo').click(viewMyInfoPage);
 	$('#btnLogout').click(logout);
+	$('#btnBackToMyInfo').click(viewMyInfoPage);
+	$('#btnEditMyInfo').click(showEditMyInfoPage);
+	$(document).on('click', '#btnSubmitNewInfo', editMyInfo);
 });
 
 function viewMyReimbs() {
@@ -62,19 +65,7 @@ function getMyReimbs() {
 	request.send();
 }
 
-function sendRequest(servlet) {
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			$('#view').html(request.responseText);
-		}
-	}
-	request.open("GET", servlet, true);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.send();
-}
-
-function viewMyInfo() {
+function viewMyInfoPage() {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
@@ -102,6 +93,41 @@ function getMyInfo() {
 	request.send();
 }
 
+function showEditMyInfoPage() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+		}
+	}
+	request.open("GET", "employee-edit-my-info", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function editMyInfo() {
+	var newPassword = $('#setNewPassword').val();
+	var newPasswordConfirmed = $('#confirmNewPassword').val();
+	if (newPassword === newPasswordConfirmed) {
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+				$('view').html(request.responseText);
+			}
+		}
+		var userData = JSON.stringify({firstName: $('#editFirstName').val(), 
+			lastName: $('#editLastName').val(), 
+			email: $('#editEmail').val(), 
+			newPassword: $('#setNewPassword').val(), 
+			currentPassword: $('#enterCurrentPassword').val()});
+		request.open("POST", "employee-edit-my-info", true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.send(userData); // send data here
+	} else {
+		alert("New password fields do not match!");
+	}
+}
+
 function logout() {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
@@ -113,3 +139,4 @@ function logout() {
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send();
 };
+

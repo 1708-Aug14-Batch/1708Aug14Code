@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.RUser;
-import com.revature.service.ReimbursementService;
 
 @WebServlet("/employee-view-my-info")
 public class EmployeeViewMyInfoServlet extends HttpServlet {
 
 	private static final int FORBIDDEN = 403;
 	private static final long serialVersionUID = 7800631297147052348L;
-	private ReimbursementService service = new ReimbursementService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println("Inside EmployeeGetMyInfo doGet");

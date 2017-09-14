@@ -80,10 +80,11 @@ public class RUserDAO implements IRUserDAO {
 	}
 
 	@Override
-	public void update(RUser user) {
+	public int update(RUser user) {
 		if (user == null) {
 			throw new IllegalArgumentException("User cannot be null");
 		}
+		int numberOfRowsAffected = 0;
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "UPDATE r_user SET first_name = ?, last_name = ?, email = ?, password = ?, is_manager = ? WHERE r_user_id = ?";
@@ -94,11 +95,12 @@ public class RUserDAO implements IRUserDAO {
 			statement.setString(4, user.getPassword());
 			statement.setBoolean(5, user.isManager());
 			statement.setInt(6, user.getRUserID());
-			statement.executeUpdate();
+			numberOfRowsAffected = statement.executeUpdate();
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return numberOfRowsAffected;
 	}
 
 }

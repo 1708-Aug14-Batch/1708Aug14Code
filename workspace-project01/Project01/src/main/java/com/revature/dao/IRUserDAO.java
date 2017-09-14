@@ -24,6 +24,6 @@ public interface IRUserDAO {
 	/**
 	 * UPDATE
 	 */
-	void update(RUser user);
+	int update(RUser user);
 
 }
