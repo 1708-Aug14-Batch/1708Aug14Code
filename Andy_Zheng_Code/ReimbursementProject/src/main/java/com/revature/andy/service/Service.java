@@ -12,8 +12,6 @@ import com.revature.andy.util.ConnectionFactory;
 public class Service {
 
 	static DAOImplementation dao = new DAOImplementation();
-	boolean isLoggedIn = false;
-	User currentUser = null;
 	
 	public User login(String email, String pwd) {
 		
@@ -37,10 +35,6 @@ public class Service {
 	
 	public User getUserByID(int userID) {
 		return dao.getUser(userID);
-	}
-
-	public boolean getIsLoggedIn(){
-		return isLoggedIn;
 	}
 	
 	// Create User
@@ -87,21 +81,7 @@ public class Service {
 		
 		return userReims;
 	}
-	
-	// Get Reimbursements of certain status
-	public HashSet<Reimbursement> getReimbursementsOfStatus(int statusID) {
-		HashSet<Reimbursement> reimOfStatus = dao.getStatusReim(statusID);
-		
-		return reimOfStatus;
-	}
-	
-	// Get User's Reimbursements by status
-	public HashSet<Reimbursement> getUserReimbursementOfStatus(int userID, int statusID ) {
-		HashSet<Reimbursement> userReimOfStatus = dao.getUserStatusReim(userID, statusID);
-		
-		return userReimOfStatus;
-	}
-	
+
 	// Update user information
 	public boolean updateUserInfo(User u) {
 		int x = dao.updateUser(u);
@@ -129,4 +109,23 @@ public class Service {
 			return false;
 		}
 	}
+	
+	/* Not used
+	 * 
+	
+	// Get Reimbursements of certain status
+	public HashSet<Reimbursement> getReimbursementsOfStatus(int statusID) {
+		HashSet<Reimbursement> reimOfStatus = dao.getStatusReim(statusID);
+		
+		return reimOfStatus;
+	}
+	
+	// Get User's Reimbursements by status
+	public HashSet<Reimbursement> getUserReimbursementOfStatus(int userID, int statusID ) {
+		HashSet<Reimbursement> userReimOfStatus = dao.getUserStatusReim(userID, statusID);
+		
+		return userReimOfStatus;
+	}	
+	 * 
+	 */
 }

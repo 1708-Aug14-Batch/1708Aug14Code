@@ -15,63 +15,7 @@ import com.revature.andy.util.ConnectionFactory;
 
 public class DAOImplementation implements DAOInterface {
 
-	public int selectALL() {
-		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			con.setAutoCommit(false);
-			String sql = "SELECT * FROM USERS";
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery(sql);
-
-			while (rs.next()) {
-				System.out.println(rs.getInt(1));
-			}
-			con.commit();
-			 
-			return 1;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		}
-	}
-
-	// prepared statement
-
 	// Insert User
-	// Insert User by Pass strings
-	public int addUser(String fn, String ln, String email, String pwd, int isManager) {
-
-		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			con.setAutoCommit(false);
-			String sql = "INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ISMANAGER) VALUES(?,?,?,?,?)";
-			String[] key = new String[1];
-			key[0] = "USERID";
-			PreparedStatement ps = con.prepareStatement(sql, key);
-			ps.setString(1, fn);
-			ps.setString(2, ln);
-			ps.setString(3, email);
-			ps.setString(4, pwd);
-			ps.setInt(5, isManager);
-
-			ps.executeUpdate();
-
-			int id = 0;
-
-			ResultSet rs = ps.getGeneratedKeys();
-			while (rs.next()) {
-				id = rs.getInt(1);
-			}
-			con.commit();
-			 
-			return id;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return -1;
-		}
-	}
-
-	// Insert User by Pass object
 	public int addUser(User u) {
 
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
@@ -104,7 +48,7 @@ public class DAOImplementation implements DAOInterface {
 
 	}
 
-	// Update User by pass object
+	// Update User
 	public int updateUser(User u) {
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			con.setAutoCommit(false);
@@ -213,7 +157,6 @@ public class DAOImplementation implements DAOInterface {
 			temp.setPassword(cs.getString(5));
 			temp.setIsManager(cs.getInt(6));
 
-			 
 			return temp;
 
 		} catch (SQLException e) {
@@ -263,7 +206,6 @@ public class DAOImplementation implements DAOInterface {
 						rs.getInt(6));
 				userList.add(temp);
 			}
-
 			 
 			return userList;
 
@@ -289,7 +231,6 @@ public class DAOImplementation implements DAOInterface {
 						rs.getInt(6));
 				userList.add(temp);
 			}
-
 			 
 			return userList;
 
@@ -391,7 +332,6 @@ public class DAOImplementation implements DAOInterface {
 			return null;
 		}
 	}
-
 	
 	// select all reimbursements based of a user
 	public HashSet<Reimbursement> getUserReim(int userID) {
@@ -420,7 +360,6 @@ public class DAOImplementation implements DAOInterface {
 
 				reimList.add(tempReim);
 			}
-
 			 
 			return reimList;
 
@@ -429,7 +368,35 @@ public class DAOImplementation implements DAOInterface {
 			return null;
 		}
 	}
+	
+	// Return a ReimStatus Object From Look Up Table
+	public ReimStatus getReimStatusFromID(int statusID) {
 
+		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
+			String sql = "SELECT * FROM REIMSTATUS WHERE STATUSID = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, statusID);
+
+			ResultSet rs = ps.executeQuery();
+
+			ReimStatus temp = null;
+
+			while (rs.next()) {
+				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
+			}
+			 
+			return temp;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+	
+	/* Not Used
+	 * 
+	 
 	// selects all reimbursements based on status
 	public HashSet<Reimbursement> getStatusReim(int statusID) {
 
@@ -499,29 +466,6 @@ public class DAOImplementation implements DAOInterface {
 		}
 	}
 
-	// Return a ReimStatus Object From Look Up Table
-	public ReimStatus getReimStatusFromID(int statusID) {
-
-		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM REIMSTATUS WHERE STATUSID = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, statusID);
-
-			ResultSet rs = ps.executeQuery();
-
-			ReimStatus temp = null;
-
-			while (rs.next()) {
-				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
-			}
-
-			 
-			return temp;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
+	 * 
+	 */
 }
