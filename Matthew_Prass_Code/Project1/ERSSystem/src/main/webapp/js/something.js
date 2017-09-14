@@ -37,6 +37,7 @@ function getUserInformation(){
 					var status = row.insertCell(2);
 					var desc = row.insertCell(3);
 					var amt = row.insertCell(4);
+					var image = row.insertCell(5);
 					reid.innerHTML = "No.: " + reimb[i].id + " ";
 					subdate.innerHTML = reimb[i].submitdate+ " ";
 					status.innerHTML = reimb[i].type.name + " ";
@@ -47,7 +48,8 @@ function getUserInformation(){
 						status.setAttribute("class", "table-success");
 					}
 					desc.innerHTML = reimb[i].descript+ " ";
-					amt.innerHTML = "$ "+reimb[i].amount;
+					amt.innerHTML = "$ "+reimb[i].amount + " ";
+					image.innerHTML = reimb[i].receipt;
 				}
 			}
 			//document.getElementById('info').innerHTML = JSON.stringify(user,null,4);

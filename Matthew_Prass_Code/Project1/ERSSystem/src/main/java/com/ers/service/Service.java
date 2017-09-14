@@ -1,6 +1,9 @@
 package com.ers.service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -54,7 +57,25 @@ public class Service {
 	
 	public Reimbursement submitReimbursement(Employee emp,String descript, double amt, InputStream is)
 	{
-		Reimbursement r = dao.createReimbursement(emp, Timestamp.valueOf(LocalDateTime.now()), descript, amt,is);
+		Reimbursement r = new Reimbursement(); 
+		r = dao.createReimbursement(emp, Timestamp.valueOf(LocalDateTime.now()), descript, amt,is);
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+		int nRead;
+		byte[] data = new byte[16384];
+
+		try {
+			while ((nRead = is.read(data, 0, data.length)) != -1) {
+			  buffer.write(data, 0, nRead);
+			}
+			buffer.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		r.setInputStream(buffer.toByteArray());
+		System.out.println(r.getInputStream());
 		return r;
 	}
 	

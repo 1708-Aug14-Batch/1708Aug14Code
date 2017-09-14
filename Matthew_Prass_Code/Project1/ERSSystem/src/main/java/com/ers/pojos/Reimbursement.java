@@ -1,5 +1,7 @@
 package com.ers.pojos;
 
+import java.io.InputStream;
+import java.sql.Blob;
 //import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -14,6 +16,7 @@ public class Reimbursement {
 	private String descript;
 	private String notes;
 	private double amount;
+	private byte[] receipt;
 	
 	public Reimbursement() {};
 	
@@ -101,12 +104,20 @@ public class Reimbursement {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
+	
+	public byte[] getInputStream() {
+		return receipt;
+	}
+
+	public void setInputStream(byte[] receipt) {
+		this.receipt = receipt;
+	}
 
 	@Override
 	public String toString() {
 		return "Reimbursement [id=" + id + ", submitter=" + submitter + ", resolver=" + resolver + ", submitdate="
 				+ submitdate + ", resolveddate=" + resolveddate + ", type=" + type + ", descript=" + descript
-				+ ", notes=" + notes + ", amount=" + amount + "]";
+				+ ", notes=" + notes + ", amount=" + amount + " blob= " + receipt + "]";
 	}
 	
 	

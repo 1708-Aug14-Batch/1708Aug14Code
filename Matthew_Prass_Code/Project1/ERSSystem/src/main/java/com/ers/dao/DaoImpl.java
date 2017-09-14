@@ -1,6 +1,8 @@
 package com.ers.dao;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -63,6 +65,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 
 	@Override
 	public Reimbursement createReimbursement(Employee submit, Timestamp submitdate, String desc, double amt, InputStream is) {
+	
 		Reimbursement a = null;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
@@ -86,8 +89,8 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			{
 				id = pk.getInt(1);
 			}
-			
 			conn.commit();
+			a = getReimbursement(id);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -117,9 +120,10 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				double amt = rs.getDouble(9);
-				
+				Blob file = rs.getBlob(10);
 				Reimbursement ex = new Reimbursement(getEmployee(subid),getEmployee(resolvid),submitdate,resolvedate,getStatus(status),desc,notes,amt);
 				ex.setId(id);
+				//ex.setInputStream(file.getBinaryStream());
 				list.add(ex);
 			}
 		} catch (Exception e) {
@@ -154,9 +158,11 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				double amt = rs.getDouble(9);
+				Blob file = rs.getBlob(10);
 				
 				Reimbursement ex = new Reimbursement(getEmployee(subid),getEmployee(resolvid),submitdate,resolvedate,getStatus(status),desc,notes,amt);
 				ex.setId(id);
+				//ex.setInputStream(file.getBinaryStream());
 				list.add(ex);
 			}
 		} catch (Exception e) {
@@ -351,6 +357,32 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	public byte[] getBlob(int id) {
+		
+		byte[] bytes = null;
+		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+			
+			conn.setAutoCommit(false);
+			String sql = "select attachment" + 
+					" from reimbursement" +
+					" where reid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				bytes = rs.getBytes(1);
+			}
+		
+			conn.commit();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return bytes;
 	}
 
 
