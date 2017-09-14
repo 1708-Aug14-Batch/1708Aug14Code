@@ -26,6 +26,7 @@ public class DAOImplementation implements DAOInterface {
 				System.out.println(rs.getInt(1));
 			}
 			con.commit();
+			con.close();
 			return 1;
 
 		} catch (SQLException e) {
@@ -61,6 +62,7 @@ public class DAOImplementation implements DAOInterface {
 				id = rs.getInt(1);
 			}
 			con.commit();
+			con.close();
 			return id;
 
 		} catch (SQLException e) {
@@ -120,6 +122,7 @@ public class DAOImplementation implements DAOInterface {
 			ps.executeUpdate();
 
 			con.commit();
+			con.close();
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -152,6 +155,7 @@ public class DAOImplementation implements DAOInterface {
 			}
 
 			con.commit();
+			con.close();
 			return id;
 
 		} catch (SQLException e) {
@@ -177,6 +181,7 @@ public class DAOImplementation implements DAOInterface {
 
 			ps.executeQuery();
 			con.commit();
+			con.close();
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -208,6 +213,7 @@ public class DAOImplementation implements DAOInterface {
 			temp.setPassword(cs.getString(5));
 			temp.setIsManager(cs.getInt(6));
 
+			con.close();
 			return temp;
 
 		} catch (SQLException e) {
@@ -234,6 +240,7 @@ public class DAOImplementation implements DAOInterface {
 				temp = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getInt(6));
 			}
+			con.close();
 			return temp;
 
 		} catch (SQLException e) {
@@ -257,6 +264,7 @@ public class DAOImplementation implements DAOInterface {
 				userList.add(temp);
 			}
 
+			con.close();
 			return userList;
 
 		} catch (SQLException e) {
@@ -282,6 +290,7 @@ public class DAOImplementation implements DAOInterface {
 				userList.add(temp);
 			}
 
+			con.close();
 			return userList;
 
 		} catch (SQLException e) {
@@ -315,6 +324,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
+			con.close();
 			return reimList;
 
 		} catch (SQLException e) {
@@ -352,6 +362,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
+			con.close();
 			return reimList;
 
 		} catch (SQLException e) {
@@ -385,6 +396,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
+			con.close();
 			return reimList;
 
 		} catch (SQLException e) {
@@ -419,6 +431,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
+			con.close();
 			return reimList;
 
 		} catch (SQLException e) {
@@ -443,6 +456,7 @@ public class DAOImplementation implements DAOInterface {
 				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
 			}
 
+			con.close();
 			return temp;
 
 		} catch (SQLException e) {
