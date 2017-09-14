@@ -98,7 +98,6 @@ public class Service {
 			}
 			return reims;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
@@ -124,7 +123,7 @@ public class Service {
 			log.debug("User Updated");
 			return true;
 		}else {
-			log.debug("Failed to Update User");
+			log.debug("User Update Failed");
 			return false;
 		}
 	}
