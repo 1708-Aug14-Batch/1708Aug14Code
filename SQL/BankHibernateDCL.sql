@@ -1,0 +1,9 @@
+
+CREATE USER bank_hib
+IDENTIFIED BY somberlain;
+
+GRANT CONNECT TO bank_hib;
+GRANT RESOURCE TO bank_hib;
+GRANT CREATE SESSION TO bank_hib;
+GRANT CREATE TABLE TO bank_hib;
+GRANT CREATE VIEW TO bank_hib;

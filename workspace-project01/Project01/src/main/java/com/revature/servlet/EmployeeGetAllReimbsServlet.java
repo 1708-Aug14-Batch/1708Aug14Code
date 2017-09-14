@@ -20,7 +20,7 @@ import com.revature.service.ReimbursementService;
 public class EmployeeGetAllReimbsServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = -8219662133087879474L;
-	ReimbursementService service = new ReimbursementService();
+	private ReimbursementService service = new ReimbursementService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println("Inside EmployeeAllReimbs doPost");

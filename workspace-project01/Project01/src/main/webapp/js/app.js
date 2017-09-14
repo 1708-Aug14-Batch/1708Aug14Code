@@ -1,7 +1,7 @@
 
 var loggedIn = false;
-window.onload = function() { 
-	//loadHomeView();
+window.onload = function() {
+	
 };
 
 $(document).ready(function() {
@@ -9,18 +9,6 @@ $(document).ready(function() {
 	$('#btnMyInfo').click(viewMyInfo);
 	$('#btnLogout').click(logout);
 });
-
-function loadHomeView() {
-	var request = new XMLHttpRequest();
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			$('#view').html(request.responseText);
-		}
-	}
-	request.open("GET", "homepage", true);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.send();
-};
 
 function viewMyReimbs() {
 	console.log("Inside viewMyReimbs");
@@ -87,7 +75,31 @@ function sendRequest(servlet) {
 }
 
 function viewMyInfo() {
-	sendReqest("employee-view-info");
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+			getMyInfo();
+		}
+	}
+	request.open("GET", "employee-view-my-info", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getMyInfo() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var user = JSON.parse(request.responseText);
+			$('#welcome').html("Welcome " + user.firstName + " " + user.lastName);
+			$('#myEmail').html("Email : " + user.email);
+			$('#isManager').html("You are not a manager");
+		}		
+	}
+	request.open("POST", "employee-view-my-info", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
 }
 
 function logout() {
