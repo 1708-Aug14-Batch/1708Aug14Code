@@ -40,6 +40,12 @@ function getUserInformation(){
 					reid.innerHTML = "No.: " + reimb[i].id + " ";
 					subdate.innerHTML = reimb[i].submitdate+ " ";
 					status.innerHTML = reimb[i].type.name + " ";
+					if(reimb[i].type.name == "Denied"){
+						status.setAttribute("class", "table-danger");
+					}
+					else if(reimb[i].type.name == "Approved"){
+						status.setAttribute("class", "table-success");
+					}
 					desc.innerHTML = reimb[i].descript+ " ";
 					amt.innerHTML = "$ "+reimb[i].amount;
 				}

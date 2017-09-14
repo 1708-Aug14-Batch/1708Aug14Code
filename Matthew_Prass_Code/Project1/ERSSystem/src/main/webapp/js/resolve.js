@@ -30,7 +30,7 @@ function getUserInformation(){
 			}
 			else{
 				for(var i =0; i <reimb.length; i++){
-					var table = document.getElementById("empReimbs");
+					var table = document.getElementById("dev-table");
 					var row = table.insertRow();
 					var reid = row.insertCell(0);
 					var subid = row.insertCell(1)
@@ -56,6 +56,12 @@ function getUserInformation(){
 						resdate.innerHTML = " ";
 					}
 					status.innerHTML = reimb[i].type.name + " ";
+					if(reimb[i].type.name == "Denied"){
+						status.setAttribute("class", "table-danger");
+					}
+					else if(reimb[i].type.name == "Approved"){
+						status.setAttribute("class", "table-success");
+					}
 					desc.innerHTML = reimb[i].descript+ " ";
 					notes.innerHTML = reimb[i].notes+ " ";
 					if(notes.innerHTML == "null "){
@@ -69,6 +75,55 @@ function getUserInformation(){
 	}
 	xhr.open("GET","getManagerInfo",true);
 	xhr.send();
+	(function(){
+		'use strict';
+		var $ = jQuery;
+		$.fn.extend({
+			filterTable: function(){
+				return this.each(function(){
+					$(this).on('keyup', function(e){
+						$('.filterTable_no_results').remove();
+						var $this = $(this), 
+						search = $this.val().toLowerCase(), 
+						target = $this.attr('data-filters'), 
+						$target = $(target), 
+						$rows = $target.find('tbody tr');
+
+						if(search == '') {
+							$rows.show(); 
+						} else {
+							$rows.each(function(){
+								var $this = $(this);
+								$this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+							})
+							if($target.find('tbody tr:visible').size() === 0) {
+								var col_count = $target.find('tr').first().find('td').size();
+								var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+								$target.find('tbody').append(no_results);
+							}
+						}
+					});
+				});
+			}
+		});
+		$('[data-action="filter"]').filterTable();
+	})(jQuery);
+
+	$(function(){
+		// attach table filter plugin to inputs
+		$('[data-action="filter"]').filterTable();
+
+		$('.container').on('click', '.panel-heading span.filter', function(e){
+			var $this = $(this), 
+			$panel = $this.parents('.panel');
+
+			$panel.find('.panel-body').show();
+			if($this.css('display') != 'none') {
+				$panel.find('.panel-body input').focus();
+			}
+		});
+		$('[data-toggle="tooltip"]').tooltip();
+	})
 }
 
 $(document).ready(function(){
