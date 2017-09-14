@@ -44,6 +44,8 @@ public class LoginRequestServlet extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		
+		log.debug("Session User\t" + session.getAttribute("User"));
+		
 		int valid = s.validateLogin(email, password);
 		String json = null;
 		if(valid==1) {

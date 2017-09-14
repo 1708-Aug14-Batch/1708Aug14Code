@@ -16,7 +16,7 @@ import com.revature.andy.pojos.User;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet{
 
-	final static Logger log = Logger.getLogger(LoginRequestServlet.class);
+	final static Logger log = Logger.getLogger(LogoutServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

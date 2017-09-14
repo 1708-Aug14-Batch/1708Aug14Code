@@ -42,6 +42,35 @@ function loginRequest(){
 }
 
 function loadMenu(value){
+	$.ajax({
+		type: 'GET',
+		url: 'loadMenu',
+		success: function(response){
+			document.getElementById('content').innerHTML = response;
+			loadHome();
+			if(value == "0"){
+				$('#four').click(loadSubmitReim);
+			}else if(value == "1"){
+				$('#four').click(loadRegisterEmployee);
+			}
+
+			if(value == "0"){
+				$('#three').click(loadReimE);
+			}else if(value == "1"){
+				$('#three').click(loadReimM);
+			}
+			//$('#one').click(loadHome);
+			$('#two').click(loadUser);
+			$('#five').click(invalidateSession);
+			if(value == "1"){
+				$('#emp').click(loadEmployee);
+			}
+		}
+	})
+}
+
+/*
+function loadMenu(value){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -69,7 +98,7 @@ function loadMenu(value){
 	xhr.open("GET", "loadMenu", true);
 	xhr.send();
 }
-
+*/
 function loadUser(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -690,6 +719,17 @@ function invalidateSession(){
 	})
 }
 
+function loadHome(){
+	$.ajax({
+		type: 'GET',
+		url: 'loadHome',
+		success: function(response){
+			document.getElementById('content1').innerHTML = response;
+		}
+	})
+}
+
+/*
 //???
 function loadHome(){
 	var xhr = new XMLHttpRequest();
@@ -700,7 +740,7 @@ function loadHome(){
 	}
 	xhr.open("GET", "loadHome", true);
 	xhr.send();
-}
+}*/
 
 $(document).ready(function(){
 	loadLogin();

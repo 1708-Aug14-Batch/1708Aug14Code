@@ -30,7 +30,7 @@ public class MenuServlet extends HttpServlet {
 		
 		if(sessionUser.getIsManager() == 1) {
 			req.getRequestDispatcher("menuM.html").forward(req, resp);
-		}else {
+		}else if(sessionUser.getIsManager() == 0){
 			req.getRequestDispatcher("menuE.html").forward(req, resp);
 		}	
 	}
