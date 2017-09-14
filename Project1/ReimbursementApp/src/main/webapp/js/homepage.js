@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 function getInfo() {
 	var xhr = new XMLHttpRequest();

@@ -57,7 +57,7 @@ public class ReimburseDAO implements DAO {
 
 	@Override
 	public void deleteUser(User user) {
-		// TODO put delete call in db
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
 			String sql = "{ call deleteUser(?) }";
@@ -612,7 +612,7 @@ public class ReimburseDAO implements DAO {
 
 	@Override
 	public void deleteReimbursement(Reimbursement r) {
-		// TODO put delete call in db
+
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 
 			String sql = "{ call deleteReimbursement(?) }";
