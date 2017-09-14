@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.pojos.User;
 import com.reimburse.service.Service;
 
 @WebServlet("/addEmployee")
 public class AddEmployeeServlet extends HttpServlet{
-
+	final static Logger logger = Logger.getLogger(AddEmployeeServlet.class);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
 	
@@ -40,5 +42,7 @@ public class AddEmployeeServlet extends HttpServlet{
 		String json = mapper.writeValueAsString(user);
 		res.setContentType("application/json");
 		writer.print(json);
+		
+		logger.info("POST added employee: "+user.toString());
 	}
 }

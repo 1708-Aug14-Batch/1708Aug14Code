@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.dto.ManagerDTO;
 import com.reimburse.pojos.Reimbursement;
@@ -19,7 +21,8 @@ import com.reimburse.service.Service;
 
 @WebServlet("/managerhomepage")
 public class ManagerHomePageServlet extends HttpServlet{
-
+	final static Logger logger = Logger.getLogger(ManagerHomePageServlet.class);
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -54,5 +57,6 @@ public class ManagerHomePageServlet extends HttpServlet{
 		res.setContentType("application/json");
 		writer.println(json); 
 
+		logger.info("GET MANAGER: "+json);
 	}
 }

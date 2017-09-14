@@ -10,13 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.service.Service;
 
 @WebServlet("/getemployeereimbursements")
 public class EmployeeReimbursementsServlet extends HttpServlet{
-
+	final static Logger logger = Logger.getLogger(EmployeeReimbursementsServlet.class);
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -32,6 +34,8 @@ public class EmployeeReimbursementsServlet extends HttpServlet{
 		System.out.println(json);
 		res.setContentType("application/json");
 		writer.println(json); 
+		
+		logger.info("POST get all reimbursements for user "+(String)req.getParameter("name")+":"+json);
 	}
 }
 

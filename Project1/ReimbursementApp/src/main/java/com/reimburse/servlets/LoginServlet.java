@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.reimburse.pojos.User;
 import com.reimburse.service.Service;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+	final static Logger logger = Logger.getLogger(LoginServlet.class);
 	
 	@Override protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
 		RequestDispatcher sd;
@@ -25,15 +28,13 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter writer = res.getWriter();
 		Service bankService = new Service();
 		
-		System.out.println(req.getParameter("username")+ " : "+req.getParameter("password"));
-		
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		
 		if(!bankService.existsUsername(username)){
 			String response = "username";
 
-			System.out.println(response);
+			logger.error("Username '"+username+"' was not found");
 			res.setContentType("application/json");
 			writer.print(response);
 			return;
@@ -43,12 +44,12 @@ public class LoginServlet extends HttpServlet {
 		//see if success, new User is fail
 		if(user.getUserId() == 0){
 			String response = "password";
-			System.out.println(response);
+			logger.error("Username '"+username+"' failed login w/ pass: "+password);
 			res.setContentType("application/json");
 			writer.print(response);
 		}
 		else{
-		    
+		    logger.info("User "+user.getUserId()+" has logged in.");
 			session.setAttribute("userid", user.getUserId());
 		    session.setAttribute("usertype",user.getIsManager());
 		    

@@ -77,17 +77,4 @@ public class User {
 				+ username + ", email=" + email + ", pwd=" + pwd + ", isManager=" + isManager + "]";
 	}
 	
-	@Override
-	public boolean equals(Object obj){
-		User user = (User) obj;
-		if(this.userId == user.getUserId() &&
-				this.firstname.equals(user.getFirstname()) &&
-				this.lastname.equals(user.getLastname()) &&
-				this.username.equals(user.getUserId()) &&
-				this.pwd.equals(user.getPwd()) &&
-				this.isManager == user.getIsManager()){
-			return true;
-		}
-		return false;
-	}
 }

@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 @WebServlet("/homepageredirect")
 public class HomePageRedirectServlet extends HttpServlet{
-
+	final static Logger logger = Logger.getLogger(HomePageRedirectServlet.class);
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession();
+		
+		logger.info("Redirecting to home, user "+session.getAttribute("userid"));
 		byte isManager = (byte) session.getAttribute("usertype");
 		
 		if(isManager == 0){

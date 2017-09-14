@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.dto.DTO;
 import com.reimburse.pojos.Reimbursement;
@@ -19,7 +21,7 @@ import com.reimburse.service.Service;
 
 @WebServlet("/employeeresolved")
 public class EmployeeResolvedServlet extends HttpServlet{
-
+	final static Logger logger = Logger.getLogger(EmployeeResolvedServlet.class);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException ,IOException {
 		//session + outwriter + service
@@ -42,5 +44,6 @@ public class EmployeeResolvedServlet extends HttpServlet{
 		res.setContentType("application/json");
 		writer.println(json); 
 
+		logger.info("POST resolved reimbursements for user "+session.getAttribute("userid")+":"+json);
 	};
 }

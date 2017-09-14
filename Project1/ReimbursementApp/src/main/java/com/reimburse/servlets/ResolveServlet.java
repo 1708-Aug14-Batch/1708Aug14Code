@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.service.Service;
 
 @WebServlet("/resolveReimbursement")
 public class ResolveServlet extends HttpServlet{
-
+	final static Logger logger = Logger.getLogger(ResolveServlet.class);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
 		
@@ -46,6 +48,6 @@ public class ResolveServlet extends HttpServlet{
 		
 		//send
 		bankService.resolveReimbursement(r);
-
+		logger.info("Reimbursement resolved: "+r.toString());
 	}
 }
