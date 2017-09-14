@@ -21,12 +21,12 @@ public class DAOImplementation implements DAOInterface {
 			String sql = "SELECT * FROM USERS";
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
-			
+
 			while (rs.next()) {
 				System.out.println(rs.getInt(1));
 			}
 			con.commit();
-			con.close();
+			 
 			return 1;
 
 		} catch (SQLException e) {
@@ -34,7 +34,7 @@ public class DAOImplementation implements DAOInterface {
 			return -1;
 		}
 	}
-	
+
 	// prepared statement
 
 	// Insert User
@@ -62,7 +62,7 @@ public class DAOImplementation implements DAOInterface {
 				id = rs.getInt(1);
 			}
 			con.commit();
-			con.close();
+			 
 			return id;
 
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class DAOImplementation implements DAOInterface {
 			ps.setInt(5, u.getIsManager());
 
 			ps.executeUpdate();
-			
+
 			int id = 0;
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -122,7 +122,7 @@ public class DAOImplementation implements DAOInterface {
 			ps.executeUpdate();
 
 			con.commit();
-			con.close();
+			 
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -155,7 +155,7 @@ public class DAOImplementation implements DAOInterface {
 			}
 
 			con.commit();
-			con.close();
+			 
 			return id;
 
 		} catch (SQLException e) {
@@ -181,7 +181,7 @@ public class DAOImplementation implements DAOInterface {
 
 			ps.executeQuery();
 			con.commit();
-			con.close();
+			 
 			return 1;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,7 +213,7 @@ public class DAOImplementation implements DAOInterface {
 			temp.setPassword(cs.getString(5));
 			temp.setIsManager(cs.getInt(6));
 
-			con.close();
+			 
 			return temp;
 
 		} catch (SQLException e) {
@@ -233,14 +233,14 @@ public class DAOImplementation implements DAOInterface {
 			ps.setString(2, pwd);
 
 			ResultSet rs = ps.executeQuery();
-			
+
 			User temp = null;
 
 			while (rs.next()) {
 				temp = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
 						rs.getInt(6));
 			}
-			con.close();
+			 
 			return temp;
 
 		} catch (SQLException e) {
@@ -264,7 +264,7 @@ public class DAOImplementation implements DAOInterface {
 				userList.add(temp);
 			}
 
-			con.close();
+			 
 			return userList;
 
 		} catch (SQLException e) {
@@ -272,14 +272,14 @@ public class DAOImplementation implements DAOInterface {
 			return null;
 		}
 	}
-	
+
 	// get all employees
-	public HashSet<User> getEmployees(){
+	public HashSet<User> getEmployees() {
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM USERS WHERE ISMANAGER = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, 0);
-			
+
 			ResultSet rs = ps.executeQuery();
 
 			HashSet<User> userList = new HashSet<>();
@@ -290,31 +290,31 @@ public class DAOImplementation implements DAOInterface {
 				userList.add(temp);
 			}
 
-			con.close();
+			 
 			return userList;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
-	
+
 	// select all reimbursements
-	public HashSet<Reimbursement> getReims(){
+	public HashSet<Reimbursement> getReims() {
 		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
 			String sql = "SELECT * FROM REIMBURSEMENTS";
 
 			Statement s = con.createStatement();
 			ResultSet rs = s.executeQuery(sql);
-			
+
 			HashSet<Reimbursement> reimList = new HashSet<>();
 
 			while (rs.next()) {
 				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
 				User tempSub = getUser(rs.getInt(2));
 				User tempRes = null;
-				if(rs.getInt(3) > 0) {
+				if (rs.getInt(3) > 0) {
 					tempRes = getUser(rs.getInt(3));
 				}
 
@@ -324,16 +324,16 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
-			con.close();
+			 
 			return reimList;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
-	
+
 	// select all reimbursements based of a user
 	public HashSet<Reimbursement> getUserReim(int userID) {
 
@@ -352,7 +352,7 @@ public class DAOImplementation implements DAOInterface {
 				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
 				User tempSub = getUser(rs.getInt(2));
 				User tempRes = null;
-				if(rs.getInt(3) > 0) {
+				if (rs.getInt(3) > 0) {
 					tempRes = getUser(rs.getInt(3));
 				}
 
@@ -362,7 +362,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
-			con.close();
+			 
 			return reimList;
 
 		} catch (SQLException e) {
@@ -396,7 +396,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
-			con.close();
+			 
 			return reimList;
 
 		} catch (SQLException e) {
@@ -431,7 +431,7 @@ public class DAOImplementation implements DAOInterface {
 				reimList.add(tempReim);
 			}
 
-			con.close();
+			 
 			return reimList;
 
 		} catch (SQLException e) {
@@ -456,7 +456,7 @@ public class DAOImplementation implements DAOInterface {
 				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
 			}
 
-			con.close();
+			 
 			return temp;
 
 		} catch (SQLException e) {

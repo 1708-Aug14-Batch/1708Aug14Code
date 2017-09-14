@@ -52,9 +52,14 @@ function loadMenu(value){
 			}else if(value == "1"){
 				$('#four').click(loadRegisterEmployee);
 			}
+
+			if(value == "0"){
+				$('#three').click(loadReimE);
+			}else if(value == "1"){
+				$('#three').click(loadReimM);
+			}
 			//$('#one').click(loadHome);
 			$('#two').click(loadUser);
-			$('#three').click(loadReim);
 			$('#five').click(invalidateSession);
 		}
 	}
@@ -157,19 +162,109 @@ function validateUpdateUserInfo(){
 	}
 }
 
-function loadReim(){
+function loadReimE(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('content1').innerHTML = xhr.responseText;
-			getReimInfo();
+			getReimInfoE();	
 		}
 	}
 	xhr.open("GET", "loadReim", true);
 	xhr.send();
 }
 
-function getReimInfo(){
+function loadReimM(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('content1').innerHTML = xhr.responseText;
+			getReimInfoM();	
+		}
+	}
+	xhr.open("GET", "loadReim", true);
+	xhr.send();
+}
+
+function getReimInfoE(){
+	$.ajax({
+		type: 'GET',
+		url: 'reimInfo',
+		success: function(response){
+			var reim = response;
+
+			for(var x = 0; x<reim.length; x++){
+				var tr = "<tr>";
+				tr += "<td>" + reim[x].reimID + "</td>";
+				tr += "<td>" + reim[x].description + "</td>";
+				if(reim[x].notes){
+					tr += "<td>" + reim[x].notes + "</td>";
+				}
+				else{
+					tr += "<td></td>";
+				}
+				tr += "<td>" + (reim[x].submitterID.fname + " " + reim[x].submitterID.lname) + "</td>";
+				if(reim[x].resolverID){
+					tr += "<td>" + (reim[x].resolverID.fname + " " + reim[x].resolverID.lname) + "</td>";
+				}
+				else{
+					tr += "<td></td>";
+				}
+				tr += "<td>" + reim[x].submitDate + "</td>";
+				if(reim[x].resolveDate){
+					tr += "<td>" + reim[x].resolveDate + "</td>";
+				}
+				else{
+					tr += "<td></td>";
+				}
+				tr += "<td class='statusClick'>" + reim[x].statusID.statusName + "</td>";
+				tr += "<td>" + reim[x].amount + "</td>";
+				tr += "</tr>"	
+				$( "#reimTable tbody" ).append(tr);
+			}
+
+			var status = [
+			"Pending",
+			"Approved",
+			"Denied"
+			]
+
+			var reimTable = $('#reimTable').DataTable({
+				"pageLength": 5,
+				"bLengthChange": false,	
+    			/*
+    			"columnDefs": [
+    			{ "width": "15px", "targets": 0 },
+    			{ "width": "150px", "targets": 1 },
+    			{ "width": "70px", "targets": 2 },
+    			{ "width": "70px", "targets": 3 },
+    			{ "width": "60px", "targets": 4 },
+    			{ "width": "60px", "targets": 5 },
+    			{ "width": "40px", "targets": 6 },
+    			{ "width": "60px", "targets": 7 },
+    			],
+    			*/
+    			initComplete: function () {
+    				this.api().columns([0,3,4,7]).every( function () {
+    					var column = this;
+    					var select = $('<select><option value="">Show all</option></select>');
+    					select.appendTo($(column.footer()).empty()).on( 'change', function () {
+    						var val = $.fn.dataTable.util.escapeRegex($(this).val());
+    						column.search( val ? '^'+val+'$' : '', true, false ).draw();
+    					} );
+    					column.cells('', column[0]).render('display').sort().unique().each( function ( d, j )
+    					{
+    						select.append( '<option value="'+d+'">'+d+'</option>' )
+    					} );
+    				} );
+    			}
+    		});
+		}
+	})
+}
+
+
+function getReimInfoM(){
 	$.ajax({
 		type: 'GET',
 		url: 'reimInfo',
@@ -218,7 +313,7 @@ function getReimInfo(){
 				tr += "<td><select>" + option0 + option1 + option2 + "</select></td>";
 				*/
 				tr += "<td>" + reim[x].amount + "</td>";
-				tr += "</tr>"
+				tr += "</tr>"	
 				$( "#reimTable tbody" ).append(tr);
 			}
 
@@ -290,12 +385,9 @@ function getReimInfo(){
 						var select = $('<select><option value="">Show all</option></select>');
 						select.appendTo($(column.footer()).empty()).on( 'change', function () {
 							var val = $.fn.dataTable.util.escapeRegex($(this).val());
-							// ?????????
-							//column.search(val).draw();
 							column.search( val ? '^'+val+'$' : '', true, false ).draw();
 						} );
 						column.cells('', column[0]).render('display').sort().unique().each( function ( d, j )
-						//column.data().unique().sort().each( function ( d, j ) 
 						{
 							select.append( '<option value="'+d+'">'+d+'</option>' )
 						} );
@@ -340,8 +432,6 @@ function getReimInfo(){
 				 			}
 				 		}
 					})
-					//updateReim(to);
-					//loadReim();
 				})
 			})
 /*
