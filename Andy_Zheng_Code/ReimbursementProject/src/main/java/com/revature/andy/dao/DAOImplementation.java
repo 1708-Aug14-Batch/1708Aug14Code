@@ -302,7 +302,6 @@ public class DAOImplementation implements DAOInterface {
 			HashSet<Reimbursement> reimList = new HashSet<>();
 
 			while (rs.next()) {
-
 				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
 				User tempSub = getUser(rs.getInt(2));
 				User tempRes = null;

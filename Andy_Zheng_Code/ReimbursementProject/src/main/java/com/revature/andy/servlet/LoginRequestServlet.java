@@ -17,8 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/loginRequest")
-@WebServlet(name="loginRequest", urlPatterns="/loginRequest", loadOnStartup=2)
+@WebServlet("/loginRequest")
 public class LoginRequestServlet extends HttpServlet{
 
 	@Override

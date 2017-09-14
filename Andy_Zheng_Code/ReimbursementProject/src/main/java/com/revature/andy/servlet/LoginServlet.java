@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/loadLogin")
-@WebServlet(name="loadLogin", urlPatterns="/loadLogin", loadOnStartup=1)
+@WebServlet("/loadLogin")
 public class LoginServlet extends HttpServlet {
 	
 	@Override

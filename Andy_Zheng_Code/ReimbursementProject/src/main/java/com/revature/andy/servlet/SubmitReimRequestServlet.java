@@ -17,8 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/submitReim")
-@WebServlet(name="submitReim", urlPatterns="/submitReim", loadOnStartup=9)
+@WebServlet("/submitReim")
 public class SubmitReimRequestServlet extends HttpServlet{
 
 	@Override

@@ -17,8 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/validateUser")
-@WebServlet(name="validateUser", urlPatterns="/validateUser", loadOnStartup=12)
+@WebServlet("/validateUser")
 public class ValidateUserServlet extends HttpServlet{
 
 	@Override

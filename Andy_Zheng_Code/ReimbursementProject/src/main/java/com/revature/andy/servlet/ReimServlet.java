@@ -8,8 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/loadReim")
-@WebServlet(name="loadReim", urlPatterns="/loadReim", loadOnStartup=6)
+@WebServlet("/loadReim")
 public class ReimServlet extends HttpServlet {
 
 	@Override

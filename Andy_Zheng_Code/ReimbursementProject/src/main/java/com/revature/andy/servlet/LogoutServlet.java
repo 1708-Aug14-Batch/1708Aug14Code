@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-//@WebServlet("/logout")
-@WebServlet(name="logout", urlPatterns="/logout", loadOnStartup=14)
+@WebServlet("/logout")
 public class LogoutServlet extends HttpServlet{
 
 	@Override
@@ -22,7 +21,7 @@ public class LogoutServlet extends HttpServlet{
 			session.invalidate();
 		}
 		
-		resp.sendRedirect("index.html");
+		//resp.sendRedirect("index.html");
 	}
 	
 }

@@ -17,8 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/updateUserInfo")
-@WebServlet(name="updateUserInfo", urlPatterns="/updateUserInfo", loadOnStartup=13)
+@WebServlet("/updateUserInfo")
 public class UpdateUserServlet extends HttpServlet {
 
 	@Override

@@ -17,8 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-// change laodonstart up number later
-@WebServlet(name="updateReim", urlPatterns="/updateReim", loadOnStartup=11)
+@WebServlet("/updateReim")
 public class UpdateReim extends HttpServlet{
 	
 	@Override
@@ -45,7 +44,7 @@ public class UpdateReim extends HttpServlet{
 
 		ObjectMapper mapper = new ObjectMapper();
 		if(s.updateReimbursements(reimID, u, status, notes)) {
-			json = mapper.writeValueAsString("Success");
+			json = mapper.writeValueAsString((u.getFName() +" "+ u.getLName()));
 		}
 		else {
 			json = mapper.writeValueAsString("Failure");

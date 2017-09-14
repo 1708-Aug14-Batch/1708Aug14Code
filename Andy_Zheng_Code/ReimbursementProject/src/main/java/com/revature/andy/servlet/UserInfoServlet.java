@@ -15,8 +15,7 @@ import com.revature.andy.dto.DTO;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/userInfo")
-@WebServlet(name="userInfo", urlPatterns="/userInfo", loadOnStartup=5)
+@WebServlet("/userInfo")
 public class UserInfoServlet extends HttpServlet{
 
 	

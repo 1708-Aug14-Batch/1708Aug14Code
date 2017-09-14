@@ -12,8 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.revature.andy.pojos.User;
 
-//@WebServlet("/loadMenu")
-@WebServlet(name="loadMenu", urlPatterns="/loadMenu", loadOnStartup=3)
+@WebServlet("/loadMenu")
 public class MenuServlet extends HttpServlet {
 
 	@Override
@@ -29,4 +28,3 @@ public class MenuServlet extends HttpServlet {
 		}	
 	}
 }
-

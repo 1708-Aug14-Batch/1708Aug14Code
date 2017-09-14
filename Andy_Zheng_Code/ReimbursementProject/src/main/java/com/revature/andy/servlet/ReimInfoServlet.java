@@ -11,51 +11,54 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.andy.dto.DTO;
 import com.revature.andy.pojos.Reimbursement;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
-//@WebServlet("/reimInfo")
-@WebServlet(name="reimInfo", urlPatterns="/reimInfo", loadOnStartup=7)
-public class ReimInfoServlet extends HttpServlet{
+@WebServlet("/reimInfo")
+public class ReimInfoServlet extends HttpServlet {
+
+	final static Logger logger = Logger.getLogger(ReimInfoServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-Service s = new Service();
-		
+		Service s = new Service();
+
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("User");
-		
-		if(sessionUser!=null) {
+
+		logger.debug(sessionUser);
+
+		if (sessionUser != null) {
 			HashSet<Reimbursement> reims = null;
 			ObjectMapper mapper = new ObjectMapper();
-			
-			if(sessionUser.getIsManager() == 0) {
-			
-			reims = s.getUserReimbursement(sessionUser.getUserID());
-			
-			String json = mapper.writeValueAsString(reims);
-			
-			PrintWriter out = resp.getWriter();
-			resp.setContentType("application/json");
-			
-			out.write(json);	
-			}else if(sessionUser.getIsManager() == 1) {
-				reims = s.getReimbursements();
+
+			if (sessionUser.getIsManager() == 0) {
+
+				reims = s.getUserReimbursement(sessionUser.getUserID());
 
 				String json = mapper.writeValueAsString(reims);
-				
+
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("application/json");
-				
-				out.write(json);	
+
+				out.write(json);
+			} else if (sessionUser.getIsManager() == 1) {
+				reims = s.getReimbursements();
+				logger.debug(reims);
+				String json = mapper.writeValueAsString(reims);
+
+				PrintWriter out = resp.getWriter();
+				resp.setContentType("application/json");
+
+				out.write(json);
 			}
 		}
 		/*
-		else {
-			resp.setStatus(418);
-		}*/
+		 * else { resp.setStatus(418); }
+		 */
 	}
 }
