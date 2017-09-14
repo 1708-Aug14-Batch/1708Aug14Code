@@ -13,12 +13,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
 
 @WebServlet("/updateReim")
 public class UpdateReim extends HttpServlet{
+
+	final static Logger log = Logger.getLogger(UpdateReim.class);
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,6 +35,8 @@ public class UpdateReim extends HttpServlet{
 		Object obj = transObject.toArray()[0];
 		ArrayList<String> to = jackson.readValue((String) obj, ArrayList.class);
 	
+		log.debug("Reimbursement Update Info\t" + to);
+		
 		Service s= new Service();
 		
 		int reimID = Integer.parseInt(to.get(0));
@@ -41,6 +47,8 @@ public class UpdateReim extends HttpServlet{
 		
 		HttpSession session = req.getSession();
 		User u = (User) session.getAttribute("User");
+		
+		log.debug("Current User\t" + u);
 
 		ObjectMapper mapper = new ObjectMapper();
 		if(s.updateReimbursements(reimID, u, status, notes)) {
@@ -53,6 +61,7 @@ public class UpdateReim extends HttpServlet{
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(json);
+		log.debug("Response\t" + json);
 	}
 
 }

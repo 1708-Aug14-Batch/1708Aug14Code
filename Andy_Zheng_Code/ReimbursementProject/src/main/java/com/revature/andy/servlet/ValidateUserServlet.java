@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
@@ -20,6 +22,8 @@ import com.revature.andy.service.Service;
 @WebServlet("/validateUser")
 public class ValidateUserServlet extends HttpServlet{
 
+	final static Logger log = Logger.getLogger(ValidateUserServlet.class);
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Map<String, String[]> myMap = req.getParameterMap();
@@ -31,6 +35,8 @@ public class ValidateUserServlet extends HttpServlet{
 		Object obj = transObject.toArray()[0];
 		ArrayList<String> to = jackson.readValue((String) obj, ArrayList.class);
 	
+		log.debug("User Info\t" + to);
+		
 		Service s= new Service();
 		
 		String password = to.get(0);
@@ -38,6 +44,8 @@ public class ValidateUserServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 
 		User sessionUser = (User) session.getAttribute("User");
+		
+		log.debug("Current User\t" + sessionUser);
 		
 		String json = null;
 		if(sessionUser.getPassword().equals(password)) {
@@ -49,5 +57,6 @@ public class ValidateUserServlet extends HttpServlet{
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(json);
+		log.debug("Response\t" + json);
 	}
 }

@@ -9,7 +9,7 @@ function loadLogin(){
 			$('#login').click(loginRequest);
 			$('#loginKey').keypress(function(e){
 				if(e.which == 13){
-					$('#login').click(loginRequest());
+					loginRequest();
 				}
 			})
 		}

@@ -301,40 +301,8 @@ public class DAOImplementation implements DAOInterface {
 	}
 
 	// select all reimbursements
-	public HashSet<Reimbursement> getReims() {
-		try (Connection con = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "SELECT * FROM REIMBURSEMENTS";
 
-			Statement s = con.createStatement();
-			ResultSet rs = s.executeQuery(sql);
-
-			HashSet<Reimbursement> reimList = new HashSet<>();
-
-			while (rs.next()) {
-				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
-				User tempSub = getUser(rs.getInt(2));
-				User tempRes = null;
-				if (rs.getInt(3) > 0) {
-					tempRes = getUser(rs.getInt(3));
-				}
-
-				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
-						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));
-
-				reimList.add(tempReim);
-			}
-
-			 
-			return reimList;
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
-
-	public HashSet<Reimbursement> getReims2(Connection con) throws SQLException {
+	public HashSet<Reimbursement> getReims(Connection con) throws SQLException {
 		try {
 			String sql = "SELECT * FROM REIMBURSEMENTS";
 
@@ -345,10 +313,10 @@ public class DAOImplementation implements DAOInterface {
 
 			while (rs.next()) {
 				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
-				User tempSub = getUser2(con, rs.getInt(2));
+				User tempSub = getUser(con, rs.getInt(2));
 				User tempRes = null;
 				if (rs.getInt(3) > 0) {
-					tempRes = getUser2(con, rs.getInt(3));
+					tempRes = getUser(con, rs.getInt(3));
 				}
 
 				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
@@ -383,7 +351,6 @@ public class DAOImplementation implements DAOInterface {
 				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
 			}
 
-			 
 			return temp;
 
 		} catch (SQLException e) {
@@ -393,7 +360,7 @@ public class DAOImplementation implements DAOInterface {
 
 	}
 
-	public User getUser2(Connection con, int userID) {
+	public User getUser(Connection con, int userID) {
 
 		try {
 			String sql = "{call getUserInfo(?,?,?,?,?,?)}";

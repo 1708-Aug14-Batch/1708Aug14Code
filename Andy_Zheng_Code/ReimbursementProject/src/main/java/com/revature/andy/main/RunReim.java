@@ -28,7 +28,7 @@ public class RunReim {
 		Connection con = ConnectionFactory.getInstance().getConnection();
 				
 		try {
-			HashSet<Reimbursement> emp = d.getReims2(con);
+			HashSet<Reimbursement> emp = d.getReims(con);
 			
 			for(Reimbursement x : emp ) {
 				log.debug(x.toString());

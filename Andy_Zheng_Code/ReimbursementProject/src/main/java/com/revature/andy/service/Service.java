@@ -72,7 +72,7 @@ public class Service {
 		Connection con = ConnectionFactory.getInstance().getConnection();
 		HashSet<Reimbursement> reims;
 		try {
-			reims = dao.getReims2(con);
+			reims = dao.getReims(con);
 			return reims;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

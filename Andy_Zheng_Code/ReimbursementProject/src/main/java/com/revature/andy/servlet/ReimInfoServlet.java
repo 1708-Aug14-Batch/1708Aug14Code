@@ -21,7 +21,7 @@ import com.revature.andy.service.Service;
 @WebServlet("/reimInfo")
 public class ReimInfoServlet extends HttpServlet {
 
-	final static Logger logger = Logger.getLogger(ReimInfoServlet.class);
+	final static Logger log = Logger.getLogger(ReimInfoServlet.class);
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,17 +30,19 @@ public class ReimInfoServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("User");
 
-		logger.debug(sessionUser);
+		log.debug("Current User\t" + sessionUser);
 
 		if (sessionUser != null) {
 			HashSet<Reimbursement> reims = null;
 			ObjectMapper mapper = new ObjectMapper();
 
+			String json = null;
+			
 			if (sessionUser.getIsManager() == 0) {
 
 				reims = s.getUserReimbursement(sessionUser.getUserID());
-
-				String json = mapper.writeValueAsString(reims);
+				
+				json = mapper.writeValueAsString(reims);
 
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("application/json");
@@ -48,17 +50,20 @@ public class ReimInfoServlet extends HttpServlet {
 				out.write(json);
 			} else if (sessionUser.getIsManager() == 1) {
 				reims = s.getReimbursements();
-				logger.debug(reims);
-				String json = mapper.writeValueAsString(reims);
+				
+				json = mapper.writeValueAsString(reims);
 
 				PrintWriter out = resp.getWriter();
 				resp.setContentType("application/json");
 
 				out.write(json);
 			}
+			
+			log.debug("Reimbursements");
+			for(Reimbursement r: reims) {
+				log.debug(r);
+			}
+			log.debug("Response\t" + json);
 		}
-		/*
-		 * else { resp.setStatus(418); }
-		 */
 	}
 }

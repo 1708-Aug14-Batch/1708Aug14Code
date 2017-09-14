@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.pojos.User;
 import com.revature.andy.service.Service;
@@ -20,6 +22,8 @@ import com.revature.andy.service.Service;
 @WebServlet("/registerEmployee")
 public class RegisterEmployeeRequestServlet extends HttpServlet{
 
+	final static Logger log = Logger.getLogger(RegisterEmployeeRequestServlet.class);
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Map<String, String[]> myMap = req.getParameterMap();
@@ -31,10 +35,14 @@ public class RegisterEmployeeRequestServlet extends HttpServlet{
 		Object obj = transObject.toArray()[0];
 		ArrayList<String> to = jackson.readValue((String) obj, ArrayList.class);
 	
+		log.debug("Employee Info\t" + to);
+		
 		Service s= new Service();
 		
 		User newUser = new User(to.get(0),to.get(1),to.get(2),to.get(3),0);
 
+		log.debug("New User\t" + newUser);
+		
 		ObjectMapper mapper = new ObjectMapper();
 		String json;
 		if(s.createUser(newUser)) {
@@ -46,5 +54,6 @@ public class RegisterEmployeeRequestServlet extends HttpServlet{
 		PrintWriter out = resp.getWriter();
 		resp.setContentType("application/json");
 		out.write(json);
+		log.debug("Response\t" + json);
 	}
 }

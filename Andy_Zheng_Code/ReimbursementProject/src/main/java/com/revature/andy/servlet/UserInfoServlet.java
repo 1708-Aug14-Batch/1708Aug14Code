@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.andy.dto.DTO;
 import com.revature.andy.pojos.User;
@@ -18,6 +20,7 @@ import com.revature.andy.service.Service;
 @WebServlet("/userInfo")
 public class UserInfoServlet extends HttpServlet{
 
+	final static Logger log = Logger.getLogger(UserInfoServlet.class);
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +28,7 @@ public class UserInfoServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		User sessionUser = (User) session.getAttribute("User");
 		
-		//System.out.println(sessionUser.toString());
+		log.debug("Current User\t" + sessionUser);
 		
 		if(sessionUser!=null) {
 			
@@ -37,9 +40,7 @@ public class UserInfoServlet extends HttpServlet{
 			resp.setContentType("application/json");
 			
 			out.write(json);
-		}
-		else {
-			resp.setStatus(418);
+			log.debug("Response\t" + json);
 		}
 	}
 }
