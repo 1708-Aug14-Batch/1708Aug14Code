@@ -39,6 +39,7 @@ public class EmployeeInfoServlet extends HttpServlet{
 				ObjectMapper mapper = new ObjectMapper();
 				emps = s.getEmployees();
 				
+				log.debug("Employees");
 				for(User e: emps) {
 					log.debug(e);
 				}
