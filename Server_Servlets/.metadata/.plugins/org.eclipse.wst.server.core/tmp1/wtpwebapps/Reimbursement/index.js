@@ -2,7 +2,6 @@
  * 
  */
 
-// TODO form validation before clicking a button
 var loggedIn = false; // Keeps track of whether a user is logged in
 var id = -1; // Keeps track of the id of the logged in user. -1 means no user
 // is logged in
@@ -30,27 +29,27 @@ function setEventListeners() {
 
 	// Employee
 	// Employee navbar
-	$("#home").click(loadDashboard);
-	$("#profile").click(loadProfileView);
-	$("#submit_reim").click(loadSubmitReimView);
+	$("#home").click(viewDashboard);
+	$("#profile").click(viewProfile);
+	$("#submit_reim").click(viewSubmitReim);
 	$("#view_pending_reim").click(viewPendingReim);
 	$("#view_resolved_reim").click(viewResolvedReim);
 
 	// Miscellaneous
 	$("#submit_button").click(submitReimbursement);
-	// $("#submit_description").click(submitReimbursement);
+	$("#view_username_check").click(rePopulateReimbursementTable);
 
 	// Manager
 	// Manager navbar
-	$("#home_manager").click(loadDashboard);
-	$("#profile_manager").click(loadProfileView);
+	$("#home_manager").click(viewDashboard);
+	$("#profile_manager").click(viewProfile);
 	$("#resolve_reim").click(resolveReimView);
 	$("#view_pending_reim_manager").click(viewAllPendingReim);
 	$("#view_resolved_reim_manager").click(viewAllResolvedReim);
-	$("#view_employees_reim").click(loadViewEmployeesReim);
+	$("#view_employees_reim").click(viewEmployeesReim);
 	$("#view_employees").click(viewEmployees);
 	$("#register_employee").click(registerEmployeeView);
-	$("#view_reim_id_button").click(loadEmployeesReims);
+	$("#view_reim_id_button").click(viewEmployeesReims);
 	$("#resolve_button").click(resolveReim);
 
 	// Miscellaneous
@@ -59,7 +58,7 @@ function setEventListeners() {
 	$("#username_input").keypress(handleKeyPress);
 	$("#password_input").keypress(handleKeyPress);
 	$("#login_button").click(login);
-	$("#create_button").click(loadCreateAccount);
+	$("#create_button").click(viewCreateAccount);
 
 	// Miscellaneous
 	$("#view_password_check").click(togglePasswordView);
@@ -68,6 +67,11 @@ function setEventListeners() {
 	$("#update_profile2").click(createWorker);
 
 	$("#view_button").click(getOneReimbursement);
+	$("#view_all_button").click(function () {
+		hideAllViews();
+		$("#view_reim_div").attr("hidden", false);
+		viewReimbursements("#view_reim_div", "PENDING");
+	});
 }
 
 function viewEmployees() {
@@ -78,16 +82,20 @@ function viewEmployees() {
 
 function resolveReimView() {
 	hideAllViews();
+	$("#view_reimbursement_id")[0].value = "";
 	$("#resolve_reim_div").attr("hidden", false);
 }
 
-function loadEmployeesReims() {
+function viewEmployeesReims() {
+	hideAllViews();
+	$("#view_reim_id_div").attr("hidden", false);
 	viewReimbursements("#view_reim_id_display", "",
 			$("#employee_id_text")[0].value);
 }
 
 function getOneReimbursement() {
 	$("#resolve_error_message").text("");
+	
 	var id = $("#view_reimbursement_id")[0].value;
 
 	if (typeof id === "undefined")
@@ -102,12 +110,12 @@ function getOneReimbursement() {
 
 		var div = "#view_reim_div";
 
-		$(div).attr("hidden", false);
+		$(view_reim_outer_div).attr("hidden", false);
 		if (reimbursement == null)
 			$(div).html(
 					"That id does not correspond to a reimbursement<br><br>");
 		else
-			populateReimbursementsTable(div, [ reimbursement ]);
+			populateReimbursementsTable( [ reimbursement ]);
 	});
 }
 
@@ -116,7 +124,6 @@ function registerEmployeeView() {
 	$("#register_employee_div").attr("hidden", false);
 }
 
-// FIXME double-check that I've added every div to this lsit
 function hideAllViews() {
 	$("#login_div").attr("hidden", true);
 	$("#profile_div").attr("hidden", true);
@@ -124,18 +131,18 @@ function hideAllViews() {
 	$("#dashboard_div").attr("hidden", true);
 
 	$("#view_reim_id_div").attr("hidden", true);
-	$("#view_reim_div").attr("hidden", true);
+	$("#view_reim_outer_div").attr("hidden", true);
 	$("#register_employee_div").attr("hidden", true);
 	$("#resolve_reim_div").attr("hidden", true);
 	$("#view_employees_div").attr("hidden", true);
 }
 
-function loadLoginView() {
+function viewLogin() {
 	hideAllViews();
 	$("#login_div").attr("hidden", false);
 }
 
-function loadDashboard() {
+function viewDashboard() {
 	hideAllViews();
 	if (isManager) {
 		$("#navbar_div").attr("hidden", true);
@@ -145,23 +152,23 @@ function loadDashboard() {
 		$("#navbar_div").attr("hidden", false);
 	}
 
-	$("#dashboard_div").attr("hidden", false);
+	var name = "";
+	getXMLResponse("GET", "getUserInfo", function(responseText) {
+		var user = JSON.parse(responseText).user;
+		name = user.firstName + " " + user.lastName;
+		$("#dashboard_div_header1").text("Welcome " + name + " to");
+	});
+
+	$("#dashboard_div_header2").text("The Online Reimbursement Resource");
 
 	if (isManager)
-		$("#dashboard_div").find("h3")[0].innerHTML = "Manager";
+		$("#dashboard_div_header3")
+				.text(
+						"HR reminds you that behind every good employee is a dedicated manager.");
 	else
-		$("#dashboard_div").find("h3")[0].innerHTML = "";
+		$("#dashboard_div_header3").text("");
 
-	var name = "";
-	getXMLResponse("GET", "getUserInfo",
-			function(responseText) {
-				var user = JSON.parse(responseText).user;
-				name = user.firstName + " " + user.lastName;
-				$("#dashboard_div").find("h3")[1].innerHTML = "Welcome " + name
-						+ " to";
-			});
-
-	$("#dashboard_div").find("h3")[2].innerHTML = "The Online Reimbursement Resource";
+	$("#dashboard_div").attr("hidden", false);
 
 }
 
@@ -180,14 +187,13 @@ function createWorker() {
 	createEmployee("#message_edit2", dto);
 }
 
-function loadCreateAccount() {
+function viewCreateAccount() {
 	hideAllViews();
 	$("#login_div").attr("hidden", false);
 	$("#create_account_div").attr("hidden", false);
-	// TODO
 }
 
-function loadProfileView() {
+function viewProfile() {
 	hideAllViews();
 	$("#message_edit").text(""); // Clear message text
 	// Un-check the view password checkbox
@@ -199,25 +205,27 @@ function loadProfileView() {
 
 function viewPendingReim() {
 	hideAllViews();
-
+	$("#view_reim_outer_div").attr("hidden", false);
 	console.log("View reimbursements for the following employee id: " + id);
 	viewReimbursements("#view_reim_div", "PENDING", id);
 
 }
 function viewAllPendingReim() {
 	hideAllViews();
+	$("#view_reim_outer_div").attr("hidden", false);
 	viewReimbursements("#view_reim_div", "PENDING");
 }
 function viewResolvedReim() {
 	hideAllViews();
-
+	$("#view_reim_outer_div").attr("hidden", false);
 	viewReimbursements("#view_reim_div", "RESOLVED", id);
 }
 function viewAllResolvedReim() {
 	hideAllViews();
+	$("#view_reim_outer_div").attr("hidden", false);
 	viewReimbursements("#view_reim_div", "RESOLVED");
 }
-function loadViewEmployeesReim() {
+function viewEmployeesReim() {
 	hideAllViews();
 	$("#view_reim_id_div").attr("hidden", false);
 }
@@ -248,7 +256,7 @@ function resolveReim() {
 
 		if (response == "true" || response === true) { // Success
 			$(div).text("Reimbursement resolved");
-			$(div).attr("style", "color:green");
+			$(div).attr("class", "alert alert-success");
 			setTimeout(resolveReimView(), 0);
 
 			// Clear fields
@@ -256,19 +264,20 @@ function resolveReim() {
 			$("#resolve_notes")[0].value = "";
 		} else {
 			$(div).text(response);
-			$(div).attr("style", "color:red");
+			$(div).attr("class", "alert alert-danger");
 		}
 
+		$(div).attr("hidden", false);
 		// Clear the feedback message
 		clearTimeout(timeout);
 		timeout = setTimeout(function() {
-			$(div).text("");
-		}, 5000)
+			$(div).attr("hidden", true);
+		}, 5000);
 
 	});
 
 }
-function loadSubmitReimView() {
+function viewSubmitReim() {
 	hideAllViews();
 	$("#submit_reim_div").attr("hidden", false);
 
@@ -302,7 +311,6 @@ function handleKeyPress(event) {
 // if id is undefined (omitted in the function call), then view all.
 // reimbursements
 function viewReimbursements(div, type, id) {
-	$(div).attr("hidden", false);
 
 	if (typeof id === "undefined")
 		id == -1;
@@ -320,7 +328,7 @@ function viewReimbursements(div, type, id) {
 			$(div).text("There are no " + type + " reimbursements");
 		else {
 
-			populateReimbursementsTable(div, reimbursements);
+			populateReimbursementsTable( reimbursements);
 		}
 	});
 
@@ -338,13 +346,13 @@ function submitReimbursement() {
 			responseText) {
 		// Message arrived
 		var response = JSON.parse(responseText);
-		var div = "#submit_error_text";
+		var div = "#submit_error_message";
 
 		console.log("xhr response arrived in submitReimbursement()");
 		if (response == "false" || response === false) {
 			// Set feedback message
 			$(div).text(response);
-			$(div).attr("style", "color:red");
+			$(div).attr("class", "alert alert-danger");
 		} else {
 
 			// Clear fields
@@ -353,14 +361,15 @@ function submitReimbursement() {
 
 			// Set feedback message
 			$(div).text("Reimbursement created.");
-			$(div).attr("style", "color:green");
+			$(div).attr("class", "alert alert-success");
 		}
 
+		$(div).attr("hidden", false);
 		// Clear the feedback message
 		clearTimeout(timeout);
 		timeout = setTimeout(function() {
-			$(div).text("");
-		}, 5000)
+			$(div).attr("hidden", true);
+		}, 5000);
 
 	});
 }
@@ -390,7 +399,8 @@ function displayProfileInformation() {
 function formatDate(day) {
 	if (day === null)
 		return "----";
-	return day.month + " " + day.dayOfMonth + ", " + day.year;
+	var month = day.month.charAt(0).toUpperCase() + day.month.slice(1).toLowerCase();
+	return month + " " + day.dayOfMonth + ", " + day.year;
 }
 
 function setNotes(notes) {
@@ -419,7 +429,7 @@ function tryLogin() {
 			} else if (xhr.status == 418) {
 
 				// Show login page
-				loadLoginView();
+				viewLogin();
 			}
 		}
 	}
@@ -440,7 +450,7 @@ function setLoggedInDetails() {
 			navbar = "#navbar_div";
 
 		$(navbar).attr("hidden", false);
-		loadDashboard();
+		viewDashboard();
 	});
 
 }
@@ -449,10 +459,8 @@ function setLoggedInDetails() {
 function login() {
 	var username = $("#username_input")[0].value;
 	var password = $("#password_input")[0].value;
-	var isManager = "" + $("#is_manager_check")[0].checked; // This must be a
-	// String
 
-	var dto = [ username, password, isManager ];
+	var dto = [ username, password ];
 
 	dto = JSON.stringify(dto);
 
@@ -463,18 +471,16 @@ function login() {
 			function(responseText) {
 				// Message arrived
 				var response = responseText;
-				var div = "#message";
+				var div = "#login_message";
 				console
 						.log("xhr response arrived in login function in loginMessage.js: "
 								+ responseText);
 				if (response == "username") {
 					$(div).text("Invalid username. Please try again");
+					$(div).attr("hidden", false);
 				} else if (response == "password") {
 					$(div).text("Invalid password. Please try again");
-				} else if (response == "check") {
-					$(div).text("A manager must check the checkbox to login");
-				} else if (response == "uncheck") {
-					$(div).text("Uncheck the checkbox to login as an employee");
+					$(div).attr("hidden", false);
 				} else {
 					$(div).text("");
 
@@ -484,7 +490,7 @@ function login() {
 				// Clear the feedback message
 				clearTimeout(timeout);
 				timeout = setTimeout(function() {
-					$(div).text("");
+					$(div).attr("hidden", true);
 				}, 5000)
 			});
 }
@@ -506,7 +512,10 @@ function updateProfile() {
 function createEmployee(div, dto) {
 	dto = JSON.stringify(dto);
 	console.log("updateProfile dto: " + dto);
-	sendReceiveXMLResponse("POST", "updateProfile", dto,
+	sendReceiveXMLResponse(
+			"POST",
+			"updateProfile",
+			dto,
 			function(responseText) {
 				// Message arrived
 				var response = responseText;
@@ -515,7 +524,7 @@ function createEmployee(div, dto) {
 				if (response == "true" || response === true) {
 
 					$(div).text("Employee created.");
-					$(div).attr("style", "color:green");
+					$(div).attr("class", "alert alert-success");
 
 					// Clear fields
 					$("#firstname_edit2")[0].value = "";
@@ -530,14 +539,15 @@ function createEmployee(div, dto) {
 
 				} else {
 					$(div).text(response);
-					$(div).attr("style", "color:red");
+					$(div).attr("class", "alert alert-danger");
 				}
 
+				$(div).attr("hidden", false);
 				// Clear the feedback message
 				clearTimeout(timeout);
 				timeout = setTimeout(function() {
-					$(div).text("");
-				}, 5000)
+					$(div).attr("hidden", true);
+				}, 5000);
 
 			});
 }
@@ -552,21 +562,22 @@ function updateEmployee(div, dto) {
 
 				console.log("xhr response arrived in updateProfile()");
 				if (response == "true" || response === true) {
-					setTimeout(loadProfileView(), 0);
-					
+					setTimeout(viewProfile(), 0);
+
 					$(div).text("Information updated.");
-					$(div).attr("style", "color:green");
+					$(div).attr("class", "alert alert-success");
 
 				} else {
 					$(div).text(response);
-					$(div).attr("style", "color:red");
+					$(div).attr("class", "alert alert-danger");
 				}
 
+				$(div).attr("hidden", false);
 				// Clear the feedback message
 				clearTimeout(timeout);
 				timeout = setTimeout(function() {
-					$(div).text("");
-				}, 5000)
+					$(div).attr("hidden", true);
+				}, 5000);
 
 			});
 }
@@ -604,7 +615,8 @@ function sendReceiveXMLResponse(type, myurl, dto, callback) {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			callback(xmlhttp.responseText);
 		} else if (xmlhttp.status == 500)
-			$("#message").text("Something went wrong"); // Meant to show on the
+			$("#login_message").text("Something went wrong"); // Meant to show
+																// on the
 		// login page
 	}
 	xmlhttp.open(type, myurl, true);
@@ -617,31 +629,43 @@ function sendReceiveXMLResponse(type, myurl, dto, callback) {
 // horizontally
 // div is where the table should be displayed
 // reimbursements is a list of reimbursements to display
-// isUsername is a boolean. true means display employee's username. false means display employee's id
-function populateReimbursementsTable(div, reimbursements, isUsername) {
+function populateReimbursementsTable( reims ) {
+	var div;
+	if ($("#view_reim_div").is(":hidden")) {
+		div = "#view_reim_id_display";
+		$("#view_reim_div").html=("");	// Clear the other one
+	}
+	else {
+		div = "#view_reim_div";
+		$("#view_reim_id_display").html=("");	// Clear the other one
+	}
+	
 	var html = "<h3>Reimbursements</h3>";
-	console.log("Populating reimbursements table..." + reimbursements.length);
+	console.log("Populating reimbursements table..." + reims.length);
 	// Table head
-	html += "<table class='table table-striped'><thead>	"
-			+ "<th>Reimbursement ID</th>" + "<th>Submitter ID</th>"
-			+ "<th>Resolver ID</th>" + "<th>Description</th>"
+	html += "<table id='reimbursement_table' class='table table-striped'><thead>	"
+			+ "<th>Reimbursement ID</th>";
+	if ($("#view_username_check")[0].checked)
+		html += "<th>Submitter</th>"	+ "<th>Resolver</th>";
+	else html += "<th>Submitter ID</th>"	+ "<th>Resolver ID</th>";
+	html += "<th>Description</th>"
 			+ "<th>Ammount</th>" + "<th>Date opened</th>"
 			+ "<th>Date closed</th>" + "<th>Status</th>" + "<th>Notes</th>"
 			+ "<tbody>";
 
 	// Table rows
-	for (var i = 0; i < reimbursements.length; i++) {
-
+	for (var i = 0; i < reims.length; i++) {
+		
 		html += "<tr>"
-		html += "<td>" + reimbursements[i].reimbursementId + "</td>";
-		html += "<td>" + reimbursements[i].submitterId + "</td>";
-		html += "<td>" + reimbursements[i].resolverId + "</td>";
-		html += "<td>" + reimbursements[i].description + "</td>";
-		html += "<td>$" + reimbursements[i].ammount + "</td>";
-		html += "<td>" + formatDate(reimbursements[i].submitDate) + "</td>";
-		html += "<td>" + formatDate(reimbursements[i].resolvedDate) + "</td>";
-		html += "<td>" + reimbursements[i].status + "</td>";
-		html += "<td>" + setNotes(reimbursements[i].resolveNotes) + "</td>";
+		html += "<td>" + reims[i].reimbursementId + "</td>";
+		html += "<td>" + setSubmitterId(reims[i]) + "</td>";
+		html += "<td>" + setResolverId(reims[i]) + "</td>";
+		html += "<td>" + reims[i].description + "</td>";
+		html += "<td>$" + reims[i].ammount + "</td>";
+		html += "<td>" + formatDate(reims[i].submitDate) + "</td>";
+		html += "<td>" + formatDate(reims[i].resolvedDate) + "</td>";
+		html += "<td>" + reims[i].status + "</td>";
+		html += "<td>" + setNotes(reims[i].resolveNotes) + "</td>";
 
 		html += "</tr>";
 	}
@@ -650,6 +674,7 @@ function populateReimbursementsTable(div, reimbursements, isUsername) {
 	html += "</tbody></thead></table>";
 
 	$(div).html(html);
+	$("#reimbursement_table").dataTable();
 }
 
 function populateEmployeesTable(employees) {
@@ -657,14 +682,14 @@ function populateEmployeesTable(employees) {
 	var html = "<h3>Employees</h3>";
 	console.log("Populating employees table...");
 	// Table head
-	html += "<table class='table table-striped'><thead>	"
+	html += "<table id='employee_table' class='table table-striped'><thead>	"
 			+ "<th>Worker ID</th>" + "<th>First name</th>"
 			+ "<th>Last name</th>" + "<th>Email</th>" + "<th>Username</th>"
 			+ "<th>is Manager</th>" + "<tbody>";
 
 	// Table rows
 	for (var i = 0; i < employees.length; i++) {
-
+		
 		html += "<tr>"
 		html += "<td>" + employees[i].workerId + "</td>";
 		html += "<td>" + employees[i].firstName + "</td>";
@@ -680,4 +705,28 @@ function populateEmployeesTable(employees) {
 	html += "</tbody></thead></table>";
 
 	$("#view_employees_div").html(html);
+	$("#employee_table").dataTable();
+}
+
+function setResolverId(reimbursement) {
+	
+	if (reimbursement.status == "PENDING")
+		return "----";
+	else {
+		if ($("#view_username_check")[0].checked)
+			return reimbursement.resolverUsername;
+		else return reimbursement.resolverId;
+	}
+}
+
+function setSubmitterId(reimbursement) {
+	
+	if ($("#view_username_check")[0].checked)
+		return reimbursement.submitterUsername;
+	else return reimbursement.submitterId;
+}
+
+function rePopulateReimbursementTable() {
+	alert("rePopulateReimbursementTable not implemented yet");
+	// viewReimbursements(string, id)
 }

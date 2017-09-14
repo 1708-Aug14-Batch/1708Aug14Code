@@ -14,12 +14,12 @@ public class Reimbursement {
 	
 	private final int reimbursementId;
 	private final int submitterId;
-	private int resolverId;
+	protected int resolverId;
 	private reimbursementStatus status;
 	private final LocalDateTime submitDate;
-	private LocalDateTime resolvedDate;
+	protected LocalDateTime resolvedDate;
 	private String description;
-	private String resolveNotes;
+	protected String resolveNotes;
 	private BigDecimal ammount;
 	
 	public Reimbursement(int reimbursementId, int submitterId, reimbursementStatus status, LocalDateTime submitDate, String description, BigDecimal ammount) {

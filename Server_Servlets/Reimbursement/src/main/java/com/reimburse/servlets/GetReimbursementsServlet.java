@@ -18,7 +18,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.pojos.Reimbursement;
-import com.reimburse.pojos.Worker;
+import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.service.Service;
 
 @WebServlet("/getReimbursements")
@@ -46,24 +46,8 @@ public class GetReimbursementsServlet extends HttpServlet {
 		else id = Integer.parseInt(tx.get(0));	// id will be -1 to specify no worker
 		String type = tx.get(1);	// possible values are: "", "PENDING", "RESOLVED"
 		
-		Worker user = service.getWorker(id);
-
-		ArrayList<Reimbursement> reimbursements;	// result to be returned
-		if (id == -1) {
-			// No user is specified
-			if (type.equals("PENDING"))
-				reimbursements = service.getPendingReimbursements();
-			else if (type.equals("RESOLVED"))
-				reimbursements = service.getResolvedReimbursements();
-			else reimbursements = service.getAllReimbursements();
-		} else if (user != null) {
-			// Get reimbursements for a particular worker
-			if (type.equals("PENDING"))
-				reimbursements = service.getPendingReimbursements(id);
-			else if (type.equals("RESOLVED"))
-				reimbursements = service.getResolvedReimbursements(id);
-			else reimbursements = service.getAllReimbursements(id);
-		} else reimbursements = new ArrayList<Reimbursement>();	// Empty
+		ArrayList<ReimbursementDTO> reimbursements;	// result to be returned
+		reimbursements = service.getAllReimbursements(id, type);
 		
 		logger.info("Returning reimbursements: " + reimbursements);
 		writeValueToResponse(resp, reimbursements);
@@ -86,7 +70,7 @@ public class GetReimbursementsServlet extends HttpServlet {
 		return jackson.readValue((String) obj, ArrayList.class);
 	}
 	
-	private void writeValueToResponse(HttpServletResponse resp, ArrayList<Reimbursement> reimbursements) throws IOException {
+	private void writeValueToResponse(HttpServletResponse resp, ArrayList<ReimbursementDTO> reimbursements) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(reimbursements);	// reimbursements may be null
 		

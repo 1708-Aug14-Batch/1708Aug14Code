@@ -3,6 +3,7 @@ package com.reimburse.dto;
 import java.util.ArrayList;
 
 import com.reimburse.pojos.Reimbursement;
+import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.pojos.Worker;
 
 /*
@@ -13,12 +14,12 @@ import com.reimburse.pojos.Worker;
 public class DTO {
 
 	private Worker user;
-	private ArrayList<Reimbursement> reimbursements;
+	private ArrayList<ReimbursementDTO> reimbursements;
 
-	public DTO(Worker user, ArrayList<Reimbursement> reimbursements) {
+	public DTO(Worker user, ArrayList<ReimbursementDTO> reimburseList) {
 		super();
 		this.user = user;
-		this.reimbursements = reimbursements;
+		this.reimbursements = reimburseList;
 	}
 
 	public Worker getUser() {
@@ -29,11 +30,11 @@ public class DTO {
 		this.user = user;
 	}
 
-	public ArrayList<Reimbursement> getReimbursements() {
+	public ArrayList<ReimbursementDTO> getReimbursements() {
 		return reimbursements;
 	}
 
-	public void setReimbursements(ArrayList<Reimbursement> reimbursements) {
+	public void setReimbursements(ArrayList<ReimbursementDTO> reimbursements) {
 		this.reimbursements = reimbursements;
 	}
 

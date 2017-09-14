@@ -39,11 +39,10 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		Service service = new Service();
 		
-		// Format is: [username, password, isManager]
+		// Format is: [username, password]
 		String username = tx.get(0);
 		String password = tx.get(1);
-		boolean isManager = tx.get(2).equals("true")? true : false;
-
+		
 		Worker user = service.validateWorker(username, password);
 
 		String json = "";
@@ -56,13 +55,6 @@ public class LoginServlet extends HttpServlet {
 				// Bad username
 				json = "username";
 			}
-		} else if (user.isManager() != isManager) {
-			// Either a manager tried to log in as an employee, or visa versa
-			
-			if (user.isManager())
-				json = "check";
-			else json = "uncheck";
-			
 		} else {
 			// Login successful
 			session.setAttribute("user", user);

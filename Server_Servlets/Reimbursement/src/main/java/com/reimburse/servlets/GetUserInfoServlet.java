@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.dto.DTO;
-import com.reimburse.pojos.Reimbursement;
+import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.pojos.Worker;
 import com.reimburse.service.Service;
 
@@ -41,7 +41,7 @@ public class GetUserInfoServlet extends HttpServlet {
 		Worker sessionUser = (Worker)session.getAttribute("user");
 		
 		if (sessionUser != null) {
-			ArrayList<Reimbursement> reimburseList = service.getAllReimbursements(sessionUser.getWorkerId());
+			ArrayList<ReimbursementDTO> reimburseList = service.getAllReimbursements(sessionUser.getWorkerId(), "");
 			
 			logger.info("Converting our user and accounts to a DTO");	// DEBUG
 			DTO dto = new DTO(sessionUser, reimburseList);

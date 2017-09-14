@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import com.reimburse.dao.DaoImpl;
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.Reimbursement.reimbursementStatus;
+import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.pojos.Worker;
 
 // TODO this class is where I will checking updating variables to make
@@ -19,7 +20,7 @@ import com.reimburse.pojos.Worker;
 // FIXME rather than using so many daoImpl.readAllXXX() methods,
 //	make more methods in the DaoSqlImpl that are not in the DaoSql interface
 
-public class Service implements ServiceInterface {
+public class Service {
 
 	// Logger
 	final static Logger logger = Logger.getLogger(Service.class);
@@ -289,36 +290,79 @@ public class Service implements ServiceInterface {
 
 		return result;
 	}
+	
+	// if id is -1, get reimbursements for all workers
+	//		otherwise get reimbursements for workers corresponding to id
+	// possible values of type are: "", "PENDING", "RESOLVED"
+	//		determine which reimbursements to get.
+	public ArrayList<ReimbursementDTO> getAllReimbursements(int id, String type) {
+		ArrayList<Reimbursement> reimbursements;
+		Worker user = getWorker(id);
 
-	@Override
-	public ArrayList<Reimbursement> getPendingReimbursements()  {
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllPendingReimbursements();
+		if (id == -1) {
+			// No user is specified
+			if (type.equals("PENDING"))
+				reimbursements = daoImpl.readAllPendingReimbursements();
+			else if (type.equals("RESOLVED"))
+				reimbursements = daoImpl.readAllResolvedReimbursements();
+			else reimbursements = daoImpl.readAllReimbursements();
+		} else if (user != null) {
+			// Get reimbursements for a particular worker
+			if (type.equals("PENDING"))
+				reimbursements = daoImpl.readAllPendingReimbursements(id);
+			else if (type.equals("RESOLVED"))
+				reimbursements = daoImpl.readAllResolvedReimbursements(id);
+			else reimbursements = daoImpl.readAllReimbursements(id);
+		} else reimbursements = new ArrayList<Reimbursement>();	// Empty
 
-		log("getPendingReimbursements()", reimbursements.size() + " reimbursements retrieved");
-		return reimbursements;
+		return convert(reimbursements);
+	}
+	
+	private ArrayList<ReimbursementDTO> convert(ArrayList<Reimbursement> reimbursements) {
+		ArrayList<ReimbursementDTO> reimbursementDTOs = new ArrayList<ReimbursementDTO>();
+		
+		for (Reimbursement r : reimbursements) {
+			Worker submitter = daoImpl.readWorker(r.getSubmitterId());
+			Worker resolver = daoImpl.readWorker(r.getResolverId());
+			String subUsername = null;
+			String resUsername = null;
+			
+			if (submitter != null)
+				subUsername = submitter.getUsername();
+			if (resolver != null)
+				resUsername = resolver.getUsername();
+			
+			reimbursementDTOs.add(new ReimbursementDTO(r, subUsername, resUsername));
+		}
+		
+		
+		return reimbursementDTOs;
 	}
 
-	@Override
-	public ArrayList<Reimbursement> getResolvedReimbursements()  {
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllResolvedReimbursements();
-
-		log("getResolvedReimbursements()", reimbursements.size() + " reimbursements retrieved");
-		return reimbursements;
+	public ReimbursementDTO getReimbursement(int id) {
+		Reimbursement reimburse = daoImpl.readReimbursement(id);
+		ReimbursementDTO reimburseDto = null;
+		
+		if (reimburse == null)
+			log("getReimbursement(int id)", "reimbursement could not be retrieved with id: " + id);
+		else {
+			Worker submitter = daoImpl.readWorker(reimburse.getSubmitterId());
+			Worker resolver = daoImpl.readWorker(reimburse.getResolverId());
+			String subUsername = null;
+			String resUsername = null;
+			
+			if (submitter != null)
+				subUsername = submitter.getUsername();
+			if (resolver != null)
+				resUsername = resolver.getUsername();
+			
+			reimburseDto = new ReimbursementDTO(reimburse, subUsername, resUsername);
+			log("getReimbursement(int id)", reimburse.toString() + " reimbursements retrieved");
+		}
+		
+		return reimburseDto;
 	}
-
-	@Override
-	public ArrayList<Reimbursement> getAllReimbursements(int workerId)  {
-
-		if (daoImpl.readWorker(workerId).isManager())
-			return null;
-
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements(workerId);
-
-		log("getWorkersReimbursements(int id)", reimbursements.size() + " reimbursements retrieved");
-		return reimbursements;
-	}
-
-	@Override
+	
 	public ArrayList<Worker> getAllWorkers() {
 
 		ArrayList<Worker> workers = daoImpl.readAllWorkers();
@@ -328,49 +372,12 @@ public class Service implements ServiceInterface {
 		return workers;
 	}
 
-	@Override
 	public ArrayList<Worker> getAllNonManagers() {
 
 		ArrayList<Worker> workers = daoImpl.readAllNonManagers();
 
 		log("getAllNonManagers()", workers.size() + " reimbursements retrieved");
 		return workers;
-	}
-
-	@Override
-	public ArrayList<Reimbursement> getPendingReimbursements(int workerId)  {
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllPendingReimbursements(workerId);
-
-		log("getPendingReimbursements(int id)", reimbursements.size() + " reimbursements retrieved");
-		return reimbursements;
-	}
-
-	@Override
-	public ArrayList<Reimbursement> getResolvedReimbursements(int workerId)  {
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllResolvedReimbursements(workerId);
-
-		log("getResolvedReimbursements(int id)", reimbursements.size() + " reimbursements retrieved");
-		return reimbursements;
-	}
-
-	@Override
-	public ArrayList<Reimbursement> getAllReimbursements() {
-
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
-		
-		log("getAllReimbursements()", reimbursements.size() + " reimbursements retrieved");
-		return reimbursements;
-	}
-
-	@Override
-	public Reimbursement getReimbursement(int id) {
-
-		Reimbursement reimburse = daoImpl.readReimbursement(id);
-		if (reimburse == null)
-			log("getReimbursement(int id)", "reimbursement could not be retrieved with id: " + id);
-		else log("getReimbursement(int id)", reimburse.toString() + " reimbursements retrieved");
-		
-		return reimburse;
 	}
 	
 	public int getNumReimbursements() {

@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="new XMLH" key="selection"/>
+		<item value="outer_div" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="new XMLH"/>
-			<item value="populateReim"/>
-			<item value="function popu"/>
-			<item value="populate"/>
-			<item value="firstname_edit2"/>
-			<item value="createEmpl"/>
-			<item value="updateEmpl"/>
-			<item value="createUpdate"/>
+			<item value="outer_div"/>
+			<item value="view_reim_id_display"/>
+			<item value="viewEmployeesReims"/>
+			<item value="view_reim_id_button"/>
+			<item value="view_reim_outer_div"/>
+			<item value="view_reim_id_div"/>
+			<item value="viewEmployeesReim"/>
+			<item value="view_employees_reim"/>
 		</list>
 		<list key="replacehistory">
-			<item value="5000"/>
-			<item value="public"/>
-			<item value="4000"/>
-			<item value="3000"/>
-			<item value="logger.info"/>
-			<item value="&quot;"/>
-			<item value="view_employees_reim"/>
-			<item value="view_resolved_reim_manager"/>
+			<item value="&quot;#view_reim_outer_div&quot;"/>
+			<item value="view_reim_outer_div"/>
+			<item value="AntiqueWhite"/>
+			<item value="reims"/>
+			<item value="transparent"/>
+			<item value="hidden=&quot;true&quot;"/>
+			<item value="&#x09;$("/>
+			<item value="&#x09;$(div"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="388" key="DIALOG_HEIGHT"/>
-		<item value="-92" key="DIALOG_X_ORIGIN"/>
+		<item value="8" key="DIALOG_X_ORIGIN"/>
 		<item value="217" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

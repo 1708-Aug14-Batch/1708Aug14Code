@@ -18,7 +18,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.pojos.Reimbursement;
-import com.reimburse.pojos.Worker;
+import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.service.Service;
 
 @WebServlet("/getOneReimbursement")
@@ -42,11 +42,11 @@ public class GetOneReimbursementServlet extends HttpServlet {
 		// Format is: [ id ]
 		int id = Integer.parseInt(tx.get(0));
 		
-		Reimbursement reimburse = service.getReimbursement(id);
+		ReimbursementDTO reimburseDto = service.getReimbursement(id);
 		
-		logger.info("Get one reimbursement: " + reimburse);
+		logger.info("Get one reimbursement: " + reimburseDto);
 		
-		writeValueToResponse(resp, reimburse);
+		writeValueToResponse(resp, reimburseDto);
 
 	}
 	
