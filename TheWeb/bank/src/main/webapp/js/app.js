@@ -85,6 +85,10 @@ function loadDashboardView(){
 	xhr.send();
 };
 
+
+/*
+ * look into window.location.href = <html page>
+ */
 //function ajaxGetPage(){
 //	return $.ajax({
 //		url: 'getAccPage',
@@ -151,9 +155,37 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
 	console.log("in account page info after XHR send");
-	$("#makeAccount").click(addAcount());
+	$("#makeAccount").click(function(){showAddAccountView();});
 
-}
+};
+
+function showAddAccountView(){
+	$("#accountForm").show();
+	$("#accounts").hide();
+	$("#submitAccount").click(function(){addAccount();});
+	
+};
+
+
+function addAccount(){ // allows us to acc new accounts 
+	
+	var accType = $('input[name="accType"]:checked').val();
+	
+	console.log(accType);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+
+		}
+	}
+
+	xhr.open("POST", "addAccount", true);
+	//set the header to tell the server you have data for it to process
+	xhr.send(accType); //include your post data in the send()
+
+}; 
 
 
 function getUserPageInfo(){ // loads basic user info and account info into html
@@ -174,26 +206,6 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 
 
 
-function addAccount(){ // allows us to acc new accounts 
-	$("#accountForm").show();
-	$("#accounts").hide();
-	var accType = document.getElementById("accType").value;
-	console.log(accType);
-
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
-
-		}
-	}
-
-	xhr.open("POST", "addAccount", true);
-	//set the header to tell the server you have data for it to process
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
-	xhr.send(accType); //include your post data in the send()
-
-}; 
 
 //function createUser(){
 
