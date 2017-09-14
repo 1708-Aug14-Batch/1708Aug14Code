@@ -51,39 +51,58 @@ $("#userlist").on('click',function(){
 			var user = dto.user;
 			var accounts = dto.accounts;
 			var userlist = dto.userList;
-			
+			var restriction;
+			for(var i = 0; i < userlist.length; i++){
+				var fullname = userlist[i].firstname + " " + userlist[i].lastname;
+				if(fullname === userselection){
+					restriction = userlist[i].userId;
+				}
+				
+			}
 			
 			if(accounts.length == 0){
 				document.getElementById("accounts").style.visiblity = "hidden";
 			}
 			else{
+				
 				for(var i = 0; i < accounts.length; i++){
-				if(userselection === "Choose an Employee")
-					continue;
-				if(accounts[i].status_id === 0){
-				var table = document.getElementById('list');
-				var row = table.insertRow();
-				var fname = row.insertCell(0);
-				var lname = row.insertCell(1);
-				var rID = row.insertCell(2);
-				var status = row.insertCell(3);
-				var subDate = row.insertCell(4);
-				var ResDate = row.insertCell(5);
-				var reason = row.insertCell(6);
-				var amount = row.insertCell(7);
-				var resID = row.insertCell(8);
+
+					if(accounts[i].status_id === 0 && accounts[i].sub_id === restriction){
+						
+						
+						var table = document.getElementById('list');
+						var row = table.insertRow();
+						var fname = row.insertCell(0);
+						var lname = row.insertCell(1);
+						var rID = row.insertCell(2);
+						var status = row.insertCell(3);
+						var subDate = row.insertCell(4);
+						var ResDate = row.insertCell(5);
+						var reason = row.insertCell(6);
+						var amount = row.insertCell(7);
+						var resID = row.insertCell(8);
 				
 				
-				
-					for(var i = 0; i < userlist.length; i++){
-						var fullnames = userlist[i].firstname + " " + userlist[i].lastname;
-						console.log(fullnames);
-						if(fullnames === userselection){
-							fname.innerHTML = userlist[i].firstname;
-							lname.innerHTML = userlist[i].lastname;
+						console.log("in table creation");
+					for(var j = 0; j < userlist.length; j++){
+						if(accounts[i].sub_id === userlist[j].userId){
+							var fullname = userlist[j].firstname + " " + userlist[j].lastname;
+							if(fullname === userselection){
+							fname.innerHTML = userlist[j].firstname;
+							lname.innerHTML = userlist[j].lastname;
+							}
+							else
+								continue;
 						}
 					}
 					rID.innerHTML = accounts[i].r_id;
+					rID.setAttribute("class","resolvedID");
+					rID.setAttribute("data-toggle","modal");
+					rID.setAttribute("data-target","#pendingModal");
+					$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
+					
+					
+					
 					status.innerHTML = "Pending";
 					var date = new Date(parseInt(accounts[i].subDate));
 					accounts[i].subDate = date.toLocaleDateString();
@@ -98,13 +117,36 @@ $("#userlist").on('click',function(){
 				}
 				
 			}
-			
+			$(".resolvedID").on('click',function(){
+				var value = $(this).text();
+				console.log(value);
+				for(var i = 0; i < accounts.length; i++){
+					if(accounts[i].r_id == value){
+						
+						$("#modalAmount").val("$" + accounts[i].amount);
+						$("#modalreAmount").val("$" + accounts[i].amount);
+						$("#modalNotes").val(accounts[i].notes);
+						for(var j = 0; j < userlist.length; j++){
+							if(userlist[j].userId === accounts[i].res_id){
+								$("#modalResolved").val(userlist[j].firstname + " " + userlist[j].lastname);
+							}
+							if(userlist[j].userId == accounts[i].sub_id){
+								$("#modalSubmitted").val(userlist[j].firstname + " " + userlist[j].lastname);
+								$("#modalDescription").val(accounts[i].description);
+								$("#reID").val(accounts[i].r_id);
+							}
+						}
+						
+					}
+				}
+			})
 			
 			
 		}
 	}
 	xhr5.open("GET", "UserReimbursement", true);
 	xhr5.send();
+	reset = reset + 1;
 })
 
 
@@ -115,8 +157,7 @@ $("#userlist").on('click',function(){
 $('#selectList').on('click',function(){
 	
 	var selection = $("#selectList option:selected").text();
-	var userselection = $('#userlist option:selected').text();
-	console.log(userselection);
+
 var restriction;
 if (selection === "Pending Reimbursements"){
 	restriction = 0;
