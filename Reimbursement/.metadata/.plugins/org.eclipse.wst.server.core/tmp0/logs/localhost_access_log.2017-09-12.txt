@@ -1,0 +1,14 @@
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:03:37 -0400] "GET /ReimbursementProject/app.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:03:37 -0400] "GET /ReimbursementProject/js/app.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:03:39 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 404 1060
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:13:57 -0400] "GET /ReimbursementProject/js/app.js HTTP/1.1" 200 2369
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:13:57 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 404 1060
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:14:19 -0400] "GET /ReimbursementProject/app.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:14:19 -0400] "GET /ReimbursementProject/js/app.js HTTP/1.1" 200 2369
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:14:19 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 404 1060
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:17:06 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 404 1060
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:26:31 -0400] "GET /ReimbursementProject/app.html HTTP/1.1" 200 2031
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:26:31 -0400] "GET /ReimbursementProject/js/app.js HTTP/1.1" 200 2369
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:26:32 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 404 1060
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:40:56 -0400] "GET /ReimbursementProject/js/app.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [12/Sep/2017:09:40:56 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 404 1060

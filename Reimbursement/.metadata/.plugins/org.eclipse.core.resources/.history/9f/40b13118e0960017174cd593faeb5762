@@ -1,0 +1,168 @@
+/**
+ * 
+ */
+var logged = false;
+window.onload = function(){
+	
+	loadHomeView();
+	
+//	if(logged == false){
+//		$("#navbar").hide;
+//	}
+//	else{
+//		$("#navbar").show();
+//	};
+//	document.getElementById("homePage").addEventListener("click", loadDashboardView);
+//	
+//	document.getElementById("reimbusePage").addEventListener("click", loadReimbursePageView);
+//	
+//};
+
+function loadHomeView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById("view").innerHTML = xhr.responseText;
+			document.getElementById("login").addEventListener("click", login);
+			
+			}
+		}
+	xhr.open("GET", "getLoginView", true);
+	xhr.send();
+};
+
+function login(){
+	var email = document.getElementById("email").value;
+	var pwd = document.getElementById("pwd").value;
+	var tx = [email, pwd];
+	tx = JSON.stringify(tx);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var response = xhr.responseText;
+			
+			if(response == "fail"){
+				document.getElementById("message").innerHTML = "Invalid credentials. Try again";
+			}
+			else if (response == "pass"){
+				document.getElementById("message").innerHTML = "invalid user, try agin";
+			}
+			else{
+				login = true;
+				console.log(response);
+				loadDashboardView();
+				$('#navbar').show();
+				
+			}
+			
+		}
+	}
+		xhr.open("POST", "login", true);
+		xhr.setRequestHeader("Content-Type", "application/x-www-from-urlencoded");
+		xhr.send(tx);
+	};
+	
+function loadDashboardView(){
+	console.log("in the load dashboard view ");
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.staus == 200){
+			doocument.getElementById('view').innerHTML = xhr.responseText;
+			getUserPageInfo();
+		}
+	}
+	console.log("getting dash");
+	xhr.open("GET", "getDashboard", true);
+	xhr.send();
+	
+}
+
+function loadReimbursementView(){
+	var xhr = new XMLHttpRequest();
+	xhr.getonreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').innerHTML = xhr.responseText;
+			getReimbursementPage();
+		}
+		
+	}
+	console.log("getting reimbursement");
+	xhr.open("GET", "getReimbursement", ture);
+	xhr.sent();
+}/*
+
+function getAcctPageInfo(){ // loads basic user info and account info into html
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			var user = dto.user;
+			var accounts = dto.accounts;
+
+
+			if (accounts.length == 0){
+				document.getElementById("accounts").style.visibility = "hidden"; 
+
+			}
+			else{
+
+				for(var i = 0; i < accounts.length; i++){
+					// populate accounts table
+					var table = document.getElementById("accTable");
+					var row = table.insertRow();
+					var acc = row.insertCell(0);
+					var type = row.insertCell(1);
+					var bal = row.insertCell(2);
+					acc.innerHTML = "Account No. " + accounts[i].id;
+					type.innerHTML = accounts[i].type;
+					bal.innerHTML = "$" + accounts[i].balance;
+				}
+			}
+		}
+	}
+	xhr.open("GET", "getUserInfo", true);
+	xhr.send();
+	
+}
+
+
+function getUserPageInfo(){ // loads basic user info and account info into html
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			var user = dto.user;
+			document.getElementById('name')
+			.innerHTML = user.firstname + " " + user.lastname;
+		}
+	}
+	xhr.open("GET", "getUserInfo", true);
+	xhr.send();
+
+};
+/*
+
+
+function addAccount(){ // allows us to acc new accounts 
+	var accType = document.getElementById("accType").value;
+	console.log(accType);
+
+	var type = JSON.stringify(accType);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+
+		}
+	}
+
+	xhr.open("POST", "addAccount", true);
+	//set the header to tell the server you have data for it to process
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
+	xhr.send(input); //include your post data in the send()
+
+}*/
