@@ -83,7 +83,6 @@ function getUserReim() {
 					Penreims.push(arr);
 				}
 			}
-			console.log(dto.reims[0][0]);
 			console.log(reims);
 			$('#ReimTable').DataTable( {
 				destroy: true,
@@ -295,6 +294,7 @@ function loadDashboardViewMan() {
 
 var Manreims = [];
 var ManPenreims = [];
+var tempIDs = [];
 
 function reloadManReim() {
 	if(document.getElementById('ResCheck').checked) {
@@ -303,6 +303,7 @@ function reloadManReim() {
 	        "order": [[ 0, "desc" ]],
 	        data: Manreims,
 	        columns: [
+	        	{ title: "ID" },
 	            { title: "Submitter" },
 	            { title: "Resolver" },
 	            { title: "Submit Date" },
@@ -310,7 +311,8 @@ function reloadManReim() {
 	            { title: "Status" },
 	            { title: "Submit Note" },
 	            { title: "Resolve Note" },
-	            { title: "Amount" }
+	            { title: "Amount" },
+	            { title: "Resolve" }
 	        ]
 	    } );
 	}
@@ -320,6 +322,7 @@ function reloadManReim() {
 	        "order": [[ 0, "desc" ]],
 	        data: ManPenreims,
 	        columns: [
+	        	{ title: "ID" },
 	            { title: "Submitter" },
 	            { title: "Resolver" },
 	            { title: "Submit Date" },
@@ -327,9 +330,60 @@ function reloadManReim() {
 	            { title: "Status" },
 	            { title: "Submit Note" },
 	            { title: "Resolve Note" },
-	            { title: "Amount" }
+	            { title: "Amount" },
+	            { title: "Resolve" }
 	        ]
 	    } );
+	}
+	for(var c = 0; c < tempIDs.length; c++) {
+		document.getElementById('A' + tempIDs[c]).onclick = function() {
+			console.log(this.parentNode.parentNode.cells[0].innerHTML);
+			console.log('Updating Reim Resolve Data');
+			var xhr = new XMLHttpRequest();
+			var ID = this.parentNode.parentNode.cells[0].innerHTML;
+			var resNote = document.getElementById('resNoteDesc').value;
+			var tx = [ID, resNote, 'A'];
+			tx = JSON.stringify(tx);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					if(xhr.responseText == 'true') {
+						document.getElementById('resNoteDesc').value = "";
+						getManReim();
+						reloadManReim();
+					}
+					else {
+						//Add negative feedback maybe (This shouldn't have negative feedback realisticly though I think)
+					}
+				}
+			};
+			xhr.open('POST', 'updateReimResData', true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send(tx);
+		};
+		document.getElementById('D' + tempIDs[c]).onclick = function() {
+			console.log(this.parentNode.parentNode.cells[0].innerHTML);
+			console.log('Updating Reim Resolve Data');
+			var xhr = new XMLHttpRequest();
+			var ID = this.parentNode.parentNode.cells[0].innerHTML;
+			var resNote = document.getElementById('resNoteDesc').value;
+			var tx = [ID, resNote, 'D'];
+			tx = JSON.stringify(tx);
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState == 4 && xhr.status == 200) {
+					if(xhr.responseText == 'true') {
+						document.getElementById('resNoteDesc').value = "";
+						getManReim();
+						reloadManReim();
+					}
+					else {
+						//Add negative feedback maybe (This shouldn't have negative feedback realisticly though I think)
+					}
+				}
+			};
+			xhr.open('POST', 'updateReimResData', true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send(tx);
+		};
 	}
 }
 
@@ -342,34 +396,22 @@ function getManReim() {
 			console.log(dto);
 			Manreims = [];
 			ManPenreims = [];
+			tempIDs = [];
 			for(var i = 0; i < dto.reims.length; i++) {
-				var arr = [ dto.reims[i].sub, dto.reims[i].res, dto.reims[i].subDate, dto.reims[i].resDate, dto.reims[i].status, dto.reims[i].desc, dto.reims[i].resNote, dto.reims[i].amount];
-				Manreims.push(arr);
+				var arr = [ dto.reims[i].r_ID, dto.reims[i].sub, dto.reims[i].res, dto.reims[i].subDate, dto.reims[i].resDate, dto.reims[i].status, dto.reims[i].desc, dto.reims[i].resNote, dto.reims[i].amount, null];
 				if(dto.reims[i].status == 'Pending') {
+					arr[9] = "<button id='A" + arr[0] + "' style='color: green'>Approve</button><button id='D" + arr[0] + "' style='color: red'>Deny</button>";
 					ManPenreims.push(arr);
+					tempIDs.push(arr[0]);
 				}
+				Manreims.push(arr);
 			}
-			console.log(dto.reims[0][0]);
 			console.log(Manreims);
-			$('#ReimTable').DataTable( {
-				destroy: true,
-		        "order": [[ 0, "desc" ]],
-		        data: Manreims,
-		        columns: [
-		            { title: "Submitter" },
-		            { title: "Resolver" },
-		            { title: "Submit Date" },
-		            { title: "Resolve Date" },
-		            { title: "Status" },
-		            { title: "Submit Note" },
-		            { title: "Resolve Note" },
-		            { title: "Amount" }
-		        ]
-		    } );
 			
 			document.getElementById('ResCheck').onchange = function() {
 				reloadManReim();
 			};
+			reloadManReim();
 		}
 	};
 	xhr.open('GET', 'getReimManData', true);

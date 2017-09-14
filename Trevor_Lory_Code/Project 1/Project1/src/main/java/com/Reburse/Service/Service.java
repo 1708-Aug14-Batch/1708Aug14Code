@@ -42,4 +42,8 @@ public class Service {
 	public boolean UpdateEmp(User u) {
 		return dao.updateUser(u);
 	}
+	
+	public boolean UpdateReimPen(int ID, String desc, boolean res, int resid) {
+		return dao.updateReimbursement(ID, desc, res, resid);
+	}
 }

@@ -217,8 +217,24 @@ public class DAOimplementation implements DAO {
 		return false;
 	}
 
-	public boolean updateReimbursement(Reimbursement r) {
-		// TODO Auto-generated method stub
+	public boolean updateReimbursement(int id, String note, boolean res, int resid) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			CallableStatement cs = conn.prepareCall("{call Res_Reim(?,?,?,?)}");
+			cs.setInt(1, id);
+			cs.setString(2, note);
+			if(res) {
+				cs.setInt(3, 1);
+			}
+			else {
+				cs.setInt(3, 2);
+			}
+			cs.setInt(4, resid);
+			cs.executeUpdate();
+			System.out.println("Res Reim");
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

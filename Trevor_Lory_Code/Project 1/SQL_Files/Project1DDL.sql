@@ -89,6 +89,17 @@ as begin
   commit;
 end add_Emp;
 /
+create or replace procedure Res_Reim(thingID in number, note in varchar2, stat in number, resid in number)
+as begin
+  update Reimbursements
+  set resdate = CURRENT_TIMESTAMP,
+  statusid = stat,
+  resnote = note,
+  res_id = resid
+  where r_id = thingID;
+  commit;
+end Res_Reim;
+/
 
 ---------------------Test Code---------------------
 ---------------------------------------------------
@@ -126,6 +137,9 @@ on Reimbursements.RES_ID = USERS2.USERID;
 select * from Users;
 select * from Reimbursements;
 select * from Status;
+
+-- Purge stuff
+delete REIMBURSEMENTS;
 
 commit;
 
