@@ -69,36 +69,6 @@ function loadMenu(value){
 	})
 }
 
-/*
-function loadMenu(value){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('content').innerHTML = xhr.responseText;
-			loadHome();
-			if(value == "0"){
-				$('#four').click(loadSubmitReim);
-			}else if(value == "1"){
-				$('#four').click(loadRegisterEmployee);
-			}
-
-			if(value == "0"){
-				$('#three').click(loadReimE);
-			}else if(value == "1"){
-				$('#three').click(loadReimM);
-			}
-			//$('#one').click(loadHome);
-			$('#two').click(loadUser);
-			$('#five').click(invalidateSession);
-			if(value == "1"){
-				$('#emp').click(loadEmployee);
-			}
-		}
-	}
-	xhr.open("GET", "loadMenu", true);
-	xhr.send();
-}
-*/
 function loadUser(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -134,9 +104,6 @@ function getUserInfo(){
 			$('#ln').val(user.lname);
 			$('#email').val(user.email);
 			$('#password').val(user.password);
-			//$('#fn').attr("placeholder",user.fname);
-			//$('#ln').attr("placeholder",user.lname);
-			//$('#email').attr("placeholder",user.email);
 		}
 	})
 }
@@ -728,19 +695,6 @@ function loadHome(){
 		}
 	})
 }
-
-/*
-//???
-function loadHome(){
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			document.getElementById('content1').innerHTML = xhr.responseText;
-		}
-	}
-	xhr.open("GET", "loadHome", true);
-	xhr.send();
-}*/
 
 $(document).ready(function(){
 	loadLogin();

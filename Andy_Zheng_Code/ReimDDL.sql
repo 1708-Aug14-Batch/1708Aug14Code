@@ -121,7 +121,10 @@ INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ISMANAGER)
 VALUES('Don','Don','dd@email.com','dd',0);
 
 INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ISMANAGER)
-VALUES('Caleb','Rum','cr@email.com','cr',1);
+VALUES('Caleb','Rush','cr@email.com','cr',1);
+
+INSERT INTO USERS(FIRSTNAME, LASTNAME, EMAIL, PASSWORD, ISMANAGER)
+VALUES('Andy','Zheng','az@email.com','az',1);
 
 
 
