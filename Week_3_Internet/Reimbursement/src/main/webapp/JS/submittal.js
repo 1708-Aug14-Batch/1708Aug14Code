@@ -37,7 +37,7 @@ function submitReimbursement(){
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(tx);
 	
-	$("#success").append("#success", + "Reimbursement Request Successfuly Submitted. Check the Reimbursement Page for Status");
+
 	
 }
 

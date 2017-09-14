@@ -40,7 +40,7 @@ public class SubmittalPage extends HttpServlet {
 		ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
 		String email = list.get(0);
 		String password = list.get(1);
-		if(sessionUser.getEmail() == email && sessionUser.getPassword() == password) {
+
 		String reason = list.get(2);
 		Integer amount = Integer.parseInt(list.get(3));
 		User u = new User(email,password);
@@ -48,12 +48,7 @@ public class SubmittalPage extends HttpServlet {
 		Service service = new Service();
 		service.submitReimbursement(u, r);
 		System.out.println("Submittal Success?");
-		}
-		else {
-			PrintWriter pw = res.getWriter();
-			
-			res.sendRedirect("AddReimbursement.html");
-		}
+		
 		
 		
 	
