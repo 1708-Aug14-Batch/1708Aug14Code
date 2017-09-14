@@ -334,6 +334,98 @@ public class DAOImplementation implements DAOInterface {
 
 	}
 
+	public HashSet<Reimbursement> getReims2(Connection con) throws SQLException {
+		try {
+			String sql = "SELECT * FROM REIMBURSEMENTS";
+
+			Statement s = con.createStatement();
+			ResultSet rs = s.executeQuery(sql);
+
+			HashSet<Reimbursement> reimList = new HashSet<>();
+
+			while (rs.next()) {
+				ReimStatus tempType = getReimStatusFromID(rs.getInt(6));
+				User tempSub = getUser2(con, rs.getInt(2));
+				User tempRes = null;
+				if (rs.getInt(3) > 0) {
+					tempRes = getUser2(con, rs.getInt(3));
+				}
+
+				Reimbursement tempReim = new Reimbursement(rs.getInt(1), tempSub, tempRes, rs.getDate(4), rs.getDate(5),
+						tempType, rs.getString(7), rs.getString(8), rs.getDouble(9));
+
+				reimList.add(tempReim);
+			}
+			con.close();
+			 
+			return reimList;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			con.close();
+			return null;
+		}
+
+	}
+
+	public ReimStatus getReimStatusFromID(Connection con, int statusID) {
+
+		try {
+			String sql = "SELECT * FROM REIMSTATUS WHERE STATUSID = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, statusID);
+
+			ResultSet rs = ps.executeQuery();
+
+			ReimStatus temp = null;
+
+			while (rs.next()) {
+				temp = new ReimStatus(rs.getInt(1), rs.getString(2));
+			}
+
+			 
+			return temp;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+	public User getUser2(Connection con, int userID) {
+
+		try {
+			String sql = "{call getUserInfo(?,?,?,?,?,?)}";
+			CallableStatement cs = con.prepareCall(sql);
+
+			cs.setInt(1, userID);
+			cs.registerOutParameter(2, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(3, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(4, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(5, java.sql.Types.VARCHAR);
+			cs.registerOutParameter(6, java.sql.Types.NUMERIC);
+
+			cs.executeQuery();
+
+			User temp = new User();
+			temp.setUserID(userID);
+			temp.setFName(cs.getString(2));
+			temp.setLName(cs.getString(3));
+			temp.setEmail(cs.getString(4));
+			temp.setPassword(cs.getString(5));
+			temp.setIsManager(cs.getInt(6));
+
+			 
+			return temp;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	
 	// select all reimbursements based of a user
 	public HashSet<Reimbursement> getUserReim(int userID) {
 
