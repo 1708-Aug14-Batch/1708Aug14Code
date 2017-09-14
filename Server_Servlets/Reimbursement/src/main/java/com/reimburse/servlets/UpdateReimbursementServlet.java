@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +27,7 @@ import com.reimburse.service.Service;
 @WebServlet("/updateReimbursement")
 public class UpdateReimbursementServlet extends HttpServlet {
 
+	final static Logger logger = Logger.getLogger(UpdateReimbursementServlet.class);
 	/**
 	 * Auto-generated
 	 */
@@ -32,7 +35,7 @@ public class UpdateReimbursementServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doPost in UpdateProfileServlet"); // DEBUG
+		logger.info("doPost");
 
 		ArrayList<String> tx = readValuesFromRequest(request);
 

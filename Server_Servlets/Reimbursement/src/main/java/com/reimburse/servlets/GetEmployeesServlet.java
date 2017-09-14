@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.pojos.Worker;
 import com.reimburse.service.Service;
 
 @WebServlet("/getEmployees")
 public class GetEmployeesServlet extends HttpServlet {
-
+	
+	final static Logger logger = Logger.getLogger(GetEmployeesServlet.class);
 	/**
 	 * Auto-generated
 	 */
@@ -25,13 +28,13 @@ public class GetEmployeesServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("Inside doPost of GetEmployeesServlet");
+		logger.info("doPost");
 
 		Service service = new Service();
 				
 		ArrayList<Worker> workers = service.getAllWorkers();
 
-		System.out.println("Returning employees: " + workers);
+		logger.info("Returning employees: " + workers);
 		writeValueToResponse(resp, workers);
 
 	}

@@ -8,16 +8,21 @@ var id = -1; // Keeps track of the id of the logged in user. -1 means no user
 // is logged in
 var isManager = false; // Keeps track of whether the logged-in user is a
 // manager
+// Keeps track of the last timeout set
+var timeout = -1;
+
 window.onload = function() {
 
-	$("#navbarDiv").attr("hidden", true);
-	$("#managerNavbarDiv").attr("hidden", true);
+	$("#navbar_div").attr("hidden", true);
+	$("#manager_navbar_div").attr("hidden", true);
+
+	setEventListeners();
 
 	// If a session is currently active, log in to that one
 	// Otherwise show the login screen
 	tryLogin();
 
-	setEventListeners();
+	$("#loading_div").attr("hidden", true);
 
 };
 
@@ -27,9 +32,9 @@ function setEventListeners() {
 	// Employee navbar
 	$("#home").click(loadDashboard);
 	$("#profile").click(loadProfileView);
-	$("#submitReim").click(loadSubmitReimView);
-	$("#viewPendingReim").click(viewPendingReim);
-	$("#viewResolvedReim").click(viewResolvedReim);
+	$("#submit_reim").click(loadSubmitReimView);
+	$("#view_pending_reim").click(viewPendingReim);
+	$("#view_resolved_reim").click(viewResolvedReim);
 
 	// Miscellaneous
 	$("#submit_button").click(submitReimbursement);
@@ -37,15 +42,15 @@ function setEventListeners() {
 
 	// Manager
 	// Manager navbar
-	$("#homeManager").click(loadDashboard);
-	$("#profileManager").click(loadProfileView);
-	$("#resolveReim").click(resolveReimView);
-	$("#viewPendingReimManager").click(viewAllPendingReim);
-	$("#viewResolvedReimManager").click(viewAllResolvedReim);
-	$("#viewEmployeesReim").click(loadViewEmployeesReim);
-	$("#viewEmployees").click(viewEmployees);
-	$("#registerEmployee").click(registerEmployeeView);
-	$("#viewReimIdButton").click(loadEmployeesReims);
+	$("#home_manager").click(loadDashboard);
+	$("#profile_manager").click(loadProfileView);
+	$("#resolve_reim").click(resolveReimView);
+	$("#view_pending_reim_manager").click(viewAllPendingReim);
+	$("#view_resolved_reim_manager").click(viewAllResolvedReim);
+	$("#view_employees_reim").click(loadViewEmployeesReim);
+	$("#view_employees").click(viewEmployees);
+	$("#register_employee").click(registerEmployeeView);
+	$("#view_reim_id_button").click(loadEmployeesReims);
 	$("#resolve_button").click(resolveReim);
 
 	// Miscellaneous
@@ -67,90 +72,96 @@ function setEventListeners() {
 
 function viewEmployees() {
 	hideAllViews();
-	$("#viewEmployeesDiv").attr("hidden", false);
+	$("#view_employees_div").attr("hidden", false);
 	showEmployeesTable();
 }
 
 function resolveReimView() {
 	hideAllViews();
-	$("#resolveReimDiv").attr("hidden", false);
+	$("#resolve_reim_div").attr("hidden", false);
 }
 
 function loadEmployeesReims() {
-	viewReimbursements("#viewReimIdDisplay", "", $("#employee_id_text")[0].value);
+	viewReimbursements("#view_reim_id_display", "",
+			$("#employee_id_text")[0].value);
 }
 
 function getOneReimbursement() {
+	$("#resolve_error_message").text("");
 	var id = $("#view_reimbursement_id")[0].value;
 
 	if (typeof id === "undefined")
-		id = -1;	// There are no reimbursements with negative numbers
-	
-	var dto = [ ""+id ]; // dto must only contain String objects
+		id = -1; // There are no reimbursements with negative numbers
+
+	var dto = [ "" + id ]; // dto must only contain String objects
 	console.log("Get one reimbursement dto: " + dto);
 	dto = JSON.stringify(dto);
 	sendReceiveXMLResponse("POST", "getOneReimbursement", dto, function(
 			responseText) {
 		var reimbursement = JSON.parse(responseText);
 
-		var div = "#viewReimDiv";
-		
+		var div = "#view_reim_div";
+
 		$(div).attr("hidden", false);
 		if (reimbursement == null)
-			$(div).html("That id does not correspond to a reimbursement<br><br>");
-		else populateReimbursementsTable(div, [ reimbursement ]);
+			$(div).html(
+					"That id does not correspond to a reimbursement<br><br>");
+		else
+			populateReimbursementsTable(div, [ reimbursement ]);
 	});
 }
 
 function registerEmployeeView() {
 	hideAllViews();
-	$("#registerEmployeeDiv").attr("hidden", false);
+	$("#register_employee_div").attr("hidden", false);
 }
 
 // FIXME double-check that I've added every div to this lsit
 function hideAllViews() {
-	$("#loginDiv").attr("hidden", true);
-	$("#profileDiv").attr("hidden", true);
-	$("#submitReimDiv").attr("hidden", true);
-	$("#dashboardDiv").attr("hidden", true);
+	$("#login_div").attr("hidden", true);
+	$("#profile_div").attr("hidden", true);
+	$("#submit_reim_div").attr("hidden", true);
+	$("#dashboard_div").attr("hidden", true);
 
-	$("#viewReimIdDiv").attr("hidden", true);
-	$("#viewReimDiv").attr("hidden", true);
-	$("#registerEmployeeDiv").attr("hidden", true);
-	$("#resolveReimDiv").attr("hidden", true);
-	$("#viewEmployeesDiv").attr("hidden", true);
+	$("#view_reim_id_div").attr("hidden", true);
+	$("#view_reim_div").attr("hidden", true);
+	$("#register_employee_div").attr("hidden", true);
+	$("#resolve_reim_div").attr("hidden", true);
+	$("#view_employees_div").attr("hidden", true);
 }
 
 function loadLoginView() {
 	hideAllViews();
-	$("#loginDiv").attr("hidden", false);
+	$("#login_div").attr("hidden", false);
 }
 
 function loadDashboard() {
 	hideAllViews();
 	if (isManager) {
-		$("#navbarDiv").attr("hidden", true);
-		$("#managerNavbarDiv").attr("hidden", false);
+		$("#navbar_div").attr("hidden", true);
+		$("#manager_navbar_div").attr("hidden", false);
 	} else {
-		$("#managerNavbarDiv").attr("hidden", true);
-		$("#navbarDiv").attr("hidden", false);
+		$("#manager_navbar_div").attr("hidden", true);
+		$("#navbar_div").attr("hidden", false);
 	}
 
-	$("#dashboardDiv").attr("hidden", false);
+	$("#dashboard_div").attr("hidden", false);
 
 	if (isManager)
-		$("#dashboardDiv").find("h3")[0].innerHTML = "Manager";
+		$("#dashboard_div").find("h3")[0].innerHTML = "Manager";
 	else
-		$("#dashboardDiv").find("h3")[0].innerHTML = "";
+		$("#dashboard_div").find("h3")[0].innerHTML = "";
 
 	var name = "";
-	getXMLResponse("GET", "getUserInfo", function(responseText) {
-		var user = JSON.parse(responseText).user;
-		name = user.firstName + " " + user.lastName;
-		$("#dashboardDiv").find("h3")[1].innerHTML = "Welcome " + name + " to";
-	});
+	getXMLResponse("GET", "getUserInfo",
+			function(responseText) {
+				var user = JSON.parse(responseText).user;
+				name = user.firstName + " " + user.lastName;
+				$("#dashboard_div").find("h3")[1].innerHTML = "Welcome " + name
+						+ " to";
+			});
 
-	$("#dashboardDiv").find("h3")[2].innerHTML = "The Online Reimbursement Resource";
+	$("#dashboard_div").find("h3")[2].innerHTML = "The Online Reimbursement Resource";
 
 }
 
@@ -166,88 +177,100 @@ function createWorker() {
 	var dto = [ "-1", firstName, lastName, email, username, password, "" + id,
 			"" + thisIsManager ];
 
-	createUpdateEmployee("#message_edit2", dto);
+	createEmployee("#message_edit2", dto);
 }
 
 function loadCreateAccount() {
 	hideAllViews();
-	$("#loginDiv").attr("hidden", false);
-	$("#createAccountDiv").attr("hidden", false);
+	$("#login_div").attr("hidden", false);
+	$("#create_account_div").attr("hidden", false);
 	// TODO
 }
 
 function loadProfileView() {
 	hideAllViews();
 	$("#message_edit").text(""); // Clear message text
-	$("#view_password_check").attr("checked", false); // FIXME doesn't
-	// de-select the checkbox
+	// Un-check the view password checkbox
+	if (document.getElementById("view_password_check").checked)
+		$("#view_password_check").click();
 	displayProfileInformation();
-	$("#profileDiv").attr("hidden", false);
+	$("#profile_div").attr("hidden", false);
 }
 
 function viewPendingReim() {
 	hideAllViews();
 
 	console.log("View reimbursements for the following employee id: " + id);
-	viewReimbursements("#viewReimDiv", "PENDING", id);
+	viewReimbursements("#view_reim_div", "PENDING", id);
 
 }
 function viewAllPendingReim() {
 	hideAllViews();
-	viewReimbursements("#viewReimDiv", "PENDING");
+	viewReimbursements("#view_reim_div", "PENDING");
 }
 function viewResolvedReim() {
 	hideAllViews();
 
-	viewReimbursements("#viewReimDiv", "RESOLVED", id);
+	viewReimbursements("#view_reim_div", "RESOLVED", id);
 }
 function viewAllResolvedReim() {
 	hideAllViews();
-	viewReimbursements("#viewReimDiv", "RESOLVED");
+	viewReimbursements("#view_reim_div", "RESOLVED");
 }
 function loadViewEmployeesReim() {
 	hideAllViews();
-	$("#viewReimIdDiv").attr("hidden", false);
+	$("#view_reim_id_div").attr("hidden", false);
 }
 function resolveReim() {
 	var reimbursement_id = $("#view_reimbursement_id")[0].value
 	if (reimbursement_id == "")
 		reimbursement_id = -1;
 	var status
-	if (document.getElementById('status_approved').checked) {
+	if (document.getElementById("status_approved").checked) {
 		status = "APPROVED";
-	} else if (document.getElementById('status_denied').checked) {
+	} else if (document.getElementById("status_denied").checked) {
 		status = "DENIED";
 	}
 	var notes = $("#resolve_notes")[0].value;
 
-	var dto = [ ""+reimbursement_id, status, notes];
-	
+	var dto = [ "" + reimbursement_id, status, notes ];
+
 	console.log("Resolving reimbursement with dto: " + dto);
-	
+
 	dto = JSON.stringify(dto);
-	sendReceiveXMLResponse("POST", "updateReimbursement", dto, function(responseText) {
+	sendReceiveXMLResponse("POST", "updateReimbursement", dto, function(
+			responseText) {
 		var response = JSON.parse(responseText);
-		
-		console.log("Response recieved in resolveReimbursement: " + response + " of type: " + typeof response);
-		
-		if (response == "true" || response === true)	{ // Success
-			$("#resolve_error_message").text("Reimbursement resolved");
-			$("#resolve_error_message").attr("style", "color:green");
+		var div = "#resolve_error_message";
+
+		console.log("Response recieved in resolveReimbursement: " + response
+				+ " of type: " + typeof response);
+
+		if (response == "true" || response === true) { // Success
+			$(div).text("Reimbursement resolved");
+			$(div).attr("style", "color:green");
 			setTimeout(resolveReimView(), 0);
+
+			// Clear fields
+			$("#view_reimbursement_id")[0].value = "";
+			$("#resolve_notes")[0].value = "";
+		} else {
+			$(div).text(response);
+			$(div).attr("style", "color:red");
 		}
-		else {
-			$("#resolve_error_message").text(response);
-			$("#resolve_error_message").attr("style", "color:red");
-		}
+
+		// Clear the feedback message
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+			$(div).text("");
+		}, 5000)
+
 	});
-			
-			
 
 }
 function loadSubmitReimView() {
 	hideAllViews();
-	$("#submitReimDiv").attr("hidden", false);
+	$("#submit_reim_div").attr("hidden", false);
 
 }
 
@@ -284,7 +307,7 @@ function viewReimbursements(div, type, id) {
 	if (typeof id === "undefined")
 		id == -1;
 
-	var dto = [ ""+id, type ]; // Both of these must be Strings
+	var dto = [ "" + id, type ]; // Both of these must be Strings
 
 	console.log("Getting list of reimbursements" + div + " " + dto);
 
@@ -307,25 +330,37 @@ function submitReimbursement() {
 	var description = $("#submit_description")[0].value;
 	var ammount = $("#submit_ammount")[0].value;
 
-	var dto = [ description, ""+ammount ];
+	var dto = [ description, "" + ammount ];
 
 	dto = JSON.stringify(dto);
-	console.log("createReimbursement dto: " + dto);
+	console.log("submitReimbursement dto: " + dto);
 	sendReceiveXMLResponse("POST", "createReimbursement", dto, function(
 			responseText) {
 		// Message arrived
 		var response = JSON.parse(responseText);
+		var div = "#submit_error_text";
 
-		console.log("xhr response arrived in createReimbursement()");
-		if (response == false) {
-			$("#submit_error_text").text("Reimbursement could not be created");
-			$("#submit_error_text").attr("style", "color:red");
+		console.log("xhr response arrived in submitReimbursement()");
+		if (response == "false" || response === false) {
+			// Set feedback message
+			$(div).text(response);
+			$(div).attr("style", "color:red");
 		} else {
-			setTimeout(loadSubmitReimView(), 0);
 
-			$("#submit_error_text").text("Reimbursement created.");
-			$("#submit_error_text").attr("style", "color:green");
+			// Clear fields
+			$("#submit_description")[0].value = "";
+			$("#submit_ammount")[0].value = "";
+
+			// Set feedback message
+			$(div).text("Reimbursement created.");
+			$(div).attr("style", "color:green");
 		}
+
+		// Clear the feedback message
+		clearTimeout(timeout);
+		timeout = setTimeout(function() {
+			$(div).text("");
+		}, 5000)
 
 	});
 }
@@ -400,9 +435,9 @@ function setLoggedInDetails() {
 		isManager = user.manager;
 
 		if (isManager)
-			navbar = "#managerNavbarDiv";
+			navbar = "#manager_navbar_div";
 		else
-			navbar = "#navbarDiv";
+			navbar = "#navbar_div";
 
 		$(navbar).attr("hidden", false);
 		loadDashboard();
@@ -428,25 +463,29 @@ function login() {
 			function(responseText) {
 				// Message arrived
 				var response = responseText;
-
+				var div = "#message";
 				console
 						.log("xhr response arrived in login function in loginMessage.js: "
 								+ responseText);
 				if (response == "username") {
-					$("#message").text("Invalid username. Please try again");
+					$(div).text("Invalid username. Please try again");
 				} else if (response == "password") {
-					$("#message").text("Invalid password. Please try again");
+					$(div).text("Invalid password. Please try again");
 				} else if (response == "check") {
-					$("#message").text(
-							"A manager must check the checkbox to login");
+					$(div).text("A manager must check the checkbox to login");
 				} else if (response == "uncheck") {
-					$("#message").text(
-							"Uncheck the checkbox to login as an employee");
+					$(div).text("Uncheck the checkbox to login as an employee");
 				} else {
-					$("#message").text("");
+					$(div).text("");
 
 					setLoggedInDetails();
 				}
+
+				// Clear the feedback message
+				clearTimeout(timeout);
+				timeout = setTimeout(function() {
+					$(div).text("");
+				}, 5000)
 			});
 }
 
@@ -461,42 +500,85 @@ function updateProfile() {
 	var dto = [ userId, firstName, lastName, email, username, password, "-1",
 			"null" ];
 
-	createUpdateEmployee("#message_edit", dto);
+	updateEmployee("#message_edit", dto);
 }
 
-function createUpdateEmployee(div, dto) {
+function createEmployee(div, dto) {
 	dto = JSON.stringify(dto);
 	console.log("updateProfile dto: " + dto);
-	sendReceiveXMLResponse(
-			"POST",
-			"updateProfile",
-			dto,
+	sendReceiveXMLResponse("POST", "updateProfile", dto,
 			function(responseText) {
 				// Message arrived
 				var response = responseText;
 
 				console.log("xhr response arrived in updateProfile()");
-				if (response == false) {
-					$(div).text("Information could not be updated");
-					$(div).attr("style", "color:red");
-				} else {
-					setTimeout(loadProfileView(), 0);
+				if (response == "true" || response === true) {
 
+					$(div).text("Employee created.");
+					$(div).attr("style", "color:green");
+
+					// Clear fields
+					$("#firstname_edit2")[0].value = "";
+					$("#lastname_edit2")[0].value = "";
+					$("#email_edit2")[0].value = "";
+					$("#username_edit2")[0].value = "";
+					$("#password_edit2")[0].value = "";
+					if (document.getElementById("create_manager_check").checked)
+						$("#create_manager_check").click();
+					if (document.getElementById("view_password_check2").checked)
+						$("#view_password_check2").click();
+
+				} else {
+					$(div).text(response);
+					$(div).attr("style", "color:red");
+				}
+
+				// Clear the feedback message
+				clearTimeout(timeout);
+				timeout = setTimeout(function() {
+					$(div).text("");
+				}, 5000)
+
+			});
+}
+
+function updateEmployee(div, dto) {
+	dto = JSON.stringify(dto);
+	console.log("updateProfile dto: " + dto);
+	sendReceiveXMLResponse("POST", "updateProfile", dto,
+			function(responseText) {
+				// Message arrived
+				var response = responseText;
+
+				console.log("xhr response arrived in updateProfile()");
+				if (response == "true" || response === true) {
+					setTimeout(loadProfileView(), 0);
+					
 					$(div).text("Information updated.");
 					$(div).attr("style", "color:green");
+
+				} else {
+					$(div).text(response);
+					$(div).attr("style", "color:red");
 				}
+
+				// Clear the feedback message
+				clearTimeout(timeout);
+				timeout = setTimeout(function() {
+					$(div).text("");
+				}, 5000)
 
 			});
 }
 
 function showEmployeesTable() {
-	
+
 	getXMLResponse("GET", "getEmployees", function(responseText) {
 		var employees = JSON.parse(responseText);
 
 		populateEmployeesTable(employees);
 	});
-	
+
 }
 
 // type should be "GET" or "POST"
@@ -507,7 +589,7 @@ function getXMLResponse(type, myurl, callback) {
 
 	xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			if (typeof callback === 'function')
+			if (typeof callback === "function")
 				callback(xmlhttp.responseText);
 		}
 	}
@@ -531,9 +613,12 @@ function sendReceiveXMLResponse(type, myurl, dto, callback) {
 	xmlhttp.send(dto);
 }
 
-//FIXME how to make the table not so wide OR be able to dynamically shrink
-//horizontally
-function populateReimbursementsTable(div, reimbursements) {
+// FIXME how to make the table not so wide OR be able to dynamically shrink
+// horizontally
+// div is where the table should be displayed
+// reimbursements is a list of reimbursements to display
+// isUsername is a boolean. true means display employee's username. false means display employee's id
+function populateReimbursementsTable(div, reimbursements, isUsername) {
 	var html = "<h3>Reimbursements</h3>";
 	console.log("Populating reimbursements table..." + reimbursements.length);
 	// Table head
@@ -568,16 +653,15 @@ function populateReimbursementsTable(div, reimbursements) {
 }
 
 function populateEmployeesTable(employees) {
-	
+
 	var html = "<h3>Employees</h3>";
 	console.log("Populating employees table...");
 	// Table head
 	html += "<table class='table table-striped'><thead>	"
 			+ "<th>Worker ID</th>" + "<th>First name</th>"
-			+ "<th>Last name</th>" + "<th>Email</th>"
-			+ "<th>Username</th>" + "<th>is Manager</th>"
-			+ "<tbody>";
-	
+			+ "<th>Last name</th>" + "<th>Email</th>" + "<th>Username</th>"
+			+ "<th>is Manager</th>" + "<tbody>";
+
 	// Table rows
 	for (var i = 0; i < employees.length; i++) {
 
@@ -595,5 +679,5 @@ function populateEmployeesTable(employees) {
 	// Table end
 	html += "</tbody></thead></table>";
 
-	$(viewEmployeesDiv).html(html);
+	$("#view_employees_div").html(html);
 }

@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +24,7 @@ import com.reimburse.service.Service;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+	final static Logger logger = Logger.getLogger(LoginServlet.class);
 	/**
 	 * Auto-generated
 	 */
@@ -29,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("Inside doPost of LoginMessageServlet");
+		logger.info("doPost");
 
 		ArrayList<String> tx = readValuesFromRequest(req);
 
@@ -78,7 +81,7 @@ public class LoginServlet extends HttpServlet {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		super.destroy();
-		System.out.println("destroying login servlet");
+		logger.info("destroying login servlet");
 	}
 	
 	private ArrayList<String> readValuesFromRequest(HttpServletRequest req) throws JsonParseException, JsonMappingException, IOException {

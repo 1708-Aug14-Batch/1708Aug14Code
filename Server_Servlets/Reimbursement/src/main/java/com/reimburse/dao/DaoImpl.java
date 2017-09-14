@@ -25,7 +25,7 @@ import com.reimburse.util.ConnectionFactory;
 public class DaoImpl implements Dao {
 
 	public static boolean connection;
-	final static Logger logger = Logger.getLogger(Service.class);
+	final static Logger logger = Logger.getLogger(DaoImpl.class);
 
 	// Attempt to connect to database upfront.
 	static {
@@ -89,7 +89,7 @@ public class DaoImpl implements Dao {
 		else if (obj instanceof LocalDateTime)
 			ps.setString(i, getFormattedTimestamp((LocalDateTime) obj));
 		else
-			System.out.println("Error. Illegal data type");
+			logger.info("Error. Illegal data type");
 	}
 
 	///////////////////////////////////////////////////////////////////////////////
@@ -406,15 +406,19 @@ public class DaoImpl implements Dao {
 	// READ ALL methods
 	///////////////////////////////////////////////////////////////////////////////
 
-	private ArrayList<Object> readAll(String sql, String[] key) {
+	private ArrayList<Object> readAll(String sql, String[] key, Integer id) {
 		ArrayList<Object> list = new ArrayList<Object>();
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
 				AutoRollback tm = new AutoRollback(conn)) {
 
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery(sql);
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			
+			if (id != null)
+				setPreparedStatement(1, ps, id);
+
+			ResultSet rs = ps.executeQuery();
 
 			list = getObjectsFromResultSet(rs, key[0]);
 
@@ -431,7 +435,7 @@ public class DaoImpl implements Dao {
 		String sql = "SELECT * from worker";
 		String[] key = { "worker_id" };
 
-		ArrayList<Object> objectList = readAll(sql, key);
+		ArrayList<Object> objectList = readAll(sql, key, null);
 		ArrayList<Worker> workerList = new ArrayList<Worker>();
 		for (Object obj : objectList)
 			workerList.add((Worker) obj);
@@ -441,11 +445,10 @@ public class DaoImpl implements Dao {
 
 	@Override
 	public ArrayList<Reimbursement> readAllReimbursements() {
-
 		String sql = "SELECT * from reimbursement";
 		String[] key = {"reimbursement_id"};
 
-		ArrayList<Object> objectList = readAll(sql, key);
+		ArrayList<Object> objectList = readAll(sql, key, null);
 		ArrayList<Reimbursement> reimburseList = new ArrayList<Reimbursement>();
 		for (Object obj : objectList)
 			reimburseList.add((Reimbursement) obj);
@@ -453,15 +456,86 @@ public class DaoImpl implements Dao {
 		return reimburseList;
 	}
 	
-	public int getNumReimbursements() {
-		String sql = "call countReimbursements()";
+	public ArrayList<Reimbursement> readAllResolvedReimbursements() {
+		String sql = "SELECT * FROM reimbursement "
+				+ "WHERE STATUS_ID_FK=2 OR STATUS_ID_FK=3";	// DENIED || APPROVED
+		String[] key = {"reimbursement_id"};
+
+		ArrayList<Object> objectList = readAll(sql, key, null);
+		ArrayList<Reimbursement> reimburseList = new ArrayList<Reimbursement>();
+		for (Object obj : objectList)
+			reimburseList.add((Reimbursement) obj);
+
+		return reimburseList;
+	}
+	public ArrayList<Reimbursement> readAllResolvedReimbursements(int workerId) {
+		String sql = "SELECT * FROM reimbursement "
+				+ "WHERE STATUS_ID_FK=2 OR STATUS_ID_FK=3"	// DENIED || APPROVED
+				+ " AND SUBMITTER_ID_FK=?";	
+		String[] key = {"reimbursement_id"};
+
+		ArrayList<Object> objectList = readAll(sql, key, workerId);
+		ArrayList<Reimbursement> reimburseList = new ArrayList<Reimbursement>();
+		for (Object obj : objectList)
+			reimburseList.add((Reimbursement) obj);
+
+		return reimburseList;
+	}
+	public ArrayList<Reimbursement> readAllPendingReimbursements() {
+		String sql = "SELECT * FROM reimbursement WHERE STATUS_ID_FK=1";	// PENDING
+		String[] key = {"reimbursement_id"};
+
+		ArrayList<Object> objectList = readAll(sql, key, null);
+		ArrayList<Reimbursement> reimburseList = new ArrayList<Reimbursement>();
+		for (Object obj : objectList)
+			reimburseList.add((Reimbursement) obj);
+
+		return reimburseList;
+	}
+	public ArrayList<Reimbursement> readAllPendingReimbursements(int workerId) {
+		String sql = "SELECT * FROM reimbursement WHERE STATUS_ID_FK=1"		// PENDING
+				+ "AND SUBMITTER_ID_FK=?";
+		String[] key = {"reimbursement_id"};
+
+		ArrayList<Object> objectList = readAll(sql, key, workerId);
+		ArrayList<Reimbursement> reimburseList = new ArrayList<Reimbursement>();
+		for (Object obj : objectList)
+			reimburseList.add((Reimbursement) obj);
+
+		return reimburseList;
+	}
+	public ArrayList<Reimbursement> readAllReimbursements(int workerId) {
+		String sql = "SELECT * FROM reimbursement where SUBMITTER_ID_FK=?";
+		String[] key = { "reimbursement_id" };
+		
+		ArrayList<Object> objectList = readAll(sql, key, workerId);
+		ArrayList<Reimbursement> reimbursementList = new ArrayList<Reimbursement>();
+		for (Object obj : objectList)
+			reimbursementList.add((Reimbursement) obj);
+
+		return reimbursementList;
+	}
+	public ArrayList<Worker> readAllNonManagers() {
+		String sql = "SELECT * FROM worker where IS_MANAGER=0";
+		String[] key = { "worker_id" };
+
+		ArrayList<Object> objectList = readAll(sql, key, null);
+		ArrayList<Worker> workerList = new ArrayList<Worker>();
+		for (Object obj : objectList)
+			workerList.add((Worker) obj);
+
+		return workerList;
+	}
+	
+	public int readNumReimbursements() {
+		String sql = "{? = call countReimbursements()}";
 		int num = -1;
 		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();
 				AutoSetAutoCommit a = new AutoSetAutoCommit(conn, false);
 				AutoRollback tm = new AutoRollback(conn)) {
 
-			CallableStatement cstmt = conn.prepareCall("{? = call countReimbursements()}");
+			CallableStatement cstmt = conn.prepareCall(sql);
 			cstmt.registerOutParameter(1, Types.INTEGER);
 			cstmt.execute();
 			num = cstmt.getInt(1);
@@ -473,11 +547,5 @@ public class DaoImpl implements Dao {
 
 		return num;
 	}
-	
-	// getResolvedReimbursements
-	// getResolvedReimbursements(int id)
-	// getPendingReimbursements
-	// getPendingReimbursements(int id)
-
 
 }

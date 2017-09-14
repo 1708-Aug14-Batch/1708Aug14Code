@@ -1,0 +1,330 @@
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:41 - entering main(String[])
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:42 - args: [Ljava.lang.String;@4e50df2e
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:56 - entering execute()
+2017-09-12 14:00:21 TRACE Log4jConsoleTest:62 - Test: TRACE level message.
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:65 - Test: DEBUG level message.
+2017-09-12 14:00:21 INFO  Log4jConsoleTest:68 - Test: INFO level message.
+2017-09-12 14:00:21 WARN  Log4jConsoleTest:71 - Test: WARN level message.
+2017-09-12 14:00:21 ERROR Log4jConsoleTest:74 - Test: ERROR level message.
+2017-09-12 14:00:21 FATAL Log4jConsoleTest:77 - Test: FATAL level message.
+2017-09-12 14:00:21 INFO  Log4jConsoleTest:81 - Logging stuff should go here
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:83 - exiting execute()
+2017-09-12 14:00:21 DEBUG Log4jConsoleTest:47 - exiting main()
+2017-09-12 14:02:41 INFO  Service:40 - User logged in
+2017-09-12 21:35:55 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
+2017-09-12 21:37:05 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
+2017-09-12 21:39:26 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
+2017-09-12 21:40:12 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
+2017-09-12 21:40:38 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
+2017-09-12 21:40:52 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): 5 reimbursements retrieved
+2017-09-12 22:17:34 INFO  Service:418 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
+2017-09-12 22:19:00 INFO  Service:418 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
+2017-09-12 22:20:04 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:46:33, resolvedDate=null, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-12 22:20:10 INFO  Service:418 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:20:10 INFO  Service:418 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-12 22:20:21 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-12 22:20:52 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-12 22:20:52 INFO  Service:313 - Database error on update
+2017-09-12 22:20:52 INFO  Service:314 - [Ljava.lang.StackTraceElement;@6617779a
+2017-09-12 22:20:52 INFO  Service:418 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 23 could not be set to status: DENIED
+2017-09-12 22:24:59 INFO  Service:418 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
+2017-09-12 22:25:04 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-12 22:25:14 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-12 22:25:14 INFO  Service:313 - Database error on update
+2017-09-12 22:25:14 ERROR Service:314 - java.sql.SQLIntegrityConstraintViolationException: ORA-02291: integrity constraint (REIMBURSEMENT_USER.FK_RESOLVER_ID) violated - parent key not found
+
+2017-09-12 22:25:14 INFO  Service:418 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 23 could not be set to status: DENIED
+2017-09-12 22:30:54 INFO  Service:419 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
+2017-09-12 22:31:00 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-12 22:31:10 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-12 22:31:10 INFO  Service:419 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 23 set to status: DENIED
+2017-09-12 22:31:19 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:31:19 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 3 reimbursements retrieved
+2017-09-12 22:31:22 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:31:22 INFO  Service:419 - class com.reimburse.service.Service: getResolvedReimbursements(): 2 reimbursements retrieved
+2017-09-12 22:31:42 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:31:42 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 3 reimbursements retrieved
+2017-09-12 22:31:50 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:31:50 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 3 reimbursements retrieved
+2017-09-12 22:31:57 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:46:33, resolvedDate=null, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-12 22:32:01 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:46:33, resolvedDate=null, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-12 22:32:01 INFO  Service:419 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 21 set to status: APPROVED
+2017-09-12 22:32:07 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:32:07 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 2 reimbursements retrieved
+2017-09-12 22:36:09 INFO  Service:419 - class com.reimburse.service.Service: validateWorker(...):  user validated: alexis
+2017-09-12 22:36:09 INFO  Service:419 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 2 reimbursements retrieved
+2017-09-12 22:36:09 INFO  Service:419 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 2 reimbursements retrieved
+2017-09-12 22:36:16 INFO  Service:419 - class com.reimburse.service.Service: isManager(int id): Worker with ID: 21 is not a manager
+2017-09-12 22:36:17 INFO  Service:419 - class com.reimburse.service.Service: tryCreateReimbursement(...): Reimbursement created with id: 41
+2017-09-12 22:36:34 INFO  Service:419 - class com.reimburse.service.Service: isManager(int id): Worker with ID: 21 is not a manager
+2017-09-12 22:36:35 INFO  Service:419 - class com.reimburse.service.Service: tryCreateReimbursement(...): Reimbursement created with id: 42
+2017-09-12 22:36:45 INFO  Service:419 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-12 22:36:47 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:36:47 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-12 22:36:49 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:36:49 INFO  Service:419 - class com.reimburse.service.Service: getResolvedReimbursements(): 3 reimbursements retrieved
+2017-09-12 22:36:52 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-12 22:36:52 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-12 22:36:57 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:49:37, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-12 22:37:00 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:49:37, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-12 22:37:01 INFO  Service:419 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 22 set to status: APPROVED
+2017-09-13 18:59:00 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 18:59:01 INFO  Service:426 - Database error on readAll
+2017-09-13 18:59:01 ERROR Service:427 - java.sql.SQLException: Invalid column index
+2017-09-13 18:59:01 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 18:59:01 INFO  Service:426 - Database error on readAll
+2017-09-13 18:59:01 ERROR Service:427 - java.sql.SQLException: Invalid column index
+2017-09-13 18:59:01 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 18:59:04 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 18:59:04 INFO  Service:426 - Database error on readAll
+2017-09-13 18:59:04 ERROR Service:427 - java.sql.SQLException: Invalid column index
+2017-09-13 18:59:04 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 18:59:10 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 18:59:10 INFO  Service:426 - Database error on readAll
+2017-09-13 18:59:10 ERROR Service:427 - java.sql.SQLException: Invalid column index
+2017-09-13 18:59:10 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:01:12 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:01:43 INFO  Service:426 - Database error on readAll
+2017-09-13 19:01:43 ERROR Service:427 - java.sql.SQLException: Invalid column index
+2017-09-13 19:01:43 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:09:53 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:10:38 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:10:38 INFO  Service:426 - Database error on readAll
+2017-09-13 19:10:38 ERROR Service:427 - java.sql.SQLSyntaxErrorException: ORA-00904: "WORKER_ID": invalid identifier
+
+2017-09-13 19:10:38 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:10:38 INFO  Service:426 - Database error on readAll
+2017-09-13 19:10:38 ERROR Service:427 - java.sql.SQLSyntaxErrorException: ORA-00904: "WORKER_ID": invalid identifier
+
+2017-09-13 19:10:38 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:10:40 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:10:40 INFO  Service:426 - Database error on readAll
+2017-09-13 19:10:40 ERROR Service:427 - java.sql.SQLSyntaxErrorException: ORA-00904: "WORKER_ID": invalid identifier
+
+2017-09-13 19:10:40 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:10:42 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:10:42 INFO  Service:426 - Database error on readAll
+2017-09-13 19:10:42 ERROR Service:427 - java.sql.SQLSyntaxErrorException: ORA-00904: "WORKER_ID": invalid identifier
+
+2017-09-13 19:10:42 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:13:19 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:13:19 INFO  Service:426 - Database error on readAll
+2017-09-13 19:13:19 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:13:19 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:13:19 INFO  Service:426 - Database error on readAll
+2017-09-13 19:13:19 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:13:19 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:13:21 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:14:27 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:14:28 INFO  Service:426 - Database error on readAll
+2017-09-13 19:14:28 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:14:28 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:14:28 INFO  Service:426 - Database error on readAll
+2017-09-13 19:14:28 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:14:28 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:14:33 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:14:33 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:14:37 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:14:37 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:14:42 INFO  Service:426 - Database error on readAll
+2017-09-13 19:14:42 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:14:42 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:14:51 INFO  Service:383 - class com.reimburse.service.Service: isManager(int id): Worker with ID: 1 is not a manager
+2017-09-13 19:14:53 INFO  Service:383 - class com.reimburse.service.Service: tryCreateReimbursement(...): Reimbursement created with id: 61
+2017-09-13 19:14:55 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:14:55 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(int id): 1 reimbursements retrieved
+2017-09-13 19:14:57 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:14:57 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:15:08 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:15:18 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:15:18 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:15:25 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:15:25 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:15:34 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:15:34 INFO  Service:426 - Database error on readAll
+2017-09-13 19:15:34 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:15:34 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:15:36 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 2
+2017-09-13 19:15:39 INFO  Service:383 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:15:45 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 21
+2017-09-13 19:15:45 INFO  Service:426 - Database error on readAll
+2017-09-13 19:15:45 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:15:45 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:17:01 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:17:01 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:17:03 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:17:03 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:17:06 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 21
+2017-09-13 19:17:06 INFO  Service:426 - Database error on readAll
+2017-09-13 19:17:06 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:17:06 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:17:08 INFO  Service:383 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:17:12 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 21
+2017-09-13 19:17:12 INFO  Service:426 - Database error on readAll
+2017-09-13 19:17:12 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:17:12 INFO  Service:383 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:17:32 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:17:32 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:18:56 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:19:01 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:19:01 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:19:03 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:19:03 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:19:05 INFO  Service:383 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:21:20 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:21:27 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:21:28 INFO  Service:383 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:21:30 INFO  Service:383 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:21:30 INFO  Service:383 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:21:36 INFO  Service:383 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:22:41 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:23:52 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:29:06 INFO  Service:383 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:29:10 INFO  Service:383 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-13 19:29:13 INFO  Service:383 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-13 19:29:17 INFO  Service:383 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 19:29:20 INFO  Service:383 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-13 19:30:18 INFO  Service:383 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:30:27 INFO  Service:385 - class com.reimburse.service.Service: getReimbursement(int id): reimbursement could not be retrieved with id: 2222
+2017-09-13 19:30:50 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:30:50 INFO  Service:426 - Database error on readAll
+2017-09-13 19:30:50 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:30:50 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:30:50 INFO  Service:426 - Database error on readAll
+2017-09-13 19:30:50 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:30:50 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:30:53 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:30:53 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(int id): 1 reimbursements retrieved
+2017-09-13 19:30:55 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:30:55 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:30:56 INFO  Service:426 - Database error on readAll
+2017-09-13 19:30:56 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:30:56 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:31:02 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:31:11 INFO  Service:385 - class com.reimburse.service.Service: getReimbursement(int id): reimbursement could not be retrieved with id: 222
+2017-09-13 19:31:13 INFO  Service:385 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-13 19:31:15 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:31:15 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:31:16 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:31:16 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:31:19 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:31:19 INFO  Service:426 - Database error on readAll
+2017-09-13 19:31:19 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:31:19 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:31:23 INFO  Service:385 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:31:35 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 21
+2017-09-13 19:31:36 INFO  Service:426 - Database error on readAll
+2017-09-13 19:31:36 ERROR Service:427 - java.sql.SQLException: Fail to convert to internal representation
+2017-09-13 19:31:36 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 19:34:45 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:34:45 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:34:45 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:34:49 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:34:49 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(int id): 1 reimbursements retrieved
+2017-09-13 19:34:50 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:34:50 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:34:57 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
+2017-09-13 19:35:00 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:35:00 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:35:01 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:35:01 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:35:05 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:35:05 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:35:16 INFO  Service:385 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:43:37 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:43:37 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:43:37 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:43:39 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:43:41 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:43:41 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(int id): 1 reimbursements retrieved
+2017-09-13 19:43:44 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:43:44 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:43:51 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:43:56 INFO  Service:385 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-13 19:43:57 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:43:57 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:43:59 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 19:43:59 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 19:44:03 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:44:03 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:44:04 INFO  Service:385 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 19:58:42 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 19:58:43 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:58:43 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:58:44 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:58:46 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:58:46 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(int id): 1 reimbursements retrieved
+2017-09-13 19:58:47 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker found with id: 1
+2017-09-13 19:58:47 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 19:58:53 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 19:59:57 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
+2017-09-13 20:00:01 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 20:00:02 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 20:00:03 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 20:00:03 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 20:00:05 INFO  Service:385 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 20:00:09 INFO  Service:385 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 20:02:39 INFO  Service:385 - class com.reimburse.service.Service: getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 20:02:43 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 20:02:43 INFO  Service:385 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
+2017-09-13 20:02:44 INFO  Service:385 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 20:02:44 INFO  Service:385 - class com.reimburse.service.Service: getResolvedReimbursements(): 4 reimbursements retrieved
+2017-09-13 20:09:06 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 20:09:06 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:06 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:07 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:08 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:08 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:09 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:09 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:09 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:29 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:30 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:30 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:30 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:30 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:31 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:31 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:31 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:32 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:39 INFO  Service:385 - class com.reimburse.service.Service: validateWorker(...):  user validated: bob
+2017-09-13 20:09:39 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:39 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:40 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:40 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:40 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:41 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:41 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:09:42 INFO  Service:385 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:28:58 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:29:04 INFO  LoginServlet:35 - doPost
+2017-09-13 20:29:05 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:29:05 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:29:05 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:30:00 INFO  LogoutServlet:35 - doGet
+2017-09-13 20:30:01 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:30:04 INFO  LoginServlet:35 - doPost
+2017-09-13 20:30:04 INFO  Service:385 - validateWorker(...):  user validated: alexis
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:30:04 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:30:04 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:30:13 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 20:30:13 INFO  Service:385 - isManager(int id): Worker with ID: 21 is not a manager
+2017-09-13 20:30:13 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 62
+2017-09-13 20:33:03 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 20:33:12 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:33:17 INFO  LoginServlet:35 - doPost
+2017-09-13 20:33:18 INFO  Service:385 - validateWorker(...):  user validated: alexis
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:33:19 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:33:19 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO

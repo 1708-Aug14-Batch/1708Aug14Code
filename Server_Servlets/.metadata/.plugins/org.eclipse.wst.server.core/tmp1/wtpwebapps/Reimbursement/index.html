@@ -12,7 +12,11 @@
 </head>
 <body>
 
-	<div id="navbarDiv" hidden=true>
+	<div id="loading_div">
+		<h1>Loading...</h1>
+	</div>
+
+	<div id="navbar_div" hidden=true>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" id="home" href="#">Home</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -29,12 +33,10 @@
 						aria-haspopup="true" aria-expanded="false"> Reimbursements </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" id="submitReim"> Submit
-								Reimbursement </a>
-								<a class="dropdown-item" id="viewPendingReim">
-								View Pending Reimbursements </a>
-								<a class="dropdown-item"
-								id="viewResolvedReim"> View Resolved Reimbursements </a>
+							<a class="dropdown-item" id="submit_reim"> Submit
+								Reimbursement </a> <a class="dropdown-item" id="view_pending_reim">
+								View Pending Reimbursements </a> <a class="dropdown-item"
+								id="view_resolved_reim"> View Resolved Reimbursements </a>
 						</div></li>
 					<a href="logout"> Logout </a>
 
@@ -43,9 +45,9 @@
 		</nav>
 	</div>
 
-	<div id="managerNavbarDiv" hidden=true>
+	<div id="manager_navbar_div" hidden=true>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" id="homeManager">Home</a>
+			<a class="navbar-brand" id="home_manager">Home</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarNavDropdownManager"
 				aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -54,7 +56,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavDropdownManager">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" id="profileManager"
+					<li class="nav-item"><a class="nav-link" id="profile_manager"
 						href="#">Profile</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -62,12 +64,12 @@
 						aria-haspopup="true" aria-expanded="false"> Reimbursements </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" id="resolveReim"> Resolve
+							<a class="dropdown-item" id="resolve_reim"> Resolve
 								Reimbursement </a> <a class="dropdown-item"
-								id="viewPendingReimManager"> View Pending Reimbursements </a> <a
-								class="dropdown-item" id="viewResolvedReimManager"> View Resolved
-								Reimbursements </a> <a class="dropdown-item" id="viewEmployeesReim">
-								View Reimbursements by Employee </a>
+								id="view_pending_reim_manager"> View Pending Reimbursements
+							</a> <a class="dropdown-item" id="view_resolved_reim_manager">
+								View Resolved Reimbursements </a> <a class="dropdown-item"
+								id="view_employees_reim"> View Reimbursements by Employee </a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
@@ -75,8 +77,8 @@
 							Employees </a>
 						<div class="dropdown-menu"
 							aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" id="viewEmployees">View All
-								Employees</a> <a class="dropdown-item" id="registerEmployee">Register
+							<a class="dropdown-item" id="view_employees">View All
+								Employees</a> <a class="dropdown-item" id="register_employee">Register
 								New Employee</a>
 						</div></li>
 					<a href="logout"> Logout </a>
@@ -86,85 +88,85 @@
 		</nav>
 	</div>
 
-	<div id="loginDiv" hidden=true class='jumbotron'
-		style='background-color: white'>
+	<div id="login_div" hidden=true class="jumbotron"
+		style="background-color: white">
 		<h1 align="left">Welcome to the online reimbursement resource</h1>
 		<h2 align="left">Please log in to submit or view a reimbursement</h2>
 
-		<div id='loginDivDiv'>
-			<img height='100' width='100'
-				src='http://cliparting.com/wp-content/uploads/2016/06/Photos-of-vertical-scroll-banner-clip-art-parchment.jpg'
-				align='left'>
+		<div id="login_div_div">
+			<img height="100" width="100"
+				src="http://cliparting.com/wp-content/uploads/2016/06/Photos-of-vertical-scroll-banner-clip-art-parchment.jpg"
+				align="left">
 		</div>
 		<div>
-			<input type='text' id='username_input' placeholder='Username'
-				style='background-color: lightblue'><br> <br> <input
-				type='password' id='password_input' placeholder='Password'
-				style='background-color: lightblue'> Manager?<input
+			<input type="text" id="username_input" placeholder="Username"
+				style="background-color: lightblue"><br> <br> <input
+				type="password" id="password_input" placeholder="Password"
+				style="background-color: lightblue"> Manager?<input
 				type="checkbox" id="is_manager_check" /><br> <br> <input
-				type='submit' id='login_button' value='Login'
-				class='btn btn-primary' />
-			<p id='message' style='color: red'></p>
+				type="submit" id="login_button" value="Login"
+				class="btn btn-primary" />
+			<p id="message" style="color: red"></p>
 		</div>
 	</div>
 
-	<div id="viewReimDiv" hidden=true>
+	<div id="view_reim_div" hidden=true>
 		<h3>View Reimbursements</h3>
 	</div>
-	<div id="viewEmployeesDiv" hidden=true>
+	<div id="view_employees_div" hidden=true>
 		<h3>View Employees</h3>
 	</div>
-	<div id="viewReimIdDiv" hidden=true>
-		Employee ID: <input type="number" id="employee_id_text" /><br>
-		<br> <input type="button" id="viewReimIdButton" value="View"
-			class="btn btn-primary" /><br>
-		<br>
-		<div id="viewReimIdDisplay"></div>
+	<div id="view_reim_id_div" hidden=true>
+		Employee ID: <input type="number" id="employee_id_text" /><br> <br>
+		<input type="button" id="view_reim_id_button" value="View"
+			class="btn btn-primary" /><br> <br>
+		<div id="view_reim_id_display"></div>
 	</div>
 
-	<div id="submitReimDiv" hidden=true>
+	<div id="submit_reim_div" hidden=true>
 		<h3>Submit Reimbursement</h3>
 		<div>
 			Ammount: $ <input type="number" id="submit_ammount" min="0.01"
-				step="0.01" max="2500" placeholder="0.00" /><br>
-			<br> Description: <input type="text" id="submit_description"
-				placeholder="description" /><br>
-			<br> <input type='submit' id='submit_button' value='Submit'
-				class='btn btn-primary' /><br>
+				step="0.01" max="2500" placeholder="0.00" /><br> <br>
+			Description: <input type="text" id="submit_description"
+				placeholder="description" /><br> <br> <input
+				type="submit" id="submit_button" value="Submit"
+				class="btn btn-primary" /><br>
 			<p id="submit_error_text"></p>
 		</div>
 	</div>
 
-	<div id="dashboardDiv" hidden=true>
+	<div id="dashboard_div" hidden=true>
 		<h3></h3>
-		<h3 id="dashboardDivHeader1">Dashboard</h3>
-		<h3 id="dashboardDivHeader2">Welcome</h3>
+		<h3 id="dashboard_div_header1">Dashboard</h3>
+		<h3 id="dashboard_div_header2">Welcome</h3>
 	</div>
 
-	<div id="createReimDiv" hidden=true>
+	<div id="create_reim_div" hidden=true>
 		<h3>Create a reimbursement</h3>
 	</div>
 
-	<div id="resolveReimDiv" hidden=true>
+	<div id="resolve_reim_div" hidden=true>
 		Reimbursement ID: <input type="number" id="view_reimbursement_id"
 			min="0" step="1" style="background-color: AntiqueWhite" /> <input
-			type='submit' id='view_button' value='View Reimbursement' class='btn btn-primary' /><br>
-		<br> Status: <br><input type="radio" name="status_radio"
-			id="status_approved" value="APPROVED" checked="checked"/>APPROVED<br> <input type="radio"
-			name="status_radio" id="status_denied" value="DENIED" />DENIED<br>
+			type="submit" id="view_button" value="View Reimbursement"
+			class="btn btn-primary" /><br> <br> Status: <br> <input
+			type="radio" name="status_radio" id="status_approved"
+			value="APPROVED" checked="checked" />APPROVED<br> <input
+			type="radio" name="status_radio" id="status_denied" value="DENIED" />DENIED<br>
 		<br> Notes: <input type="text" id="resolve_notes"
 			placeholder="notes" style="background-color: AntiqueWhite" /><br>
-		<br> <input type='submit' id='resolve_button' value='Submit'
-			class='btn btn-primary' /><br>
+		<br> <input type="submit" id="resolve_button" value="Submit"
+			class="btn btn-primary" /><br>
 		<p id="resolve_error_message" style="color: red"></p>
 	</div>
 
-	<div id="registerEmployeeDiv" hidden=true>
+	<div id="register_employee_div" hidden=true>
 		<h3>Register a new employee</h3>
 		<div>
 			Name = <input type="text" id="firstname_edit2"
-				placeholder="First name" style="background-color: AntiqueWhite">
-			<input type="text" id="lastname_edit2" placeholder="Last name"
+				style="background-color: AntiqueWhite">
+			<input type="text" id="lastname_edit2"
 				style="background-color: AntiqueWhite"><br> <br>
 			email = <input type="text" id="email_edit2"
 				style="background-color: AntiqueWhite"><br> <br>
@@ -175,8 +177,8 @@
 				width="42"
 				src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-07-512.png" />
 			<input type="checkbox" id="view_password_check2" /><br> <input
-				type="checkbox" id=create_manager_check />Manager?<br> <br>
-			<input type="submit" id="update_profile2" class='btn btn-primary'
+				type="checkbox" id="create_manager_check" />Manager?<br> <br>
+			<input type="submit" id="update_profile2" class="btn btn-primary"
 				value="Register employee" /><br>
 			<p id="message_edit2" style="color: red"></p>
 			<br>
@@ -185,9 +187,9 @@
 		</div>
 	</div>
 
-	<div id="profileDiv" hidden=true>
+	<div id="profile_div" hidden=true>
 		<div>
-			<!-- Display worker's profile information -->
+			<!-- Display worker"s profile information -->
 			ID:
 			<p id="id_text"></p>
 			Name:
@@ -211,7 +213,7 @@
 				width="42"
 				src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-07-512.png" />
 			<input type="checkbox" id="view_password_check" /><br> <br>
-			<input type="submit" id="update_profile" class='btn btn-primary'
+			<input type="submit" id="update_profile" class="btn btn-primary"
 				value="Update information" /><br>
 			<p id="message_edit" style="color: red"></p>
 			<br>

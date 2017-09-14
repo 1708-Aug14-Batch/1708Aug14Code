@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 /**
  * Servlet implementation class LogoutServlet
  */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
+	
+	final static Logger logger = Logger.getLogger(LogoutServlet.class);
 	private static final long serialVersionUID = 1L;
-       
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -28,7 +32,7 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Logging out user");
+		logger.info("doGet");
 		
 		if (request.getSession(false) == null)
 			response.sendRedirect("app.html");
@@ -46,7 +50,7 @@ public class LogoutServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("LogoutServlet doPost not implemented yet");
+		logger.info("LogoutServlet doPost not implemented");
 	}
 
 }

@@ -1,70 +1,1064 @@
-2017-09-12 14:00:21 DEBUG Log4jConsoleTest:41 - entering main(String[])
-2017-09-12 14:00:21 DEBUG Log4jConsoleTest:42 - args: [Ljava.lang.String;@4e50df2e
-2017-09-12 14:00:21 DEBUG Log4jConsoleTest:56 - entering execute()
-2017-09-12 14:00:21 TRACE Log4jConsoleTest:62 - Test: TRACE level message.
-2017-09-12 14:00:21 DEBUG Log4jConsoleTest:65 - Test: DEBUG level message.
-2017-09-12 14:00:21 INFO  Log4jConsoleTest:68 - Test: INFO level message.
-2017-09-12 14:00:21 WARN  Log4jConsoleTest:71 - Test: WARN level message.
-2017-09-12 14:00:21 ERROR Log4jConsoleTest:74 - Test: ERROR level message.
-2017-09-12 14:00:21 FATAL Log4jConsoleTest:77 - Test: FATAL level message.
-2017-09-12 14:00:21 INFO  Log4jConsoleTest:81 - Logging stuff should go here
-2017-09-12 14:00:21 DEBUG Log4jConsoleTest:83 - exiting execute()
-2017-09-12 14:00:21 DEBUG Log4jConsoleTest:47 - exiting main()
-2017-09-12 14:02:41 INFO  Service:40 - User logged in
-2017-09-12 21:35:55 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
-2017-09-12 21:37:05 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
-2017-09-12 21:39:26 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
-2017-09-12 21:40:12 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
-2017-09-12 21:40:38 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): -1 reimbursements retrieved
-2017-09-12 21:40:52 INFO  Service:418 - class com.reimburse.service.Service: getNumReimbursements(): 5 reimbursements retrieved
-2017-09-12 22:17:34 INFO  Service:418 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
-2017-09-12 22:19:00 INFO  Service:418 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
-2017-09-12 22:20:04 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:46:33, resolvedDate=null, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
-2017-09-12 22:20:10 INFO  Service:418 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:20:10 INFO  Service:418 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
-2017-09-12 22:20:21 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
-2017-09-12 22:20:52 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
-2017-09-12 22:20:52 INFO  Service:313 - Database error on update
-2017-09-12 22:20:52 INFO  Service:314 - [Ljava.lang.StackTraceElement;@6617779a
-2017-09-12 22:20:52 INFO  Service:418 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 23 could not be set to status: DENIED
-2017-09-12 22:24:59 INFO  Service:418 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
-2017-09-12 22:25:04 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
-2017-09-12 22:25:14 INFO  Service:418 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
-2017-09-12 22:25:14 INFO  Service:313 - Database error on update
-2017-09-12 22:25:14 ERROR Service:314 - java.sql.SQLIntegrityConstraintViolationException: ORA-02291: integrity constraint (REIMBURSEMENT_USER.FK_RESOLVER_ID) violated - parent key not found
+2017-09-13 20:28:58 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:29:04 INFO  LoginServlet:35 - doPost
+2017-09-13 20:29:05 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:29:05 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:29:05 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:29:05 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:30:00 INFO  LogoutServlet:35 - doGet
+2017-09-13 20:30:01 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:30:04 INFO  LoginServlet:35 - doPost
+2017-09-13 20:30:04 INFO  Service:385 - validateWorker(...):  user validated: alexis
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:30:04 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:30:04 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:30:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:30:13 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 20:30:13 INFO  Service:385 - isManager(int id): Worker with ID: 21 is not a manager
+2017-09-13 20:30:13 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 62
+2017-09-13 20:33:03 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 20:33:12 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:33:17 INFO  LoginServlet:35 - doPost
+2017-09-13 20:33:18 INFO  Service:385 - validateWorker(...):  user validated: alexis
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:33:19 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:33:19 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 20:33:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:34:08 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 20:34:08 INFO  Service:385 - isManager(int id): Worker with ID: 21 is not a manager
+2017-09-13 20:34:08 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 63
+2017-09-13 20:34:51 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 20:35:00 INFO  LogoutServlet:35 - doGet
+2017-09-13 20:35:00 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:35:07 INFO  LoginServlet:35 - doPost
+2017-09-13 20:35:08 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 20:35:08 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:35:08 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:35:08 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:35:08 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:35:08 INFO  Service:385 - getWorkersReimbursements(int id): 4 reimbursements retrieved
+2017-09-13 20:35:08 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:35:32 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 20:35:32 INFO  Service:385 - isManager(int id): Worker with ID: 1 is not a manager
+2017-09-13 20:35:32 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 64
+2017-09-13 20:36:31 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 20:49:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:50:22 INFO  LoginServlet:35 - doPost
+2017-09-13 20:50:24 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 20:50:24 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 20:50:24 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 20:50:24 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 20:50:27 INFO  LogoutServlet:35 - doGet
+2017-09-13 20:50:35 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:08:30 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:09:11 INFO  LoginServlet:35 - doPost
+2017-09-13 21:09:14 INFO  Service:385 - validateWorker(...):  user validated: alexis
+2017-09-13 21:09:14 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:09:16 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:09:16 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:09:17 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:09:17 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:09:17 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:10:09 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 21:10:09 INFO  Service:385 - isManager(int id): Worker with ID: 21 is not a manager
+2017-09-13 21:10:10 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 81
+2017-09-13 21:10:45 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:10:45 INFO  Service:385 - getWorkersReimbursements(int id): 7 reimbursements retrieved
+2017-09-13 21:10:45 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:10:45 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:10:45 INFO  Service:385 - getWorkersReimbursements(int id): 7 reimbursements retrieved
+2017-09-13 21:10:45 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:10:45 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:10:45 INFO  Service:385 - getWorkersReimbursements(int id): 7 reimbursements retrieved
+2017-09-13 21:10:45 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:10:51 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 21:10:51 INFO  Service:385 - isManager(int id): Worker with ID: 21 is not a manager
+2017-09-13 21:10:51 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 82
+2017-09-13 21:11:47 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:11:47 INFO  Service:385 - getWorkersReimbursements(int id): 8 reimbursements retrieved
+2017-09-13 21:11:47 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:11:47 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:11:47 INFO  Service:385 - getWorkersReimbursements(int id): 8 reimbursements retrieved
+2017-09-13 21:11:47 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:11:47 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:11:47 INFO  Service:385 - getWorkersReimbursements(int id): 8 reimbursements retrieved
+2017-09-13 21:11:47 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:11:54 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 21:11:54 INFO  Service:385 - isManager(int id): Worker with ID: 21 is not a manager
+2017-09-13 21:11:54 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 83
+2017-09-13 21:12:49 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:12:49 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:12:49 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:12:49 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:12:49 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:12:49 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:12:49 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:12:50 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:12:50 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:12:50 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:12:50 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:12:54 INFO  LoginServlet:35 - doPost
+2017-09-13 21:12:54 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:12:54 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:12:54 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 21:12:54 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:12:54 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:12:54 INFO  Service:385 - getWorkersReimbursements(int id): 5 reimbursements retrieved
+2017-09-13 21:12:54 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:13:07 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 21:13:07 INFO  Service:385 - isManager(int id): Worker with ID: 1 is not a manager
+2017-09-13 21:13:07 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 84
+2017-09-13 21:19:23 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:19:24 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:19:31 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:19:35 INFO  LoginServlet:35 - doPost
+2017-09-13 21:19:36 INFO  Service:385 - validateWorker(...): Supplied username does not belong to a user.
+2017-09-13 21:19:36 INFO  Service:385 - isAWorker(String username: Worker with username:  is not a worker
+2017-09-13 21:19:47 INFO  LoginServlet:35 - doPost
+2017-09-13 21:19:47 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:23:15 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:23:18 INFO  LoginServlet:35 - doPost
+2017-09-13 21:23:18 INFO  Service:385 - validateWorker(...): Supplied username does not belong to a user.
+2017-09-13 21:23:18 INFO  Service:385 - isAWorker(String username: Worker with username:  is not a worker
+2017-09-13 21:23:20 INFO  LoginServlet:35 - doPost
+2017-09-13 21:23:20 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:23:22 INFO  LoginServlet:35 - doPost
+2017-09-13 21:23:22 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:23:26 INFO  LoginServlet:35 - doPost
+2017-09-13 21:23:26 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:23:28 INFO  LoginServlet:35 - doPost
+2017-09-13 21:23:28 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:23:35 INFO  LoginServlet:35 - doPost
+2017-09-13 21:23:36 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:23:36 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:23:36 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:23:36 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:23:36 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:23:36 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:23:36 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:23:56 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:23:56 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:23:56 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:24:00 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:24:00 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:24:00 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:24:00 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:24:00 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:24:00 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:24:00 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:24:05 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:24:05 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:24:05 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:24:05 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:24:05 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:24:05 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:24:05 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:24:35 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:24:35 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:24:35 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:24:35 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:24:35 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."FIRST_NAME") to NULL
 
-2017-09-12 22:25:14 INFO  Service:418 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 23 could not be set to status: DENIED
-2017-09-12 22:30:54 INFO  Service:419 - class com.reimburse.service.Service: validateWorker(...):  user validated: clara
-2017-09-12 22:31:00 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
-2017-09-12 22:31:10 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:35, resolvedDate=null, description=World of Warcraft DLC, resolveNotes=null, ammount=100] reimbursements retrieved
-2017-09-12 22:31:10 INFO  Service:419 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 23 set to status: DENIED
-2017-09-12 22:31:19 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:31:19 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 3 reimbursements retrieved
-2017-09-12 22:31:22 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:31:22 INFO  Service:419 - class com.reimburse.service.Service: getResolvedReimbursements(): 2 reimbursements retrieved
-2017-09-12 22:31:42 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:31:42 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 3 reimbursements retrieved
-2017-09-12 22:31:50 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:31:50 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 3 reimbursements retrieved
-2017-09-12 22:31:57 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:46:33, resolvedDate=null, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
-2017-09-12 22:32:01 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:46:33, resolvedDate=null, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
-2017-09-12 22:32:01 INFO  Service:419 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 21 set to status: APPROVED
-2017-09-12 22:32:07 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:32:07 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 2 reimbursements retrieved
-2017-09-12 22:36:09 INFO  Service:419 - class com.reimburse.service.Service: validateWorker(...):  user validated: alexis
-2017-09-12 22:36:09 INFO  Service:419 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 2 reimbursements retrieved
-2017-09-12 22:36:09 INFO  Service:419 - class com.reimburse.service.Service: getWorkersReimbursements(int id): 2 reimbursements retrieved
-2017-09-12 22:36:16 INFO  Service:419 - class com.reimburse.service.Service: isManager(int id): Worker with ID: 21 is not a manager
-2017-09-12 22:36:17 INFO  Service:419 - class com.reimburse.service.Service: tryCreateReimbursement(...): Reimbursement created with id: 41
-2017-09-12 22:36:34 INFO  Service:419 - class com.reimburse.service.Service: isManager(int id): Worker with ID: 21 is not a manager
-2017-09-12 22:36:35 INFO  Service:419 - class com.reimburse.service.Service: tryCreateReimbursement(...): Reimbursement created with id: 42
-2017-09-12 22:36:45 INFO  Service:419 - class com.reimburse.service.Service: validateWorker(...):  user validated: thomas
-2017-09-12 22:36:47 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:36:47 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
-2017-09-12 22:36:49 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:36:49 INFO  Service:419 - class com.reimburse.service.Service: getResolvedReimbursements(): 3 reimbursements retrieved
-2017-09-12 22:36:52 INFO  Service:419 - class com.reimburse.service.Service: getWorker(int id): Worker does not exist with the following id: -1
-2017-09-12 22:36:52 INFO  Service:419 - class com.reimburse.service.Service: getPendingReimbursements(): 4 reimbursements retrieved
-2017-09-12 22:36:57 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:49:37, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
-2017-09-12 22:37:00 INFO  Service:419 - class com.reimburse.service.Service: getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-11T14:49:37, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
-2017-09-12 22:37:01 INFO  Service:419 - class com.reimburse.service.Service: resolveReimbursement(...): Reimbursement id 22 set to status: APPROVED
+2017-09-13 21:24:35 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:24:35 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:24:35 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:24:35 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:24:35 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:24:46 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:24:46 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:24:46 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:24:46 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:24:46 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."FIRST_NAME") to NULL
+
+2017-09-13 21:24:46 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:24:46 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:24:46 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:24:46 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:24:46 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:24:52 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:24:52 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:24:52 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:24:52 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:24:52 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:24:52 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:24:52 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:24:58 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:24:58 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:24:58 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:24:58 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:24:58 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."FIRST_NAME") to NULL
+
+2017-09-13 21:24:58 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:24:58 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:24:58 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:24:58 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:24:58 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:25:02 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:25:02 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:25:02 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:25:02 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:25:02 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."LAST_NAME") to NULL
+
+2017-09-13 21:25:02 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:25:02 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:25:02 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:25:02 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:25:02 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:25:09 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:25:09 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:25:09 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:25:09 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:25:09 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."LAST_NAME") to NULL
+
+2017-09-13 21:25:09 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:25:09 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:25:09 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:25:09 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:25:09 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:25:16 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:25:16 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:25:16 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:25:16 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:25:16 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:25:16 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:25:16 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:25:20 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:25:20 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:25:20 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:25:20 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:25:20 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:25:20 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:25:20 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:25:26 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:25:26 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:25:26 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:25:26 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:25:26 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."LAST_NAME") to NULL
+
+2017-09-13 21:25:26 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:25:26 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:25:26 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:25:26 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:25:26 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:28:32 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:28:32 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:28:32 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:28:33 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:28:33 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:28:33 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:28:33 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:28:33 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:28:33 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:29:12 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:29:12 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:29:12 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:29:18 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:29:18 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:29:18 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:29:18 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:29:18 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."LAST_NAME") to NULL
+
+2017-09-13 21:29:18 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:29:18 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:29:43 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:29:43 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:29:43 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:29:44 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:29:44 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:29:44 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:29:44 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:29:44 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:29:44 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:29:45 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:29:45 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:29:45 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:29:48 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:29:49 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:29:49 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:29:49 INFO  DaoImpl:313 - Database error on update
+2017-09-13 21:29:49 ERROR DaoImpl:314 - java.sql.SQLException: ORA-01407: cannot update ("REIMBURSEMENT_USER"."WORKER"."LAST_NAME") to NULL
+
+2017-09-13 21:29:49 INFO  Service:385 - updateWorker(...): Worker with id 1 could not be updated
+2017-09-13 21:29:49 INFO  UpdateProfileServlet:77 - Update failed
+2017-09-13 21:31:21 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 21:39:59 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:40:03 INFO  LoginServlet:35 - doPost
+2017-09-13 21:40:04 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:40:38 INFO  LoginServlet:35 - doPost
+2017-09-13 21:40:38 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:40:38 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:40:38 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:40:38 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:40:38 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:40:38 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:40:38 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:40:51 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:40:51 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:40:51 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:40:56 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:40:56 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:40:56 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:42:21 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 21:42:26 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:42:29 INFO  LoginServlet:35 - doPost
+2017-09-13 21:42:30 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:42:30 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:42:30 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:42:30 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:42:30 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:42:31 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:42:31 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:42:32 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:42:33 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:42:33 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:42:34 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:42:34 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:42:34 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:42:34 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:43:11 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 21:43:30 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:43:36 INFO  LoginServlet:35 - doPost
+2017-09-13 21:43:37 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:43:37 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:43:37 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:43:37 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:43:37 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:43:37 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:43:37 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:43:39 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:43:39 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:43:39 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:43:41 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:43:41 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:43:41 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:43:41 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:44:22 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 21:44:32 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:44:36 INFO  LoginServlet:35 - doPost
+2017-09-13 21:44:37 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:44:37 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:44:38 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:44:38 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:44:38 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:44:38 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:44:38 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:44:39 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:44:40 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:44:40 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:44:41 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:44:41 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:44:41 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:44:41 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:44:42 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:44:42 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:44:42 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:44:42 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:44:42 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:44:46 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:44:46 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:44:46 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:44:47 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:44:47 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:44:47 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:44:47 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:44:47 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:44:47 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:44:51 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:44:51 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:44:59 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:44:59 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:07 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:45:07 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:07 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:07 INFO  Service:385 - isEmailValid(String email): Email addresses must contain a valid domain such as "something@something.com"
+2017-09-13 21:45:11 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:45:11 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:11 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:11 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:11 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:45:11 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:45:11 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:45:11 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:45:18 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:45:18 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:18 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:18 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:45:18 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:19 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:45:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:45:19 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:45:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:45:22 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:45:22 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:24 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:45:24 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:27 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:45:27 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:45:27 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:27 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:45:27 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:45:27 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:45:27 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:45:27 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:45:27 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:49:18 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 21:49:38 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:49:44 INFO  LoginServlet:35 - doPost
+2017-09-13 21:49:45 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:49:46 INFO  LoginServlet:35 - doPost
+2017-09-13 21:49:46 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:49:49 INFO  LoginServlet:35 - doPost
+2017-09-13 21:49:49 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:49:55 INFO  LoginServlet:35 - doPost
+2017-09-13 21:49:55 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:49:58 INFO  LoginServlet:35 - doPost
+2017-09-13 21:49:58 INFO  Service:385 - validateWorker(...): Supplied username does not belong to a user.
+2017-09-13 21:49:58 INFO  Service:385 - isAWorker(String username: Worker with username: bo is not a worker
+2017-09-13 21:50:05 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:05 INFO  Service:385 - validateWorker(...): Supplied username does not belong to a user.
+2017-09-13 21:50:05 INFO  Service:385 - isAWorker(String username: Worker with username: bo is not a worker
+2017-09-13 21:50:10 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:10 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:50:13 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:13 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:50:22 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:22 INFO  Service:385 - validateWorker(...): Password does not match
+2017-09-13 21:50:26 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:26 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:50:29 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:29 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:50:29 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:29 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:29 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:29 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:29 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:29 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:31 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:31 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:31 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:33 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:50:33 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:50:33 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:50:33 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:50:33 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:50:33 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:50:33 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:33 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:33 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:37 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:50:37 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:50:38 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:50:38 INFO  Service:385 - isEmailValid(String email): Email addresses must contain a valid domain such as "something@something.com"
+2017-09-13 21:50:41 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:50:41 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:50:41 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:50:41 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:50:41 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 21:50:41 INFO  Service:385 - updateWorker(...): Worker with id 1 updated
+2017-09-13 21:50:41 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:41 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:41 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:47 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:50:47 INFO  Service:385 - getWorker(int id): Worker found with id: 1
+2017-09-13 21:50:47 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: alexis
+2017-09-13 21:50:50 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:50:51 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:53 INFO  LoginServlet:35 - doPost
+2017-09-13 21:50:53 INFO  Service:385 - validateWorker(...):  user validated: bob
+2017-09-13 21:50:53 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:54 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:54 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:54 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:54 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:54 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:50:55 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:50:55 INFO  Service:385 - getWorkersReimbursements(int id): 6 reimbursements retrieved
+2017-09-13 21:50:55 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:04 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:51:05 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:11 INFO  LoginServlet:35 - doPost
+2017-09-13 21:51:11 INFO  Service:385 - validateWorker(...):  user validated: clara
+2017-09-13 21:51:11 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:11 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:11 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:11 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:13 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 21:51:13 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 21:51:13 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 21:51:17 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:17 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:19 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 21:51:19 INFO  Service:385 - getWorker(int id): Worker found with id: 42
+2017-09-13 21:51:19 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: clara
+2017-09-13 21:51:19 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 21:51:28 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:29 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:34 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:51:35 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:40 INFO  LoginServlet:35 - doPost
+2017-09-13 21:51:40 INFO  Service:385 - validateWorker(...):  user validated: alexis
+2017-09-13 21:51:40 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:40 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:51:40 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:40 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:40 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:51:40 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:51:42 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:51:42 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:51:42 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:52:47 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:52:47 INFO  Service:385 - getWorker(int id): Worker found with id: 21
+2017-09-13 21:52:47 INFO  Service:385 - getPendingReimbursements(int id): 8 reimbursements retrieved
+2017-09-13 21:52:47 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000], Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98]]
+2017-09-13 21:52:48 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:52:48 INFO  Service:385 - getWorker(int id): Worker found with id: 21
+2017-09-13 21:52:48 INFO  Service:385 - getResolvedReimbursements(int id): 2 reimbursements retrieved
+2017-09-13 21:52:48 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=1, submitterId=1, resolverId=2, status=DENIED, submitDate=2017-08-30T13:31:18, resolvedDate=2017-04-04T12:12:12, description=testing, resolveNotes=Game on, ammount=10], Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]]
+2017-09-13 21:52:49 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:52:50 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:52:58 INFO  LoginServlet:35 - doPost
+2017-09-13 21:52:58 INFO  Service:385 - validateWorker(...):  user validated: clara
+2017-09-13 21:52:58 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:52:58 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:52:58 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:52:58 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:53:03 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:53:03 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:53:26 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:53:26 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:53:26 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]
+2017-09-13 21:53:32 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 21:53:32 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:55:17 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:55:17 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:55:17 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:55:17 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:55:17 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:55:17 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:55:20 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:55:20 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-13 21:55:20 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10]
+2017-09-13 21:55:22 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:55:22 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-13 21:55:22 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25]
+2017-09-13 21:55:24 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:55:24 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:55:24 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]
+2017-09-13 21:55:26 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 21:55:26 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:55:27 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:55:27 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000] reimbursements retrieved
+2017-09-13 21:55:27 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000]
+2017-09-13 21:56:21 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:56:21 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:56:21 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:56:21 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:56:21 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:56:21 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:56:25 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:56:25 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:56:25 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]
+2017-09-13 21:56:26 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 21:56:26 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:56:27 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:56:28 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000] reimbursements retrieved
+2017-09-13 21:56:28 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000]
+2017-09-13 21:57:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:57:22 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:57:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:57:23 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:57:23 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:57:23 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:57:26 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:57:26 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-13 21:57:26 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25]
+2017-09-13 21:57:28 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 21:57:28 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-13 21:57:29 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:57:29 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:57:29 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]
+2017-09-13 21:57:33 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 21:57:33 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:57:34 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:57:34 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 21:57:34 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]
+2017-09-13 21:57:35 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 21:57:35 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000] reimbursements retrieved
+2017-09-13 21:57:35 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000]
+2017-09-13 21:57:44 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 21:57:45 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=24, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-11T14:51:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=1000] reimbursements retrieved
+2017-09-13 21:57:45 INFO  Service:385 - resolveReimbursement(...): Reimbursement id 24 set to status: DENIED
+2017-09-13 21:58:20 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:20 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 21:58:20 INFO  Service:385 - getPendingReimbursements(): 10 reimbursements retrieved
+2017-09-13 21:58:20 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56]]
+2017-09-13 21:58:24 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:25 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 21:58:25 INFO  Service:385 - getResolvedReimbursements(): 5 reimbursements retrieved
+2017-09-13 21:58:25 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=1, submitterId=1, resolverId=2, status=DENIED, submitDate=2017-08-30T13:31:18, resolvedDate=2017-04-04T12:12:12, description=testing, resolveNotes=Game on, ammount=10], Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10], Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25], Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000]]
+2017-09-13 21:58:28 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:28 INFO  Service:385 - getWorker(int id): Worker found with id: 21
+2017-09-13 21:58:28 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:58:28 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000], Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98]]
+2017-09-13 21:58:31 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:31 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: 20
+2017-09-13 21:58:31 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:58:32 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:32 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: 19
+2017-09-13 21:58:32 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:58:35 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:35 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: 22
+2017-09-13 21:58:35 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:58:36 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:36 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: 23
+2017-09-13 21:58:36 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:58:38 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:38 INFO  Service:385 - getWorker(int id): Worker found with id: 42
+2017-09-13 21:58:38 INFO  GetReimbursementsServlet:68 - Returning reimbursements: null
+2017-09-13 21:58:40 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:40 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: 43
+2017-09-13 21:58:40 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:58:42 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 21:58:42 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 21:58:42 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 21:58:52 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:52 INFO  Service:385 - getWorker(int id): Worker found with id: 21
+2017-09-13 21:58:52 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 21:58:52 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000], Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98]]
+2017-09-13 21:58:54 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:58:54 INFO  Service:385 - getWorker(int id): Worker found with id: 41
+2017-09-13 21:58:54 INFO  Service:385 - getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 21:58:54 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:58:56 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 21:58:56 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 21:58:56 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 21:58:59 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:58:59 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:59:03 INFO  LoginServlet:35 - doPost
+2017-09-13 21:59:03 INFO  Service:385 - validateWorker(...):  user validated: randy
+2017-09-13 21:59:03 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:59:03 INFO  Service:385 - getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 21:59:03 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:59:03 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:59:03 INFO  Service:385 - getWorkersReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 21:59:03 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:59:05 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:59:05 INFO  Service:385 - getWorker(int id): Worker found with id: 41
+2017-09-13 21:59:05 INFO  Service:385 - getPendingReimbursements(int id): 0 reimbursements retrieved
+2017-09-13 21:59:05 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 21:59:06 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:59:06 INFO  Service:385 - getWorker(int id): Worker found with id: 41
+2017-09-13 21:59:06 INFO  Service:385 - getResolvedReimbursements(int id): 3 reimbursements retrieved
+2017-09-13 21:59:06 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=1, submitterId=1, resolverId=2, status=DENIED, submitDate=2017-08-30T13:31:18, resolvedDate=2017-04-04T12:12:12, description=testing, resolveNotes=Game on, ammount=10], Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000]]
+2017-09-13 21:59:17 INFO  CreateReimbursementServlet:38 - doPost
+2017-09-13 21:59:17 INFO  Service:385 - isManager(int id): Worker with ID: 41 is not a manager
+2017-09-13 21:59:17 INFO  Service:385 - tryCreateReimbursement(...): Reimbursement created with id: 85
+2017-09-13 21:59:18 INFO  LogoutServlet:35 - doGet
+2017-09-13 21:59:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:59:24 INFO  LoginServlet:35 - doPost
+2017-09-13 21:59:24 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 21:59:24 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:59:24 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:59:24 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 21:59:24 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 21:59:27 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 21:59:27 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 21:59:27 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 21:59:30 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 21:59:30 INFO  Service:385 - getWorker(int id): Worker found with id: 41
+2017-09-13 21:59:30 INFO  Service:385 - getWorkersReimbursements(int id): 1 reimbursements retrieved
+2017-09-13 21:59:30 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:02:46 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:02:46 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:02:49 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:02:49 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:02:49 INFO  Service:385 - getPendingReimbursements(): 11 reimbursements retrieved
+2017-09-13 22:02:49 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:02:50 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:02:50 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:04 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:04 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:06 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:06 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:06 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:06 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:06 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:06 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:07 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:07 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:10 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:03:10 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:03:10 INFO  Service:385 - getPendingReimbursements(): 11 reimbursements retrieved
+2017-09-13 22:03:10 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:03:11 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:12 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:14 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:14 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:14 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:14 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:14 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:14 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:15 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:15 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:17 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:03:17 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:03:17 INFO  Service:385 - getResolvedReimbursements(): 5 reimbursements retrieved
+2017-09-13 22:03:17 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=1, submitterId=1, resolverId=2, status=DENIED, submitDate=2017-08-30T13:31:18, resolvedDate=2017-04-04T12:12:12, description=testing, resolveNotes=Game on, ammount=10], Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10], Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25], Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000]]
+2017-09-13 22:03:17 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:17 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:03:21 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:03:21 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 22:03:21 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 22:03:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:03:22 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:19 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:19 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:22 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:24 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:04:24 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:04:24 INFO  Service:385 - getPendingReimbursements(): 11 reimbursements retrieved
+2017-09-13 22:04:24 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:04:24 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:25 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:26 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:04:26 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:04:26 INFO  Service:385 - getPendingReimbursements(): 11 reimbursements retrieved
+2017-09-13 22:04:26 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:04:27 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:27 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:04:28 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:04:28 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:04:29 INFO  Service:385 - getPendingReimbursements(): 11 reimbursements retrieved
+2017-09-13 22:04:29 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:04:29 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:04:29 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:05:56 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:05:57 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:05:57 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:05:57 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:05:57 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:05:57 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:06:48 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:06:48 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:06:48 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:06:48 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:06:48 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:06:48 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:06:50 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:06:50 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:06:57 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:06:57 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 22:06:57 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 22:06:58 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:06:58 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:41 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:41 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:41 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:41 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:41 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:41 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:42 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:42 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:46 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:46 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:48 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:07:48 INFO  Service:385 - getAllWorkers(): 5 reimbursements retrieved
+2017-09-13 22:07:48 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true]]
+2017-09-13 22:07:49 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:49 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:51 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:51 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:07:52 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:07:52 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:10:21 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:10:21 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:10:21 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:10:21 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:10:21 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:10:21 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:10:27 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:10:27 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:10:28 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:10:28 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:10:28 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:10:28 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:11:35 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:11:35 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:11:35 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 22:11:35 INFO  UpdateProfileServlet:64 - User is not in database
+2017-09-13 22:12:38 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 22:12:53 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:13:09 INFO  LoginServlet:35 - doPost
+2017-09-13 22:13:11 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 22:13:11 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:13:11 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:13:11 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:13:11 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:13:46 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:14:18 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:14:49 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 22:14:49 INFO  UpdateProfileServlet:64 - User is not in database
+2017-09-13 22:15:57 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 22:18:54 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:19:01 INFO  LoginServlet:35 - doPost
+2017-09-13 22:19:02 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 22:19:02 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:19:02 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:19:02 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:19:03 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:19:06 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:19:06 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:19:08 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:08 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:10 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:10 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:12 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:12 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:19 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:19 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:19 INFO  Service:385 - isEmailValid(String email): Email addresses must contain a valid domain such as "something@something.com"
+2017-09-13 22:19:28 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:28 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:28 INFO  Service:385 - isEmailValid(String email): Email addresses must contain a valid domain such as "something@something.com"
+2017-09-13 22:19:34 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:34 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:34 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 22:19:37 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:37 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:37 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:19:37 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 22:19:37 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:19:37 INFO  Service:385 - updateWorker(...): Worker with id 2 updated
+2017-09-13 22:19:37 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:19:37 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:19:39 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:39 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:19:39 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:19:39 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 22:19:39 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:19:39 INFO  Service:385 - updateWorker(...): Worker with id 2 updated
+2017-09-13 22:19:39 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:19:39 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:19:45 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:45 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:19:57 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:57 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:19:59 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:19:59 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:20:13 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 22:20:35 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:20:46 INFO  LoginServlet:35 - doPost
+2017-09-13 22:20:47 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 22:20:47 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:20:47 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:20:47 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:20:47 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:21:01 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:21:01 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:21:53 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:21:53 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:21:53 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:21:53 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:21:53 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:21:53 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:22:04 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:22:04 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:22:04 INFO  Service:385 - isEmailValid(String email): Email addresses must contain a valid domain such as "something@something.com"
+2017-09-13 22:22:12 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:22:12 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:22:15 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:22:15 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:22:21 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:22:21 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:22:21 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 22:22:21 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 22:22:40 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 22:22:49 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:22:56 INFO  LoginServlet:35 - doPost
+2017-09-13 22:22:57 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 22:22:57 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:22:57 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:22:57 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:22:57 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:23:13 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:23:13 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:23:13 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: bob
+2017-09-13 22:23:20 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:23:20 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:23:20 INFO  Service:385 - tryCreateWorker(...): Worker created with username: smithy
+2017-09-13 22:23:58 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 22:24:54 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:25:01 INFO  LoginServlet:35 - doPost
+2017-09-13 22:25:03 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 22:25:03 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:25:03 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:25:03 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:25:03 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:25:12 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:25:12 INFO  Service:385 - getAllWorkers(): 6 reimbursements retrieved
+2017-09-13 22:25:12 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true], Worker [workerId=61, firstName=Schmitty, lastName=Smith, email=smith@hotmail.com, username=smithy, password=password, isManager=false, isHired=true]]
+2017-09-13 22:25:43 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:25:43 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:25:43 INFO  Service:385 - tryCreateWorker(...): Worker created with username: mitch
+2017-09-13 22:25:43 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:25:43 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:30:35 INFO  LoginServlet:84 - destroying login servlet
+2017-09-13 22:31:00 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:31:07 INFO  LoginServlet:35 - doPost
+2017-09-13 22:31:09 INFO  Service:385 - validateWorker(...):  user validated: thomas
+2017-09-13 22:31:09 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:31:09 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:31:09 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:31:09 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:31:10 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:31:10 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:31:12 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:31:12 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:31:12 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:31:12 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 22:31:12 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:31:12 INFO  Service:385 - updateWorker(...): Worker with id 2 updated
+2017-09-13 22:31:12 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:31:12 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:31:15 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:31:15 INFO  Service:385 - getWorker(int id): Worker found with id: 2
+2017-09-13 22:31:15 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:31:15 INFO  Service:385 - isEmailAvailable(String email): Email unavailable
+2017-09-13 22:31:15 INFO  Service:385 - isUsernameAvailable(Strig username): username is already taken: thomas
+2017-09-13 22:31:15 INFO  Service:385 - updateWorker(...): Worker with id 2 updated
+2017-09-13 22:31:15 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:31:15 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:31:21 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:31:21 INFO  Service:385 - getAllWorkers(): 7 reimbursements retrieved
+2017-09-13 22:31:21 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true], Worker [workerId=61, firstName=Schmitty, lastName=Smith, email=smith@hotmail.com, username=smithy, password=password, isManager=false, isHired=true], Worker [workerId=62, firstName=Michael, lastName=Davidson, email=mikeyboy@email.com, username=mitch, password=password, isManager=true, isHired=true]]
+2017-09-13 22:31:48 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:31:48 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:31:49 INFO  Service:385 - tryCreateWorker(...): Worker created with username: austin
+2017-09-13 22:33:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:33:22 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:33:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:33:22 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:33:22 INFO  GetUserInfoServlet:36 - doGet
+2017-09-13 22:33:22 INFO  GetUserInfoServlet:46 - Converting our user and accounts to a DTO
+2017-09-13 22:33:32 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:33:32 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:33:32 INFO  Service:385 - isEmailValid(String email): Email addresses must contain a valid domain such as "something@something.com"
+2017-09-13 22:34:18 INFO  UpdateProfileServlet:35 - doPost
+2017-09-13 22:34:18 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:34:19 INFO  Service:385 - tryCreateWorker(...): Worker created with username: andy
+2017-09-13 22:34:24 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:34:24 INFO  Service:385 - getAllWorkers(): 9 reimbursements retrieved
+2017-09-13 22:34:24 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true], Worker [workerId=61, firstName=Schmitty, lastName=Smith, email=smith@hotmail.com, username=smithy, password=password, isManager=false, isHired=true], Worker [workerId=62, firstName=Michael, lastName=Davidson, email=mikeyboy@email.com, username=mitch, password=password, isManager=true, isHired=true], Worker [workerId=63, firstName=Austin, lastName=Kilowar, email=august@mail.com, username=austin, password=password, isManager=false, isHired=true], Worker [workerId=64, firstName=Andy, lastName=Beauchamp, email=andies@mail.com, username=andy, password=pass word, isManager=true, isHired=true]]
+2017-09-13 22:34:29 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:34:29 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:34:29 INFO  Service:385 - getPendingReimbursements(): 11 reimbursements retrieved
+2017-09-13 22:34:29 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:34:30 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:34:30 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:34:30 INFO  Service:385 - getResolvedReimbursements(): 5 reimbursements retrieved
+2017-09-13 22:34:30 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=1, submitterId=1, resolverId=2, status=DENIED, submitDate=2017-08-30T13:31:18, resolvedDate=2017-04-04T12:12:12, description=testing, resolveNotes=Game on, ammount=10], Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10], Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25], Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000]]
+2017-09-13 22:34:34 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:34:34 INFO  Service:385 - getWorker(int id): Worker found with id: 21
+2017-09-13 22:34:34 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 22:34:34 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000], Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98]]
+2017-09-13 22:34:35 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:34:35 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: 22
+2017-09-13 22:34:35 INFO  GetReimbursementsServlet:68 - Returning reimbursements: []
+2017-09-13 22:34:37 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:34:37 INFO  Service:385 - getWorker(int id): Worker found with id: 21
+2017-09-13 22:34:37 INFO  Service:385 - getWorkersReimbursements(int id): 9 reimbursements retrieved
+2017-09-13 22:34:37 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000], Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98]]
+2017-09-13 22:34:40 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:40 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10] reimbursements retrieved
+2017-09-13 22:34:40 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10]
+2017-09-13 22:34:42 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:42 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25] reimbursements retrieved
+2017-09-13 22:34:42 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25]
+2017-09-13 22:34:43 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:43 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100] reimbursements retrieved
+2017-09-13 22:34:43 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100]
+2017-09-13 22:34:46 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:47 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000] reimbursements retrieved
+2017-09-13 22:34:47 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000]
+2017-09-13 22:34:48 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:48 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 25
+2017-09-13 22:34:48 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:51 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:51 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 26
+2017-09-13 22:34:51 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:52 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:52 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 27
+2017-09-13 22:34:52 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:53 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:53 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 28
+2017-09-13 22:34:53 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:54 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:54 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 29
+2017-09-13 22:34:54 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:55 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:56 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 30
+2017-09-13 22:34:56 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:56 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:57 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 31
+2017-09-13 22:34:57 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:57 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:57 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 32
+2017-09-13 22:34:57 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:58 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:58 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 33
+2017-09-13 22:34:58 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:34:59 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:34:59 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 34
+2017-09-13 22:34:59 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:00 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:00 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 35
+2017-09-13 22:35:00 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:01 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:01 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 36
+2017-09-13 22:35:01 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:02 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:02 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 37
+2017-09-13 22:35:02 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:03 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:03 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 38
+2017-09-13 22:35:03 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:03 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:03 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 39
+2017-09-13 22:35:03 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:04 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:04 INFO  Service:385 - getReimbursement(int id): reimbursement could not be retrieved with id: 40
+2017-09-13 22:35:04 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: null
+2017-09-13 22:35:05 INFO  GetOneReimbursementServlet:36 - Inside doPost of LoginMessageServlet
+2017-09-13 22:35:05 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-13 22:35:05 INFO  GetOneReimbursementServlet:47 - Get one reimbursement: Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100]
+2017-09-13 22:35:20 INFO  UpdateReimbursementServlet:38 - doPost
+2017-09-13 22:35:20 INFO  Service:385 - getReimbursement(int id): Reimbursement [reimbursementId=41, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:16, resolvedDate=null, description=Travel, resolveNotes=null, ammount=100] reimbursements retrieved
+2017-09-13 22:35:20 INFO  Service:385 - resolveReimbursement(...): Reimbursement id 41 set to status: DENIED
+2017-09-13 22:41:09 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:41:09 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:41:09 INFO  Service:385 - getPendingReimbursements(): 10 reimbursements retrieved
+2017-09-13 22:41:09 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=42, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-12T22:36:34, resolvedDate=null, description=Training, resolveNotes=null, ammount=150], Reimbursement [reimbursementId=61, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T19:14:51, resolvedDate=null, description=Medicine, resolveNotes=null, ammount=100], Reimbursement [reimbursementId=62, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:30:13, resolvedDate=null, description=Travel, resolveNotes=null, ammount=225], Reimbursement [reimbursementId=63, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T20:34:08, resolvedDate=null, description=Travel, resolveNotes=null, ammount=515], Reimbursement [reimbursementId=64, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T20:35:32, resolvedDate=null, description=Training, resolveNotes=null, ammount=99], Reimbursement [reimbursementId=81, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:09, resolvedDate=null, description=Business Trip, resolveNotes=null, ammount=317], Reimbursement [reimbursementId=82, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:10:51, resolvedDate=null, description=Travel, resolveNotes=null, ammount=112], Reimbursement [reimbursementId=83, submitterId=21, resolverId=0, status=PENDING, submitDate=2017-09-13T21:11:54, resolvedDate=null, description=Travel, resolveNotes=null, ammount=98], Reimbursement [reimbursementId=84, submitterId=1, resolverId=0, status=PENDING, submitDate=2017-09-13T21:13:07, resolvedDate=null, description=Travel, resolveNotes=null, ammount=56], Reimbursement [reimbursementId=85, submitterId=41, resolverId=0, status=PENDING, submitDate=2017-09-13T21:59:17, resolvedDate=null, description=No reason, resolveNotes=null, ammount=0.01]]
+2017-09-13 22:41:10 INFO  GetReimbursementsServlet:36 - doPost
+2017-09-13 22:41:10 INFO  Service:385 - getWorker(int id): Worker does not exist with the following id: -1
+2017-09-13 22:41:10 INFO  Service:385 - getResolvedReimbursements(): 6 reimbursements retrieved
+2017-09-13 22:41:10 INFO  GetReimbursementsServlet:68 - Returning reimbursements: [Reimbursement [reimbursementId=1, submitterId=1, resolverId=2, status=DENIED, submitDate=2017-08-30T13:31:18, resolvedDate=2017-04-04T12:12:12, description=testing, resolveNotes=Game on, ammount=10], Reimbursement [reimbursementId=21, submitterId=1, resolverId=42, status=APPROVED, submitDate=2017-09-11T14:46:33, resolvedDate=2017-09-12T22:32:01, description=travel, resolveNotes=null, ammount=10], Reimbursement [reimbursementId=22, submitterId=1, resolverId=2, status=APPROVED, submitDate=2017-09-11T14:49:37, resolvedDate=2017-09-12T22:37:01, description=Medicine, resolveNotes=null, ammount=25], Reimbursement [reimbursementId=23, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:35, resolvedDate=2017-09-12T22:31:10, description=World of Warcraft DLC, resolveNotes=Are you kidding me?, ammount=100], Reimbursement [reimbursementId=24, submitterId=21, resolverId=42, status=DENIED, submitDate=2017-09-11T14:51:51, resolvedDate=2017-09-13T21:57:45, description=Travel, resolveNotes=Too much, ammount=1000], Reimbursement [reimbursementId=41, submitterId=21, resolverId=2, status=DENIED, submitDate=2017-09-12T22:36:16, resolvedDate=2017-09-13T22:35:20, description=Travel, resolveNotes=Don't travel so much, ammount=100]]
+2017-09-13 22:41:11 INFO  GetEmployeesServlet:31 - doPost
+2017-09-13 22:41:11 INFO  Service:385 - getAllWorkers(): 9 reimbursements retrieved
+2017-09-13 22:41:11 INFO  GetEmployeesServlet:37 - Returning employees: [Worker [workerId=1, firstName=Bobby, lastName=Walkie, email=bobbie@.com, username=bob, password=password, isManager=false, isHired=true], Worker [workerId=2, firstName=Thomas, lastName=Davis, email=tom.dave@hotmail.com, username=thomas, password=pass word, isManager=true, isHired=true], Worker [workerId=21, firstName=Alexandria, lastName=Miller, email=alexis@mymail.com, username=alexis, password=password, isManager=false, isHired=true], Worker [workerId=41, firstName=Randy, lastName=Schmidt, email=rand.ex@mail.com, username=randy, password=password, isManager=false, isHired=true], Worker [workerId=42, firstName=Clara, lastName=Miller, email=clar.mill@mymail.com, username=clara, password=pass word, isManager=true, isHired=true], Worker [workerId=61, firstName=Schmitty, lastName=Smith, email=smith@hotmail.com, username=smithy, password=password, isManager=false, isHired=true], Worker [workerId=62, firstName=Michael, lastName=Davidson, email=mikeyboy@email.com, username=mitch, password=password, isManager=true, isHired=true], Worker [workerId=63, firstName=Austin, lastName=Kilowar, email=august@mail.com, username=austin, password=password, isManager=false, isHired=true], Worker [workerId=64, firstName=Andy, lastName=Beauchamp, email=andies@mail.com, username=andy, password=pass word, isManager=true, isHired=true]]
+2017-09-13 22:41:13 INFO  LogoutServlet:35 - doGet
+2017-09-13 22:41:14 INFO  GetUserInfoServlet:36 - doGet

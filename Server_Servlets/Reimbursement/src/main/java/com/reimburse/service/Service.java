@@ -51,7 +51,7 @@ public class Service implements ServiceInterface {
 		}
 	}
 
-	private boolean isEmailValid(String email) {
+	public boolean isEmailValid(String email) {
 
 		if (email.contains("@") && email.contains(".com"))
 			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
@@ -61,7 +61,7 @@ public class Service implements ServiceInterface {
 		return false;
 	}
 
-	private boolean isEmailAvailable(String email) {
+	public boolean isEmailAvailable(String email) {
 
 		ArrayList<Worker> workerList = daoImpl.readAllWorkers();
 
@@ -77,7 +77,7 @@ public class Service implements ServiceInterface {
 		return true;
 	}
 
-	private boolean isUsernameAvailable(String username) {
+	public boolean isUsernameAvailable(String username) {
 		username = username.toLowerCase();
 
 		ArrayList<Worker> userList = daoImpl.readAllWorkers();
@@ -291,47 +291,29 @@ public class Service implements ServiceInterface {
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getPendingReimbursements() throws NullPointerException {
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
-		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+	public ArrayList<Reimbursement> getPendingReimbursements()  {
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllPendingReimbursements();
 
-		for (Reimbursement r : reimbursements)
-			if (r.getStatus() != reimbursementStatus.PENDING)
-				removeList.add(r);
-
-		reimbursements.removeAll(removeList);
 		log("getPendingReimbursements()", reimbursements.size() + " reimbursements retrieved");
 		return reimbursements;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getResolvedReimbursements() throws NullPointerException {
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
-		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+	public ArrayList<Reimbursement> getResolvedReimbursements()  {
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllResolvedReimbursements();
 
-		for (Reimbursement r : reimbursements)
-			if (r.getStatus() != reimbursementStatus.DENIED && r.getStatus() != reimbursementStatus.APPROVED)
-				removeList.add(r);
-
-		reimbursements.removeAll(removeList);
 		log("getResolvedReimbursements()", reimbursements.size() + " reimbursements retrieved");
 		return reimbursements;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getWorkersReimbursements(int workerId) throws NullPointerException {
+	public ArrayList<Reimbursement> getAllReimbursements(int workerId)  {
 
 		if (daoImpl.readWorker(workerId).isManager())
 			return null;
 
-		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements();
-		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllReimbursements(workerId);
 
-		for (Reimbursement r : reimbursements)
-			if (r.getSubmitterId() != workerId)
-				removeList.add(r);
-
-		reimbursements.removeAll(removeList);
 		log("getWorkersReimbursements(int id)", reimbursements.size() + " reimbursements retrieved");
 		return reimbursements;
 	}
@@ -349,42 +331,24 @@ public class Service implements ServiceInterface {
 	@Override
 	public ArrayList<Worker> getAllNonManagers() {
 
-		ArrayList<Worker> workers = daoImpl.readAllWorkers();
-		ArrayList<Worker> removeList = new ArrayList<Worker>();
+		ArrayList<Worker> workers = daoImpl.readAllNonManagers();
 
-		for (Worker w : workers)
-			if (w.isManager())
-				removeList.add(w);
-
-		workers.removeAll(removeList);
 		log("getAllNonManagers()", workers.size() + " reimbursements retrieved");
 		return workers;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getPendingReimbursements(int workerId) throws NullPointerException {
-		ArrayList<Reimbursement> reimbursements = getPendingReimbursements();
-		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+	public ArrayList<Reimbursement> getPendingReimbursements(int workerId)  {
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllPendingReimbursements(workerId);
 
-		for (Reimbursement r : reimbursements)
-			if (r.getSubmitterId() != workerId)
-				removeList.add(r);
-
-		reimbursements.removeAll(removeList);
 		log("getPendingReimbursements(int id)", reimbursements.size() + " reimbursements retrieved");
 		return reimbursements;
 	}
 
 	@Override
-	public ArrayList<Reimbursement> getResolvedReimbursements(int workerId) throws NullPointerException {
-		ArrayList<Reimbursement> reimbursements = getResolvedReimbursements();
-		ArrayList<Reimbursement> removeList = new ArrayList<Reimbursement>();
+	public ArrayList<Reimbursement> getResolvedReimbursements(int workerId)  {
+		ArrayList<Reimbursement> reimbursements = daoImpl.readAllResolvedReimbursements(workerId);
 
-		for (Reimbursement r : reimbursements)
-			if (r.getSubmitterId() != workerId)
-				removeList.add(r);
-
-		reimbursements.removeAll(removeList);
 		log("getResolvedReimbursements(int id)", reimbursements.size() + " reimbursements retrieved");
 		return reimbursements;
 	}
@@ -402,13 +366,15 @@ public class Service implements ServiceInterface {
 	public Reimbursement getReimbursement(int id) {
 
 		Reimbursement reimburse = daoImpl.readReimbursement(id);
-		log("getReimbursement(int id)", reimburse.toString() + " reimbursements retrieved");
+		if (reimburse == null)
+			log("getReimbursement(int id)", "reimbursement could not be retrieved with id: " + id);
+		else log("getReimbursement(int id)", reimburse.toString() + " reimbursements retrieved");
 		
 		return reimburse;
 	}
 	
 	public int getNumReimbursements() {
-		int num = daoImpl.getNumReimbursements();
+		int num = daoImpl.readNumReimbursements();
 		
 		log("getNumReimbursements()", num + " reimbursements retrieved");
 		
@@ -416,6 +382,6 @@ public class Service implements ServiceInterface {
 	}
 
 	public void log(String methodName, String logMessage) {
-		logger.info(this.getClass() + ": " + methodName + ": " + logMessage);
+		logger.info(methodName + ": " + logMessage);
 	}
 }

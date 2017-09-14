@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimburse.dto.DTO;
 import com.reimburse.pojos.Reimbursement;
@@ -20,6 +22,8 @@ import com.reimburse.service.Service;
 @WebServlet("/getUserInfo")
 public class GetUserInfoServlet extends HttpServlet {
 
+	final static Logger logger = Logger.getLogger(GetUserInfoServlet.class);
+	
 	private final int STATUS_CODE_FAILED = 418;
 	
 	/**
@@ -29,7 +33,7 @@ public class GetUserInfoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("doGet in GetUserInfoServlet");	// DEBUG
+		logger.info("doGet");
 		
 		Service service = new Service();
 		
@@ -37,9 +41,9 @@ public class GetUserInfoServlet extends HttpServlet {
 		Worker sessionUser = (Worker)session.getAttribute("user");
 		
 		if (sessionUser != null) {
-			ArrayList<Reimbursement> reimburseList = service.getWorkersReimbursements(sessionUser.getWorkerId());
+			ArrayList<Reimbursement> reimburseList = service.getAllReimbursements(sessionUser.getWorkerId());
 			
-			System.out.println("Converting our user and accounts to a DTO");	// DEBUG
+			logger.info("Converting our user and accounts to a DTO");	// DEBUG
 			DTO dto = new DTO(sessionUser, reimburseList);
 			ObjectMapper mapper = new ObjectMapper();
 			

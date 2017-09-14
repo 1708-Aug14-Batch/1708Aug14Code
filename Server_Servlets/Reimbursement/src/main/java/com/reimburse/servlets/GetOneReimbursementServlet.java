@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,6 +24,7 @@ import com.reimburse.service.Service;
 @WebServlet("/getOneReimbursement")
 public class GetOneReimbursementServlet extends HttpServlet {
 
+	final static Logger logger = Logger.getLogger(GetOneReimbursementServlet.class);
 	/**
 	 * Auto-generated
 	 */
@@ -30,7 +33,7 @@ public class GetOneReimbursementServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("Inside doPost of LoginMessageServlet");
+		logger.info("Inside doPost of LoginMessageServlet");
 
 		ArrayList<String> tx = readValuesFromRequest(req);
 
@@ -41,7 +44,7 @@ public class GetOneReimbursementServlet extends HttpServlet {
 		
 		Reimbursement reimburse = service.getReimbursement(id);
 		
-		System.out.println("Get one reimbursement: " + reimburse);
+		logger.info("Get one reimbursement: " + reimburse);
 		
 		writeValueToResponse(resp, reimburse);
 
