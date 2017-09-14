@@ -48,7 +48,7 @@ li.active > a {
 }
 
 .fixed-group {
-  min-height: 185px;
-  max-height: 185px;
+  min-height: 365px;
+  max-height: 365px;
   overflow-y: scroll;
 }

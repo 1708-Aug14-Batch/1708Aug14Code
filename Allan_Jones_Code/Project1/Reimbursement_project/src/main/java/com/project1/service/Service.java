@@ -34,5 +34,9 @@ public class Service {
 	public ArrayList<Users> getEmployees() {
 		return dao.viewAllEmp();
 	}
+	
+	public void submitRequest(int submitterid, String description, double amt) {
+		dao.submitRequest(submitterid, description, amt);
+	}
 
 }

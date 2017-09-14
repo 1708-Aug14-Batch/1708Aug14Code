@@ -32,6 +32,6 @@ public class RegisterServlet extends HttpServlet {
 			// log unsuccessful attempt to logger
 		}
 		RequestDispatcher rd = req.getRequestDispatcher("register.html");
-		rd.forward(req, resp); // successful login
+		rd.forward(req, resp); 
 	}
 }
