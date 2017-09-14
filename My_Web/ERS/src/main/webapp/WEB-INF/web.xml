@@ -3,72 +3,32 @@
   <display-name>ERS</display-name>
   <servlet>
     <description></description>
-    <display-name>GoHomeServlet</display-name>
-    <servlet-name>GoHomeServlet</servlet-name>
-    <servlet-class>com.ers.servlets.GoHomeServlet</servlet-class>
+    <display-name>GetUserInfoServlet</display-name>
+    <servlet-name>GetUserInfoServlet</servlet-name>
+    <servlet-class>com.ers.servlets.GetUserInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>GoHomeServlet</servlet-name>
-    <url-pattern>/GoHomeServlet</url-pattern>
+    <servlet-name>GetUserInfoServlet</servlet-name>
+    <url-pattern>/GetUserInfoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>MainServlet2</display-name>
-    <servlet-name>MainServlet2</servlet-name>
-    <servlet-class>com.ers.servlets.MainServlet2</servlet-class>
+    <display-name>UpdateInfoServlet</display-name>
+    <servlet-name>UpdateInfoServlet</servlet-name>
+    <servlet-class>com.ers.servlets.UpdateInfoServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>MainServlet2</servlet-name>
-    <url-pattern>/MainServlet2</url-pattern>
+    <servlet-name>UpdateInfoServlet</servlet-name>
+    <url-pattern>/UpdateInfoServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>GetTablesServlet</display-name>
-    <servlet-name>GetTablesServlet</servlet-name>
-    <servlet-class>com.ers.servlets.GetTablesServlet</servlet-class>
+    <display-name>WithdrawRequestServlet</display-name>
+    <servlet-name>WithdrawRequestServlet</servlet-name>
+    <servlet-class>com.ers.servlets.WithdrawRequestServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>GetTablesServlet</servlet-name>
-    <url-pattern>/GetTablesServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>GetProfileServlet</display-name>
-    <servlet-name>GetProfileServlet</servlet-name>
-    <servlet-class>com.ers.servlets.GetProfileServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetProfileServlet</servlet-name>
-    <url-pattern>/GetProfileServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>GetAddUserServlet</display-name>
-    <servlet-name>GetAddUserServlet</servlet-name>
-    <servlet-class>com.ers.servlets.GetAddUserServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetAddUserServlet</servlet-name>
-    <url-pattern>/GetAddUserServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>AddUserServlet</display-name>
-    <servlet-name>AddUserServlet</servlet-name>
-    <servlet-class>com.ers.servlets.AddUserServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AddUserServlet</servlet-name>
-    <url-pattern>/AddUserServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>GetTableServlet</display-name>
-    <servlet-name>GetTableServlet</servlet-name>
-    <servlet-class>com.ers.servlets.GetTableServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>GetTableServlet</servlet-name>
-    <url-pattern>/GetTableServlet</url-pattern>
+    <servlet-name>WithdrawRequestServlet</servlet-name>
+    <url-pattern>/WithdrawRequestServlet</url-pattern>
   </servlet-mapping>
 </web-app>

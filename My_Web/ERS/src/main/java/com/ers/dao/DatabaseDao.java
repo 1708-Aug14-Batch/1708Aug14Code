@@ -181,12 +181,13 @@ public class DatabaseDao implements Dao {
 			int rowsUpdated = ps.executeUpdate();
 
 			if (rowsUpdated != 1) {
+				
 				log.info("setEmail(userId=" + userId + ", email=" + email + "): Bad update, " + rowsUpdated
 						+ " rows updated");
 			} else {
-				log.trace("setEmail(userId=" + userId + ", email=" + email + "): " + rowsUpdated
-						+ " rows inserted (should be 1)");
 				
+				log.trace("setEmail(userId=" + userId + ", email=" + email + "): " + rowsUpdated
+						+ " rows updated (should be 1)");
 				isSuccess = true;
 			}
 
@@ -210,12 +211,13 @@ public class DatabaseDao implements Dao {
 			int rowsUpdated = ps.executeUpdate();
 
 			if (rowsUpdated != 1) {
+			
 				log.info("setPassword(userId=" + userId + ", password=" + password + "): Bad update, " + rowsUpdated
 						+ " rows updated");
 			} else {
-				log.trace("setPassword(userId=" + userId + ", password=" + password + "): " + rowsUpdated
-						+ " rows inserted (should be 1)");
 				
+				log.trace("setPassword(userId=" + userId + ", password=" + password + "): " + rowsUpdated
+						+ " rows updated (should be 1)");
 				isSuccess = true;
 			}
 
@@ -239,12 +241,13 @@ public class DatabaseDao implements Dao {
 			int rowsUpdated = ps.executeUpdate();
 
 			if (rowsUpdated != 1) {
+				
 				log.info("setFirstName(userId=" + userId + ", firstName=" + firstName + "): Bad update, " + rowsUpdated
 						+ " rows updated");
 			} else {
-				log.trace("setFirstName(userId=" + userId + ", firstName=" + firstName + "): " + rowsUpdated
-						+ " rows inserted (should be 1)");
 				
+				log.trace("setFirstName(userId=" + userId + ", firstName=" + firstName + "): " + rowsUpdated
+						+ " rows updated (should be 1)");
 				isSuccess = true;
 			}
 
@@ -268,12 +271,13 @@ public class DatabaseDao implements Dao {
 			int rowsUpdated = ps.executeUpdate();
 
 			if (rowsUpdated != 1) {
+				
 				log.info("setlastName(userId=" + userId + ", lastName=" + lastName + "): Bad update, " + rowsUpdated
 						+ " rows updated");
 			} else {
-				log.trace("setLastName(userId=" + userId + ", lastName=" + lastName + "): " + rowsUpdated
-						+ " rows inserted (should be 1)");
 				
+				log.trace("setLastName(userId=" + userId + ", lastName=" + lastName + "): " + rowsUpdated
+						+ " rows updated (should be 1)");
 				isSuccess = true;
 			}
 
@@ -313,15 +317,42 @@ public class DatabaseDao implements Dao {
 		}
 		return isSuccess;
 	}
+	
+	public boolean withdrawRequest(int requestId) {
+		boolean isSuccess = false;
+		
+		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+			
+			String sql = "DELETE FROM REQUESTS WHERE REQUESTID = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, requestId);
+			int rowsUpdated = ps.executeUpdate();
+
+			if (rowsUpdated != 1) {
+				
+				log.info("withdrawRequest(requestId=" + requestId+"): Bad update, " + rowsUpdated + " rows updated");
+			} else {
+				
+				log.trace("withdrawRequest(requestId=" + requestId+"): " + rowsUpdated + " rows inserted (should be 1)");
+				isSuccess = true;
+			}
+			
+		} catch (SQLException e) {
+			log.warn("withdrawRequest(requestId=" + requestId+"): "
+					+ e.getLocalizedMessage());
+		}
+		return isSuccess;
+	}
 
 	public List<Request> getUserRequests(int userId) {
 		List<Request> requests = new ArrayList<>();
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
-					   + "WHERE SUBMITTERID = ?";
+			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE R.SUBMITTERID = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -330,7 +361,7 @@ public class DatabaseDao implements Dao {
 			
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
-				int subId = rs.getInt(2);
+				String name = rs.getString(2);
 				Timestamp subDate = rs.getTimestamp(3);
 				int resId = rs.getInt(4);
 				Timestamp resDate = rs.getTimestamp(5);
@@ -339,7 +370,7 @@ public class DatabaseDao implements Dao {
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
 				
-				requests.add(new Request(reqId, subId, subDate, resId, resDate, status, desc, notes, amount));
+				requests.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -355,9 +386,10 @@ public class DatabaseDao implements Dao {
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
-					   + "		 WHERE SUBMITTERID = ? AND STATUS = ?";
+			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "		 WHERE R.SUBMITTERID = ? AND r.STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -366,7 +398,7 @@ public class DatabaseDao implements Dao {
 			ResultSet rs = ps.executeQuery();			
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
-				int subId = rs.getInt(2);
+				String name = rs.getString(2);
 				Timestamp subDate = rs.getTimestamp(3);
 				int resId = rs.getInt(4);
 				Timestamp resDate = rs.getTimestamp(5);
@@ -375,7 +407,7 @@ public class DatabaseDao implements Dao {
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
 				
-				pendingRequests.add(new Request(reqId, subId, subDate, resId, resDate, status, desc, notes, amount));
+				pendingRequests.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -386,14 +418,89 @@ public class DatabaseDao implements Dao {
 		return pendingRequests;
 	}
 
+	public List<Request> getApprovedRequests(int userId) {
+		List<Request> approvedRequests = new ArrayList<>();
+
+		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE R.SUBMITTERID = ? AND R.STATUS = ?";
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ps.setInt(2, Status.APPROVED);
+			
+			ResultSet rs = ps.executeQuery();			
+			while (rs.next()) {
+				int reqId = rs.getInt(1);
+				String name = rs.getString(2);
+				Timestamp subDate = rs.getTimestamp(3);
+				int resId = rs.getInt(4);
+				Timestamp resDate = rs.getTimestamp(5);
+				String status = Status.getName(rs.getInt(6));
+				String desc = rs.getString(7);
+				String notes = rs.getString(8);
+				float amount = rs.getFloat(9);
+				
+				approvedRequests.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+			}
+
+		} catch (SQLException e) {
+			log.warn("getApprovedRequests(userId=" + userId + "): " + e.getLocalizedMessage());
+		}
+
+		log.trace("getApprovedRequests(userId="+userId+") -> " + ((approvedRequests != null) ? approvedRequests.size() : null) + " Request objects");
+		return approvedRequests;
+	}
+
+	public List<Request> getDeniedRequests(int userId) {
+		List<Request> deniedRequests = new ArrayList<>();
+
+		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE R.SUBMITTERID = ? AND R.STATUS = ?";
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, userId);
+			ps.setInt(2, Status.DENIED);
+			
+			ResultSet rs = ps.executeQuery();			
+			while (rs.next()) {
+				int reqId = rs.getInt(1);
+				String name = rs.getString(2);
+				Timestamp subDate = rs.getTimestamp(3);
+				int resId = rs.getInt(4);
+				Timestamp resDate = rs.getTimestamp(5);
+				String status = Status.getName(rs.getInt(6));
+				String desc = rs.getString(7);
+				String notes = rs.getString(8);
+				float amount = rs.getFloat(9);
+				
+				deniedRequests.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+			}
+
+		} catch (SQLException e) {
+			log.warn("getDeniedRequests(userId=" + userId + "): " + e.getLocalizedMessage());
+		}
+
+		log.trace("getDeniedRequests(userId="+userId+") -> " + ((deniedRequests != null) ? deniedRequests.size() : null) + " Request objects");
+		return deniedRequests;
+	}
+
 	public List<Request> getResolvedRequests(int userId) {
 		List<Request> resolvedRequests = new ArrayList<>();
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
-					   + "WHERE SUBMITTERID = ? AND NOT STATUS = ?";
+			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE R.SUBMITTERID = ? AND NOT R.STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -403,7 +510,7 @@ public class DatabaseDao implements Dao {
 			
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
-				int subId = rs.getInt(2);
+				String name = rs.getString(2);
 				Timestamp subDate = rs.getTimestamp(3);
 				int resId = rs.getInt(4);
 				Timestamp resDate = rs.getTimestamp(5);
@@ -412,7 +519,7 @@ public class DatabaseDao implements Dao {
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
 				
-				resolvedRequests.add(new Request(reqId, subId, subDate, resId, resDate, status, desc, notes, amount));
+				resolvedRequests.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -428,8 +535,9 @@ public class DatabaseDao implements Dao {
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS";
+			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
@@ -438,15 +546,16 @@ public class DatabaseDao implements Dao {
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
 				int subId = rs.getInt(2);
-				Timestamp subDate = rs.getTimestamp(3);
-				int resId = rs.getInt(4);
-				Timestamp resDate = rs.getTimestamp(5);
-				String status = Status.getName(rs.getInt(6));
-				String desc = rs.getString(7);
-				String notes = rs.getString(8);
-				float amount = rs.getFloat(9);
+				String name = rs.getString(3);
+				Timestamp subDate = rs.getTimestamp(4);
+				int resId = rs.getInt(5);
+				Timestamp resDate = rs.getTimestamp(6);
+				String status = Status.getName(rs.getInt(7));
+				String desc = rs.getString(8);
+				String notes = rs.getString(9);
+				float amount = rs.getFloat(10);
 				
-				allRequests.add(new Request(reqId, subId, subDate, resId, resDate, status, desc, notes, amount));
+				allRequests.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -462,8 +571,9 @@ public class DatabaseDao implements Dao {
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
+			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
 					   + "WHERE STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -474,15 +584,16 @@ public class DatabaseDao implements Dao {
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
 				int subId = rs.getInt(2);
-				Timestamp subDate = rs.getTimestamp(3);
-				int resId = rs.getInt(4);
-				Timestamp resDate = rs.getTimestamp(5);
-				String status = Status.getName(rs.getInt(6));
-				String desc = rs.getString(7);
-				String notes = rs.getString(8);
-				float amount = rs.getFloat(9);
+				String name = rs.getString(3);
+				Timestamp subDate = rs.getTimestamp(4);
+				int resId = rs.getInt(5);
+				Timestamp resDate = rs.getTimestamp(6);
+				String status = Status.getName(rs.getInt(7));
+				String desc = rs.getString(8);
+				String notes = rs.getString(9);
+				float amount = rs.getFloat(10);
 				
-				allPendingRequests.add(new Request(reqId, subId, subDate, resId, resDate, status, desc, notes, amount));
+				allPendingRequests.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -493,13 +604,90 @@ public class DatabaseDao implements Dao {
 		return allPendingRequests;
 	}
 
+	public List<Request> getAllApprovedRequests() {
+		List<Request> allApprovedRequests = new ArrayList<>();
+
+		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE STATUS = ?";
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, Status.APPROVED);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				int reqId = rs.getInt(1);
+				int subId = rs.getInt(2);
+				String name = rs.getString(3);
+				Timestamp subDate = rs.getTimestamp(4);
+				int resId = rs.getInt(5);
+				Timestamp resDate = rs.getTimestamp(6);
+				String status = Status.getName(rs.getInt(7));
+				String desc = rs.getString(8);
+				String notes = rs.getString(9);
+				float amount = rs.getFloat(10);
+				
+				allApprovedRequests.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+			}
+
+		} catch (SQLException e) {
+			log.warn("getAllApprovedRequests(): " + e.getLocalizedMessage());
+		}
+
+		log.trace("getAllApprovedRequests() -> " + ((allApprovedRequests != null) ? allApprovedRequests.size() : null) + " Request objects");
+		return allApprovedRequests;
+	}
+
+	public List<Request> getAllDeniedRequests() {
+		List<Request> allDeniedRequests = new ArrayList<>();
+
+		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE STATUS = ?";
+			
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, Status.DENIED);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				int reqId = rs.getInt(1);
+				int subId = rs.getInt(2);
+				String name = rs.getString(3);
+				Timestamp subDate = rs.getTimestamp(4);
+				int resId = rs.getInt(5);
+				Timestamp resDate = rs.getTimestamp(6);
+				String status = Status.getName(rs.getInt(7));
+				String desc = rs.getString(8);
+				String notes = rs.getString(9);
+				float amount = rs.getFloat(10);
+				
+				allDeniedRequests.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+			}
+
+		} catch (SQLException e) {
+			log.warn("getAllDeniedRequests(): " + e.getLocalizedMessage());
+		}
+
+		log.trace("getAllDeniedRequests() -> " + ((allDeniedRequests != null) ? allDeniedRequests.size() : null) + " Request objects");
+		return allDeniedRequests;
+	}
+
 	public List<Request> getAllResolvedRequests() {
 		List<Request> allResolvedRequests = new ArrayList<>();
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "SELECT REQUESTID, SUBMITTERID, SUBMITDATE, RESOLVERID, RESOLVEDATE, "
-					   + "       STATUS, DESCRIPTION, RESOLVENOTE, AMOUNT FROM REQUESTS "
+			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
 					   + "WHERE NOT STATUS = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -510,15 +698,16 @@ public class DatabaseDao implements Dao {
 			while (rs.next()) {
 				int reqId = rs.getInt(1);
 				int subId = rs.getInt(2);
-				Timestamp subDate = rs.getTimestamp(3);
-				int resId = rs.getInt(4);
-				Timestamp resDate = rs.getTimestamp(5);
-				String status = Status.getName(rs.getInt(6));
-				String desc = rs.getString(7);
-				String notes = rs.getString(8);
-				float amount = rs.getFloat(9);
+				String name = rs.getString(3);
+				Timestamp subDate = rs.getTimestamp(4);
+				int resId = rs.getInt(5);
+				Timestamp resDate = rs.getTimestamp(6);
+				String status = Status.getName(rs.getInt(7));
+				String desc = rs.getString(8);
+				String notes = rs.getString(9);
+				float amount = rs.getFloat(10);
 				
-				allResolvedRequests.add(new Request(reqId, subId, subDate, resId, resDate, status, desc, notes, amount));
+				allResolvedRequests.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {

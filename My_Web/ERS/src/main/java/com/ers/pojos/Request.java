@@ -6,6 +6,7 @@ public class Request {
 	
 	private int requestId;
 	private int submitterId;
+	private String submitterName;
 	private Timestamp submitDate;
 	private int resolverId;
 	private Timestamp resolveDate;
@@ -18,10 +19,11 @@ public class Request {
 		super();
 	}
 
-	public Request(int requestId, int submitterId, Timestamp submitDate, int resolverId, Timestamp resolveDate,
+	public Request(int requestId, int submitterId, String name, Timestamp submitDate, int resolverId, Timestamp resolveDate,
 			String status, String description, String notes, float amount) {
 		this.requestId = requestId;
 		this.submitterId = submitterId;
+		this.submitterName = name;
 		this.submitDate = submitDate;
 		this.resolverId = resolverId;
 		this.resolveDate = resolveDate;
@@ -45,6 +47,14 @@ public class Request {
 
 	public void setSubmitterId(int submitterId) {
 		this.submitterId = submitterId;
+	}
+	
+	public String getName() {
+		return submitterName;
+	}
+	
+	public void setName(String name) {
+		this.submitterName = name;
 	}
 
 	public Timestamp getSubmitDate() {

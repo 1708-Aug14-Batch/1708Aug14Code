@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Revature RES</title>
+<title>Revature ERS</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
 <link rel="stylesheet"
@@ -17,25 +17,146 @@
 	<div id="navContainer">
 		<!-- Fill in Navbar with AJAX request -->
 	</div>
-	<br>
-	<div class="row">
-		<div class="col-sm-3 col-md-2">
-			<div class="col-11 col-center">
-			
-				<br> Choose status:				
-				<br> <input type="checkbox" class="chooseStatus"
-					id="chooseAll" /> All
-				<br> <input type="checkbox" class="chooseStatus"
-					id="choosePending" /> Pending
-				<br> <input type="checkbox" class="chooseStatus"
-					id="chooseApproved" /> Approve
-				<br> <input type="checkbox" class="chooseStatus"
-					id="chooseDenied" /> Denied
+	<div class="row" id="homeContainer">
+		<div class="bg-light col-sm-3 col-md-2">
+			<br>
+			<div class="col-10 col-center">
+				<button class="btn btn-primary" data-toggle="modal"
+					data-target="#requestModal">New Request</button>
+				<br> <br> Show: <br> <input type="checkbox"
+					id="showEmployees" /> Employees <br>
+				<input type="checkbox" class="chooseStatus" id="chooseAll" /> All <br>
+				<input type="checkbox" class="chooseStatus" checked="checked"
+					id="choosePending" /> Pending <br> <input type="checkbox"
+					class="chooseStatus" id="chooseApproved" /> Approved <br> <input
+					type="checkbox" class="chooseStatus" id="chooseDenied" /> Denied
 			</div>
 		</div>
-		<div class="col-9" id="view">
-		
+
+		<div class="col-sm-9 col-md-10" id="view">
+
 			<!-- Use AJAX to inject HTML here -->
+		</div>
+	</div>
+
+	<div class="modal fade" id="requestModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel">New
+						Reimbursement Request</h4>
+					<button type="button" class="close modalCancel"
+						data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body row">
+					<div class="col-11 col-center">
+						<div id="message" class="alert alert-info gone">Please enter
+							an expense amount and description</div>
+						<h6>Amount:</h6>
+						<input type="number" class="requestInput" id="amount"
+							placeholder="$10.00" min="1" /> <br> <br>
+						<textarea class="requestInput" id="description" rows="4" cols="58"
+							maxlength="240" placeholder="Expense description..."></textarea>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary modalCancel"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" id="requestSubmit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="withdrawModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel">Withdraw Reimbursement Request</h4>
+					<button type="button" class="close modalCancel"
+						data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body row">
+					<div class="col-11 col-center">
+						<h6>Are you sure you want to withdraw this expense of <span id="expense"></span> submitted <span id="date"></span>?</h6>
+						<input type="number" id="requestId" class="gone" />
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary modalCancel"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" id="requestWithdraw" class="btn btn-primary">Withdraw</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="resolveModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel">blah blah blah</h4>
+					<button type="button" class="close modalCancel"
+						data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body row">
+					<div class="col-11 col-center">
+						<h6>more information about request here</h6>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary modalCancel"
+						data-dismiss="modal">Cancel</button>
+					<button type="button" id="requestDeny" class="btn btn-danger">Deny</button>
+					<button type="button" id="requestApprove" class="btn btn-success">Approve</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="moreInfoModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLabel">blah blah blah</h4>
+					<button type="button" class="close modalCancel"
+						data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body row">
+					<div class="col-11 col-center">
+						<h6>more information about request here</h6>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary modalCancel"
+						data-dismiss="modal">Return</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="resultModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body col-center">
+					<br>
+					<h4 id="result"></h4>
+					<br>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -50,9 +171,8 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 		crossorigin="anonymous"></script>
-	<script type="text/javascript"
+	<script
 		src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
 	<script src="js/profile.js"></script>
 	<script src="js/adduser.js"></script>
 	<script src="js/uni.js"></script>

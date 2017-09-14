@@ -1,11 +1,22 @@
 @charset "ISO-8859-1";
 
-* {
-	
+td, .clickable:hover, .link, button, input[type='submit'], input[type='checkbox']
+	{
+	cursor: pointer;
 }
 
-.clickable {
-	cursor: pointer;
+tbody tr:hover {
+	color: blue !important;
+	background: chartreuse !important;
+}
+
+.link {
+	color: blue;
+	text-decoration: underline;
+}
+
+.gone {
+	display: none;
 }
 
 .col-center {
@@ -15,4 +26,23 @@
 
 .input-block {
 	width: 360px;
+}
+
+.dt-center {
+	white-space: nowrap;
+	overflow: visible;
+}
+
+#homeContainer {
+	width: 99% !important;
+}
+
+table {
+	table-layout: fixed;
+}
+
+tbody td {
+	overflow: hidden; /* this is what fixes the expansion */
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }

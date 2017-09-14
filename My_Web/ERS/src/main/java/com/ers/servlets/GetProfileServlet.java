@@ -20,6 +20,6 @@ public class GetProfileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		log.trace("in doPost");
 
-		request.getRequestDispatcher("frag/viewprofile.html").forward(request, response);
+		request.getRequestDispatcher("frag/profile.html").forward(request, response);
 	}
 }

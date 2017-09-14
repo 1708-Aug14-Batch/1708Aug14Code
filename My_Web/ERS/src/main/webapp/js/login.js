@@ -1,6 +1,5 @@
-/**
- * 
- */
+
+'use strict';
 log('in login.js');
 
 $(document).ready(function () {
