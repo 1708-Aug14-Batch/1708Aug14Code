@@ -6,29 +6,25 @@
 		<link rel="stylesheet" type="text/css" href="css/register.css">
 	</head>
 	<body>
-		<div class="jumbotron">
-			<h1>Registration</h1>
-			<div class="input-group">
-				<input type="text" id="firstNameIn" class="form-control" placeholder="First Name"/>
-				</br>
-				<input type="text" id="lastNameIn" class="form-control" placeholder="Last Name"/>
-				</br>
-				<input type="text" id="emailIn" class="form-control" placeholder="Email"/>
-				</br>
-				<input type="password" id="passwordIn" class="form-control" placeholder="Password"/>
-				</br>
-				
-				<div id="message"></div>
-				
-				<input type="button" id="registerSubmit" class="btn btn-primary" value="Register"/>
-				<input type="button" id="backToLogin" class="btn btn-primary" value="Back To login"/>
-			</div>
+		<div class="register">
+			<h1>Manager Registration</h1>
+			<input type="text" id="firstNameIn" placeholder="First Name" class="inField"/>
+			<div id="firstNameMsg" class="errorMsg"></div>
+			<input type="text" id="lastNameIn" placeholder="Last Name" class="inField"/>
+			<div id="lastNameMsg" class="errorMsg"></div>
+			<input type="text" id="emailIn" placeholder="Email" class="inField"/>
+			<div id="emailMsg" class="errorMsg"></div>
+			<input type="password" id="passwordIn1" placeholder="Password" class="inField"/>
+			<div id="passwordMsg1" class="errorMsg"></div>
+			<input type="password" id="passwordIn2" placeholder="Re-enter password" class="inField"/>
+			<div id="passwordMsg2" class="errorMsg"></div>
+			
+			<button id="registerSubmit" class="btn btn-primary btn-block btn-large">Register</button>
+			<div id="registerMsg"></div>
+			<button id="backToLogin" class="btn btn-primary btn-block btn-large">Back to Login</button>
 		</div>
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-h3eme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="js/register.js"></script>
 	</body>
 </html>

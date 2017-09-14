@@ -1,0 +1,55 @@
+$(function() {
+	$.post('userInfoServlet',
+			{},
+			function(curUser) {
+				if (!curUser.isManager) {
+					$('#viewAllReimbursementsBtn').hide();
+					$('#registerEmployeeBtn').hide();
+					$('#viewEmployees').hide();
+				} else {
+					$('#viewOwnReimbursementsBtn').hide();
+				}
+			});
+	
+	$('#registerEmployee').click(function() {
+		$.post('registerServlet',
+				{ firstName: $('#firstNameIn').val(), lastName: $('#lastNameIn').val(),
+				  email: $('#emailIn').val(), password: "password", isManager: "false" },
+				  function(response) {
+					  if (response.success)
+						  $('#message').text('Employee successfuly registered');
+					  else
+						  $('#message').text('Email already in use');
+				  },
+				  'JSON');
+	});
+	
+	
+	$('#homeBtn').click(function() {
+		window.location.replace('loggedIn.html')
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(data) {
+					window.location.replace('login.html');
+				});
+	});
+	
+	$('#viewOwnReimbursementsBtn').click(function() {
+		window.location.replace('yourReimbursements.html');
+	});
+	
+	$('#viewAllReimbursementsBtn').click(function() {
+		window.location.replace('allReimbursements.html')
+	});
+	
+	$('#updateAccInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#registerEmployeeBtn').click(function() {
+		window.location.replace('registerEmployee.html');
+	});
+});

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Registration</title>
+		<link rel="stylesheet" type="text/css" href="css/register.css">
+	</head>
+	<body>
+		<div class="register"
+			<h1>Registration</h1>
+			<div class="input-group">
+				<input type="text" id="firstNameIn" class="form-control" placeholder="First Name"/>
+				</br>
+				<input type="text" id="lastNameIn" class="form-control" placeholder="Last Name"/>
+				</br>
+				<input type="text" id="emailIn" class="form-control" placeholder="Email"/>
+				</br>
+				<input type="password" id="passwordIn" class="form-control" placeholder="Password"/>
+				</br>
+				
+				<div id="message"></div>
+				
+				<input type="button" id="registerSubmit" class="btn btn-primary" value="Register"/>
+				<input type="button" id="backToLogin" class="btn btn-primary" value="Back To login"/>
+			</div>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-h3eme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/register.js"></script>
+	</body>
+</html>

@@ -74,4 +74,26 @@
   	<servlet-name>ChangeUserInfoServlet</servlet-name>
   	<url-pattern>/changeUserInfoServlet</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>ResolutionServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.ResolutionServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ResolutionServlet</servlet-name>
+  	<url-pattern>/resolutionServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>EmployeesServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.EmployeesServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>EmployeesServlet</servlet-name>
+  	<url-pattern>/employeesServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -7,17 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import com.revature.logging.Logging;
 import com.revature.pojos.Reimbursement;
 import com.revature.service.Service;
 
 public class AllReimbursementsServlet extends HttpServlet {
 	private static final long serialVersionUID = 6316653884762516242L;
-
+	
+	private static Logger logger = Logging.getLogger();
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		logger.debug("AllReimbursementsServlet doPost()");
+		
 		Service service = Service.getFromSession(req.getSession());
 		JSONArray arr = new JSONArray();
 		Reimbursement[] reimbursements = service.getAllReimbursements();

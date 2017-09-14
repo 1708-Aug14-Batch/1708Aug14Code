@@ -1,0 +1,31 @@
+package com.revature.beans;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.type.EnumType;
+
+@Entity
+@Table(name = "accounts")
+public class Account {
+	
+	@Id
+	@Column
+	@SequenceGenerator(name="account_id_seq", sequenceName="account_id_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="account_id_seq")
+	private int id;
+	
+	@Column(nullable = false)
+	private double balance;
+	
+	
+	private User user;
+	
+	@Enumerated(EnumType.ENUM)
+	private AccountType accountType;
+}

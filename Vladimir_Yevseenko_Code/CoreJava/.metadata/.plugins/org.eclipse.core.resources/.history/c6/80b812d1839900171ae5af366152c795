@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Registration</title>
+		<link rel="stylesheet" type="text/css" href="css/register.css">
+	</head>
+	<body>
+		<div class="register">
+			<h1>Manager Registration</h1>
+			<input type="text" id="firstNameIn" placeholder="First Name" class="inField"/>
+			<br/>
+			<div id="firstNameMsg" class="errorMsg"></div>
+			<br/>
+			<input type="text" id="lastNameIn" placeholder="Last Name" class="inField"/>
+			<br/>
+			<div id="lastNameMsg" class="errorMsg"></div>
+			<br/>
+			<input type="text" id="emailIn" placeholder="Email" class="inField"/>
+			<br/>
+			<div id="emailMsg" class="errorMsg"></div>
+			<br/>
+			<input type="password" id="passwordIn1" placeholder="Password" class="inField"/>
+			<br/>
+			<div id="passwordMsg" class="errorMsg"></div>
+			<br/>
+			<input type="password" id="passwordIn2" placeholder="Re-enter password" class="inField"/>
+			
+			<button id="registerSubmit" class="btn btn-primary btn-block btn-large">Register</button>
+			<div id="registerMsg"></div>
+			<button id="backToLogin" class="btn btn-primary btn-block btn-large">Back to Login</button>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="js/register.js"></script>
+	</body>
+</html>

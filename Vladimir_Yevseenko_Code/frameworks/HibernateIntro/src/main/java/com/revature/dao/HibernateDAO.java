@@ -37,12 +37,8 @@ public class HibernateDAO {
 		int newStudentId = (Integer) session.save(student);
 		student.setId(newStudentId);
 		student.setTranscript(transcript);
-		try {
-			transaction.commit();
-		} catch (Exception ex) {
-			System.out.println(ex.getMessage());
-			System.out.println(ex.getStackTrace());
-		}
+	
+		transaction.commit();
 		session.close();
 	}
 	

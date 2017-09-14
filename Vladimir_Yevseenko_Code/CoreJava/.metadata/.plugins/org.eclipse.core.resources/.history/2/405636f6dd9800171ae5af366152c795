@@ -1,0 +1,27 @@
+package com.revature.servlets;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.json.simple.JSONObject;
+
+import com.revature.service.Service;
+
+public class UserInfoServlet extends HttpServlet {
+	private static final long serialVersionUID = -793845528597489145L;
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("application/json");
+		
+		Service s = Service.getFromSession(req.getSession());
+		
+		JSONObject obj = new JSONObject(s.getCurUser().toMap());
+		
+		resp.getWriter().println(obj);
+	}
+}

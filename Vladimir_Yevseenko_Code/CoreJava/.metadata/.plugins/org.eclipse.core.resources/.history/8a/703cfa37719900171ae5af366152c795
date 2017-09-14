@@ -1,0 +1,52 @@
+$(function() {
+	$('#backToLogin').click(function() {
+		window.location.replace('login.html');
+	});
+
+	$('#registerSubmit').click(function() {
+		if (!$('#firstNameIn').val()) {
+			$('#firstNameIn').css('border-color', 'red');
+			$('#firstNameMsg').text('Please enter a first name');
+			setTimeout(function() {
+				$('#firstNameIn').css('border-color', 'rgba(0,0,0,0.3)');
+				$('#firstNameMsg').text('');
+			}, 3000);
+			return;
+		} else if (!$('#lastNameIn').val()) {
+			$('#lastNameIn').css('border-color', 'red');
+			$('#lastNameMsg').text('Please enter a last name');
+			setTimeout(function() {
+				$('#lastNameIn').css('border-color', 'rgba(0,0,0,0.3)');
+				$('#lastNameMsg').text('');
+			}, 3000);
+			return;
+		} else if (!$('#emailIn').val()) {
+			$('#emailIn').css('border-color', 'red');
+			$('#emailMsg').text('Please enter an email');
+			setTimeout(function() {
+				$('#emailIn').css('border-color', 'rgba(0,0,0,0.3)');
+				$('#emailMsg').text('');
+			}, 3000);
+			return;
+		} else if (!$('#passwordIn').val()) {
+			$('#passwordIn').css('border-color', 'red');
+			$('#passwordMsg').text('Please enter a password');
+			setTimeout(function() {
+				$('#firstNameIn').css('border-color', 'rgba(0,0,0,0.3)');
+				$('#firstNameMsg').text('');
+			}, 3000);
+			return;
+		} else if ($('#passwordIn').val().length < 8) {
+			
+			return;
+		}
+		$.post('registerServlet',
+				{ firstName: $('#firstNameIn').val(), lastName: $('#lastNameIn').val(),
+				  email: $('#emailIn').val(), password: $('#passwordIn').val(),
+				  isManager: "true"},    
+				function(response) {
+					console.log('Register response: ' + response.success);
+				},
+				'JSON');
+	});
+});

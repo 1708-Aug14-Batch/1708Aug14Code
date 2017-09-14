@@ -1,20 +1,49 @@
 $(function() {
-	$.post('userInfoServlet',
-			{},
-			function(curUser) {
-				if (!curUser.isManager) {
-					$('#viewAllReimbursementsBtn').hide();
-					$('#registerEmployeeBtn').hide();
-				} else {
-					$('#viewOwnReimbursementsBtn').hide();
-				}
-			}); 
-	
-	
 	$.post('yourReimbursementsServlet',
 			{},
 			function(arr) {
-				let table = $('#reimbursementsTable').DataTable({searching:false});
+				let table = $('#reimbursementsTable').DataTable( {
+					 initComplete: function () {
+				            this.api().columns().every( function () {
+				                let column = this;
+				                let select = $('<select><option value=""></option></select>')
+				                    .appendTo( $(column.footer()).empty() )
+				                    .on( 'change', function () {
+				                        let val = $.fn.dataTable.util.escapeRegex(
+				                            $(this).val()
+				                        );
+				 
+				                        column
+				                            .search( val ? '^'+val+'$' : '', true, false )
+				                            .draw();
+				                    } );
+				 
+				                column.data().unique().sort().each( function ( d, j ) {
+				                    select.append( '<option value="'+d+'">'+d+'</option>' )
+				                } );
+				            } );
+				        },
+				        createdRow: function () {
+				            this.api().columns().every( function () {
+				                let column = this;
+				                let select = $('<select><option value=""></option></select>')
+				                    .appendTo( $(column.footer()).empty() )
+				                    .on( 'change', function () {
+				                        let val = $.fn.dataTable.util.escapeRegex(
+				                            $(this).val()
+				                        );
+				 
+				                        column
+				                            .search( val ? '^'+val+'$' : '', true, false )
+				                            .draw();
+				                    } );
+				 
+				                column.data().unique().sort().each( function ( d, j ) {
+				                    select.append( '<option value="'+d+'">'+d+'</option>' )
+				                } );
+				            } );
+				        }
+				    } );
 				for (let i=0; i<arr.length; i++) {
 					console.log(arr[i]);
 					let resolverTxt;
@@ -37,10 +66,6 @@ $(function() {
 				}
 			});
 	
-	$('#homeBtn').click(function() {
-		window.location.replace('loggedIn.html')
-	});
-	
 	$('#logoutBtn').click(function() {
 		$.post('logoutServlet',
 				{},
@@ -53,15 +78,8 @@ $(function() {
 		window.location.replace('yourReimbursements.html');
 	});
 	
-	$('#viewAllReimbursementsBtn').click(function() {
-		window.location.replace('allReimbursements.html')
-	});
-	
-	$('#updateAccInfoBtn').click(function() {
+	$('#accInfoBtn').click(function() {
 		window.location.replace('accInfo.html');
 	});
 	
-	$('#registerEmployeeBtn').click(function() {
-		window.location.replace('registerEmployee.html');
-	});
 });

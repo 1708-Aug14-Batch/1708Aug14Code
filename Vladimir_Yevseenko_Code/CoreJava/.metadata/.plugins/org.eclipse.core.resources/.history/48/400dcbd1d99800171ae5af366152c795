@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<input type="button" value="Home" id="homeBtn"/>
+		<input type="button" value="View Your Reimbursements" id="viewOwnReimbursementsBtn"/>
+		<input type="button" value="View All Reimbursements" id="viewAllReimbursementsBtn"/>
+		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
+		<input type="button" value="Register Employee" id="registerEmployeeBtn"/>
+		<input type="button" value="Logout" id="logoutBtn"/>
+		
+		<input type="text" placeholder="First Name" id="firstNameIn"/>
+		<input type="text" placeholder="Last Name" id="lastNameIn"/>
+		<input type="text" placeholder="Email" id="emailIn"/>
+		<div id="message"></div>
+		<input type="button" value="Register Employee" id="registerEmployee"/>
+		
+		<script src="js/registerEmployee.js"></script>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+package com.revature.dao;
+
+import javax.transaction.Transaction;
+
+import org.hibernate.Session;
+
+
+import com.revature.beans.User;
+import com.revature.util.ConnectionUtil;
+
+public class HibernateDAO {
+	
+	public void addUser(User user) {
+		Session session = ConnectionUtil.getSession();
+		Transaction transcation = (Transaction) session.beginTransaction();
+		
+		
+		session.close();
+	}
+}

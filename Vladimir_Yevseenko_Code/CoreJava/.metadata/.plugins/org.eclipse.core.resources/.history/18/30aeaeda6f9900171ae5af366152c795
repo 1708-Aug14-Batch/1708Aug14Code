@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1"/>
+		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href="css/login.css"/>
+	</head>
+	
+	<body>
+		
+		<div class="login">
+			<h1>Login</h1>
+			
+			<input type="text" id="emailIn" placeholder="Email" required="required"/>
+			<br/>
+			<div id="emailMsg" class="errorMsg" hidden></div>
+			<br/>
+			<input type="password" id="passwordIn"  placeholder="Password" required="required"/>
+			<br/>
+			<div id="passwordMsg" class="errorMsg" hidden></div>
+			<br/>
+			<button id="loginSubmit" value="Login" class="btn btn-primary btn-block btn-large">Let me in</button>
+			<br/>
+			<button id="toManagerRegistration" class="btn btn-primary btn-block btn-large">Manager Registration</button>
+			
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="js/login.js"></script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1"/>
+		<title>Reimbursement System</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" href="css/loggedIn.css"/>
+	</head>
+	<body>
+		<button id="homeBtn">Home</button>
+		<button id="viewOwnReimbursementsBtn">View Your Reimbursements</button>
+		<button id="viewAllReimbursementsBtn">View All Reimbursements</button>
+		<button id="viewEmployees">View Employees</button>
+		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
+		<input type="button" value="Register Employee" id="registerEmployeeBtn"/>
+		<input type="button" value="Logout" id="logoutBtn"/>
+	
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/loggedIn.js"></script>
+	</body>
+</html>

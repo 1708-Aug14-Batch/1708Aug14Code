@@ -1,0 +1,38 @@
+$(function() {
+	$('#toManagerRegistration').click(function() {
+		window.location.replace('register.html');
+	});
+});
+
+
+
+$(function() {
+	$('#loginSubmit').click(function() {
+		if (!$('#emailIn') || !$('#passwordIn').text())
+			return;
+		$.post('loginServlet',
+				{ email: $('#emailIn').val(), password: $('#passwordIn').val() },
+				function(response) {
+					console.log(response.success);
+					switch (response.success) {
+						case "bad email":
+							{
+								$('#emailIn').css('border-color', 'red');
+								$('#emailMsg').text('Email does not exist');
+								$('#emailMsg').css('color', 'red');
+							} 
+							break;
+						case "bad password":
+							{	
+								$('#passwordIn').css('border-color', 'red');
+								$('#passwordMsg').text('Incorrect password');
+								$('#passwordMsg').css('color', 'red');
+							}
+							break;
+						case "success":
+							window.location.replace('loggedIn.html');
+					}
+				},
+				'JSON');
+	});
+});

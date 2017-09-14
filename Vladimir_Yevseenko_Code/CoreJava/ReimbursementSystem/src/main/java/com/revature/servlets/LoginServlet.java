@@ -18,11 +18,7 @@ public class LoginServlet extends HttpServlet {
 	
 	private static Logger log = Logging.getLogger();
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}
-	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		log.debug("LoginServlet doPost()");
@@ -35,7 +31,14 @@ public class LoginServlet extends HttpServlet {
 		resp.setContentType("application/json");
 		JSONObject obj = new JSONObject();
 		
-		obj.put("success", s.attemptLogin(email, password));
+		if (s.doesUserExist(email)) {
+			if (s.attemptLogin(email, password))
+				obj.put("success", "success");
+			else
+				obj.put("success", "bad password");
+		} else {
+			obj.put("success", "bad email");
+		}
 		
 		resp.getWriter().println(obj);
 	}

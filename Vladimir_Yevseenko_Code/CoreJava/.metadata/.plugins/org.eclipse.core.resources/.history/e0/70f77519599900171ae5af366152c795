@@ -1,0 +1,7 @@
+$(function() {
+	$.post('employeesServlet',
+			{},
+			function(arr) {
+				
+			});
+});

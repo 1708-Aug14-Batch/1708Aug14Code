@@ -5,9 +5,11 @@
 			<item value="com.revature"/>
 		</list>
 		<list key="name">
+			<item value="Bank"/>
 			<item value="HibernateIntro"/>
 		</list>
 		<list key="artifactId">
+			<item value="Bank"/>
 			<item value="HibernateIntro"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -46,6 +48,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\vlad\my_git_repos\1708Aug14Code\Vladimir_Yevseenko_Code\frameworks\HibernateIntro"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

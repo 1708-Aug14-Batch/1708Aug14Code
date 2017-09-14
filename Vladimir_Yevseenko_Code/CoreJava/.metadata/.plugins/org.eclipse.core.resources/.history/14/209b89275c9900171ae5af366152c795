@@ -1,0 +1,65 @@
+$(function() {
+	$.post('employeesServlet',
+			{},
+			function(arr) {
+				$('#reimbursementsTable').DataTable( {
+			        initComplete: function () {
+			            this.api().columns().every( function () {
+			                var column = this;
+			                var select = $('<select><option value=""></option></select>')
+			                    .appendTo( $(column.footer()).empty() )
+			                    .on( 'change', function () {
+			                        var val = $.fn.dataTable.util.escapeRegex(
+			                            $(this).val()
+			                        );
+			 
+			                        column
+			                            .search( val ? '^'+val+'$' : '', true, false )
+			                            .draw();
+			                    } );
+			 
+			                column.data().unique().sort().each( function ( d, j ) {
+			                    select.append( '<option value="'+d+'">'+d+'</option>' )
+			                } );
+			            } );
+			        }
+			    } );
+				for (let i=0; i<arr.length; i++) {
+					console.log(arr[i]);
+					table.row.add([
+					         arr[i].id,
+					         arr[i].first,
+					         arr[i].last,
+					         arr[i].email
+					               ]).draw(false);
+				}
+ 			});
+	
+	$('#homeBtn').click(function() {
+		window.location.replace('loggedIn.html')
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(data) {
+					window.location.replace('login.html');
+				});
+	});
+	
+	$('#viewAllReimbursementsBtn').click(function() {
+		window.location.replace('allReimbursements.html')
+	});
+	
+	$('#updateAccInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#registerEmployeeBtn').click(function() {
+		window.location.replace('registerEmployee.html');
+	});
+	
+	$('#viewEmployees').click(function() {
+		window.location.replace('employees.html');
+	});
+});

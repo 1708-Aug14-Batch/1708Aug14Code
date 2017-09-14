@@ -1,0 +1,24 @@
+$(function() {
+	$('#toManagerRegistration').click(function() {
+		window.location.replace('register.html');
+	});
+});
+
+
+
+$(function() {
+	$('#loginSubmit').click(function() {
+		$.post('loginServlet',
+				{ email: $('#emailIn').val(), password: $('#passwordIn').val() },
+				function(response) {
+					console.log(response.success);
+					if (response.success) {
+						
+					} else {
+						$('#emailMsg').text('Incorrect email');
+						$('#emailMsg').css('color', 'red')
+					}
+				},
+				'JSON');
+	});
+});

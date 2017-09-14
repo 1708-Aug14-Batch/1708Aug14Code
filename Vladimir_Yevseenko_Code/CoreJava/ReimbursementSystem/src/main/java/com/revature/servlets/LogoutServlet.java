@@ -7,9 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.revature.logging.Logging;
+
 public class LogoutServlet extends HttpServlet {
+	private static final long serialVersionUID = -3917661277044139820L;
+	
+	private static Logger logger = Logging.getLogger();
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		logger.debug("LogoutServlet doPost()");
 		req.getSession().invalidate();
 	}
 }

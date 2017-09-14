@@ -3,18 +3,12 @@ $(function() {
 			{},
 			function(curUser) {
 				console.log(curUser);
-				if (!curUser.isManager) {
-					$('#viewAllReimbursementsBtn').hide();
-					$('#registerEmployeeBtn').hide();
+				if (curUser.isManager) {
+					window.location.replace('allReimbursements.html')
 				} else {
-					$('#viewOwnReimbursementsBtn').hide();
+					window.location.replace('yourReimbursements.html');
 				}
-			}); 
-	
-	
-	$('#homeBtn').click(function() {
-		window.location.replace('loggedIn.html')
-	});
+			});
 	
 	$('#logoutBtn').click(function() {
 		$.post('logoutServlet',
@@ -40,5 +34,8 @@ $(function() {
 		window.location.replace('registerEmployee.html');
 	});
 	
+	$('#viewEmployees').click(function() {
+		window.location.replace('employees.html');
+	});
+	
 });
-

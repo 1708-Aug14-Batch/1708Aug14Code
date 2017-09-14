@@ -1,0 +1,68 @@
+$(function() {
+	$.post('userInfoServlet',
+			{},
+			function(curUser) {
+				console.log(curUser);
+				if (!curUser.isManager) {
+					$('#viewAllReimbursementsBtn').hide();
+					$('#registerEmployeeBtn').hide();
+					$('#viewEmployees').hide();
+				} else {
+					$('#viewOwnReimbursementsBtn').hide();
+				}
+			}); 
+	
+	
+	$('#homeBtn').click(function() {
+		window.location.replace('loggedIn.html')
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(data) {
+					window.location.replace('login.html');
+				});
+	});
+	
+	$('#viewOwnReimbursementsBtn').click(function() {
+		window.location.replace('yourReimbursements.html');
+	});
+	
+	$('#viewAllReimbursementsBtn').click(function() {
+		window.location.replace('allReimbursements.html')
+	});
+	
+	$('#updateAccInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#registerEmployeeBtn').click(function() {
+		window.location.replace('registerEmployee.html');
+	});
+	
+	$('#viewEmployees').click(function() {
+		window.location.replace('employees.html');
+	});
+	
+});
+
+
+toggle = document.querySelectorAll(".toggle")[0];
+nav = document.querySelectorAll("nav")[0];
+toggle_open_text = 'Menu';
+toggle_close_text = 'Close';
+
+toggle.addEventListener('click', function() {
+	nav.classList.toggle('open');
+	
+  if (nav.classList.contains('open')) {
+    toggle.innerHTML = toggle_close_text;
+  } else {
+    toggle.innerHTML = toggle_open_text;
+  }
+}, false);
+
+setTimeout(function(){
+	nav.classList.toggle('open');	
+}, 800);

@@ -1,0 +1,6 @@
+$(function() {
+	let table = $('#employeesTable').DataTable({
+		searching: false;
+	}
+	$.post()
+});

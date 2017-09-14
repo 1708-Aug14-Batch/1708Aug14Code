@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+			
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		
+		        <a class="navbar-brand" href="#"><img src="" /></a>
+		    </div>
+		
+		    <div class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		        	<li><img src="revature_pic.jpg" width="150px" height="50px"/></li>
+		            <li><a id="viewAllReimbursementsBtn">View All Reimbursements</a></li>
+		            <li><a id="registerEmployeeBtn">Register An Employee</a></li>
+		            <li><a id="accInfoBtn">Account Info</a></li>
+		            <li><a id="logoutBtn">Logout</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		
+		<br/>
+		
+		<input type="number" placeholder="Reimbursement Id" id="reimbursementId"/>
+		<select id="resolutionChoice">
+			<option value="approved">Approve</option>
+			<option value="denied">Deny</option>
+		</select>
+		<input type="button" value="Resolve" id="resolveBtn"/>
+		<div id="message"></div>
+		
+		<table id="reimbursementsTable">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Submitter</th>
+					<th>Resolver</th>
+					<th>Submission Date</th>
+					<th>Resolution date</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Id</th>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Submitter</th>
+					<th>Resolver</th>
+					<th>Submission Date</th>
+					<th>Resolution date</th>
+				</tr>
+			</tfoot>
+		</table>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script src="js/allReimbursements.js"></script>
+	</body>
+</html>

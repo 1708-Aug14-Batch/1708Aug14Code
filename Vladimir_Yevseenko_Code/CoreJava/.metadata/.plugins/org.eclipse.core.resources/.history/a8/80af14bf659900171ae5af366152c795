@@ -1,0 +1,17 @@
+$(function() {
+	$('#backToLogin').click(function() {
+		window.location.replace('login.html');
+	});
+
+	$('#registerSubmit').click(function() {
+		console.log('register clicked');
+		$.post('registerServlet',
+				{ firstName: $('#firstNameIn').val(), lastName: $('#lastNameIn').val(),
+				  email: $('#emailIn').val(), password: $('#passwordIn').val(),
+				  isManager: "true"},
+				function(response) {
+					
+				},
+				'JSON');
+	});
+});

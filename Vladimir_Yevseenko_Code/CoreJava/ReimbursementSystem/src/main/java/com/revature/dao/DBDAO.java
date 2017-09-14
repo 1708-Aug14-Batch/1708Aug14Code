@@ -281,5 +281,16 @@ public class DBDAO {
 		}
 	}
 
-
+	public boolean resolveReimbursement(int id, boolean approved) {
+		log.debug("DBDAO resolveReimbursement()");
+		final String sql = "UPDATE reimbursements SET reimbursement_status_id = ? WHERE id = ?";
+		try (PreparedStatement ps = dbConn.prepareStatement(sql)) {
+			ps.setInt(1, approved ? 1 : 2);
+			ps.setInt(2, id);
+			ps.execute();
+			return true;
+		} catch (SQLException ex) {
+			return false;
+		}
+	}
 }

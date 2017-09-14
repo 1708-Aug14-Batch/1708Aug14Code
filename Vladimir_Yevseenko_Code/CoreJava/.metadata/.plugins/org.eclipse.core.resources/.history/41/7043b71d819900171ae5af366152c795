@@ -1,0 +1,55 @@
+$(function() {
+	$('#registerEmployee').click(function() {
+		
+		$('.errorMsg').each(function() {
+			$(this).text('');
+		});
+		
+		$('.inField').each(function() {
+			$(this).css('border-color', 'rgba(0,0,0,0.3)');
+		});
+		
+		if (!$('#firstNameIn').val().length)
+		
+		$.post('registerServlet',
+				{ firstName: $('#firstNameIn').val(), lastName: $('#lastNameIn').val(),
+				  email: $('#emailIn').val(), password: "password", isManager: "false" },
+				  function(response) {
+					  if (response.success) {
+						  $('#message').text('Employee successfuly registered');
+					  } else {
+						  $('#message').text('Email already in use');
+					  }
+				  },
+				  'JSON');
+	});
+	
+	
+	$('#homeBtn').click(function() {
+		window.location.replace('loggedIn.html')
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(data) {
+					window.location.replace('login.html');
+				});
+	});
+	
+	$('#viewAllReimbursementsBtn').click(function() {
+		window.location.replace('allReimbursements.html')
+	});
+	
+	$('#updateAccInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#registerEmployeeBtn').click(function() {
+		window.location.replace('registerEmployee.html');
+	});
+	
+	$('#viewEmployees').click(function() {
+		window.location.replace('employees.html');
+	});
+});

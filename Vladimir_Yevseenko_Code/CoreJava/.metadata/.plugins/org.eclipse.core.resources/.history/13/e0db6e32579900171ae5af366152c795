@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<input type="button" value="Home" id="homeBtn"/>
+		<input type="button" value="View All Reimbursements" id="viewAllReimbursementsBtn"/>
+		<input type="button" value="View Employees" id="viewEmployees"/>
+		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
+		<input type="button" value="Register Employee" id="registerEmployeeBtn"/>
+		<input type="button" value="Logout" id="logoutBtn"/>
+		
+		<table id="employeeTable">
+			<thead>
+				<th>Id</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+			</thead>
+		</table>
+			
+	</body>
+</html>

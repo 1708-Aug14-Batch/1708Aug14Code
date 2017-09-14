@@ -1,0 +1,10 @@
+$(function() {
+	$.post('employeesServlet',
+			{},
+			function(arr) {
+				let table = $('#employeesTable').DataTable({searching:false});
+				for (let i=0; i<arr.length; i++) {
+					
+				}
+ 			});
+});

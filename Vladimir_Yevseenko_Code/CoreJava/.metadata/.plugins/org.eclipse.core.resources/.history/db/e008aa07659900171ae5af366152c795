@@ -1,0 +1,21 @@
+$(function() {
+	$('#toManagerRegistration').click(function() {
+		window.location.replace('register.html');
+	});
+});
+
+
+
+$(function() {
+	$('#loginSubmit').click(function() {
+		$.post('loginServlet',
+				{ email: $('#emailIn').val(), password: $('#passwordIn').val() },
+				function(response) {
+					if (response.success)
+						console.log('Manager register success');
+					else
+						console.log('Manager register failure')
+				},
+				'JSON');
+	});
+});

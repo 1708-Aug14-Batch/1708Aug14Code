@@ -5,6 +5,7 @@ $(function() {
 				if (!curUser.isManager) {
 					$('#viewAllReimbursementsBtn').hide();
 					$('#registerEmployeeBtn').hide();
+					$('#viewEmployees').hide();
 				} else {
 					$('#viewOwnReimbursementsBtn').hide();
 				}
@@ -20,12 +21,8 @@ $(function() {
 					  $('#message').text('Account info updated');
 				  else
 					  $('#message').text('Email is already in use');
-			  });
-	});
-	
-	
-	$('#homeBtn').click(function() {
-		window.location.replace('loggedIn.html')
+			  },
+			  'JSON');
 	});
 	
 	$('#logoutBtn').click(function() {
@@ -40,11 +37,11 @@ $(function() {
 		window.location.replace('yourReimbursements.html');
 	});
 	
-	$('#viewAllReimbursementsBtn').click(function() {
+	$('#allReimbursementsBtn').click(function() {
 		window.location.replace('allReimbursements.html')
 	});
 	
-	$('#updateAccInfoBtn').click(function() {
+	$('#accInfoBtn').click(function() {
 		window.location.replace('accInfo.html');
 	});
 	
@@ -52,4 +49,7 @@ $(function() {
 		window.location.replace('registerEmployee.html');
 	});
 	
+	$('#viewEmployees').click(function() {
+		window.location.replace('employees.html');
+	});
 });

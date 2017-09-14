@@ -5,12 +5,28 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		<input type="button" value="Home" id="homeBtn"/>
-		<input type="button" value="View Your Reimbursements" id="viewOwnReimbursementsBtn"/>
-		<input type="button" value="View All Reimbursements" id="viewAllReimbursementsBtn"/>
-		<input type="button" value="Update Account Info" id="updateAccInfoBtn"/>
-		<input type="button" value="Register Employee" id="registerEmployeeBtn"/>
-		<input type="button" value="Logout" id="logoutBtn"/>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		
+		        <a class="navbar-brand" href="#"><img src="" /></a>
+		    </div>
+		
+		    <div class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		        	<li><img src="revature_pic.jpg" width="150px" height="50px"/></li>
+		            <li><a id="allReimbursementsBtn">View All Reimbursements</a></li>
+		            <li><a id="viewEmployeesBtn">View Employees</a></li>
+		            <li><a id="registerEmployeeBtn">Register An Employee</a></li>
+		            <li><a id="logoutBtn">Logout</a></li>
+		        </ul>
+		    </div>
+		</nav>
 		
 		<br/>
 		
@@ -24,5 +40,9 @@
 		<br/>
 		<div id="message"></div>
 		<input type="button" value="Change Account Info" id="changeUserInfoBtn"/>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/accInfo.js"></script>
 	</body>
 </html>

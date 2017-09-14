@@ -1,0 +1,7 @@
+$(function() {
+	$.post('employeesServlet',
+			{},
+			function(arr) {
+				let table = $('#employeesTable').DataTable({searching:false});
+			});
+});
