@@ -45,4 +45,14 @@
     <servlet-name>AllEmpServlet</servlet-name>
     <url-pattern>/allEmployees</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SubmitReqServlet</display-name>
+    <servlet-name>SubmitReqServlet</servlet-name>
+    <servlet-class>com.project1.servlets.SubmitReqServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubmitReqServlet</servlet-name>
+    <url-pattern>/submitRequest</url-pattern>
+  </servlet-mapping>
 </web-app>

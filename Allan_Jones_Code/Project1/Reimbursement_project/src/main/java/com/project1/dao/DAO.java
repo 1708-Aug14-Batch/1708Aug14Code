@@ -16,6 +16,8 @@ public interface DAO {
 	
 	public ArrayList<Users> viewAllEmp();
 	
+	public void submitRequest(int submitterid, String description, double amt);
+	
 	public void viewPendingRequestsByMgr();
 	
 	public void viewResolvedRequestsByMgr();

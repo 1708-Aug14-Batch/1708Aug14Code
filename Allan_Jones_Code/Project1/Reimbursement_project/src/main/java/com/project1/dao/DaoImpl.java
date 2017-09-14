@@ -74,6 +74,25 @@ public class DaoImpl implements DAO {
 		}
 		return false;
 	}
+	
+	@Override
+	public void submitRequest(int submitterid, String description, double amt) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			conn.setAutoCommit(false);
+			String sql = "insert into reimbursements " +
+						 "(submitter_id, submit_date, status_id, description, amount)" +
+						 " values " +
+						 " (?, sysdate, 0, ?, ?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, submitterid);
+			ps.setString(2, description);
+			ps.setDouble(3, amt);
+			ps.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public ArrayList<Users> viewAllEmp() {
@@ -81,7 +100,7 @@ public class DaoImpl implements DAO {
 		ArrayList<Users> employees = new ArrayList<>();
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select firstname, lastname, email, username from users where ismgr = 0";
+			String sql = "select firstname, lastname, username, email from users where ismgr = 0";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
@@ -89,7 +108,7 @@ public class DaoImpl implements DAO {
 				user.setFirstName(rs.getString("firstname"));
 				user.setLastName(rs.getString("lastname"));
 				user.setUserName(rs.getString("username"));
-				user.setPassword(rs.getString("password"));
+				user.setPassword(rs.getString("email"));
 				employees.add(user);
 			}
 		} catch (SQLException e) {

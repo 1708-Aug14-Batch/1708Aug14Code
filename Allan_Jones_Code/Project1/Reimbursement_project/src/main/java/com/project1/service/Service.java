@@ -1,5 +1,7 @@
 package com.project1.service;
 
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 
 import com.project1.dao.DAO;
@@ -27,6 +29,10 @@ public class Service {
 	
 	public Users getUser(int id) {
 		return dao.getUser(id);
+	}
+	
+	public ArrayList<Users> getEmployees() {
+		return dao.viewAllEmp();
 	}
 
 }

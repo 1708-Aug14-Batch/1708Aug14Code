@@ -10,6 +10,14 @@ public class Users {
 	
 	public Users() {}
 	
+	public Users(String firstName, String lastName, String userName, String email) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.email = email;
+	}
+
 	public Users(String firstName, String lastName, String userName, String password, String email, int isMgr) {
 		super();
 		this.firstName = firstName;
