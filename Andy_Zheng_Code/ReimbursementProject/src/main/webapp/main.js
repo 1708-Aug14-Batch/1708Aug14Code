@@ -616,7 +616,7 @@ function loadEmployeeInfo(){
 			}
 
 			var empTable = $('#empTable').DataTable({
-				"pageLength": 5,
+				"pageLength": 8,
 				"bLengthChange": false,
     			initComplete: function () {
     				this.api().columns([0,1,2]).every( function () {
