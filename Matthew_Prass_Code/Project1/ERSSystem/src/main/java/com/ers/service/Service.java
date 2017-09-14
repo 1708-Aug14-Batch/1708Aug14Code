@@ -1,5 +1,6 @@
 package com.ers.service;
 
+import java.io.InputStream;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -51,9 +52,9 @@ public class Service {
 		//set emp equal to e?
 	}
 	
-	public Reimbursement submitReimbursement(Employee emp,String descript, double amt)
+	public Reimbursement submitReimbursement(Employee emp,String descript, double amt, InputStream is)
 	{
-		Reimbursement r = dao.createReimbursement(emp, Timestamp.valueOf(LocalDateTime.now()), descript, amt);
+		Reimbursement r = dao.createReimbursement(emp, Timestamp.valueOf(LocalDateTime.now()), descript, amt,is);
 		return r;
 	}
 	
@@ -103,6 +104,7 @@ public class Service {
 	{
 		return dao.getAllEmployees();
 	}
+	
 	
 	
 }

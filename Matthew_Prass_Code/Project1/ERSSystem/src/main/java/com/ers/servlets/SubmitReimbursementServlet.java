@@ -1,6 +1,7 @@
 package com.ers.servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
@@ -35,9 +36,10 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 		
 		String descript = list.get(0);
 		double amount = Double.parseDouble(list.get(1));
-		
+		InputStream is = req.getInputStream();
+		System.out.println(is);
 		Service s= new Service();
-		s.submitReimbursement(seshuser, descript, amount);
+		s.submitReimbursement(seshuser, descript, amount, is);
 		
 		
 	}

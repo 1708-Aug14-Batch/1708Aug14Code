@@ -1,5 +1,6 @@
 package com.ers.dao;
 
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
@@ -61,13 +62,13 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 	}
 
 	@Override
-	public Reimbursement createReimbursement(Employee submit, Timestamp submitdate, String desc, double amt) {
+	public Reimbursement createReimbursement(Employee submit, Timestamp submitdate, String desc, double amt, InputStream is) {
 		Reimbursement a = null;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
 			conn.setAutoCommit(false);
-			String sql = "insert into reimbursement(submitterid, submitdate, description, amount)" + 
-					"values(?,?,?,?)";
+			String sql = "insert into reimbursement(submitterid, submitdate, description, amount, attachment)" + 
+					"values(?,?,?,?,?)";
 			
 			String[] key = new String[1];
 			key[0]= "reid";
@@ -76,6 +77,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			ps.setTimestamp(2, submitdate);
 			ps.setString(3, desc);
 			ps.setDouble(4, amt);
+			ps.setBlob(5, is);
 			
 			int numRows = ps.executeUpdate();
 			int id = 0;
@@ -351,25 +353,5 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		}
 	}
 
-/*	@Override
-	public HashMap<Integer, String> getEmployeeEmails() {
-		HashMap<Integer, String> emails = new HashMap<Integer, String>();
-		try(Connection conn = ConnectionFactory
-				.getInstance().getConnection();){
-			String sql = "select empid, email from employee";
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery(sql);
-			
-			while(rs.next()){
-				int id = rs.getInt(1);
-				String email = rs.getString(2);
-				emails.put(id, email);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return emails;
-	}*/
 
 }
