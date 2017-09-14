@@ -58,6 +58,8 @@ public class EmployeeEditMyInfoServlet extends HttpServlet {
 			user.setLastName(userData.getLastName());
 			user.setEmail(userData.getEmail());
 			user.setPassword(userData.getNewPassword());
+		} else {
+			user = loggedInUser;
 		}
 		return user;
 	}
@@ -66,9 +68,10 @@ public class EmployeeEditMyInfoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		boolean editSuccess = (0 != this.service.editUser(user));
 		if (editSuccess) {
-			request.getRequestDispatcher("partial/employee/view-info.html").forward(request, response);
+			request.getSession().setAttribute("user", user);
+			//request.getRequestDispatcher("partial/employee/view-info.html").forward(request, response);
 		} else {
-			response.sendRedirect(response.encodeRedirectURL("partial/employee/edit-failure.html"));
+			//response.sendRedirect(response.encodeRedirectURL("partial/employee/edit-failure.html"));
 		}
 	}
 
