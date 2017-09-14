@@ -61,8 +61,8 @@ public class Service {
 		}
 	}
 		
-	public HashSet<User> getAllUsers(){
-		return dao.getUsers();
+	public HashSet<User> getEmployees(){
+		return dao.getEmployees();
 	}
 	
 	public HashSet<Reimbursement> getReimbursements(){
