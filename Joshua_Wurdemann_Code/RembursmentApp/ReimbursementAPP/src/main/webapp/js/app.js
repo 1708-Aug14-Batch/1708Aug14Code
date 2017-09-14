@@ -15,6 +15,7 @@ window.onload = function(){
 		document.getElementById("remPage")
 		.addEventListener("click", loadReimbursmentPageView);
 	
+
 };
 
 
@@ -103,6 +104,23 @@ function loadReimbursmentPageView(){
 	xhr.send();
 }
 
+function loadSettingsPageView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('view').
+			innerHTML = xhr.responseText;
+			getReimbursmentPageInfo(); // loads user info by calling function
+			
+		}
+	}
+	console.log("getting user reimbursments")
+	xhr.open("GET", "getRemPage", true);
+	xhr.send();
+}
+
+
+
 function getReimbursmentPageInfo(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -158,7 +176,27 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 	xhr.send();
 
 };
+// need to be able to edit user info from the front end.
+function getUserSettingsPageInfo(){
+	console.log("in user page info function");
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var someUser = JSON.parse(xhr.responseText);
+			var user = someUser.user;
+			document.getElementById('name').innerHTML = user.firstName + " " + user.lastNAme;
+		
+		
+		}
+	}
+	xhr.open("GET", "getUserInfo", true);
+	xhr.send();
 
+};
+	
+	
+}
 
 function addRemibursement(){ // allows us to add new reimbursements 
 	var rem = document.getElementbyId("addRem").value;
@@ -180,4 +218,23 @@ function addRemibursement(){ // allows us to add new reimbursements
 	xhr.send(type); //include your post data in the send()
 
 }
+function editUser(){ // allows us to edit users info
+	var rem = document.getElementbyId("addRem").value;
+	console.log(rem);
 
+	var type = JSON.stringify(rem);
+
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+
+		}
+	}
+
+	xhr.open("POST", "editUser", true);
+	//set the header to tell the server you have data for it to process
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
+	xhr.send(type); //include your post data in the send()
+
+}

@@ -18,17 +18,7 @@ public class DAOReimbursement {
    
     try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
       conn.setAutoCommit(false);
-      ////int reimburseId, int submitterID, int resolverID, Timestamp submitDate,
-      //      Timestamp resolvedDate, int statusID, String description, String resolvedNote,
-      //      double amount) {REIMBURSEID
-      //      SUBMITTERID
-      //      RESOLVERID
-      //      //SUBMITDATE
-      //      RESOLVED
-      //      STATUSID
-      //      DESCRIPTION
-      //      RESOLVNOTES
-      //      AMOUNT
+     
       String sql = "insert into reimbursements (SUBMITTERID,"
           + "DESCRIPTION, AMOUNT, SUBMITDATE)"
           + "values(?, ?, ? , ?)";
@@ -36,26 +26,11 @@ public class DAOReimbursement {
       key[0] = "reimburseId";
       
       PreparedStatement ps = conn.prepareStatement(sql, key);
-      ps.setInt(1, submitid); //do not really need summitter id?
-      ps.setString(2, description);  // may not need this?
+      ps.setInt(1, submitid);
+      ps.setString(2, description); 
       ps.setDouble(3, amount);
-      ps.setTimestamp(4,  date);// may not ed this?
-      // ps.setTimestamp(4, create.getResolvedDate());// may not need this?
-      //    ps.setInt(5, create.getStatusID());
-      //    ps.setString(6, create.getDescription());
-      //    ps.setString(5, create.getResolvedNote());// This is only for the manger to send. might get rid of
-    
-
-
-      //      ps.setInt(1, .getSubmitterID() ); //do not really need summitter id?
-      //      ps.setInt(2, create.getResolverID());  // may not need this?
-      //      ps.setTimestamp(3, create.getSubmitDate());// may not need this?
-      //      ps.setTimestamp(4, create.getResolvedDate());// may not need this?
-      //      ps.setInt(5, create.getStatusID());
-      //      ps.setString(6, create.getDescription());
-      //      ps.setString(5, create.getResolvedNote());// This is only for the manger to send. might get rid of
-      //      ps.setDouble(6, create.getAmount());
-
+      ps.setTimestamp(4,  date);
+      
       ps.executeUpdate();
       int id = 0;
       ResultSet pk = ps.getGeneratedKeys();

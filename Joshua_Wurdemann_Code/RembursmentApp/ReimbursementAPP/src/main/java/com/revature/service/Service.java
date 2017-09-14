@@ -68,10 +68,12 @@ public class Service {
   public void resolveReimbursement(Reimbursement r){
     daoRem.resolveReimbursement(r);
   }
-
-
-
-
+  // updates users info
+  public void editUser(User u) {
+   myDao.editUser(u);
+   
+  }
 }
+
 
 

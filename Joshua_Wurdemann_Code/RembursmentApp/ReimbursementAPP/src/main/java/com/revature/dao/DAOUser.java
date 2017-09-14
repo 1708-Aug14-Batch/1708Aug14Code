@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,8 @@ import java.util.HashMap;
 
 import com.revature.model.User;
 import com.revature.util.ConnectionFactory;
+
+import oracle.jdbc.OracleTypes;
 
 public class DAOUser implements DAO {
 
@@ -84,4 +87,30 @@ public class DAOUser implements DAO {
 
     return 0;
   }
+  //need to test this
+  public int editUser(User u) {
+    int num = 0;
+     
+    try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+      conn.setAutoCommit(false);
+      
+       String sql = "Call editUser(?, ?, ?, ?, ? , ?)";
+       CallableStatement cs = conn.prepareCall(sql);
+       cs.setInt(2, u.getUserId());
+       cs.setString(3, u.getFirstName());
+       cs.setString(4, u.getLastNAme());
+       cs.setString(5, u.getEmail());
+       cs.setString(6, u.getPassword());
+       
+       cs.registerOutParameter(1, OracleTypes.NUMBER);
+       cs.execute();
+       
+       num =  cs.getInt(1);
+       
+   }catch(SQLException e){
+     System.out.println("invalid email");
+   }
+     
+   return  num;
+ }
 }

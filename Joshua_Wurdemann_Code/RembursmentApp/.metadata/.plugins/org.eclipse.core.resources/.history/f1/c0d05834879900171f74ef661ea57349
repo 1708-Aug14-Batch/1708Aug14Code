@@ -1,0 +1,42 @@
+package com.revature.servlets;
+
+import javax.servlet.http.HttpSession;
+
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+import com.revature.service.Service;
+
+public class EditUserInfo {
+  System.out.println("posting new Reimbursement to db");
+  
+  HttpSession session = req.getSession(false);
+  if(session != null){
+   System.out.println("session is valid");
+    
+    Service remService = new Service();
+
+  User user = (User) session.getAttribute("user");
+    
+  Reimbursement newReimbursement = new Reimbursement();
+  
+  newReimbursement.setAmount(new Double(req.getParameter("amount")));
+  double joshmoney = newReimbursement.getAmount();//for testing
+  
+  
+  newReimbursement.setDescription(req.getParameter("description"));
+String test =  newReimbursement.getDescription();//testing
+ 
+  newReimbursement.setSubmitterID(user.getUserId());
+ int id = newReimbursement.getSubmitterID(); // for testing
+ 
+ System.out.println(joshmoney + " " + id + "" + test);
+ remService.addReimbursment(newReimbursement);
+
+ 
+
+  session.setAttribute("user", user);
+  session.setAttribute("newrem", remService);
+
+  req.getRequestDispatcher("partials/dashboard.html").forward(req, res);
+  }
+}
