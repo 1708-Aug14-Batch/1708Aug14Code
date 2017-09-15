@@ -96,4 +96,15 @@ public class ReimbursementService {
 		return this.reimbDAO.readAll();
 	}
 	
+	public ArrayList<RUser> getAllEmps() {
+		ArrayList<RUser> allUsers = this.userDAO.readAll();
+		ArrayList<RUser> allEmps = new ArrayList<RUser>();
+		for (RUser user : allUsers) {
+			if (!user.isManager()) {
+				allEmps.add(user);
+			}
+		}
+		return allEmps;
+	}
+	
 }
