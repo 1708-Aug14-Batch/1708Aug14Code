@@ -17,7 +17,6 @@ public class ReimbursementService {
 	
 	private RUserDAO userDAO;
 	private ReimbursementDAO reimbDAO;
-	private static final int PENDING = 1;
 	
 	/**
 	 * Makes a new Service for managing bank accounts
@@ -78,6 +77,19 @@ public class ReimbursementService {
 			throw new IllegalArgumentException("User cannot be null");
 		}
 		return this.userDAO.update(user);
+	}
+	
+	/**
+	 * Submits a reimbursement request to the database
+	 * @precondition Reimbursement parameter cannot be null
+	 * @param reimb The reimbursement to be submitted
+	 * @return The number of rows inserted. Should be 1.
+	 */
+	public int submitReimb(Reimbursement reimb) {
+		if (reimb == null) {
+			throw new IllegalArgumentException("Reimbursement cannot be null");
+		}
+		return this.reimbDAO.create(reimb);
 	}
 	
 }

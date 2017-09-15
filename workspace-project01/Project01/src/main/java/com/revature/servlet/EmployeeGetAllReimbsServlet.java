@@ -23,7 +23,6 @@ public class EmployeeGetAllReimbsServlet extends HttpServlet {
 	private ReimbursementService service = new ReimbursementService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("Inside EmployeeAllReimbs doPost");
 		RUser loggedInUser = (RUser) request.getSession().getAttribute("user");
 		int userID = loggedInUser.getRUserID();
 		ArrayList<Reimbursement> reimbs = this.service.getEmployeeReimbs(userID);

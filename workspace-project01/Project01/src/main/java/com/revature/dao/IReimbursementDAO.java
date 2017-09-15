@@ -10,7 +10,7 @@ public interface IReimbursementDAO {
 	/**
 	 * CREATE
 	 */
-	void create(Reimbursement reimbursement);
+	int create(Reimbursement reimbursement);
 	
 	/**
 	 * READ

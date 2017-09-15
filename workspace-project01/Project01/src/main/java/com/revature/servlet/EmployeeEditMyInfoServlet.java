@@ -2,7 +2,6 @@ package com.revature.servlet;
 
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -69,9 +68,9 @@ public class EmployeeEditMyInfoServlet extends HttpServlet {
 		boolean editSuccess = (0 != this.service.editUser(user));
 		if (editSuccess) {
 			request.getSession().setAttribute("user", user);
-			//request.getRequestDispatcher("partial/employee/view-info.html").forward(request, response);
 		} else {
-			//response.sendRedirect(response.encodeRedirectURL("partial/employee/edit-failure.html"));
+			// TODO Send failure response
+			//response.sendRedirect(HttpServletResponse.SC_FORBIDDEN));
 		}
 	}
 

@@ -23,7 +23,7 @@ CREATE TABLE reimbursement (
     resolver_id NUMBER NOT NULL,
     date_submitted TIMESTAMP NOT NULL,
     date_resolved TIMESTAMP,
-    status_id NUMBER DEFAULT 0,
+    status_id NUMBER DEFAULT 1,
     description VARCHAR2(140) NOT NULL,
     resolution_notes VARCHAR2(140),
     amount NUMBER(12, 2) NOT NULL CHECK (amount > 0.0),

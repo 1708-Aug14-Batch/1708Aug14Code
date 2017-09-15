@@ -11,6 +11,8 @@ $(document).ready(function() {
 	$('#btnBackToMyInfo').click(viewMyInfoPage);
 	$('#btnEditMyInfo').click(showEditMyInfoPage);
 	$(document).on('click', '#btnSubmitNewInfo', editMyInfo);
+	$('#btnNewRequest').click(showSubmitRequestView);
+	$(document).on('click', '#btnSubmitRequest', submitRequest);
 });
 
 function viewMyReimbs() {
@@ -126,6 +128,32 @@ function editMyInfo() {
 	} else {
 		alert("New password fields do not match!");
 	}
+}
+
+function showSubmitRequestView() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+		}
+	}
+	request.open("GET", "employee-submit-request", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function submitRequest() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			viewMyReimbs();
+		}
+	}
+	request.open("POST", "employee-submit-request", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	var reimb = JSON.stringify({description: $('#inputDescription').val(),
+		amount: $('#inputAmount').val()});
+	request.send(reimb);
 }
 
 function logout() {

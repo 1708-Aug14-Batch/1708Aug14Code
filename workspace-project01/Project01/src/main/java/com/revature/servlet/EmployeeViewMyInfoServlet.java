@@ -11,17 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.RUser;
-import com.revature.service.ReimbursementService;
 
 @WebServlet("/employee-view-my-info")
 public class EmployeeViewMyInfoServlet extends HttpServlet {
 
 	private static final int FORBIDDEN = 403;
 	private static final long serialVersionUID = 7800631297147052348L;
-	private ReimbursementService service = new ReimbursementService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("Inside EmployeeGetMyInfo doGet");
 		RUser loggedInUser = (RUser) request.getSession().getAttribute("user");
 		if (loggedInUser != null) {
 			request.getRequestDispatcher("partial/employee/view-info.html").forward(request, response);
@@ -31,9 +28,7 @@ public class EmployeeViewMyInfoServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("Inside EmployeeGetMyInfo doPost");
 		RUser loggedInUser = (RUser) request.getSession().getAttribute("user");
-		//RUser userData = this.service.
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(loggedInUser);
 		PrintWriter writer = response.getWriter();

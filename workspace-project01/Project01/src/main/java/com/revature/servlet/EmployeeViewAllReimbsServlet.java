@@ -20,7 +20,6 @@ public class EmployeeViewAllReimbsServlet extends HttpServlet {
 	 * Injects the partial view for showing an employee's reimbursement requests.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		System.out.println("Inside EmployeeAllReimbs doGet");
 		RUser loggedInUser = (RUser) request.getSession().getAttribute("user");
 		if (loggedInUser != null) {
 			request.getRequestDispatcher("partial/employee/view-all-requests.html").forward(request, response);

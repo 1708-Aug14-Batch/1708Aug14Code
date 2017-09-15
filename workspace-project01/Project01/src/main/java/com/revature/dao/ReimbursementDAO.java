@@ -14,9 +14,10 @@ import java.util.ArrayList;
 import com.revature.model.Reimbursement;
 import com.revature.util.ConnectionSingleton;
 
+// TODO: Auto-generated Javadoc
 /**
+ * Defines CRUD operations for Remibursement entities.
  * @author Will Underwood
- *
  */
 public class ReimbursementDAO implements IReimbursementDAO {
 
@@ -24,10 +25,11 @@ public class ReimbursementDAO implements IReimbursementDAO {
 	 * @see com.revature.dao.IReimbursementDAO#create(com.revature.model.Reimbursement)
 	 */
 	@Override
-	public void create(Reimbursement reimbursement) {
+	public int create(Reimbursement reimbursement) {
 		if (reimbursement == null) {
 			throw new IllegalArgumentException("Reimbursement cannot be null");
 		}
+		int numberOfRowsInserted = 0;
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO reimbursement(r_id, submitter_id, resolver_id, status_id, date_submitted, date_resolved, description, resolution_notes, amount) VALUES(DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -40,15 +42,21 @@ public class ReimbursementDAO implements IReimbursementDAO {
 			statement.setString(6, reimbursement.getDescription());
 			statement.setString(7, reimbursement.getResolutionNotes());
 			statement.setDouble(8, reimbursement.getAmount());
-			statement.executeUpdate();
+			numberOfRowsInserted = statement.executeUpdate();
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return numberOfRowsInserted;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.revature.dao.IReimbursementDAO#read(int, java.time.LocalDateTime)
+	/**
+	 * Reads a single Reimbursement by its natural key.
+	 *
+	 * @param submitterID the submitter ID
+	 * @param dateSubmitted the date submitted
+	 * @return the reimbursement
+	 * @precondition submitterID > 0, dateSubmitted != null
 	 */
 	@Override
 	public Reimbursement read(int submitterID, Date dateSubmitted) {
