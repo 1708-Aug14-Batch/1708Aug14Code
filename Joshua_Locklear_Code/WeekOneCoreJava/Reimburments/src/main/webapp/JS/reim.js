@@ -36,8 +36,6 @@ else if(selection === "All Reimbursements"){
 else if(selection === "Resolved Reimbursements"){
 	restriction = 1;
 }
-////}	console.log("Selection: " + selection);
-//	console.log("Restriction: " + restriction);
 	
 	if(reset != 0){
 		$("td").remove();
@@ -138,21 +136,6 @@ else if(selection === "Resolved Reimbursements"){
 							else if(accounts[i].status_id === 0)
 								continue;
 						}
-//						if(userlist != null){
-//						console.log("We here?");
-//							for(var j = 0; j < userlist.length; j++){
-//							if(userlist[j].userid == accounts[i].sub_id){
-//								console.log(userlist[j]);
-//								fname.innerHTML = userlist[j].firstName;
-//								lname.innerHTML = userlist[j].lastName;
-//							}
-//						}
-//						}
-//						else{
-//							console.log("WE GOT HERE");
-//							fname.innerHTML = user.firstName;
-//							lname.innerHTML = user.lastName;
-//						}
 						
 						
 						
