@@ -15,81 +15,88 @@ import com.bank.util.ConnectionUtil;
 
 public class HibernateDao {
 
-	public Person create(Person person) {
+	// CREATE
+	public <T> Integer create(Class<T> obj) {
 		Session session = ConnectionUtil.getSession();
+		Transaction tx = null;
+		Integer id = null;
 
 		try {
-			Transaction tx = (Transaction) session.beginTransaction();
+			tx = session.beginTransaction();
 
-			int personId = (Integer) session.save(person);
-			person.setPersonId(personId);
+			id = (Integer) session.save(obj);
 
 			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
 
-		return person;
+		return id;
 	}
-
-	public BankUser create(BankUser user) {
+	
+	/* UPDATE */
+	public <T> void update(Class <T> obj) {
 		Session session = ConnectionUtil.getSession();
-
+		Transaction tx = null;
 		try {
-			Transaction tx = (Transaction) session.beginTransaction();
-
-			int userId = (Integer) session.save(user);
-			user.setUserId(userId);
-
+			tx = session.beginTransaction();
+			
+			session.update(obj);
 			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-
-		return user;
 	}
-
-	public Clerk create(Clerk clerk) {
+	
+	// TODO Update the below code to work for generics as opposed to Employees
+	// TODO Make a READ operation with uniqueResult() instead of list()
+	/* DELETE */
+	public <T> void deleteEmployee(Integer id) {
 		Session session = ConnectionUtil.getSession();
-
+		Transaction tx = null;
 		try {
-			Transaction tx = (Transaction) session.beginTransaction();
-
-			int clerkId = (Integer) session.save(clerk);
-			clerk.setClerkId(clerkId);
-
+			tx = session.beginTransaction();
+			Object obj = session.get(<T>.getClass(), id);
+			session.delete(obj);
 			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-
-		return clerk;
 	}
-
-	public Account create(Account account) {
+	
+	// READ ALL
+	public void listEmployees() {
 		Session session = ConnectionUtil.getSession();
-
+		Transaction tx = null;
 		try {
-			Transaction tx = (Transaction) session.beginTransaction();
-
-			int accountId = (Integer) session.save(account);
-			account.setAccountId(accountId);
-
+			tx = session.beginTransaction();
+			List employees = session.createQuery("FROM Employee").list();
+			for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
+				Employee employee = (Employee) iterator.next();
+				System.out.print("First Name: " + employee.getFirstName());
+				System.out.print("  Last Name: " + employee.getLastName());
+				System.out.println("  Salary: " + employee.getSalary());
+			}
 			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-
-		return account;
 	}
-
-	/*
-	 * public <T> Class<T> read(final int id) {
-	 * 
-	 * Session session = ConnectionUtil.getSession(); Class<T> result = null;
-	 * try{ result = (Class<T>) session.get(Class<T>, id); }
-	 * catch(HibernateException e){ e.printStackTrace(); } finally{
-	 * session.close(); } return result; }
-	 */
 
 }

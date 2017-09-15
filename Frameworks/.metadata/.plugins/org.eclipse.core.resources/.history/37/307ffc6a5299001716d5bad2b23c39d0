@@ -1,0 +1,117 @@
+package com.bank.dao;
+
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+import com.bank.beans.*;
+import com.bank.util.ConnectionUtil;
+
+public class HibernateDao {
+
+	// CREATE
+	public <T> Integer create(Class<T> obj) {
+		Session session = ConnectionUtil.getSession();
+		Transaction tx = null;
+		Integer id = null;
+
+		try {
+			tx = session.beginTransaction();
+
+			id = (Integer) session.save(obj);
+
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return id;
+	}
+	
+	// READ
+	public <T> Class<T> read(final int id) {
+	  
+	  Session session = ConnectionUtil.getSession(); Class<T> result = null;
+	  try{ 
+		  result = (Class<T>) session.get(Class<T>, id);
+		  }
+	  catch(HibernateException e){ 
+		  e.printStackTrace(); 
+		  } 
+	  finally{
+	  session.close();
+	  } 
+	  return result; 
+	  }
+
+	// READ ALL
+	public void listEmployees() {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			List employees = session.createQuery("FROM Employee").list();
+			for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
+				Employee employee = (Employee) iterator.next();
+				System.out.print("First Name: " + employee.getFirstName());
+				System.out.print("  Last Name: " + employee.getLastName());
+				System.out.println("  Salary: " + employee.getSalary());
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	/* UPDATE */
+	public void updateEmployee(Integer EmployeeID, int salary) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Employee employee = (Employee) session.get(Employee.class, EmployeeID);
+			employee.setSalary(salary);
+			session.update(employee);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+	/* DELETE */
+	public void deleteEmployee(Integer EmployeeID) {
+		Session session = factory.openSession();
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			Employee employee = (Employee) session.get(Employee.class, EmployeeID);
+			session.delete(employee);
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+	}
+
+}

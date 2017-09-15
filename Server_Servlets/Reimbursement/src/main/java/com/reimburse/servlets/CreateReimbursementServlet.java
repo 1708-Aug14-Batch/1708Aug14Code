@@ -26,6 +26,11 @@ import com.reimburse.service.Service;
 
 @WebServlet("/createReimbursement")
 public class CreateReimbursementServlet extends HttpServlet {
+	
+	// For submitting recipts
+	private static String bucketName = "myfirstbucket1708";
+	private static String key = "2";
+	private static String uploadFileName = "temp";
 
 	final static Logger logger = Logger.getLogger(CreateReimbursementServlet.class);
 	/**

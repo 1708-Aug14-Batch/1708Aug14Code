@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="outer_div" key="selection"/>
+		<item value="Submit" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Submit"/>
 			<item value="outer_div"/>
 			<item value="view_reim_id_display"/>
 			<item value="viewEmployeesReims"/>
@@ -15,7 +16,6 @@
 			<item value="view_reim_outer_div"/>
 			<item value="view_reim_id_div"/>
 			<item value="viewEmployeesReim"/>
-			<item value="view_employees_reim"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;#view_reim_outer_div&quot;"/>

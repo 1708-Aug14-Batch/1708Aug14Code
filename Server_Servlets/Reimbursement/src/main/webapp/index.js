@@ -674,7 +674,7 @@ function populateReimbursementsTable( reims ) {
 	html += "</tbody></thead></table>";
 
 	$(div).html(html);
-	$("#reimbursement_table").dataTable();
+	//$("#reimbursement_table").dataTable();
 }
 
 function populateEmployeesTable(employees) {
@@ -705,7 +705,7 @@ function populateEmployeesTable(employees) {
 	html += "</tbody></thead></table>";
 
 	$("#view_employees_div").html(html);
-	$("#employee_table").dataTable();
+	//$("#employee_table").dataTable();
 }
 
 function setResolverId(reimbursement) {
