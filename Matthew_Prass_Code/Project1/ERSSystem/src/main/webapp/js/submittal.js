@@ -10,9 +10,9 @@ function submit(){
 	var amount = document.getElementById("amount").value;
 	var file = document.getElementById("file").value;
 	
-	file.replace("C:\\fakepath\\", "");
+	var filetho = file.replace("C:\\fakepath\\", "C:\\Users\\Matt\\Pictures\\");
 	
-	var tx = [descript,amount,file];
+	var tx = [descript,amount,filetho];
 	
 	
 	tx = JSON.stringify(tx);

@@ -55,27 +55,11 @@ public class Service {
 		//set emp equal to e?
 	}
 	
-	public Reimbursement submitReimbursement(Employee emp,String descript, double amt, InputStream is)
+	public Reimbursement submitReimbursement(Employee emp,String descript, double amt, String is)
 	{
 		Reimbursement r = new Reimbursement(); 
 		r = dao.createReimbursement(emp, Timestamp.valueOf(LocalDateTime.now()), descript, amt,is);
-		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-
-		int nRead;
-		byte[] data = new byte[16384];
-
-		try {
-			while ((nRead = is.read(data, 0, data.length)) != -1) {
-			  buffer.write(data, 0, nRead);
-			}
-			buffer.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		r.setInputStream(buffer.toByteArray());
-		System.out.println(r.getInputStream());
+		r.setReceipt(is);
 		return r;
 	}
 	

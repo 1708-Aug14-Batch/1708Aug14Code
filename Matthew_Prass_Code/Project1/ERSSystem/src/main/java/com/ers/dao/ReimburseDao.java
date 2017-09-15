@@ -11,7 +11,7 @@ import com.ers.pojos.Reimbursement;
 
 public interface ReimburseDao {
 	
-	public Reimbursement createReimbursement(Employee submit,Timestamp submitdate,String desc,double amt,InputStream is);
+	public Reimbursement createReimbursement(Employee submit,Timestamp submitdate,String desc,double amt,String file);
 	public ArrayList<Reimbursement> getAllReimbursements();
 	public ArrayList<Reimbursement> getAllReimbursementsFromEmployee(int empid);
 	public ArrayList<Reimbursement> getAllResolved();

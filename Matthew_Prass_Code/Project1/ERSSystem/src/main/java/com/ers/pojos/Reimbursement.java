@@ -16,7 +16,7 @@ public class Reimbursement {
 	private String descript;
 	private String notes;
 	private double amount;
-	private byte[] receipt;
+	private String receipt;
 	
 	public Reimbursement() {};
 	
@@ -105,11 +105,11 @@ public class Reimbursement {
 		this.amount = amount;
 	}
 	
-	public byte[] getInputStream() {
+	public String getReceipt() {
 		return receipt;
 	}
-
-	public void setInputStream(byte[] receipt) {
+	
+	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
 
@@ -117,7 +117,7 @@ public class Reimbursement {
 	public String toString() {
 		return "Reimbursement [id=" + id + ", submitter=" + submitter + ", resolver=" + resolver + ", submitdate="
 				+ submitdate + ", resolveddate=" + resolveddate + ", type=" + type + ", descript=" + descript
-				+ ", notes=" + notes + ", amount=" + amount + " blob= " + receipt + "]";
+				+ ", notes=" + notes + ", amount=" + amount + " receipt = " +receipt + "]";
 	}
 	
 	

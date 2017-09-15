@@ -27,8 +27,10 @@ public class TesingErs {
 //		System.out.println(s.updateInfo(dao.getEmployee(2),"matt", "prass", "something", "somethingelse", "mprass"));
 //		s.submitReimbursement(dao.getEmployee(2), "test", 10000);
 	
-		System.out.println(dao.getBlob(55));
-		System.out.println(dao.getBlob(56));
+		ArrayList<Reimbursement> list = dao.getAllReimbursements();
+		for(Reimbursement r : list) {
+			System.out.println(r);
+		}
 	}
 
 }

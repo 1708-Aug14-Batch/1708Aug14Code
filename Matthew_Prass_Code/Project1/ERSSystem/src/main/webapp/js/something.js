@@ -49,7 +49,12 @@ function getUserInformation(){
 					}
 					desc.innerHTML = reimb[i].descript+ " ";
 					amt.innerHTML = "$ "+reimb[i].amount + " ";
-					image.innerHTML = reimb[i].receipt;
+					if(reimb[i].receipt != null){
+						image.innerHTML =reimb[i].receipt;
+					}
+					else{
+						image.innerHTML = "No receipt!";
+					}
 				}
 			}
 			//document.getElementById('info').innerHTML = JSON.stringify(user,null,4);

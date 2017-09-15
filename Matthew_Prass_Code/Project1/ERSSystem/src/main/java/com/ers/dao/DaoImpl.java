@@ -64,7 +64,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 	}
 
 	@Override
-	public Reimbursement createReimbursement(Employee submit, Timestamp submitdate, String desc, double amt, InputStream is) {
+	public Reimbursement createReimbursement(Employee submit, Timestamp submitdate, String desc, double amt, String file) {
 	
 		Reimbursement a = null;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -80,7 +80,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			ps.setTimestamp(2, submitdate);
 			ps.setString(3, desc);
 			ps.setDouble(4, amt);
-			ps.setBlob(5, is);
+			ps.setString(5, file);
 			
 			int numRows = ps.executeUpdate();
 			int id = 0;
@@ -91,6 +91,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			}
 			conn.commit();
 			a = getReimbursement(id);
+			a.setReceipt(file);
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -120,10 +121,10 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				double amt = rs.getDouble(9);
-				Blob file = rs.getBlob(10);
+				String file = rs.getString(10);
 				Reimbursement ex = new Reimbursement(getEmployee(subid),getEmployee(resolvid),submitdate,resolvedate,getStatus(status),desc,notes,amt);
 				ex.setId(id);
-				//ex.setInputStream(file.getBinaryStream());
+				ex.setReceipt(file);
 				list.add(ex);
 			}
 		} catch (Exception e) {
@@ -158,11 +159,11 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				double amt = rs.getDouble(9);
-				Blob file = rs.getBlob(10);
+				String file = rs.getString(10);
 				
 				Reimbursement ex = new Reimbursement(getEmployee(subid),getEmployee(resolvid),submitdate,resolvedate,getStatus(status),desc,notes,amt);
 				ex.setId(id);
-				//ex.setInputStream(file.getBinaryStream());
+				ex.setReceipt(file);
 				list.add(ex);
 			}
 		} catch (Exception e) {
@@ -359,31 +360,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 		}
 	}
 	
-	public byte[] getBlob(int id) {
-		
-		byte[] bytes = null;
-		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-			
-			conn.setAutoCommit(false);
-			String sql = "select attachment" + 
-					" from reimbursement" +
-					" where reid = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next())
-			{
-				bytes = rs.getBytes(1);
-			}
-		
-			conn.commit();
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		return bytes;
-	}
+
 
 
 }

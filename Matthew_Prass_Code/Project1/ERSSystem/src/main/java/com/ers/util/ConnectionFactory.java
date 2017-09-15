@@ -23,7 +23,7 @@ public class ConnectionFactory {
 		return cf;
 	}
 	
-	public static Connection getConnection()
+	public Connection getConnection()
 	{
 		Connection conn = null;
 		try {
