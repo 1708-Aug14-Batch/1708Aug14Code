@@ -24,6 +24,7 @@ public class Service {
 	}
 	
 	public boolean registerEmp(String fn, String ln, String un, String email) {
+		logger.info("An attempt to register a new user was made. (Name: " + fn + " " + ln + ")");
 		return dao.registerEmp(fn, ln, un, email);
 	}
 	
@@ -36,6 +37,7 @@ public class Service {
 	}
 	
 	public void submitRequest(int submitterid, String description, double amt) {
+		logger.info("A Reimbursement request was made.");
 		dao.submitRequest(submitterid, description, amt);
 	}
 
