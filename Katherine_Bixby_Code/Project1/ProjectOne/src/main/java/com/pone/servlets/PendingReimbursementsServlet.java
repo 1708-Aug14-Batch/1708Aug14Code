@@ -18,37 +18,37 @@ import com.pone.pojos.RStatus;
 import com.pone.pojos.Reimbursement;
 import com.pone.service.Service;
 
-@WebServlet("/getUserInfo")
-public class GetUserInfoServlet extends HttpServlet{
-	
-	
-	/*
-	 * I NEED ONE OF THESE BUT FOR MANAGERS FRIG
-	 */
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response)
+@WebServlet("/pendingReimbursements")
+public class PendingReimbursementsServlet extends HttpServlet{
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException{
 		
 		Service service = new Service();
 		
 		HttpSession session = request.getSession();
-
+		
 		AUser sessionUser = (AUser)session.getAttribute("auser");
-		ArrayList<AUser> allUsers = service.getAllUsers();
-
 		if(sessionUser != null){
 			ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-			reimbursements = service.getUserReimbursements(sessionUser);
-
+			reimbursements = service.getAllReimbursements();
+			ArrayList<Reimbursement> pendingReimb = new ArrayList<Reimbursement>();
+			for(Reimbursement i:reimbursements) {
+				if(i.getStatusId()==0) {
+					pendingReimb.add(i);
+				}
+			}
 			
 			ArrayList<RStatus> allStatuses = service.getReimbursementStatuses();
-			System.out.println("Statuses: "+allStatuses.toString());
-			DTO dto = new DTO(sessionUser, reimbursements,allStatuses,allUsers);
+			//System.out.println("Statuses: "+allStatuses.toString());
+			ArrayList<AUser> allUsers = service.getAllUsers();
+			DTO adto = new DTO(sessionUser, pendingReimb,allStatuses,allUsers);
+			
 			
 			ObjectMapper mapper = new ObjectMapper();
 			
-			String json = mapper.writeValueAsString(dto);
+			String json = mapper.writeValueAsString(adto);
 			
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
@@ -57,6 +57,9 @@ public class GetUserInfoServlet extends HttpServlet{
 		else{
 			response.setStatus(418);
 		}
+		
+		
+		
 		
 		
 	}

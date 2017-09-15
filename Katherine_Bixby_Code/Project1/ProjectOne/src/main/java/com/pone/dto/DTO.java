@@ -11,6 +11,7 @@ public class DTO {
 	private AUser aUser;
 	private ArrayList<Reimbursement> reimbursements;
 	private ArrayList<RStatus> statuses;
+	private ArrayList<AUser> allUsers;
 	
 	public DTO() {}
 
@@ -25,6 +26,14 @@ public class DTO {
 		this.aUser = aUser;
 		this.reimbursements = reimbursements;
 		this.statuses = statuses;
+	}
+	
+	public DTO(AUser aUser, ArrayList<Reimbursement> reimbursements, ArrayList<RStatus> statuses, ArrayList<AUser> allUsers) {
+		super();
+		this.aUser = aUser;
+		this.reimbursements = reimbursements;
+		this.statuses = statuses;
+		this.setAllUsers(allUsers);
 	}
 
 	public AUser getAUser() {
@@ -49,6 +58,14 @@ public class DTO {
 
 	public void setStatuses(ArrayList<RStatus> statuses) {
 		this.statuses = statuses;
+	}
+
+	public ArrayList<AUser> getAllUsers() {
+		return allUsers;
+	}
+
+	public void setAllUsers(ArrayList<AUser> allUsers) {
+		this.allUsers = allUsers;
 	}
 	
 	

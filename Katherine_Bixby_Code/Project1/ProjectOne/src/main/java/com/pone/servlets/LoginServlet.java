@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		int id = service.validateUser(username);
 		ArrayList<RStatus> allStatus = service.getReimbursementStatuses();
+		ArrayList<AUser> allUsers = service.getAllUsers();
 		
 		String alert = "";
 		
@@ -51,12 +52,14 @@ public class LoginServlet extends HttpServlet {
 					RequestDispatcher rd = request.getRequestDispatcher("employeehome.html");
 					session.setAttribute("auser", u);
 					session.setAttribute("rstatuses", allStatus);
+					session.setAttribute("allUsers", allUsers);
 					rd.forward(request, response); // successful login
 				}
 				else { // is a manager
 					RequestDispatcher rd = request.getRequestDispatcher("managerhome.html");
 					session.setAttribute("auser", u);
 					session.setAttribute("rstatuses", allStatus);
+					session.setAttribute("allUsers", allUsers);
 					rd.forward(request, response); // successful login
 				}
 			}

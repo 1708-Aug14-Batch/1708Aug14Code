@@ -159,6 +159,10 @@ public class Service {
 		return allStatus;
 	}
 	
+	public ArrayList<AUser> getAllUsers(){
+		ArrayList<AUser> allUsers = dao.getAllUsers();
+		return allUsers;
+	}
 	
 	
 }

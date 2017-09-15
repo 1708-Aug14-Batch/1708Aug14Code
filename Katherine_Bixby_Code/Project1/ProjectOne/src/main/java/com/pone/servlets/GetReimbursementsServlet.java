@@ -27,17 +27,17 @@ public class GetReimbursementsServlet extends HttpServlet{
 		
 		Service service = new Service();
 		
-		System.out.println("Hello");
 		HttpSession session = request.getSession();
 		AUser sessionUser = (AUser)session.getAttribute("auser");
 		if(sessionUser != null){
 			ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
 			reimbursements = service.getAllReimbursements();
-			System.out.println("Reimbursements: "+reimbursements);
+			//System.out.println("Reimbursements: "+reimbursements);
 			
 			ArrayList<RStatus> allStatuses = service.getReimbursementStatuses();
-			System.out.println("Statuses: "+allStatuses.toString());
-			DTO adto = new DTO(sessionUser, reimbursements,allStatuses);
+			//System.out.println("Statuses: "+allStatuses.toString());
+			ArrayList<AUser> allUsers = service.getAllUsers();
+			DTO adto = new DTO(sessionUser, reimbursements,allStatuses,allUsers);
 			
 			
 			ObjectMapper mapper = new ObjectMapper();

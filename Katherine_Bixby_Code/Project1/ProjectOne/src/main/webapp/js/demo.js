@@ -24,6 +24,28 @@ function loadDashboardView(){
 
 
 
+function getType(tyId, stati){
+	var tyId = parseInt(tyId);
+	for(var i=0;i<stati.length;i++){
+		if(stati[i].st_id==tyId){
+			return stati[i].stName;
+		}
+	}
+	
+}
+
+
+
+function getTheirName(uid, allThem){
+	var uid = parseInt(uid);
+	for(var i=0;i<allThem.length;i++){
+		if(allThem[i].u_id==uid){
+			return allThem[i].firstName+" "+allThem[i].lastName;
+		}
+	}
+	
+}
+
 
 
 
@@ -36,10 +58,10 @@ function getUserInformation(){
 			var dto = JSON.parse(xhr.responseText);
 			var aUser = dto.auser;
 			var reimbursements = dto.reimbursements;
-			console.log(aUser);
+			var reimbStatuses = dto.statuses;
+			var allTheUsers = dto.allUsers;
 			
 			var fullName = aUser.firstName+" "+aUser.lastName;
-			console.log(fullName);
 			document.getElementById('fullname').innerHTML = fullName;
 			document.getElementById('theiruname').innerHTML = aUser.userName;
 			document.getElementById('theiremail').innerHTML = aUser.email;
@@ -65,11 +87,19 @@ function getUserInformation(){
 					var amt = nrow.insertCell(8);
 					
 					reimb.innerHTML = reimbursements[i].r_id;
-					subid.innerHTML = reimbursements[i].submitterId;
-					resid.innerHTML = reimbursements[i].resolverId;
+					subid.innerHTML = getTheirName(reimbursements[i].submitterId,allTheUsers);
+					var resolverid = reimbursements[i].resolverId;
+					if(resolverid<1){
+						resid.innherHTML = "";
+					}
+					else{
+						resid.innerHTML = getTheirName(reimbursements[i].resolverId,allTheUsers);
+					}
 					subdate.innerHTML = timeConverter(reimbursements[i].submitDate);
 					resdate.innerHTML = reimbursements[i].resolveDate;
-					statid.innerHTML = reimbursements[i].statusId;
+					var tyId = reimbursements[i].statusId;
+					var thatstat =  getType(tyId,reimbStatuses);
+					statid.innerHTML = thatstat;
 					desc.innerHTML = reimbursements[i].description;
 					resnotes.innerHTML = reimbursements[i].resolveNotes;
 					amt.innerHTML = "$"+reimbursements[i].amount;
