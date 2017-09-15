@@ -13,14 +13,15 @@ $(document).ready(function() {
 	$(document).on('click', '#btnSubmitNewInfo', editMyInfo);
 	$('#btnNewRequest').click(showSubmitRequestView);
 	$(document).on('click', '#btnSubmitRequest', submitRequest);
+	$('#btnAllRequests').click(showAllRequestsView);
 });
 
+// Begin Employee Functions
+
 function viewMyReimbs() {
-	console.log("Inside viewMyReimbs");
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if (request.readyState == 4 && request.status == 200) {
-			console.log(request.responseText);
 			$('#view').html(request.responseText);
 			getMyReimbs();
 		}
@@ -31,35 +32,12 @@ function viewMyReimbs() {
 }
 
 function getMyReimbs() {
-	console.log("Inside getMyReimbs");
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
-			console.log(request.responseText);
 			var dto = JSON.parse(request.responseText);
-			var user = dto.user;
 			var reimbs = dto.reimbs;
-
-			if (reimbs.length == 0) {
-				console.log("Reimbs of length 0");
-				$('#noReimbs').show();
-				$('#reimbsTable').hide();
-			} else {
-				console.log("Displaying reimbs");
-				$('#noReimbs').hide();
-				$('#reimbsTable').show();
-				for(var i = 0; i < reimbs.length; i++){
-					var table = document.getElementById("reimbsTable");
-					var row = table.insertRow(0);
-					var submitted = row.insertCell(0);
-					var description = row.insertCell(1);
-					var amount = row.insertCell(2);
-					console.log(reimbs[i]);
-					submitted.innerHTML = reimbs[i].dateSubmitted;
-					description.innerHTML = reimbs[i].description;
-					amount.innerHTML = reimbs[i].amount;
-				}
-			}
+			populateReimbsTable(reimbs);
 		}
 	}
 	request.open("GET", "employee-get-all-reimbs", true);
@@ -155,6 +133,58 @@ function submitRequest() {
 		amount: $('#inputAmount').val()});
 	request.send(reimb);
 }
+
+// End Employee Functions
+
+// Begin Manager Functions
+
+function showAllRequestsView() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+			getAllRequests();
+		}
+	}
+	request.open("GET", "manager-all-reimbs", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getAllRequests() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			var reimbs = JSON.parse(request.responseText);
+			populateReimbsTable(reimbs);
+		}
+	}
+	request.open("POST", "manager-all-reimbs", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function populateReimbsTable(reimbs) {
+	if (reimbs.length == 0) {
+		$('#noReimbs').show();
+		$('#reimbsTable').hide();
+	} else {
+		$('#noReimbs').hide();
+		$('#reimbsTable').show();
+		for(var i = 0; i < reimbs.length; i++){
+			var table = document.getElementById("reimbsTable");
+			var row = table.insertRow(0);
+			var submitted = row.insertCell(0);
+			var description = row.insertCell(1);
+			var amount = row.insertCell(2);
+			submitted.innerHTML = reimbs[i].dateSubmitted;
+			description.innerHTML = reimbs[i].description;
+			amount.innerHTML = reimbs[i].amount;
+		}
+	}
+}
+
+// End Manager Functions
 
 function logout() {
 	var request = new XMLHttpRequest();

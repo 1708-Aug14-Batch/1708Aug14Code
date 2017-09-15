@@ -92,4 +92,8 @@ public class ReimbursementService {
 		return this.reimbDAO.create(reimb);
 	}
 	
+	public ArrayList<Reimbursement> getAllReimbs() {
+		return this.reimbDAO.readAll();
+	}
+	
 }
