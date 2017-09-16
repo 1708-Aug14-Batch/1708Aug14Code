@@ -24,7 +24,8 @@ public class EmployeeInfoServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+
 		Service s = new Service();
 
 		HttpSession session = req.getSession();

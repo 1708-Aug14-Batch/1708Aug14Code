@@ -13,6 +13,8 @@ public class EmployeeServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+
 		req.getRequestDispatcher("employee.html").forward(req, resp);
 	}
 }

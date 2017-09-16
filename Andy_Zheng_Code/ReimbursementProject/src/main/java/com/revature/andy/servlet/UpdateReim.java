@@ -26,6 +26,8 @@ public class UpdateReim extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+
 		Map<String, String[]> myMap = req.getParameterMap();
 		
 		Set<String> transObject = myMap.keySet();
