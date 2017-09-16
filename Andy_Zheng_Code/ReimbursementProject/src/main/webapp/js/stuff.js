@@ -1,58 +1,5 @@
-// ....
 
-function loadLogin(){
-	$.ajax({
-		type: 'GET',
-		url: 'loadLogin',
-		success: function(response){
-			document.getElementById('content').innerHTML = response;
-			$('#login').click(loginRequest);
-			$('#loginKey').keypress(function(e){
-				if(e.which == 13){
-					loginRequest();
-				}
-			})
-		}
-	})
-}
-
-function loginRequest(){
- 	var email = $('#email').val();
- 	var password = $('#password').val();
-
- 	var to =[email,password];
-
- 	to = JSON.stringify(to);
-
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			if(xhr.responseText == "0" || xhr.responseText == "1"){
-				loadMenu(xhr.responseText);
-			}else if(xhr.responseText == "Incorrect Password"){
-				document.getElementById('fail').innerHTML = xhr.responseText;
-			}else if(xhr.responseText == "Incorrect Credentials"){
-				document.getElementById('fail').innerHTML = xhr.responseText;
-			}
-		}	
-	}
-	xhr.open("POST", "loginRequest", true);
-	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded")
-	xhr.send(to);
-}
-
-function loadMenu(value){
-	$.ajax({
-		type: 'GET',
-		url: 'loadMenu',
-		success: function(response){
-			document.getElementById('content').innerHTML = response;
-			loadHome();
-			menu(value);
-		}
-	})
-}
-
+/*
 function loadUser(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -143,8 +90,9 @@ function validateUpdateUserInfo(){
 	else{
  		$('#updateStatus').text("Password Mismatch");
 	}
-}
+}*/
 
+/*
 function loadReimE(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -227,6 +175,9 @@ function getReimInfoE(){
     			{ "width": "60px", "targets": 7 },
     			],
     			*/
+
+/*
+
     			initComplete: function () {
     				this.api().columns([0,3,4,7]).every( function () {
     					var column = this;
@@ -245,7 +196,6 @@ function getReimInfoE(){
 		}
 	})
 }
-
 
 function getReimInfoM(){
 	$.ajax({
@@ -295,6 +245,9 @@ function getReimInfoM(){
 				}
 				tr += "<td><select>" + option0 + option1 + option2 + "</select></td>";
 				*/
+
+/*
+
 				tr += "<td class='money'>$" + reim[x].amount.toFixed(2) + "</td>";
 				tr += "</tr>"	
 				$( "#reimTable tbody" ).append(tr);
@@ -362,6 +315,9 @@ function getReimInfoM(){
     				},
     				null	
     			],*/
+
+/*
+
 				initComplete: function () {
 					this.api().columns([0,3,4,7]).every( function () {
 						var column = this;
@@ -486,6 +442,8 @@ function getReimInfoM(){
 			}
 */
 
+/*
+
 		}
 	})
 }
@@ -518,8 +476,9 @@ function datetime(){
 	var time12 = hour +  ":" + minutes + ":" + seconds + " " + ampm;
 
 	return date + " " + time12;
-}
+}*/
 
+/*
 function loadSubmitReim(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -554,8 +513,9 @@ function submitReim(){
  			}
  		}
 	})
-}
+}*/
 
+/*
 function loadEmployee(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -576,7 +536,9 @@ function loadEmployee(){
 			loadEmployeeInfo();
 		}
 	})*/
-}
+//}
+
+/*
 
 function loadEmployeeInfo(){
 	console.log("loadEmployeeInfo")
@@ -615,8 +577,9 @@ function loadEmployeeInfo(){
     		});
 		}
 	})
-}
+}*/
 
+/*
 function loadRegisterEmployee(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -657,8 +620,9 @@ function registerEmployee(){
 			}
 		}
 	})
-}
+}*/
 
+/*
 function invalidateSession(){
 	$.ajax({
 		type: 'GET',
@@ -668,8 +632,8 @@ function invalidateSession(){
 			//window.location = "";
 		}
 	})
-}
-
+}*/
+/*
 function loadHome(){
 	$.ajax({
 		type: 'GET',
@@ -678,8 +642,4 @@ function loadHome(){
 			document.getElementById('content1').innerHTML = response;
 		}
 	})
-}
-
-$(document).ready(function(){
-	loadLogin();
-});
+}*/

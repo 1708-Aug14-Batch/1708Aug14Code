@@ -98,7 +98,7 @@ html, body, .perspective {
 }
 
 .outer-nav.horizontal {
-	left: 40%;
+	left: 45%;
 	width: 75%;
 	max-width: 1000px;
 	text-align: center;
@@ -398,8 +398,8 @@ html, body, .perspective {
 }
 
 .effect-movedown.animate .container {
-	-webkit-transform: translateY(65%) translateZ(-1000px);
-	transform: translateY(65%) translateZ(-1000px);
+	-webkit-transform: translateY(50%) translateZ(-1000px);
+	transform: translateY(50%) translateZ(-1000px);
 }
 
 .no-csstransforms3d .effect-movedown.animate .container {
