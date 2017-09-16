@@ -13,9 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.andy.dto.DTO;
 import com.revature.andy.pojos.User;
-import com.revature.andy.service.Service;
 
 @WebServlet("/userInfo")
 public class UserInfoServlet extends HttpServlet{

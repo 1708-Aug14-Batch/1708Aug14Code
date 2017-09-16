@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import com.revature.andy.dao.DAOImplementation;
 import com.revature.andy.pojos.Reimbursement;
 import com.revature.andy.pojos.User;
-import com.revature.andy.servlet.EmployeeInfoServlet;
 import com.revature.andy.util.ConnectionFactory;
 
 public class Service {
