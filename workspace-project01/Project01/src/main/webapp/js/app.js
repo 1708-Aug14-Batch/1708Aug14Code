@@ -224,11 +224,50 @@ function populateEmpsTable(emps) {
 			var firstName = row.insertCell(0);
 			var lastName = row.insertCell(1);
 			var email = row.insertCell(2);
+			
 			firstName.innerHTML = emps[i].firstName;
 			lastName.innerHTML = emps[i].lastName;
 			email.innerHTML = emps[i].email;
+			
+			var cellShowEmp = row.insertCell(3);
+			var btnShowEmp = document.createElement("button");
+			//btnShowEmp.id = "btnShowEmp";
+			btnShowEmp.innerHTML = "View This Employee";
+			cellShowEmp.appendChild(btnShowEmp);
+			
+			$(btnShowEmp).click(showSingleEmpView);
 		}
 	}
+}
+
+function showSingleEmpView() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+			getSingleEmp();
+		}
+	}
+	request.open("GET", "manager-view-employee", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getSingleEmp() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			var employee = JSON.parse(request.responseText);
+			$('#firstName').html(employee.firstName);
+			$('#lastName').html(employee.lastName);
+			$('#email').html(employee.email);
+		}
+	}
+	// TODO finish returning single employee
+	var email = JSON.stringify({});
+	request.open("POST", "manager-view-employee", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
 }
 
 //End Manager Functions
