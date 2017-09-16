@@ -221,31 +221,35 @@ function populateEmpsTable(emps) {
 		for(var i = 0; i < emps.length; i++){
 			var table = document.getElementById("empsTable");
 			var row = table.insertRow(0);
-			var firstName = row.insertCell(0);
-			var lastName = row.insertCell(1);
-			var email = row.insertCell(2);
+			var firstNameCell = row.insertCell(0);
+			var lastNameCell = row.insertCell(1);
+			var emailCell = row.insertCell(2);
 			
-			firstName.innerHTML = emps[i].firstName;
-			lastName.innerHTML = emps[i].lastName;
-			email.innerHTML = emps[i].email;
+			firstNameCell.innerHTML = emps[i].firstName;
+			lastNameCell.innerHTML = emps[i].lastName;
+			emailCell.innerHTML = emps[i].email;
 			
 			var cellShowEmp = row.insertCell(3);
 			var btnShowEmp = document.createElement("button");
-			//btnShowEmp.id = "btnShowEmp";
 			btnShowEmp.innerHTML = "View This Employee";
 			cellShowEmp.appendChild(btnShowEmp);
 			
-			$(btnShowEmp).click(showSingleEmpView);
+			var email = emailCell.innerHTML;
+			function invokeShowSingleEmpView() {
+				showSingleEmpView(email);
+			}
+			$(btnShowEmp).click(invokeShowSingleEmpView);
 		}
 	}
 }
 
-function showSingleEmpView() {
+
+function showSingleEmpView(email) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
 			$('#view').html(request.responseText);
-			getSingleEmp();
+			getSingleEmp(email);
 		}
 	}
 	request.open("GET", "manager-view-employee", true);
@@ -253,7 +257,7 @@ function showSingleEmpView() {
 	request.send();
 }
 
-function getSingleEmp() {
+function getSingleEmp(email) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
@@ -263,11 +267,10 @@ function getSingleEmp() {
 			$('#email').html(employee.email);
 		}
 	}
-	// TODO finish returning single employee
-	var email = JSON.stringify({});
+	email = JSON.stringify(email); // may need to use brace notation
 	request.open("POST", "manager-view-employee", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.send();
+	request.send(email);
 }
 
 //End Manager Functions
