@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.project1.dao.DAO;
 import com.project1.dao.DaoImpl;
+import com.project1.dto.DTO;
 import com.project1.pojos.Reimbursements;
 import com.project1.pojos.Users;
 
@@ -53,6 +54,10 @@ public class Service {
 
 	public ArrayList<Reimbursements> viewResolvedRequestsByEmp(int id) {
 		return dao.viewResolvedRequestsByEmp(id);
+	}
+	
+	public ArrayList<DTO> viewPendingRequestsByMgr(int id) {
+		return dao.viewPendingRequestsByMgr();
 	}
 
 }

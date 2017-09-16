@@ -95,4 +95,14 @@
     <servlet-name>EmpResolvedReqsServlet</servlet-name>
     <url-pattern>/empResolvedReqs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MgrAllPendingReqsServlet</display-name>
+    <servlet-name>MgrAllPendingReqsServlet</servlet-name>
+    <servlet-class>com.project1.servlets.MgrAllPendingReqsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MgrAllPendingReqsServlet</servlet-name>
+    <url-pattern>/mgrAllPendingReqs</url-pattern>
+  </servlet-mapping>
 </web-app>

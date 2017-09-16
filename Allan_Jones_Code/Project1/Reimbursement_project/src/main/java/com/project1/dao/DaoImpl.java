@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.project1.dto.DTO;
 import com.project1.pojos.Reimbursements;
 import com.project1.pojos.Users;
 import com.project1.util.ConnectionFactory;
@@ -120,10 +121,13 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void viewPendingRequestsByMgr() {
+	public ArrayList<DTO> viewPendingRequestsByMgr() {
 	// A Manager can view all pending requests from all employees
+		ArrayList<DTO> dto = new ArrayList<>();
+		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select r.DESCRIPTION, r.SUBMIT_DATE, r.AMOUNT, u.FIRSTNAME || \" \" || u.LASTNAME as Name" + 
+			String sql = "select r.DESCRIPTION, to_char(r.SUBMIT_DATE, 'dd-MON-yyyy') as submit_date, " +
+					" r.AMOUNT, u.FIRSTNAME || ' ' || u.LASTNAME as Employee" + 
 					" from Reimbursements r, R_Status s, Users u" + 
 					" where r.status_id = s.status_id" + 
 					" and r.SUBMITTER_ID = u.USERID" + 
@@ -131,18 +135,26 @@ public class DaoImpl implements DAO {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				//output return rows here
+				DTO r = new DTO();
+				r.setEmployee(rs.getString("Employee"));
+				r.setDescription(rs.getString("description"));
+				r.setAmount(rs.getDouble("amount"));
+				r.setSubmit_date(rs.getString("submit_date"));
+				dto.add(r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return dto;
 	}
 
 	@Override
 	public void viewResolvedRequestsByMgr() {
 	// A Manager can view all resolved requests from all employees and see which manager resolved it
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select r.DESCRIPTION, r.AMOUNT, r.SUBMIT_DATE, r.RESOLVED_DATE, u.FIRSTNAME || \" \" || u.LASTNAME as Resolver, r.RESOLUTION_NOTES" + 
+			String sql = "select r.DESCRIPTION, r.AMOUNT, to_char(r.SUBMIT_DATE, 'dd-MON-yyyy') as submit_date," +
+					" to_char(r.RESOLVED_DATE, 'dd-MON-yyyy') as resolved_date, " +
+					" u.FIRSTNAME || ' ' || u.LASTNAME as Resolver, r.RESOLUTION_NOTES" + 
 					" from Reimbursements r, R_Status s, Users u" + 
 					" where r.status_id = s.status_id" + 
 					" and r.RESOLVER_ID = u.USERID" + 
