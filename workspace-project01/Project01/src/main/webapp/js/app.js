@@ -14,9 +14,10 @@ $(document).ready(function() {
 	$('#btnNewRequest').click(showSubmitRequestView);
 	$(document).on('click', '#btnSubmitRequest', submitRequest);
 	$('#btnAllRequests').click(showAllRequestsView);
+	$('#btnAllEmployees').click(showAllEmployeesView);
 });
 
-// Begin Employee Functions
+//Begin Employee Functions
 
 function viewMyReimbs() {
 	var request = new XMLHttpRequest();
@@ -43,6 +44,26 @@ function getMyReimbs() {
 	request.open("GET", "employee-get-all-reimbs", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send();
+}
+
+function populateReimbsTable(reimbs) {
+	if (reimbs.length == 0) {
+		$('#noReimbs').show();
+		$('#reimbsTable').hide();
+	} else {
+		$('#noReimbs').hide();
+		$('#reimbsTable').show();
+		for(var i = 0; i < reimbs.length; i++){
+			var table = document.getElementById("reimbsTable");
+			var row = table.insertRow(0);
+			var submitted = row.insertCell(0);
+			var description = row.insertCell(1);
+			var amount = row.insertCell(2);
+			submitted.innerHTML = reimbs[i].dateSubmitted;
+			description.innerHTML = reimbs[i].description;
+			amount.innerHTML = reimbs[i].amount;
+		}
+	}
 }
 
 function viewMyInfoPage() {
@@ -134,9 +155,9 @@ function submitRequest() {
 	request.send(reimb);
 }
 
-// End Employee Functions
+//End Employee Functions
 
-// Begin Manager Functions
+//Begin Manager Functions
 
 function showAllRequestsView() {
 	var request = new XMLHttpRequest();
@@ -164,27 +185,53 @@ function getAllRequests() {
 	request.send();
 }
 
-function populateReimbsTable(reimbs) {
-	if (reimbs.length == 0) {
-		$('#noReimbs').show();
-		$('#reimbsTable').hide();
+function showAllEmployeesView() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+			getAllEmployees();
+		}
+	}
+	request.open("GET", "manager-view-emps", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getAllEmployees() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			var emps = JSON.parse(request.responseText);
+			populateEmpsTable(emps);
+		}
+	}
+	request.open("POST", "manager-view-emps", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function populateEmpsTable(emps) {
+	if (emps.length == 0) {
+		$('#noEmps').show();
+		$('#empsTable').hide();
 	} else {
-		$('#noReimbs').hide();
-		$('#reimbsTable').show();
-		for(var i = 0; i < reimbs.length; i++){
-			var table = document.getElementById("reimbsTable");
+		$('#noEmps').hide();
+		$('#empsTable').show();
+		for(var i = 0; i < emps.length; i++){
+			var table = document.getElementById("empsTable");
 			var row = table.insertRow(0);
-			var submitted = row.insertCell(0);
-			var description = row.insertCell(1);
-			var amount = row.insertCell(2);
-			submitted.innerHTML = reimbs[i].dateSubmitted;
-			description.innerHTML = reimbs[i].description;
-			amount.innerHTML = reimbs[i].amount;
+			var firstName = row.insertCell(0);
+			var lastName = row.insertCell(1);
+			var email = row.insertCell(2);
+			firstName.innerHTML = emps[i].firstName;
+			lastName.innerHTML = emps[i].lastName;
+			email.innerHTML = emps[i].email;
 		}
 	}
 }
 
-// End Manager Functions
+//End Manager Functions
 
 function logout() {
 	var request = new XMLHttpRequest();

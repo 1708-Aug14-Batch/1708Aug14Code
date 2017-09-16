@@ -2,6 +2,8 @@ package com.revature.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +28,11 @@ public class ManagerViewAllEmps extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		ArrayList<RUser> allEmps = this.service.getAllEmps();
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(allEmps);
+		PrintWriter writer = response.getWriter();
+		response.setContentType("application/json");
+		writer.write(json);
 	}
 
 }
