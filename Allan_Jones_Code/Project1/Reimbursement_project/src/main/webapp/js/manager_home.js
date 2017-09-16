@@ -17,6 +17,26 @@ window.onload = function() {
 	    		},
 	    	"json");
 	});
+	$(document).ready(function() {
+	    $.post("mgrAllResolvedReqs",
+	    		{},
+	    		function(reqs) {
+	    			let dataz = $('#resolveddata').DataTable();
+	    			console.log(reqs);
+	    			for(let i = 0; i < reqs.length; i++){
+	    				dataz.row.add([
+	    					reqs[i].employee,
+	    					reqs[i].description,
+	    					reqs[i].amount,
+	    					reqs[i].submit_date,
+	    					reqs[i].resolved_date,
+	    					reqs[i].manager,
+	    					reqs[i].resolution,
+	    				]).draw(false);
+	    			}
+	    		},
+	    	"json");
+	});
 }
 
 function getLoginInfo() {

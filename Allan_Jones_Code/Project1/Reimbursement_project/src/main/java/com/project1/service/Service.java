@@ -56,8 +56,12 @@ public class Service {
 		return dao.viewResolvedRequestsByEmp(id);
 	}
 	
-	public ArrayList<DTO> viewPendingRequestsByMgr(int id) {
+	public ArrayList<DTO> viewPendingRequestsByMgr() {
 		return dao.viewPendingRequestsByMgr();
+	}
+
+	public ArrayList<DTO> viewResolvedRequestsByMgr() {
+		return dao.viewResolvedRequestsByMgr();
 	}
 
 }

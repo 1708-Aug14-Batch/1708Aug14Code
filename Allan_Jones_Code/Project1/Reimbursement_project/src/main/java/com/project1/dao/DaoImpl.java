@@ -149,24 +149,37 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void viewResolvedRequestsByMgr() {
+	public ArrayList<DTO> viewResolvedRequestsByMgr() {
 	// A Manager can view all resolved requests from all employees and see which manager resolved it
+		ArrayList<DTO> dto = new ArrayList<>();
+
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select r.DESCRIPTION, r.AMOUNT, to_char(r.SUBMIT_DATE, 'dd-MON-yyyy') as submit_date," +
+			String sql = "select u.FIRSTNAME || ' ' || u.LASTNAME as Employee, r.DESCRIPTION, r.AMOUNT," +
+					" to_char(r.SUBMIT_DATE, 'dd-MON-yyyy') as submit_date," +
 					" to_char(r.RESOLVED_DATE, 'dd-MON-yyyy') as resolved_date, " +
-					" u.FIRSTNAME || ' ' || u.LASTNAME as Resolver, r.RESOLUTION_NOTES" + 
-					" from Reimbursements r, R_Status s, Users u" + 
+					" u2.FIRSTNAME || ' ' || u2.LASTNAME as Manager, r.RESOLUTION_NOTES, s.name" + 
+					" from Reimbursements r, R_Status s, Users u, Users u2" + 
 					" where r.status_id = s.status_id" + 
-					" and r.RESOLVER_ID = u.USERID" + 
+					" and r.SUBMITTER_ID = u.USERID" +
+					" and r.RESOLVER_ID = u2.USERID" + 
 					" and (s.name = 'Denied' OR s.name = 'Approved')";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()) {
-				//output return rows here
+				DTO r = new DTO();
+				r.setEmployee(rs.getString("Employee"));
+				r.setDescription(rs.getString("description"));
+				r.setAmount(rs.getDouble("amount"));
+				r.setSubmit_date(rs.getString("submit_date"));
+				r.setResolved_date(rs.getString("resolved_date"));
+				r.setManager(rs.getString("Manager"));
+				r.setResolution(rs.getString("resolution_notes"));
+				dto.add(r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return dto;
 	}
 
 	@Override

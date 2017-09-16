@@ -22,7 +22,7 @@ public interface DAO {
 	
 	public ArrayList<DTO> viewPendingRequestsByMgr();
 	
-	public void viewResolvedRequestsByMgr();
+	public ArrayList<DTO> viewResolvedRequestsByMgr();
 	
 	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id);
 	
