@@ -75,4 +75,14 @@
     <servlet-name>EmpUpdateServlet</servlet-name>
     <url-pattern>/empInfoUpdate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmpPendingReqsServlet</display-name>
+    <servlet-name>EmpPendingReqsServlet</servlet-name>
+    <servlet-class>com.project1.servlets.EmpPendingReqsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmpPendingReqsServlet</servlet-name>
+    <url-pattern>/empPendingReqs</url-pattern>
+  </servlet-mapping>
 </web-app>

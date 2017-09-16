@@ -31,8 +31,6 @@ public class LoginServlet extends HttpServlet {
 		user = service.getUser(id);
 		String name = user.getFirstName().toString() + " " + user.getLastName().toString();
 		
-		System.out.println("Name from loginServlet is: " + name);
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("name", name);
 		session.setAttribute("User", user);

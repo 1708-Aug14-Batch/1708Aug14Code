@@ -1,6 +1,22 @@
 window.onload = function() {
 	getLoginInfo();
 	getUserInfo();
+	$(document).ready(function() {
+	    $.get("empPendingReqs",
+	    		{},
+	    		function(reqs) {
+	    			let dataz = $('#pendingdata').DataTable();
+	    			console.log(reqs);
+	    			for(let i = 0; i < reqs.length; i++){
+	    				dataz.row.add([
+	    					reqs[i].description,
+	    					reqs[i].amount,
+	    					reqs[i].submit_date,
+	    				]).draw(false);
+	    			}
+	    		},
+	    	"json");
+	});
 }
 
 function getLoginInfo() {

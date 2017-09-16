@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.project1.pojos.Reimbursements;
 import com.project1.pojos.Users;
 import com.project1.util.ConnectionFactory;
 
@@ -157,10 +158,12 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void viewPendingRequestsByEmp(int id) {
+	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id) {
 	// An Employee can view their pending reimbursement requests
+		ArrayList<Reimbursements> reimbursements = new ArrayList<>();
+		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select r.DESCRIPTION, r.SUBMIT_DATE, r.AMOUNT, u.FIRSTNAME || \" \" || u.LASTNAME as Name" + 
+			String sql = "select r.DESCRIPTION, to_char(r.SUBMIT_DATE, 'dd-MON-yyyy') as submit_date, r.AMOUNT" + 
 					" from Reimbursements r, R_Status s, Users u" + 
 					" where r.status_id = s.status_id" + 
 					" and r.SUBMITTER_ID = u.USERID" + 
@@ -169,12 +172,17 @@ public class DaoImpl implements DAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				//output return rows here
+			while(rs.next()) {
+				Reimbursements r = new Reimbursements();
+				r.setDescription(rs.getString("description"));
+				r.setSubmit_date(rs.getString("submit_date"));
+				r.setAmount(rs.getDouble("amount"));
+				reimbursements.add(r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return reimbursements;
 	}
 
 	@Override

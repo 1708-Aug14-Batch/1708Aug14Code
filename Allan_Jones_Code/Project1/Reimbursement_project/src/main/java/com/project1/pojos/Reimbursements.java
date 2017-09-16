@@ -3,22 +3,24 @@ package com.project1.pojos;
 public class Reimbursements {
 	private int submitterID;
 	private int resolverID;
-	private String submitDate;
+	private String submit_date;
 	private String resolvedDate;
 	private int statusID;
+	private String description;
 	private String resolution_notes;
 	private double amount;
 	
 	public Reimbursements() {}
-	
-	public Reimbursements(int submitterID, int resolverID, String submitDate, String resolvedDate, int statusID,
-			String resolution_notes, double amount) {
+
+	public Reimbursements(int submitterID, int resolverID, String submit_date, String resolvedDate, int statusID,
+			String description, String resolution_notes, double amount) {
 		super();
 		this.submitterID = submitterID;
 		this.resolverID = resolverID;
-		this.submitDate = submitDate;
+		this.submit_date = submit_date;
 		this.resolvedDate = resolvedDate;
 		this.statusID = statusID;
+		this.description = description;
 		this.resolution_notes = resolution_notes;
 		this.amount = amount;
 	}
@@ -39,12 +41,12 @@ public class Reimbursements {
 		this.resolverID = resolverID;
 	}
 
-	public String getSubmitDate() {
-		return submitDate;
+	public String getSubmit_date() {
+		return submit_date;
 	}
 
-	public void setSubmitDate(String submitDate) {
-		this.submitDate = submitDate;
+	public void setSubmit_date(String submit_date) {
+		this.submit_date = submit_date;
 	}
 
 	public String getResolvedDate() {
@@ -61,6 +63,14 @@ public class Reimbursements {
 
 	public void setStatusID(int statusID) {
 		this.statusID = statusID;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getResolution_notes() {
@@ -81,9 +91,10 @@ public class Reimbursements {
 
 	@Override
 	public String toString() {
-		return "Reimbursements [submitterID=" + submitterID + ", resolverID=" + resolverID + ", submitDate="
-				+ submitDate + ", resolvedDate=" + resolvedDate + ", statusID=" + statusID + ", resolution_notes="
-				+ resolution_notes + ", amount=" + amount + "]";
+		return "Reimbursements [submitterID=" + submitterID + ", resolverID=" + resolverID + ", submit_date="
+				+ submit_date + ", resolvedDate=" + resolvedDate + ", statusID=" + statusID + ", description="
+				+ description + ", resolution_notes=" + resolution_notes + ", amount=" + amount + "]";
 	}
+
 	
 }

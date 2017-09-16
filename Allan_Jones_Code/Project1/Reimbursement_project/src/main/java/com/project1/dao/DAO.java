@@ -2,6 +2,7 @@ package com.project1.dao;
 
 import java.util.ArrayList;
 
+import com.project1.pojos.Reimbursements;
 import com.project1.pojos.Users;
 
 public interface DAO {
@@ -22,7 +23,7 @@ public interface DAO {
 	
 	public void viewResolvedRequestsByMgr();
 	
-	public void viewPendingRequestsByEmp(int id);
+	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id);
 	
 	public void viewResolvedRequestsByEmp(int id);
 	

@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 
 import com.project1.dao.DAO;
 import com.project1.dao.DaoImpl;
+import com.project1.pojos.Reimbursements;
 import com.project1.pojos.Users;
 
 public class Service {
@@ -44,6 +45,10 @@ public class Service {
 	public void updateEmp(int id, String fn, String ln, String em, String un, String pw) {
 		logger.info(fn + " " + ln + " updated information in their profile.");
 		dao.updateEmployee(id, fn, ln, em, un, pw);
+	}
+
+	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id) {
+		return dao.viewPendingRequestsByEmp(id);
 	}
 
 }
