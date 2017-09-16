@@ -186,24 +186,37 @@ public class DaoImpl implements DAO {
 	}
 
 	@Override
-	public void viewResolvedRequestsByEmp(int id) {
+	public ArrayList<Reimbursements> viewResolvedRequestsByEmp(int id) {
 	// An Employee can view their resolved reimbursement requests
+		ArrayList<Reimbursements> reimbursements = new ArrayList<>();
+		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
-			String sql = "select r.DESCRIPTION, r.AMOUNT, r.SUBMIT_DATE, r.RESOLVED_DATE, u.FIRSTNAME || \" \" || u.LASTNAME as Resolver, r.RESOLUTION_NOTES" + 
+			String sql = "select r.DESCRIPTION, to_char(r.SUBMIT_DATE, 'dd-MON-yyyy') as submit_date, r.AMOUNT," + 
+					" to_char(r.RESOLVED_DATE, 'dd-MON-YYYY') as resolved_date, " +
+					" r.RESOLUTION_NOTES," +
+					" s.STATUS_ID" +
 					" from Reimbursements r, R_Status s, Users u" + 
 					" where r.status_id = s.status_id" + 
-					" and r.RESOLVER_ID = u.USERID" + 
-					" and (s.name = 'Denied' OR s.name = 'Approved')" +
-					" and userid = ?";
+					" and r.SUBMITTER_ID = u.USERID" + 
+					" and (s.name = 'Approved' OR s.name = 'Denied')" + 
+					" and u.userid = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				//output return rows here
+			while(rs.next()) {
+				Reimbursements r = new Reimbursements();
+				r.setDescription(rs.getString("description"));
+				r.setSubmit_date(rs.getString("submit_date"));
+				r.setAmount(rs.getDouble("amount"));
+				r.setResolved_date(rs.getString("resolved_date"));
+				r.setResolution_notes(rs.getString("resolution_notes"));
+				r.setStatusID(rs.getInt("status_id"));
+				reimbursements.add(r);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return reimbursements;
 	}
 		
 	@Override

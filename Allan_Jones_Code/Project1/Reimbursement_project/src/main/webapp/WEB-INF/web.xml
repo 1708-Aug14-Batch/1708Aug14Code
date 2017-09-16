@@ -85,4 +85,14 @@
     <servlet-name>EmpPendingReqsServlet</servlet-name>
     <url-pattern>/empPendingReqs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EmpResolvedReqsServlet</display-name>
+    <servlet-name>EmpResolvedReqsServlet</servlet-name>
+    <servlet-class>com.project1.servlets.EmpResolvedReqsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EmpResolvedReqsServlet</servlet-name>
+    <url-pattern>/empResolvedReqs</url-pattern>
+  </servlet-mapping>
 </web-app>

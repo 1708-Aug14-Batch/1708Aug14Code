@@ -51,4 +51,8 @@ public class Service {
 		return dao.viewPendingRequestsByEmp(id);
 	}
 
+	public ArrayList<Reimbursements> viewResolvedRequestsByEmp(int id) {
+		return dao.viewResolvedRequestsByEmp(id);
+	}
+
 }

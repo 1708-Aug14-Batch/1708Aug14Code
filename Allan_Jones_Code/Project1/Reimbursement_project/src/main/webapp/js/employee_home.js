@@ -17,6 +17,25 @@ window.onload = function() {
 	    		},
 	    	"json");
 	});
+	$(document).ready(function() {
+	    $.get("empResolvedReqs",
+	    		{},
+	    		function(reqs) {
+	    			let dataz = $('#resolveddata').DataTable();
+	    			console.log(reqs);
+	    			for(let i = 0; i < reqs.length; i++){
+	    				dataz.row.add([
+	    					reqs[i].description,
+	    					reqs[i].amount,
+	    					reqs[i].submit_date,
+	    					reqs[i].resolved_date,
+	    					reqs[i].statusID,
+	    					reqs[i].resolution_notes,
+	    				]).draw(false);
+	    			}
+	    		},
+	    	"json");
+	});
 }
 
 function getLoginInfo() {

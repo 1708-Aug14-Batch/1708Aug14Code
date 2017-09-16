@@ -4,7 +4,7 @@ public class Reimbursements {
 	private int submitterID;
 	private int resolverID;
 	private String submit_date;
-	private String resolvedDate;
+	private String resolved_date;
 	private int statusID;
 	private String description;
 	private String resolution_notes;
@@ -12,13 +12,13 @@ public class Reimbursements {
 	
 	public Reimbursements() {}
 
-	public Reimbursements(int submitterID, int resolverID, String submit_date, String resolvedDate, int statusID,
+	public Reimbursements(int submitterID, int resolverID, String submit_date, String resolved_date, int statusID,
 			String description, String resolution_notes, double amount) {
 		super();
 		this.submitterID = submitterID;
 		this.resolverID = resolverID;
 		this.submit_date = submit_date;
-		this.resolvedDate = resolvedDate;
+		this.resolved_date = resolved_date;
 		this.statusID = statusID;
 		this.description = description;
 		this.resolution_notes = resolution_notes;
@@ -49,12 +49,12 @@ public class Reimbursements {
 		this.submit_date = submit_date;
 	}
 
-	public String getResolvedDate() {
-		return resolvedDate;
+	public String getResolved_date() {
+		return resolved_date;
 	}
 
-	public void setResolvedDate(String resolvedDate) {
-		this.resolvedDate = resolvedDate;
+	public void setResolved_date(String resolved_date) {
+		this.resolved_date = resolved_date;
 	}
 
 	public int getStatusID() {
@@ -92,9 +92,8 @@ public class Reimbursements {
 	@Override
 	public String toString() {
 		return "Reimbursements [submitterID=" + submitterID + ", resolverID=" + resolverID + ", submit_date="
-				+ submit_date + ", resolvedDate=" + resolvedDate + ", statusID=" + statusID + ", description="
+				+ submit_date + ", resolved_date=" + resolved_date + ", statusID=" + statusID + ", description="
 				+ description + ", resolution_notes=" + resolution_notes + ", amount=" + amount + "]";
 	}
 
-	
 }

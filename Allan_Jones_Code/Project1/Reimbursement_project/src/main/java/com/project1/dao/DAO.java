@@ -25,7 +25,7 @@ public interface DAO {
 	
 	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id);
 	
-	public void viewResolvedRequestsByEmp(int id);
+	public ArrayList<Reimbursements> viewResolvedRequestsByEmp(int id);
 	
 	public void viewEmpRequest(int id);
 	
