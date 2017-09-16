@@ -1,35 +1,23 @@
-<div class="container-fluid azh100">
-	<div class="row azh100">
-		<div class="col-3 azborderr azh100">
-		<br>
-			<ul class="nav flex-column">
-			<!-- menu -->
-				<li class="nav-item">
-					<h3>Manager</h3>
-				</li>
-				<!--
-				<li class="nav-item">
-					<button style="background: transparent; border: none" class="nav-link active" id="one"><h5>Manager Homepage</h5></button>
-				</li>-->
-				<li class="nav-item">
-					<button style="background: transparent; border: none" class="nav-link" id="two"><h5>User Information</h5></button>
-				</li>
-				<li class="nav-item">
-					<button style="background: transparent; border: none" class="nav-link" id="three"><h5>View Reimbursement</h5></button>
-				</li>
-				<li class="nav-item">
-					<button style="background: transparent; border: none" class="nav-link" id="emp"><h5>View Employees</h5></button>
-				</li>
-				<li class="nav-item">
-					<button style="background: transparent; border: none" class="nav-link" id="four"><h5>Register Employee </h5></button>
-				</li>
-				<li class="nav-item">
-					<button style="background: transparent; border: none" class="nav-link" id="five"><h5>Logout</button></h5>
-				</li>
-			</ul>
-		</div>
-		<div class="col-9">
-			<div id="content1"></div>
-		</div>
-	</div>
-</div>
+<div id="perspective" class="perspective effect-movedown">
+	<div class="container">
+		<div class="wrapper"><!-- wrapper needed for scroll -->
+			<div id=content></div>
+			<!-- Top Navigation -->
+
+			<header class="codrops-header">
+				<h1>Perspective Page View Navigation</h1>
+				<button id="showMenu">Show Menu</button>
+			</header>
+			<div class="main clearfix">
+				<div id="content1"></div>
+			</div><!-- /main -->
+		</div><!-- wrapper -->
+	</div><!-- /container -->
+	<nav class="outer-nav top horizontal">
+		<button id="two">User Information</button>
+		<button id="three">View Reimbursement</button>
+		<button id="emp">View Employees</button>
+		<button id="four">Register Employee</button>
+		<button id="five">Logout</button>
+	</nav>
+</div><!-- /perspective -->

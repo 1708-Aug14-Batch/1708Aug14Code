@@ -48,23 +48,7 @@ function loadMenu(value){
 		success: function(response){
 			document.getElementById('content').innerHTML = response;
 			loadHome();
-			if(value == "0"){
-				$('#four').click(loadSubmitReim);
-			}else if(value == "1"){
-				$('#four').click(loadRegisterEmployee);
-			}
-
-			if(value == "0"){
-				$('#three').click(loadReimE);
-			}else if(value == "1"){
-				$('#three').click(loadReimM);
-			}
-			//$('#one').click(loadHome);
-			$('#two').click(loadUser);
-			$('#five').click(invalidateSession);
-			if(value == "1"){
-				$('#emp').click(loadEmployee);
-			}
+			menu(value);
 		}
 	})
 }
@@ -83,7 +67,7 @@ function loadUser(){
 					$("#password").prop('readonly', false);	
 					$('#edit').text("Save");	
 				}else if($('#edit').text() == "Save"){
-					$('#myModal').modal('show');
+					$('#myModal').appendTo("body").modal('show');
 					$('#update').click(validateUpdateUserInfo);
 				}
 			})
@@ -144,7 +128,7 @@ function validateUpdateUserInfo(){
 								$("#email").prop('readonly', true);
 								$("#password").prop('readonly', true);
 								$('#edit').text("Edit");
-								$('#myModal').modal('hide');
+								$('#myModal').appendTo("body").modal('hide');
 								$('#password1').val("");
 								$('#password2').val("");
 				 			}
@@ -397,7 +381,7 @@ function getReimInfoM(){
 			$('#reimTable').on('click','tr .statusClick', function(){
 				var cell = reimTable.cell(this);
 				var data = cell.data();
-				$('#statusModal').modal('show');
+				$('#statusModal').appendTo("body").modal('show');
 				$('#reimDescription').val(reimTable.row(this).data()[1]);
 				if(data == "Pending"){
 					$('[value="Pending"]').attr('selected',true);
@@ -421,7 +405,7 @@ function getReimInfoM(){
 				 		dataType: 'JSON',
 				 		success: function(response2){
 				 			if(response2 != "Failure"){
-					 			$('#statusModal').modal('hide');
+					 			$('#statusModal').appendTo("body").modal('hide');
 								$('#notes').val("");
 								var current = new Date();
 								reimTable.cell(cell.index().row,2).data(notes);
@@ -543,7 +527,7 @@ function loadSubmitReim(){
 			document.getElementById('content1').innerHTML = xhr.responseText;
 			$('#submit').click(function(){
 				submitReim();
-				$('#submitModal').modal('show');
+				$('#submitModal').appendTo("body").modal('show');
 			});
 		}
 	}
@@ -640,7 +624,7 @@ function loadRegisterEmployee(){
 			document.getElementById('content1').innerHTML = xhr.responseText;
 			$('#register').click(function(){
 				registerEmployee();
-				$('#registerModal').modal('show');
+				$('#registerModal').appendTo("body").modal('show');
 			});
 		}
 	}
