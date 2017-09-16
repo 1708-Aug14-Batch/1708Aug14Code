@@ -253,4 +253,24 @@ public class DaoImpl implements DAO {
 		return false;
 	}
 
+	@Override
+	public void updateEmployee(int id, String fn, String ln, String em, String un, String pw) {
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+			conn.setAutoCommit(false);
+			String sql = "update users set firstname = ?, lastname = ?, email = ?, username = ?, password = ? " +
+						 " where userid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, fn);
+			ps.setString(2, ln);
+			ps.setString(3, em);
+			ps.setString(4, un);
+			ps.setString(5, pw);
+			ps.setInt(6, id);
+			ps.executeUpdate();
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -6,6 +6,11 @@ body {
     background-attachment: fixed;
 } 
 
+.input-group-addon {
+    min-width:130px;
+    text-align:right;
+}
+
 #box-wrapper {
     background-image: url(../images/bkgrnd4.jpg);
     background-size: cover;
@@ -37,6 +42,18 @@ li {
 
 li.active > a {
     background-color: #7297BA;
+}
+
+.modal-body {
+	background-color: #CFD6DE;
+}
+
+.modal-header {
+	background-color: #ADC1D6;
+}
+
+.modal-footer {
+	background-color: #ADC1D6;
 }
 
 #emp-well {

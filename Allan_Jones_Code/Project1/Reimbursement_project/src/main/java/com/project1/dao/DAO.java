@@ -29,5 +29,7 @@ public interface DAO {
 	public void viewEmpRequest(int id);
 	
 	public void viewEmployee(int id);
+	
+	public void updateEmployee(int id, String fn, String ln, String em, String un, String pw);
 
 }

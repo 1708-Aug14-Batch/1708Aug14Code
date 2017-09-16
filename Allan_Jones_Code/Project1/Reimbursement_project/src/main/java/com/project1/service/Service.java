@@ -40,5 +40,10 @@ public class Service {
 		logger.info("A Reimbursement request was made.");
 		dao.submitRequest(submitterid, description, amt);
 	}
+	
+	public void updateEmp(int id, String fn, String ln, String em, String un, String pw) {
+		logger.info(fn + " " + ln + " updated information in their profile.");
+		dao.updateEmployee(id, fn, ln, em, un, pw);
+	}
 
 }
