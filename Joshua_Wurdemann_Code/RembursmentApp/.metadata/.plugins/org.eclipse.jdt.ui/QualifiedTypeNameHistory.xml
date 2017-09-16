@@ -11,11 +11,15 @@
 <fullyQualifiedTypeName name="com.revature.util.ConnectionFactory"/>
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="com.revature.dao.DAO"/>
-<fullyQualifiedTypeName name="com.revature.dao.DAOUser"/>
-<fullyQualifiedTypeName name="com.revature.dao.DAOReimbursement"/>
-<fullyQualifiedTypeName name="com.revature.model.User"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="com.revature.model.Reimbursement"/>
 <fullyQualifiedTypeName name="com.revature.service.Service"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.revature.dao.DAOReimbursement"/>
+<fullyQualifiedTypeName name="com.revature.model.Reimbursement"/>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.sql.CallableStatement"/>
+<fullyQualifiedTypeName name="oracle.jdbc.OracleTypes"/>
+<fullyQualifiedTypeName name="com.revature.dao.DAOUser"/>
+<fullyQualifiedTypeName name="com.revature.model.User"/>
 </qualifiedTypeNameHistroy>

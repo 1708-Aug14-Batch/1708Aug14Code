@@ -2,7 +2,7 @@ var logged = false;
 window.onload = function(){
 
 	loadHomeView();
-	
+
 	if(logged == false){
 		$("#navbar").hide();
 	}
@@ -14,7 +14,12 @@ window.onload = function(){
 
 		document.getElementById("remPage")
 		.addEventListener("click", loadReimbursmentPageView);
-	
+
+		document.getElementById("settingPage")
+		.addEventListener("click", loadSettingsPageView);
+		
+		document.getElementById("logout")
+		.addEventListener("click", logout);
 
 };
 
@@ -26,7 +31,7 @@ function loadHomeView(){
 			//console.log(xhr.responseText);
 			document.getElementById('view').innerHTML = xhr.responseText;		
 			document.getElementById("login")
-				.addEventListener("click", login);
+			.addEventListener("click", login);
 		}
 	}
 	console.log("getting homepage")
@@ -69,6 +74,22 @@ function login(){
 	xhr.send(tx);
 };
 
+// logout of app and return to login
+function logout(){
+		
+//	console.log("getting dash");
+	var xhr = new XMLHttpRequest();
+//	xhr.onreadystatechange = function(){
+//		if(xhr.readyState == 4 && xhr.status == 200){
+//			document.getElementById('view').
+//			innerHTML = xhr.responseText;
+//				}
+//	}
+	
+	xhr.open("GET", "logout", true);
+	xhr.send();
+	
+}
 
 function loadDashboardView(){
 	console.log("in load dashboard view");
@@ -87,8 +108,6 @@ function loadDashboardView(){
 };
 
 
-
-
 function loadReimbursmentPageView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -96,13 +115,13 @@ function loadReimbursmentPageView(){
 			document.getElementById('view').
 			innerHTML = xhr.responseText;
 			getReimbursmentPageInfo(); // loads user info by calling function
-			
+
 		}
 	}
 	console.log("getting user reimbursments")
 	xhr.open("GET", "getRemPage", true);
 	xhr.send();
-}
+};
 
 function loadSettingsPageView(){
 	var xhr = new XMLHttpRequest();
@@ -110,14 +129,14 @@ function loadSettingsPageView(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').
 			innerHTML = xhr.responseText;
-			getReimbursmentPageInfo(); // loads user info by calling function
-			
+			// loads user info by calling function
+			getUserSettingsPageInfo();
 		}
 	}
-	console.log("getting user reimbursments")
-	xhr.open("GET", "getRemPage", true);
+	console.log("getting user settings")
+	xhr.open("GET", "getEditUser", true);
 	xhr.send();
-}
+};
 
 
 
@@ -146,7 +165,7 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 					var amount = row.insertCell(1);
 					var sumitdate = row.insertCell(2);
 					var description = row.insertCell(3);
-     				remid.innerHTML = rem[i].reimburseid;
+					remid.innerHTML = rem[i].reimburseid;
 					amount.innerHTML = "$" + rem[i].amount;
 					sumitdate.innerHTML = rem[i].submitDate;
 					description.innerHTML =  rem[i].description;
@@ -154,11 +173,11 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 			}
 		}
 	}
-					
+
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
-	
-}
+
+};
 
 
 function getUserPageInfo(){ // loads basic user info and account info into html
@@ -176,7 +195,9 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 	xhr.send();
 
 };
-// need to be able to edit user info from the front end.
+//need to be able to edit user info from the front end.
+//currently the user info is showing null
+// need to change this and the edit user servelet
 function getUserSettingsPageInfo(){
 	console.log("in user page info function");
 	var xhr = new XMLHttpRequest();
@@ -185,18 +206,21 @@ function getUserSettingsPageInfo(){
 			console.log(xhr.responseText);
 			var someUser = JSON.parse(xhr.responseText);
 			var user = someUser.user;
-			document.getElementById('name').innerHTML = user.firstName + " " + user.lastNAme;
-		
-		
+			document.getElementById('firstname').innerHTML = user.firstName;
+			document.getElementById('lastname').innerHTML = user.lastNAme;
+			document.getElementById('email').innerHTML = user.email;
+			document.getElementById('pass').innerHTML = user.password;
+
+
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
 
 };
-	
-	
-}
+
+
+
 
 function addRemibursement(){ // allows us to add new reimbursements 
 	var rem = document.getElementbyId("addRem").value;
@@ -217,12 +241,13 @@ function addRemibursement(){ // allows us to add new reimbursements
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
 	xhr.send(type); //include your post data in the send()
 
-}
-function editUser(){ // allows us to edit users info
-	var rem = document.getElementbyId("addRem").value;
-	console.log(rem);
+};
 
-	var type = JSON.stringify(rem);
+function editUser(){ // allows us to edit users info
+	var update = document.getElementbyId("updateUser").value;
+	console.log(update);
+
+	var x = JSON.stringify(update);
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -235,6 +260,7 @@ function editUser(){ // allows us to edit users info
 	xhr.open("POST", "editUser", true);
 	//set the header to tell the server you have data for it to process
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");//research this !!!
-	xhr.send(type); //include your post data in the send()
+	xhr.send(x); //include your post data in the send()
 
-}
+};
+

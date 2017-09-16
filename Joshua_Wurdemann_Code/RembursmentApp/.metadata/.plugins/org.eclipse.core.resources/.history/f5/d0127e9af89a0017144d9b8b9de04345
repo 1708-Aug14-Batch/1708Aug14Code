@@ -1,0 +1,14 @@
+package com.revature.servlets;
+
+import javax.servlet.http.HttpServlet;
+
+public class LogoutServlet extends HttpServlet{
+  private void doLogout(HttpServletRequest req) {
+    HttpSession sess = req.getSession(false);
+    if (sess != null) {
+      sess.invalidate();
+    }
+  }
+  
+  
+}

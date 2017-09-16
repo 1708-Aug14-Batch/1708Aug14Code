@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="DAOReimbursementTest" project="ReimbursementAPP" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="com.revature.dao.DAOReimbursementTest" time="1.854">
-    <testcase name="successfulGetReimb" classname="com.revature.dao.DAOReimbursementTest" time="1.34"/>
-    <testcase name="successfulAddReimb" classname="com.revature.dao.DAOReimbursementTest" time="0.514"/>
-  </testsuite>
-</testrun>

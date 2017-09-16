@@ -1,0 +1,12 @@
+package com.revature.servlets;
+
+public class LogoutServlet {
+  private void doLogout(HttpServletRequest req) {
+    HttpSession sess = req.getSession(false);
+    if (sess != null) {
+      sess.invalidate();
+    }
+  }
+  
+  
+}
