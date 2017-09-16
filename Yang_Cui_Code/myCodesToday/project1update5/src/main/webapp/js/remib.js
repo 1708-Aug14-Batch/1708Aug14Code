@@ -209,16 +209,16 @@ function getReimbRageInfo(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var reimbs = dto.rv;
 
 		if(user.isMananger==true){
 			for(var i = 0; i < reimbs.length; i++){
-				console.log(reimbs[i].sender.charAt(reimbs[i].sender.length-1));
-				console.log(user.id);
-				console.log(reimbs[i].sender.charAt(reimbs[i].sender.length-1)==user.id);
+				//console.log(reimbs[i].sender.charAt(reimbs[i].sender.length-1));
+				//console.log(user.id);
+				//console.log(reimbs[i].sender.charAt(reimbs[i].sender.length-1)==user.id);
 				if(reimbs[i].sender.charAt(reimbs[i].sender.length-1)==user.id){
 					var table = document.getElementById("reqListEmployee");
 					var row = table.insertRow();
@@ -275,7 +275,7 @@ function getEmployeeName(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			document.getElementById('employee').innerHTML = user.firstName + " " + user.lastName + " " +user.isMananger;
@@ -290,14 +290,14 @@ function getEmployeeInfo(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
-			console.log(user);
+			//console.log(user);
 			document.getElementById('userid').innerHTML = user.id;
-			console.log(user.firstName);
-			console.log($("#firstname"));
-			console.log($('p.fuckoff'));
+			//console.log(user.firstName);
+			//console.log($("#firstname"));
+			//console.log($('p.fuckoff'));
 			//$('#firstname').text(user.firstName);
 			document.getElementById("firstname").innerHTML =user.firstName;
 			document.getElementById('lastname').innerHTML =user.lastName;
@@ -341,7 +341,7 @@ function loadUserListView(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			document.getElementById('view').innerHTML = xhr.responseText;
-			console.log($('#userInfo'));
+			//console.log($('#userInfo'));
 			getUserListInfo(); // loads user info by calling function
 
 		}
@@ -355,7 +355,7 @@ function getUserListInfo(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var listUser=dto.all;
 			
@@ -389,7 +389,7 @@ function loadResolveiew(){
 			document.getElementById('view').innerHTML = xhr.responseText;
 			document.getElementById("approve").addEventListener("click", approveRemib);
 			document.getElementById("reject").addEventListener("click", rejectRemib);
-			console.log($('#resolve'));
+			//console.log($('#resolve'));
 			getReimbListInfo(); // loads user info by calling function
 
 		}
@@ -403,7 +403,7 @@ function getReimbListInfo(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
 			var reimbs = dto.rv;
 			for(var i = 0; i < reimbs.length; i++){
@@ -423,7 +423,7 @@ function getReimbListInfo(){
 				checkbox.type = "checkbox";
 				checkbox.name = "name";
 				checkbox.value = "value";
-				checkbox.id = "check-"+i;
+				checkbox.id = String(i);
 				reimbID.innerHTML = reimbs[i].remibID;
 				resolve.innerHTML = reimbs[i].resolver;
 				sumbitDate.innerHTML = reimbs[i].sumbitDate;
@@ -440,21 +440,27 @@ function getReimbListInfo(){
 	xhr.send();
 }
 
+
 function approveRemib(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
-			var resolved = dto.reimbs;
-			//var checkList =new Array(resolved.length);
-			for(var i=0; i<resolved.length; i++){
-				if(document.getElementById("check"+i).checked){
-					
+			var user = dto.user;
+			var reimbs = dto.rv;
+			for(var i=0; i<reimbs.length; i++){
+				if(document.getElementById(String(i)).checked){
+					console.log(document.getElementById(String(i)).checked);
+					var resolve =[i, user.id, "is approved", 1];
+					resolveRemib(resolve);
 				}
 			}
+			loadResolveiew();
 		}
 	}
+	xhr.open("GET", "getUserInfo", true);
+	xhr.send();
 }
 
 function rejectRemib(){
@@ -463,13 +469,32 @@ function rejectRemib(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
-			var resolved = dto.reimbs;
-			//var checkList =new Array(resolved.length);
-			for(var i=0; i<resolved.length; i++){
-				if(document.getElementById("check"+i).checked){
-					
+			var user = dto.user;
+			for(var i=0; i<dto.reimbs.length; i++){
+				console.log(document.getElementById(String(i)).checked);
+				if(document.getElementById(String(i)).checked){
+					var resolve =[i, user.id, "is rejected", 2];
+					resolveRemib(resolve);
 				}
 			}
+			loadResolveiew();
 		}
 	}
+	xhr.open("GET", "getUserInfo", true);
+	xhr.send();
+}
+
+function resolveRemib(resolve){
+	var dicition=JSON.stringify(resolve);
+	console.log(dicition);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			//loadResolveiew();
+		}
+	}
+	//console.log("getting dash");
+	xhr.open("POST", "resolve", true);
+	xhr.send(dicition);
 }

@@ -96,4 +96,25 @@ public class DBControl {
 		else
 			return true;
 	}
+	/*public boolean ResolveReimb(int reimbID, int manangerID, String note, int statID){
+		Remibursment reimb=dao.getRemib(reimbID);
+		reimb.setSender(dao.getUser(manangerID));
+		reimb.setResolveDate(new Timestamp(date.getTime()));
+		reimb.setStatus(dao.getStatus(statID));
+		reimb.setNote(note);
+		
+		int result=dao.resolveRemib(reimb);
+		
+		if(result<0)
+			return false;
+		else
+			return true;
+	}
+	
+	public boolean processResolveReimb(ArrayList<Remibursment> resolved, int manangerID, String note, int statID){
+		for(int i=0; i<resolved.size(); i++){
+			ResolveReimb(resolved.get(i).getID(), manangerID, note, resolved.get(i).getStatus().getID());
+		}
+		return false;
+	}*/
 }

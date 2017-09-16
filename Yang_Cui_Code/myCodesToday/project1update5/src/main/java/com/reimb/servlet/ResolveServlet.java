@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.reimb.main.DBControl;
 
+@WebServlet("/resolve")
 public class ResolveServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -43,6 +44,7 @@ public class ResolveServlet extends HttpServlet{
 		
 		DBControl dbcon=new DBControl();
 		boolean sucess=dbcon.ResolveReimb(reimbID, manangerID, note, statID);
+		
 		
 		if(sucess){
 			System.out.println("sumbitted a new Reimbersument Request");
