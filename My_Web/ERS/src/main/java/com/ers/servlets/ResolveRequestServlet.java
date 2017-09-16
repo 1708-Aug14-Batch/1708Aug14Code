@@ -18,41 +18,53 @@ import com.ers.pojos.User;
 import com.ers.service.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/submitrequest")
-public class SubmitRequestServlet extends HttpServlet {
+@WebServlet("/resolverequest")
+public class ResolveRequestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(SubmitRequestServlet.class);
+	private static final Logger log = Logger.getLogger(ResolveRequestServlet.class);
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		log.trace("in doPost");
-		
+
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
-		
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("application/json");
-		
+
 		if (session == null || user == null) {
 			out.write("Failed to submit request: session error");
 			return;
 		}
-		
-		ObjectMapper mapper = new ObjectMapper();
+
 		String rawParams = request.getParameterMap().keySet().toArray()[0].toString();
+		ObjectMapper mapper = new ObjectMapper();
 		@SuppressWarnings("unchecked")
 		List<String> params = mapper.readValue(rawParams, ArrayList.class);
-		
-		float amount = Float.parseFloat(params.get(0));
-		String description = params.get(1);		
 
-		if (Service.submitRequest(user, amount, description)) {
-			
-			out.write("Request successfully submitted");
+		int requestId = Integer.parseInt(params.get(0));
+		String note = params.get(1);
+		String status = params.get(2);
+
+		String result = "Failed to resolve request";
+
+		switch (status) {
+		case "approve":
+			if (Service.approveRequest(requestId, user.getUserId(), note)) {
+				result = "Successfully approved Request #" + requestId;
+			}
+			break;
+		case "deny":
+			if (Service.denyRequest(requestId, user.getUserId(), note)) {
+				result = "Successfully denied Request #" + requestId;
+			}
+			break;
+		default:
 		}
-		else {			
-			out.write("Failed to submit request");
-		}		
+
+		out.write(result);
 	}
+
 }

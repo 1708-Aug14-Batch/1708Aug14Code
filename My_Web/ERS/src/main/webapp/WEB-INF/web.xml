@@ -31,4 +31,14 @@
     <servlet-name>WithdrawRequestServlet</servlet-name>
     <url-pattern>/WithdrawRequestServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ResolveRequestServlet</display-name>
+    <servlet-name>ResolveRequestServlet</servlet-name>
+    <servlet-class>com.ers.servlets.ResolveRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResolveRequestServlet</servlet-name>
+    <url-pattern>/ResolveRequestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,27 +1,14 @@
 
 'use strict';
-log('in home.js')
+homeLog('in home.js')
 let homeTable;
 let shouldAddListeners = true;
-let lastMove = new Date();
 let shouldAlert = true;
 let searchFilter = '';
 
 $(document).ready(function () {
 	'use strict';
-	log('document ready');
-
-	$('body').on('mouseover', function () {
-		if ((new Date()).getTime() - lastMove.getTime() > 10*60*1000) {
-			if (shouldAlert) {
-				alert('You\'ve been logged out due to inactivity... sorry');
-				shouldAlert = !shouldAlert
-				location.href = 'logout';
-			}
-		} else {
-			lastMove = new Date();
-		}
-	});
+	homeLog('document ready');
 
 	$('#requestSubmit').on('click', submitRequest);
 	$('#requestWithdraw').on('click', withdrawRequest);
@@ -35,7 +22,7 @@ $(document).ready(function () {
 
 function submitRequest() {
 	'use strict';
-	log('in submitRequest');
+	homeLog('in submitRequest');
 
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'submitrequest', true);
@@ -43,11 +30,11 @@ function submitRequest() {
 	let amount = parseFloat($('#amount').val()).toFixed(2);
 	let description = $('#description').val().trim();
 
-	log('amount= '+amount+', description= '+description);
+	homeLog('amount= '+amount+', description= '+description);
 
 	if (!amount || amount < 1 || !description) {
 
-		log('bad request input');
+		homeLog('bad request input');
 		$('#message').show();
 		return;
 	}
@@ -56,13 +43,10 @@ function submitRequest() {
 
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
+			$('#requestModal').modal('hide');
+
 			if (xhr.status === 200) {
-
-				$('#requestModal').modal('hide');
-
-				$('#result').html(xhr.responseText);
-				$('#resultModal').modal('show');
-				loadTable();
+				showResultModal(xhr.responseText);
 			}
 			$('.requestInput').val(null);
 		}		
@@ -73,7 +57,7 @@ function submitRequest() {
 
 function withdrawRequest() {
 	'use strict';
-	log('in withdrawRequest');
+	homeLog('in withdrawRequest');
 
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'withdrawrequest', true);
@@ -84,13 +68,10 @@ function withdrawRequest() {
 
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
+			$('#withdrawModal').modal('hide');
+
 			if (xhr.status === 200) {
-
-				$('#withdrawModal').modal('hide');
-
-				$('#result').html(xhr.responseText);
-				$('#resultModal').modal('show');
-				loadTable();
+				showResultModal(xhr.responseText);
 			}
 		}		
 	};
@@ -98,17 +79,36 @@ function withdrawRequest() {
 	xhr.send(data);
 }
 
-function approveRequest() {
-	
-}
+function approveRequest() { resolveRequest('approve'); }
+function denyRequest() { resolveRequest('deny'); }
 
-function denyRequest() {
-	
+function resolveRequest(status) {
+	'use strict';
+	homeLog('in resolveRequest: '+status);
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', 'resolverequest', true);
+
+	let requestId = $('#requestId').val();
+	let reason = $('#reason').val().trim();
+	let data = JSON.stringify([requestId, reason, status]);
+
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState === 4) {
+			$('#resolveModal').modal('hide');
+
+			if (xhr.status === 200) {
+				showResultModal(xhr.responseText);
+			}
+		}
+	};
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.send(data);
 }
 
 function loadHome() {
 	'use strict';
-	log('in loadHome');
+	homeLog('in loadHome');
 
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'gethome', true);
@@ -138,7 +138,7 @@ function loadHome() {
 
 function loadTable() {
 	'use strict';
-	log('in loadTable');
+	homeLog('in loadTable');
 	homeTable.off('click').clear();
 	homeTable.search(searchFilter);
 
@@ -199,25 +199,27 @@ function loadTable() {
 			homeTable.on('click', 'tr', function () {
 				let data = homeTable.row(this).data();
 				if (!data) return;
-				log('clicked row '+data[0]);
-				
+				homeLog('clicked row '+data[0]);
+				$('#requestId').val(data[0]);
+				homeLog('requestId= '+$('#requestId').val());
+
 				if (user.manager) {
 					if (showEmployees) {
-						log('manager employee list click');
+						homeLog('manager employee list click');
 						$('#showEmployees').prop('checked', false).change();
 						let first = data[1];
 						let last = data[2];
 						searchFilter = first+' '+last;
 					}
 					else {
-						log('manager request click');
+						homeLog('manager request click');
 						$('#resolveModal').modal('show');
 					}
 				} else {
-					log('employee request click');
+					homeLog('employee request click');
 					$('#expense').text(data[2]);
 					$('#date').text(data[1]);
-					$('#requestId').val(data[0]);
+					$('#withdrawDescription').text(data[4]);
 					$('#withdrawModal').modal('show');
 				}
 			});
@@ -259,7 +261,7 @@ function formatDate(date) {
 
 function addListeners() {
 	'use strict';
-	log('in addListeners');
+	homeLog('in addListeners');
 
 	let all = $('#chooseAll');
 	let pending = $('#choosePending');
@@ -268,19 +270,19 @@ function addListeners() {
 	let showEmployees = $('#showEmployees');
 
 	showEmployees.on('change', function () {
-		log('showEmployees box changed');
+		homeLog('showEmployees box changed');
 		searchFilter = '';
 		loadHome();
 	});
 	all.on('change', function () {
-		log('all box changed');
+		homeLog('all box changed');
 		pending.prop('checked', all.prop('checked'));
 		approved.prop('checked', all.prop('checked'));
 		denied.prop('checked', all.prop('checked'));
 		loadTable();
 	});	
 	pending.on('change', function () {
-		log('pending box changed');
+		homeLog('pending box changed');
 		if (pending.prop('checked')) {
 			if (approved.prop('checked') && denied.prop('checked')) {
 				all.prop('checked', true);
@@ -292,7 +294,7 @@ function addListeners() {
 		loadTable();
 	});
 	approved.on('change', function () {
-		log('approved box changed');
+		homeLog('approved box changed');
 		if (approved.prop('checked')) {
 			if (pending.prop('checked') && denied.prop('checked')) {
 				all.prop('checked', true);
@@ -304,7 +306,7 @@ function addListeners() {
 		loadTable();
 	});	
 	denied.on('change', function () {
-		log('approved box changed');
+		homeLog('approved box changed');
 		if (denied.prop('checked')) {
 			if (pending.prop('checked') && approved.prop('checked')) {
 				all.prop('checked', true);
@@ -317,7 +319,13 @@ function addListeners() {
 	});	
 }
 
-function log(message) {
+function showResultModal(message) {
+	$('#result').html(message);
+	$('#resultModal').modal('show');
+	loadTable();
+}
+
+function homeLog(message) {
 	'use strict';
 	console.log('home.js -- '+message);
 }

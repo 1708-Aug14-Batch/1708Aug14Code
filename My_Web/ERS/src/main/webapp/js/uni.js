@@ -1,10 +1,12 @@
 /**
  * 
  */
-log('in uni.js');
+log('begin');
 
 function loadNavbar() {
 	'use strict';
+	log('in loadNavbar');
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'navbar', true);
 
@@ -21,25 +23,35 @@ function loadNavbar() {
 
 function loadNavItems() {
 	'use strict';
+	log('in loadNavItems');
+	
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'navitems', true);
 
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4 && xhr.status === 200) {
 			if (xhr.responseText) {
-
+				
 				let items = new DOMParser().parseFromString(xhr.responseText, 'text/html').getElementsByTagName('li');
 
 				while (items.length > 0) {
 
 					$('#navItems').append(items[0]);
 				}
+				
 				$('#home').on('click', toHome);
 				$('#addUser').on('click', loadAddUser);
 				$('#profile').on('click', loadProfile);
 				$('#logout').on('click', logout);
+				
+				if ($('#addUser')[0]) {
+					$('#empListCheck').show();
+				} else {
+					$('#newExpense').show();
+				}
 			}
 
+			log('logout= '+ !$('#logout')[0]+', subLogin= '+!$('#submitLogin')[0]);
 			if (!$('#logout')[0] && !$('#submitLogin')[0]) {
 
 				log('redirecting to login');

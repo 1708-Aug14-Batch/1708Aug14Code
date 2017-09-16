@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.ers.dao.DatabaseDao;
 import com.ers.pojos.Request;
+import com.ers.pojos.Status;
 import com.ers.pojos.User;
 
 public class Service {
@@ -44,6 +45,16 @@ public class Service {
 	public static boolean withdrawRequest(int requestId) {
 		
 		return dao.withdrawRequest(requestId);
+	}
+	
+	public static boolean approveRequest(int requestId, int managerId, String reason) {
+		
+		return dao.resolveRequest(requestId, managerId, reason, Status.APPROVED);
+	}
+	
+	public static boolean denyRequest(int requestId, int managerId, String reason) {
+		
+		return dao.resolveRequest(requestId, managerId, reason, Status.DENIED);
 	}
 
 	public static boolean updateEmail(User user, String email) {

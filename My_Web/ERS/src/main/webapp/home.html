@@ -14,6 +14,8 @@
 </head>
 
 <body>
+	<input type="number" id="requestId" class="gone" />
+
 	<div id="navContainer">
 		<!-- Fill in Navbar with AJAX request -->
 	</div>
@@ -21,12 +23,12 @@
 		<div class="bg-light col-sm-3 col-md-2">
 			<br>
 			<div class="col-10 col-center">
-				<button class="btn btn-primary" data-toggle="modal"
-					data-target="#requestModal">New Request</button>
-				<br> <br> Show: <br> <input type="checkbox"
-					id="showEmployees" /> Employees <br>
-				<input type="checkbox" class="chooseStatus" id="chooseAll" /> All <br>
-				<input type="checkbox" class="chooseStatus" checked="checked"
+				<button class="btn btn-primary gone" id="newExpense" data-toggle="modal"
+					data-target="#requestModal">New Expense</button>
+				<br> <span class="gone" id="empListCheck"><input type="checkbox"
+					id="showEmployees" /> Employees</span><br> <br> Show:  <br> <input type="checkbox"
+					class="chooseStatus" id="chooseAll" /> All Requests <br> <input
+					type="checkbox" class="chooseStatus" checked="checked"
 					id="choosePending" /> Pending <br> <input type="checkbox"
 					class="chooseStatus" id="chooseApproved" /> Approved <br> <input
 					type="checkbox" class="chooseStatus" id="chooseDenied" /> Denied
@@ -74,7 +76,8 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Withdraw Reimbursement Request</h4>
+					<h4 class="modal-title" id="exampleModalLabel">Withdraw
+						Reimbursement Request</h4>
 					<button type="button" class="close modalCancel"
 						data-dismiss="modal">
 						<span>&times;</span>
@@ -82,8 +85,16 @@
 				</div>
 				<div class="modal-body row">
 					<div class="col-11 col-center">
-						<h6>Are you sure you want to withdraw this expense of <span id="expense"></span> submitted <span id="date"></span>?</h6>
-						<input type="number" id="requestId" class="gone" />
+						<h6>
+							Submitted: <span id="date"></span>
+						</h6>
+						<h6>
+							Amount: <span id="expense"></span>
+						</h6>
+						<h6>
+							Description: <span id="withdrawDescription"></span>
+						</h6>
+
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -99,7 +110,8 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">blah blah blah</h4>
+					<h4 class="modal-title" id="exampleModalLabel">Resolve
+						Request #<span id="requestNum"></span></h4>
 					<button type="button" class="close modalCancel"
 						data-dismiss="modal">
 						<span>&times;</span>
@@ -107,7 +119,8 @@
 				</div>
 				<div class="modal-body row">
 					<div class="col-11 col-center">
-						<h6>more information about request here</h6>
+						<textarea class="requestInput" id="reason" rows="4" cols="58"
+							maxlength="240" placeholder="Resolve note..."></textarea>
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -137,7 +150,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary modalCancel"
-						data-dismiss="modal">Return</button>
+						data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>

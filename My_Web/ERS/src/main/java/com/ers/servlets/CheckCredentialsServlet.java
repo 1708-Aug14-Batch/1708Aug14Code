@@ -25,9 +25,9 @@ public class CheckCredentialsServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
+			throws ServletException, IOException {		
 		log.trace("in doPost");
+		
 		String rawParams = request.getParameterMap().keySet().toArray()[0].toString();
 		ObjectMapper mapper = new ObjectMapper();	
 		@SuppressWarnings("unchecked")
