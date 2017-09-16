@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import org.apache.log4j.Logger;
 
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.Reimbursement.reimbursementStatus;
-import com.reimburse.service.Service;
 import com.reimburse.pojos.Worker;
 import com.reimburse.util.ConnectionFactory;
 
@@ -281,15 +279,6 @@ public class DaoImpl implements Dao {
 		return null;
 	}
 
-	private ArrayList<Object> getStringsFromResultSet(ResultSet rs) throws SQLException {
-		ArrayList<Object> stringList = new ArrayList<Object>();
-
-		while (rs.next())
-			stringList.add(rs.getString(1));
-
-		return stringList;
-	}
-
 	///////////////////////////////////////////////////////////////////////////////
 	// UPDATE methods
 	///////////////////////////////////////////////////////////////////////////////
@@ -458,7 +447,7 @@ public class DaoImpl implements Dao {
 	
 	public ArrayList<Reimbursement> readAllResolvedReimbursements() {
 		String sql = "SELECT * FROM reimbursement "
-				+ "WHERE STATUS_ID_FK=2 OR STATUS_ID_FK=3";	// DENIED || APPROVED
+				+ "WHERE (STATUS_ID_FK=2 OR STATUS_ID_FK=3)";	// DENIED || APPROVED
 		String[] key = {"reimbursement_id"};
 
 		ArrayList<Object> objectList = readAll(sql, key, null);
@@ -470,7 +459,7 @@ public class DaoImpl implements Dao {
 	}
 	public ArrayList<Reimbursement> readAllResolvedReimbursements(int workerId) {
 		String sql = "SELECT * FROM reimbursement "
-				+ "WHERE STATUS_ID_FK=2 OR STATUS_ID_FK=3"	// DENIED || APPROVED
+				+ "WHERE (STATUS_ID_FK=2 OR STATUS_ID_FK=3)"	// DENIED || APPROVED
 				+ " AND SUBMITTER_ID_FK=?";	
 		String[] key = {"reimbursement_id"};
 
@@ -493,8 +482,8 @@ public class DaoImpl implements Dao {
 		return reimburseList;
 	}
 	public ArrayList<Reimbursement> readAllPendingReimbursements(int workerId) {
-		String sql = "SELECT * FROM reimbursement WHERE STATUS_ID_FK=1"		// PENDING
-				+ "AND SUBMITTER_ID_FK=?";
+		String sql = "SELECT * FROM reimbursement WHERE (STATUS_ID_FK=1"		// PENDING
+				+ "AND SUBMITTER_ID_FK=?)";
 		String[] key = {"reimbursement_id"};
 
 		ArrayList<Object> objectList = readAll(sql, key, workerId);

@@ -9,6 +9,8 @@ var isManager = false; // Keeps track of whether the logged-in user is a
 // manager
 // Keeps track of the last timeout set
 var timeout = -1;
+// Object. Keeps track of the last state of the reimbursements table
+var table = {div:undefined, type:undefined, workerId:undefined, reimburseId:undefined};
 
 window.onload = function() {
 
@@ -69,7 +71,8 @@ function setEventListeners() {
 	$("#view_button").click(getOneReimbursement);
 	$("#view_all_button").click(function () {
 		hideAllViews();
-		$("#view_reim_div").attr("hidden", false);
+		$("#view_reim_outer_div").attr("hidden", false);
+		$("#resolve_reim_div").attr("hidden", false);
 		viewReimbursements("#view_reim_div", "PENDING");
 	});
 }
@@ -88,8 +91,9 @@ function resolveReimView() {
 
 function viewEmployeesReims() {
 	hideAllViews();
+	$("#view_reim_outer_div").attr("hidden", false);
 	$("#view_reim_id_div").attr("hidden", false);
-	viewReimbursements("#view_reim_id_display", "",
+	viewReimbursements("#view_reim_div", "",
 			$("#employee_id_text")[0].value);
 }
 
@@ -101,6 +105,9 @@ function getOneReimbursement() {
 	if (typeof id === "undefined")
 		id = -1; // There are no reimbursements with negative numbers
 
+	var div = "#view_reim_div";
+	$(div).text("Loading...");	// Clear the table before showing it
+	
 	var dto = [ "" + id ]; // dto must only contain String objects
 	console.log("Get one reimbursement dto: " + dto);
 	dto = JSON.stringify(dto);
@@ -108,14 +115,14 @@ function getOneReimbursement() {
 			responseText) {
 		var reimbursement = JSON.parse(responseText);
 
-		var div = "#view_reim_div";
-
 		$(view_reim_outer_div).attr("hidden", false);
 		if (reimbursement == null)
 			$(div).html(
 					"That id does not correspond to a reimbursement<br><br>");
-		else
-			populateReimbursementsTable( [ reimbursement ]);
+		else {
+			table = {div:div, type:undefined, workerId:undefined, reimburseId:id};
+			populateReimbursementsTable( div, [ reimbursement ]);
+		}
 	});
 }
 
@@ -129,12 +136,13 @@ function hideAllViews() {
 	$("#profile_div").attr("hidden", true);
 	$("#submit_reim_div").attr("hidden", true);
 	$("#dashboard_div").attr("hidden", true);
-
-	$("#view_reim_id_div").attr("hidden", true);
+	
+	$("#view_reim_outer_div").attr("hidden", true);
 	$("#view_reim_outer_div").attr("hidden", true);
 	$("#register_employee_div").attr("hidden", true);
 	$("#resolve_reim_div").attr("hidden", true);
 	$("#view_employees_div").attr("hidden", true);
+	$("#view_reim_id_div").attr("hidden", true);
 }
 
 function viewLogin() {
@@ -154,7 +162,7 @@ function viewDashboard() {
 
 	var name = "";
 	getXMLResponse("GET", "getUserInfo", function(responseText) {
-		var user = JSON.parse(responseText).user;
+		var user = JSON.parse(responseText);
 		name = user.firstName + " " + user.lastName;
 		$("#dashboard_div_header1").text("Welcome " + name + " to");
 	});
@@ -315,10 +323,11 @@ function viewReimbursements(div, type, id) {
 	if (typeof id === "undefined")
 		id == -1;
 
-	var dto = [ "" + id, type ]; // Both of these must be Strings
+	var dto = [ ""+id, type ]; // Both of these must be Strings
 
 	console.log("Getting list of reimbursements" + div + " " + dto);
 
+	$(div).text("Loading...");	// Clear the table before showing it
 	dto = JSON.stringify(dto);
 	sendReceiveXMLResponse("POST", "getReimbursements", dto, function(
 			responseText) {
@@ -327,8 +336,8 @@ function viewReimbursements(div, type, id) {
 		if (reimbursements === null || reimbursements.length === 0)
 			$(div).text("There are no " + type + " reimbursements");
 		else {
-
-			populateReimbursementsTable( reimbursements);
+			table = {div:div, type:type, workerId:id, reimburseId:undefined};
+			populateReimbursementsTable( div, reimbursements);
 		}
 	});
 
@@ -376,7 +385,7 @@ function submitReimbursement() {
 
 function displayProfileInformation() {
 	getXMLResponse("GET", "getUserInfo", function(responseText) {
-		var user = JSON.parse(responseText).user;
+		var user = JSON.parse(responseText);
 		console.log("Displaying profile...");
 		// Set display information:
 		// id, name, username, email
@@ -420,7 +429,7 @@ function tryLogin() {
 			if (xhr.status == 200) {
 
 				var dto = JSON.parse(xhr.responseText);
-				var user = dto.user;
+				var user = dto;
 				console.log("User: " + user);
 
 				// Open the navbar and show the home page
@@ -440,7 +449,7 @@ function tryLogin() {
 function setLoggedInDetails() {
 	loggedIn = true;
 	getXMLResponse("GET", "getUserInfo", function(responseText) {
-		var user = JSON.parse(responseText).user;
+		var user = JSON.parse(responseText);
 		id = user.workerId;
 		isManager = user.manager;
 
@@ -482,8 +491,6 @@ function login() {
 					$(div).text("Invalid password. Please try again");
 					$(div).attr("hidden", false);
 				} else {
-					$(div).text("");
-
 					setLoggedInDetails();
 				}
 
@@ -629,25 +636,23 @@ function sendReceiveXMLResponse(type, myurl, dto, callback) {
 // horizontally
 // div is where the table should be displayed
 // reimbursements is a list of reimbursements to display
-function populateReimbursementsTable( reims ) {
-	var div;
-	if ($("#view_reim_div").is(":hidden")) {
-		div = "#view_reim_id_display";
-		$("#view_reim_div").html=("");	// Clear the other one
-	}
-	else {
-		div = "#view_reim_div";
-		$("#view_reim_id_display").html=("");	// Clear the other one
-	}
+function populateReimbursementsTable( div, reims ) {
 	
-	var html = "<h3>Reimbursements</h3>";
+	$("#view_reim_div").html=("");
+	
+	var tableType;
+	if (table.type == undefined)
+		tableType = "";
+	else tableType = table.type;
+	
+	var html = "<h3>" + tableType + " Reimbursements</h3>";
 	console.log("Populating reimbursements table..." + reims.length);
 	// Table head
 	html += "<table id='reimbursement_table' class='table table-striped'><thead>	"
 			+ "<th>Reimbursement ID</th>";
-	if ($("#view_username_check")[0].checked)
+//	if ($("#view_username_check")[0].checked)
 		html += "<th>Submitter</th>"	+ "<th>Resolver</th>";
-	else html += "<th>Submitter ID</th>"	+ "<th>Resolver ID</th>";
+//	else html += "<th>Submitter ID</th>"	+ "<th>Resolver ID</th>";
 	html += "<th>Description</th>"
 			+ "<th>Ammount</th>" + "<th>Date opened</th>"
 			+ "<th>Date closed</th>" + "<th>Status</th>" + "<th>Notes</th>"
@@ -726,7 +731,14 @@ function setSubmitterId(reimbursement) {
 	else return reimbursement.submitterId;
 }
 
+//object table has form: table = {div, type, workerId, reimburseId};
 function rePopulateReimbursementTable() {
-	alert("rePopulateReimbursementTable not implemented yet");
-	// viewReimbursements(string, id)
+
+	if (table.reimburseId != undefined) {
+		$("#view_reimbursement_id")[0].value = table.reimburseId;
+		getOneReimbursement()
+	} else {
+		viewReimbursements(table.div, table.type, table.workerId);
+	}
+	
 }

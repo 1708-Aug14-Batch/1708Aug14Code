@@ -2,7 +2,6 @@ package com.reimburse.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.reimburse.dto.DTO;
-import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.pojos.Worker;
 import com.reimburse.service.Service;
 
@@ -41,13 +38,12 @@ public class GetUserInfoServlet extends HttpServlet {
 		Worker sessionUser = (Worker)session.getAttribute("user");
 		
 		if (sessionUser != null) {
-			ArrayList<ReimbursementDTO> reimburseList = service.getAllReimbursements(sessionUser.getWorkerId(), "");
 			
 			logger.info("Converting our user and accounts to a DTO");	// DEBUG
-			DTO dto = new DTO(sessionUser, reimburseList);
+			
 			ObjectMapper mapper = new ObjectMapper();
 			
-			String json = mapper.writeValueAsString(dto);
+			String json = mapper.writeValueAsString(sessionUser);
 			
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");

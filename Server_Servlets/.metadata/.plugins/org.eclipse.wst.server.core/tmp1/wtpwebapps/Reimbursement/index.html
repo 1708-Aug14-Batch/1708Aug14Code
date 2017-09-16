@@ -20,10 +20,25 @@ body {
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
+
+#login_img {
+	padding-right: 10px;
+}
+
+#resolve_reim_div, #view_employee_fields, #view_reim_id_div,
+	#view_reim_outer_div {
+	padding-bottom: 0px;
+}
 </style>
 
 </head>
 <body>
+
+	<!-- Every div starts off hidden so that a user visiting the page has access
+	 to nothing until they are validated through index.js, which will then display
+	 each navbar or div as needed. If no user is validated, then the login div will
+	 be displayed.
+ -->
 
 	<div id="loading_div" class="jumbotron"
 		style="background-color: transparent">
@@ -110,7 +125,7 @@ body {
 		<h2 align="left">Please log in to submit or view a reimbursement</h2>
 
 		<div id="login_div_div">
-			<img height="100" width="100"
+			<img id="login_img" height="100" width="100"
 				src="http://cliparting.com/wp-content/uploads/2016/06/Photos-of-vertical-scroll-banner-clip-art-parchment.jpg"
 				align="left">
 		</div>
@@ -125,25 +140,20 @@ body {
 		</div>
 	</div>
 
-	<div id="view_reim_outer_div" class="jumbotron"
+	<div id="view_reim_id_div" class="jumbotron"
 		style="background-color: transparent" hidden="true">
-		<input id="view_username_check" type="checkbox"/> View usernames
-		<div id="view_reim_div">
-			<h3>View Reimbursements</h3>
-		</div>
+		Employee ID: <input type="number" id="employee_id_text" min="0' step="
+			1" style="" /><br> <br> <input type="button"
+			id="view_reim_id_button" value="View" class="btn btn-primary" />
 	</div>
+
+	<!-- Will hold a table for viewing reimbursements 
+	Table is created and populated in index.js
+-->
 
 	<div id="view_employees_div" class="jumbotron"
 		style="background-color: transparent" hidden="true">
 		<h3>View Employees</h3>
-	</div>
-	<div id="view_reim_id_div" class="jumbotron"
-		style="background-color: transparent" hidden="true">
-		Employee ID: <input type="number" id="employee_id_text" min="0' step="1" style="AntiqueWhite"/><br> <br>
-		<input type="button" id="view_reim_id_button" value="View"
-			class="btn btn-primary" /><br> <br>
-		<div id="view_reim_id_display" class="jumbotron"
-			style="background-color: transparent"></div>
 	</div>
 
 	<div id="submit_reim_div" class="jumbotron"
@@ -155,6 +165,9 @@ body {
 				type="text" id="submit_description" placeholder="description" /><br>
 			<br> <input type="submit" id="submit_button" value="Submit"
 				class="btn btn-primary" /><br> <br>
+			<!-- This portion, for submitting recipts, is not currently working
+			<input id="file" name="file" type="file" class="form-control"> <label for="ammount">Here</label>
+			 -->
 			<p id="submit_error_message" hidden="true"></p>
 		</div>
 	</div>
@@ -190,6 +203,14 @@ body {
 		<p id="resolve_error_message" hidden="true"></p>
 	</div>
 
+	<div id="view_reim_outer_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<input id="view_username_check" type="checkbox" /> View usernames
+		<div id="view_reim_div">
+			<h3>View Reimbursements</h3>
+		</div>
+	</div>
+
 	<div id="register_employee_div" class="jumbotron"
 		style="background-color: transparent" hidden="true">
 		<h3>Register a new employee</h3>
@@ -217,11 +238,14 @@ body {
 	</div>
 
 	<div id="profile_div" hidden="true">
-		<div class="jumbotron" style="background-color: transparent">
-			<!-- Display worker"s profile information -->
-			ID: <span id="id_text"></span><br> Name: <span id="name_text"></span><br>
-			Email: <span id="email_text"></span><br> Username: <span
-				id="username_text"></span><br>
+		<div id="view_employee_fields" class="jumbotron"
+			style="background-color: transparent">
+			<h5>
+				<!-- Display worker"s profile information -->
+				ID: <span id="id_text"></span><br> Name: <span id="name_text"></span><br>
+				Email: <span id="email_text"></span><br> Username: <span
+					id="username_text"></span><br>
+			</h5>
 		</div>
 		<div id="enter_employee_fields" class="jumbotron"
 			style="background-color: transparent">

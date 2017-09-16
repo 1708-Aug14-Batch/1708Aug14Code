@@ -12,14 +12,6 @@ import com.reimburse.pojos.Reimbursement.reimbursementStatus;
 import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.pojos.Worker;
 
-// TODO this class is where I will checking updating variables to make
-// 		sure they are correct. i.e. valid emails, untaken username, etc
-//		ensure correctness on create as well as on update
-// TODO add methods to read particular values from database rather than always getting a list of every _____
-
-// FIXME rather than using so many daoImpl.readAllXXX() methods,
-//	make more methods in the DaoSqlImpl that are not in the DaoSql interface
-
 public class Service {
 
 	// Logger
@@ -34,7 +26,7 @@ public class Service {
 			return null;
 		}
 
-		username = username.toLowerCase();
+		username = username.trim().toLowerCase();
 
 		Worker work = daoImpl.readWorker(username);
 
@@ -54,15 +46,24 @@ public class Service {
 
 	public boolean isEmailValid(String email) {
 
+		if (email == null)
+			return false;
+		email = email.trim();
+
 		if (email.contains("@") && email.contains(".com"))
 			if (email.lastIndexOf('@') < email.lastIndexOf(".com"))
 				return true;
 
-		log("isEmailValid(String email)", "Email addresses must contain a valid domain such as \"something@something.com\"");
+		log("isEmailValid(String email)",
+				"Email addresses must contain a valid domain such as \"something@something.com\"");
 		return false;
 	}
 
 	public boolean isEmailAvailable(String email) {
+
+		if (email == null)
+			return false;
+		email = email.trim();
 
 		ArrayList<Worker> workerList = daoImpl.readAllWorkers();
 
@@ -79,7 +80,10 @@ public class Service {
 	}
 
 	public boolean isUsernameAvailable(String username) {
-		username = username.toLowerCase();
+
+		if (username == null || username.equals(""))
+			return false;
+		username = username.trim().toLowerCase();
 
 		ArrayList<Worker> userList = daoImpl.readAllWorkers();
 
@@ -100,12 +104,21 @@ public class Service {
 	public Worker tryCreateWorker(int managerId, String firstName, String lastName, String email, String username,
 			String password, boolean isManager) {
 
+		if (firstName == null || firstName.equals("") || lastName == null || lastName.equals("")) {
+			log("tryCreateWorker(...)", "A value must be specified for both firstName and lastName");
+			return null;}
+		if (username == null || username.equals("") || password == null || password.equals("")) {
+			log("tryCreateWorker(...)", "A value must be specified for both username and password");
+			return null;}
+
 		if (!isManager(managerId)) {
 			log("tryCreateWorker(...)", "Only a manager can create workers");
 			return null;
 		}
 
-		username = username.toLowerCase();
+		username = username.trim().toLowerCase();
+		firstName = firstName.trim();
+		lastName = lastName.trim();
 
 		// Check that username is unique
 		if (!isUsernameAvailable(username))
@@ -130,6 +143,8 @@ public class Service {
 	// Tries to create a new reimbursement
 	public Reimbursement tryCreateReimbursement(int workerId, String description, BigDecimal ammount) {
 
+		description = description.trim();
+		
 		// Managers cannot create reimbursements
 		if (isManager(workerId)) {
 			log("tryCreateReimbursement(...)", "A manager cannot submit a reimbursement");
@@ -145,7 +160,8 @@ public class Service {
 		Worker work = daoImpl.readWorker(workerId);
 
 		if (work == null) {
-			log("tryCreateReimbursement(...)", "Only a valid worker can submit a reimbursement. Worker ID: " + workerId);
+			log("tryCreateReimbursement(...)",
+					"Only a valid worker can submit a reimbursement. Worker ID: " + workerId);
 			return null;
 		}
 
@@ -165,21 +181,33 @@ public class Service {
 	public boolean updateWorker(int id, String firstName, String lastName, String email, String username,
 			String password) {
 
+		if (username == null || username.equals("") || password == null || password.equals("")) {
+			log("updateWorker(...)", "A username and password must be specified");
+			return false;
+		}
+		if (firstName == null || firstName.equals("") || lastName == null || lastName.equals("")) {
+			log("updateWorker(...)", "A firstName and lastName must be specified");
+			return false;
+		}
+		
 		Worker myWorker = daoImpl.readWorker(id);
-		username = username.toLowerCase();
+		username = username.trim().toLowerCase();
+		firstName = firstName.trim();
+		lastName = lastName.trim();
 		
 		if (myWorker == null) {
 			log("updateWorker(...)", "There is not record for a worker with ID: " + id);
 			return false;
 		}
-		
+
 		// If the given user's new email is different from their old email
 		if (!email.equals(myWorker.getEmail()))
 			// If the email is invalid or unavailable
 			if (!isEmailValid(email) || !isEmailAvailable(email))
-				return false;
+			return false;
 
-		// If the given username is not available and different from the old username
+		// If the given username is not available and different from the old
+		// username
 		if (!isUsernameAvailable(username) && !username.equals(myWorker.getUsername()))
 			return false;
 
@@ -190,13 +218,13 @@ public class Service {
 		myWorker.setPassword(password);
 
 		boolean result = daoImpl.updateWorker(id, myWorker);
-		if (result) 
+		if (result)
 			log("updateWorker(...)", "Worker with id " + id + " updated");
-		else 
+		else
 			log("updateWorker(...)", "Worker with id " + id + " could not be updated");
-		
+
 		return result;
-		
+
 	}
 
 	public Worker getWorker(int workerId) {
@@ -205,8 +233,9 @@ public class Service {
 
 		if (work == null)
 			log("getWorker(int id)", "Worker does not exist with the following id: " + workerId);
-		else log("getWorker(int id)", "Worker found with id: " + workerId);
-		
+		else
+			log("getWorker(int id)", "Worker found with id: " + workerId);
+
 		return work;
 	}
 
@@ -219,6 +248,9 @@ public class Service {
 			log("resolveReimbursement(...)", "You must be logged in as a manager to resolve reimbursements");
 			return false;
 		}
+		
+		if (resolveNotes != null)
+			resolveNotes = resolveNotes.trim();
 
 		Worker resolver = daoImpl.readWorker(managerId);
 
@@ -227,7 +259,8 @@ public class Service {
 			return false;
 		}
 		if (!resolver.isManager() || !resolver.isHired()) {
-			log("resolveReimbursement(...)", "That worker is not a current manager. Username: " + resolver.getUsername());
+			log("resolveReimbursement(...)",
+					"That worker is not a current manager. Username: " + resolver.getUsername());
 			return false;
 		}
 		if (status == null || status == reimbursementStatus.NULL || status == reimbursementStatus.PENDING) {
@@ -242,7 +275,8 @@ public class Service {
 		}
 		if (reimburse.getStatus() == reimbursementStatus.APPROVED
 				|| reimburse.getStatus() == reimbursementStatus.DENIED) {
-			log("resolveReimbursement(...)", "That reimbursement is alread resolved. ID: " + reimburse.getReimbursementId());
+			log("resolveReimbursement(...)",
+					"That reimbursement is alread resolved. ID: " + reimburse.getReimbursementId());
 			return false;
 		}
 
@@ -255,46 +289,54 @@ public class Service {
 
 		if (result)
 			log("resolveReimbursement(...)", "Reimbursement id " + reimbursementId + " set to status: " + status);
-		else log("resolveReimbursement(...)", "Reimbursement id " + reimbursementId + " could not be set to status: " + status);
-				
+		else
+			log("resolveReimbursement(...)",
+					"Reimbursement id " + reimbursementId + " could not be set to status: " + status);
+
 		return result;
 	}
 
 	public boolean isAWorker(String username) {
+		
+		if (username != null)
+			username = username.trim();
+		
 		Worker work = daoImpl.readWorker(username);
 
 		if (work == null) {
 			log("isAWorker(String username", "Worker with username: " + username + " is not a worker");
 			return false;
-		}
-		else 
+		} else
 			return true;
 	}
 
 	public boolean isAManager(String username) {
+		
+		if (username !=  null)
+			username = username.trim();
+		
 		Worker work = daoImpl.readWorker(username);
 
 		if (work == null) {
 			log("isAManager(String username)", "Worker with username: " + username + " is not a manager");
 			return false;
-		}
-		else
+		} else
 			return work.isManager();
 	}
 
 	public boolean isManager(int id) {
 		boolean result = daoImpl.readWorker(id).isManager();
-		
+
 		if (!result)
 			log("isManager(int id)", "Worker with ID: " + id + " is not a manager");
 
 		return result;
 	}
-	
+
 	// if id is -1, get reimbursements for all workers
-	//		otherwise get reimbursements for workers corresponding to id
+	// otherwise get reimbursements for workers corresponding to id
 	// possible values of type are: "", "PENDING", "RESOLVED"
-	//		determine which reimbursements to get.
+	// determine which reimbursements to get.
 	public ArrayList<ReimbursementDTO> getAllReimbursements(int id, String type) {
 		ArrayList<Reimbursement> reimbursements;
 		Worker user = getWorker(id);
@@ -305,44 +347,53 @@ public class Service {
 				reimbursements = daoImpl.readAllPendingReimbursements();
 			else if (type.equals("RESOLVED"))
 				reimbursements = daoImpl.readAllResolvedReimbursements();
-			else reimbursements = daoImpl.readAllReimbursements();
+			else
+				reimbursements = daoImpl.readAllReimbursements();
 		} else if (user != null) {
 			// Get reimbursements for a particular worker
 			if (type.equals("PENDING"))
 				reimbursements = daoImpl.readAllPendingReimbursements(id);
 			else if (type.equals("RESOLVED"))
 				reimbursements = daoImpl.readAllResolvedReimbursements(id);
-			else reimbursements = daoImpl.readAllReimbursements(id);
-		} else reimbursements = new ArrayList<Reimbursement>();	// Empty
+			else
+				reimbursements = daoImpl.readAllReimbursements(id);
+		} else
+			reimbursements = new ArrayList<Reimbursement>(); // Empty
 
 		return convert(reimbursements);
 	}
-	
+
 	private ArrayList<ReimbursementDTO> convert(ArrayList<Reimbursement> reimbursements) {
 		ArrayList<ReimbursementDTO> reimbursementDTOs = new ArrayList<ReimbursementDTO>();
+		ArrayList<Worker> workers = daoImpl.readAllWorkers();
 		
 		for (Reimbursement r : reimbursements) {
-			Worker submitter = daoImpl.readWorker(r.getSubmitterId());
-			Worker resolver = daoImpl.readWorker(r.getResolverId());
+			Worker submitter = null, resolver = null;
+			
+			for (Worker work : workers)
+				if (work.getWorkerId() == r.getSubmitterId())
+					submitter = work;
+				else if (work.getWorkerId() == r.getResolverId())
+					resolver = work;
+
 			String subUsername = null;
 			String resUsername = null;
-			
+
 			if (submitter != null)
 				subUsername = submitter.getUsername();
 			if (resolver != null)
 				resUsername = resolver.getUsername();
-			
+
 			reimbursementDTOs.add(new ReimbursementDTO(r, subUsername, resUsername));
 		}
-		
-		
+
 		return reimbursementDTOs;
 	}
 
 	public ReimbursementDTO getReimbursement(int id) {
 		Reimbursement reimburse = daoImpl.readReimbursement(id);
 		ReimbursementDTO reimburseDto = null;
-		
+
 		if (reimburse == null)
 			log("getReimbursement(int id)", "reimbursement could not be retrieved with id: " + id);
 		else {
@@ -350,25 +401,25 @@ public class Service {
 			Worker resolver = daoImpl.readWorker(reimburse.getResolverId());
 			String subUsername = null;
 			String resUsername = null;
-			
+
 			if (submitter != null)
 				subUsername = submitter.getUsername();
 			if (resolver != null)
 				resUsername = resolver.getUsername();
-			
+
 			reimburseDto = new ReimbursementDTO(reimburse, subUsername, resUsername);
 			log("getReimbursement(int id)", reimburse.toString() + " reimbursements retrieved");
 		}
-		
+
 		return reimburseDto;
 	}
-	
+
 	public ArrayList<Worker> getAllWorkers() {
 
 		ArrayList<Worker> workers = daoImpl.readAllWorkers();
-		
+
 		log("getAllWorkers()", workers.size() + " reimbursements retrieved");
-		
+
 		return workers;
 	}
 
@@ -379,12 +430,12 @@ public class Service {
 		log("getAllNonManagers()", workers.size() + " reimbursements retrieved");
 		return workers;
 	}
-	
+
 	public int getNumReimbursements() {
 		int num = daoImpl.readNumReimbursements();
-		
+
 		log("getNumReimbursements()", num + " reimbursements retrieved");
-		
+
 		return num;
 	}
 

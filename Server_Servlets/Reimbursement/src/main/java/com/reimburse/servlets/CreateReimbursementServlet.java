@@ -19,7 +19,6 @@ import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.reimburse.dao.DaoImpl;
 import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.Worker;
 import com.reimburse.service.Service;
@@ -27,7 +26,7 @@ import com.reimburse.service.Service;
 @WebServlet("/createReimbursement")
 public class CreateReimbursementServlet extends HttpServlet {
 	
-	// For submitting recipts
+	// For submitting receipts
 	private static String bucketName = "myfirstbucket1708";
 	private static String key = "2";
 	private static String uploadFileName = "temp";

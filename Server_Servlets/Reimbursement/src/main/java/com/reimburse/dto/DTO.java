@@ -2,7 +2,6 @@ package com.reimburse.dto;
 
 import java.util.ArrayList;
 
-import com.reimburse.pojos.Reimbursement;
 import com.reimburse.pojos.ReimbursementDTO;
 import com.reimburse.pojos.Worker;
 

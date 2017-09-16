@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Online Reimbursement Resource</title>
+
+<link rel="icon"
+	href="http://cliparting.com/wp-content/uploads/2016/06/Photos-of-vertical-scroll-banner-clip-art-parchment.jpg">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+
+<style>
+body {
+	background:
+		url("https://images.freecreatives.com/wp-content/uploads/2016/02/Old-Parchment-Texture.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#login_img {
+	padding-right: 10px;
+}
+
+#resolve_reim_div, #view_employee_fields, #view_reim_id_div,
+	#view_reim_outer_div {
+	padding-bottom: 0px;
+}
+</style>
+
+</head>
+<body>
+
+	<!-- Every div starts off hidden so that a user visiting the page has access
+	 to nothing until they are validated through index.js, which will then display
+	 each navbar or div as needed. If no user is validated, then the login div will
+	 be displayed.
+ -->
+
+	<div id="loading_div" class="jumbotron"
+		style="background-color: transparent">
+		<h1>Loading...</h1>
+	</div>
+
+	<div id="navbar_div" hidden="true">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" id="home" href="#">Home</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" id="profile" href="#">Profile</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> Reimbursements </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" id="submit_reim"> Submit
+								Reimbursement </a> <a class="dropdown-item" id="view_pending_reim">
+								View Pending Reimbursements </a> <a class="dropdown-item"
+								id="view_resolved_reim"> View Resolved Reimbursements </a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link" href="logout">
+							Logout </a></li>
+
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div id="manager_navbar_div" hidden="true">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" id="home_manager">Home</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavDropdownManager"
+				aria-controls="navbarNavDropdown" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdownManager">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" id="profile_manager"
+						href="#">Profile</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#"
+						id="navbarDropdownMenuLink" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"> Reimbursements </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" id="resolve_reim"> Resolve
+								Reimbursement </a> <a class="dropdown-item"
+								id="view_pending_reim_manager"> View Pending Reimbursements
+							</a> <a class="dropdown-item" id="view_resolved_reim_manager">
+								View Resolved Reimbursements </a> <a class="dropdown-item"
+								id="view_employees_reim"> View Reimbursements by Employee </a>
+						</div></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Employees </a>
+						<div class="dropdown-menu"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" id="view_employees">View All
+								Employees</a> <a class="dropdown-item" id="register_employee">Register
+								New Employee</a>
+						</div></li>
+					<li class="nav-item"><a class="nav-link" href="logout">
+							Logout </a></li>
+
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div id="login_div" hidden="true" class="jumbotron"
+		style="background-color: transparent">
+		<h1 align="left">Welcome to the online reimbursement resource</h1>
+		<h2 align="left">Please log in to submit or view a reimbursement</h2>
+
+		<div id="login_div_div">
+			<img id="login_img" height="100" width="100"
+				src="http://cliparting.com/wp-content/uploads/2016/06/Photos-of-vertical-scroll-banner-clip-art-parchment.jpg"
+				align="left">
+		</div>
+		<div>
+			<input type="text" id="username_input" placeholder="Username"
+				style="background-color: AntiqueWhite"><br> <br> <input
+				type="password" id="password_input" placeholder="Password"
+				style="background-color: AntiqueWhite"> <br> <br>
+			<input type="submit" id="login_button" value="Login"
+				class="btn btn-primary" /><br> <br>
+			<p class="alert alert-danger" id="login_message" hidden="true"></p>
+		</div>
+	</div>
+
+	<div id="view_reim_id_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		Employee ID: <input type="number" id="employee_id_text" min="0' step="
+			1" style="" /><br> <br> <input type="button"
+			id="view_reim_id_button" value="View" class="btn btn-primary" />
+	</div>
+
+	<!-- Will hold a table for viewing reimbursements 
+	Table is created and populated in index.js
+-->
+
+	<div id="view_employees_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<h3>View Employees</h3>
+	</div>
+
+	<div id="submit_reim_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<h3>Submit Reimbursement</h3>
+		<div>
+			Ammount: $ <input type="number" id="submit_ammount" min="0.00"
+				step="0.01" placeholder="0.00" /><br> <br> Description: <input
+				type="text" id="submit_description" placeholder="description" /><br>
+			<br> <input type="submit" id="submit_button" value="Submit"
+				class="btn btn-primary" /><br> <br>
+			<!-- This portion, for submitting recipts, is not currently working
+			<input id="file" name="file" type="file" class="form-control"> <label for="ammount">Here</label>
+			 -->
+			<p id="submit_error_message" hidden="true"></p>
+		</div>
+	</div>
+
+	<div id="dashboard_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<h3 id="dashboard_div_header1">Welcome</h3>
+		<h3 id="dashboard_div_header2">Reimbursement Resource</h3>
+		<br>
+		<h3 id="dashboard_div_header3"></h3>
+	</div>
+
+	<div id="create_reim_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<h3>Create a reimbursement</h3>
+	</div>
+
+	<div id="resolve_reim_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		Reimbursement ID: <input type="number" id="view_reimbursement_id"
+			min="0" step="1" style="background-color: AntiqueWhite" /> <input
+			type="submit" id="view_button" value="View Reimbursement"
+			class="btn btn-primary" /><br> <input type="submit"
+			id="view_all_button" value="View All Pending Reimbursements"
+			class="btn btn-primary" /> <br> Status: <br> <input
+			type="radio" name="status_radio" id="status_approved"
+			value="APPROVED" checked="checked" />APPROVED<br> <input
+			type="radio" name="status_radio" id="status_denied" value="DENIED" />DENIED<br>
+		<br> Notes: <input type="text" id="resolve_notes"
+			placeholder="notes" style="background-color: AntiqueWhite" /><br>
+		<br> <input type="submit" id="resolve_button" value="Submit"
+			class="btn btn-primary" /><br> <br>
+		<p id="resolve_error_message" hidden="true"></p>
+	</div>
+
+	<div id="view_reim_outer_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<input id="view_username_check" type="checkbox" /> View usernames
+		<div id="view_reim_div">
+			<h3>View Reimbursements</h3>
+		</div>
+	</div>
+
+	<div id="register_employee_div" class="jumbotron"
+		style="background-color: transparent" hidden="true">
+		<h3>Register a new employee</h3>
+		<div>
+			Name = <input type="text" id="firstname_edit2"
+				style="background-color: AntiqueWhite"> <input type="text"
+				id="lastname_edit2" style="background-color: AntiqueWhite"><br>
+			<br> email = <input type="text" id="email_edit2"
+				style="background-color: AntiqueWhite"><br> <br>
+			username = <input type="text" id="username_edit2"
+				style="background-color: AntiqueWhite"><br> <br>
+			password = <input type="password" id="password_edit2"
+				style="background-color: AntiqueWhite"> <img height="42"
+				width="42"
+				src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-07-512.png" />
+			<input type="checkbox" id="view_password_check2" /><br> <input
+				type="checkbox" id="create_manager_check" />Manager?<br> <br>
+			<input type="submit" id="update_profile2" class="btn btn-primary"
+				value="Register employee" /><br> <br>
+			<!-- for displaying an error message when the user enters the wrong information -->
+			<p id="message_edit2" hidden="true"></p>
+			<br>
+
+		</div>
+	</div>
+
+	<div id="profile_div" hidden="true">
+		<div id="view_employee_fields" class="jumbotron"
+			style="background-color: transparent">
+			<h4>
+				<!-- Display worker"s profile information -->
+				ID: <span id="id_text"></span><br> Name: <span id="name_text"></span><br>
+				Email: <span id="email_text"></span><br> Username: <span
+					id="username_text"></span><br>
+			</h4>
+		</div>
+		<div id="enter_employee_fields" class="jumbotron"
+			style="background-color: transparent">
+			Name = <input type="text" id="firstname_edit"
+				placeholder="First name" style="background-color: AntiqueWhite">
+			<input type="text" id="lastname_edit" placeholder="Last name"
+				style="background-color: AntiqueWhite"><br> <br>
+			email = <input type="text" id="email_edit"
+				style="background-color: AntiqueWhite"><br> <br>
+			username = <input type="text" id="username_edit"
+				style="background-color: AntiqueWhite"><br> <br>
+			password = <input type="password" id="password_edit"
+				style="background-color: AntiqueWhite"> <img height="42"
+				width="42"
+				src="https://cdn3.iconfinder.com/data/icons/show-and-hide-password/100/show_hide_password-07-512.png" />
+			<input type="checkbox" id="view_password_check" /><br> <br>
+			<input type="submit" id="update_profile" class="btn btn-primary"
+				value="Update information" /><br> <br>
+			<!-- for displaying an error message when the user enters the wrong information -->
+			<p id="message_edit" hidden="true"></p>
+			<br>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
+
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" charset="utf8"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+	<script src="index.js"></script>
+
+</body>
+</html>
