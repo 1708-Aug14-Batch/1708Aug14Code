@@ -63,5 +63,9 @@ public class Service {
 	public ArrayList<DTO> viewResolvedRequestsByMgr() {
 		return dao.viewResolvedRequestsByMgr();
 	}
+	
+	public ArrayList<DTO> viewEmpRequests(int id) {
+		return dao.viewEmpRequest(id);
+	}
 
 }

@@ -8,6 +8,7 @@ window.onload = function() {
 	    			console.log(reqs);
 	    			for(let i = 0; i < reqs.length; i++){
 	    				dataz.row.add([
+	    					reqs[i].id,
 	    					reqs[i].employee,
 	    					reqs[i].description,
 	    					reqs[i].amount,
@@ -17,6 +18,17 @@ window.onload = function() {
 	    		},
 	    	"json");
 	});
+	
+	$(document).ready(function() {
+	    var table = $('#pendingdata').DataTable();
+	     
+	    $('#pendingdata tbody').on('click', 'tr', function () {
+	        var data = table.row(this).data();
+	        alert( 'You clicked on '+data[0]+'\'s row' );
+	        window.location = "emp_requests.html?userid=" + data[0];
+	    });
+	});
+
 	$(document).ready(function() {
 	    $.post("mgrAllResolvedReqs",
 	    		{},
@@ -25,6 +37,7 @@ window.onload = function() {
 	    			console.log(reqs);
 	    			for(let i = 0; i < reqs.length; i++){
 	    				dataz.row.add([
+	    					reqs[i].id,
 	    					reqs[i].employee,
 	    					reqs[i].description,
 	    					reqs[i].amount,
@@ -42,7 +55,7 @@ window.onload = function() {
 function getLoginInfo() {
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
-		if(xhr.readyState == 4 && xhr.status == 200)  {
+		if(xhr.readyState == 4 && xhr.status == 200) {
 			var user = xhr.responseText;
 			console.log(user);
 			document.getElementById("uname").innerHTML = user;
@@ -51,3 +64,4 @@ function getLoginInfo() {
 	xhr.open('Get', "homePage", true);
 	xhr.send();
 }
+

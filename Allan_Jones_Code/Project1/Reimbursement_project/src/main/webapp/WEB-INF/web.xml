@@ -115,4 +115,14 @@
     <servlet-name>MgrAllResolvedReqsServlet</servlet-name>
     <url-pattern>/mgrAllResolvedReqs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MgrSingleEmpReqsServlet</display-name>
+    <servlet-name>MgrSingleEmpReqsServlet</servlet-name>
+    <servlet-class>com.project1.servlets.MgrSingleEmpReqsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MgrSingleEmpReqsServlet</servlet-name>
+    <url-pattern>/mgrSingleEmpReqs</url-pattern>
+  </servlet-mapping>
 </web-app>
