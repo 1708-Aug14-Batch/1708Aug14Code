@@ -47,7 +47,7 @@ $(function() {
 		
 		$.post('registerServlet',
 				{ firstName: $('#firstNameIn').val(), lastName: $('#lastNameIn').val(),
-				  email: $('#emailIn').val(), password: "password", isManager: "false" },
+				  email: $('#emailIn').val(), isManager: "false" },
 				  function(response) {
 					  if (response.success) {
 						  $('#registerMsg').text('Registration successful');
@@ -61,7 +61,7 @@ $(function() {
 						  $('#emailIn').css('border-color', 'red');
 						  $('#emailMsg').text('Email already in use');
 						  setTimeout(function() {
-							  $('#emailMsg').css('border-color', 'rgba(0,0,0,0.3)');
+							  $('#emailIn').css('border-color', 'rgba(0,0,0,0.3)');
 							  $('#emailMsg').text('');
 						  }, 3000);
 					  }
@@ -84,10 +84,6 @@ $(function() {
 	
 	$('#accInfoBtn').click(function() {
 		window.location.replace('accInfo.html');
-	});
-	
-	$('#registerEmployeeBtn').click(function() {
-		window.location.replace('registerEmployee.html');
 	});
 	
 	$('#viewEmployeesBtn').click(function() {

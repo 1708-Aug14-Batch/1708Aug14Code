@@ -1,0 +1,12 @@
+package com.revature.passwordgenerator;
+
+import java.util.Random;
+
+public class PasswordGenerator {
+	public String generatePassword() {
+		String pw = "";
+		Random rand = new Random();
+		
+		return null
+	}
+}

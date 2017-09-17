@@ -1,0 +1,29 @@
+$(function() {
+	
+	$('#submit').click(function(
+		
+		$.post('newReimbursementServlet',
+				{},
+				function(response) {
+					
+				},
+				'JSON');
+	});
+	
+	
+	$('#yourReimbursementsBtn').click(function() {
+		window.location.replace('yourReimbursements.html');
+	});
+	
+	$('#accInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(response) {
+					window.location.replace('login.html');
+				});
+	});
+});

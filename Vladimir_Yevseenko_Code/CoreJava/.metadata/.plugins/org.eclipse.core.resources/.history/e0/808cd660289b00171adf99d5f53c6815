@@ -1,0 +1,10 @@
+package com.revature.email;
+
+public class EmailSender {
+	
+	public final static String FROM = "yevseenko.vladimir@gmail.com";
+	
+	public void sendEmail(String email, String password) {
+		
+	}
+}

@@ -1,0 +1,16 @@
+package com.revature.email;
+
+import java.util.Properties;
+
+import javax.mail.Session;
+
+public class EmailSender {
+	
+	public final static String FROM = "yevseenko.vladimir@gmail.com";
+	public final static String HOST = "localhost";
+	
+	public void sendEmail(String email, String password) {
+		Properties properties = System.getProperties();
+		Session session = Session.getDefaultInstance(properties);
+	}
+}

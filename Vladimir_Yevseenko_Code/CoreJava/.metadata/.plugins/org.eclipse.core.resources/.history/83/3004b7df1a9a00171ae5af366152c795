@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Create A New Reimbursement</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		
+		        <a class="navbar-brand" href="#"><img src="" /></a>
+		    </div>
+		
+		    <div class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		        	<li><img src="revature_pic.jpg" width="150px" height="50px"/></li>
+		            <li><a id="yourReimbursementsBtn">View Employees</a></li>
+		            <li><a id="registerEmployeeBtn">Register An Employee</a></li>
+		            <li><a id="accInfoBtn">Account Info</a></li>
+		            <li><a id="logoutBtn">Logout</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		
+		
+		<script src="js/newReimbursement.js"></script>
+	</body>
+</html>

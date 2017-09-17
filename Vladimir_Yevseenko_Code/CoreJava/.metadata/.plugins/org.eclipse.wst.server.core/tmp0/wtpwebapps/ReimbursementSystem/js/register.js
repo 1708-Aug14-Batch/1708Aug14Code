@@ -74,7 +74,7 @@ $(function() {
 		}
 		$.post('registerServlet',
 				{ firstName: $('#firstNameIn').val(), lastName: $('#lastNameIn').val(),
-				  email: $('#emailIn').val(), password: $('#passwordIn').val(),
+				  email: $('#emailIn').val(), password: $('#passwordIn1').val(),
 				  isManager: "true"},    
 				function(response) {
 					console.log(response.success);
@@ -95,8 +95,7 @@ $(function() {
 	});
 });
 
-
 function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }

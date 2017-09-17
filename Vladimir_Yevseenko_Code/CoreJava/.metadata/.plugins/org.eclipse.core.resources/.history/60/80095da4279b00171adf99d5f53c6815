@@ -1,0 +1,7 @@
+package com.revature.passwordgenerator;
+
+public class PasswordGenerator {
+	public String generatePassword() {
+		
+	}
+}

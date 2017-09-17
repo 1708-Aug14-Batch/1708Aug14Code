@@ -20,5 +20,6 @@ public class LogoutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("LogoutServlet doPost()");
 		req.getSession().invalidate();
+		resp.setContentType("text/plain");
 	}
 }

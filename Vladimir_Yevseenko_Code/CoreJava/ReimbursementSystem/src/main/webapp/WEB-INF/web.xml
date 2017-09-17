@@ -96,4 +96,14 @@
   	<servlet-name>EmployeesServlet</servlet-name>
   	<url-pattern>/employeesServlet</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>NewReimbursementServlet</servlet-name>
+  	<servlet-class>com.revature.servlets.NewReimbursementServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>NewReimbursementServlet</servlet-name>
+  	<url-pattern>/newReimbursementServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -22,36 +22,12 @@ public class DBDAOTests {
 	public static void setUpBeforeClass() throws Exception {
 		dbdao = new DBDAO();
 	}
-
-
-
-	@Test
-	@Ignore
-	public void getAllUsersTest() {
-		List<User> list = dbdao.getAllUsers();
-		System.out.println("getAllUsersTest()");
-		for (User u: list) {
-			System.out.printf("%d %s %s %s %s %b\n", u.getId(), u.getFirst(), u.getLast(),
-					u.getEmail(), u.getPassword(), u.getIsManager());
-		}
-	}
 	
 	@Test
 	@Ignore
 	public void getAllNonManagersTest() {
 		List<User> list = dbdao.getAllNonManagers();
 		System.out.println("getAllNonManagersTest()");
-		for (User u: list) {
-			System.out.printf("%d %s %s %s %s %b\n", u.getId(), u.getFirst(), u.getLast(),
-					u.getEmail(), u.getPassword(), u.getIsManager());
-		}
-	}
-	
-	@Test
-	@Ignore
-	public void getAllManagersTest() {
-		List<User> list = dbdao.getAllManagers();
-		System.out.println("getAllManagersTest()");
 		for (User u: list) {
 			System.out.printf("%d %s %s %s %s %b\n", u.getId(), u.getFirst(), u.getLast(),
 					u.getEmail(), u.getPassword(), u.getIsManager());
@@ -94,7 +70,7 @@ public class DBDAOTests {
 	@Test
 	@Ignore
 	public void addReimbursementTest() {
-		dbdao.addReimbursement(new Reimbursement(dbdao.getUserById(1),
+		dbdao.addNewReimbursement(new Reimbursement(dbdao.getUserById(1),
 												dbdao.getUserById(2),
 												new Date(1000000),
 												new Date(10000000),
@@ -102,7 +78,7 @@ public class DBDAOTests {
 												"description",
 												10000));
 	
-		dbdao.addReimbursement(new Reimbursement(dbdao.getUserById(4),
+		dbdao.addNewReimbursement(new Reimbursement(dbdao.getUserById(4),
 				dbdao.getUserById(5),
 				new Date(1000000),
 				new Date(10000000),

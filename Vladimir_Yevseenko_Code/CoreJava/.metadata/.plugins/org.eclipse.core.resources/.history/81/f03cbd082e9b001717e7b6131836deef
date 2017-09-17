@@ -1,0 +1,5 @@
+package com.revature.hashing;
+
+public class Hasher {
+	private static final UpdatableBCrypt bcrypt = new UpdatableBCrypt(11);
+}

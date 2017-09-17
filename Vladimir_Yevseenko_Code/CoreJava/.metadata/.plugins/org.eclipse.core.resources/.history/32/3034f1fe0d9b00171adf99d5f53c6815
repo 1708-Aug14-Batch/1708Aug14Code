@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Insert title here</title>
+		<link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>		
+		<link rel="stylesheet" href="css/allReimbursements.css"/>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		
+		        <a class="navbar-brand" href="#"><img src="" /></a>
+		    </div>
+		
+		    <div class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		        	<li><img src="revature_pic.jpg" width="150px" height="50px"/></li>
+		            <li><a id="viewEmployeesBtn">View Employees</a></li>
+		            <li><a id="registerEmployeeBtn">Register An Employee</a></li>
+		            <li><a id="accInfoBtn">Account Info</a></li>
+		            <li><a id="logoutBtn">Logout</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		
+		<div id="modal" class="modal">
+			<div id="modal-content" class="modal-content">
+				<span id="closeModal" class="close">&times</span>
+				<input type="text" id="reimbIdIn" placeholder="Reimbursement Id"/>
+				<select>
+					<option value="approved">Approve</option>
+					<option value="denied">Deny</option>
+				</select>
+				</br>
+				<button id="resolveBtn" class="btn btn-primary">Resolve</button>
+			</div>
+		</div>
+		
+		<table id="reimbursementsTable">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Submitter</th>
+					<th>Resolver</th>
+					<th>Submission Date</th>
+					<th>Resolution date</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Id</th>
+					<th>Description</th>
+					<th>Amount</th>
+					<th>Status</th>
+					<th>Submitter</th>
+					<th>Resolver</th>
+					<th>Submission Date</th>
+					<th>Resolution date</th>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<button id="openModal" class="btn btn-primary btn-block">Resolve A Request</button>
+		
+	
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script src="js/allReimbursements.js"></script>
+	</body>
+</html>

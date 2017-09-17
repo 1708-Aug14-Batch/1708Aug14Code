@@ -1,0 +1,25 @@
+package com.revature.email;
+
+import java.util.Properties;
+
+import javax.mail.Session;
+
+import com.revature.logging.Logging;
+
+public class EmailSender {
+	
+	public final static String FROM = "yevseenko.vladimir@gmail.com";
+	public final static String HOST = "localhost";
+	
+	private static Logger logger = Logging.getLogger();
+	
+	public void sendEmail(String email, String password) {
+		
+		Properties properties = System.getProperties();
+		Session session = Session.getDefaultInstance(properties);
+		
+		try {
+			MimeMessage message = 
+		}
+	}
+}

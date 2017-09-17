@@ -1,0 +1,22 @@
+package com.revature.passwordgenerator;
+
+import java.security.SecureRandom;
+import java.util.Random;
+
+public class PasswordGenerator {
+	
+	private final static int PASSWORD_LENGTH = 8;
+	private final static String CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789";
+	private final static Random RANDOM = new SecureRandom();
+	
+	public String generatePassword() {
+		String pw = "";
+		Random rand = new Random();
+		
+		for (int i=0; i<PASSWORD_LENGTH; i++) {
+			int index = (int) (RANDOM.nextDouble() * CHARACTERS.length());
+			pw += CHARACTERS.charAt(index);
+		}
+		return pw;
+	}
+}

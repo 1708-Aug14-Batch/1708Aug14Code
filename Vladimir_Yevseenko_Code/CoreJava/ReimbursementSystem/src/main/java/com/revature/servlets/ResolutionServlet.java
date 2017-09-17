@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
 import com.revature.logging.Logging;
+import com.revature.pojos.Reimbursement;
+import com.revature.pojos.Status;
 import com.revature.service.Service;
 
 public class ResolutionServlet extends HttpServlet {
@@ -18,6 +20,7 @@ public class ResolutionServlet extends HttpServlet {
 
 	private static Logger logger = Logging.getLogger();
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("ResolutionServlet doPost()");
@@ -25,13 +28,22 @@ public class ResolutionServlet extends HttpServlet {
 		Service service = Service.getFromSession(req.getSession());
 		
 		int id = Integer.parseInt(req.getParameter("id"));
-		String resolutionState = req.getParameter("approved");
-		
-		System.out.println(id + " " + resolutionState);
+		String approved = req.getParameter("approved");
 		
 		JSONObject obj = new JSONObject();
 		
-		obj.put("success", service.resolveReimbursement(id, resolutionState.equals("approved")));
+		Reimbursement reimb = service.getReimbursementById(id);
+		
+		if (reimb == null) {
+			obj.put("success", "noSuchId");
+		} else {
+			if (reimb.getStatus() == Status.PENDING) {
+				service.resolveReimbursement(id, approved == "approved");
+				obj.put("success", "success");
+			} else {
+				obj.put("success", "notPending");
+			}
+		}
 		
 		resp.getWriter().println(obj);
 	}

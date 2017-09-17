@@ -1,0 +1,57 @@
+$(function() {
+	$('#submit').click(function() {
+		
+		$('#amountIn').css('border-color', 'rgba(0,0,0,0.3)');
+		$('#amountMsg').text('');
+		
+		if (!$('#amountIn').val().length) {
+			$('#amountIn').css('border-color', 'red');
+			$('#amountMsg').text('Please enter an amount');
+			setTimeout(function() {
+				$('#amountMsg').text('');
+				$('#amountIn').css('border-color', 'rgba(0,0,0,0.3)');
+			}, 3000);
+			return;
+		} else if (!testAmount($('#amountIn').val())) {
+			$('#amountIn').css('border-color', 'red');
+			$('#amountMsg').text('Please enter a valid amount');
+			setTimeout(function() {
+				$('#amountMsg').text('');
+				$('#amountIn').css('border-color', 'rgba(0,0,0,0.3)');
+			}, 3000);
+			return;
+		}
+		
+		$.post('newReimbursementServlet',
+				{},
+				function(response) {
+					$('#submitMsg').text('Reimbursement successfuly submitted');
+					setTimeout(function() {
+						$('#submitMsg').text('');
+					}, 3000);
+				},
+				'JSON');
+	});
+	
+	
+	$('#yourReimbursementsBtn').click(function() {
+		window.location.replace('yourReimbursements.html');
+	});
+	
+	$('#accInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(response) {
+					window.location.replace('login.html');
+				});
+	});
+});
+
+function testAmount(amt) {
+	var regex = /^\$?[0-9]+(\.[0-9][0-9])?$/;
+	return regex.test(amt);
+}

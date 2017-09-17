@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Create A New Reimbursement</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>	
+		<link rel="stylesheet" href="css/newReimbursement.css"/>
+	</head>
+	<body>
+		<nav class="navbar navbar-default">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		        </button>
+		
+		        <a class="navbar-brand" href="#"><img src="" /></a>
+		    </div>
+		
+		    <div class="collapse navbar-collapse">
+		        <ul class="nav navbar-nav">
+		        	<li><img src="revature_pic.jpg" width="150px" height="50px"/></li>
+		            <li><a id="yourReimbursementsBtn">Your Reimbursements</a></li>
+		            <li><a id="accInfoBtn">Account Info</a></li>
+		            <li><a id="logoutBtn">Logout</a></li>
+		        </ul>
+		    </div>
+		</nav>
+		
+		<div class="login">
+			<h1>Submit A New Reimbursement</h1>
+			<input type="text" placeholder="Enter Amount"/>
+			<textarea rows="4" cols="50" id="descriptionIn" placeholder="Enter Description"></textarea>
+			<button id="submit" class="">Submit New Request</button>
+		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="js/newReimbursement.js"></script>
+	</body>
+</html>

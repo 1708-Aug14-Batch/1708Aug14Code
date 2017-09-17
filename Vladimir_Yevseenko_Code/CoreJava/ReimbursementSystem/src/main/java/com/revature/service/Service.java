@@ -69,9 +69,10 @@ public class Service {
 		return reimbs.toArray(new Reimbursement[reimbs.size()]);
 	}
 	
-	public boolean resolveReimbursement(int id, boolean approved) {
+	public boolean resolveReimbursement(int reimbId, boolean approved) {
 		logger.debug("Service resolveReimbursement()");
-		return dao.resolveReimbursement(id, approved);
+		logger.debug("resolverReimbursment() approved: " + approved);
+		return dao.resolveReimbursement(reimbId, curUser.getId(), approved);
 	}
 	
 	public User[] getAllNonManagers() {
@@ -84,5 +85,14 @@ public class Service {
 	public boolean doesUserExist(String email) {
 		logger.debug("Service doesUserExist()");
 		return dao.doesUserExistByEmail(email);
+	}
+	
+	public Reimbursement getReimbursementById(int id) {
+		logger.debug("Service doesReimbursementExist()");
+		return dao.getReimbursementById(id);
+	}
+	
+	public void addNewReimbursement(Reimbursement reimbursement) {
+		dao.addNewReimbursement(reimbursement);
 	}
 }

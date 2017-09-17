@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
+import com.revature.hashing.Hasher;
 import com.revature.logging.Logging;
 import com.revature.service.Service;
 
@@ -23,16 +24,18 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		log.debug("LoginServlet doPost()");
 		
+		Hasher hasher = new Hasher();
+		
 		String email = req.getParameter("email");
 		String password = req.getParameter("password");
-		
+		String passwordHash = hasher.hashPassword(password);
 		Service s = Service.getFromSession(req.getSession());
 		
 		resp.setContentType("application/json");
 		JSONObject obj = new JSONObject();
 		
 		if (s.doesUserExist(email)) {
-			if (s.attemptLogin(email, password))
+			if (s.attemptLogin(email, passwordHash))
 				obj.put("success", "success");
 			else
 				obj.put("success", "bad password");

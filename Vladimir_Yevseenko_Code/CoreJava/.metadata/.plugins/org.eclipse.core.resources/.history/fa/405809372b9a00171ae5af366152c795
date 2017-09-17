@@ -1,0 +1,38 @@
+$(function() {
+	$('#submit').click(function() {
+		
+		$('#amountIn').css('border-color', 'rgba(0,0,0,0.3)');
+		$('#amountMsg').text('');
+		
+		of (!$('#amountIn').val().length) {
+			$('#amountMsg').text('Please enter an amount');
+			setTimeout(function() {
+				
+			}, 3000);
+		}
+		
+		$.post('newReimbursementServlet',
+				{},
+				function(response) {
+					
+				},
+				'JSON');
+	});
+	
+	
+	$('#yourReimbursementsBtn').click(function() {
+		window.location.replace('yourReimbursements.html');
+	});
+	
+	$('#accInfoBtn').click(function() {
+		window.location.replace('accInfo.html');
+	});
+	
+	$('#logoutBtn').click(function() {
+		$.post('logoutServlet',
+				{},
+				function(response) {
+					window.location.replace('login.html');
+				});
+	});
+});
