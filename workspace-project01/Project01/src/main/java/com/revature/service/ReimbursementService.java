@@ -38,6 +38,9 @@ public class ReimbursementService {
 		if (email == null) {
 			throw new IllegalArgumentException("Email cannot be null");
 		}
+		if (email.equals("")) {
+			throw new IllegalArgumentException("Email cannot be empty");
+		}
 	}
 	
 	public boolean validateUserCredentials(String email, String password) {
@@ -70,6 +73,19 @@ public class ReimbursementService {
 			}
 		}
 		return empReimbs;
+	}
+	
+	public ArrayList<Reimbursement> getEmployeeReimbsByEmail(String email) {
+		this.errorCheckEmail(email);
+		RUser user = this.userDAO.read(email);
+		ArrayList<Reimbursement> reimbs = this.reimbDAO.readAll();
+		ArrayList<Reimbursement> userReimbs = new ArrayList<Reimbursement>();
+		for (Reimbursement reimb : reimbs) {
+			if (reimb.getSubmitterID() == user.getRUserID()) {
+				userReimbs.add(reimb);
+			}
+		}
+		return userReimbs;
 	}
 	
 	public int editUser(RUser user) {

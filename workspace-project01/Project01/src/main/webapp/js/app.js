@@ -15,6 +15,7 @@ $(document).ready(function() {
 	$(document).on('click', '#btnSubmitRequest', submitRequest);
 	$('#btnAllRequests').click(showAllRequestsView);
 	$('#btnAllEmployees').click(showAllEmployeesView);
+	$(document).on('click', '#btnEmpRequests', viewRequestPage)
 });
 
 //Begin Employee Functions
@@ -55,13 +56,19 @@ function populateReimbsTable(reimbs) {
 		$('#reimbsTable').show();
 		for(var i = 0; i < reimbs.length; i++){
 			var table = document.getElementById("reimbsTable");
-			var row = table.insertRow(0);
+			var row = table.insertRow(1);
 			var submitted = row.insertCell(0);
 			var description = row.insertCell(1);
 			var amount = row.insertCell(2);
 			submitted.innerHTML = reimbs[i].dateSubmitted;
 			description.innerHTML = reimbs[i].description;
 			amount.innerHTML = reimbs[i].amount;
+			
+			// Make buttons to view individual requests
+			var cellShowReq = row.insertCell(3);
+			var btnShowReq = document.createElement("button");
+			btnShowReq.innerHTML = "View This Employee";
+			cellShowReq.appendChild(btnShowReq);
 		}
 	}
 }
@@ -267,10 +274,58 @@ function getSingleEmp(email) {
 			$('#email').html(employee.email);
 		}
 	}
-	email = JSON.stringify(email); // may need to use brace notation
+	//email = JSON.stringify(email);
 	request.open("POST", "manager-view-employee", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(email);
+}
+
+function viewRequestPage() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			var email = $('#email').html();
+			$('#view').html(request.responseText);
+			getEmpRequest(email);
+		}
+	}
+	request.open("GET", "manager-view-request", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getEmpRequest(email) {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			var reimbs = JSON.parse(request.responseText);
+			if (reimbs.length == 0) {
+				$('#noReimbs').show();
+				$('#reimbsTable').hide();
+			} else {
+				$('#noReimbs').hide();
+				$('#reimbsTable').show();
+				for(var i = 0; i < reimbs.length; i++){
+					var table = document.getElementById("reimbsTable");
+					var row = table.insertRow(0);
+					var submitted = row.insertCell(0);
+					var description = row.insertCell(1);
+					var amount = row.insertCell(2);
+					submitted.innerHTML = reimbs[i].dateSubmitted;
+					description.innerHTML = reimbs[i].description;
+					amount.innerHTML = reimbs[i].amount;
+				}
+			}
+		}
+	}
+	request.open("POST", "manager-view-request", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	//email = JSON.stringify(email);
+	request.send(email);
+}
+
+function showRegisterView() {
+	
 }
 
 //End Manager Functions
