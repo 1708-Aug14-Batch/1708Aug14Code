@@ -447,7 +447,7 @@ function approveRemib(){
 			for(var i=0; i<reimbs.length; i++){
 				if(document.getElementById(String(i)).checked){
 					console.log(document.getElementById(String(i)).checked);
-					resolve.push(String(i));
+					resolve.push(reimbs[i].remibID);
 				}
 			}
 			resolve.push("is approved");
@@ -471,7 +471,7 @@ function rejectRemib(){
 			for(var i=0; i<reimbs.length; i++){
 				if(document.getElementById(String(i)).checked){
 					console.log(document.getElementById(String(i)).checked);
-					resolve.push(String(i));
+					resolve.push(reimbs[i].remibID);
 				}
 			}
 			resolve.push("is rejected");

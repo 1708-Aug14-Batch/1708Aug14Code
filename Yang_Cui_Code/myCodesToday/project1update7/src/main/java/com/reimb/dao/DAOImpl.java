@@ -296,7 +296,7 @@ public class DAOImpl implements DAO{
 	public int resolveRemib(Remibursment reimb) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
-			String sql="update Reimbursment set approveID=?, approveDate=?, statusID=?, resolveNote=? where reimID=?";
+			String sql="update Reimbursment set resolveID=?, resolveDate=?, statusID=?, resolveNote=? where reimID=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, reimb.getResolver().getID());
 			ps.setTimestamp(2, reimb.getResolveDate());

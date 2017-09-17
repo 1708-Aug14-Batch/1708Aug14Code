@@ -84,6 +84,7 @@ public class DBControl {
 	
 	public boolean ResolveReimb(String reimbID, int manangerID, String note, String statID){
 		Remibursment reimb=dao.getRemib(Integer.parseInt(reimbID));
+		System.out.println(manangerID);
 		reimb.setResolver(dao.getUser(manangerID));
 		reimb.setResolveDate(new Timestamp(date.getTime()));
 		reimb.setStatus(dao.getStatus(Integer.parseInt(statID)));

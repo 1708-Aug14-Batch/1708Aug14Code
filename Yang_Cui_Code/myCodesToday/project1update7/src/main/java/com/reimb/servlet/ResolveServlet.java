@@ -40,20 +40,13 @@ public class ResolveServlet extends HttpServlet{
 		System.out.println(tx);
 		
 		DBControl dbcon=new DBControl();
-		//boolean success=dbcon.ResolveReimb(reimbID, manangerID, note, statID);
 		boolean success=false;
 		
 		HttpSession session = req.getSession();
 		Users sessionUser=(Users)session.getAttribute("user");
 		int userID=sessionUser.getID();
-		//String remibId=tx.get(0);
-		//String note=tx.get(1);
 		String statID=tx.get(tx.size()-1);
 		String note=tx.get(tx.size()-2);
-		//System.out.println(remibId);
-		//System.out.println(note);
-		//System.out.println(statID);
-		//System.out.println(userID);
 
 		for(int i=0; i<tx.size()-2; i++){
 			success=dbcon.ResolveReimb(tx.get(i), userID, note, statID);
