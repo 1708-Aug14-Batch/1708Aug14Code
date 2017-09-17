@@ -123,4 +123,8 @@ public class ReimbursementService {
 		return allEmps;
 	}
 	
+	public Reimbursement getSingleReimb(int rID) {
+		return this.reimbDAO.read(rID);
+	}
+	
 }

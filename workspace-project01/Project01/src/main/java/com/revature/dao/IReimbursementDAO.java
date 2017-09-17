@@ -15,7 +15,7 @@ public interface IReimbursementDAO {
 	/**
 	 * READ
 	 */
-	Reimbursement read(int submitterID, Date dateSubmitted);
+	Reimbursement read(int rID);
 	
 	/**
 	 * READ ALL

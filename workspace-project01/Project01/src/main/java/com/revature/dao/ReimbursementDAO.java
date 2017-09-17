@@ -59,19 +59,15 @@ public class ReimbursementDAO implements IReimbursementDAO {
 	 * @precondition submitterID > 0, dateSubmitted != null
 	 */
 	@Override
-	public Reimbursement read(int submitterID, Date dateSubmitted) {
-		if (submitterID < 1) {
-			throw new IllegalArgumentException("SubmitterID cannot be less than 1");
-		}
-		if (dateSubmitted == null) {
-			throw new IllegalArgumentException("Date submitted cannot be null");
+	public Reimbursement read(int rID) {
+		if (rID < 1) {
+			throw new IllegalArgumentException("Reimbursement ID cannot be less than 1");
 		}
 		Reimbursement reimbursement = null;
 		try (Connection conn = ConnectionSingleton.getInstance().getConnection()) {
-			String sql = "SELECT * FROM reimbursement WHERE submitter_id = ? AND date_submitted = ?";
+			String sql = "SELECT * FROM reimbursement WHERE r_id = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(1, submitterID);
-			statement.setDate(2, dateSubmitted);
+			statement.setInt(1, rID);
 			ResultSet results = statement.executeQuery();
 			while(results.next()) {
 				reimbursement = getReimbursementFromQuery(results);

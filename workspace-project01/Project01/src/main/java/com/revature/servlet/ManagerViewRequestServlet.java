@@ -21,16 +21,17 @@ public class ManagerViewRequestServlet extends HttpServlet {
 	private ReimbursementService service = new ReimbursementService();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		request.getRequestDispatcher("/partial/manager/view-employee-requests.html").forward(request, response);
+		request.getRequestDispatcher("/partial/manager/view-request.html").forward(request, response);
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		Enumeration<String> requestParams = request.getParameterNames();
 		ObjectMapper mapper = new ObjectMapper();
 		String requestString = requestParams.nextElement();
-		String email = (String) mapper.readValue(requestString, String.class);
-		ArrayList<Reimbursement> empReimbs = this.service.getEmployeeReimbsByEmail(email);
-		String json = mapper.writeValueAsString(empReimbs);
+		String idString = (String) mapper.readValue(requestString, String.class);
+		int id = Integer.parseInt(idString);
+		Reimbursement reimb = this.service.getSingleReimb(id);
+		String json = mapper.writeValueAsString(reimb);
 		PrintWriter writer = response.getWriter();
 		response.setContentType("application/json");
 		writer.write(json);

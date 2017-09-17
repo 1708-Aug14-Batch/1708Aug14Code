@@ -63,12 +63,20 @@ function populateReimbsTable(reimbs) {
 			submitted.innerHTML = reimbs[i].dateSubmitted;
 			description.innerHTML = reimbs[i].description;
 			amount.innerHTML = reimbs[i].amount;
-			
+
 			// Make buttons to view individual requests
 			var cellShowReq = row.insertCell(3);
 			var btnShowReq = document.createElement("button");
-			btnShowReq.innerHTML = "View This Employee";
+			btnShowReq.innerHTML = "View This Reimbursement";
+			btnShowReq.style.class = "btn";
+			btnShowReq.style.class = "btn-primary";
 			cellShowReq.appendChild(btnShowReq);
+
+			var id = reimbs[i].rID;
+			function invokeShowRequestView() {
+				viewRequestPage(id);
+			}
+			$(btnShowReq).click(invokeShowRequestView);
 		}
 	}
 }
@@ -231,16 +239,16 @@ function populateEmpsTable(emps) {
 			var firstNameCell = row.insertCell(0);
 			var lastNameCell = row.insertCell(1);
 			var emailCell = row.insertCell(2);
-			
+
 			firstNameCell.innerHTML = emps[i].firstName;
 			lastNameCell.innerHTML = emps[i].lastName;
 			emailCell.innerHTML = emps[i].email;
-			
+
 			var cellShowEmp = row.insertCell(3);
 			var btnShowEmp = document.createElement("button");
 			btnShowEmp.innerHTML = "View This Employee";
 			cellShowEmp.appendChild(btnShowEmp);
-			
+
 			var email = emailCell.innerHTML;
 			function invokeShowSingleEmpView() {
 				showSingleEmpView(email);
@@ -280,13 +288,12 @@ function getSingleEmp(email) {
 	request.send(email);
 }
 
-function viewRequestPage() {
+function viewRequestPage(id) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
-			var email = $('#email').html();
 			$('#view').html(request.responseText);
-			getEmpRequest(email);
+			getEmpRequest(id);
 		}
 	}
 	request.open("GET", "manager-view-request", true);
@@ -294,38 +301,25 @@ function viewRequestPage() {
 	request.send();
 }
 
-function getEmpRequest(email) {
+function getEmpRequest(id) {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
-			var reimbs = JSON.parse(request.responseText);
-			if (reimbs.length == 0) {
-				$('#noReimbs').show();
-				$('#reimbsTable').hide();
-			} else {
-				$('#noReimbs').hide();
-				$('#reimbsTable').show();
-				for(var i = 0; i < reimbs.length; i++){
-					var table = document.getElementById("reimbsTable");
-					var row = table.insertRow(0);
-					var submitted = row.insertCell(0);
-					var description = row.insertCell(1);
-					var amount = row.insertCell(2);
-					submitted.innerHTML = reimbs[i].dateSubmitted;
-					description.innerHTML = reimbs[i].description;
-					amount.innerHTML = reimbs[i].amount;
-				}
-			}
+			var reimb = JSON.parse(request.responseText);
+			$('#dateSubmitted').html(reimb.dateSubmitted);
+			$('#description').html(reimb.description);
+			$('#amount').html(reimb.amount);
+			$('#status').html(reimb.statusID);
 		}
 	}
 	request.open("POST", "manager-view-request", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	//email = JSON.stringify(email);
-	request.send(email);
+	id = JSON.stringify(id);
+	request.send(id);
 }
 
 function showRegisterView() {
-	
+
 }
 
 //End Manager Functions
