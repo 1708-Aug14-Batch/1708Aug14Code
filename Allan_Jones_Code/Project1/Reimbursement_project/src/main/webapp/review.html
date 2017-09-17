@@ -11,6 +11,8 @@
 
     <title>Reimbursements</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.min.css"></link>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"></link>
     <link rel="stylesheet" type="text/css" href="css/manager_home.css">
 </head>
 
@@ -74,9 +76,17 @@
                                 <div class="tab-pane active" id="1b">
                                     <div class="panel panel-primary">
                                         <div class="panel-body">
-                                            <ul class="list-group fixed-group">
-                                                <li class="list-group_item">0 pending requests</li>
-                                            </ul> 
+											<table id="pendingdata" class="display table-bordered" width="100%" cellspacing="0" border="0">
+												<thead>
+													<tr>
+														<th>ReqID</th>
+														<th>Employee</th>
+														<th>Description</th>
+														<th>Amount</th>
+														<th>Date Submitted</th>
+													</tr>
+												</thead>
+											</table>
                                         </div>
                                     </div>
                                 </div>
@@ -84,9 +94,21 @@
                                     <div class="tab-pane active" id="1b">
                                         <div class="panel panel-primary">
                                             <div class="panel-body">
-                                                <ul class="list-group fixed-group">
-                                                    <li class="list-group_item">0 resloved requests</li>
-                                                </ul> 
+											<table id="resolveddata" class="display table-bordered" width="100%" cellspacing="0" border="0">
+												<thead>
+													<tr>
+														<th>ID</th>
+														<th>Employee</th>
+														<th>Description</th>
+														<th>Amount</th>
+														<th>Date Submitted</th>
+														<th>Date Resolved</th>
+														<th>Manager</th>
+														<th>Reason</th>
+														<th>Status</th>
+													</tr>
+												</thead>
+											</table>
                                             </div>
                                         </div>
                                     </div>
@@ -96,11 +118,41 @@
                     </div>
                 </div>
             </div>
+			<div class="modal fade" id="approveModal">
+               	<div class="modal-dialog">
+               		<div class="modal-content">
+               			<div class="modal-header">
+               				<h3>Approve/Deny Reimbursements</h3>
+               			</div>
+               			<div class="modal-body">
+	            			<form action="updateReq" method="post">
+								<div class="input-group input-group-lg">
+                			    	<span class="input-group-addon" >Request #:</span>
+                            		<input type="text" name="reqid" class="form-control" id="reqid">
+                        		</div>
+								<div class="input-group input-group-lg">
+                			    	<span class="input-group-addon" >Reason:</span>
+                            		<input type="text" name="reason" class="form-control" id="reqreason">
+                        		</div><br>
+									<label class="radio-inline"><input type="radio" name="optradio" value="1">Approve</label>
+									<label class="radio-inline"><input type="radio" name="optradio" value="2">Deny</label> 
+								<br><br>
+               					<div class="form-actions">
+		                        	<input type="submit" class="btn btn-primary" id="btnReq" value="Submit">
+               						<button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>		
+           					    </div>
+               				</form>
+               			</div>
+               		</div>
+               	</div>
+			</div>
         </div>
     </div>  
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>    
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="js/review.js"></script>   
 
 </body>

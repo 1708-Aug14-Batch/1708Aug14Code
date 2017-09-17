@@ -51,8 +51,12 @@ public class Service {
 	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id) {
 		return dao.viewPendingRequestsByEmp(id);
 	}
+	
+	public ArrayList<DTO> getPendingReq() {
+		return dao.getPendingReq();
+	}
 
-	public ArrayList<Reimbursements> viewResolvedRequestsByEmp(int id) {
+	public ArrayList<DTO> viewResolvedRequestsByEmp(int id) {
 		return dao.viewResolvedRequestsByEmp(id);
 	}
 	
@@ -66,6 +70,11 @@ public class Service {
 	
 	public ArrayList<DTO> viewEmpRequests(int id) {
 		return dao.viewEmpRequest(id);
+	}
+	
+	public void updRequest(int id, String reason, int mgrid, int status) {
+		logger.info("A status change has occurred for Request #: " + id);
+		dao.updRequest(id, reason, mgrid, status);
 	}
 
 }

@@ -24,9 +24,8 @@ window.onload = function() {
 	     
 	    $('#pendingdata tbody').on('click', 'tr', function () {
 	        var data = table.row(this).data();
-	        alert( 'You clicked on '+data[0]+'\'s row' );
 	        localStorage.setItem("dtUser", data[0]);
-	        window.location = "emp_requests.html?userid="+data[0];
+	        window.location = "emp_requests.html";
 	    });
 	});
 
@@ -46,11 +45,23 @@ window.onload = function() {
 	    					reqs[i].resolved_date,
 	    					reqs[i].manager,
 	    					reqs[i].resolution,
+	    					reqs[i].status,
 	    				]).draw(false);
 	    			}
 	    		},
 	    	"json");
 	});
+	
+	$(document).ready(function() {
+	    var table = $('#resolveddata').DataTable();
+	     
+	    $('#resolveddata tbody').on('click', 'tr', function () {
+	        var data = table.row(this).data();
+	        localStorage.setItem("dtUser", data[0]);
+	        window.location = "emp_requests.html";
+	    });
+	});
+
 }
 
 function getLoginInfo() {

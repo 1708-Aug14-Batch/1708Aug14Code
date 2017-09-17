@@ -29,8 +29,8 @@ window.onload = function() {
 	    					reqs[i].amount,
 	    					reqs[i].submit_date,
 	    					reqs[i].resolved_date,
-	    					reqs[i].statusID,
-	    					reqs[i].resolution_notes,
+	    					reqs[i].resolution,
+	    					reqs[i].status,
 	    				]).draw(false);
 	    			}
 	    		},

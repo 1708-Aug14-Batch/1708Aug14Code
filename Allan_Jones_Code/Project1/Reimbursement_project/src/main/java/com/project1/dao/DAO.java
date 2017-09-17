@@ -20,13 +20,17 @@ public interface DAO {
 	
 	public void submitRequest(int submitterid, String description, double amt);
 	
+	public ArrayList<DTO> getPendingReq();
+	
+	public void updRequest(int id, String reason, int mgrid, int status);
+	
 	public ArrayList<DTO> viewPendingRequestsByMgr();
 	
 	public ArrayList<DTO> viewResolvedRequestsByMgr();
 	
 	public ArrayList<Reimbursements> viewPendingRequestsByEmp(int id);
 	
-	public ArrayList<Reimbursements> viewResolvedRequestsByEmp(int id);
+	public ArrayList<DTO> viewResolvedRequestsByEmp(int id);
 	
 	public ArrayList<DTO> viewEmpRequest(int id);
 	

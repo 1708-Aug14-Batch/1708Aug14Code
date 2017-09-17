@@ -47,6 +47,11 @@ li.active > a {
     text-shadow: 3px 3px #ADC1D6;
 }
 
+.input-group-addon {
+    min-width:130px;
+    text-align:right;
+}
+
 .fixed-group {
   min-height: 185px;
   max-height: 185px;

@@ -125,4 +125,24 @@
     <servlet-name>MgrSingleEmpReqsServlet</servlet-name>
     <url-pattern>/mgrSingleEmpReqs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReqInfoUpdateServlet</display-name>
+    <servlet-name>ReqInfoUpdateServlet</servlet-name>
+    <servlet-class>com.project1.servlets.ReqInfoUpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReqInfoUpdateServlet</servlet-name>
+    <url-pattern>/reqInfoUpdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateReqServlet</display-name>
+    <servlet-name>UpdateReqServlet</servlet-name>
+    <servlet-class>com.project1.servlets.UpdateReqServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateReqServlet</servlet-name>
+    <url-pattern>/updateReq</url-pattern>
+  </servlet-mapping>
 </web-app>
