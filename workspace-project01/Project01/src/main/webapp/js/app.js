@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$(document).on('click', '#btnSubmitRequest', submitRequest);
 	$('#btnAllRequests').click(showAllRequestsView);
 	$('#btnAllEmployees').click(showAllEmployeesView);
-	$(document).on('click', '#btnEmpRequests', viewRequestPage)
+	$(document).on('click', '#btnEmpRequests', viewRequestPage);
 });
 
 //Begin Employee Functions
@@ -293,6 +293,9 @@ function viewRequestPage(id) {
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
 			$('#view').html(request.responseText);
+			$(document).on('click', '#statusPending', changeStatus);
+			$(document).on('click', '#statusApprove', changeStatus);
+			$(document).on('click', '#statusDeny', changeStatus);
 			getEmpRequest(id);
 		}
 	}
@@ -306,6 +309,7 @@ function getEmpRequest(id) {
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
 			var reimb = JSON.parse(request.responseText);
+			$('#rID').val(id);
 			$('#dateSubmitted').html(reimb.dateSubmitted);
 			$('#description').html(reimb.description);
 			$('#amount').html(reimb.amount);
@@ -316,6 +320,39 @@ function getEmpRequest(id) {
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	id = JSON.stringify(id);
 	request.send(id);
+}
+
+function changeStatus() {
+	if (document.getElementById('statusApprove').checked || document.getElementById('statusDeny').checked) {
+		document.getElementById('resNotes').disabled = false;
+		document.getElementById('submit').disabled = false;
+	}
+	if (document.getElementById('statusPending').checked) {
+		document.getElementById('resNotes').disabled = true;
+		document.getElementById('submit').disabled = true;
+	}
+}
+
+function approveReq() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			var reimb = JSON.parse(request.responseText);
+			$('#status').html(reimb.statusID);
+			$('#dateResolved').html(reimb.dateResolved);
+			$('#showResNotes').html(reimb.resolutionNotes);
+		}
+	}
+	var rID = $('#rID').val();
+	var approved = true;
+	var dto = {rID, approved};
+	request.open("GET", "manager-edit-request", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send(rID);
+}
+
+function denyReq() {
+	
 }
 
 function showRegisterView() {

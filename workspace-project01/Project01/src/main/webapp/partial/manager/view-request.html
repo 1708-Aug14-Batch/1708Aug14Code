@@ -1,8 +1,21 @@
 
 <div>
-	<p>Date Submitted: </p><p id="dateSubmitted"></p>
-	<p>Description: </p><p id="description"></p>
-	<p>Amount: </p><p id="amount"></p>
-	<p>Status: </p><p id="status"></p>
-	<p>Need approve and deny buttons</p>
+	<input type="hidden" id="rID">
+	<p>Status:</p>
+	<p id="status"></p>
+	<p>Date Submitted:</p>
+	<p id="dateSubmitted"></p>
+	<p>Description:</p>
+	<p id="description"></p>
+	<p>Amount:</p>
+	<p id="amount"></p>
+	<p>Date Resolved:</p>
+	<p id="dateResolved"></p>
+	<p>Resolution Notes:</p>
+	<p id="showResNotes"></p>
+	<input type="radio" id="statusPending" name="statusChange" value="1"> Pending<br>
+  <input type="radio" id="statusApprove" name="statusChange" value="2"> Approve<br>
+  <input type="radio" id="statusDeny" name="statusChange" value="3"> Deny
+	<textarea id="resNotes" rows="3" cols="50" disabled></textarea>
+	<button id="submit" disabled>Submit</button>
 </div>
