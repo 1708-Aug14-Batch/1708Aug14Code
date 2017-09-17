@@ -2,19 +2,22 @@
 	Hello <span id="name"></span>
 </h3>
 <div id="reimbursements">
+	<h2>Users</h2>
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+	
 	<table id="remTable" align='center' cellspacing=2 cellpadding=5 id="data_table" border=1>
 		<tr>
 			<th>RemId:</th>
 			<th>UserId:</th>
 			<th>ResolverId:</th>
-			<th>ResolveDate:</th>
 			<th>SummitDate:</th>
 			<th>ResolveDate:</th>
 			<th>ResolveNote:</th>
 			<th>Status:</th>
 			<th>Description:</th>
 			<th>Amount:</th>
-			<th><button onclick="myFun()">Edit</button></th>
+			<th><button onclick="editReimbursements()">Edit</button></th> <!-- works to edit the whole table -->
 		</tr>
 	</table>
 </div>
@@ -25,7 +28,7 @@
 <table id="table"></table>
 <!-- /modal -->
 
-<!--  
+<!--  -->
 <div class="container">
 
 	<br>
@@ -55,33 +58,11 @@
 		</div>
 	</div>
 	
-</div><-->
+</div>
 <!-- /row -->
 
 </div>
 <!-- /container -->
-<table data-toggle="table"
-       data-url="/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/"
-       data-search="true"
-       data-show-refresh="true"
-       data-show-toggle="true"
-       data-show-columns="true">
-    <thead>
-    <tr>
-        <th data-field="name">Name</th>
-        <th data-field="stargazers_count">Stars</th>
-        <th data-field="forks_count">Forks</th>
-        <th data-field="description">Description</th>
-    </tr>
-    </thead>
-</table>
-
-
-
-
-
-
-
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

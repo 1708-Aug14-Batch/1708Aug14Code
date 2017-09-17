@@ -107,40 +107,7 @@ function loadDashboardView(){
 	xhr.send();
 };
 
-$.each(data.dates, function(index, element) {
-	alert(element.timeStamp); 
-});
 
-
-
-$(function () {
-	$('#table').bootstrapTable({
-		idField: 'name',
-		url: '/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/',
-		columns: [{
-			field: 'name',
-			title: 'Name'
-		}, {
-			field: 'stargazers_count',
-			title: 'Stars',
-			editable: {
-				type: 'text'
-			}
-		}, {
-			field: 'forks_count',
-			title: 'Forks',
-			editable: {
-				type: 'text'
-			}
-		}, {
-			field: 'description',
-			title: 'Description',
-			editable: {
-				type: 'textarea'
-			}
-		}]
-	});
-});
 function loadReimbursmentPageView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -172,13 +139,30 @@ function loadSettingsPageView(){
 };
 
 
-function editReimbursement() {
-//document.getElementsByTagName("td").contentEditable = true;
-document.getElementById("remTable").contentEditable = true;
-// document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
+function editReimbursement(i) {
+	// opens editbility to whole table which defeats the purpose of having  seperate edit buttons
+	document.getElementById("remTable").contentEditable = true; 
+
+//	document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
 };
 
-
+function myFunction() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value.toUpperCase();
+	  table = document.getElementById("remTable");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[1];
+	    if (td) {
+	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
 
 
 //Can edit this to hold both manager info and user info
@@ -221,15 +205,15 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 
 			else{
 				for(var i = 0; i < rem.length; i++){
-					var btn = document.createElement("BUTTON")
-				//	var node = document.cr
+					//var btn = document.createElement("BUTTON")
+					//	var node = document.cr
 //					btn.id = 'EditButton';
 //					btn.innerHTML = 'EDIT';
 //					btn.setAttribute("value", 'EDIT');
 //					btn.setAttribute("text", 'EDIT');
 //					btn.style.fontSize = "14px";
 //					btn.style.backgroundColor = '#4CAF50';
-					
+
 					// populate managers table
 					var table = document.getElementById("remTable");
 					var row = table.insertRow();
@@ -256,9 +240,9 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 					amount.innerHTML = "$" + rem[i].amount;
 					//edit.innerHTML = btn;editReimbursement()
 					//edit.innerHTML = "</td><td><button onclick='edit("+i+")'>Edit</button>";
-					edit.innerHTML = "</td><td><button onclick='editReimbursement()'>Edit</button>";
-					
-				
+					edit.innerHTML = "</td><td><button onclick='editReimbursement("+i+")'>Edit</button>";
+
+
 				}
 			}
 
