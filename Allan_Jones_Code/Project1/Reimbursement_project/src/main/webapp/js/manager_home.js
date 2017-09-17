@@ -25,7 +25,8 @@ window.onload = function() {
 	    $('#pendingdata tbody').on('click', 'tr', function () {
 	        var data = table.row(this).data();
 	        alert( 'You clicked on '+data[0]+'\'s row' );
-	        window.location = "emp_requests.html?userid=" + data[0];
+	        localStorage.setItem("dtUser", data[0]);
+	        window.location = "emp_requests.html?userid="+data[0];
 	    });
 	});
 
