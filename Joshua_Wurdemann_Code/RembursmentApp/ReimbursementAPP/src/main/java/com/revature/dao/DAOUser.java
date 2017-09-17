@@ -49,6 +49,7 @@ public class DAOUser implements DAO {
         u.setLastNAme(info.getString(3));
         u.setEmail(info.getString(4));
         u.setPassword(info.getString(5));
+        u.setIsManger(info.getInt(6));
       }
     } catch (SQLException e) {
       e.printStackTrace();

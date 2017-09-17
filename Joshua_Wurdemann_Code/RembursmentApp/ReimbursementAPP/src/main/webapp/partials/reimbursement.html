@@ -4,10 +4,17 @@
 <div id="reimbursements">
 	<table id="remTable">
 		<tr>
-			<th>ReimbursementId:</th>
-			<th>Amount:</th>
+			<th>RemId:</th>
+			<th>UserId:</th>
+			<th>ResolverId:</th>
+			<th>ResolveDate:</th>
 			<th>SummitDate:</th>
+			<th>ResolveDate:</th>
+			<th>ResolveNote:</th>
+			<th>Status:</th>
 			<th>Description:</th>
+			<th>Amount:</th>
+			
 		</tr>
 	</table>
 </div>
@@ -15,9 +22,10 @@
 <button type="button" class="btn btn-primary" data-toggle="modal"
 	data-target="#myModal">Create Reimbursement</button>
 
+<table id="table"></table>
 <!-- /modal -->
 
-
+<!--  
 <div class="container">
 
 	<br>
@@ -47,13 +55,34 @@
 		</div>
 	</div>
 	
-</div>
+</div><-->
 <!-- /row -->
 
 </div>
 <!-- /container -->
+<table data-toggle="table"
+       data-url="/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/"
+       data-search="true"
+       data-show-refresh="true"
+       data-show-toggle="true"
+       data-show-columns="true">
+    <thead>
+    <tr>
+        <th data-field="name">Name</th>
+        <th data-field="stargazers_count">Stars</th>
+        <th data-field="forks_count">Forks</th>
+        <th data-field="description">Description</th>
+    </tr>
+    </thead>
+</table>
 
-<!--
+
+
+
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -65,4 +94,3 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
 	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
 	crossorigin="anonymous"></script>
--->

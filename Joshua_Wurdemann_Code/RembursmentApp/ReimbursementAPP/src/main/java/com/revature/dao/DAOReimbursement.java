@@ -79,11 +79,12 @@ public class DAOReimbursement {
 
     return singleCase;
   }
-  /** Only mangers can view all reimbursements for all users.
-   * 
-   * @return Returns all reimbursements for all users.
-   */
-
+  
+/**
+ * 
+ * @param userID
+ * @return returns all reimbursements for selected user.
+ */
   public ArrayList<Reimbursement> getEmployeeReimbursements(int userID) {
 
     ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
@@ -115,6 +116,45 @@ public class DAOReimbursement {
 
     return reimbursements;
   }
+  /** Only mangers can view all reimbursements for all users.
+   * 
+   * @return Returns all reimbursements for all users.
+   */
+  public ArrayList<Reimbursement> getAllEmployeeReimbursements(){
+
+    ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+
+    try(Connection conn = ConnectionFactory.getInstance().getConnection();){
+
+      conn.setAutoCommit(false);
+      String sql = "select * from reimbursements "
+          + "order by submitdate desc";
+
+      //setup prepared with sql and allocate space for key
+      PreparedStatement ps = conn.prepareStatement(sql);
+      //ps.setInt(1, userID);
+
+      //execute and get values
+      ResultSet rs = ps.executeQuery();
+
+      while(rs.next()){
+        Reimbursement u = new Reimbursement(rs.getInt("REIMBURSEID"), rs.getInt("SUBMITTERID"), rs.getInt("RESOLVERID"),
+            rs.getTimestamp("SUBMITDATE"), rs.getTimestamp("RESOLVED"), rs.getInt("STATUSID"), rs.getString("DESCRIPTION"),
+            rs.getString("RESOLVNOTES"), rs.getDouble("AMOUNT"));
+        reimbursements.add(u);
+      }
+      conn.commit();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return reimbursements;
+  }
+  
+  
+  
+  
   public void resolveReimbursement(Reimbursement r) {
     // TODO Auto-generated method stub
 

@@ -31,20 +31,38 @@ public class GetUserInfoServlet extends HttpServlet{
     System.out.println("GetUserInfoServlet -- GET");
     System.out.println("getting user from session " + sessionUser.toString());
 
+
+
     if(sessionUser != null){
-      ArrayList<Reimbursement> someRembur = new ArrayList<>(); 
-      someRembur = service.getUserRemibursements(sessionUser);
+      if(sessionUser.getIsManger() == 0){  
 
-      DTO dto = new DTO(sessionUser, someRembur);
-      ObjectMapper mapper = new ObjectMapper();
+        ArrayList<Reimbursement> someRembur = new ArrayList<>(); 
+        someRembur = service.getUserRemibursements(sessionUser);
 
-      String json = mapper.writeValueAsString(dto);
+        DTO dto = new DTO(sessionUser, someRembur);
+        ObjectMapper mapper = new ObjectMapper();
 
-      PrintWriter out = response.getWriter();
-      response.setContentType("application/json");
-      out.write(json);
-      //}
-    }else{
+        String json = mapper.writeValueAsString(dto);
+
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        out.write(json);
+
+      } else if(sessionUser.getIsManger() == 1){
+        ArrayList<Reimbursement> someRembur = new ArrayList<>(); 
+        someRembur = service.getAllRemibursements();
+
+        DTO dto = new DTO(sessionUser, someRembur);
+        ObjectMapper mapper = new ObjectMapper();
+
+        String json = mapper.writeValueAsString(dto);
+
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        out.write(json);
+
+      }    
+    } else{
       response.setStatus(418);
     }
   }

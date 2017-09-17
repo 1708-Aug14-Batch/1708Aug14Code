@@ -17,7 +17,7 @@ window.onload = function(){
 
 		document.getElementById("settingPage")
 		.addEventListener("click", loadSettingsPageView);
-		
+
 		document.getElementById("logout")
 		.addEventListener("click", logout);
 
@@ -74,21 +74,21 @@ function login(){
 	xhr.send(tx);
 };
 
-// logout of app and return to login
+//logout of app and return to login
 function logout(){
-		
+
 //	console.log("getting dash");
 	var xhr = new XMLHttpRequest();
 //	xhr.onreadystatechange = function(){
-//		if(xhr.readyState == 4 && xhr.status == 200){
-//			document.getElementById('view').
-//			innerHTML = xhr.responseText;
-//				}
+//	if(xhr.readyState == 4 && xhr.status == 200){
+//	document.getElementById('view').
+//	innerHTML = xhr.responseText;
 //	}
-	
+//	}
+
 	xhr.open("GET", "logout", true);
 	xhr.send();
-	
+
 }
 
 function loadDashboardView(){
@@ -107,7 +107,34 @@ function loadDashboardView(){
 	xhr.send();
 };
 
-
+$(function () {
+    $('#table').bootstrapTable({
+        idField: 'name',
+        url: '/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/',
+        columns: [{
+            field: 'name',
+            title: 'Name'
+        }, {
+            field: 'stargazers_count',
+            title: 'Stars',
+            editable: {
+                type: 'text'
+            }
+        }, {
+            field: 'forks_count',
+            title: 'Forks',
+            editable: {
+                type: 'text'
+            }
+        }, {
+            field: 'description',
+            title: 'Description',
+            editable: {
+                type: 'textarea'
+            }
+        }]
+    });
+});
 function loadReimbursmentPageView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -139,7 +166,7 @@ function loadSettingsPageView(){
 };
 
 
-
+//Can edit this to hold both manager info and user info
 function getReimbursmentPageInfo(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
@@ -149,16 +176,20 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 			var dto = JSON.parse(xhr.responseText);
 			var someUser = dto.user;
 			var rem = dto.reimbursement;
-
-			//document.getElementById("username").innerHTML = "Welcome " + someUser.user.firstname + " " + someUser.user.lastname + ".";
-			if (rem.length == 0){
-				document.getElementById("reimbursements").style.visibility = "hidden"; 
-
-			}
-			else{
-
+             
+			// need to fix this data breach
+			
+			 console.log(someUser);
+			 console.log(someUser.isManger);
+             var checkIfManager = someUser
+			// check to see if user roll is manager or plain user
+			if(someUser.isManger == 0){
+				if (rem.length == 0){
+					document.getElementById("reimbursements").style.visibility = "hidden"; 
+				}
+				else{
 				for(var i = 0; i < rem.length; i++){
-					// populate accounts table
+					// populate users table
 					var table = document.getElementById("remTable");
 					var row = table.insertRow();
 					var remid = row.insertCell(0);
@@ -170,7 +201,36 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 					sumitdate.innerHTML = rem[i].submitDate;
 					description.innerHTML =  rem[i].description;
 				}
+				}
 			}
+
+			else{
+				for(var i = 0; i < rem.length; i++){
+					// populate managers table
+					var table = document.getElementById("remTable");
+					var row = table.insertRow();
+					var remId = row.insertCell(0);
+					var submitterId = row.insertCell(1);
+					var resId = row.insertCell(2);
+					var submitdate = row.insertCell(3);
+					var reslvDate= row.insertCell(4);
+					var reslvNote = row.insertCell(5);
+					var statusId = row.insertCell(6);
+					var description = row.insertCell(7);
+					var amount = row.insertCell(8);
+
+					remId.innerHTML = rem[i].reimburseid;
+					submitterId.innerHTML = rem[i].submitterId;
+					resId.innerHTML = rem[i].resolverId;
+					submitdate.innerHTML = rem[i].submitDate;
+					reslvDate.innerHTML =  rem[i].resolvedDate;
+					reslvNote.innerHTML =  rem[i].resolvedNote;
+					statusId.innerHTML = rem[i].statusID;
+					description.innerHTML =  rem[i].description;
+					amount.innerHTML = "$" + rem[i].amount;
+				}
+			}
+
 		}
 	}
 
@@ -197,7 +257,7 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 };
 //need to be able to edit user info from the front end.
 //currently the user info is showing null
-// need to change this and the edit user servelet
+//need to change this and the edit user servelet
 function getUserSettingsPageInfo(){
 	console.log("in user page info function");
 	var xhr = new XMLHttpRequest();

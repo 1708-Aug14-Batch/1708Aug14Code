@@ -6,9 +6,9 @@ public class User {
   private String lastNAme;
   private String email;
   private String password;
-  private boolean isManger;
+  private int isManger;
 public User(int userId, String firstName, String lastNAme,
-    String email, String password, boolean isManger) {
+    String email, String password, int isManger) {
 	super();
 	this.userId = userId;
 	this.firstName = firstName;
@@ -50,16 +50,16 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-public boolean isManger() {
+public int getIsManger() {
 	return isManger;
 }
-public void setManger(boolean isManger) {
+public void setIsManger(int isManger) {
 	this.isManger = isManger;
 }
 @Override
 public String toString() {
-	return "User [userId=" + userId + ", firstName=" + firstName + ", lastNAme=" + lastNAme + ", email=" + email
-			+ ", password=" + password + ", isManger=" + isManger + "]";
+  return "User [userId=" + userId + ", firstName=" + firstName + ", lastNAme=" + lastNAme
+      + ", email=" + email + ", password=" + password + ", isManger=" + isManger + "]";
 }
 
 
