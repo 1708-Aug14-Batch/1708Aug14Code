@@ -1,17 +1,31 @@
 <div>
-	<p id="passText" style="display: none; background-color: #62fc5f;" class="alert alert-info" >Reimbursement successfully added</p>
-	<p id="failText" style="display: none; background-color: #f93131;" class="alert alert-info" >Reimbursement request failed</p>
-	<button id="AddReimButt">Add Reimbursement</button> <br>
-	<div id="AddReimView" style="display: none">
-		<input type="number" id="amount" placeholder="$0.00" name="amount"/> <br>
-		<textarea id="desc" placeholder="Please add a note here" name="Text1" cols="40" rows="5"></textarea> <br>
-		<input type="submit" id="AddReimButtAct"/> <br>
+	<div class="displayDivs">
+		<div id="passText" style="display: none;">
+			<p style="background-color: #62fc5f;" class="alert alert-info" >Reimbursement successfully added</p>
+			<br>
+		</div>
+		<div id="failText" style="display: none;">
+			<p style="background-color: #f93131;" class="alert alert-info" >Reimbursement request failed</p>
+			<br>
+		</div>
+		<br>
+		<h1 class="MarkerText">My Reimbursements</h1>
+		<br>
+		<div>
+			<br>
+			<button id="AddReimButt" class="btn btn-primary">Add Reimbursement</button> <br>
+			<div id="AddReimView" style="display: none">
+				<input type="number" id="amount" placeholder="$0.00" name="amount"/> <br>
+				<textarea id="desc" placeholder="Please add a note here" name="Text1" cols="40" rows="5"></textarea> <br>
+				<input type="submit" id="AddReimButtAct" class="btn btn-success"/> <br>
+			</div>
+			<table id="ReimTable" class="display">
+				<thead>
+				</thead>
+				<tbody id="ReimTableBody">
+				</tbody>
+				<label><input type="checkbox" checked="checked" id="ResCheck"/> Show Resolved</label>
+			</table>
+		</div>
 	</div>
-	<table id="ReimTable" class="display">
-		<thead>
-		</thead>
-		<tbody id="ReimTableBody">
-		</tbody>
-		<label><input type="checkbox" checked="checked" id="ResCheck"/> Show Resolved</label>
-	</table>
 </div>

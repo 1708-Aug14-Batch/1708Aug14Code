@@ -1,3 +1,35 @@
+function loadUserDashInfo() {
+	console.log('Getting User Dash Info');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var dto = JSON.parse(xhr.responseText);
+			document.getElementById('penNum').innerHTML = dto.pending;
+			document.getElementById('appNum').innerHTML = dto.accepted;
+			document.getElementById('denNum').innerHTML = dto.denied;
+			console.log(dto);
+		}
+	};
+	xhr.open('GET', 'getUserDashInfo', true);
+	xhr.send();
+}
+
+
+function loadManDashInfo() {
+	console.log('Getting Man Dash Info');
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if(xhr.readyState == 4 && xhr.status == 200) {
+			var dto = JSON.parse(xhr.responseText);
+			document.getElementById('penNum').innerHTML = dto.pending;
+			document.getElementById('appNum').innerHTML = dto.accepted;
+			document.getElementById('denNum').innerHTML = dto.denied;
+			console.log(dto);
+		}
+	};
+	xhr.open('GET', 'getManDashInfo', true);
+	xhr.send();
+}
 
 function loadDashboardView() {
 	console.log('Getting Dash');
@@ -5,6 +37,7 @@ function loadDashboardView() {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('view').innerHTML = xhr.responseText;
+			loadUserDashInfo();
 		}
 	};
 	xhr.open('GET', 'getDashboard', true);
@@ -34,7 +67,7 @@ function reloadMyReim() {
 	if(document.getElementById('ResCheck').checked) {
 		$('#ReimTable').DataTable( {
 			destroy: true,
-	        "order": [[ 0, "desc" ]],
+	        "order": [[ 2, "desc" ]],
 	        data: reims,
 	        columns: [
 	            { title: "Submitter" },
@@ -51,7 +84,7 @@ function reloadMyReim() {
 	else {
 		$('#ReimTable').DataTable( {
 			destroy: true,
-	        "order": [[ 0, "desc" ]],
+	        "order": [[ 2, "desc" ]],
 	        data: Penreims,
 	        columns: [
 	            { title: "Submitter" },
@@ -79,14 +112,14 @@ function getUserReim() {
 			for(var i = 0; i < dto.reims.length; i++) {
 				var arr = [ dto.reims[i].sub, dto.reims[i].res, dto.reims[i].subDate, dto.reims[i].resDate, dto.reims[i].status, dto.reims[i].desc, dto.reims[i].resNote, dto.reims[i].amount];
 				reims.push(arr);
-				if(dto.reims[i].status == 'Pending') {
+				if(dto.reims[i].status == "<b style='color: blue'>Pending<b>") {
 					Penreims.push(arr);
 				}
 			}
 			console.log(reims);
 			$('#ReimTable').DataTable( {
 				destroy: true,
-		        "order": [[ 0, "desc" ]],
+		        "order": [[ 2, "desc" ]],
 		        data: reims,
 		        columns: [
 		            { title: "Submitter" },
@@ -236,23 +269,11 @@ function loadSettingsView() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('view').innerHTML = xhr.responseText;
 			document.getElementById('SetPassButt').onclick = function() {
-				if(document.getElementById('SetUpEmail').style.display == 'none') {
-					document.getElementById('SetUpText').style.display = 'inline';
-					document.getElementById('SetUpEmail').style.display = 'inline';
-					document.getElementById('SetUpFirst').style.display = 'inline';
-					document.getElementById('SetUpLast').style.display = 'inline';
-					document.getElementById('SetUpPass').style.display = 'inline';
-					document.getElementById('SetUpPassCon').style.display = 'inline';
-					document.getElementById('SetUpSubmit').style.display = 'inline';
+				if(document.getElementById('SetUpDivThing').style.display == 'none') {
+					document.getElementById('SetUpDivThing').style.display = 'inline';
 				}
 				else {
-					document.getElementById('SetUpText').style.display = 'none';
-					document.getElementById('SetUpEmail').style.display = 'none';
-					document.getElementById('SetUpFirst').style.display = 'none';
-					document.getElementById('SetUpLast').style.display = 'none';
-					document.getElementById('SetUpPass').style.display = 'none';
-					document.getElementById('SetUpPassCon').style.display = 'none';
-					document.getElementById('SetUpSubmit').style.display = 'none';
+					document.getElementById('SetUpDivThing').style.display = 'none';
 				}
 			};
 			loadSettingsData();
@@ -286,6 +307,7 @@ function loadDashboardViewMan() {
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('view').innerHTML = xhr.responseText;
+			loadManDashInfo();
 		}
 	};
 	xhr.open('GET', 'getDashboardMan', true);
@@ -399,8 +421,8 @@ function getManReim() {
 			tempIDs = [];
 			for(var i = 0; i < dto.reims.length; i++) {
 				var arr = [ dto.reims[i].r_ID, dto.reims[i].sub, dto.reims[i].res, dto.reims[i].subDate, dto.reims[i].resDate, dto.reims[i].status, dto.reims[i].desc, dto.reims[i].resNote, dto.reims[i].amount, null];
-				if(dto.reims[i].status == 'Pending') {
-					arr[9] = "<button id='A" + arr[0] + "' style='color: green'>Approve</button><button id='D" + arr[0] + "' style='color: red'>Deny</button>";
+				if(dto.reims[i].status == "<b style='color: blue'>Pending<b>") {
+					arr[9] = "<button class='btn btn-success' id='A" + arr[0] + "'>Approve</button><button class='btn btn-danger' id='D" + arr[0] + "'>Deny</button>";
 					ManPenreims.push(arr);
 					tempIDs.push(arr[0]);
 				}
@@ -411,6 +433,7 @@ function getManReim() {
 			document.getElementById('ResCheck').onchange = function() {
 				reloadManReim();
 			};
+			
 			reloadManReim();
 		}
 	};
@@ -425,6 +448,14 @@ function loadMyReimManView() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
 			document.getElementById('view').innerHTML = xhr.responseText;
 			getManReim();
+			document.getElementById('AddNoteButt').onclick = function() {
+				if(document.getElementById('NoteDiv').style.display == 'none') {
+					document.getElementById('NoteDiv').style.display = 'inline';
+				}
+				else {
+					document.getElementById('NoteDiv').style.display = 'none';
+				}
+			}
 		}
 	};
 	xhr.open('GET', 'getReimMan', true);

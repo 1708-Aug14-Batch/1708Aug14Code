@@ -1,39 +1,47 @@
 <div>
-	<p id="passText" style="display: none; background-color: #62fc5f;" class="alert alert-info" >Settings successfully updated</p>
-	<p id="failText" style="display: none; background-color: #f93131;" class="alert alert-info" >Settings update failed</p>
-	<p id="failpassText" style="display: none; background-color: #f93131;" class="alert alert-info" >Current Password is wrong</p>
-	<table id="SetTable">
-		<thead>
-			<tr>
-				<th>Email</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Password</th>
-			</tr>
-		</thead>
-		<tbody id="SetTableBody">
-			<tr>
-				<td id="SetEmail">Temp</td>
-				<td id="SetFirst">Temp</td>
-				<td id="SetLast">Temp</td>
-				<td id="SetPass">Temp</td>
-			</tr>
-		</tbody>
-	</table>
-	<br>
-	<button id="SetPassButt">Update Information</button>
-	<br>
-	<p id="SetUpText" style="display: none; color: red">Password Required (For authentication / renewal)</p>
-	<br>
-	<input type="text" id="SetUpEmail" placeholder="New Email" style="display: none;"/>
-	<br>
-	<input type="text" id="SetUpFirst" placeholder="New First Name" style="display: none;"/>
-	<br>
-	<input type="text" id="SetUpLast" placeholder="New Last Name" style="display: none;"/>
-	<br>
-	<input type="password" id="SetUpPass" placeholder="New / Old Password" style="display: none;"/>
-	<br>
-	<input type="password" id="SetUpPassCon" placeholder="Old Password" style="display: none;"/>
-	<br>
-	<input type="submit" id="SetUpSubmit" style="display: none;"/>
+	<div class="displayDivs" style="height: 100%">
+		<p id="passText" style="display: none; background-color: #62fc5f;" class="alert alert-info" >Settings successfully updated</p>
+		<p id="failText" style="display: none; background-color: #f93131;" class="alert alert-info" >Settings update failed</p>
+		<p id="failpassText" style="display: none; background-color: #f93131;" class="alert alert-info" >Current Password is wrong</p>
+		<br>
+		<h1 class="MarkerText">My Settings</h1>
+		<br>
+		<table id="SetTable" class="table">
+			<thead>
+				<tr>
+					<th>Email</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Password</th>
+				</tr>
+			</thead>
+			<tbody id="SetTableBody">
+				<tr>
+					<td id="SetEmail">Temp</td>
+					<td id="SetFirst">Temp</td>
+					<td id="SetLast">Temp</td>
+					<td id="SetPass">Temp</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<button id="SetPassButt" class="btn btn-primary">Update Information</button>
+		<div id="SetUpDivThing" style="display: none;">
+			<br>
+			<p id="SetUpText" style="color: red">Password Required (For authentication / renewal)</p>
+			<br>
+			<input type="text" id="SetUpEmail" placeholder="New Email" />
+			<br>
+			<input type="text" id="SetUpFirst" placeholder="New First Name" />
+			<br>
+			<input type="text" id="SetUpLast" placeholder="New Last Name" />
+			<br>
+			<input type="password" id="SetUpPass" placeholder="New / Old Password" />
+			<br>
+			<input type="password" id="SetUpPassCon" placeholder="Old Password" />
+			<br>
+			<input type="submit" id="SetUpSubmit" class="btn btn-success" />
+		</div>
+		<br>
+	</div>
 </div>

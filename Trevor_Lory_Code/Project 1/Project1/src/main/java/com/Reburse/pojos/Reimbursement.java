@@ -119,11 +119,11 @@ public class Reimbursement {
 	public String getStatusName(int StatusID) {
 		switch(StatusID) {
 		case 0:
-			return "Pending";
+			return "<b style='color: blue'>Pending<b>";
 		case 1:
-			return "Approved";
+			return "<b style='color: green'>Approved<b>";
 		case 2:
-			return "Denied";
+			return "<b style='color: red'>Denied<b>";
 		}
 		return "Improper StatusID";
 	}

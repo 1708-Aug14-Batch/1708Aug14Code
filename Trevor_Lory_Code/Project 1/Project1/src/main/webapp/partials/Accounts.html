@@ -1,16 +1,21 @@
 <div>
-	<button id="AddEmpButt">Add New Employee</button> <br>
-	<div id="AddDiv" style="display: none">
-		<input type="text" id="AddFirst" placeholder="First Name"/> <br>
-		<input type="text" id="AddLast" placeholder="Last Name"/> <br>
-		<input type="text" id="AddEmail" placeholder="Email"/> <br>
-		<input type="checkbox" id="AddMan"/> Manager?<br>
-		<button id="AddEmpButtSub">Submit</button> <br>
+	<div class="displayDivs">
+		<br>
+		<h1 class="MarkerText">Employee Accounts</h1>
+		<br>
+		<button id="AddEmpButt" class="btn btn-primary">Add New Employee</button> <br>
+		<div id="AddDiv" style="display: none">
+			<input type="text" id="AddFirst" placeholder="First Name"/> <br>
+			<input type="text" id="AddLast" placeholder="Last Name"/> <br>
+			<input type="text" id="AddEmail" placeholder="Email"/> <br>
+			<label><input type="checkbox" id="AddMan"/> Manager?</label><br>
+			<button id="AddEmpButtSub" class="btn btn-success">Submit</button> <br>
+		</div>
+		<table id="AccTable" class="display">
+			<thead>
+			</thead>
+			<tbody id="AccTableBody">
+			</tbody>
+		</table>
 	</div>
-	<table id="AccTable" class="display">
-		<thead>
-		</thead>
-		<tbody id="AccTableBody">
-		</tbody>
-	</table>
 </div>

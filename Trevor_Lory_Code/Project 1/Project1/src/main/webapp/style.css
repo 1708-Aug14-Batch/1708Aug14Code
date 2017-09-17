@@ -107,3 +107,38 @@ a:hover { text-decoration: none }
 #pswd_info {
     display:none;
 }
+
+/* My CSS */
+
+.displayDivs {
+	width:80%; 
+	height: 100vw; 
+	margin: auto; 
+	background-color: #d4dbd7;
+}
+
+.MarkerText {
+	width: 80%;
+	margin: auto;
+}
+
+.ReimStats {
+	width: 80%;
+	margin: auto;
+	background-color: snow;
+	border: 5px solid black;
+    border-radius: 15px;
+}
+
+.displayText {
+	font-size: 250%;
+}
+
+.numberText {
+	font-size: 300%;
+}
+
+
+
+
+
