@@ -107,33 +107,39 @@ function loadDashboardView(){
 	xhr.send();
 };
 
+$.each(data.dates, function(index, element) {
+	alert(element.timeStamp); 
+});
+
+
+
 $(function () {
-    $('#table').bootstrapTable({
-        idField: 'name',
-        url: '/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/',
-        columns: [{
-            field: 'name',
-            title: 'Name'
-        }, {
-            field: 'stargazers_count',
-            title: 'Stars',
-            editable: {
-                type: 'text'
-            }
-        }, {
-            field: 'forks_count',
-            title: 'Forks',
-            editable: {
-                type: 'text'
-            }
-        }, {
-            field: 'description',
-            title: 'Description',
-            editable: {
-                type: 'textarea'
-            }
-        }]
-    });
+	$('#table').bootstrapTable({
+		idField: 'name',
+		url: '/gh/get/response.json/wenzhixin/bootstrap-table/tree/master/docs/data/data1/',
+		columns: [{
+			field: 'name',
+			title: 'Name'
+		}, {
+			field: 'stargazers_count',
+			title: 'Stars',
+			editable: {
+				type: 'text'
+			}
+		}, {
+			field: 'forks_count',
+			title: 'Forks',
+			editable: {
+				type: 'text'
+			}
+		}, {
+			field: 'description',
+			title: 'Description',
+			editable: {
+				type: 'textarea'
+			}
+		}]
+	});
 });
 function loadReimbursmentPageView(){
 	var xhr = new XMLHttpRequest();
@@ -166,6 +172,15 @@ function loadSettingsPageView(){
 };
 
 
+function editReimbursement() {
+//document.getElementsByTagName("td").contentEditable = true;
+document.getElementById("remTable").contentEditable = true;
+// document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
+};
+
+
+
+
 //Can edit this to hold both manager info and user info
 function getReimbursmentPageInfo(){ // loads basic user info and account info into html
 	var xhr = new XMLHttpRequest();
@@ -176,39 +191,49 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 			var dto = JSON.parse(xhr.responseText);
 			var someUser = dto.user;
 			var rem = dto.reimbursement;
-             
+
 			// need to fix this data breach
-			
-			 console.log(someUser);
-			 console.log(someUser.isManger);
-             var checkIfManager = someUser
+
+			console.log(someUser);
+			console.log(someUser.isManger);
+			var checkIfManager = someUser
 			// check to see if user roll is manager or plain user
 			if(someUser.isManger == 0){
 				if (rem.length == 0){
 					document.getElementById("reimbursements").style.visibility = "hidden"; 
 				}
 				else{
-				for(var i = 0; i < rem.length; i++){
-					// populate users table
-					var table = document.getElementById("remTable");
-					var row = table.insertRow();
-					var remid = row.insertCell(0);
-					var amount = row.insertCell(1);
-					var sumitdate = row.insertCell(2);
-					var description = row.insertCell(3);
-					remid.innerHTML = rem[i].reimburseid;
-					amount.innerHTML = "$" + rem[i].amount;
-					sumitdate.innerHTML = rem[i].submitDate;
-					description.innerHTML =  rem[i].description;
-				}
+					for(var i = 0; i < rem.length; i++){
+						// populate users table
+						var table = document.getElementById("remTable");
+						var row = table.insertRow();
+						var remid = row.insertCell(0);
+						var amount = row.insertCell(1);
+						var sumitdate = row.insertCell(2);
+						var description = row.insertCell(3);
+						remid.innerHTML = rem[i].reimburseid;
+						amount.innerHTML = "$" + rem[i].amount;
+						sumitdate.innerHTML = rem[i].submitDate;
+						description.innerHTML =  rem[i].description;
+					}
 				}
 			}
 
 			else{
 				for(var i = 0; i < rem.length; i++){
+					var btn = document.createElement("BUTTON")
+				//	var node = document.cr
+//					btn.id = 'EditButton';
+//					btn.innerHTML = 'EDIT';
+//					btn.setAttribute("value", 'EDIT');
+//					btn.setAttribute("text", 'EDIT');
+//					btn.style.fontSize = "14px";
+//					btn.style.backgroundColor = '#4CAF50';
+					
 					// populate managers table
 					var table = document.getElementById("remTable");
 					var row = table.insertRow();
+					//var button = row.
 					var remId = row.insertCell(0);
 					var submitterId = row.insertCell(1);
 					var resId = row.insertCell(2);
@@ -218,16 +243,22 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 					var statusId = row.insertCell(6);
 					var description = row.insertCell(7);
 					var amount = row.insertCell(8);
+					var edit = row.insertCell(9);// insert edit button
 
 					remId.innerHTML = rem[i].reimburseid;
-					submitterId.innerHTML = rem[i].submitterId;
-					resId.innerHTML = rem[i].resolverId;
+					submitterId.innerHTML = rem[i].submitterID;
+					resId.innerHTML = rem[i]. resolverID;
 					submitdate.innerHTML = rem[i].submitDate;
 					reslvDate.innerHTML =  rem[i].resolvedDate;
 					reslvNote.innerHTML =  rem[i].resolvedNote;
 					statusId.innerHTML = rem[i].statusID;
 					description.innerHTML =  rem[i].description;
 					amount.innerHTML = "$" + rem[i].amount;
+					//edit.innerHTML = btn;editReimbursement()
+					//edit.innerHTML = "</td><td><button onclick='edit("+i+")'>Edit</button>";
+					edit.innerHTML = "</td><td><button onclick='editReimbursement()'>Edit</button>";
+					
+				
 				}
 			}
 

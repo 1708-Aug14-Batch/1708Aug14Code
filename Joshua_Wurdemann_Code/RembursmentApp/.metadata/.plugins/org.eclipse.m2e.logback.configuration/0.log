@@ -4983,3 +4983,276 @@ org.eclipse.core.runtime.CoreException: Launch configuration DAOimpTest referenc
 2017-09-16 21:21:20,702 [Worker-246] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
 2017-09-16 21:21:20,702 [Worker-246] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
 2017-09-16 21:21:20,718 [Worker-246] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:23:24,258 [Worker-287] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:23:24,263 [Worker-287] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:23:24,264 [Worker-287] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:23:24,265 [Worker-287] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:23:55,290 [Worker-290] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:23:55,291 [Worker-290] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:23:55,292 [Worker-290] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:23:55,293 [Worker-290] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:25:09,626 [Worker-283] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:25:09,627 [Worker-283] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:25:09,628 [Worker-283] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:25:09,629 [Worker-283] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:25:24,691 [Worker-285] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 09:25:25,216 [Worker-285] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 09:25:26,022 [Worker-285] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 09:25:26,023 [Worker-285] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 09:25:26,023 [Worker-285] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 09:25:26,023 [Worker-285] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 09:25:26,332 [Worker-285] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 09:25:26,341 [Worker-285] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 09:25:26,965 [Worker-287] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:25:26,967 [Worker-287] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:25:26,968 [Worker-287] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 09:25:26,969 [Worker-287] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 09:25:26,969 [Worker-287] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 09:25:26,969 [Worker-287] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 09:25:26,978 [Worker-287] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:16:28,688 [Worker-318] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:16:28,695 [Worker-318] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:16:28,696 [Worker-318] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:16:28,697 [Worker-318] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:19:02,529 [Worker-311] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:19:02,532 [Worker-311] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:19:02,534 [Worker-311] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:19:02,538 [Worker-311] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:20:57,120 [Worker-319] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:20:57,121 [Worker-319] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:20:57,122 [Worker-319] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:20:57,123 [Worker-319] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:21:09,983 [Worker-319] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:21:09,986 [Worker-319] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:21:09,988 [Worker-319] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:21:09,992 [Worker-319] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:21:19,230 [Worker-306] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:21:19,233 [Worker-306] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:21:19,235 [Worker-306] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:21:19,237 [Worker-306] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:22:34,289 [Worker-317] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:22:34,292 [Worker-317] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:22:34,294 [Worker-317] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:22:34,297 [Worker-317] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:38:20,561 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:38:20,711 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:38:20,714 [Worker-5] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:38:20,716 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:42:11,383 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:42:11,388 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:42:11,390 [Worker-4] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:42:11,391 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:42:53,500 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:42:53,502 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:42:53,505 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:42:53,506 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:52:55,943 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:52:55,945 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:52:55,946 [Worker-23] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:52:55,947 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:54:29,368 [Worker-28] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:54:29,370 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:54:29,373 [Worker-28] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:54:29,378 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:54:45,518 [Worker-28] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:54:45,521 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 12:54:45,524 [Worker-28] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 12:54:45,527 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 13:09:24,442 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 13:09:24,457 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 13:09:24,457 [Worker-30] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 13:09:24,457 [Worker-30] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 13:09:46,499 [Worker-30] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 13:09:47,263 [Worker-30] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 13:09:48,239 [Worker-30] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 13:09:48,239 [Worker-30] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 13:09:48,239 [Worker-30] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 13:09:48,239 [Worker-30] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 13:09:48,818 [Worker-30] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 13:09:48,826 [Worker-30] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2017-09-17 13:09:49,654 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 13:09:49,656 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 13:09:49,658 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 13:09:49,660 [Worker-32] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 13:09:49,661 [Worker-32] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 13:09:49,662 [Worker-32] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 13:09:49,667 [Worker-32] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:06:55,362 [Worker-41] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:06:55,366 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:06:55,368 [Worker-41] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:06:55,369 [Worker-41] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:36:59,249 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:36:59,251 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:36:59,255 [Worker-48] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:36:59,259 [Worker-48] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:37:06,166 [Worker-48] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 14:37:06,921 [Worker-48] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 14:37:08,008 [Worker-48] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 14:37:08,008 [Worker-48] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 14:37:08,009 [Worker-48] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 14:37:08,009 [Worker-48] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 14:37:08,398 [Worker-48] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 14:37:08,407 [Worker-48] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 2 sec
+2017-09-17 14:37:08,954 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:37:08,956 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:37:08,962 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:37:08,964 [Worker-49] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:37:08,964 [Worker-49] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 14:37:08,964 [Worker-49] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 14:37:08,977 [Worker-49] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:59:34,289 [Worker-57] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:59:34,289 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 14:59:34,289 [Worker-57] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 14:59:34,289 [Worker-57] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:00:41,407 [Worker-57] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 15:00:41,918 [Worker-57] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 15:00:42,650 [Worker-57] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 15:00:42,650 [Worker-57] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 15:00:42,650 [Worker-57] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 15:00:42,650 [Worker-57] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 15:00:42,972 [Worker-57] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 15:00:42,980 [Worker-57] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 15:00:43,415 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:00:43,417 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:00:43,419 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:00:43,420 [Worker-54] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:00:43,420 [Worker-54] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 15:00:43,420 [Worker-54] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 15:00:43,420 [Worker-54] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:11:22,683 [Worker-56] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:11:22,689 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:11:22,691 [Worker-56] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:11:22,696 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:11:32,598 [Worker-66] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 15:11:33,182 [Worker-66] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 15:11:33,830 [Worker-66] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 15:11:33,831 [Worker-66] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 15:11:33,831 [Worker-66] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 15:11:33,831 [Worker-66] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 15:11:34,197 [Worker-66] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 15:11:34,213 [Worker-66] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 15:11:34,592 [Worker-66] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:11:34,593 [Worker-66] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:11:34,594 [Worker-66] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:11:34,596 [Worker-66] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:11:34,596 [Worker-66] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 15:11:34,596 [Worker-66] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 15:11:34,600 [Worker-66] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:27:38,633 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:27:38,636 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:27:38,638 [Worker-72] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:27:38,639 [Worker-72] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:28:19,484 [Worker-68] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 15:28:20,144 [Worker-68] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 15:28:20,816 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 15:28:20,816 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 15:28:20,817 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 15:28:20,817 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 15:28:21,108 [Worker-68] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 15:28:21,116 [Worker-68] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 15:28:21,954 [Worker-71] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:28:21,955 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:28:21,957 [Worker-71] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:28:21,958 [Worker-71] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:28:21,958 [Worker-71] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 15:28:21,958 [Worker-71] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 15:28:21,961 [Worker-71] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:29:55,418 [Worker-68] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 15:29:56,035 [Worker-68] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 15:29:56,842 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 15:29:56,842 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 15:29:56,843 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 15:29:56,843 [Worker-68] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 15:29:57,185 [Worker-68] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 15:29:57,191 [Worker-68] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 15:29:57,914 [Worker-73] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:29:57,915 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:29:57,916 [Worker-73] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:29:57,917 [Worker-73] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:29:57,917 [Worker-73] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 15:29:57,917 [Worker-73] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 15:29:57,919 [Worker-73] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:29:59,489 [Worker-56] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:29:59,491 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:29:59,492 [Worker-56] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:29:59,493 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:45:25,618 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:45:25,621 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:45:25,623 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:45:25,625 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:10,597 [Worker-56] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 15:46:11,111 [Worker-56] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 15:46:11,789 [Worker-56] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 15:46:11,789 [Worker-56] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 15:46:11,790 [Worker-56] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 15:46:11,790 [Worker-56] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 15:46:12,055 [Worker-56] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 15:46:12,064 [Worker-56] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 15:46:12,852 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:12,853 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:12,854 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:12,856 [Worker-68] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:12,856 [Worker-68] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 15:46:12,856 [Worker-68] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 15:46:12,860 [Worker-68] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:15,289 [Worker-56] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:15,291 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:15,292 [Worker-56] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:15,293 [Worker-56] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:18,156 [Worker-78] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 15:46:18,719 [Worker-78] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 15:46:19,392 [Worker-78] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 15:46:19,393 [Worker-78] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 15:46:19,393 [Worker-78] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 15:46:19,393 [Worker-78] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 15:46:19,692 [Worker-78] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 15:46:19,705 [Worker-78] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 15:46:20,378 [Worker-80] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:20,379 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:20,380 [Worker-80] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 15:46:20,381 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 15:46:20,382 [Worker-80] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 15:46:20,382 [Worker-80] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 15:46:20,386 [Worker-80] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:18:47,629 [Worker-85] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:18:47,632 [Worker-85] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:18:47,632 [Worker-85] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:18:47,633 [Worker-85] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:18:53,937 [Worker-89] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:18:53,938 [Worker-89] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:18:53,940 [Worker-89] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:18:53,942 [Worker-89] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:19:08,471 [Worker-81] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 16:19:08,940 [Worker-81] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 16:19:09,667 [Worker-81] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 16:19:09,667 [Worker-81] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 16:19:09,667 [Worker-81] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 16:19:09,667 [Worker-81] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 16:19:10,002 [Worker-81] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 16:19:10,010 [Worker-81] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 16:19:10,737 [Worker-87] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:19:10,738 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:19:10,740 [Worker-87] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:19:10,741 [Worker-87] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:19:10,741 [Worker-87] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 16:19:10,741 [Worker-87] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 16:19:10,744 [Worker-87] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:21:22,011 [Worker-88] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:21:22,019 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:21:22,021 [Worker-88] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:21:22,023 [Worker-88] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:21:28,709 [Worker-88] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2017-09-17 16:21:29,220 [Worker-88] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.revuture:ReimbursementAPP:0.0.1-SNAPSHOT @ C:\Users\joshw\my_git_repos\1708Aug14Code\Joshua_Wurdemann_Code\RembursmentApp\ReimbursementAPP\pom.xml.
+2017-09-17 16:21:29,865 [Worker-88] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/main/java
+2017-09-17 16:21:29,865 [Worker-88] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/main/resources
+2017-09-17 16:21:29,866 [Worker-88] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /ReimbursementAPP/src/test/java
+2017-09-17 16:21:29,866 [Worker-88] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /ReimbursementAPP/src/test/resources
+2017-09-17 16:21:30,155 [Worker-88] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for ReimbursementAPP
+2017-09-17 16:21:30,163 [Worker-88] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 1 sec
+2017-09-17 16:21:30,802 [Worker-91] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:21:30,804 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:21:30,806 [Worker-91] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-09-17 16:21:30,807 [Worker-91] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-09-17 16:21:30,807 [Worker-91] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of ReimbursementAPP
+2017-09-17 16:21:30,807 [Worker-91] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for ReimbursementAPP
+2017-09-17 16:21:30,810 [Worker-91] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!

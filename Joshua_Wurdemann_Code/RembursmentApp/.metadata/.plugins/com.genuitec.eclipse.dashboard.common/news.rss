@@ -12,12 +12,27 @@
 	<atom:link href="https://www.genuitec.com/feed/" rel="self" type="application/rss+xml" />
 	<link>https://www.genuitec.com</link>
 	<description>The Cloud Control Company</description>
-	<lastBuildDate>Fri, 15 Sep 2017 05:55:39 +0000</lastBuildDate>
+	<lastBuildDate>Sat, 16 Sep 2017 05:39:56 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 	<generator>https://wordpress.org/?v=4.6.1</generator>
 	<item>
+		<title>Equifax Data Breach Advisory</title>
+		<link>https://www.genuitec.com/equifax-data-breach-advisory/</link>
+		<pubDate>Fri, 15 Sep 2017 19:16:46 +0000</pubDate>
+		<dc:creator><![CDATA[Brian Fernandes]]></dc:creator>
+				<category><![CDATA[Genuitec]]></category>
+		<category><![CDATA[Programming Tips]]></category>
+		<category><![CDATA[data breach]]></category>
+		<category><![CDATA[security]]></category>
+
+		<guid isPermaLink="false">https://www.genuitec.com/?p=536886</guid>
+		<description><![CDATA[<p>Many of you may have heard of the Equifax data breach, possibly affecting millions of consumers. Information accessed by hackers during the incident included Social Security numbers, personal details, driver’s license numbers, and even credit card numbers.Equifax has confirmed that the breach was made possible by a vulnerability in the Apache Struts Web Framework, used [&#8230;]</p>
+<p>The post <a rel="nofollow" href="https://www.genuitec.com/equifax-data-breach-advisory/">Equifax Data Breach Advisory</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
+]]></description>
+		</item>
+		<item>
 		<title>Creating a Bus Fare Comparison App with Angular 4 and Node.js</title>
 		<link>https://www.genuitec.com/creating-bus-fare-comparison-app-angular-4-node-js/</link>
 		<pubDate>Fri, 08 Sep 2017 19:06:39 +0000</pubDate>
@@ -265,32 +280,14 @@
 <p>The post <a rel="nofollow" href="https://www.genuitec.com/angular-ide-vs-webstorm-for-angular-coding/">Angular IDE vs WebStorm for Angular Coding.</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
 ]]></description>
 		</item>
-		<item>
-		<title>Create a Kanban Board with Angular 4</title>
-		<link>https://www.genuitec.com/create-kanban-board-angular-4/</link>
-		<pubDate>Thu, 13 Jul 2017 13:43:09 +0000</pubDate>
-		<dc:creator><![CDATA[Bob at Genuitec]]></dc:creator>
-				<category><![CDATA[Eclipse]]></category>
-		<category><![CDATA[Genuitec]]></category>
-		<category><![CDATA[MyEclipse]]></category>
-		<category><![CDATA[Programming Tips]]></category>
-		<category><![CDATA[Angular 4]]></category>
-		<category><![CDATA[angular 4 app]]></category>
-		<category><![CDATA[kanban board]]></category>
-
-		<guid isPermaLink="false">https://www.genuitec.com/?p=527574</guid>
-		<description><![CDATA[<p>In this tutorial, we will be creating a simple Kanban board with Angular 4. A Kanban board is a work and workflow visualization tool that enables you to optimize the flow of your work, a basic Kanban board has a three-step workflow: To Do, In Progress, and Done.Live DemoWe represent every work item as a [&#8230;]</p>
-<p>The post <a rel="nofollow" href="https://www.genuitec.com/create-kanban-board-angular-4/">Create a Kanban Board with Angular 4</a> appeared first on <a rel="nofollow" href="https://www.genuitec.com">Genuitec</a>.</p>
-]]></description>
-		</item>
 	</channel>
 </rss>
 
 <!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
 
-Object Caching 9311/9435 objects using disk
+Object Caching 9280/9402 objects using disk
 Page Caching using disk: enhanced (Requested URI is rejected)
 Content Delivery Network via resources.cloud.genuitec.com
-Database Caching using disk
+Database Caching 4/46 queries in 0.023 seconds using disk
 
- Served from: www.genuitec.com @ 2017-09-15 01:17:12 by W3 Total Cache -->
+ Served from: www.genuitec.com @ 2017-09-17 11:38:22 by W3 Total Cache -->
