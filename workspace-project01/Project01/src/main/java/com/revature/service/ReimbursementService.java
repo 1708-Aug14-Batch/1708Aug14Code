@@ -7,7 +7,9 @@ import java.util.ArrayList;
 
 import com.revature.dao.RUserDAO;
 import com.revature.dao.ReimbursementDAO;
-import com.revature.model.*;
+import com.revature.dto.EditRequestDTO;
+import com.revature.model.RUser;
+import com.revature.model.Reimbursement;
 
 /**
  * @author Will Underwood
@@ -125,6 +127,18 @@ public class ReimbursementService {
 	
 	public Reimbursement getSingleReimb(int rID) {
 		return this.reimbDAO.read(rID);
+	}
+	
+	public int updateReimb(EditRequestDTO reqData) {
+		if (reqData == null) {
+			throw new IllegalArgumentException("Reimbursement request data cannot be null");
+		}
+		Reimbursement reimbToEdit = this.reimbDAO.read(reqData.getrID());
+		java.sql.Date currentDateTime = new java.sql.Date(new java.util.Date().getTime());
+		reimbToEdit.setDateResolved(currentDateTime);
+		reimbToEdit.setResolutionNotes(reqData.getResolutionNotes());
+		reimbToEdit.setStatusID(reqData.getStatus());
+		return this.reimbDAO.update(reimbToEdit);
 	}
 	
 }

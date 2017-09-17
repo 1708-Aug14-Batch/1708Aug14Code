@@ -296,6 +296,7 @@ function viewRequestPage(id) {
 			$(document).on('click', '#statusPending', changeStatus);
 			$(document).on('click', '#statusApprove', changeStatus);
 			$(document).on('click', '#statusDeny', changeStatus);
+			$(document).on('click', '#submit', updateReq)
 			getEmpRequest(id);
 		}
 	}
@@ -333,26 +334,27 @@ function changeStatus() {
 	}
 }
 
-function approveReq() {
+function updateReq() {
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
-			var reimb = JSON.parse(request.responseText);
-			$('#status').html(reimb.statusID);
-			$('#dateResolved').html(reimb.dateResolved);
-			$('#showResNotes').html(reimb.resolutionNotes);
+			$('#view').html(request.responseText);
 		}
 	}
 	var rID = $('#rID').val();
-	var approved = true;
-	var dto = {rID, approved};
-	request.open("GET", "manager-edit-request", true);
+	var status = 1;
+	if (document.getElementById('statusApprove').checked) {
+		status = 2;
+	}
+	if (document.getElementById('statusDeny').checked) {
+		status = 3;
+	}
+	var resolutionNotes = document.getElementById('resNotes').value;
+	var dto = {rID, status, resolutionNotes};
+	dto = JSON.stringify(dto);
+	request.open("POST", "manager-edit-request", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.send(rID);
-}
-
-function denyReq() {
-	
+	request.send(dto);
 }
 
 function showRegisterView() {

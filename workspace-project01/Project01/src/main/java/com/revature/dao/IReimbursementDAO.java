@@ -25,6 +25,6 @@ public interface IReimbursementDAO {
 	/**
 	 * UPDATE
 	 */
-	void update(Reimbursement reimbursement);
+	int update(Reimbursement reimbursement);
 
 }

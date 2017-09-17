@@ -116,12 +116,13 @@ public class ReimbursementDAO implements IReimbursementDAO {
 	 * @see com.revature.dao.IReimbursementDAO#update(com.revature.model.Reimbursement)
 	 */
 	@Override
-	public void update(Reimbursement reimbursement) {
+	public int update(Reimbursement reimbursement) {
 		if (reimbursement == null) {
 			throw new IllegalArgumentException("Reimbursement cannot be null");
 		}
+		int rowsAffected = 0;
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
-			String sql = "UPDATE r_user SET status_id = ?, date_resolved = ?, description = ?, resolution_notes = ?, amount = ? WHERE r_id = ?";
+			String sql = "UPDATE reimbursement SET status_id = ?, date_resolved = ?, description = ?, resolution_notes = ?, amount = ? WHERE r_id = ?";
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, reimbursement.getStatusID());
 			statement.setDate(2, reimbursement.getDateResolved());
@@ -129,10 +130,11 @@ public class ReimbursementDAO implements IReimbursementDAO {
 			statement.setString(4, reimbursement.getResolutionNotes());
 			statement.setDouble(5, reimbursement.getAmount());
 			statement.setInt(6, reimbursement.getReimbursementID());
-			statement.executeUpdate();
+			rowsAffected = statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return rowsAffected;
 	}
 
 }
