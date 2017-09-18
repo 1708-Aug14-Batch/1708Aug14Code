@@ -54,7 +54,7 @@ function getUserInformation(){
 					var d = new Date(reimb[i].submitdate);
 					
 					subdate.innerHTML = d+ " ";
-					if(reimb[i].resolvedate == null){
+					if(reimb[i].resolveddate != null){
 						var d2 = new Date(reimb[i].resolveddate);
 						resdate.innerHTML = d2 + " ";
 					}
