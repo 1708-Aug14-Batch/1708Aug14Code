@@ -31,7 +31,7 @@ public class GetDashboardServlet extends HttpServlet{
 		Service serv = new Service();
 		HttpSession session = request.getSession();
 		User sessionUser = (User)session.getAttribute("user");
-		HashMap<Integer, Reimbursement> requests = serv.getRequestsByEmployee(sessionUser);
+		//HashMap<Integer, Reimbursement> requests = serv.getRequestsByEmployee(sessionUser);
 		if (sessionUser != null) {
 			//DTO dto = new DTO(sessionUser, requests);
 			ObjectMapper mapper = new ObjectMapper();

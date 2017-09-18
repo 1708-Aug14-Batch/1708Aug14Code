@@ -24,16 +24,20 @@ public class Service {
 		return dao.editUser(u);
 	}
 	
-	public int resolveRequest(Reimbursement r) {
-		return dao.resolveRequest(r);
+	public int resolveRequest(int id, int status, String notes, int resolverId) {
+		return dao.resolveRequest(id, status, notes, resolverId);
 	}
 	
-	public HashMap<Integer, User> getAllEmployees() {
+	public ArrayList<User> getAllEmployees() {
 		return dao.getAllEmployees();
 	}
 	
-	public HashMap<Integer, Reimbursement> getRequestsByEmployee(User u) {
+	public ArrayList<Reimbursement> getRequestsByEmployee(User u) {
 		return dao.getEmployeeReimbursements(u);
+	}
+	
+	public Reimbursement getReimbursementById(int id) {
+		return dao.getReimbursementById(id);
 	}
 	
 	public ArrayList<Reimbursement> getAllRequests() {

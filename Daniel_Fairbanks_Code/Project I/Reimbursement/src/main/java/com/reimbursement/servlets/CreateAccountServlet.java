@@ -1,7 +1,16 @@
 package com.reimbursement.servlets;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +23,7 @@ import com.reimbursement.service.Service;
 public class CreateAccountServlet extends HttpServlet {
 
 	private Service runApp = new Service();
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fname = request.getParameter("fname");
@@ -29,32 +38,54 @@ public class CreateAccountServlet extends HttpServlet {
 		User tmp = runApp.validateEmail(email);
 		if (tmp != null) {
 			System.out.println("Email is already taken...");
-			response.sendRedirect("login.html");
-			return;
-		}
-		if (!pword.equals(pword_c)) {
+		} 
+		else if (!pword.equals(pword_c)) {
 			System.out.println("Passwords don't match...");
-			response.sendRedirect("login.html");
-			return;
 		}
+		else {
+			//TODO: Create a randomly generated password.
+			int id = runApp.registerEmployee(fname, lname, email, pword, isMgr);
+			/*
+			HttpSession session = request.getSession(false);
+			User mgr = (User)session.getAttribute("user");
 
-		int id = runApp.registerEmployee(fname, lname, email, pword, isMgr);
-		if (id != -1) {
-			tmp = new User(id, fname, lname, email, pword, isMgr);
-			response.setContentType("text/html");
-			HttpSession session = request.getSession();
-			synchronized(session) {
-				session.setAttribute("user", tmp);
-			}
-			if (tmp.getIsManager() == true) {
-				System.out.println("You are a manager in the system!");
-				response.sendRedirect("manager.html");
-				return;
-			} else {
-				System.out.println("You are an employee in the system!");
-				response.sendRedirect("employee.html");
-				return;
-			}
+			String to = email;
+			String from = mgr.getEmail();
+			String host = "local";
+			String pass = "PASSWORD";
+			String subject = "Login Credentials";
+			String body = "Hello";
+			
+			Properties props = System.getProperties();
+	        props.put("mail.smtp.starttls.enable", "true");
+	        props.put("mail.smtp.host", host);
+	        props.put("mail.smtp.user", from);
+	        props.put("mail.smtp.password", pass);
+	        props.put("mail.smtp.port", "587");
+	        props.put("mail.smtp.auth", "true");
+
+	        Session es = Session.getDefaultInstance(props);
+	        MimeMessage message = new MimeMessage(es);
+
+	        try {
+	            message.setFrom(new InternetAddress(from));
+	            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+	            message.setSubject(subject);
+	            message.setText(body);
+	            Transport transport = es.getTransport("smtp");
+	            transport.connect(host, from, pass);
+	            transport.sendMessage(message, message.getAllRecipients());
+	            transport.close();
+	        }
+	        catch (AddressException ae) {
+	            ae.printStackTrace();
+	        }
+	        catch (MessagingException me) {
+	            me.printStackTrace();
+	        }
+			*/
 		}
+		response.sendRedirect("manager.html");
+
 	}
 }

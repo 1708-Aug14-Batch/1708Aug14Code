@@ -121,5 +121,12 @@ public class Reimbursement {
 	public void setResolve_date(Timestamp resolve_date) {
 		this.resolve_date = resolve_date;
 	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [id=" + id + ", submitted_by=" + submitted_by + ", resolved_by=" + resolved_by
+				+ ", status=" + status + ", description=" + description + ", resolve_notes=" + resolve_notes
+				+ ", amount=" + amount + ", submit_date=" + submit_date + ", resolve_date=" + resolve_date + "]";
+	}
 	
 }

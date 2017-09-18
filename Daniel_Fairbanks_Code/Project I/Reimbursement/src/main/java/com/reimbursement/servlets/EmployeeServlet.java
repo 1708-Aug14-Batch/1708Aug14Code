@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import com.reimbursement.pojos.User;
 import com.reimbursement.service.Service;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.reimbursement.dto.DTO;
 import com.reimbursement.pojos.Reimbursement;
 
 public class EmployeeServlet  extends HttpServlet {
@@ -22,7 +25,7 @@ public class EmployeeServlet  extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		/*
 		StringBuilder sb = new StringBuilder("");
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -66,7 +69,24 @@ public class EmployeeServlet  extends HttpServlet {
 		}
 		PrintWriter out = response.getWriter();
 		out.write(sb.toString());
-		out.close();
+		out.close();*/
+		
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			response.setStatus(418);
+		}
+		else {
+			User tmp = (User)session.getAttribute("user");
+			ArrayList<Reimbursement> requests = runApp.getRequestsByEmployee(tmp);
+			DTO dto = new DTO(tmp, requests, null);
+
+			ObjectWriter objWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
+			String json = objWriter.writeValueAsString(dto);
+			response.setContentType("application/json");
+			PrintWriter out = response.getWriter();
+			out.write(json);
+			out.close();
+		}
 	}
 	
 	@Override

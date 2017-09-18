@@ -32,7 +32,10 @@ public class EditAccountInfoServlet extends HttpServlet {
 		String pword_c = request.getParameter("pword_c");
 		if (runApp.validateEmail(email) != null && tmp.getEmail().equals(email) == false) {
 			System.out.println("Email is already taken...");
-			response.sendRedirect("login.html");
+			if (tmp.getIsManager() == false)
+				response.sendRedirect("employee.html");
+			else
+				response.sendRedirect("manager.html");
 			return;
 		}
 		else {
@@ -47,11 +50,18 @@ public class EditAccountInfoServlet extends HttpServlet {
 				synchronized(session) {
 					session.setAttribute("user", tmp);
 				}
-				response.sendRedirect("employee.html");
+
+				if (tmp.getIsManager() == false)
+					response.sendRedirect("employee.html");
+				else
+					response.sendRedirect("manager.html");
 				return;
 			} else {
 				System.out.println("You entered the wrong password...");
-				response.sendRedirect("employee.html");
+				if (tmp.getIsManager() == false)
+					response.sendRedirect("employee.html");
+				else
+					response.sendRedirect("manager.html");
 				return;
 			}			
 		}

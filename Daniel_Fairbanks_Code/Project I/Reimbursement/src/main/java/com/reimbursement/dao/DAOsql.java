@@ -98,9 +98,9 @@ public class DAOsql implements DAO {
 		return -1;
 	}
 	
-	public HashMap<Integer, Reimbursement> getEmployeeReimbursements(User u) {
+	public ArrayList<Reimbursement> getEmployeeReimbursements(User u) {
 		
-		HashMap<Integer, Reimbursement> requests = new HashMap<Integer, Reimbursement>();
+		ArrayList<Reimbursement> requests = new ArrayList<Reimbursement>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 	
 			String sql = "SELECT r.RID, r.Amount, r.Description, r.ResolvedNotes, "
@@ -131,13 +131,14 @@ public class DAOsql implements DAO {
 				tmp.setResolve_notes(notes);
 				tmp.setSubmit_date(submitDate);
 				tmp.setResolve_date(resolveDate);
+				tmp.setSubmitter(u);
 				User resolver = new User();
 				resolver.setId(rid);
 				resolver.setFirstname(rFname);
 				resolver.setLastname(rLname);
 				tmp.setResolver(resolver);
 				tmp.setStatus(status);
-				requests.put(id, tmp);
+				requests.add(tmp);
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR: DAOsql - getEmployeeReimbursements");
@@ -145,9 +146,67 @@ public class DAOsql implements DAO {
 		return requests;
 	}
 	
-	public HashMap<Integer, User> getAllEmployees() {
+	public Reimbursement getReimbursementById(int id) {
 		
-		HashMap<Integer, User> users = new HashMap<Integer, User>();
+		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
+	
+			String sql = "SELECT r.Amount, r.Description, r.ResolvedNotes, "
+					+ "r.SubmitDate, r.ResolveDate, ur.Firstname, ur.Lastname, r.StatusID, r.ResolverID, "
+					+ "r.SubmitterID, us.Firstname, us.Lastname, us.Email "
+					+ "FROM Reimbursements r "
+					+ "LEFT JOIN Users ur "
+					+ "ON ur.UserID = r.ResolverID "
+					+ "LEFT JOIN Users us "
+					+ "ON us.UserID = r.SubmitterID "
+					+ "WHERE r.RID = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				Reimbursement tmp = new Reimbursement();
+				BigDecimal amt = rs.getBigDecimal(1);
+				String desc = rs.getString(2);
+				String notes = rs.getString(3);
+				Timestamp submitDate = rs.getTimestamp(4);
+				Timestamp resolveDate = rs.getTimestamp(5);
+				String rFname = rs.getString(6);
+				String rLname = rs.getString(7);
+				int status = rs.getInt(8);
+				int rid = rs.getInt(9);
+				int sid = rs.getInt(10);
+				String sFname = rs.getString(11);
+				String sLname = rs.getString(12);
+				String sEmail = rs.getString(13);
+				tmp.setId(id);
+				tmp.setAmount(amt);
+				tmp.setDescription(desc);
+				tmp.setResolve_notes(notes);
+				tmp.setSubmit_date(submitDate);
+				tmp.setResolve_date(resolveDate);
+				tmp.setStatus(status);
+				User resolver = new User();
+				resolver.setId(rid);
+				resolver.setFirstname(rFname);
+				resolver.setLastname(rLname);
+				tmp.setResolver(resolver);
+				User submitter = new User();
+				submitter.setId(sid);
+				submitter.setFirstname(sFname);
+				submitter.setLastname(sLname);
+				submitter.setEmail(sEmail);
+				tmp.setSubmitter(submitter);
+				return tmp;
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR: DAOsql - getReimbursementById");
+		}	
+		return null;
+	}
+	
+	public ArrayList<User> getAllEmployees() {
+		
+		ArrayList<User> users = new ArrayList<User>();
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			
 			String sql = "SELECT * FROM Users";
@@ -160,8 +219,10 @@ public class DAOsql implements DAO {
 				String email = rs.getString(4);
 				String pword = rs.getString(5);
 				boolean isMgr = rs.getInt(6) == 0 ? false : true;
+				if (isMgr == true)
+					continue;
 				User tmp = new User(id, fname, lname, email, pword, isMgr);
-				users.put(id, tmp);
+				users.add(tmp);
 			}
 		} catch (Exception e) {
 			System.out.println("ERROR: DAOsql - getAllEmployees");
@@ -210,14 +271,16 @@ public class DAOsql implements DAO {
 		return -1;
 	}
 	
-	public int resolveRequest(Reimbursement r) {
+	public int resolveRequest(int id, int status, String notes, int resolverId) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection();) {
 			
 			conn.setAutoCommit(false);
-			String sql = "{call resolveRequest(?, ?)}";
+			String sql = "{call resolveRequest(?, ?, ?, ?)}";
 			CallableStatement cs = conn.prepareCall(sql);
-			cs.setInt(1, r.getId());
-			cs.setInt(2, r.getStatus());
+			cs.setInt(1, id);
+			cs.setInt(2, status);
+			cs.setString(3, notes);
+			cs.setInt(4, resolverId);
 			cs.execute();
 			conn.commit();
 			return 1;
