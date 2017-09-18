@@ -1,0 +1,8 @@
+package com.revature.servlets;
+
+import javax.servlet.annotation.WebServlet;
+
+@WebServlet("/getRemId")
+public class GetRemByRemIdServlet {
+
+}

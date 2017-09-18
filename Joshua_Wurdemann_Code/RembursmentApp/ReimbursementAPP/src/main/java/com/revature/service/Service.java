@@ -79,6 +79,11 @@ public class Service {
    myDao.editUser(u);
    
   }
+
+  public void updateRiembursments(ArrayList<Reimbursement> someRembur) {
+    // TODO Auto-generated method stub
+    
+  }
 }
 
 

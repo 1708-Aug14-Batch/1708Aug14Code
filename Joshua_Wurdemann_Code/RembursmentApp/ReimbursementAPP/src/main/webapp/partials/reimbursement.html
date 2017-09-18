@@ -1,12 +1,11 @@
-<h3>
-	Hello <span id="name"></span>
-</h3>
-<div id="reimbursements">
-	<h2>Users</h2>
 
+<div id="reimbursements">
+	<h2>Riembursements</h2>
+     <div class="searchbar" id="search">
 	<input type="text" id="myInput" onkeyup="myFunction()"
-		placeholder="Search for names.." title="Type in a name">
-	<div> 
+		placeholder="Search for userId.." title="Type in a name">
+	</div>
+	<div id="updateRem">
 				<table id="remTable" align='center' cellspacing=2 cellpadding=5
 			id="data_table" border=1>
 			<tr>
@@ -19,11 +18,10 @@
 				<th>Status:</th>
 				<th>Description:</th>
 				<th>Amount:</th>
-				<th><button onclick="editReimbursements()">Edit</button></th>
-				<!-- works to edit the whole table -->
+			<!-- works to edit the whole table -->
 			</tr>
 		</table>
-		<button type="submit" class="btn btn-primary">Update</button>
+		<button type="submit" id="someButton" onclick="updateReimburements()" class="btn btn-primary">Update</button>
 	</div>
 
 
@@ -32,8 +30,7 @@
 
 <!--  USer Creates new Reimbursement -->
 <div id="theContainer" class="container">
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#myModal">Create Reimbursement</button>
+	
 	<br>
 	<p class="display-4 text-justify text-center" id="username"></p>
 	<br>

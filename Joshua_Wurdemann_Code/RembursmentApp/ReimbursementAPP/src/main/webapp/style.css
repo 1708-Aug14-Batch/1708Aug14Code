@@ -1,5 +1,11 @@
 @CHARSET "ISO-8859-1";
 /* Base CSS */
+.background{
+    background-image: url("http://images2.fanpop.com/images/photos/6900000/Landscape-national-geographic-6910055-500-375.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+}
 
 .alignleft {
     float: left;

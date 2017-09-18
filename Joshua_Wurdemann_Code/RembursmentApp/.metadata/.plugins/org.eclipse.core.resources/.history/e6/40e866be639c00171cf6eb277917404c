@@ -1,0 +1,45 @@
+<div>
+
+
+	<br> Welcome,
+	<p id="name"></p>
+
+	<br>
+<!--  <div id="reimbursements">
+		<table id="remTable">
+			<tr>
+				<th>ReimbursementId:</th>
+				<th>Amount:</th>
+				<th>SummitDate:</th>
+				<th>Description:</th>
+			</tr>
+		</table>
+	</div>-->
+	<br>
+	
+	<input type="text" id="myInput" onkeyup="myFunction()"
+		placeholder="Search for userId.." title="Type in a name">
+	<div id="updateRem">
+				<table id="remTable" align='center' cellspacing=2 cellpadding=5
+			id="data_table" border=1>
+			<tr>
+				<th>RemId:</th>
+				<th>UserId:</th>
+				<th>ResolverId:</th>
+				<th>SummitDate:</th>
+				<th>ResolveDate:</th>
+				<th>ResolveNote:</th>
+				<th>Status:</th>
+				<th>Description:</th>
+				<th>Amount:</th>
+				<th><button onclick="editReimbursements()">Edit</button></th>
+				<!-- works to edit the whole table -->
+			</tr>
+		</table>
+		<button type="submit" onclick="updateReimburements()" class="btn btn-primary">Update</button>
+	</div>
+	
+	
+	
+	
+	

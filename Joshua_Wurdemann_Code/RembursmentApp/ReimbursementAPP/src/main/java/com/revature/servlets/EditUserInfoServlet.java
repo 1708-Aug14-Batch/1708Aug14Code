@@ -47,7 +47,7 @@ public class EditUserInfoServlet extends HttpServlet{
       userService.editUser(someUser);
       session.setAttribute("user", userService);
 
-      req.getRequestDispatcher("partials/dashboard.html").forward(req, res);
+      req.getRequestDispatcher("app.html").forward(req, res);
     }
   }
 }

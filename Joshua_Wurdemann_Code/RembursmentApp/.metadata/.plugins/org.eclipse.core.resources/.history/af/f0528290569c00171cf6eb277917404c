@@ -1,0 +1,69 @@
+<h3>
+	Hello <span id="name"></span>
+</h3>
+<div id="reimbursements">
+	<h2>Users</h2>
+
+	<input type="text" id="myInput" onkeyup="myFunction()"
+		placeholder="Search for names.." title="Type in a name">
+	<div id="updateRem">
+				<table id="remTable" align='center' cellspacing=2 cellpadding=5
+			id="data_table" border=1>
+			<tr>
+				<th>RemId:</th>
+				<th>UserId:</th>
+				<th>ResolverId:</th>
+				<th>SummitDate:</th>
+				<th>ResolveDate:</th>
+				<th>ResolveNote:</th>
+				<th>Status:</th>
+				<th>Description:</th>
+				<th>Amount:</th>
+				<th><button onclick="editReimbursements()">Edit</button></th>
+				<!-- works to edit the whole table -->
+			</tr>
+		</table>
+		<button type="submit" onclick="updateReimburements()" class="btn btn-primary">Update</button>
+	</div>
+
+
+
+<!-- /modal -->
+
+<!--  USer Creates new Reimbursement -->
+<div id="theContainer" class="container">
+	<button type="button" class="btn btn-primary" data-toggle="modal"
+		data-target="#myModal">Create Reimbursement</button>
+	<br>
+	<p class="display-4 text-justify text-center" id="username"></p>
+	<br>
+
+	<div class="row border border-dark mb-3 p-4">
+		<div class="col-2">
+			<h5 class="h5 m-1">Employee Reimbursement</h5>
+		</div>
+		<div class="col-10">
+			<form id="addRem" action="addReimbursement" method="post">
+				<div class="form-group">
+					<label for="inputamount">Amount: $</label> <input type="number"
+						min="5.00" max="1000.00" id="inputamount" name="amount"
+						placeholder="5.00">
+				</div>
+
+				<div class="form-group">
+					<label for="inputdescription">Description:</label>
+					<textarea class="form-control" name="description"
+						id="inputdescription" placeholder="Describe reimbursement"
+						rows="3"></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+
+</div>
+<!-- /row -->
+
+</div>
+<!-- /container -->
+

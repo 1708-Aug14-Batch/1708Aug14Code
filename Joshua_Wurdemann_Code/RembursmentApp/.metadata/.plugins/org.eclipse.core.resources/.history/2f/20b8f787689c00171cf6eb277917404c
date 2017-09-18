@@ -1,0 +1,29 @@
+
+
+
+	<br> Welcome,
+	<p id="name"></p>
+<div id="reimbursements">
+	<h2>Reimbursements</h2>
+	<br>
+
+
+	<table id="remTable" align='center' cellspacing=2 cellpadding=5
+		id="data_table" border=1>
+		<tr>
+			<th>RemId:</th>
+			<th>UserId:</th>
+			<th>ResolverId:</th>
+			<th>SummitDate:</th>
+			<th>ResolveDate:</th>
+			<th>ResolveNote:</th>
+			<th>Status:</th>
+			<th>Description:</th>
+			<th>Amount:</th>
+			<!-- works to edit the whole table -->
+		</tr>
+	</table>
+</div>
+
+
+
