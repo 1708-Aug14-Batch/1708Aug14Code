@@ -121,9 +121,11 @@ function loadHome() {
 
 			$('#view').html(xhr.responseText);
 
-			homeTable = $('#homeTable').DataTable({ 'paging':false, 'scrollY':420, 'lengthChange':false, 'info':false });
+			homeTable = $('#homeTable').DataTable({ 'paging':false, 'scrollY':420, 'dom':'t' });
+			
 			$('input[type="search"]').on('keyup', function () {
 				searchFilter = $(this).val();
+				homeTable.search(searchFilter).draw();
 			});			
 			loadTable();
 			if (shouldAddListeners) {
@@ -158,19 +160,23 @@ function loadTable() {
 			let dto = JSON.parse(xhr.responseText);
 			let user = dto.user;
 			let rows = dto.list;
-
-			$.each(rows, function () {
+			
+			$.each(rows, function (index) {
+				let moreInfo = this.status === 'Pending' ? null : 'more info';
 
 				if (!user.manager) {
-					homeTable.row.add([
+					let row = homeTable.row.add([
 						this.requestId,
 						formatDate(new Date(this.submitDate)),
 						parseFloat(this.amount).formatMoney(),
 						this.status,
 						this.description,
-						null
+						moreInfo,
+						this.resolverName,
+						this.resolveDate,
+						this.notes
 						]);
-
+					
 				} else {
 					if (showEmployees) {
 						homeTable.row.add([
@@ -184,16 +190,32 @@ function loadTable() {
 					else {
 						homeTable.row.add([
 							na(this.requestId),
-							na(this.submitterId),
+							na(this.name),
 							na(formatDate(new Date(this.submitDate))),
 							na(parseFloat(this.amount).formatMoney()),
 							na(this.status),
 							na(this.description),
-							na(formatDate(new Date(this.resolveDate))),
-							na(this.resolverId),
-							null
+							moreInfo,
+							this.resolverName,
+							this.resolveDate,
+							this.notes
 							]);
 					}
+				}
+			});
+			
+			homeTable.on('click', 'td:last-child', function () {
+				if ($(this).text() === 'more info') {
+					log('clicked the last column data');
+					let data = homeTable.row(this).data();
+					
+					$('#id').text(data[0]);
+					$('#desc').text(data[data.length-5]);
+					$('#res').text(data[data.length-3]);
+					$('#resDate').text(formatDate(new Date(data[data.length-2])));
+					$('#resNote').text(data[data.length-1]);
+					
+					$('#moreInfoModal').modal('show');
 				}
 			});
 			homeTable.on('click', 'tr', function () {
@@ -201,6 +223,7 @@ function loadTable() {
 				if (!data) return;
 				homeLog('clicked row '+data[0]);
 				$('#requestId').val(data[0]);
+				log('(after) requestId= '+$('#requestId').val());
 				homeLog('requestId= '+$('#requestId').val());
 
 				if (user.manager) {
@@ -213,21 +236,36 @@ function loadTable() {
 					}
 					else {
 						homeLog('manager request click');
-						$('#resolveModal').modal('show');
+						if (data[4] === 'Pending') {
+							$('#resolveModal').modal('show');
+						}
+						$('#requestNum').text(data[0]);
 					}
 				} else {
 					homeLog('employee request click');
-					$('#expense').text(data[2]);
-					$('#date').text(data[1]);
-					$('#withdrawDescription').text(data[4]);
-					$('#withdrawModal').modal('show');
+					if (data[3] === 'Pending') {
+						$('#expense').text(data[2]);
+						$('#date').text(data[1]);
+						$('#withdrawDescription').text(data[4]);
+						$('#withdrawModal').modal('show');
+					}
+					$('#requestId').val(data[4]);
 				}
 			});
 			homeTable.draw();
+			homeTable.rows().every(function () {
+				if ('Pending' === this.data()[this.data().length-6] || (user.manager && showEmployees)) {
+					$(this.node()).addClass('clickable');
+				}
+			}).draw();
 		}
 	};
 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhr.send(data);
+}
+
+function showMoreInfo() {
+	
 }
 
 function na(val) {
@@ -252,7 +290,7 @@ function formatDate(date) {
 	let amPM = date.getHours() < 12 ? 'am' : 'pm';
 	let hours = date.getHours()%12 == 0 ? 12 : date.getHours()%12;
 	return date.getMonth()+'/'+
-	date.getDay()+'/'+
+	date.getDate()+'/'+
 	(''+date.getFullYear()).slice(-2)+' '+
 	hours+':'+
 	('0'+date.getMinutes()).slice(-2)+' '+

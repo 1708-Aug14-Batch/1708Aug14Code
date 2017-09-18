@@ -29,7 +29,7 @@ public class GetHomeServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
-			log.trace("null session");
+			log.warn("Session doesn't exist");
 			response.setStatus(418);
 			return;
 		}
@@ -43,7 +43,7 @@ public class GetHomeServlet extends HttpServlet {
 
 		User user = (User) session.getAttribute(Service.USER_ATTR);
 		if (user == null) {
-			log.trace("session user is null");
+			log.warn("Session user doesn't exist");
 			response.setStatus(418);
 			return;
 		}

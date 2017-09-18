@@ -15,27 +15,35 @@
 
 <body>
 	<input type="number" id="requestId" class="gone" />
+	<input type="text" id="requestDescription" class="gone" />
+	<input type="text" id="resolver" class="gone" />
+	<input type="text" id="resolveDate" class="gone" />
+	<input type="text" id="note" class="gone" />
 
 	<div id="navContainer">
 		<!-- Fill in Navbar with AJAX request -->
 	</div>
 	<div class="row" id="homeContainer">
-		<div class="bg-light col-sm-3 col-md-2">
-			<br>
+		<div class="bg-light col-md-3 col-lg-2">
 			<div class="col-10 col-center">
-				<button class="btn btn-primary gone" id="newExpense" data-toggle="modal"
-					data-target="#requestModal">New Expense</button>
-				<br> <span class="gone" id="empListCheck"><input type="checkbox"
-					id="showEmployees" /> Employees</span><br> <br> Show:  <br> <input type="checkbox"
-					class="chooseStatus" id="chooseAll" /> All Requests <br> <input
-					type="checkbox" class="chooseStatus" checked="checked"
-					id="choosePending" /> Pending <br> <input type="checkbox"
-					class="chooseStatus" id="chooseApproved" /> Approved <br> <input
-					type="checkbox" class="chooseStatus" id="chooseDenied" /> Denied
+				<button class="btn btn-primary gone" id="newExpense"
+					data-toggle="modal" data-target="#requestModal">New
+					Expense</button>
+				<br> <span class="gone" id="empListCheck"><input
+					type="checkbox" id="showEmployees" /> Employees</span>
+				<br><br>
+				<input type="search" id="searchBox" placeholder="Search" />
+				<br><br>
+				Show: <br> <input type="checkbox" class="chooseStatus"
+					id="chooseAll" /> All Requests <br> <input type="checkbox"
+					class="chooseStatus" checked="checked" id="choosePending" />
+				Pending <br> <input type="checkbox" class="chooseStatus"
+					id="chooseApproved" /> Approved <br> <input type="checkbox"
+					class="chooseStatus" id="chooseDenied" /> Denied
 			</div>
 		</div>
 
-		<div class="col-sm-9 col-md-10" id="view">
+		<div class="col-md-9 col-lg-10" id="view">
 
 			<!-- Use AJAX to inject HTML here -->
 		</div>
@@ -77,7 +85,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h4 class="modal-title" id="exampleModalLabel">Withdraw
-						Reimbursement Request</h4>
+						Pending Request</h4>
 					<button type="button" class="close modalCancel"
 						data-dismiss="modal">
 						<span>&times;</span>
@@ -110,8 +118,9 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">Resolve
-						Request #<span id="requestNum"></span></h4>
+					<h4 class="modal-title" id="exampleModalLabel">
+						Resolve Request #<span id="requestNum"></span>
+					</h4>
 					<button type="button" class="close modalCancel"
 						data-dismiss="modal">
 						<span>&times;</span>
@@ -137,7 +146,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="exampleModalLabel">blah blah blah</h4>
+					<h4 class="modal-title" id="exampleModalLabel">Request #<span id="id"></span> Information</h4>
 					<button type="button" class="close modalCancel"
 						data-dismiss="modal">
 						<span>&times;</span>
@@ -145,7 +154,15 @@
 				</div>
 				<div class="modal-body row">
 					<div class="col-11 col-center">
-						<h6>more information about request here</h6>
+					<!--
+						<b>Description: </b><span id="desc"></span>
+						<br><br>
+						-->
+						<b>Resolved by: </b><span id="res"></span>
+						<br>
+						<b>Resolved on: </b><span id="resDate"></span>
+						<br>
+						<b>Note: </b><span id="resNote"></span>
 					</div>
 				</div>
 				<div class="modal-footer">

@@ -1,16 +1,21 @@
 @charset "ISO-8859-1";
 
-td, .clickable:hover, .link, button, input[type='submit'], input[type='checkbox']
-	{
-	cursor: pointer;
+tbody td:first-child {
+	color: black !important;
+	text-decoration: none !important;
+}
+
+.clickable:hover, .link, td:last-child:hover, button,
+	input[type='submit'], input[type='checkbox'] {
+	cursor: pointer !important;
 }
 
 tbody tr:hover {
-	color: blue !important;
-	background: chartreuse !important;
+	color: #222 !important;
+	background: orange !important;
 }
 
-.link {
+.link, td:last-child {
 	color: blue;
 	text-decoration: underline;
 }

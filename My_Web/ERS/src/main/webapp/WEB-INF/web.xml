@@ -41,4 +41,14 @@
     <servlet-name>ResolveRequestServlet</servlet-name>
     <url-pattern>/ResolveRequestServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckPasswordServlet</display-name>
+    <servlet-name>CheckPasswordServlet</servlet-name>
+    <servlet-class>com.ers.servlets.CheckPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckPasswordServlet</servlet-name>
+    <url-pattern>/CheckPasswordServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

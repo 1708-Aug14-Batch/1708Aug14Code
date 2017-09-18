@@ -32,6 +32,7 @@ public class GetTableServlet extends HttpServlet {
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
+			log.warn("Session doesn't exist");
 			response.setStatus(418);
 			return;
 		}
@@ -48,6 +49,7 @@ public class GetTableServlet extends HttpServlet {
 
 		User user = (User) session.getAttribute("user");
 		if (user == null) {
+			log.warn("Session user doesn't exist");
 			response.setStatus(418);
 			return;
 		}

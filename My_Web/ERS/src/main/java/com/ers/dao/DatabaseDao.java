@@ -322,7 +322,7 @@ public class DatabaseDao implements Dao {
 
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "DELETE FROM REQUESTS WHERE REQUESTID = ?";
+			String sql = "DELETE FROM REQUESTS WHERE REQUESTID = ? AND STATUS = 1";
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, requestId);
 			int rowsUpdated = ps.executeUpdate();
@@ -336,7 +336,7 @@ public class DatabaseDao implements Dao {
 			}
 
 		} catch (SQLException e) {
-			log.warn("withdrawRequest(requestId= " + requestId + "): " + e.getLocalizedMessage());
+			log.warn("withdrawRequest(requestId= " + requestId + "): Failed to withdraw request, " + e.getLocalizedMessage());
 		}
 		return isSuccess;
 	}
@@ -373,8 +373,10 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
-					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE R.SUBMITTERID = ?";
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "WHERE R.SUBMITTERID = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -391,8 +393,9 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
+				String resName = rs.getString(10);
 
-				requests.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+				requests.add(new Request(reqId, userId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -410,9 +413,9 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
-					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
-					+ "		 WHERE R.SUBMITTERID = ? AND r.STATUS = ?";
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
+					   + "		 WHERE R.SUBMITTERID = ? AND R.STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, userId);
@@ -431,7 +434,7 @@ public class DatabaseDao implements Dao {
 				float amount = rs.getFloat(9);
 
 				pendingRequests
-						.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, userId, name, subDate, resId, null, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -449,7 +452,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE R.SUBMITTERID = ? AND R.STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -467,9 +471,10 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
+				String resName = rs.getString(10);
 
 				approvedRequests
-						.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, userId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -487,7 +492,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE R.SUBMITTERID = ? AND R.STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -505,9 +511,10 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
+				String resName = rs.getString(10);
 
 				deniedRequests
-						.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, userId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -525,7 +532,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID "
 					+ "WHERE R.SUBMITTERID = ? AND NOT R.STATUS = ?";
 
@@ -545,9 +553,10 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(7);
 				String notes = rs.getString(8);
 				float amount = rs.getFloat(9);
+				String resName = rs.getString(11);
 
 				resolvedRequests
-						.add(new Request(reqId, userId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, userId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -566,6 +575,7 @@ public class DatabaseDao implements Dao {
 
 			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
 					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -583,8 +593,9 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(8);
 				String notes = rs.getString(9);
 				float amount = rs.getFloat(10);
+				String resName = rs.getString(11);
 
-				allRequests.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+				allRequests.add(new Request(reqId, subId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -601,8 +612,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
-					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE STATUS = ?";
+					   + "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					   + "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
 			ps.setInt(1, Status.PENDING);
@@ -622,7 +633,7 @@ public class DatabaseDao implements Dao {
 				float amount = rs.getFloat(10);
 
 				allPendingRequests
-						.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, subId, name, subDate, resId, null, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -640,7 +651,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -659,9 +671,10 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(8);
 				String notes = rs.getString(9);
 				float amount = rs.getFloat(10);
+				String resName = rs.getString(11);
 
 				allApprovedRequests
-						.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, subId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -679,7 +692,8 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
+					   + "INNER JOIN USERS U2 ON U2.USERID = R.RESOLVERID "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -698,9 +712,10 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(8);
 				String notes = rs.getString(9);
 				float amount = rs.getFloat(10);
+				String resName = rs.getString(11);
 
 				allDeniedRequests
-						.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, subId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {
@@ -718,7 +733,7 @@ public class DatabaseDao implements Dao {
 		try (Connection connection = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "SELECT R.REQUESTID, U.USERID, CONCAT(U.FIRSTNAME, CONCAT(' ', U.LASTNAME)), R.SUBMITDATE, R.RESOLVERID, "
-					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT FROM REQUESTS R "
+					+ "       R.RESOLVEDATE, R.STATUS, R.DESCRIPTION, R.RESOLVENOTE, R.AMOUNT, CONCAT(U2.FIRSTNAME, CONCAT(' ', U2.LASTNAME)) FROM REQUESTS R "
 					+ "INNER JOIN USERS U ON U.USERID = R.SUBMITTERID " + "WHERE NOT STATUS = ?";
 
 			PreparedStatement ps = connection.prepareStatement(sql);
@@ -737,9 +752,10 @@ public class DatabaseDao implements Dao {
 				String desc = rs.getString(8);
 				String notes = rs.getString(9);
 				float amount = rs.getFloat(10);
+				String resName = rs.getString(11);
 
 				allResolvedRequests
-						.add(new Request(reqId, subId, name, subDate, resId, resDate, status, desc, notes, amount));
+						.add(new Request(reqId, subId, name, subDate, resId, resName, resDate, status, desc, notes, amount));
 			}
 
 		} catch (SQLException e) {

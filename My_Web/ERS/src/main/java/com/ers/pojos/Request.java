@@ -9,6 +9,7 @@ public class Request {
 	private String submitterName;
 	private Timestamp submitDate;
 	private int resolverId;
+	private String resolverName;
 	private Timestamp resolveDate;
 	private String status;
 	private String description;
@@ -19,13 +20,14 @@ public class Request {
 		super();
 	}
 
-	public Request(int requestId, int submitterId, String name, Timestamp submitDate, int resolverId, Timestamp resolveDate,
+	public Request(int requestId, int submitterId, String submitterName, Timestamp submitDate, int resolverId, String resolverName, Timestamp resolveDate,
 			String status, String description, String notes, float amount) {
 		this.requestId = requestId;
 		this.submitterId = submitterId;
-		this.submitterName = name;
+		this.submitterName = submitterName;
 		this.submitDate = submitDate;
 		this.resolverId = resolverId;
+		this.resolverName = resolverName;
 		this.resolveDate = resolveDate;
 		this.status = status;
 		this.description = description;
@@ -53,8 +55,8 @@ public class Request {
 		return submitterName;
 	}
 	
-	public void setName(String name) {
-		this.submitterName = name;
+	public void setName(String submitterName) {
+		this.submitterName = submitterName;
 	}
 
 	public Timestamp getSubmitDate() {
@@ -71,6 +73,14 @@ public class Request {
 
 	public void setResolverId(int resolverId) {
 		this.resolverId = resolverId;
+	}
+
+	public String getResolverName() {
+		return resolverName;
+	}
+
+	public void setResolverName(String resolverName) {
+		this.resolverName = resolverName;
 	}
 
 	public Timestamp getResolveDate() {
@@ -115,8 +125,8 @@ public class Request {
 
 	@Override
 	public String toString() {
-		return "Request [requestId=" + requestId + ", submitterId=" + submitterId + ", submitDate=" + submitDate
-				+ ", resolverId=" + resolverId + ", resolveDate=" + resolveDate + ", status=" + status
+		return "Request [requestId=" + requestId + ", submitterId=" + submitterId + ", submitterName=" + submitterName + ", submitDate=" + submitDate
+				+ ", resolverId=" + resolverId + ", resolverName=" + resolverName + ", resolveDate=" + resolveDate + ", status=" + status
 				+ ", description=" + description + ", notes=" + notes + ", amount=" + amount + "]";
 	}
 }

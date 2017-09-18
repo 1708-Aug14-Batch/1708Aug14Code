@@ -29,6 +29,7 @@ public class UpdateInfoServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		if (session == null) {
+			log.warn("Session doesn't exist");
 			response.setStatus(418);
 			return;
 		}
@@ -61,6 +62,10 @@ public class UpdateInfoServlet extends HttpServlet {
 				break;
 			default:
 			}
+		} else {
+			log.warn("Session user doesn't exist");
+			response.setStatus(418);
+			return;
 		}
 	}
 }
