@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reimbursments.DAO.DAOImpl;
 import com.reimbursments.dto.DTO;
 import com.reimbursments.pojos.Reimburs;
 import com.reimbursments.pojos.Users;
@@ -23,6 +26,7 @@ import com.reimbursments.service.Service;
 @WebServlet("/getUserInfo")
 public class UserInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log = Logger.getLogger(UserInfoServlet.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,16 +41,16 @@ public class UserInfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("getting user info");
+		log.debug("getting user info");
 		Service service = new Service();
 		
 		HttpSession session = request.getSession();
 		Users sessionUser = (Users) session.getAttribute("user");
 		DTO dto = new DTO();
-//		System.out.println("getting user from session " + sessionUser.toString());
+//		log.debug("getting user from session " + sessionUser.toString());
 		if(sessionUser != null) {
 			ArrayList<Reimburs> reim = new ArrayList<Reimburs>();
-			System.out.println("Converting our user and accounts to dto");
+			log.debug("Converting our user and accounts to dto");
 			dto.setUser(sessionUser);
 			dto.setAccounts(reim);
 			

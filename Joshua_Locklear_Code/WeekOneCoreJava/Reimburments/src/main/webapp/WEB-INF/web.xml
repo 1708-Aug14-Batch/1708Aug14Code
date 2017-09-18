@@ -99,4 +99,14 @@
     <servlet-name>UsersInfoServlet</servlet-name>
     <url-pattern>/UsersInfoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getDashBoard2</display-name>
+    <servlet-name>getDashBoard2</servlet-name>
+    <servlet-class>com.reimbursments.servlets.getDashBoard2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getDashBoard2</servlet-name>
+    <url-pattern>/getDashBoard2</url-pattern>
+  </servlet-mapping>
 </web-app>

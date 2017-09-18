@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reimbursments.DAO.DAOImpl;
 import com.reimbursments.dto.DTO;
 import com.reimbursments.pojos.Reimburs;
 import com.reimbursments.pojos.Users;
@@ -25,6 +28,7 @@ import com.reimbursments.service.Service;
 @WebServlet("/Reimbursement")
 public class ReimbursPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log = Logger.getLogger(ReimbursPageServlet.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +43,7 @@ public class ReimbursPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("getting user info");
+		log.debug("getting user info");
 		Service service = new Service();
 		
 		HttpSession session = request.getSession();
@@ -60,15 +64,15 @@ public class ReimbursPageServlet extends HttpServlet {
 			dto.setAccounts(reim);
 
 			dto.setUserList(userLists);
-			System.out.println(userLists);
+			log.debug(userLists);
 			
-			System.out.println("Converting our user and accounts to dto");
+			log.debug("Converting our user and accounts to dto");
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(dto);
 			
-			System.out.println(sessionUser.toString());
-			System.out.println(reim.size());
+			log.debug(sessionUser.toString());
+			log.debug(reim.size());
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
 			out.write(json);
@@ -89,7 +93,7 @@ public class ReimbursPageServlet extends HttpServlet {
 		Service service = new Service();
 		HttpSession session = request.getSession();
 		Users sessionUser = (Users) session.getAttribute("user");
-		System.out.println("In the approve or deny post");
+		log.debug("In the approve or deny post");
 		
 		if (sessionUser.getIsManager() == 1){
 			int resId = sessionUser.getUserid();
@@ -101,7 +105,7 @@ public class ReimbursPageServlet extends HttpServlet {
 
 			ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
 
-			System.out.println(list.toString());
+			log.debug(list.toString());
 			String notes = new String(list.get(0));
 			String r_id = list.get(1);
 			int Sr_id = Integer.parseInt(r_id);

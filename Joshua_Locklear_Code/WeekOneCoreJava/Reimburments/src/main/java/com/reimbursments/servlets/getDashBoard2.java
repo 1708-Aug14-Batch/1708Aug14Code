@@ -6,22 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.log4j.Logger;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class getDashBoard2
  */
-@WebServlet("/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/getdashboard2")
+public class getDashBoard2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger log = Logger.getLogger(LogoutServlet.class);
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public getDashBoard2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +27,7 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		log.debug("Logging out User");
-		if(request.getSession(false)== null){
-			response.sendRedirect("Login.html");
-		}
-		HttpSession session = request.getSession(false);
-		if(session != null){
-			session.removeAttribute("user");
-			session.invalidate();
-			log.debug("Session invalidated!");
-		}
-		response.sendRedirect("Login.html");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

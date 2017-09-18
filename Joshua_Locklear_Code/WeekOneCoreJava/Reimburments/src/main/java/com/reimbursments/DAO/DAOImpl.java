@@ -10,15 +10,17 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+//import java.util.logging.Logger;
 
 //import com.bank.pojos.Account;
 import com.reimbursments.pojos.Reimburs;
 import com.reimbursments.pojos.Status;
 import com.reimbursments.pojos.Users;
 import com.reimbursments.util.ConnectionFactory;
+import org.apache.log4j.*;
 
 public class DAOImpl implements DAO {
-	
+	private static Logger log = Logger.getLogger(DAOImpl.class);
 	public ArrayList<Users> getUsers() {
 		ArrayList<Users> list = new ArrayList<Users>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -111,7 +113,7 @@ public class DAOImpl implements DAO {
 			state.setString(4, u.getPassword());
 			state.executeUpdate();
 			conn.commit();
-			System.out.println("Update success?");
+			log.debug("Update success?");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -121,11 +123,11 @@ public class DAOImpl implements DAO {
 		
 	}
 	
-	public void createReimbursement(Users u ,int amt, String desc) {
+	public void createReimbursement(Users u ,double amt, String desc) {
 	
-		int amount = amt;
+		log.debug("in createReimbursement");
+		//int amount = amt;
 		
-		String description = desc;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
 			String sql = "insert into Reimburse(submitter_id, description, amount) " + 
@@ -135,12 +137,14 @@ public class DAOImpl implements DAO {
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, u.getUserid());
 			
-			ps.setString(2, description);
-			ps.setInt(3, amount);
-			ps.executeUpdate();
+			ps.setString(2, desc);
+			ps.setDouble(3, amt);
+			int rowsInserted = ps.executeUpdate();
+			
+			log.debug("rowsInserted= "+rowsInserted);
 			
 			conn.commit();
-			System.out.println("Submittal Successful");
+			log.debug("Submittal Successful");
 			
 			
 		} catch (SQLException e) {
@@ -199,7 +203,7 @@ public class DAOImpl implements DAO {
 			PreparedStatement state = conn.prepareStatement(sql);
 			state.setInt(1, u.getUserid());
 			ResultSet rs = state.executeQuery();
-			System.out.println("Here");
+			log.debug("Here");
 			while(rs.next()) {
 				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) 
 				+ " ReimbursmentID: " + rs.getInt(3)
@@ -278,18 +282,13 @@ public class DAOImpl implements DAO {
 			state.setInt(4, re_id);
 			state.executeUpdate();
 			
-			System.out.println("Updated!");
+			log.debug("Updated!");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-		
-	}
-	@Override
-	public void createReimbursement(Users u, double d, String desc) {
-		// TODO Auto-generated method stub
 		
 	}
 	

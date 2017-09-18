@@ -10,8 +10,6 @@ $(document).ready(function(){
 	$("#AddNewUser").on("click", function(){
 		$("#AddingModal").modal('show');
 	})
-	
-	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -32,6 +30,7 @@ $(document).ready(function(){
 				fname.innerHTML = user.firstName;
 				lname.innerHTML = user.lastName;
 				email.innerHTML = user.email;
+				
 				break;
 			}
 			else{

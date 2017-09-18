@@ -2,43 +2,21 @@ var reset = 0;
 
 
 $(document).ready(function(){
-	
-	var xhr2 = new XMLHttpRequest();
-	xhr2.onreadystatechange = function(){
-		if(xhr2.readyState == 4 && xhr2.status == 200){
-			var dto2 = JSON.parse(xhr2.responseText);
-			var user2 = dto2.user;
-			var userlist2 = dto2.userList;
-			if(user2.isManager == 1){
-				$("#addReimbursement").remove();
-			}
-			for(var i = 0; i < userlist2.length; i++){
-				if(userlist2[i].isManager== 0){
-				$("#userlist").append($("<option value =" + i+'">' + userlist2[i].firstName + " " + userlist2[i].lastName +'</option>'));
-				}
-			}
-		}
 		
-	}
-	xhr2.open("GET", "Reimbursement", true);
-	xhr2.send();
-	
+
 $('#selectList').on('click',function(){
 	
 	var selection = $("#selectList option:selected").text();
-
 var restriction;
-if (selection === "Pending Reimbursements"){
-	restriction = 0;
-}
-else if(selection === "All Reimbursements"){
+//if (selection === "Pending"){
+//	restriction = 0;
+//}
+if(selection === "View"){
 	restriction = 2;
 }
-else if(selection === "Resolved Reimbursements"){
-	restriction = 1;
-}
-////}	console.log("Selection: " + selection);
-//	console.log("Restriction: " + restriction);
+//else if(selection === "Resolved"){
+//	restriction = 1;
+//}
 	
 	if(reset != 0){
 		$("td").remove();
@@ -55,7 +33,6 @@ else if(selection === "Resolved Reimbursements"){
 			console.log("User: " + user);
 			console.log("UserList: "+ userlist);
 			console.log("Accounts: " + accounts)
-//			document.getElementById("name").innerHTML = user.firstname + " " + user.lastname;
 			if(accounts.length == 0){
 			document.getElementById("accounts").style.visiblity = "hidden";
 			}
@@ -85,41 +62,34 @@ else if(selection === "Resolved Reimbursements"){
 						var reason = row.insertCell(6);
 						var amount = row.insertCell(7);
 						var resID = row.insertCell(8);
-						//var notes = row.insertCell(9);
-						//notes = "notes";
 
-						if(selection === "All Reimbursements"){
 							if(accounts[i].status_id === 0){
 								status.innerHTML = "Pending";
 							}
 							else if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
 								for(var j = 0; j < userlist.length; j++){
-									if(userlist[j].userId === accounts[i].res_id){
-										resID.innerHTML = userlist[j].firstname +" " +userlist[j].lastname;
+									if(userlist[j].userid === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
 									}
 								}
 							}
 							else if(accounts[i].status_id === 2){
 								status.innerHTML = "Denied";
 								for(var j = 0; j < userlist.length; j++){
-									if(userlist[j].userId === accounts[i].res_id){
+									if(userlist[j].userid === accounts[i].res_id){
 										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
 									}
 								}
 							}
-							else
-								continue;
-						}
-						else if(selection === "Pending Reimbursements"){
+						else if(selection === "Pending"){
 							if(accounts[i].status_id === 0){
 							status.innerHTML = "Pending"
 							}
 							else
 								continue;
 						}
-						else if(selection === "Resolved Reimbursements"){
-							console.log("Resolved ID: " + accounts[i].status_id)
+						else if(selection === "Resolved"){
 							
 							if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
@@ -142,7 +112,6 @@ else if(selection === "Resolved Reimbursements"){
 								continue;
 						}
 						if(userlist != null){
-						console.log("We here?");
 							for(var j = 0; j < userlist.length; j++){
 							if(userlist[j].userid == accounts[i].sub_id){
 								console.log(userlist[j]);
@@ -156,25 +125,21 @@ else if(selection === "Resolved Reimbursements"){
 							fname.innerHTML = user.firstName;
 							lname.innerHTML = user.lastName;
 						}
-						
-						
-						
 						rID.innerHTML = accounts[i].r_id;
 						if(accounts[i].status_id == 1 || accounts[i].status_id == 2){
 							rID.setAttribute("class","resolvedID");
 							rID.setAttribute("data-toggle","modal");
 							rID.setAttribute("data-target","#exampleModal");
-							$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
+							$('.resolvedID').css({"color": "green"});
 						}
 						if(user.isManager == 1){
 							if(accounts[i].status_id == 0){
 								rID.setAttribute("class","resolvedID");
 								rID.setAttribute("data-toggle","modal");
 								rID.setAttribute("data-target","#pendingModal");
-								$('.resolvedID').css({"color": "blue", "text-decoration": "underline"});
+								$('.resolvedID').css({"color": "green"});
 							}
 						}
-
 						var date = new Date(parseInt(accounts[i].subDate));
 						accounts[i].subDate = date.toLocaleDateString();
 						console.log(accounts[i].subDate);
@@ -183,14 +148,11 @@ else if(selection === "Resolved Reimbursements"){
 						accounts[i].resDate = resDate.toLocaleDateString();
 						console.log("Res date: " +accounts[i].resDate)
 						if(accounts[i].ResDate == null){
-							ResDate.innerHTML = " ";
+							ResDate.innerHTML = null;
 						}
 						ResDate.innerHTML = accounts[i].resDate;
 						reason.innerHTML = accounts[i].description;
 						amount.innerHTML = "$" + accounts[i].amount;
-						//notes.innerHTML = accounts[i];
-						
-//						resID.innerHTML = accounts[i].res_id;
 							
 						
 						console.log(accounts);
@@ -228,12 +190,7 @@ else if(selection === "Resolved Reimbursements"){
 	reset = reset + 1;
 	
 });
-
-
 $("#approve").on('click', function(){
-
-
-	
 	var xhr3= new XMLHttpRequest();
 	var notes = $("#modalGivenNotes").val();
 	console.log(notes);
@@ -251,7 +208,6 @@ $("#approve").on('click', function(){
 	
 	$('#pendingModal').modal("toggle");
 })
-
 $("#denied").on('click', function(){
 	var xhr4= new XMLHttpRequest();
 	var notes = $("#modalGivenNotes").val();
@@ -264,7 +220,7 @@ $("#denied").on('click', function(){
 	tx = JSON.stringify(tx);
 	
 	console.log(tx);
-	xhr4.open("POST", "Reimbursementt", true);
+	xhr4.open("POST", "Reimbursement", true);
 	xhr4.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr4.send(tx);
 	
@@ -274,3 +230,41 @@ $("#denied").on('click', function(){
 
 
 })
+function mySearch2() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput2");
+	  filter = input.value;
+	  table = document.getElementById("list");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[1];
+	    //td = tr[i].getElementsByTagName("td")[2];
+	    //td = tr[i].getElementsByTagName("td")[3];
+	    if (td) {
+	      if (td.innerHTML.indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
+function mySearch() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput");
+	  filter = input.value;
+	  table = document.getElementById("list");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    //td = tr[i].getElementsByTagName("td")[1];
+	    //td = tr[i].getElementsByTagName("td")[2];
+	    td = tr[i].getElementsByTagName("td")[3];
+	    if (td) {
+	      if (td.innerHTML.indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}

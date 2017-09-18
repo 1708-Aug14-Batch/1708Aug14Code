@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
+<link rel="stylesheet" href="css/style.css">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -18,18 +18,17 @@
         <a class="nav-link" href="EmployeePage.html">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="UserReim.html">View Reimbursements</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="UserInform.html">View User Information</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Login.html">Logout</a>
+      <form action="logout">
+        <a class = "nav-link" href="logout" id="logout">Logout</a>
+        </form>
       </li>
     </ul>
   </div>
 </nav>
-<h1>Choose information to change</h1>
+<h1>Employee Info</h1>
 <div class="container" id = "upper">
   <form>
     <div class="form-group row">
@@ -45,9 +44,9 @@
       </div>
     </div>
         <div class="form-group row">
-      <label for="inputEmail3" class="col-sm-2 col-form-label">New Email</label>
+      <label for="inputEmail3" class="col-sm-2 col-form-label">New Username</label>
       <div class="col-sm-10">
-        <input type="email" class="form-control" id="email" placeholder="Email">
+        <input type="text" class="form-control" id="email" placeholder="Email">
       </div>
     </div>
         <div class="form-group row">
@@ -66,7 +65,7 @@
 			</div>
 			<div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary" id = "infoButton">Update Information</button>
+        <button type="submit" class="btn btn-success" id = "infoButton">Update Information</button>
       </div>
     </div>
     </form>

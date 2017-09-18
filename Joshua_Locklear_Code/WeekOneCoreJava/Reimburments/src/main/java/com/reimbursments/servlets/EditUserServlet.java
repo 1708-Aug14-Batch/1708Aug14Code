@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reimbursments.DAO.DAOImpl;
 import com.reimbursments.pojos.Users;
 import com.reimbursments.service.Service;
 
@@ -21,6 +24,7 @@ import com.reimbursments.service.Service;
  */
 @WebServlet("/EditUserInfo")
 public class EditUserServlet extends HttpServlet {
+	private static Logger log = Logger.getLogger(EditUserServlet.class);
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -44,7 +48,7 @@ public class EditUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("We in here doing the update");
+		log.debug("We in here doing the update");
 		Map<String,String[]> myMap = request.getParameterMap();
 		Set<String> keys = myMap.keySet();
 		
@@ -61,33 +65,33 @@ public class EditUserServlet extends HttpServlet {
 		if(fname == "") {
 			fname = temp.getFirstName();
 		}
-		System.out.println("Firstname " + fname);
+		log.debug("Firstname " + fname);
 		String lname = list.get(1);
 		if(lname == "") {
 			lname = temp.getLastName();
 		}
-		System.out.println("Lastname: " + lname);
+		log.debug("Lastname: " + lname);
 		String email = list.get(2);
 		if(email == "") {
 			email = temp.getEmail();
 		}
-		System.out.println("email: " + email);
+		log.debug("email: " + email);
 		String password = list.get(3);
 		if(password == "") {
 			password = temp.getPassword();
 		}
-		System.out.println("Password:" + password);
+		log.debug("Password:" + password);
 		temp.setFirstName(fname);
-		System.out.println("First name being set:" + temp.getFirstName());
+		log.debug("First name being set:" + temp.getFirstName());
 		temp.setLastName(lname);
-		System.out.println("Last name being set:" + temp.getLastName());
+		log.debug("Last name being set:" + temp.getLastName());
 		temp.setEmail(email);
-		System.out.println("Email being set: " + temp.getEmail());
+		log.debug("Email being set: " + temp.getEmail());
 		temp.setPassword(password);
-		System.out.println("Password being set: " + temp.getPassword());
+		log.debug("Password being set: " + temp.getPassword());
 		Service service = new Service();
 		service.updateUser(temp);
-		System.out.println("Submittal Success?");
+		log.debug("Submittal Success?");
 		//doGet(request, response);
 	}
 

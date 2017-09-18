@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reimbursments.DAO.DAOImpl;
 import com.reimbursments.dto.DTO;
 import com.reimbursments.pojos.Reimburs;
 import com.reimbursments.pojos.Users;
@@ -25,6 +28,7 @@ import com.reimbursments.service.Service;
 @WebServlet("/UserInform")
 public class UsersInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger log = Logger.getLogger(UsersInfoServlet.class);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -67,7 +71,7 @@ public class UsersInfoServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Service service = new Service();
 
-		System.out.println("In the new user post");
+		log.debug("In the new user post");
 		
 		
 			

@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.reimbursments.DAO.DAOImpl;
 import com.reimbursments.pojos.Reimburs;
 import com.reimbursments.pojos.Users;
 import com.reimbursments.service.Service;
@@ -24,14 +27,15 @@ import com.reimbursments.service.Service;
 @WebServlet("/AddRei")
 public class SubmitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SubmitServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private static Logger log = Logger.getLogger(SubmitServlet.class);
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SubmitServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,30 +50,38 @@ public class SubmitServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("IN POST");
+		log.debug("IN POST");
 		HttpSession session = request.getSession();
 		Map<String,String[]> myMap = request.getParameterMap();
 		Set<String> keys = myMap.keySet();
 		Users sessionUser = (Users) session.getAttribute("user");
+		log.debug("user= "+sessionUser);
 		ObjectMapper jackson = new ObjectMapper();
 		Object obj = keys.toArray()[0];
-		
+
 		ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
 		String email = list.get(0);
 		String password = list.get(1);
-		if(sessionUser.getEmail() == email && sessionUser.getPassword() == password) {
-		String reason = list.get(2);
-		Integer amount = Integer.parseInt(list.get(3));
-		Users u = new Users(email,password);
-		Reimburs r = new Reimburs(reason,amount);
-		Service service = new Service();
-		service.submitReimbursement(u, r);
-		System.out.println("Submittal Success?");
+		log.debug("email= "+email+", password= "+password);
+
+
+		if (email != null && password != null &&
+				email.equals(sessionUser.getEmail()) && password.equals(sessionUser.getPassword())) {
+
+			String reason = list.get(2);
+			Double amount = Double.parseDouble(list.get(3));
+			Users u = new Users(email,password);
+			Reimburs r = new Reimburs(reason,amount);
+			Service service = new Service();
+			log.debug("before submit");
+			service.submitReimbursement(u, r);
+			log.debug("Submittal Success?");
+			
+			request.getRequestDispatcher("AddRei.html").forward(request, response);
 		}
 		else {
 			PrintWriter pw = response.getWriter();
-			
-			response.sendRedirect("AddRei.html");
+			pw.write("Failed to submit request");
 		}
 		//doGet(request, response);
 	}
