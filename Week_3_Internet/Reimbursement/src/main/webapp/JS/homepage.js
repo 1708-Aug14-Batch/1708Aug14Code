@@ -3,6 +3,27 @@
  */
 
 
+
+
+$(document).ready(function(){
+	
+	
+	
+	
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.onload = function(){
 	
 	loadDashboardView();
@@ -15,7 +36,11 @@ function loadDashboardView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
+			
+
+			
 			document.getElementById('view').innerHTML = xhr.responseText;
+			
 			getUserInformation();
 		}
 		
@@ -30,9 +55,11 @@ function getUserInformation(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			console.log(xhr.responseText);
+			
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.reim;
+			document.getElementById('welcome').innnerHTML = "HelloHELLO";
 			document.getElementById("name").innerHTML = user.firstname + " " + user.lastname;
 		}
 	}

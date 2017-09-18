@@ -54,31 +54,31 @@ $(document).ready(function(){
 			}
 
 		}
-		$("#create").on("click",function(){
-			
-			
-			var xhr2 = new XMLHttpRequest();
-			var fname = $('#firstname').val();
-			var lname = $("#lastname").val();
-			var email = $('#email').val();
-			var password = $('#password').val();
-			
-			var tx = [fname,lname,email,password];
-			
-			tx = JSON.stringify(tx);
-			
-			xhr2.open("POST","UserInformation",true);
-			xhr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xhr2.send(tx);
-			
-			
-			
-			
-		})
+		
 	}
 	xhr.open("GET", "UserInformation", true);
 	xhr.send();
 	
-	
+	$("#create").on("click",function(){
+		console.log("IN here?")
+		
+		var xhr2 = new XMLHttpRequest();
+		var fname = $('#firstname').val();
+		var lname = $("#lastname").val();
+		var email = $('#email').val();
+		var password = $('#password').val();
+		
+		var tx = [fname,lname,email,password];
+		
+		tx = JSON.stringify(tx);
+		
+		xhr2.open("POST","UserInformation",true);
+		xhr2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr2.send(tx);
+		
+		
+		$("#AddingModal").modal("hide");
+		
+	})
 	
 });

@@ -41,6 +41,7 @@ public class SubmittalPage extends HttpServlet {
 		String email = list.get(0);
 		String password = list.get(1);
 
+		
 		String reason = list.get(2);
 		Integer amount = Integer.parseInt(list.get(3));
 		User u = new User(email,password);
@@ -49,7 +50,8 @@ public class SubmittalPage extends HttpServlet {
 		service.submitReimbursement(u, r);
 		System.out.println("Submittal Success?");
 		
-		
+		}
+
 		
 	
 		

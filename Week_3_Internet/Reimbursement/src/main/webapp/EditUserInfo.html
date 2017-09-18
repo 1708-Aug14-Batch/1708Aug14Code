@@ -2,9 +2,36 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Edit Employee Information</title>
+<style>
+body{
+	background: url("housebackground.jpg") no-repeat center fixed;
+	background-size: cover;
+	font-family: 'Crimson Text', serif;
+}
+img{
+	opacity: 0.2;
+}
+
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+
+   width:100%;
+   background:white;
+   border-style: solid;
+   border-width: 2px;
+}
+#main{
+	font-size: 20px;
+	text-align:center;
+}
+</style>
+
+
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,7 +56,9 @@
     </ul>
   </div>
 </nav>
-<h1>Choose information to change</h1>
+<div id = "main">
+<p>Please enter your new information</p>
+</div>
 <div class="container" id = "upper">
   <form>
     <div class="form-group row">
@@ -77,7 +106,11 @@
 
 
 
-
+<footer>
+<div class="card-footer text-muted" id = footer>
+    By The ABonds Group
+</div>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

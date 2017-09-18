@@ -16,7 +16,13 @@ $(document).ready(function(){
 			var user2 = dto2.user;
 			var userlist2 = dto2.userList;
 			if(user2.isManager == 1){
+				$("#mainEmployee").text("Please select Reimbursement Type for All Employees");
 				$("#addReimbursement").remove();
+			}
+			if(user2.isManager == 0){
+				$("#mainEmployee").text("Please select Reimbursement Types")
+				$("#userlist").hide();
+				$("#employee").hide();
 			}
 			for(var i = 0; i < userlist2.length; i++){
 				if(userlist2[i].isManager== 0){

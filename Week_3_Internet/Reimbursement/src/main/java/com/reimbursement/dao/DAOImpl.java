@@ -10,18 +10,21 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import org.apache.log4j.Logger;
+
 import com.reimbursement.pojos.Reimbursement;
 import com.reimbursement.pojos.User;
 import com.reimbursement.util.ConnectionFactory;
 
 public class DAOImpl implements DAO {
 
-	
+	final static Logger logger = Logger.getLogger(DAOImpl.class);
 	public ArrayList<User> getUsers() {
 		ArrayList<User> list = new ArrayList<User>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
-			String sql = "select * from users";
+			String sql = "select * from users\r\n" + 
+					"order by lastname asc ";
 			Statement state = conn.createStatement();
 			ResultSet rs = state.executeQuery(sql);
 			
@@ -59,7 +62,7 @@ public class DAOImpl implements DAO {
 				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) + "\n"
 				+ "Email: " + rs.getString(3));
 			}
-			
+
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -83,7 +86,9 @@ public class DAOImpl implements DAO {
 			ps.setString(4, password);
 			ps.setInt(5, 0);
 			ps.executeUpdate();
-			System.out.println("New user entered");
+			if(logger.isInfoEnabled()) {
+				logger.info("The user was entered: " + fname + " " + lname);
+			}
 			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,7 +158,8 @@ public class DAOImpl implements DAO {
 		ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			
-			String sql = "select * from reimbursement";
+			String sql = "select * from reimbursement  "
+					+ "order by re_id asc ";
 			Statement state = conn.createStatement();
 			ResultSet rs = state.executeQuery(sql);
 			
