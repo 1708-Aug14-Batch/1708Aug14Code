@@ -302,7 +302,7 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			
-			String sql = "update reimbursement set status_id = ?, resolver_id = ? where reimbursement_id = ?";
+			String sql = "update reimbursement set status_id = ?, resolver_id = ? where reimburse_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, stat);  //it won't matter what is contained within the String
 			ps.setInt(2, resid);

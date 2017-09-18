@@ -58,11 +58,11 @@ function loadTable(){
 			});
 			$('#reimsTable').DataTable();
 			
-			var changes = "";
+			/*var changes = "";
 			for(let p=0; p < reims.length; reims++) {
 				changes+="<option id=\"option"+i+"\" name=\"ridoption\" value="+reims[i].reimburseId+">"+reims[i].reimburseId+"</option><br/>";
 			}
-			options.innerHTML = changes;
+			options.innerHTML = changes;*/
 			
 		}
 	}

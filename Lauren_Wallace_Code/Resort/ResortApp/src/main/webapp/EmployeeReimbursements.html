@@ -77,17 +77,14 @@
 			<h4 class="modal-title">Changing Reimbursement Status</h4>
 		</div>
 		<div class="modal-body">
-			<form class="form-horizontal">
-				<div class="form-group" action="changeStatus" method="post">
+			<form class="form-horizontal" action="changeStatus" method="post">
+				<div class="form-group">
         			<label for="reimid" class="control-label col-xs-2">Reimbursement Id:</label>
         			<div class="col-xs-10">
-            			<input list="reims" class="form-control" name="rid" id="rid" required>
-            			<datalist id="reims">
-            				<option id="options"></option>
-            			</datalist>
+            			<input type="number" class="form-control" name="rid" id="rid" required>
        				 </div>
 				</div>
-    			<div class="form-group" action="changeStatus" method="post">
+    			<div class="form-group">
         			<label for="type" class="control-label col-xs-2">Status:</label>
         			<div class="col-xs-10">
             			<input list="stats" class="form-control" name="status" id="status" required>
