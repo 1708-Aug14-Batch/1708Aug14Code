@@ -39,7 +39,7 @@ function getMyReimbs() {
 		if(request.readyState == 4 && request.status == 200) {
 			var dto = JSON.parse(request.responseText);
 			var reimbs = dto.reimbs;
-			populateReimbsTable(reimbs);
+			populateEmpReimbs(reimbs);
 		}
 	}
 	request.open("GET", "employee-get-all-reimbs", true);
@@ -55,17 +55,21 @@ function populateReimbsTable(reimbs) {
 		$('#noReimbs').hide();
 		$('#reimbsTable').show();
 		for(var i = 0; i < reimbs.length; i++){
-			var table = document.getElementById("reimbsTable");
-			var row = table.insertRow(1);
-			var dateSubmitted = row.insertCell(0);
-			var dateResolved = row.insertCell(1);
-			var status = row.insertCell(2)
-			var description = row.insertCell(3);
-			var resolutionNotes = row.insertCell(4);
-			var amount = row.insertCell(5);
-			
+			let table = document.getElementById("reimbsTable");
+			let row = table.insertRow(1);
+			let dateSubmitted = row.insertCell(0);
+			let dateResolved = row.insertCell(1);
+			let status = row.insertCell(2)
+			let description = row.insertCell(3);
+			let resolutionNotes = row.insertCell(4);
+			let amount = row.insertCell(5);
+
 			dateSubmitted.innerHTML = formatDate(reimbs[i].dateSubmitted);
-			dateResolved.innerHTML = formatDate(reimbs[i].dateResolved);
+			if (reimbs[i].dateResolved == null) {
+				dateResolved.innerHTML = "N/A";
+			} else {
+				dateResolved.innerHTML = formatDate(reimbs[i].dateResolved);
+			}
 			if (reimbs[i].statusID == 1) {
 				status.innerHTML = "Pending";
 			}
@@ -77,17 +81,17 @@ function populateReimbsTable(reimbs) {
 			}
 			description.innerHTML = reimbs[i].description;
 			resolutionNotes = reimbs[i].resolutionNotes;
-			amount.innerHTML = reimbs[i].amount;
+			amount.innerHTML = "$" + reimbs[i].amount.toFixed(2);
 
 			// Make buttons to view individual requests
-			var cellShowReq = row.insertCell(6);
-			var btnShowReq = document.createElement("button");
+			let cellShowReq = row.insertCell(6);
+			let btnShowReq = document.createElement("button");
 			btnShowReq.innerHTML = "View This Reimbursement";
 			btnShowReq.style.class = "btn";
 			btnShowReq.style.class = "btn-primary";
 			cellShowReq.appendChild(btnShowReq);
 
-			var id = reimbs[i].rID;
+			let id = reimbs[i].rID;
 			function invokeShowRequestView() {
 				viewRequestPage(id);
 			}
@@ -96,12 +100,51 @@ function populateReimbsTable(reimbs) {
 	}
 }
 
+function populateEmpReimbs(reimbs) {
+	if (reimbs.length == 0) {
+		$('#noReimbs').show();
+		$('#reimbsTable').hide();
+	} else {
+		$('#noReimbs').hide();
+		$('#reimbsTable').show();
+		for(var i = 0; i < reimbs.length; i++){
+			let table = document.getElementById("reimbsTable");
+			let row = table.insertRow(1);
+			let dateSubmitted = row.insertCell(0);
+			let dateResolved = row.insertCell(1);
+			let status = row.insertCell(2)
+			let description = row.insertCell(3);
+			let resolutionNotes = row.insertCell(4);
+			let amount = row.insertCell(5);
+
+			dateSubmitted.innerHTML = formatDate(reimbs[i].dateSubmitted);
+			if (reimbs[i].dateResolved == null) {
+				dateResolved.innerHTML = "N/A";
+			} else {
+				dateResolved.innerHTML = formatDate(reimbs[i].dateResolved);
+			}
+			if (reimbs[i].statusID == 1) {
+				status.innerHTML = "Pending";
+			}
+			if (reimbs[i].statusID == 2) {
+				status.innerHTML = "Approved";
+			}
+			if (reimbs[i].statusID == 3) {
+				status.innerHTML = "Denied";
+			}
+			description.innerHTML = reimbs[i].description;
+			resolutionNotes = reimbs[i].resolutionNotes;
+			amount.innerHTML = "$" + reimbs[i].amount.toFixed(2);
+		}
+	}
+}
+
 function formatDate(dateString) {
 	var date = new Date(dateString);
-    var day = date.getDate();
+	var day = date.getDate();
 	var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    return day + "/" + month + "/" + year;
+	var year = date.getFullYear();
+	return day + "/" + month + "/" + year;
 }
 
 function viewMyInfoPage() {
@@ -288,12 +331,12 @@ function showSingleEmpView(email) {
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
 			$('#view').html(request.responseText);
-		
+
 			function invokeViewEmpRequestsPage() {
 				viewEmpRequestsPage(email);
 			}
 			$(document).on('click', '#btnEmpRequests', invokeViewEmpRequestsPage);
-			
+
 			getSingleEmp(email);
 		}
 	}
