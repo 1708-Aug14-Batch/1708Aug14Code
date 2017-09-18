@@ -292,17 +292,19 @@ function viewSubmitReim() {
 }
 
 function togglePasswordView() {
+	console.log($("#view_password_check"));
+	console.log($("#password_edit"));
 	if ($("#view_password_check").is(":checked"))
-		$("#password_edit").attr("type", "text");
+		$("#password_edit")[0].setAttribute("type", "text");
 	else
-		$("#password_edit").attr("type", "password");
+		$("#password_edit")[0].setAttribute("type", "password");
 }
 
 function togglePasswordView2() {
 	if ($("#view_password_check2").is(":checked"))
-		$("#password_edit2").attr("type", "text");
+		$("#password_edit2")[0].setAttribute("type", "text");
 	else
-		$("#password_edit2").attr("type", "password");
+		$("#password_edit2")[0].setAttribute("type", "password");
 }
 
 // Called when the user presses a key in the password field
