@@ -8,16 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/getNavbar")
-public class GetNavServlet extends HttpServlet{
-
+@WebServlet("/getHandlePendingView")
+public class HandPendingViewServlet extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		
-		System.out.println("doGet Nav?");
-		System.out.println("Req: "+req);
-		System.out.println("Resp: "+resp);
-		req.getRequestDispatcher("partials/empnav.html")
+		req.getRequestDispatcher("handlePend.html")
 		.forward(req, resp);
 	}
+	
 	
 }

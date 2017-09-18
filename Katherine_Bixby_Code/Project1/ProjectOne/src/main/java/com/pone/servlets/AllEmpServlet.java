@@ -18,30 +18,32 @@ import com.pone.pojos.RStatus;
 import com.pone.pojos.Reimbursement;
 import com.pone.service.Service;
 
+@WebServlet("/allEmpGet")
+public class AllEmpServlet extends HttpServlet{
+	
 
-@WebServlet("/getReimbursements")
-public class GetReimbursementsServlet extends HttpServlet{
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response)
 	throws ServletException, IOException{
 		
 		Service service = new Service();
 		
 		HttpSession session = request.getSession();
+		
 		AUser sessionUser = (AUser)session.getAttribute("auser");
+		ArrayList<AUser> allUsers = service.getAllUsers();
+
 		if(sessionUser != null){
 			ArrayList<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
-			reimbursements = service.getAllReimbursements();
+			reimbursements = service.getUserReimbursements(sessionUser);
+
 			
 			ArrayList<RStatus> allStatuses = service.getReimbursementStatuses();
-			
-			ArrayList<AUser> allUsers = service.getAllUsers();
-			DTO adto = new DTO(sessionUser, reimbursements,allStatuses,allUsers);
-			
+			DTO dto = new DTO(sessionUser, reimbursements,allStatuses,allUsers);
 			
 			ObjectMapper mapper = new ObjectMapper();
 			
-			String json = mapper.writeValueAsString(adto);
+			String json = mapper.writeValueAsString(dto);
 			
 			PrintWriter out = response.getWriter();
 			response.setContentType("application/json");
@@ -50,9 +52,6 @@ public class GetReimbursementsServlet extends HttpServlet{
 		else{
 			response.setStatus(418);
 		}
-		
-		
-		
 		
 		
 	}

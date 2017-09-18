@@ -2,27 +2,99 @@
 window.onload = function(){
 	
 	loadDashboardView();
-	
-	
-	
+	$("#viewingAllReimb").click(function(){
+		loadAllReimbView();
+	});
+	$("#viewingPendReimb").click(function(){
+		loadPendReimbView();
+		loadHandlePendView();
+	});
+	$("#viewingAllEmp").click(function(){
+		loadAllEmpView();
+	});
+	$("#addingEmployee").click(function(){
+		loadAddEmpView();
+	});
 };
 
 
 //Views
+
 
 function loadDashboardView(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			document.getElementById('view').innerHTML = xhr.responseText;
-			getReimbursements();
-			pendingReimbursements();
+			//getReimbursements();
+			//pendingReimbursements();
 		}
 	}
 	xhr.open("GET","getDashboard",true);
 	xhr.send();
 }
 
+
+function loadAddEmpView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('addAnEmp').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET","addEmpView",true);
+	xhr.send();
+}
+
+
+
+function loadAllReimbView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('allReimbView').innerHTML = xhr.responseText;
+			getReimbursements();
+		}
+	}
+	xhr.open("GET","getAllReimbView",true);
+	xhr.send();
+}
+
+
+function loadHandlePendView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('handlePendReimbView').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET","getHandlePendingView",true);
+	xhr.send();
+}
+
+function loadPendReimbView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('pendReimbView').innerHTML = xhr.responseText;
+			pendingReimbursements();
+		}
+	}
+	xhr.open("GET","getPendReimbView",true);
+	xhr.send();
+}
+
+function loadAllEmpView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			document.getElementById('allEmpView').innerHTML = xhr.responseText;
+			getAllUsers();
+		}
+	}
+	xhr.open("GET","getAllEmpView",true);
+	xhr.send();
+}
 
 
 
@@ -49,7 +121,53 @@ function getTheirName(uid, allThem){
 
 
 
-
+function getAllUsers(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			var allTheUsers = dto.allUsers;
+			if (allTheUsers.length == 0){
+				document.getElementById("employee").style.visibility = "hidden"; 
+			}
+			else{
+				var table = document.getElementById("allEmpTable");
+				for(var i = 0; i < allTheUsers.length; i++){
+					// populate accounts table
+					var nrow = table.insertRow(i+1);
+					var eid = nrow.insertCell(0);
+					var uname = nrow.insertCell(1);
+					var fn = nrow.insertCell(2);
+					var ln = nrow.insertCell(3);
+					var email = nrow.insertCell(4);
+					var isman = nrow.insertCell(5);
+					
+					
+					eid.innerHTML = allTheUsers[i].u_id;
+					uname.innerHTML = allTheUsers[i].userName;
+					fn.innerHTML = allTheUsers[i].firstName;
+					ln.innerHTML = allTheUsers[i].lastName;
+					email.innerHTML = allTheUsers[i].email;
+					var displayManager = allTheUsers[i].isManager;
+					if(displayManager==0){
+						isman.innerHTML="Employee";
+					}
+					else if(displayManager==1){
+						isman.innerHTML="Manager";
+					}
+					else{
+						isman.innerHTML="ERROR";
+					}
+					
+					
+				}
+			}
+		}
+	}
+	xhr.open("GET","allEmpGet",true);
+	xhr.send();
+}
 
 
 
@@ -136,7 +254,9 @@ function pendingReimbursements(){
 			else{
 	
 				for(var i = 0; i < pendingReimb.length; i++){
-
+					
+					console.log("!!!!!!!!!!!!!!!!!!!!!! "+i+" !!!!!!!!!!!!!!!");
+					
 					var table = document.getElementById("pendingReimbTable");
 					var nrow = table.insertRow();
 					var preimb = nrow.insertCell(0);
@@ -150,8 +270,6 @@ function pendingReimbursements(){
 					var pamt = nrow.insertCell(8);
 					var approve = nrow.insertCell(9);
 					var deny = nrow.insertCell(10);
-					
-					
 					
 					
 					preimb.innerHTML = pendingReimb[i].r_id;
@@ -171,34 +289,15 @@ function pendingReimbursements(){
 					pdesc.innerHTML = pendingReimb[i].description;
 					presnotes.innerHTML = pendingReimb[i].resolveNotes;
 					pamt.innerHTML = "$"+pendingReimb[i].amount;
-					approve.innerHTML = "✔";
-					deny.innerHTML = "✖";
 					
 				}
 
-				
-				
-				$(document).ready(function(){
-					$("#pendingReimbTable").on('click','tr',function(e){
-						e.preventDefault();
-						var rid = $(e.target).parent().find('td:first').html();
-						var cell = $(e.target).html();
-						if(cell=="✔"||cell=="✖"){
-							if(cell=="✔"){
-								var myObj = {"todo":"A","rid":rid};
-								var handle = JSON.stringify(myObj);
-								handlePending(handle);
-								//location.reload();
-							}
-							else{
-								var myObj = {"todo":"D","rid":rid};
-								var handle = JSON.stringify(myObj);
-								handlePending(handle);
-								//location.reload();
-							}
-						}
-					});
-				});
+				var radioRID = document.getElementById("needsHandling");
+				var theOptions = "";
+				for(var i = 0; i < pendingReimb.length; i++){
+					theOptions+="<input type=\"radio\" id=\"option"+i+"\" name=\"ridoption\" value="+pendingReimb[i].r_id+">"+pendingReimb[i].r_id+"<br/>";
+				}
+				radioRID.innerHTML = theOptions;
 				
 			}
 		}
@@ -209,20 +308,10 @@ function pendingReimbursements(){
 	
 }
 
-// Pass in string (A:id or D:id) and then check first letter then do that by id
 
-function handlePending(handle){
-	handle = JSON.stringify(handle);
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
-		}
-	}
-	xhr.open("POST","handlePending",true);
-	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-	xhr.send('json='+encodeURIComponent(handle));
-}
+
+
+
 
 
 
@@ -238,3 +327,4 @@ function timeConverter(ts){
 	var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
 	return time;
 }
+

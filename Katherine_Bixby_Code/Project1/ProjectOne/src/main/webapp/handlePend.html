@@ -1,0 +1,21 @@
+<div class="jumbotron">
+	<form action="runHandle" method="post">
+		<font face="Arya" size="4">Reimbursement ID to Handle:</font><br>
+		<div class="input-group">
+			<font face="Arya" size="4"><span id="needsHandling"></span></font>
+		</div>
+		<br>
+		<font face="Arya" size="4">What Would You Like to Do?</font><br>
+		<div class="input-group">
+			<font face="Arya" size="4"><input type="radio" id="appr" name="actionHand" value="A">Approve</font><br/>
+			<font face="Arya" size="4"><input type="radio" id="den" name="actionHand" value="D">Deny</font><br/>
+		</div>
+		<br>
+		<font face="Arya" size="4">(Optional) Reasoning:</font><br>
+		<font face="Arya" size="4"><input type="text" id="thereason" name="thereason" placeholder="Reason for Approval or Denial" maxlength="50" style="width:300px;"/></font>
+	
+		<br><br>
+	
+		<font face="Arya" size="4"><input type="submit" id="runHandle" value="Handle Reimbursement"/></font>
+	</form>
+</div>

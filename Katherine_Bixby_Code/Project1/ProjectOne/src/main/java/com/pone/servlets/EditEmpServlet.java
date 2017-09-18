@@ -29,6 +29,7 @@ public class EditEmpServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		
 		AUser loggedUser = (AUser) session.getAttribute("auser");
 		String firstName = request.getParameter("editfirst");
 		if(firstName == null || firstName=="") {

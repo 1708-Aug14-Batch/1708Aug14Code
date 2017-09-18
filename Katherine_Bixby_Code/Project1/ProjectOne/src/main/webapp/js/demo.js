@@ -2,9 +2,34 @@
 window.onload = function(){
 	
 	loadDashboardView();
-	
+	$("#viewingMyReimb").click(function(){
+		loadReimbTableView();
+	});
+	$("#viewingMyProfile").click(function(){
+		loadProfileView();
+	});
+	$("#editingMyProfile").click(function(){
+		loadEditView();
+	});
+	$("#submittingReimb").click(function(){
+		loadSubmitReimbView();
+	});
+	$("#Logout").click(function(){
+		loadLogout();
+	});
 };
 
+
+function loadLogout(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('view').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET","Logout",true);
+	xhr.send();
+}
 
 //Views
 
@@ -21,6 +46,57 @@ function loadDashboardView(){
 	xhr.send();
 }
 
+
+function loadReimbTableView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('myReimb').innerHTML = xhr.responseText;
+			getMyReimb();
+			
+		}
+	}
+	xhr.open("GET","myReimbView",true);
+	xhr.send();
+}
+
+
+
+function loadProfileView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('myProfile').innerHTML = xhr.responseText;
+			getUserInformation();
+		}
+	}
+	xhr.open("GET","myProfileView",true);
+	xhr.send();
+}
+
+
+function loadSubmitReimbView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('mySubmit').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET","getSubmitView",true);
+	xhr.send();
+}
+
+
+function loadEditView(){
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			document.getElementById('myEdit').innerHTML = xhr.responseText;
+		}
+	}
+	xhr.open("GET","myEditView",true);
+	xhr.send();
+}
 
 
 
@@ -47,10 +123,7 @@ function getTheirName(uid, allThem){
 }
 
 
-
-
-function getUserInformation(){
-	
+function getMyReimb(){
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -61,14 +134,8 @@ function getUserInformation(){
 			var reimbStatuses = dto.statuses;
 			var allTheUsers = dto.allUsers;
 			
-			var fullName = aUser.firstName+" "+aUser.lastName;
-			document.getElementById('fullname').innerHTML = fullName;
-			document.getElementById('theiruname').innerHTML = aUser.userName;
-			document.getElementById('theiremail').innerHTML = aUser.email;
-			document.getElementById('theiruid').innerHTML = aUser.u_id;
-			
 			if (reimbursements.length == 0&&aUser.isManager==0){
-				document.getElementById("reimbursements").style.visibility = "hidden"; 
+				console.log("sad");
 				
 			}
 			else{
@@ -96,7 +163,13 @@ function getUserInformation(){
 						resid.innerHTML = getTheirName(reimbursements[i].resolverId,allTheUsers);
 					}
 					subdate.innerHTML = timeConverter(reimbursements[i].submitDate);
-					resdate.innerHTML = reimbursements[i].resolveDate;
+					var theResDate = reimbursements[i].resolveDate;
+					if(theResDate){
+						resdate.innerHTML = timeConverter(reimbursements[i].resolveDate);
+					}
+					else{
+						resdate.innerHTML = "";
+					}
 					var tyId = reimbursements[i].statusId;
 					var thatstat =  getType(tyId,reimbStatuses);
 					statid.innerHTML = thatstat;
@@ -106,6 +179,32 @@ function getUserInformation(){
 					
 				}
 			}
+		}
+	}
+	xhr.open("GET", "getReimbInfo", true);
+	xhr.send();
+}
+
+
+function getUserInformation(){
+	
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			var aUser = dto.auser;
+			var reimbursements = dto.reimbursements;
+			var reimbStatuses = dto.statuses;
+			var allTheUsers = dto.allUsers;
+			
+			var fullName = aUser.firstName+" "+aUser.lastName;
+			document.getElementById('fullname').innerHTML = fullName;
+			document.getElementById('theiruname').innerHTML = aUser.userName;
+			document.getElementById('theiremail').innerHTML = aUser.email;
+			document.getElementById('theiruid').innerHTML = aUser.u_id;
+			
+			
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);

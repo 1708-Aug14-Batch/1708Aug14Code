@@ -10,12 +10,17 @@
 <link href="https://fonts.googleapis.com/css?family=Asar" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Arya" rel="stylesheet">
 <style>
+
+html{
+	position:relative;
+	min-height:100%;
+}
 .jumbotron {
 	background-color: #d6edff
 }
 body{
 	background-image: url("https://inspirationhut.net/wp-content/uploads/2013/05/14.png");
-	min-height: 100%;
+	margin-bottom:40px;
 }
 /* navbar */
 .navbar-inverse{
@@ -39,14 +44,35 @@ img {
 	background:transparent;
 	border:3px solid #23222B;
 }
+label{
+	display:inline-block;
+	width:200px;
+}
 .footer {
-	position: relative;
-	right: 0;
+	position: absolute;
 	bottom: 0;
-	left: 0;
-	padding: 1rem;
+	width: 100%;
+	height:40px;
+	line-height:40px;
 	background-color: #efefef;
 	text-align: center;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+input[type=submit] {
+	padding: 5px 15px;
+	border: 0 none;
+	cursor: pointer;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background-color:#70a3cc;
 }
 </style>
 </head>
@@ -62,19 +88,23 @@ img {
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Arya">Employees</font>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewemployees.html"><font face="Arya">View All</font></a></li>
-						<li><a href="addemployee.html"><font face="Arya">Add New</font></a></li>
+						<li><a id="viewingAllEmp"><font face="Arya">View All</font></a></li>
+						<li><a id="addingEmployee"><font face="Arya">Add New</font></a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Arya">Reimbursements</font>
 					<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="viewreimbursement.html"><font face="Arya">View Requests</font></a></li>
-						<li><a href="managereimbursement.html"><font face="Arya">Handle Reimbursements</font></a></li>
+						<li><a id="viewingAllReimb"><font face="Arya">View All</font></a></li>
+						<li><a id="viewingPendReimb"><font face="Arya">Handle Pending</font></a></li>
 					</ul>
 				</li>
-				<li><a href="login.jsp"><font face="Arya">Logout</font></a></li>
+				<li>
+					<form action="Logout" method="get">
+						<font face="Arya"><button type="submit" class="btn btn-link btn-logout" id="Logout" style="padding:14px 0px">Logout</button></font>
+					</form>
+				</li>
 			</ul>
 		</div>
 	</nav>
@@ -83,7 +113,9 @@ img {
 		<div class="header">
 			<div class="media">
 					<div class="media-middle">
-						<img class="img-responsive" src="images/option1.jpg">
+					<center>
+						<img class="img-responsive" src="images/option1.jpg" style="text-align: center;">
+					</center>
 					</div>
 				</div>
 		</div>
@@ -95,46 +127,28 @@ img {
 	<!-- USE AJAX TO INJECT HTML TO VIEW -->
 	</div>
 
-	<div class="container-fluid">
-		<div class="panel panel-default">
-			<div class="panel-heading">Reimbursements</div>
-			<table class="table" id="allReimbTable" style="width: 100%">
-				<th>Reimbursement ID</th>
-				<th>Submitter</th>
-				<th>Resolver</th>
-				<th>Submittion Date</th>
-				<th>Resolution Date</th>
-				<th>Status</th>
-				<th>Description</th>
-				<th>Resolution Notes</th>
-				<th>Amount</th>
-			</table>
-		</div>
+	<div class="container-fluid" id="allReimbView">
+	</div>
+	
+	<div class="container-fluid" id="pendReimbView">
+	</div>
+	<div class="container-fluid" id="handlePendReimbView">
 	</div>
 	
 	
-	
-	<div class="container-fluid">
-		<div class="panel panel-default">
-			<div class="panel-heading">Pending Reimbursements</div>
-			<table class="table" id="pendingReimbTable" style="width: 100%">
-				<th>Reimbursement ID</th>
-				<th>Submitter</th>
-				<th>Resolver</th>
-				<th>Submittion Date</th>
-				<th>Resolution Date</th>
-				<th>Status</th>
-				<th>Description</th>
-				<th>Resolution Notes</th>
-				<th>Amount</th>
-				<th>Approve</th>
-				<th>Deny</th>
-			</table>
-		</div>
+	<div class="container-fluid" id="allEmpView">
 	</div>
 	
+	
+	<div class="container-fluid" id="addAnEmp">
+	</div>
 	
 
+	<footer class="footer">
+		<div class="container">
+			<font size=1>Art By: <a href="https://www.giarrano.com">Vincent Giarrano</a></font>
+		</div>
+	</footer>
 
 	<script src="js/manager.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

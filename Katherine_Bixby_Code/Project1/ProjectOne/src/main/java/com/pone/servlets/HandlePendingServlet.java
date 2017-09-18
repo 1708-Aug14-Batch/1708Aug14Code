@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.pone.pojos.AUser;
 import com.pone.service.Service;
 
-@WebServlet("/handlePending")
+@WebServlet("/runHandle")
 public class HandlePendingServlet extends HttpServlet{
 
 	static Service service = new Service();
@@ -22,48 +22,49 @@ public class HandlePendingServlet extends HttpServlet{
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
+		boolean commit=true;
 		
-		String jsonPar = request.getParameter("json");
+		AUser loggedIn = (AUser) session.getAttribute("auser");
+		int handleRID = Integer.parseInt(request.getParameter("ridoption"));
+		String handleType = request.getParameter("actionHand");
+		String resNotes = request.getParameter("thereason");
 		
-		jsonPar = jsonPar.replaceAll("\\\\","");
-		String[] jparStr = jsonPar.split(":");
-		String[] vars = {"",""};
-		int spot = 0;
-		for(String s:jparStr) {
-			String[] str = s.split("\"");
-			for (String st:str) {
-				if(!st.equals("")&&!st.equals("{")&&!st.equals("}")&&!st.equals(",")&&!st.equals("rid")&&!st.equals("todo")) {
-					//System.out.println("st: "+st);
-					vars[spot] = st;
-					spot++;
-				}
-			}
+		if(handleType==null) {
+			commit=false;
 		}
-		String todo = vars[0];
-		int rid = Integer.parseInt(vars[1]);
-		
-		AUser loggedIn = (AUser) session.getAttribute("auser");	
-		
-		int statId = 0;
-		////////////////////////////////// HARD CODING IN STATUS TYPE //////////////
-		if(todo.equals("A")) {
-			statId = 1;
+		if(request.getParameter("ridoption")==null) {
+			commit=false;
 		}
-		else if(todo.equals("D")) {
-			statId = 2;
+		if(resNotes==null) {
+			resNotes="";
 		}
-		service.editStatusId(rid, statId);
-		service.editResolveDate(rid);
-		service.editResolverId(rid, loggedIn.getU_id());
+		
+		/////////////// HARD CODING THIS IN ///////////////////
+		int stId = 0;
+		if(handleType.equals("A")) {
+			stId=1;
+		}
+		else if(handleType.equals("D")) {
+			stId=2;
+		}
+		
+
+		int resolverId = loggedIn.getU_id();
+		if(commit==true) {
+			service.editResolveDate(handleRID);
+			service.editResolveNotes(handleRID, resNotes);
+			service.editStatusId(handleRID, stId);
+			service.editResolverId(handleRID, resolverId);
+		}
+		
 		RequestDispatcher rd = request.getRequestDispatcher("managerhome.html");
 		session.setAttribute("auser", loggedIn);
-		rd.forward(request, response); // successful login
+		rd.forward(request, response); 
 		
 		
 		
 		
 	}
-	
 	
 	
 	

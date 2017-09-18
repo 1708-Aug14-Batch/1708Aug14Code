@@ -20,11 +20,6 @@ import com.pone.service.Service;
 
 @WebServlet("/getUserInfo")
 public class GetUserInfoServlet extends HttpServlet{
-	
-	
-	/*
-	 * I NEED ONE OF THESE BUT FOR MANAGERS FRIG
-	 */
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response)
@@ -43,7 +38,7 @@ public class GetUserInfoServlet extends HttpServlet{
 
 			
 			ArrayList<RStatus> allStatuses = service.getReimbursementStatuses();
-			System.out.println("Statuses: "+allStatuses.toString());
+			
 			DTO dto = new DTO(sessionUser, reimbursements,allStatuses,allUsers);
 			
 			ObjectMapper mapper = new ObjectMapper();

@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/getDashboard")
-public class GetDashboardServlet extends HttpServlet {
-	
+@WebServlet("/myProfileView")
+public class GetMyProfileViewServlet extends HttpServlet{
+
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
-		req.getRequestDispatcher("dashboard.html")
+		req.getRequestDispatcher("empProfile.html")
 		.forward(req, resp);
 	}
-	
 	
 }
