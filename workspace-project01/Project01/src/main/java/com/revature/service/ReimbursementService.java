@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.revature.dao.RUserDAO;
 import com.revature.dao.ReimbursementDAO;
 import com.revature.dto.EditRequestDTO;
+import com.revature.dto.RegisterEmpDTO;
 import com.revature.model.RUser;
 import com.revature.model.Reimbursement;
 
@@ -139,6 +140,15 @@ public class ReimbursementService {
 		reimbToEdit.setResolutionNotes(reqData.getResolutionNotes());
 		reimbToEdit.setStatusID(reqData.getStatus());
 		return this.reimbDAO.update(reimbToEdit);
+	}
+	
+	public int registerEmployee(RegisterEmpDTO registrationData) {
+		RUser newUser = new RUser();
+		newUser.setFirstName(registrationData.getFirstName());
+		newUser.setLastName(registrationData.getLastName());
+		newUser.setEmail(registrationData.getEmail());
+		newUser.setPassword(registrationData.getPassword());
+		return this.userDAO.create(newUser);
 	}
 	
 }

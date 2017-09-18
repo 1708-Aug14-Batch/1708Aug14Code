@@ -9,7 +9,7 @@ public interface IRUserDAO {
 	/**
 	 * CREATE
 	 */
-	void create(RUser user);
+	int create(RUser user);
 	
 	/**
 	 * READ

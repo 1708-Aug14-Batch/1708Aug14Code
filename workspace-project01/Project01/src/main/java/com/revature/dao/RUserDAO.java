@@ -12,10 +12,11 @@ import com.revature.util.ConnectionSingleton;
 public class RUserDAO implements IRUserDAO {
 
 	@Override
-	public void create(RUser user) {
+	public int create(RUser user) {
 		if (user == null) {
 			throw new IllegalArgumentException("User cannot be null");
 		}
+		int rowsInserted = 0;
 		try(Connection conn = ConnectionSingleton.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			String sql = "INSERT INTO r_user(r_user_id, first_name, last_name, email, password, is_manager) VALUES(DEFAULT, ?, ?, ?, ?, DEFAULT)";
@@ -24,11 +25,12 @@ public class RUserDAO implements IRUserDAO {
 			statement.setString(2, user.getLastName());
 			statement.setString(3, user.getEmail());
 			statement.setString(4, user.getPassword());
-			statement.executeUpdate();
+			rowsInserted = statement.executeUpdate();
 			conn.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return rowsInserted;
 	}
 
 	@Override

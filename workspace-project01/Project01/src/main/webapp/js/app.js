@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$(document).on('click', '#btnSubmitRequest', submitRequest);
 	$('#btnAllRequests').click(showAllRequestsView);
 	$('#btnAllEmployees').click(showAllEmployeesView);
-	//$(document).on('click', '#btnEmpRequests', viewRequestPage);
+	$('#btnRegisterEmployee').click(showRegisterView);
 });
 
 //Begin Employee Functions
@@ -234,31 +234,33 @@ function populateEmpsTable(emps) {
 		$('#noEmps').hide();
 		$('#empsTable').show();
 		for(var i = 0; i < emps.length; i++){
-			var table = document.getElementById("empsTable");
-			var row = table.insertRow(1);
-			var firstNameCell = row.insertCell(0);
-			var lastNameCell = row.insertCell(1);
-			var emailCell = row.insertCell(2);
+			let table = document.getElementById("empsTable");
+			let row = table.insertRow(1);
+			let firstNameCell = row.insertCell(0);
+			let lastNameCell = row.insertCell(1);
+			let emailCell = row.insertCell(2);
 
 			firstNameCell.innerHTML = emps[i].firstName;
 			lastNameCell.innerHTML = emps[i].lastName;
 			emailCell.innerHTML = emps[i].email;
 
-			var cellShowEmp = row.insertCell(3);
-			var btnShowEmp = document.createElement("button");
+			let cellShowEmp = row.insertCell(3);
+			let btnShowEmp = document.createElement("button");
 			btnShowEmp.innerHTML = "View This Employee";
+			btnShowEmp.id = "" + i;
 			cellShowEmp.appendChild(btnShowEmp);
 
-			var email = emailCell.innerHTML;
+			let email = emailCell.innerHTML;
 			function invokeShowSingleEmpView() {
 				showSingleEmpView(email);
 			}
-			$(btnShowEmp).click(invokeShowSingleEmpView);
+			$('#' + i).click(invokeShowSingleEmpView);
 		}
 	}
 }
 
 function showSingleEmpView(email) {
+	console.log(email);
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
@@ -287,7 +289,6 @@ function getSingleEmp(email) {
 			$('#email').html(employee.email);
 		}
 	}
-	//email = JSON.stringify(email);
 	request.open("POST", "manager-view-employee", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(email);
@@ -389,7 +390,35 @@ function getEmpRequests(email) {
 }
 
 function showRegisterView() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+			$('#btnSubmitNewEmp').click(registerEmployee);
+		}
+	}
+	request.open("GET", "manager-register-employee", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
 
+function registerEmployee() {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if(request.readyState == 4 && request.status == 200) {
+			showAllEmployeesView();
+		}
+	}
+	request.open("POST", "manager-register-employee", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	let firstName = $('#newFirstName').val();
+	let lastName = $('#newLastName').val();
+	let email = $('#newEmail').val();
+	let password = $('#newPassword').val();
+	//let confirmedPassword = $('#confirmNewPassword').val();
+	let dto = {firstName, lastName, email, password};
+	dto = JSON.stringify(dto);
+	request.send(dto);
 }
 
 //End Manager Functions
