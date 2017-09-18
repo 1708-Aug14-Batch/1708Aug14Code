@@ -38,7 +38,7 @@ public class ResolutionServlet extends HttpServlet {
 			obj.put("success", "noSuchId");
 		} else {
 			if (reimb.getStatus() == Status.PENDING) {
-				service.resolveReimbursement(id, approved == "approved");
+				service.resolveReimbursement(id, approved.equals("approved"));
 				obj.put("success", "success");
 			} else {
 				obj.put("success", "notPending");

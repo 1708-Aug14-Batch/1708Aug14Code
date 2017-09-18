@@ -40,7 +40,7 @@ $(function() {
 					}
 					table.row.add([
 					        arr[i].description,
-					        arr[i].amount,
+					        '$'+arr[i].amount,
 					        arr[i].status,
 					        resolverTxt,
 					        arr[i].submissionDate,

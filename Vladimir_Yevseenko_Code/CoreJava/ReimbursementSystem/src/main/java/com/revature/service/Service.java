@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.revature.dao.DBDAO;
+import com.revature.hashing.Hasher;
 import com.revature.logging.Logging;
 import com.revature.pojos.Reimbursement;
 import com.revature.pojos.User;
@@ -24,12 +25,27 @@ public class Service {
 	
 	public boolean attemptLogin(String email, String password) {
 		logger.debug("Service attemptLogin()");
-		return (curUser = dao.attemptLogin(email, password)) != null;
+		Hasher hasher = new Hasher();
+		String passwordHash = hasher.hashPassword(password);
+		logger.debug("Service attemptLogin() passwordHash: " + passwordHash);
+		curUser = dao.attemptLogin(email, passwordHash);
+		if (curUser == null)
+			return false;
+		curUser = new User(curUser.getId(), 
+				curUser.getFirst(), 
+				curUser.getLast(), 
+				curUser.getEmail(), 
+				password, 
+				curUser.getIsManager());
+		return true;
 	}
 	
 	public boolean addUser(String first, String last, String email, String pass, boolean isManager) {
 		logger.debug("Service addUser()");
-		return dao.addUser(new User(first, last, email, pass, isManager));
+		Hasher hasher = new Hasher();
+		String passwordHash = hasher.hashPassword(pass);
+		logger.debug("Service addUser() passwordHash: " + passwordHash);
+		return dao.addUser(new User(first, last, email, passwordHash, isManager));
 	}
 	
 	public User getCurUser() {
@@ -52,8 +68,14 @@ public class Service {
 	
 	public boolean updateUserInfo(String first, String last, String email, String password) {
 		logger.debug("Service updateUserInfo");
+		Hasher hasher = new Hasher();
+		String passwordHash = hasher.hashPassword(password);
+		logger.debug("Service updateUserInfo() passwordHash: " + passwordHash);
 		curUser = new User(curUser.getId(), first, last, email, password, curUser.getIsManager());
-		return dao.updateUserInfo(curUser.getId(), first, last, email, password);
+		if (email.equals(curUser.getEmail())) {
+			return dao.updateUserInfoNoEmail(curUser.getId(), first, last, email, passwordHash);
+		}
+ 		return dao.updateUserInfo(curUser.getId(), first, last, email, passwordHash);
 	}
 	
 	
@@ -71,7 +93,7 @@ public class Service {
 	
 	public boolean resolveReimbursement(int reimbId, boolean approved) {
 		logger.debug("Service resolveReimbursement()");
-		logger.debug("resolverReimbursment() approved: " + approved);
+		logger.debug("resolveReimbursment() approved: " + approved);
 		return dao.resolveReimbursement(reimbId, curUser.getId(), approved);
 	}
 	

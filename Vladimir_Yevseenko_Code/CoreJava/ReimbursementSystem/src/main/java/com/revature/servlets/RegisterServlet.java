@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 
 import com.revature.email.EmailSender;
-import com.revature.hashing.Hasher;
 import com.revature.logging.Logging;
 import com.revature.passwordgenerator.PasswordGenerator;
 import com.revature.service.Service;
@@ -38,30 +37,22 @@ public class RegisterServlet extends HttpServlet{
 		resp.setContentType("application/json");
 		JSONObject obj = new JSONObject();
 	
-		String password, passwordHash;
-		Hasher hasher = new Hasher();
+		String password;
 		if (isManager) {
 			password = req.getParameter("password");
-			logger.debug("RegisterServlet given password: " + password);
 		} else {
 			PasswordGenerator pg = new PasswordGenerator();
 			password = pg.generatePassword();
-			logger.debug("RegisterServlet generated password: " + password);
+			EmailSender es = new EmailSender();
+			es.sendEmail(email, password);
 		}
-		
 		logger.debug("RegisterServlet firstName: " + firstName);
 		logger.debug("RegisterServlet lastName: " + lastName);
 		logger.debug("RegisterServlet email: " + email);
+		logger.debug("RegisterServlet password: " + password);
 		
-		passwordHash = hasher.hashPassword(password);
 		
-		if (service.addUser(firstName, lastName, email, passwordHash, isManager)) {
-			obj.put("success", true);
-			EmailSender es = new EmailSender();
-			es.sendEmail(email, password);
-		} else {
-			obj.put("success", false);
-		}
+		obj.put("success", service.addUser(firstName, lastName, email, password, isManager));
 		
 		resp.getWriter().print(obj);
 	}

@@ -10,6 +10,15 @@ body {
 	
 }
 
+table {
+	table-layout:fixed;
+	width: 100%;
+}
+
+select {
+	width: 40%
+}
+
  /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */

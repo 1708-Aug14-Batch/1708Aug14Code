@@ -1,306 +1,604 @@
-2017-09-16 20:13:45 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:13:45 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:13:45 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:13:45 DEBUG root:24 - ConnectionFactory getInstance()
-2017-09-16 20:13:45 DEBUG root:20 - ConnectionFactory() instance created
-2017-09-16 20:13:45 DEBUG root:32 - ConnectionFactory getConnection()
-2017-09-16 20:13:45 DEBUG root:32 - DBDAO() instance created
-2017-09-16 20:13:45 DEBUG root:22 - Service() created
-2017-09-16 20:13:45 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:13:45 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:14:12 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:14:12 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:14:12 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:14:12 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:14:12 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:14:19 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:14:19 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:14:19 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:14:19 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:14:19 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:18:22 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:18:22 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:18:22 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:18:22 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:18:22 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:18:22 DEBUG root:26 - Service attemptLogin()
-2017-09-16 20:18:22 DEBUG root:210 - DBDAO attemptLogin()
-2017-09-16 20:18:22 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:18:22 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:18:22 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:18:22 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:18:23 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:18:23 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:18:23 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:18:23 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:19:18 DEBUG root:27 - RegisterServlet doPost()
-2017-09-16 20:19:18 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:19:18 DEBUG root:49 - RegisterServlet generated password: i33eti21
-2017-09-16 20:19:18 DEBUG root:52 - RegisterServlet firstName: Andrey
-2017-09-16 20:19:18 DEBUG root:53 - RegisterServlet lastName: Alabin
-2017-09-16 20:19:18 DEBUG root:54 - RegisterServlet email: alabin@gmail.com
-2017-09-16 20:19:18 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:19:18 DEBUG root:31 - Service addUser()
-2017-09-16 20:19:18 DEBUG root:24 - User(...) created
-2017-09-16 20:19:18 DEBUG root:154 - DBDAO addUser()
-2017-09-16 20:19:34 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:19:34 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:19:34 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:19:50 DEBUG root:21 - LogoutServlet doPost()
-2017-09-16 20:20:01 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:20:01 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:20:01 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:01 DEBUG root:24 - ConnectionFactory getInstance()
-2017-09-16 20:20:01 DEBUG root:32 - ConnectionFactory getConnection()
-2017-09-16 20:20:01 DEBUG root:32 - DBDAO() instance created
-2017-09-16 20:20:01 DEBUG root:22 - Service() created
-2017-09-16 20:20:01 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:20:01 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:20:01 DEBUG root:26 - Service attemptLogin()
-2017-09-16 20:20:01 DEBUG root:210 - DBDAO attemptLogin()
-2017-09-16 20:20:01 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:20:01 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:20:01 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:01 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:20:02 DEBUG root:26 - YourReimbursementsServlet doPost()
-2017-09-16 20:20:02 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:02 DEBUG root:61 - Service getUsersReimbursements()
-2017-09-16 20:20:02 DEBUG root:82 - DBDAO getUsersReimbursements()
-2017-09-16 20:20:10 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:20:10 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:10 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:20:18 DEBUG root:24 - ChangeUserInfoServlet doPost()
-2017-09-16 20:20:18 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:18 DEBUG root:54 - Service updateUserInfo
-2017-09-16 20:20:18 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:20:18 DEBUG root:234 - DBDAO() updateUserInfo()
-2017-09-16 20:20:18 FATAL root:245 - DBDAO updateUserInfo() SQLException
-2017-09-16 20:20:18 FATAL root:246 - ORA-01407: cannot update ("REIMBURSEMENT_SYSTEM_DB"."USERS"."FIRST_NAME") to NULL
-
-2017-09-16 20:20:40 DEBUG root:21 - LogoutServlet doPost()
-2017-09-16 20:20:50 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:20:50 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:20:50 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:50 DEBUG root:24 - ConnectionFactory getInstance()
-2017-09-16 20:20:50 DEBUG root:32 - ConnectionFactory getConnection()
-2017-09-16 20:20:50 DEBUG root:32 - DBDAO() instance created
-2017-09-16 20:20:50 DEBUG root:22 - Service() created
-2017-09-16 20:20:50 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:20:50 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:20:50 DEBUG root:26 - Service attemptLogin()
-2017-09-16 20:20:50 DEBUG root:210 - DBDAO attemptLogin()
-2017-09-16 20:20:50 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:20:50 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:20:50 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:50 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:20:51 DEBUG root:26 - YourReimbursementsServlet doPost()
-2017-09-16 20:20:51 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:20:51 DEBUG root:61 - Service getUsersReimbursements()
-2017-09-16 20:20:51 DEBUG root:82 - DBDAO getUsersReimbursements()
-2017-09-16 20:21:24 DEBUG root:27 - NewReimbursementServlet doPost()
-2017-09-16 20:21:24 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:21:24 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:21:24 DEBUG root:33 - Reimbursement(...) created
-2017-09-16 20:21:24 DEBUG root:189 - DBDAO addNewReimbursement()
-2017-09-16 20:21:27 DEBUG root:26 - YourReimbursementsServlet doPost()
-2017-09-16 20:21:27 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:21:27 DEBUG root:61 - Service getUsersReimbursements()
-2017-09-16 20:21:27 DEBUG root:82 - DBDAO getUsersReimbursements()
-2017-09-16 20:21:27 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:21:27 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:21:27 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:22:01 DEBUG root:27 - NewReimbursementServlet doPost()
-2017-09-16 20:22:01 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:22:01 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:22:01 DEBUG root:33 - Reimbursement(...) created
-2017-09-16 20:22:01 DEBUG root:189 - DBDAO addNewReimbursement()
-2017-09-16 20:22:02 DEBUG root:26 - YourReimbursementsServlet doPost()
-2017-09-16 20:22:02 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:22:02 DEBUG root:61 - Service getUsersReimbursements()
-2017-09-16 20:22:02 DEBUG root:82 - DBDAO getUsersReimbursements()
-2017-09-16 20:22:02 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:22:02 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:22:02 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:22:02 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:22:02 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:22:02 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:22:06 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:22:06 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:22:06 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:22:08 DEBUG root:26 - YourReimbursementsServlet doPost()
-2017-09-16 20:22:08 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:22:08 DEBUG root:61 - Service getUsersReimbursements()
-2017-09-16 20:22:08 DEBUG root:82 - DBDAO getUsersReimbursements()
-2017-09-16 20:22:08 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:22:08 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:22:08 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:22:08 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:22:08 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:22:08 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:22:17 DEBUG root:26 - YourReimbursementsServlet doPost()
-2017-09-16 20:22:17 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:22:17 DEBUG root:61 - Service getUsersReimbursements()
-2017-09-16 20:22:17 DEBUG root:82 - DBDAO getUsersReimbursements()
-2017-09-16 20:22:17 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:22:17 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:22:17 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:22:17 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:22:17 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:22:17 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:23:25 DEBUG root:21 - LogoutServlet doPost()
-2017-09-16 20:23:32 DEBUG root:25 - LoginServlet doPost()
-2017-09-16 20:23:32 DEBUG root:28 - Hasher hashPassword()
-2017-09-16 20:23:32 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:23:32 DEBUG root:24 - ConnectionFactory getInstance()
-2017-09-16 20:23:32 DEBUG root:32 - ConnectionFactory getConnection()
-2017-09-16 20:23:32 DEBUG root:32 - DBDAO() instance created
-2017-09-16 20:23:32 DEBUG root:22 - Service() created
-2017-09-16 20:23:32 DEBUG root:86 - Service doesUserExist()
-2017-09-16 20:23:32 DEBUG root:173 - DBDAO doesUserExistByEmail()
-2017-09-16 20:23:32 DEBUG root:26 - Service attemptLogin()
-2017-09-16 20:23:32 DEBUG root:210 - DBDAO attemptLogin()
-2017-09-16 20:23:32 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:23:32 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:23:32 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:23:32 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:23:33 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:23:33 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:23:33 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:23:33 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:23:33 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:23:33 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:23:33 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:23:33 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:23:33 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:23:33 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:23:33 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:23:33 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:23:33 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:23:33 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:24:20 DEBUG root:25 - EmployeeServlet doPost()
-2017-09-16 20:24:20 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:24:20 DEBUG root:79 - Service getAllNonManagers()
-2017-09-16 20:24:20 DEBUG root:36 - DBDAO getAllNonManagers()
-2017-09-16 20:24:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:24:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:24:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:24:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:24:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:24:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:05 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:25:05 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:25:05 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:25:05 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:25:05 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:05 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:05 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:05 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:05 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:25:05 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:05 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:05 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:05 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:05 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:25:19 DEBUG root:25 - EmployeeServlet doPost()
-2017-09-16 20:25:19 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:25:19 DEBUG root:79 - Service getAllNonManagers()
-2017-09-16 20:25:19 DEBUG root:36 - DBDAO getAllNonManagers()
-2017-09-16 20:25:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:22 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:25:22 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:25:22 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:25:22 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:25:22 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:22 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:22 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:22 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:22 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:25:22 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:22 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:22 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:25:22 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:25:22 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:25:44 DEBUG root:26 - ResolutionServlet doPost()
-2017-09-16 20:25:44 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:25:44 DEBUG root:91 - Service doesReimbursementExist()
-2017-09-16 20:26:09 DEBUG root:26 - ResolutionServlet doPost()
-2017-09-16 20:26:09 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:26:09 DEBUG root:91 - Service doesReimbursementExist()
-2017-09-16 20:26:09 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:26:09 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:09 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:26:09 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:09 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:26:09 DEBUG root:73 - Service resolveReimbursement()
-2017-09-16 20:26:09 DEBUG root:74 - resolverReimbursment() approved: false
-2017-09-16 20:26:09 DEBUG root:252 - DBDAO resolveReimbursement()
-2017-09-16 20:26:09 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:26:09 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:26:09 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:26:09 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:26:09 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:26:09 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:09 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:26:09 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:09 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:26:09 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:26:09 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:09 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:26:09 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:09 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:26:23 DEBUG root:25 - EmployeeServlet doPost()
-2017-09-16 20:26:23 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:26:23 DEBUG root:79 - Service getAllNonManagers()
-2017-09-16 20:26:23 DEBUG root:36 - DBDAO getAllNonManagers()
-2017-09-16 20:26:23 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:23 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:23 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:23 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:23 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:26:23 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:16 DEBUG root:23 - UserInfoServlet doPost()
-2017-09-16 20:27:16 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:27:16 DEBUG root:36 - Service getCurUser()
-2017-09-16 20:27:19 DEBUG root:25 - EmployeeServlet doPost()
-2017-09-16 20:27:19 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:27:19 DEBUG root:79 - Service getAllNonManagers()
-2017-09-16 20:27:19 DEBUG root:36 - DBDAO getAllNonManagers()
-2017-09-16 20:27:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:19 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:20 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:27:20 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:27:20 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:27:20 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:27:20 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:27:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:20 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:27:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:20 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:27:20 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:27:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:20 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:27:20 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:27:20 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:32:13 DEBUG root:26 - AllReimbursementsServlet doPost()
-2017-09-16 20:32:13 DEBUG root:42 - Service getFromSession()
-2017-09-16 20:32:13 DEBUG root:67 - Service getAllReimbursements()
-2017-09-16 20:32:13 DEBUG root:56 - DBDAO getAllReimbursements()
-2017-09-16 20:32:13 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:32:13 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:32:13 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:32:13 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:32:13 DEBUG root:46 - Reimbursement(id, ...) created
-2017-09-16 20:32:13 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:32:13 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:32:13 DEBUG root:107 - DBDAO getUserById()
-2017-09-16 20:32:13 DEBUG root:34 - User(id, ...) created
-2017-09-16 20:32:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:50:11 DEBUG root:23 - LoginServlet doPost()
+2017-09-17 20:50:11 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:50:11 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-17 20:50:11 DEBUG root:20 - ConnectionFactory() instance created
+2017-09-17 20:50:11 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-17 20:50:12 DEBUG root:32 - DBDAO() instance created
+2017-09-17 20:50:12 DEBUG root:23 - Service() created
+2017-09-17 20:50:12 DEBUG root:29 - LoginServlet email: cruise@mail.com
+2017-09-17 20:50:12 DEBUG root:30 - LoginServlet password: 08muesj9
+2017-09-17 20:50:12 DEBUG root:108 - Service doesUserExist()
+2017-09-17 20:50:12 DEBUG root:173 - DBDAO doesUserExistByEmail()
+2017-09-17 20:50:12 DEBUG root:27 - Service attemptLogin()
+2017-09-17 20:50:12 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:50:12 DEBUG root:30 - Service attemptLogin() passwordHash: 8B143D5316AB4F05097658E69A90FD2C09A03A8AD891B54918B9543F50E0C920
+2017-09-17 20:50:12 DEBUG root:210 - DBDAO attemptLogin()
+2017-09-17 20:50:12 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:50:12 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:50:12 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:50:12 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:50:12 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:50:13 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:50:13 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:50:13 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:50:13 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:50:14 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:50:14 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:50:14 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:50:22 DEBUG root:25 - ChangeUserInfoServlet doPost()
+2017-09-17 20:50:22 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:50:22 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:50:22 DEBUG root:31 - ChangeUserInfoServlet received first: 
+2017-09-17 20:50:22 DEBUG root:36 - ChangeUserInfoServlet received last: 
+2017-09-17 20:50:22 DEBUG root:41 - ChangeUserInfoServlet received email: 
+2017-09-17 20:50:22 DEBUG root:46 - ChangeUserInfoServlet received password: johncruz
+2017-09-17 20:50:22 DEBUG root:70 - Service updateUserInfo
+2017-09-17 20:50:22 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:50:22 DEBUG root:73 - Service updateUserInfo() passwordHash: 6C51ED7C7C5B8DAC2AF26D9EAB15AB2DA8B85B295B447340BD263673C5B40C98
+2017-09-17 20:50:22 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:50:22 DEBUG root:253 - DBDAO() updateUserInfoNoEmail()
+2017-09-17 20:50:22 DEBUG root:57 - ChangeUserInfoServlet final first: John
+2017-09-17 20:50:22 DEBUG root:58 - ChangeUserInfoServlet final last: Cruz
+2017-09-17 20:50:22 DEBUG root:59 - ChangeUserInfoServlet final email: cruise@mail.com
+2017-09-17 20:50:22 DEBUG root:60 - ChangeUserInfoServlet final password: johncruz
+2017-09-17 20:50:22 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:50:22 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:50:22 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:51:08 DEBUG root:25 - ChangeUserInfoServlet doPost()
+2017-09-17 20:51:08 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:51:08 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:51:08 DEBUG root:31 - ChangeUserInfoServlet received first: J
+2017-09-17 20:51:08 DEBUG root:36 - ChangeUserInfoServlet received last: 
+2017-09-17 20:51:08 DEBUG root:41 - ChangeUserInfoServlet received email: 
+2017-09-17 20:51:08 DEBUG root:46 - ChangeUserInfoServlet received password: 
+2017-09-17 20:51:08 DEBUG root:70 - Service updateUserInfo
+2017-09-17 20:51:08 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:51:08 DEBUG root:73 - Service updateUserInfo() passwordHash: 6C51ED7C7C5B8DAC2AF26D9EAB15AB2DA8B85B295B447340BD263673C5B40C98
+2017-09-17 20:51:08 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:51:08 DEBUG root:253 - DBDAO() updateUserInfoNoEmail()
+2017-09-17 20:51:08 DEBUG root:57 - ChangeUserInfoServlet final first: J
+2017-09-17 20:51:08 DEBUG root:58 - ChangeUserInfoServlet final last: Cruz
+2017-09-17 20:51:08 DEBUG root:59 - ChangeUserInfoServlet final email: cruise@mail.com
+2017-09-17 20:51:08 DEBUG root:60 - ChangeUserInfoServlet final password: johncruz
+2017-09-17 20:51:08 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:51:08 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:51:08 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:51:15 DEBUG root:25 - ChangeUserInfoServlet doPost()
+2017-09-17 20:51:15 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:51:15 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:51:15 DEBUG root:31 - ChangeUserInfoServlet received first: John
+2017-09-17 20:51:15 DEBUG root:36 - ChangeUserInfoServlet received last: 
+2017-09-17 20:51:15 DEBUG root:41 - ChangeUserInfoServlet received email: 
+2017-09-17 20:51:15 DEBUG root:46 - ChangeUserInfoServlet received password: 
+2017-09-17 20:51:15 DEBUG root:70 - Service updateUserInfo
+2017-09-17 20:51:15 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:51:15 DEBUG root:73 - Service updateUserInfo() passwordHash: 6C51ED7C7C5B8DAC2AF26D9EAB15AB2DA8B85B295B447340BD263673C5B40C98
+2017-09-17 20:51:15 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:51:15 DEBUG root:253 - DBDAO() updateUserInfoNoEmail()
+2017-09-17 20:51:15 DEBUG root:57 - ChangeUserInfoServlet final first: John
+2017-09-17 20:51:15 DEBUG root:58 - ChangeUserInfoServlet final last: Cruz
+2017-09-17 20:51:15 DEBUG root:59 - ChangeUserInfoServlet final email: cruise@mail.com
+2017-09-17 20:51:15 DEBUG root:60 - ChangeUserInfoServlet final password: johncruz
+2017-09-17 20:51:15 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:51:15 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:51:15 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:51:24 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:51:24 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:51:24 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:51:24 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:51:49 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:51:49 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:51:49 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:51:49 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:51:49 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:52:06 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:52:06 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:06 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:52:06 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:52:06 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:52:08 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:52:08 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:08 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:52:08 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:52:08 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:52:08 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:08 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:52:08 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:52:08 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:08 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:52:17 DEBUG root:21 - LogoutServlet doPost()
+2017-09-17 20:52:26 DEBUG root:23 - LoginServlet doPost()
+2017-09-17 20:52:26 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:26 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-17 20:52:26 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-17 20:52:26 DEBUG root:32 - DBDAO() instance created
+2017-09-17 20:52:26 DEBUG root:23 - Service() created
+2017-09-17 20:52:26 DEBUG root:29 - LoginServlet email: cruise@mail.com
+2017-09-17 20:52:26 DEBUG root:30 - LoginServlet password: johncruz
+2017-09-17 20:52:26 DEBUG root:108 - Service doesUserExist()
+2017-09-17 20:52:26 DEBUG root:173 - DBDAO doesUserExistByEmail()
+2017-09-17 20:52:26 DEBUG root:27 - Service attemptLogin()
+2017-09-17 20:52:26 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:52:26 DEBUG root:30 - Service attemptLogin() passwordHash: 6C51ED7C7C5B8DAC2AF26D9EAB15AB2DA8B85B295B447340BD263673C5B40C98
+2017-09-17 20:52:26 DEBUG root:210 - DBDAO attemptLogin()
+2017-09-17 20:52:26 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:26 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:26 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:52:26 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:26 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:52:27 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:52:27 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:27 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:52:27 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:52:27 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:52:27 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:27 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:52:27 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:52:27 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:27 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:52:29 DEBUG root:21 - LogoutServlet doPost()
+2017-09-17 20:52:50 DEBUG root:23 - LoginServlet doPost()
+2017-09-17 20:52:50 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:50 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-17 20:52:50 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-17 20:52:50 DEBUG root:32 - DBDAO() instance created
+2017-09-17 20:52:50 DEBUG root:23 - Service() created
+2017-09-17 20:52:50 DEBUG root:29 - LoginServlet email: eelmas@mail.com
+2017-09-17 20:52:50 DEBUG root:30 - LoginServlet password: w9d760vz
+2017-09-17 20:52:50 DEBUG root:108 - Service doesUserExist()
+2017-09-17 20:52:50 DEBUG root:173 - DBDAO doesUserExistByEmail()
+2017-09-17 20:52:50 DEBUG root:27 - Service attemptLogin()
+2017-09-17 20:52:50 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:52:50 DEBUG root:30 - Service attemptLogin() passwordHash: FCBCB2E04120CDFEA59E687398976431B8989CF982FAE86D4DA501454B4B6AAB
+2017-09-17 20:52:50 DEBUG root:210 - DBDAO attemptLogin()
+2017-09-17 20:52:50 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:50 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:50 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:52:50 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:50 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:52:50 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:52:50 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:50 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:52:50 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:52:52 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:52:52 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:52 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:52:59 DEBUG root:25 - ChangeUserInfoServlet doPost()
+2017-09-17 20:52:59 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:52:59 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:52:59 DEBUG root:31 - ChangeUserInfoServlet received first: 
+2017-09-17 20:52:59 DEBUG root:36 - ChangeUserInfoServlet received last: 
+2017-09-17 20:52:59 DEBUG root:41 - ChangeUserInfoServlet received email: eelmas@mail.com
+2017-09-17 20:52:59 DEBUG root:46 - ChangeUserInfoServlet received password: 
+2017-09-17 20:52:59 DEBUG root:70 - Service updateUserInfo
+2017-09-17 20:52:59 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:52:59 DEBUG root:73 - Service updateUserInfo() passwordHash: FCBCB2E04120CDFEA59E687398976431B8989CF982FAE86D4DA501454B4B6AAB
+2017-09-17 20:52:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:52:59 DEBUG root:253 - DBDAO() updateUserInfoNoEmail()
+2017-09-17 20:52:59 DEBUG root:57 - ChangeUserInfoServlet final first: Sam
+2017-09-17 20:52:59 DEBUG root:58 - ChangeUserInfoServlet final last: Lee
+2017-09-17 20:52:59 DEBUG root:59 - ChangeUserInfoServlet final email: eelmas@mail.com
+2017-09-17 20:52:59 DEBUG root:60 - ChangeUserInfoServlet final password: w9d760vz
+2017-09-17 20:53:00 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:53:00 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:53:00 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:54:18 DEBUG root:25 - ChangeUserInfoServlet doPost()
+2017-09-17 20:54:18 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:54:18 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:54:18 DEBUG root:31 - ChangeUserInfoServlet received first: 
+2017-09-17 20:54:18 DEBUG root:36 - ChangeUserInfoServlet received last: 
+2017-09-17 20:54:18 DEBUG root:41 - ChangeUserInfoServlet received email: 
+2017-09-17 20:54:18 DEBUG root:46 - ChangeUserInfoServlet received password: samsamlee
+2017-09-17 20:54:18 DEBUG root:70 - Service updateUserInfo
+2017-09-17 20:54:18 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:54:18 DEBUG root:73 - Service updateUserInfo() passwordHash: 896E790F08CECB8B13604090D9B90C4E110D0CF80C48D4DC5FE03CF601B77FB9
+2017-09-17 20:54:18 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:54:18 DEBUG root:253 - DBDAO() updateUserInfoNoEmail()
+2017-09-17 20:54:18 DEBUG root:57 - ChangeUserInfoServlet final first: Sam
+2017-09-17 20:54:18 DEBUG root:58 - ChangeUserInfoServlet final last: Lee
+2017-09-17 20:54:18 DEBUG root:59 - ChangeUserInfoServlet final email: eelmas@mail.com
+2017-09-17 20:54:18 DEBUG root:60 - ChangeUserInfoServlet final password: samsamlee
+2017-09-17 20:54:19 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:54:19 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:54:19 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:54:39 DEBUG root:21 - LogoutServlet doPost()
+2017-09-17 20:54:47 DEBUG root:23 - LoginServlet doPost()
+2017-09-17 20:54:47 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:54:47 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-17 20:54:47 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-17 20:54:47 DEBUG root:32 - DBDAO() instance created
+2017-09-17 20:54:47 DEBUG root:23 - Service() created
+2017-09-17 20:54:47 DEBUG root:29 - LoginServlet email: eelmas@mail.com
+2017-09-17 20:54:47 DEBUG root:30 - LoginServlet password: samsamlee
+2017-09-17 20:54:47 DEBUG root:108 - Service doesUserExist()
+2017-09-17 20:54:47 DEBUG root:173 - DBDAO doesUserExistByEmail()
+2017-09-17 20:54:47 DEBUG root:27 - Service attemptLogin()
+2017-09-17 20:54:47 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:54:47 DEBUG root:30 - Service attemptLogin() passwordHash: 896E790F08CECB8B13604090D9B90C4E110D0CF80C48D4DC5FE03CF601B77FB9
+2017-09-17 20:54:47 DEBUG root:210 - DBDAO attemptLogin()
+2017-09-17 20:54:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:54:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:54:47 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:54:47 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:54:47 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:54:48 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:54:48 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:54:48 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:54:48 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:55:01 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:55:01 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:01 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:55:01 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:55:01 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:55:02 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:55:02 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:02 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:55:02 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:55:02 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:55:02 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:55:02 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:55:04 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:55:04 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:04 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:55:22 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:55:22 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:22 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:55:22 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:55:22 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:55:22 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:55:22 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:55:24 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:55:24 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:24 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:55:24 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:55:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:55:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:55:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:55:27 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:55:27 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:27 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:55:29 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:55:29 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:29 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:55:29 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:55:29 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:55:29 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:55:29 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:55:30 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:55:30 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:55:30 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:07 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:56:07 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:07 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:07 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:56:07 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:56:08 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:56:08 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:08 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:56:08 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:56:08 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:56:08 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:08 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:56:08 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:56:08 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:08 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:56:10 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:56:10 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:10 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:11 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:56:11 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:11 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:56:11 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:56:11 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:56:11 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:11 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:56:11 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:56:11 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:11 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:56:23 DEBUG root:21 - LogoutServlet doPost()
+2017-09-17 20:56:39 DEBUG root:23 - LoginServlet doPost()
+2017-09-17 20:56:39 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:39 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-17 20:56:39 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-17 20:56:39 DEBUG root:32 - DBDAO() instance created
+2017-09-17 20:56:39 DEBUG root:23 - Service() created
+2017-09-17 20:56:39 DEBUG root:29 - LoginServlet email: lyev@mail.com
+2017-09-17 20:56:39 DEBUG root:30 - LoginServlet password: 3v18l9kz
+2017-09-17 20:56:39 DEBUG root:108 - Service doesUserExist()
+2017-09-17 20:56:39 DEBUG root:173 - DBDAO doesUserExistByEmail()
+2017-09-17 20:56:39 DEBUG root:27 - Service attemptLogin()
+2017-09-17 20:56:39 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:56:39 DEBUG root:30 - Service attemptLogin() passwordHash: 5BC7B443826D6D68CC5D3603B4121ADFF959F5CFCAB40461FB10B8415FF8EC78
+2017-09-17 20:56:39 DEBUG root:210 - DBDAO attemptLogin()
+2017-09-17 20:56:39 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:39 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:39 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:56:39 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:39 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:40 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:56:40 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:40 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:56:40 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:56:41 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:56:41 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:41 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:47 DEBUG root:25 - ChangeUserInfoServlet doPost()
+2017-09-17 20:56:47 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:47 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:47 DEBUG root:31 - ChangeUserInfoServlet received first: 
+2017-09-17 20:56:47 DEBUG root:36 - ChangeUserInfoServlet received last: 
+2017-09-17 20:56:47 DEBUG root:41 - ChangeUserInfoServlet received email: 
+2017-09-17 20:56:47 DEBUG root:46 - ChangeUserInfoServlet received password: larisa12
+2017-09-17 20:56:47 DEBUG root:70 - Service updateUserInfo
+2017-09-17 20:56:47 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:56:47 DEBUG root:73 - Service updateUserInfo() passwordHash: D2CA9F72B77BAE8C771E8FAC42AE5C5857CE1E080B7D05F49DB02DB18EF52816
+2017-09-17 20:56:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:56:47 DEBUG root:253 - DBDAO() updateUserInfoNoEmail()
+2017-09-17 20:56:47 DEBUG root:57 - ChangeUserInfoServlet final first: Larisa
+2017-09-17 20:56:47 DEBUG root:58 - ChangeUserInfoServlet final last: Yevseenko
+2017-09-17 20:56:47 DEBUG root:59 - ChangeUserInfoServlet final email: lyev@mail.com
+2017-09-17 20:56:47 DEBUG root:60 - ChangeUserInfoServlet final password: larisa12
+2017-09-17 20:56:48 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:56:48 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:48 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:56:55 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:56:55 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:56:55 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:56:55 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:57:13 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:57:13 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:57:13 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:57:13 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:57:13 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:57:15 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:57:15 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:57:15 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:57:15 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:57:15 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:57:15 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:57:15 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:57:42 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:57:42 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:57:42 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:57:42 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:57:42 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:57:43 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:57:43 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:57:43 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:57:43 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:57:43 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:57:43 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:57:43 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:57:43 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:57:43 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:57:43 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:58:41 DEBUG root:27 - NewReimbursementServlet doPost()
+2017-09-17 20:58:41 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:58:41 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:58:41 DEBUG root:33 - Reimbursement(...) created
+2017-09-17 20:58:41 DEBUG root:189 - DBDAO addNewReimbursement()
+2017-09-17 20:58:43 DEBUG root:26 - YourReimbursementsServlet doPost()
+2017-09-17 20:58:43 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:58:43 DEBUG root:83 - Service getUsersReimbursements()
+2017-09-17 20:58:43 DEBUG root:82 - DBDAO getUsersReimbursements()
+2017-09-17 20:58:43 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:58:43 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:58:43 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:58:43 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:58:43 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:58:43 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:58:43 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:58:43 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:58:43 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:15 DEBUG root:21 - LogoutServlet doPost()
+2017-09-17 20:59:23 DEBUG root:23 - LoginServlet doPost()
+2017-09-17 20:59:23 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:23 DEBUG root:24 - ConnectionFactory getInstance()
+2017-09-17 20:59:23 DEBUG root:32 - ConnectionFactory getConnection()
+2017-09-17 20:59:23 DEBUG root:32 - DBDAO() instance created
+2017-09-17 20:59:23 DEBUG root:23 - Service() created
+2017-09-17 20:59:23 DEBUG root:29 - LoginServlet email: manager@mail.com
+2017-09-17 20:59:23 DEBUG root:30 - LoginServlet password: password
+2017-09-17 20:59:23 DEBUG root:108 - Service doesUserExist()
+2017-09-17 20:59:23 DEBUG root:173 - DBDAO doesUserExistByEmail()
+2017-09-17 20:59:23 DEBUG root:27 - Service attemptLogin()
+2017-09-17 20:59:23 DEBUG root:28 - Hasher hashPassword()
+2017-09-17 20:59:23 DEBUG root:30 - Service attemptLogin() passwordHash: A6112EAE1AC87499CDF171DC64B111E85A649AE05C5D40D8E00589B06EC6257D
+2017-09-17 20:59:23 DEBUG root:210 - DBDAO attemptLogin()
+2017-09-17 20:59:23 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:23 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:23 DEBUG root:23 - UserInfoServlet doPost()
+2017-09-17 20:59:23 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:23 DEBUG root:52 - Service getCurUser()
+2017-09-17 20:59:24 DEBUG root:26 - AllReimbursementsServlet doPost()
+2017-09-17 20:59:24 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:24 DEBUG root:89 - Service getAllReimbursements()
+2017-09-17 20:59:24 DEBUG root:56 - DBDAO getAllReimbursements()
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:24 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:24 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:33 DEBUG root:26 - ResolutionServlet doPost()
+2017-09-17 20:59:33 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:33 DEBUG root:113 - Service doesReimbursementExist()
+2017-09-17 20:59:46 DEBUG root:26 - ResolutionServlet doPost()
+2017-09-17 20:59:46 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:46 DEBUG root:113 - Service doesReimbursementExist()
+2017-09-17 20:59:46 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:46 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:46 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:46 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:46 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:46 DEBUG root:95 - Service resolveReimbursement()
+2017-09-17 20:59:46 DEBUG root:96 - resolverReimbursment() approved: false
+2017-09-17 20:59:46 DEBUG root:271 - DBDAO resolveReimbursement()
+2017-09-17 20:59:47 DEBUG root:26 - AllReimbursementsServlet doPost()
+2017-09-17 20:59:47 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:47 DEBUG root:89 - Service getAllReimbursements()
+2017-09-17 20:59:47 DEBUG root:56 - DBDAO getAllReimbursements()
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:47 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:47 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:58 DEBUG root:26 - ResolutionServlet doPost()
+2017-09-17 20:59:58 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:58 DEBUG root:113 - Service doesReimbursementExist()
+2017-09-17 20:59:58 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:58 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:58 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:58 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:58 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:58 DEBUG root:95 - Service resolveReimbursement()
+2017-09-17 20:59:58 DEBUG root:96 - resolverReimbursment() approved: false
+2017-09-17 20:59:58 DEBUG root:271 - DBDAO resolveReimbursement()
+2017-09-17 20:59:59 DEBUG root:26 - AllReimbursementsServlet doPost()
+2017-09-17 20:59:59 DEBUG root:58 - Service getFromSession()
+2017-09-17 20:59:59 DEBUG root:89 - Service getAllReimbursements()
+2017-09-17 20:59:59 DEBUG root:56 - DBDAO getAllReimbursements()
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 20:59:59 DEBUG root:34 - User(id, ...) created
+2017-09-17 20:59:59 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:12 DEBUG root:26 - ResolutionServlet doPost()
+2017-09-17 21:00:12 DEBUG root:58 - Service getFromSession()
+2017-09-17 21:00:12 DEBUG root:113 - Service doesReimbursementExist()
+2017-09-17 21:00:12 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:12 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:12 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:12 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:12 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:12 DEBUG root:95 - Service resolveReimbursement()
+2017-09-17 21:00:12 DEBUG root:96 - resolverReimbursment() approved: false
+2017-09-17 21:00:12 DEBUG root:271 - DBDAO resolveReimbursement()
+2017-09-17 21:00:13 DEBUG root:26 - AllReimbursementsServlet doPost()
+2017-09-17 21:00:13 DEBUG root:58 - Service getFromSession()
+2017-09-17 21:00:13 DEBUG root:89 - Service getAllReimbursements()
+2017-09-17 21:00:13 DEBUG root:56 - DBDAO getAllReimbursements()
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:107 - DBDAO getUserById()
+2017-09-17 21:00:13 DEBUG root:34 - User(id, ...) created
+2017-09-17 21:00:13 DEBUG root:46 - Reimbursement(id, ...) created

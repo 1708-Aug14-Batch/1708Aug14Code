@@ -62,21 +62,25 @@ $(function() {
 			}
 		
 			$.post('changeUserInfoServlet',
-			{ first: $('#firstNameInput').val(), last: $('#lastNameInput').val(),
-			  email: $('#emailInput').val(), password: $('#passwordInput').val() },
+			{ first: $('#firstNameIn').val(), last: $('#lastNameIn').val(),
+			  email: $('#emailIn').val(), password: $('#passwordIn1').val() },
 			  function(response) {
 				  if (response.success) {
 					  $('#changeInfoMsg').css('color', 'green');
 					  $('#changeInfoMsg').text('Account info updated');
+					  $('.inField').each(function() {
+							 $(this).val(''); 
+					  });
 					  setTimeout(function() {
 						  $('#changeInfoMsg').text('');
-					  }, 3000);
+					  }, 3000); 
+					  location.reload();
 				  } else {
 					  $('#emailIn').css('border-color', 'red');
-					  $('#changeInfoMsg').text('Email is already in use');
+					  $('#emailMsg').text('Email is already in use');
 					  setTimeout(function() {
 						  $('#emailIn').css('border-color', 'rgba(0,0,0,0.3)');
-						  $('#changeInfoMsg').text('');
+						  $('#emailMsg').text('');
 					  }, 3000);
 				  }
 			  },
@@ -103,7 +107,7 @@ $(function() {
 		window.location.replace('registerEmployee.html');
 	});
 	
-	$('#viewEmployees').click(function() {
+	$('#viewEmployeesBtn').click(function() {
 		window.location.replace('employees.html');
 	});
 	

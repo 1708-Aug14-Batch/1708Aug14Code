@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+
+<html lang="en-US" ng-app="app">
+	<head>
+		<meta charset="UTF-8"> 
+		<title>Angular Fundamentals</title>
+	</head>
+	<body>
+		<div class="container" ng-controller="myController">
+			Name: <input type="text" ng-model="name"/> {{name | uppercase}}
+			
+			<h3>Using ng-repeat</h3>
+			<ul>
+				<li ng-repeat="person in people | filter: name | orderBy: 'firstName'">{{person.firstName | uppercase}} {{person.lastName | lowercase}}</li>
+			</ul>
+		</div>
+	
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+		<script src="index.js"></script>
+	</body>
+</html>

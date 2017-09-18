@@ -232,12 +232,31 @@ public class DBDAO {
 	
 	public boolean updateUserInfo(int id, String first, String last, String email, String password) {
 		log.debug("DBDAO() updateUserInfo()");
-		final String sql = "UPDATE users SET first_name = ?, last_name = ?, email = ?, password = ?";
+		final String sql = "UPDATE users SET first_name = ?, last_name = ?, password = ?, email = ? WHERE id = ?";
 		try (PreparedStatement ps = dbConn.prepareStatement(sql)) {
 			ps.setString(1, first);
 			ps.setString(2, last);
-			ps.setString(3, email);
-			ps.setString(4, password);
+			ps.setString(3, password);
+			ps.setString(4, email);
+			ps.setInt(5, id);
+			ps.execute();
+			dbConn.commit();
+			return true;
+		} catch (SQLException ex) {
+			log.fatal("DBDAO updateUserInfo() SQLException");
+			log.fatal(ex.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean updateUserInfoNoEmail(int id, String first, String last, String email, String password) {
+		log.debug("DBDAO() updateUserInfoNoEmail()");
+		final String sql = "UPDATE users SET first_name = ?, last_name = ?, password = ? WHERE id = ?";
+		try (PreparedStatement ps = dbConn.prepareStatement(sql)) {
+			ps.setString(1, first);
+			ps.setString(2, last);
+			ps.setString(3, password);
+			ps.setInt(4, id);
 			ps.execute();
 			dbConn.commit();
 			return true;

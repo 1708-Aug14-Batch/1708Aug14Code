@@ -20,6 +20,7 @@ public class EmployeesServlet extends HttpServlet {
 	
 	private static Logger logger = Logging.getLogger();
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.debug("EmployeeServlet doPost()");
