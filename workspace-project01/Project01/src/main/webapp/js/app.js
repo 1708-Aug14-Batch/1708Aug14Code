@@ -15,7 +15,7 @@ $(document).ready(function() {
 	$(document).on('click', '#btnSubmitRequest', submitRequest);
 	$('#btnAllRequests').click(showAllRequestsView);
 	$('#btnAllEmployees').click(showAllEmployeesView);
-	$(document).on('click', '#btnEmpRequests', viewRequestPage);
+	//$(document).on('click', '#btnEmpRequests', viewRequestPage);
 });
 
 //Begin Employee Functions
@@ -263,6 +263,12 @@ function showSingleEmpView(email) {
 	request.onreadystatechange = function() {
 		if(request.readyState == 4 && request.status == 200) {
 			$('#view').html(request.responseText);
+		
+			function invokeViewEmpRequestsPage() {
+				viewEmpRequestsPage(email);
+			}
+			$(document).on('click', '#btnEmpRequests', invokeViewEmpRequestsPage);
+			
 			getSingleEmp(email);
 		}
 	}
@@ -354,6 +360,32 @@ function updateReq() {
 	request.open("POST", "manager-edit-request", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	request.send(dto);
+}
+
+function viewEmpRequestsPage(email) {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			$('#view').html(request.responseText);
+			getEmpRequests(email);
+		}
+	}
+	request.open("GET", "manager-view-emp-requests", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+}
+
+function getEmpRequests(email) {
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			var reimbs = JSON.parse(request.responseText);
+			populateReimbsTable(reimbs);
+		}
+	}
+	request.open("POST", "manager-view-emp-requests", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send(email);
 }
 
 function showRegisterView() {
