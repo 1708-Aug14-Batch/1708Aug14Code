@@ -121,8 +121,8 @@ function loadHome() {
 
 			$('#view').html(xhr.responseText);
 
-			homeTable = $('#homeTable').DataTable({ 'paging':false, 'scrollY':420, 'dom':'t' });
-			
+			homeTable = $('#homeTable').DataTable({ 'paging':false, 'scrollY':420, 'lengthChange':false, 'info':false });
+
 			$('input[type="search"]').on('keyup', function () {
 				searchFilter = $(this).val();
 				homeTable.search(searchFilter).draw();
@@ -160,7 +160,7 @@ function loadTable() {
 			let dto = JSON.parse(xhr.responseText);
 			let user = dto.user;
 			let rows = dto.list;
-			
+
 			$.each(rows, function (index) {
 				let moreInfo = this.status === 'Pending' ? null : 'more info';
 
@@ -176,7 +176,7 @@ function loadTable() {
 						this.resolveDate,
 						this.notes
 						]);
-					
+
 				} else {
 					if (showEmployees) {
 						homeTable.row.add([
@@ -203,18 +203,18 @@ function loadTable() {
 					}
 				}
 			});
-			
+
 			homeTable.on('click', 'td:last-child', function () {
 				if ($(this).text() === 'more info') {
 					log('clicked the last column data');
 					let data = homeTable.row(this).data();
-					
+
 					$('#id').text(data[0]);
 					$('#desc').text(data[data.length-5]);
 					$('#res').text(data[data.length-3]);
 					$('#resDate').text(formatDate(new Date(data[data.length-2])));
 					$('#resNote').text(data[data.length-1]);
-					
+
 					$('#moreInfoModal').modal('show');
 				}
 			});
@@ -265,7 +265,7 @@ function loadTable() {
 }
 
 function showMoreInfo() {
-	
+
 }
 
 function na(val) {
