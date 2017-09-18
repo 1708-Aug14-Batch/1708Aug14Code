@@ -23,9 +23,7 @@ public class User {
 		this.balance = balance;
 	}
 
-	public int getId() {
-		Random rand = new Random();
-		 int id = rand.nextInt(15) + 1;
+	public int getId() {		
 		return id;
 	}
 

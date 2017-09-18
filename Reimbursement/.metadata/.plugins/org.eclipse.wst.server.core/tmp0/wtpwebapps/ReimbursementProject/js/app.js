@@ -58,7 +58,7 @@ function login(){
 		}
 	}
 	console.log(tx);
-	xhr.open("POST", "login", true);
+	xhr.open("POST", "loginmessagetest", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-from-urlencoded");
 	xhr.send(tx);
 };

@@ -1,4 +1,4 @@
-package src.main.java.test;
+package com.reimburse.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,7 +22,7 @@ import com.reimburse.pojos.User;
 public class LoginMessageServlet extends HttpServlet{
 
 	
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("test -- POST");
@@ -40,7 +40,7 @@ public class LoginMessageServlet extends HttpServlet{
 		Object obj = txObject.toArray()[0];
 		ArrayList<String> tx = jackson.readValue((String)obj, ArrayList.class);
 		
-		@SuppressWarnings("unused")
+		
 		HttpSession session = request.getSession();
 		Services service = new Services();
 		

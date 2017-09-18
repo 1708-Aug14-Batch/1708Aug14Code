@@ -1,0 +1,12 @@
+127.0.0.1 - - [15/Sep/2017:01:26:44 -0400] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:26:45 -0400] "GET /ReimbursementProject/app.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:26:46 -0400] "GET /ReimbursementProject/js/newApp.js HTTP/1.1" 200 6534
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:26:46 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:05 -0400] "GET /ReimbursementProject/app.html HTTP/1.1" 200 2040
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:05 -0400] "GET /ReimbursementProject/js/newApp.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:06 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:06 -0400] "GET /favicon.ico HTTP/1.1" 404 1016
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:18 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 4
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:41 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 107
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:41 -0400] "GET /ReimbursementProject/getDashboard HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [15/Sep/2017:01:27:41 -0400] "GET /ReimbursementProject/getUserInfo HTTP/1.1" 200 -

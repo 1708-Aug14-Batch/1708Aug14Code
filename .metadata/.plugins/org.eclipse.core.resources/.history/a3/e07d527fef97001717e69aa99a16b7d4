@@ -1,0 +1,29 @@
+package com.ex.test;
+
+import com.ex.beans.Instructor;
+import com.ex.beans.Students;
+import com.ex.dao.HibDAO;
+
+public class MainTest {
+
+	public static void main(String[] args) {
+		
+		HibDAO dao = new HibDAO();
+		Instructor inst = new Instructor();
+	
+//		inst.setName("Dr.Sanchez");
+		
+		
+		//dao.addSimple(inst);
+		
+		Students s = new Students();
+		s.setFirstname("Gen");
+		s.setLastname("Bonds");
+		s.setEmail("gen@email.com");
+		
+		dao.addStudent(s);
+	
+
+	}
+
+}

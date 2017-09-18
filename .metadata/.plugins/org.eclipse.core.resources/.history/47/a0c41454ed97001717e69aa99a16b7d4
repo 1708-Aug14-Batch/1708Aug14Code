@@ -1,0 +1,50 @@
+package com.ex.dao;
+
+
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.ex.beans.Instructor;
+import com.ex.beans.Students;
+import com.ex.beans.Transcript;
+import com.ex.util.ConnectionUtil;
+
+public class HibDAO {
+	
+	
+	public Students addStudent(Students student){
+		Session session = ConnectionUtil.getSession();
+		Students s = new Students();
+		Transcript script = new Transcript();
+		
+		try{
+			Transaction tx = (Transaction) session.beginTransaction();
+			
+			script = (Transcript) session.save(script);
+			
+			student.setTranscript(script);
+			
+			student = (Students) session.save(student);
+			
+			tx.commit();
+		}
+		finally{
+			session.close();
+		}
+		return student;
+	}
+	
+	public void addInstructor(Instructor instructor){
+		Session session = ConnectionUtil.getSession();
+		try{
+			Transaction tx = (Transaction) session.beginTransaction();
+			session.save(instructor);
+			tx.commit();
+		}
+		finally{
+			session.close();
+		}
+	}
+
+}

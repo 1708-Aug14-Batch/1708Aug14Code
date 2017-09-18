@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:42:06 -0400] "GET /ReimbursementProject/app.html HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:42:06 -0400] "GET /ReimbursementProject/js/newApp.js HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:42:06 -0400] "GET /ReimbursementProject/getLoginView HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:42:40 -0400] "POST /ReimbursementProject/login HTTP/1.1" 500 1598
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:49:39 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 4
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:50:11 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 4
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:50:16 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 4
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:50:17 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 4
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:50:24 -0400] "POST /ReimbursementProject/login HTTP/1.1" 200 107
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:50:24 -0400] "GET /ReimbursementProject/getDashboard HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [17/Sep/2017:16:50:24 -0400] "GET /ReimbursementProject/getUserInfo HTTP/1.1" 200 -

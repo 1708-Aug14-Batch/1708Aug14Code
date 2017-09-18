@@ -1,0 +1,27 @@
+package com.ex.dao;
+
+
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.ex.beans.Students;
+import com.ex.util.ConnectionUtil;
+
+public class HibDAO {
+	
+	
+	public void addStudent(Students student){
+		Session session = ConnectionUtil.getSession();
+		try{
+			Transaction tx = (Transaction) session.beginTransaction();
+		
+		session.save(student);
+		tx.commit();
+		}
+		finally{
+			session.close();
+		}
+	}
+
+}

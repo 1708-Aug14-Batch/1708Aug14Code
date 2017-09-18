@@ -1,23 +1,2 @@
-1504683214156	Rename type 'DAO'
-1504701084123	Encapsulate field 'isAManager'
-1504771419121	Delete element
-1504772616156	Rename resource 'bootstrap.min.css'
-1504774556950	Rename resource 'Icon.png'
-1504778218379	Move 'NavBarServlet.java' to 'servlets'
-1504778818368	Move 'icon.png' to 'WEB-INF'
-1504778831320	Move 'icon.png' to 'webapp'
-1504793382522	Delete element
-1504793840885	Move 'Login_Servlets.java' to 'utilities'
-1504793890456	Move 'Login_Servlets.java' to 'servlets'
-1504794931358	Move 'testing.html' to 'html'
-1504794950142	Move 'testing.html' to 'webapp'
-1504795421495	Move 'login.js' to 'js'
-1504796662838	Rename resource 'LogginMessage.java'
-1504798019335	Move 'java' to 'main'
-1504798028077	Move 'com' to 'java'
-1504798119759	Delete element
-1504798129057	Move 'test' to 'java'
-1504799556713	Delete element
-1504811772409	Move compilation unit
-1504811808488	Rename package 'src.main.java.text'
-1504812028455	Delete element
+1504822465036	Move 'webapp' to 'test'
+1504822500996	Move compilation unit

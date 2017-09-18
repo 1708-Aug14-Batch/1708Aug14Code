@@ -101,7 +101,7 @@ public class DAOImpl implements DAO {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
 			String sql = "insert into reimbursement(submitterId, description,amount)"
-					+"values(?,?,?)"; 
+					+" values(?,?,?)"; 
 			String[] key = new String[1];
 			key[0] = "reimId";
 			PreparedStatement ps = conn.prepareStatement(sql,key);
@@ -122,6 +122,7 @@ public class DAOImpl implements DAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 		return r;
 	}
