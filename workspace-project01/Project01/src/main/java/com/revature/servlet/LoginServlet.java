@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import javax.servlet.annotation.WebServlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,6 +31,7 @@ import com.revature.service.ReimbursementService;
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -8744761542576381118L;
+	private static final Logger logger = Logger.getLogger(LoginServlet.class);
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -50,8 +53,14 @@ public class LoginServlet extends HttpServlet {
 				ObjectMapper mapper = new ObjectMapper();
 				json = mapper.writeValueAsString(user);
 				if (user.isManager()) {
+					if(logger.isInfoEnabled()){
+						logger.info("Manager " + email + " logged in");
+					}
 					response.sendRedirect(response.encodeRedirectURL("manager-home.html"));
 				} else {
+					if(logger.isInfoEnabled()){
+						logger.info("Employee " + email + " logged in");
+					}
 					response.sendRedirect(response.encodeRedirectURL("employee-home.html"));
 				}
 			} else {
