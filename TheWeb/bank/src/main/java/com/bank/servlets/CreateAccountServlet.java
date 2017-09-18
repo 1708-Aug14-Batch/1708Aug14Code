@@ -24,9 +24,7 @@ public class CreateAccountServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("posting new account to db");
-		
-		System.out.println("logging in - log in servlet");
-
+	
 		//Grab all paramenters, in this case only 1 JSON String
 		Map<String, String[]> myMap = request.getParameterMap();
 
@@ -39,11 +37,10 @@ public class CreateAccountServlet extends HttpServlet{
 		//Convert the the keySet into an array, then get the first element (index 0) from that set
 		Object obj = txObject.toArray()[0];
 //		
-		ArrayList<String> tx =  jackson.readValue(((String)obj), ArrayList.class);
+		String accType =  jackson.readValue(((String)obj), String.class);
 //		
 		
 		
-	String accType = tx.get(0);
 		
 		
 	System.out.println("creating account of type " + accType);

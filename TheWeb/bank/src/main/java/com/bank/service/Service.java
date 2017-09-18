@@ -60,4 +60,19 @@ System.out.println("in validate user");
 	public ArrayList<Account> getUserAccounts(User u){
 		return dao.getAccountsByUser(u);
 	}
+	
+	
+	public double withdraw(Account acc, double amt){
+		double bal = dao.getBalance(acc.getId());
+		if(amt>bal){
+			//amount is too high
+			return -1;
+		}
+		else{
+			bal = bal-amt;
+			dao.updateBalance(acc.getId(), bal);
+		}
+		
+		return bal;
+	}
 }

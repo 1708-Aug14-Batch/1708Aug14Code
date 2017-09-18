@@ -90,18 +90,18 @@ function loadDashboardView(){
  * look into window.location.href = <html page>
  */
 //function ajaxGetPage(){
-//	return $.ajax({
-//		url: 'getAccPage',
-//		data: {
-//			format: 'html'
-//		},
-//		type: 'GET',
-//		success: function(result){
-//			console.log("inside ajax GET");
-//		$('#view').html(result);
-//		getAcctPageInto(); }
-//	})
-//
+//return $.ajax({
+//url: 'getAccPage',
+//data: {
+//format: 'html'
+//},
+//type: 'GET',
+//success: function(result){
+//console.log("inside ajax GET");
+//$('#view').html(result);
+//getAcctPageInto(); }
+//})
+
 //};
 //https://stackoverflow.com/questions/8840257/jquery-ajax-handling-continue-responses-success-vs-done
 
@@ -112,13 +112,28 @@ function loadAccountPageView(){
 			document.getElementById('view').
 			innerHTML = xhr.responseText;
 			getAcctPageInfo(); // loads user info by calling function
-
+			listenforEdits();
 		}
 	}
 	console.log("getting accts")
 	xhr.open("GET", "getAccPage", true);
 	xhr.send();
 }
+
+function listenforEdits(){
+	
+	var rows = document.getElementsByTagName('tr');
+	for (var row in rows) {
+			row.onclick = function(){
+				alert("hi");
+			}
+	  }; 
+	  // or attachEvent, depends on browser
+	}
+
+
+
+
 
 function getAcctPageInfo(){ // loads basic user info and account info into html
 	$("#accountForm").hide();
@@ -129,7 +144,7 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-			
+
 			document.getElementById("name").innerHTML = user.firstname;
 
 			if (accounts.length == 0){
@@ -145,12 +160,19 @@ function getAcctPageInfo(){ // loads basic user info and account info into html
 					var acc = row.insertCell(0);
 					var type = row.insertCell(1);
 					var bal = row.insertCell(2);
-					acc.innerHTML = "Account No. " + accounts[i].id;
+					var id = accounts[i].id
+					acc.innerHTML = "Account No. " + id;
 					type.innerHTML = accounts[i].type;
-					bal.innerHTML = "$" + accounts[i].balance;
+					bal.innerHTML = "$" + accounts[i].balance;	
+					row.setAttribute("class", "userAccount");
+					row.setAttribute("id", id);
 				}
 			}
 		}
+		
+		$(".userAccount").on('click', function(){
+			alert($(this).attr("id"));
+		});
 	}
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
@@ -163,25 +185,26 @@ function showAddAccountView(){
 	$("#accountForm").show();
 	$("#accounts").hide();
 	$("#submitAccount").click(function(){addAccount();});
-	
+
 };
 
 
 function addAccount(){ // allows us to acc new accounts 
-	
+
 	var accType = $('input[name="accType"]:checked').val();
-	
+	accType = JSON.stringify(accType);
 	console.log(accType);
 
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responseText);
-
+			loadAccountPageView()
 		}
 	}
 
 	xhr.open("POST", "addAccount", true);
+	xhr.setRequestHeader("Content-type",
+	"application/x-www-form-urlencoded");
 	//set the header to tell the server you have data for it to process
 	xhr.send(accType); //include your post data in the send()
 
@@ -209,10 +232,10 @@ function getUserPageInfo(){ // loads basic user info and account info into html
 
 //function createUser(){
 
-//// load pageview
+////load pageview
 //validatePass();
 //$("#submitNewUser").onclick(){
-//// validate emai
+////validate emai
 //}
 
 //};

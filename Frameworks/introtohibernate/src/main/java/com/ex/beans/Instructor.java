@@ -8,6 +8,49 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedNativeQueries;
+import org.hibernate.annotations.NamedNativeQuery;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
+
+
+/*
+ * Named Queries
+ * Hard to maintain and ugly. avoid, but here's what 
+ * named queries are. 
+ * This can be done via XML or annotations. Below is how 
+ * it works with annotations
+ * for further research/info on how it works in your 
+ * Hibernate mapping file, check out:
+ * http://www.mkyong.com/hibernate/hibernate-named-query-examples/
+ * 
+ * Check HibDAO for how these are called
+ */
+
+//In HQL
+@NamedQueries({
+	@NamedQuery(
+			name="findInstructorByIdHQL",
+			query="from Instructor i where i.id = :id"
+			),
+	@NamedQuery(
+			name="findInstructorByNameHQL",
+			query="from Instructor i where name like :name"
+			)
+})
+
+//In native SQL
+@NamedNativeQueries({
+	@NamedNativeQuery(
+			name="findInstructorByIdSQL",
+			query="select * from insructors where inst_id = :id"
+			),
+	@NamedNativeQuery(
+			name="findInstructorsByNameSQL",
+			query="select * from instructors where instructor_name like :name"
+			)
+})
 @Entity
 @Table(name="INSTRUCTORS")
 public class Instructor {

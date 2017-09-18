@@ -1,5 +1,6 @@
 package com.ex.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import com.ex.beans.Instructor;
 import com.ex.beans.Student;
 import com.ex.beans.Transcript;
 import com.ex.util.ConnectionUtil;
+
+import javassist.bytecode.CodeAttribute.RuntimeCopyException;
 
 public class HibDAO {
 
@@ -58,35 +61,30 @@ public class HibDAO {
 		}
 	}
 
-
-
-
-
-
-	public <T> void addSimple(final Class<T> obj){
-		Session session = ConnectionUtil.getSession();
-
-		try{
-			Transaction tx = (Transaction) session.beginTransaction();
-			session.save(obj);
-			tx.commit();
-		}
-		finally{
-			session.close();
-		}
-	}
-
-
-
 	public Course addCourse(Course c){
 		Session session = ConnectionUtil.getSession();
 		Course ret = null;
+		Transaction tx = (Transaction) session.beginTransaction();
+		
 		try{
-			Transaction tx = (Transaction) session.beginTransaction();
 			int id = (Integer)session.save(c);
 			c.setId(id);
 			tx.commit();
 			ret = c;
+		}
+		catch(RuntimeException e){
+			/*
+			 *  Looking into hibernate transaction commands
+			 *  In Hibernate, tx management is difficult, so 
+			 *  remember that any exceptions thrown are FATAL, 
+			 *  and you have to roll back the transaction and
+			 *  close the cufrrent session immediately 
+			 */
+			try{
+				tx.rollback();
+			}catch(RuntimeException re){
+				re.printStackTrace();;
+			}
 		}
 		finally{
 			session.close();
@@ -96,12 +94,49 @@ public class HibDAO {
 
 
 
-	//READ
+	//READ *********************************************
+	/*
+	 * Often, we will see Hibernate applications that use a mix
+	 * of session.get() and session.load(). Both are used to 
+	 * retrieve objects, just with different mechanisms
+	 * for more, see: http://www.mkyong.com/hibernate/different-between-session-get-and-session-load/
+	 */
+
+	/**
+	 * session.get() will always hit the database and return the 
+	 * real object (an object that represents a row in the db),
+	 * not a proxy.
+	 * if the row isnt found, get() will return null
+	 */
 	public Instructor getInstructorByID(int id){
 		Session session = ConnectionUtil.getSession();
 		Instructor i = null;
 		try{
 			i = (Instructor) session.get(Instructor.class, id);
+		}
+		catch(HibernateException e){
+			e.printStackTrace();
+
+		}
+		finally{
+			session.close();
+		}
+		return i;
+	}
+
+	/*
+	 * session.load() will always return a "proxy"(Hibernate
+	 * term) without hitting the database. In Hibernate, a proxy is 
+	 * an object with the given identifier value; its properties
+	 * are not initialized yet. It looks like a temporary fake object
+	 * If no row is found, it throws an ObjectNotFoundException, 
+	 * so only use this if you're sure the object exists
+	 */
+	public Instructor loadInstructorByID(int id){
+		Session session = ConnectionUtil.getSession();
+		Instructor i = null;
+		try{
+			i = (Instructor) session.load(Instructor.class, id);
 		}
 		catch(HibernateException e){
 			e.printStackTrace();
@@ -149,6 +184,13 @@ public class HibDAO {
 		return students;
 	}
 
+	/*
+	 * Understanding the Query API
+	 * Queries use the Hibernate Query Language - not to be 
+	 * confused with SQL. The main difference is that HQL 
+	 * uses class and property names instead of table and
+	 * column names, respectively 
+	 */
 	public List<Student> queryDemo(String like){
 		//select* from students where lower(firstname) like '%t%';
 		Session session = ConnectionUtil.getSession();
@@ -158,6 +200,24 @@ public class HibDAO {
 		List<Student> students = query.list();
 
 		return students;
+	}
+
+	//calling an HQL named query example
+	public List<Instructor> getNamesLike(String like){
+		Session session = ConnectionUtil.getSession();
+		Query query = session.getNamedQuery("findInstructorByNameHQL")
+				.setString("name", like);
+		List<Instructor> i= query.list();
+		return i;
+	}
+
+	//calling native sql named query. same syntax
+	public Instructor getInstructorById(int id){
+		Session session = ConnectionUtil.getSession();
+		Query query = session.getNamedQuery("findInstructorByIdSQL")
+				.setInteger("id", id);
+		Instructor i = (Instructor) query.list().get(0);
+		return i;
 	}
 
 
@@ -184,5 +244,14 @@ public class HibDAO {
 		}
 	}
 
+	
+	//DELETE
+	public void deleteInstructorByIdQuery(int id){
+		Session session = ConnectionUtil.getSession();
+		Query query = session.createQuery("delete Instructor where id = :id");
+		query.setParameter("id",id);
+		int ret = query.executeUpdate();
+		System.out.println(ret + " Rows Deleted");
+	}
 
 }

@@ -25,7 +25,11 @@ public class Course {
 	@Column(name="COURSE_NAME", nullable = false)
 	private String name;
 	
-	//
+	/*
+	 * The cascade keyword often appears on the collection mapping 
+	 * to manage the state of the collection of dependencies 
+	 * automatically. For more info, see: http://www.mkyong.com/hibernate/hibernate-cascade-example-save-update-delete-and-delete-orphan/
+	 */
 	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn
 	private Instructor instructor;

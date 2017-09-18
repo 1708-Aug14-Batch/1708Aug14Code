@@ -93,7 +93,7 @@ public class DAOImpl implements DAO{
 	}
 	
 	public Account createAccount(User u, int typeId){
-		Account a = null;
+		Account a = new Account();
 		
 		try(Connection conn  = ConnectionFactory
 				.getInstance().getConnection();){
@@ -113,7 +113,7 @@ public class DAOImpl implements DAO{
 			while(pk.next()){
 				id = pk.getInt(1);
 			}
-			
+			System.out.println("id is " + id);
 			a.setId(id);
 			a.setBalance(0);
 		//	a.setType();
@@ -161,6 +161,40 @@ public class DAOImpl implements DAO{
 		
 		return accounts;
 	}
+	
+	public double getBalance(int id){
+		double bal = 0.0;
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			String sql = "select balance from account where accountid = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet info = ps.executeQuery();
+			
+			while(info.next()){
+				bal = info.getDouble(1);
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		return bal;
+	}
+	
+	
+	public void updateBalance(int id, double amt){
+		try(Connection conn = ConnectionFactory
+				.getInstance().getConnection();){
+			String sql = "update account set balance = ? where accountid=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, amt );
+			ps.setInt(2, id);
+			ps.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		}
 	
 
 }
