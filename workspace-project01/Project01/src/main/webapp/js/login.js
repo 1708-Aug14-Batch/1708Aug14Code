@@ -13,9 +13,9 @@ function login() {
 		if(request.readyState == 4 && request.status == 200) {
 			var responseText = request.responseText;
 			if (responseText == "user-not-exist") {
-				$('#bad-login-message').innerHTML = "Login failed. Please re-enter email and password";
+				$('#bad-login-message').html("That email was not found. Please re-enter email");
 			} else if (responseText == "password-incorrect") {
-				$('#bad-login-message').innerHTML = "That email was not found. Please re-enter email";
+				$('#bad-login-message').html("Login failed. Please re-enter  password");
 			} else {
 				window.location.href = request.responseURL;
 			}
