@@ -182,7 +182,7 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 			
 			String sql = "insert into reimbursement (requester_id, amount, type_id) values (?,?,?)";
 			String[] key = new String[1];
-			key[0] = "reimbursement_id";
+			key[0] = "reimburse_id";
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setInt(1, requester);  //it won't matter what is contained within the String
 			ps.setDouble(2, amount);
@@ -217,8 +217,9 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 			
 			String sql = "insert into reimbursement (requester_id, reason, amount, type_id) values (?,?,?,?)";
 			String[] key = new String[1];
-			key[0] = "reimbursement_id";
-			PreparedStatement ps = conn.prepareStatement(sql, key);
+			key[0] = "reimburse_id";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, requester);  //it won't matter what is contained within the String
 			ps.setString(2, reason);
 			ps.setDouble(3, amount);
@@ -260,8 +261,8 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 			
 			String sql = "insert into reimbursement (requester_id, reason, amount, type_id, receipt) values (?,?,?,?,?)";
 			String[] key = new String[1];
-			key[0] = "reimbursement_id";
-			PreparedStatement ps = conn.prepareStatement(sql, key);
+			key[0] = "reimburse_id";
+			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, requester);  //it won't matter what is contained within the String
 			ps.setString(2, reason);
 			ps.setDouble(3, amount);
