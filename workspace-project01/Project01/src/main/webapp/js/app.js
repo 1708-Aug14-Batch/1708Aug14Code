@@ -235,7 +235,7 @@ function populateEmpsTable(emps) {
 		$('#empsTable').show();
 		for(var i = 0; i < emps.length; i++){
 			var table = document.getElementById("empsTable");
-			var row = table.insertRow(0);
+			var row = table.insertRow(1);
 			var firstNameCell = row.insertCell(0);
 			var lastNameCell = row.insertCell(1);
 			var emailCell = row.insertCell(2);
@@ -257,7 +257,6 @@ function populateEmpsTable(emps) {
 		}
 	}
 }
-
 
 function showSingleEmpView(email) {
 	var request = new XMLHttpRequest();

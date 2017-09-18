@@ -20,11 +20,8 @@ import com.revature.service.ReimbursementService;
 @WebServlet("/manager-edit-request")
 public class ManagerEditRequestServlet extends HttpServlet {
 	
+	private static final long serialVersionUID = -5259162121672073852L;
 	private ReimbursementService service = new ReimbursementService();
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		//request.getRequestDispatcher("partial/manager/edit-request.html");
-	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		Enumeration<String> requestParams = request.getParameterNames();
@@ -32,6 +29,7 @@ public class ManagerEditRequestServlet extends HttpServlet {
 		String jsonString = requestParams.nextElement();
 		EditRequestDTO reqData = (EditRequestDTO) mapper.readValue(jsonString, EditRequestDTO.class);
 		this.service.updateReimb(reqData);
+		request.getRequestDispatcher("partial/manager/view-all-requests.html").forward(request, response);
 	}
 
 }

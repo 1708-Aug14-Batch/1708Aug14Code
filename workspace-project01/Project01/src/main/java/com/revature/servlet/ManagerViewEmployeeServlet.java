@@ -27,8 +27,8 @@ public class ManagerViewEmployeeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		Enumeration<String> requestParams = request.getParameterNames();
 		ObjectMapper mapper = new ObjectMapper();
-		String requestString = requestParams.nextElement();
-		String email = (String) mapper.readValue(requestString, String.class);
+		String email = requestParams.nextElement();
+		//String email = (String) mapper.readValue(requestString, String.class);
 		RUser employee = this.service.getUser(email);
 		String json = mapper.writeValueAsString(employee);
 		PrintWriter writer = response.getWriter();
