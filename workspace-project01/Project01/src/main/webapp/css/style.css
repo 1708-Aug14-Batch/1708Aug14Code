@@ -6,3 +6,7 @@
 	padding-left: 5%;
 	padding-right: 5%;
 }
+
+table, td, th {
+	padding: 1%;
+}

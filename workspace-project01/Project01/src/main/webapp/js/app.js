@@ -57,15 +57,30 @@ function populateReimbsTable(reimbs) {
 		for(var i = 0; i < reimbs.length; i++){
 			var table = document.getElementById("reimbsTable");
 			var row = table.insertRow(1);
-			var submitted = row.insertCell(0);
-			var description = row.insertCell(1);
-			var amount = row.insertCell(2);
-			submitted.innerHTML = reimbs[i].dateSubmitted;
+			var dateSubmitted = row.insertCell(0);
+			var dateResolved = row.insertCell(1);
+			var status = row.insertCell(2)
+			var description = row.insertCell(3);
+			var resolutionNotes = row.insertCell(4);
+			var amount = row.insertCell(5);
+			
+			dateSubmitted.innerHTML = formatDate(reimbs[i].dateSubmitted);
+			dateResolved.innerHTML = formatDate(reimbs[i].dateResolved);
+			if (reimbs[i].statusID == 1) {
+				status.innerHTML = "Pending";
+			}
+			if (reimbs[i].statusID == 2) {
+				status.innerHTML = "Approved";
+			}
+			if (reimbs[i].statusID == 3) {
+				status.innerHTML = "Denied";
+			}
 			description.innerHTML = reimbs[i].description;
+			resolutionNotes = reimbs[i].resolutionNotes;
 			amount.innerHTML = reimbs[i].amount;
 
 			// Make buttons to view individual requests
-			var cellShowReq = row.insertCell(3);
+			var cellShowReq = row.insertCell(6);
 			var btnShowReq = document.createElement("button");
 			btnShowReq.innerHTML = "View This Reimbursement";
 			btnShowReq.style.class = "btn";
@@ -79,6 +94,14 @@ function populateReimbsTable(reimbs) {
 			$(btnShowReq).click(invokeShowRequestView);
 		}
 	}
+}
+
+function formatDate(dateString) {
+	var date = new Date(dateString);
+    var day = date.getDate();
+	var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    return day + "/" + month + "/" + year;
 }
 
 function viewMyInfoPage() {
