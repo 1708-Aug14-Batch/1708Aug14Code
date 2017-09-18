@@ -205,7 +205,7 @@ public class SystemDAOImpl implements SystemDAO{
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-			String sql = "SELECT * FROM REIMBURSEMENTS WHERE STATUSid = ?";
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE RT_STATUS = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, reimbursementType);
 			rs = pstmt.executeQuery();
@@ -231,7 +231,7 @@ public class SystemDAOImpl implements SystemDAO{
 	public boolean handleReimbursementRequests(Reimbursement reimbursement) {
 		PreparedStatement pstmt = null;
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
-			String sql = "UPDATE REIMBURSEMENTS SET STATUSid = ?, RESOLVERid = ?,  date_RESOLVED = ?";
+			String sql = "UPDATE REIMBURSEMENTS SET STATUSid = ?, RESOLVERid = ?,  R_RESOLVED = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, reimbursement.getStatusID());
 			pstmt.setInt(2, reimbursement.getResolverID());
@@ -322,7 +322,7 @@ public class SystemDAOImpl implements SystemDAO{
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql = "SELECT * FROM REIMBURSEMENT";
 			if(!isManager) {
-				sql=sql+" WHERE AUTHORid = ? ORDER BY reimburseID";
+				sql=sql+" WHERE AUTHORid = ? ORDER BY R_ID";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, userID);
 			} else {
@@ -333,11 +333,11 @@ public class SystemDAOImpl implements SystemDAO{
 			String result;
 			if(isManager == true) {
 				while(rs.next()) {
-					int r_id = rs.getInt("reimburseID");
-					int status = rs.getInt("STATUSid");
-					Date submitted = rs.getTimestamp("date_SUBMITTED");
-					Date resolved = rs.getTimestamp("date_RESOLVED");
-					BigDecimal amount = rs.getBigDecimal("AMOUNT");
+					int r_id = rs.getInt("R_ID");
+					int status = rs.getInt("RT_STATUS");
+					Date submitted = rs.getTimestamp("R_SUBMITTED");
+					Date resolved = rs.getTimestamp("R_RESOLVED");
+					BigDecimal amount = rs.getBigDecimal("R_AMOUNT");
 					String status2 = "";
 					switch(status) {
 					case(1): status2 = "Pending..."; break;
@@ -359,8 +359,8 @@ public class SystemDAOImpl implements SystemDAO{
 			if(isManager == false) {
 				while(rs.next()) {
 					System.out.println("got this far....");
-					int r_id = rs.getInt("reimburseID");
-					int status = rs.getInt("STATUSid");
+					int r_id = rs.getInt("R_ID");
+					int status = rs.getInt("RT_STATUS");
 					String status2 = "";
 					switch(status) {
 					case(1): status2 = "Pending..."; break;
