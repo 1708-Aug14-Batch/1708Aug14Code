@@ -138,31 +138,46 @@ function loadSettingsPageView(){
 	xhr.send();
 };
 
-
-function editReimbursement(i) {
+//
+function editReimbursement() {
 	// opens editbility to whole table which defeats the purpose of having  seperate edit buttons
 	document.getElementById("remTable").contentEditable = true; 
 
 //	document.getElementById("demo").innerHTML = "The p element above is now editable. Try to change its text.";
 };
 
-function myFunction() {
-	  var input, filter, table, tr, td, i;
-	  input = document.getElementById("myInput");
-	  filter = input.value.toUpperCase();
-	  table = document.getElementById("remTable");
-	  tr = table.getElementsByTagName("tr");
-	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[1];
-	    if (td) {
-	      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-	        tr[i].style.display = "";
-	      } else {
-	        tr[i].style.display = "none";
-	      }
-	    }       
-	  }
+//this should only allow status to be change and resolver notes
+//function editReimbursement(){
+//	var table, tabledate, tr, td, i;
+//
+//	table = document.getElementById("remTable");
+//	tr = table.getElementsByTagName("tr");
+//	for (i = 0; i < tr.length; i++) {
+////		td = tr[i].getElementsByTagName("td")[6]
+////		td.contentEditable = true;
+//		tabledata = tr[i].getElementsByTagName("td")[7]
+//		tabledata.contentEditable = true;
+//
+//	}       
+//};
+//search tool that searches for users by id.
+function myFunction(){
+	var input, filter, table, tr, td, i;
+	input = document.getElementById("myInput");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("remTable");
+	tr = table.getElementsByTagName("tr");
+	for (i = 0; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[1];
+		if (td) {
+			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+				tr[i].style.display = "";
+			} else {
+				tr[i].style.display = "none";
+			}
+		}       
 	}
+};
 
 
 //Can edit this to hold both manager info and user info
@@ -204,6 +219,8 @@ function getReimbursmentPageInfo(){ // loads basic user info and account info in
 			}
 
 			else{
+				//hides create reimbursement form in managers reimbursement page
+				document.getElementById("theContainer").style.visibility = "hidden"; 
 				for(var i = 0; i < rem.length; i++){
 					//var btn = document.createElement("BUTTON")
 					//	var node = document.cr
