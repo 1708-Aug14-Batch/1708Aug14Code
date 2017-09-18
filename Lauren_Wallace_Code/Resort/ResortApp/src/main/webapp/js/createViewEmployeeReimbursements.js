@@ -50,7 +50,7 @@ function loadTable(){
 				tr += '<td>' + isReceiptNull(reims.receipt) + '</td>';
 				tr += '<td>'+ isNameNull(reims.resName) + '</td>';
 				tr += '<td>'+ isNull(reims.rNotes) + '</td>';
-				tr += '<td>'+ isNull(reims.rdate) + '</td>';
+				tr += '<td>'+ getRDate(reims.rdate) + '</td>';
 				tr += '</tr>';
 			
 				$('#empreimdata').append(tr);

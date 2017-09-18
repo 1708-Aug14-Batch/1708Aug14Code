@@ -56,9 +56,10 @@ public class AddDetailedReimbursement extends HttpServlet {
 		String reason  = request.getParameter("freason");
 		Double amount  = Double.parseDouble(request.getParameter("famount"));
 		String receipt = request.getParameter("freceipt");
+		String type = request.getParameter("ftype");
 		int rtype = 0;
-		
-		switch(request.getParameter("ftype")) {
+		System.out.println(type);
+		switch(type) {
 		case "Travel": rtype = 0;
 			           break;
 		case "Event Supplies": rtype = 1;
