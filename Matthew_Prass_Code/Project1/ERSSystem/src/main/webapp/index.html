@@ -2,41 +2,161 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Login</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+	crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+	integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+	integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+	crossorigin="anonymous"></script>
+<style>
+html, body {
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+#background-carousel {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.carousel, .carousel-inner {
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+	overflow: hidden;
+}
+
+.item {
+	width: 100%;
+	height: 100%;
+	background-position: center center;
+	background-size: cover;
+	z-index: 0;
+}
+
+#content-wrapper {
+	position: absolute;
+	z-index: 1 !important;
+	min-width: 100%;
+	min-height: 100%;
+}
+
+.well {
+	opacity: 0.85
+}
+</style>
 </head>
 <body>
-<div class="container">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4 text-center">
-			<div class="search-box">
-				<div class="caption">
-					<h3>Advance Password Validation</h3>
-					<p>Find to All</p>
-				</div>
-				<form id="submitform" action = "login" method = "get">
-					<div class="input-group">
-						<input type="text" id="name" class="form-control" placeholder="Email" name = "name">
-						<input type="password" id="paw" class="form-control" placeholder="Password" name = "paw">
-						<input type= "text" id = "username" class = "form-control" placeholder = "Username" name = "username">
-						<input type="submit" id="submit" class="form-control" value="Login">
-					</div>
-					</form>
+	<div id="background-carousel">
+		<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="item active"
+					style="background-image: url(https://i.ytimg.com/vi/3V3gkStkZ0k/maxresdefault.jpg)"></div>
+				<div class="item"
+					style="background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-540177.jpg)"></div>
+				<div class="item"
+					style="background-image: url(https://img.buzzfeed.com/buzzfeed-static/static/2016-06/3/14/campaign_images/buzzfeed-prod-fastlane02/primitive-spongebob-meme-2-18549-1464980143-9_dblbig.jpg)"></div>
 			</div>
 		</div>
-		<div class="col-md-4">
-			<img src = "19k48x.jpg"/>
-		</div>
 	</div>
-</div>
-<div class = "alert alert-info" id = "message">
-</div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-<script src = "js/loginmessage.js"></script>
+
+
+	<div id="content-wrapper">
+		<!-- PAGE CONTENT -->
+		<div class="container">
+			<div class="page-header">
+				<h3>Have you been meme'd TOO hard?</h3>
+			</div>
+			<div class="well">
+				<p>Welcome to the Rememimbursement System, where you can be
+					compensated (for emotional damages, of course) for being meme'd on
+					too hard in the work place. Here at MemeCo, we understand the
+					occasional "too dank for work" being talked about in your group
+					chat. This is the place to be when that gets out of hand. As an
+					employee, you're able to submit a request or update your
+					information at MemeCo. and submit a Reimbursement Request. A
+					Manager can resolve your reimbursement and register new employees
+					to work for MemeCo.</p>
+			</div>
+			<!-- End Well -->
+		</div>
+		<!-- End Container -->
+		<!-- PAGE CONTENT -->
+		<div class="float-left">
+			<img src="19k48x.jpg" />
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 text-center">
+					<div class="search-box">
+						<div class="caption">
+							<h3>Advance Password Validation</h3>
+							<p>Find to All</p>
+						</div>
+						<form id="submitform" action="login" method="get">
+							<div class="input-group">
+								<input type="text" id="name" class="form-control"
+									placeholder="Email" name="name"> <input type="password"
+									id="paw" class="form-control" placeholder="Password" name="paw">
+								<input type="text" id="username" class="form-control"
+									placeholder="Username" name="username"> <input
+									type="submit" id="submit" class="form-control" value="Login">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="alert alert-info" id="message"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+		integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+		crossorigin="anonymous"></script>
+	<script src="js/loginmessage.js"></script>
 </body>
 
 

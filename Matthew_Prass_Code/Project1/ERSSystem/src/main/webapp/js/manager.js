@@ -41,6 +41,7 @@ function getUserInformation(){
 					var desc = row.insertCell(6);
 					var notes = row.insertCell(7);
 					var amt = row.insertCell(8);
+					var image = row.insertCell(9);
 					reid.innerHTML = "No.: " + reimb[i].id + " ";
 					subid.innerHTML = reimb[i].submitter.firstname + " "+reimb[i].submitter.lastname+" ";
 					resname.innerHTML = reimb[i].resolver + " ";
@@ -50,10 +51,14 @@ function getUserInformation(){
 					else{
 						resname.innerHTML = reimb[i].resolver.firstname;
 					}
-					subdate.innerHTML = reimb[i].submitdate+ " ";
-					resdate.innerHTML = reimb[i].resolveddate + " ";
-					if(resdate.innerHTML == "null "){
-						resdate.innerHTML = " ";
+					var d = new Date(reimb[i].submitdate);
+					subdate.innerHTML = d + " ";
+					if(reimb[i].resolveddate != null){
+						var d2 = new Date(reimb[i].resolveddate);
+						resdate.innerHTML = d2 + " ";
+					}
+					else{
+						resdate.innerHTML = "Hasn't been resolved yet!" + " ";
 					}
 					status.innerHTML = reimb[i].type.name + " ";
 					if(reimb[i].type.name == "Denied"){
@@ -68,6 +73,12 @@ function getUserInformation(){
 						notes.innerHTML = " ";
 					}
 					amt.innerHTML = "$ "+reimb[i].amount;
+					if(reimb[i].receipt != null){
+						image.innerHTML = "<a href= '" + reimb[i].receipt + "'>" + reimb[i].receipt +"</a>"
+					}
+					else{
+						image.innerHTML = "No meme!";
+					}
 				}
 			}
 			//document.getElementById('info').innerHTML = JSON.stringify(user,null,4);

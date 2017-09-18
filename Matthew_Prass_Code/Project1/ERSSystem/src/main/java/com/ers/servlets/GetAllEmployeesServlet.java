@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.ers.dao.DaoImpl;
 import com.ers.dto.DTO;
 import com.ers.pojos.Employee;
@@ -21,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebServlet("/getAllEmployees")
 public class GetAllEmployeesServlet extends HttpServlet {
 
-
+	static Logger l = Logger.getRootLogger();
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
 		Service s = new Service();
 		DaoImpl dao = new DaoImpl();
@@ -46,6 +48,7 @@ public class GetAllEmployeesServlet extends HttpServlet {
 		}
 		else {
 			res.setStatus(418);
+			l.error("error in GetAllEmployeesServlet");
 		}
 	}
 }

@@ -8,7 +8,7 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 </head>
-<body>
+<body style="background-image: url(https://i.ytimg.com/vi/k6Yklm5DlmU/hqdefault.jpg)">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">Expense Reimbursement Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -31,33 +31,34 @@
 			</ul>
 		</div>
 	</nav>
+	<div id="info" class = "card"></div>
 	<div class="container">
 		<div class="row">
 			<form role="form" class="col-md-9 go-right">
-				<h2>Please enter your new information</h2>
+				<h2 class = "card text-center">Please enter your new information</h2>
 				<div class="form-group">
 					<input id="firstname" name="firstname" type="text"
-						class="form-control" required> <label for="firstname">First
+						class="form-control" required> <label class = "card text-center" for="firstname">First
 						Name</label>
 				</div>
 				<div class="form-group">
 					<input id="lastname" name="lastname" type="text"
-						class="form-control" required> <label for="lastname">Last
+						class="form-control" required> <label class = "card text-center" for="lastname">Last
 						Name</label>
 				</div>
 				<div class="form-group">
 					<input id="email" name="email" type="text" class="form-control"
-						required> <label for="email">Email</label>
+						required> <label class = "card text-center" for="email">Email</label>
 				</div>
 				<div class="form-group">
 					<input id="pass" name="pass" type="password" class="form-control"
-						required> <label for="pass">Password</label>
+						required> <label class = "card text-center" for="pass">Password</label>
 				</div>
 				<div class="form-group">
 					<input id="username" name="username" type = "text" class="form-control">
-					<label for="username">Username</label>
+					<label class = "card text-center" for="username">Username</label>
 				</div>
-				<input type="submit" id="submit" class="form-control" value="Update">
+				<input type="submit" id="submit" class="form-control btn-primary" value="Update">
 			</form>
 			
 		</div>

@@ -11,8 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.apache.log4j.Logger;
 
 import com.ers.pojos.Employee;
 import com.ers.pojos.Reimbursement;
@@ -21,6 +25,7 @@ import com.ers.util.ConnectionFactory;
 
 public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao {
 
+	static Logger l = Logger.getRootLogger();
 	@Override
 	public ArrayList<ReimbursementStatus> getAllStatuses() {
 		ArrayList<ReimbursementStatus> list = new ArrayList<ReimbursementStatus>();
@@ -43,7 +48,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			}
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			l.error("error in getAllStatuses");
 		}
 		
 		return list;
@@ -94,7 +99,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			a.setReceipt(file);
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			l.error("error in createReimbursement");
 		}
 		return a;
 	}
@@ -129,7 +134,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			}
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			l.error("error in getAllReimbursements");
 		}
 		
 		return list;
@@ -168,7 +173,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			}
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			l.error("error in getAllReimbursementFromEmployee");
 		}
 		
 		return list;
@@ -233,7 +238,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			cs.execute();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			l.error("error in updateReimbursement");
 		}
 			
 		
@@ -251,7 +256,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			cs.execute();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			l.error("error in deleteReimbursement");
 		}
 		
 	}
@@ -284,7 +289,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			conn.commit();
 			return id;
 		} catch (Exception e) {
-			e.printStackTrace();
+			l.error("error in addEmployee");
 		}
 		return -1;
 	}
@@ -316,7 +321,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			}
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			l.error("error in getAllEmployees");
 		}
 		
 		return list;
@@ -356,7 +361,7 @@ public class DaoImpl implements EmployeeDao,ReimburseDao,ReimbursementStatusDao 
 			cs.execute();
 			
 		} catch (SQLException ex) {
-			ex.printStackTrace();
+			l.error("error in updateEmployeeInfo");
 		}
 	}
 	

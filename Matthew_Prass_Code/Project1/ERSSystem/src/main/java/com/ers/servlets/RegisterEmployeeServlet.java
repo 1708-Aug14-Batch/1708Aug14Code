@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.ers.dao.DaoImpl;
 import com.ers.pojos.Employee;
 import com.ers.service.Service;
@@ -20,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebServlet("/RegisterEmployee")
 public class RegisterEmployeeServlet extends HttpServlet{
 
+	static Logger l = Logger.getRootLogger();
 protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		Map<String,String[]> myMap = req.getParameterMap();
@@ -41,6 +44,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 		Service s= new Service();
 		s.registerEmployee(fn, ln, email);
 		
+		l.info("registered employee: " + fn +ln +email);
 		
 	}
 

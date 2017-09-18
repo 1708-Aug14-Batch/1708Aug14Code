@@ -12,12 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.ers.pojos.Employee;
 import com.ers.service.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebServlet("/EditUserInfo")
 public class UpdateInfoServlet extends HttpServlet{
+	
+	static Logger l = Logger.getRootLogger();
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
@@ -57,8 +61,10 @@ public class UpdateInfoServlet extends HttpServlet{
 		if(username == "") {
 			username = temp.getUsername();
 		}
+		l.info("updated employee: " + temp.getFirstname());
 		Service s= new Service();
 		s.updateInfo(temp, fname, lname, email, password, username);
+		
 		
 		
 	}

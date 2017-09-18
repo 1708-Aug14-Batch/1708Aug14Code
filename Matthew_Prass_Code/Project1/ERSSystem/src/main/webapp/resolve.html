@@ -59,7 +59,7 @@
 }
 </style>
 </head>
-<body>
+<body style="background-image: url(https://media.tenor.com/images/b8ad8a1a66708e32ef257b11aa1c7a6d/tenor.gif)">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">Expense Reimbursement Home</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -86,16 +86,16 @@
 	<div class="container">
 		<div class="row">
 			<form role="form" class="col-md-9 go-right">
-				<h2>Resolve which reimbursement?</h2>
+				<h2 class = "card text-center">Resolve which reimbursement?</h2>
 				<div class="form-group">
 					<input id="reid" name="reid" type="text"
-						class="form-control" required></input> <label for="reid">ID of Reimbursement</label>
+						class="form-control" required></input> <label class = "card text-center" for="reid">ID of Reimbursement</label>
 				<div class="form-group">
 					<input id="notes" name="notes" type = "text" class="form-control">
-					<label for="notes">Notes</label>
+					<label class = "card text-center" for="notes">Notes</label>
 				</div>
-				<input type="submit" id="approve" class="form-control" value="Approve">
-				<input type="submit" id="deny" class="form-control" value="Deny">
+				<input type="submit" id="approve" class="form-control btn-success" value="Approve">
+				<input type="submit" id="deny" class="form-control btn-danger" value="Deny">
 			</form>
 			
 		</div>

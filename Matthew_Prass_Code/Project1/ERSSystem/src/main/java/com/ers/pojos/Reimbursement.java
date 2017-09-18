@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 //import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 public class Reimbursement {
 
@@ -20,7 +21,7 @@ public class Reimbursement {
 	
 	public Reimbursement() {};
 	
-	public Reimbursement(Employee submitter, Employee resolver, Timestamp submitdate, Timestamp resolveddate,
+	public Reimbursement(Employee submitter, Employee resolver,Timestamp submitdate, Timestamp resolveddate,
 			ReimbursementStatus type, String descript, String notes, double amount) {
 		super();
 		this.submitter = submitter;

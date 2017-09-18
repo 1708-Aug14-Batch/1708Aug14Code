@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
+import org.apache.log4j.Logger;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -37,8 +40,9 @@ import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 @WebServlet("/SubmitReimbursement")
 public class SubmitReimbursementServlet extends HttpServlet{
+	static Logger l = Logger.getRootLogger();
 	private static String bucketName = "warwarneverchanges";
-	private static String key = "2";
+	private static String key;
 	private static String uploadFileName;
 protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
@@ -51,9 +55,6 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 		ArrayList<String> list = jackson.readValue((String)obj, ArrayList.class);
 		HttpSession session = req.getSession();
 		
-		for(String str: list) {
-			System.out.println(str);
-		}
 
 		Employee seshuser = (Employee)session.getAttribute("employee");
 		
@@ -62,6 +63,8 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 		double amount = Double.parseDouble(list.get(1));
 		String file = list.get(2);
 		uploadFileName = file;
+		Random r = new Random();
+		key = r.nextInt(1000000)+1+"";
 		AmazonS3 s3 = new AmazonS3Client(new ProfileCredentialsProvider());
 		try {
             System.out.println("Uploading a new object to S3 from a file\n");
@@ -71,22 +74,22 @@ protected void doPost(HttpServletRequest req, HttpServletResponse res) throws Se
 
            
          } catch (AmazonServiceException ase) {
-            System.out.println("Caught an AmazonServiceException, which " +
+            l.error(("Caught an AmazonServiceException, which " +
             		"means your request made it " +
                     "to Amazon S3, but was rejected with an error response" +
-                    " for some reason.");
-            System.out.println("Error Message:    " + ase.getMessage());
-            System.out.println("HTTP Status Code: " + ase.getStatusCode());
-            System.out.println("AWS Error Code:   " + ase.getErrorCode());
-            System.out.println("Error Type:       " + ase.getErrorType());
-            System.out.println("Request ID:       " + ase.getRequestId());
+                    " for some reason"+            
+           "Error Message:    " + ase.getMessage() +
+           " HTTP Status Code: " + ase.getStatusCode() +
+            "AWS Error Code:   " + ase.getErrorCode())+
+            "Error Type:       " + ase.getErrorType() +
+            "Request ID:       " + ase.getRequestId());
         } catch (AmazonClientException ace) {
-            System.out.println("Caught an AmazonClientException, which " +
+            l.error(("Caught an AmazonClientException, which " +
             		"means the client encountered " +
                     "an internal error while trying to " +
                     "communicate with S3, " +
-                    "such as not being able to access the network.");
-            System.out.println("Error Message: " + ace.getMessage());
+                    "such as not being able to access the network." +
+           "Error Message: " + ace.getMessage()));
         }
 		
 		Service s= new Service();

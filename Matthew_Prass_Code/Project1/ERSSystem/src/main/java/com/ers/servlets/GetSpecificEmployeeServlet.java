@@ -14,14 +14,13 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.ers.dao.DaoImpl;
-import com.ers.dto.DTO;
-import com.ers.pojos.Reimbursement;
 import com.ers.pojos.Employee;
 import com.ers.service.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet("/getManagerInfo")
-public class GetManagerInfoServlet extends HttpServlet {
+@WebServlet("/getEmployee")
+public class GetSpecificEmployeeServlet extends HttpServlet {
+
 	static Logger l = Logger.getRootLogger();
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
 		Service s = new Service();
@@ -32,14 +31,13 @@ public class GetManagerInfoServlet extends HttpServlet {
 		System.out.println(seshuser);
 		if(seshuser != null)
 		{
-			ArrayList<Reimbursement> reimbs = new ArrayList<Reimbursement>();
-			reimbs = s.getAllReimbursements();
+			Employee e = dao.getEmployee(seshuser.getId());
 			
 			System.out.println("converting our user and account to dto");
-			DTO dto = new DTO(seshuser,reimbs);
+			//DTO dto = new DTO(seshuser,reimbs);
 			ObjectMapper mapper = new ObjectMapper();
 			
-			String json = mapper.writeValueAsString(dto);
+			String json = mapper.writeValueAsString(e);
 			
 			PrintWriter out = res.getWriter();
 			res.setContentType("application/json");
@@ -47,8 +45,7 @@ public class GetManagerInfoServlet extends HttpServlet {
 		}
 		else {
 			res.setStatus(418);
-			l.error("error in ManagerInfoServlet");
+			l.error("error in GetSpecificEmployeesServlet");
 		}
 	}
-
 }

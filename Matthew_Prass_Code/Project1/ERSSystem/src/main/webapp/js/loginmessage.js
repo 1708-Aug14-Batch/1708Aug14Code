@@ -48,6 +48,9 @@ function login(){
 	xhr.open("GET","login?"+formdata,true);
 	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xhr.send();
+	$('#myCarousel').carousel({
+		pause: 'none'
+	})
 };
 
 //function loadEmployeePage(){

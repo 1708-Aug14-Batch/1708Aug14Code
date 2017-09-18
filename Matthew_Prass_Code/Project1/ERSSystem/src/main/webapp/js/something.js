@@ -34,12 +34,21 @@ function getUserInformation(){
 					var row = table.insertRow();
 					var reid = row.insertCell(0);
 					var subdate = row.insertCell(1);
-					var status = row.insertCell(2);
-					var desc = row.insertCell(3);
-					var amt = row.insertCell(4);
-					var image = row.insertCell(5);
+					var resdate = row.insertCell(2);
+					var status = row.insertCell(3);
+					var desc = row.insertCell(4);
+					var amt = row.insertCell(5);
+					var image = row.insertCell(6);
 					reid.innerHTML = "No.: " + reimb[i].id + " ";
-					subdate.innerHTML = reimb[i].submitdate+ " ";
+					var d = new Date(reimb[i].submitdate);
+					subdate.innerHTML = d + " ";
+					if(reimb[i].resolveddate != null){
+						var d2 = new Date(reimb[i].resolveddate);
+						resdate.innerHTML = d2 + " ";
+					}
+					else{
+						resdate.innerHTML = "Hasn't been resolved yet!" + " ";
+					}
 					status.innerHTML = reimb[i].type.name + " ";
 					if(reimb[i].type.name == "Denied"){
 						status.setAttribute("class", "table-danger");
@@ -50,10 +59,10 @@ function getUserInformation(){
 					desc.innerHTML = reimb[i].descript+ " ";
 					amt.innerHTML = "$ "+reimb[i].amount + " ";
 					if(reimb[i].receipt != null){
-						image.innerHTML =reimb[i].receipt;
+						image.innerHTML = "<a href= '" + reimb[i].receipt + "'>" + reimb[i].receipt +"</a>"
 					}
 					else{
-						image.innerHTML = "No receipt!";
+						image.innerHTML = "No meme!";
 					}
 				}
 			}
