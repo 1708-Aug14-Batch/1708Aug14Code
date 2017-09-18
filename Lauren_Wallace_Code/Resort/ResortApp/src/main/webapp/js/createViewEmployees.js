@@ -3,48 +3,68 @@
  */
 
 var user;
+var users;
 
 $(document).ready(function(){
-	console.log("Inside of getUserInformation()");
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
 			var dto = JSON.parse(xhr.responseText);
-			user = dto;
+			user = dto.user;
+			users = dto.users;
 			
-			document.getElementById('welcome').innerHTML = "Hello: " + dto.firstname + " " + dto.lastname + "\n";
+			document.getElementById('welcome').innerHTML = "Hello: " + user.firstname + " " + user.lastname + "\n";
 			loadTable();
-			
+			document.getElementById('submitAddUser').addEventListener("click", addUser);
 		}
 	}
 	xhr.open("GET", "getEmployees", true);
 	xhr.send();
 })
 
+
 function loadTable(){
-	console.log("Inside of getUserInformation()");
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
-			console.log(xhr.responseText);
+			var dto = JSON.parse(xhr.responseText);
+			user = dto.user;
+			users = dto.users;
 			
-			$('#view').html(xhr.responseText);
+			//$('#view').html(xhr2.responseText);
 			
 			//for loop start
-			var tr = "";
+			let tr = "";
 			
-			tr += '<tr><td>'+ user.firstname + '</td>';
-			tr += '<td>'+ user.lastname + '</td>';
-			tr += '<td>'+ user.email + '</td>';
-			tr += '<td>'+ user.password + '</td></tr>';
+				for (let i = 0; i < users.length; i++) {
+					tr += '<tr><td>'+ users[i].firstname + '</td>';
+					tr += '<td>'+ users[i].lastname + '</td>';
+					tr += '<td>'+ users[i].email + '</td>';
+					tr += '<td>'+ users[i].password + '</td></tr>';
+				}
 			
-			$('#udata').append(tr);
-			//end loop
+				$('#usdata').append(tr);
+				//end loop
 			
-			$('#userTable').DataTable();
+			$('#usersTable').DataTable();
 		}
 	}
-	xhr.open("GET", "viewEmployees", true);
+	xhr.open("GET", "getEmployees", true);
 	xhr.send(); 
+};
+
+function addUser() {
+	var xhr = new XMLHttpRequest();
+	var ufname = $('#firstname').val();
+	var ulname = $('#lastname').val();
+	var email  = $('#email').val();
+	var pass   = $('#password').val();
+	
+	var auser = [ufname, ulname, email, pass];
+	
+	auser = JSON.stringify(auser);
+	
+	xhr.open("POST", "addUser", true);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhr.send(auser);
 };

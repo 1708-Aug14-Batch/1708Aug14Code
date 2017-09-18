@@ -66,13 +66,14 @@ public ArrayList<User> getUsers() {
 			ResultSet rs = statement.executeQuery(procedure);
 			
 			while(rs.next()) {
-				int uid = rs.getInt(0);
-				String ufname = rs.getString(1);
-				String ulname = rs.getString(2);
-				String email = rs.getString(3);
-				String password = rs.getString(4);
+				int uid = rs.getInt(1);
+				String ufname = rs.getString(2);
+				String ulname = rs.getString(3);
+				String email = rs.getString(4);
+				String password = rs.getString(5);
+				int isMgr = rs.getInt(6);
 				
-				User temp = new User(uid, ufname, ulname, email, password);
+				User temp = new User(uid, ufname, ulname, email, password, isMgr);
 				currUsersList.add(temp);
 			}
 	} catch (SQLException e) {
@@ -81,11 +82,10 @@ public ArrayList<User> getUsers() {
 	return currUsersList;
 	}
 	
-	public int addUser(String fn, String ln, String em, String pass) {
+	public void addUser(String fn, String ln, String em, String pass) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
-			
-			String sql = "insert into resort_users (first_name, last_name, email, password) values (?,?,?,?)";
+			String sql = "insert into resort_users (first_name, last_name, email, password, is_Manager) values (?,?,?,?,?)";
 			String[] key = new String[1];
 			key[0] = "user_id";
 			PreparedStatement ps = conn.prepareStatement(sql, key);
@@ -93,6 +93,7 @@ public ArrayList<User> getUsers() {
 			ps.setString(2, ln);
 			ps.setString(3, em);
 			ps.setString(4, pass);
+			ps.setInt(5, 0);
 			
 			ps.executeUpdate();
 			
@@ -102,16 +103,125 @@ public ArrayList<User> getUsers() {
 				id = pk.getInt(1);
 			}
 			conn.commit();
-			return id;
 		
 		//catch has been tested & works
-		} catch (SQLIntegrityConstraintViolationException e) {
-    		System.out.println("The credentials are already taken.");
-    		System.out.println("Please try again.");
-    	} catch (SQLException e) {
+		} //catch (SQLIntegrityConstraintViolationException e) {
+    		//System.out.println("The credentials are already taken.");
+    		//System.out.println("Please try again.");
+    	catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return 0;
 	}
-
+	
+	public void updateUserFN(String fn, int uid) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "update resort_users set first_name = ? where user_id = ?";
+			String[] key = new String[1];
+			key[0] = "user_id";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, fn); 
+			ps.setInt(2, uid);
+			
+			ps.executeUpdate();
+			
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next()) {
+				id = pk.getInt(1);
+			}
+			conn.commit();
+		
+		//catch has been tested & works
+		} //catch (SQLIntegrityConstraintViolationException e) {
+    		//System.out.println("The credentials are already taken.");
+    		//System.out.println("Please try again.");
+    	catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateUserLN(String ln, int uid) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "update resort_users set last_name = ? where user_id = ?";
+			String[] key = new String[1];
+			key[0] = "user_id";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, ln); 
+			ps.setInt(2, uid);
+			
+			ps.executeUpdate();
+			
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next()) {
+				id = pk.getInt(1);
+			}
+			conn.commit();
+		
+		//catch has been tested & works
+		} //catch (SQLIntegrityConstraintViolationException e) {
+    		//System.out.println("The credentials are already taken.");
+    		//System.out.println("Please try again.");
+    	catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateUserEM(String em, int uid) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "update resort_users set email = ? where user_id = ?";
+			String[] key = new String[1];
+			key[0] = "user_id";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, em); 
+			ps.setInt(2, uid);
+			
+			ps.executeUpdate();
+			
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next()) {
+				id = pk.getInt(1);
+			}
+			conn.commit();
+		
+		//catch has been tested & works
+		} //catch (SQLIntegrityConstraintViolationException e) {
+    		//System.out.println("The credentials are already taken.");
+    		//System.out.println("Please try again.");
+    	catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateUserPW(String pw, int uid) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			String sql = "update resort_users set password = ? where user_id = ?";
+			String[] key = new String[1];
+			key[0] = "user_id";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setString(1, pw); 
+			ps.setInt(2, uid);
+			
+			ps.executeUpdate();
+			
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next()) {
+				id = pk.getInt(1);
+			}
+			conn.commit();
+		
+		//catch has been tested & works
+		} //catch (SQLIntegrityConstraintViolationException e) {
+    		//System.out.println("The credentials are already taken.");
+    		//System.out.println("Please try again.");
+    	catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

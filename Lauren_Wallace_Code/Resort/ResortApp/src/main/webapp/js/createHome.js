@@ -5,7 +5,8 @@
 var user;
 
 $(document).ready(function(){
-	console.log("Inside of getUserInformation()");
+	//console.log("Inside of getUserInformation()");
+	
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {
@@ -15,15 +16,14 @@ $(document).ready(function(){
 			
 			document.getElementById('welcome').innerHTML = "Hello: " + dto.firstname + " " + dto.lastname + "\n";
 			loadTable();
-			
 		}
 	}
 	xhr.open("GET", "getUserInfo", true);
 	xhr.send();
-})
+});
 
 function loadTable(){
-	console.log("Inside of getUserInformation()");
+
 	var xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState == 4 && xhr.status == 200) {

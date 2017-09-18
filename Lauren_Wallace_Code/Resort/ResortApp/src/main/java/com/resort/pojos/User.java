@@ -11,6 +11,18 @@ public class User {
 	
 	public User() {};
 	
+	
+	
+	public User(String firstname, String lastname, String email, String password) {
+		super();
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.password = password;
+	}
+
+
+
 	//this creates an employee user
 	public User(int userid, String firstname, String lastname, String email, String password) {
 		super();

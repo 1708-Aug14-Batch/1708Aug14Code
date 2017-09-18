@@ -9,9 +9,16 @@ public class Reimbursement {
 	private int resolverId;
 	private int status_Id;
 	private int type_Id;
+	//When we want to display status type & type name
+	private String statName;
+	private String typeName;
+	
 	private String receipt;
 	private String reason;
 	private String rNotes;
+	//When we want to display requester & resolver names
+	private String reqName;
+	private String resName;
 	private double amount;
 	private Timestamp sdate;
 	private Timestamp rdate;
@@ -42,6 +49,38 @@ public class Reimbursement {
 		this.rNotes = rNotes;
 		this.amount = amount;
 		this.type_Id = type_Id;
+	}
+
+	public Reimbursement(int reimburseId, String statName, String typeName, String receipt, String reason,
+			String rNotes, String reqName, String resName, double amount, Timestamp sdate, Timestamp rdate) {
+		super();
+		this.reimburseId = reimburseId;
+		this.statName = statName;
+		this.typeName = typeName;
+		this.receipt = receipt;
+		this.reason = reason;
+		this.rNotes = rNotes;
+		this.reqName = reqName;
+		this.resName = resName;
+		this.amount = amount;
+		this.sdate = sdate;
+		this.rdate = rdate;
+	}
+
+	public Reimbursement(int reimid, String reqfn, String reqln, double amount, String reason, String receipt,
+			String statn, String typen, Timestamp start, String resfn, String resln, Timestamp close, String notes) {
+		
+		this.reimburseId = reimid;
+		this.reqName = reqfn + " " + reqln;
+		this.amount = amount;
+		this.reason = reason;
+		this.receipt = receipt;
+		this.statName = statn;
+		this.typeName = typen;
+		this.sdate    = start;
+		this.resName  = resfn + " " + resln;
+		this.rdate    = close;
+		this.rNotes   = notes;
 	}
 
 	public int getReimburseId() {
@@ -130,6 +169,38 @@ public class Reimbursement {
 
 	public void setRdate(Timestamp rdate) {
 		this.rdate = rdate;
+	}
+	
+	public String getStatName() {
+		return statName;
+	}
+
+	public void setStatName(String statName) {
+		this.statName = statName;
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public String getReqName() {
+		return reqName;
+	}
+
+	public void setReqName(String reqName) {
+		this.reqName = reqName;
+	}
+
+	public String getResName() {
+		return resName;
+	}
+
+	public void setResName(String resName) {
+		this.resName = resName;
 	}
 
 	@Override

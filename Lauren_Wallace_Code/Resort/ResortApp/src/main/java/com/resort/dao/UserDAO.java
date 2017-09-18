@@ -23,6 +23,12 @@ public interface UserDAO {
 	public User getUserById(int id);
 	
 	//Returns a user's id, adds the user to the database
-	public int addUser(String fn, String ln, String email, String pass);
+	public void addUser(String fn, String ln, String email, String pass);
+	
+	//Updates the user's selected information: firstname, lastname, email, password
+	public void updateUserFN(String fn, int uid);
+	public void updateUserLN(String ln, int uid);
+	public void updateUserEM(String em, int uid);
+	public void updateUserPW(String pw, int uid);
 
 }

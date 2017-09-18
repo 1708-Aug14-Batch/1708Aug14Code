@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.resort.dto.DTO;
+import com.resort.dto.EmpsDTO;
 import com.resort.pojos.User;
 
 /**

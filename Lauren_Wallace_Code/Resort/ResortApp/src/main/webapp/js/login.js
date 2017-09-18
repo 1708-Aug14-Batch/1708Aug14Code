@@ -7,6 +7,7 @@ $(document).ready(function() {
 });
 
 function login() {
+	
 	var email = document.getElementById("email").value;
 	var pass = document.getElementById("pass").value;
 	

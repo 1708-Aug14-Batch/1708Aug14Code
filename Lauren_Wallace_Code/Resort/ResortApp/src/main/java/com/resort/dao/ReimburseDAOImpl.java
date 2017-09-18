@@ -1,3 +1,4 @@
+
 package com.resort.dao;
 
 import java.sql.Connection;
@@ -6,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import com.resort.pojos.Reimbursement;
@@ -43,29 +45,92 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 	public ArrayList<Reimbursement> getUserReimbursements(int uid) {
 		ArrayList<Reimbursement> currentList = new ArrayList<Reimbursement>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String procedure = "select * from reimbursement where user_id = uid";
-			Statement statement = conn.prepareCall(procedure);
+			String sql      = "select r.reimburse_id, su.first_name, su.last_name, r.amount, \r\n" + 
+							   "r.reason, r.receipt, rs.status_name, rt.type_name,\r\n" + 
+							   "r.start_date, ru.first_name, ru.last_name, r.resolve_date, r.resolver_notes\r\n" + 
+							   "from reimbursement r\r\n" + 
+							   "left join resort_users su\r\n" + 
+							   "on su.user_id = r.requester_id\r\n" + 
+							   "left join resort_users ru\r\n" + 
+							   "on ru.user_id = r.resolver_id\r\n" + 
+							   "left join reimbursement_status rs\r\n" + 
+							   "on rs.status_id = r.status_id\r\n" + 
+							   "left join reimbursement_type rt\r\n" + 
+							   "on rt.type_id = r.type_id\r\n" + 
+							   "where su.user_id = ?";
 			
-			ResultSet rs = statement.executeQuery(procedure);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, uid);
+			ResultSet info = ps.executeQuery();
 			
-			while(rs.next()) {
-				int reimid = rs.getInt(1);
-				int reqid = rs.getInt(2);
-				int resid = rs.getInt(3);
-				int statid = rs.getInt(4);
-				String receipt = rs.getString(5);
-				String reason = rs.getString(6);
-				String rnotes = rs.getString(7);
-				double amount = rs.getDouble(8);
-				int typeid = rs.getInt(9);
+			while(info.next()) {
+				int reimid      = info.getInt(1);
+				String reqfn    = info.getString(2);
+				String reqln    = info.getString(3);
+				double amount   = info.getDouble(4);
+				String reason   = info.getString(5);
+				String receipt  = info.getString(6);
+				String statn    = info.getString(7);
+				String typen    = info.getString(8);
+				Timestamp start = info.getTimestamp(9);
+				String resfn    = info.getString(10);
+				String resln    = info.getString(11);
+				Timestamp close = info.getTimestamp(12);
+				String notes    = info.getString(13);
 				
-				Reimbursement temp = new Reimbursement(reimid, reqid, resid, statid, receipt, reason, rnotes, amount, typeid);
+				Reimbursement temp = new Reimbursement(reimid, reqfn, reqln, amount, reason, receipt, statn, typen, start, resfn, resln, close, notes);
 				currentList.add(temp);
 			}
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
+	System.out.println(currentList.toString());
 	return currentList;
+	}
+	
+	public ArrayList<Reimbursement> getReimbursementsByStatus(int status) {
+		ArrayList<Reimbursement> list = new ArrayList<Reimbursement>();
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			String procedure = "select r.reimburse_id, su.first_name, su.last_name, r.amount, \r\n" + 
+							   "r.reason, r.receipt, rs.status_name, rt.type_name,\r\n" + 
+							   "r.start_date, ru.first_name, ru.last_name, r.resolve_date, r.resolver_notes\r\n" + 
+							   "from reimbursement r\r\n" + 
+							   "left join resort_users su\r\n" + 
+							   "on su.user_id = r.requester_id\r\n" + 
+							   "left join resort_users ru\r\n" + 
+							   "on ru.user_id = r.resolver_id\r\n" + 
+							   "left join reimbursement_status rs\r\n" + 
+							   "on rs.status_id = r.status_id\r\n" + 
+							   "left join reimbursement_type rt\r\n" + 
+							   "on rt.type_id = r.type_id\r\n" + 
+							   "where rs.status_id = status";
+			
+			Statement statement = conn.prepareCall(procedure);
+			
+			ResultSet rs = statement.executeQuery(procedure);
+			
+			while(rs.next()) {
+				int reimid      = rs.getInt(1);
+				String reqfn    = rs.getString(2);
+				String reqln    = rs.getString(3);
+				double amount   = rs.getDouble(4);
+				String reason   = rs.getString(5);
+				String receipt  = rs.getString(6);
+				String statn    = rs.getString(7);
+				String typen    = rs.getString(8);
+				Timestamp start = rs.getTimestamp(9);
+				String resfn    = rs.getString(10);
+				String resln    = rs.getString(11);
+				Timestamp close = rs.getTimestamp(12);
+				String notes    = rs.getString(13);
+				
+				Reimbursement temp = new Reimbursement(reimid, reqfn, reqln, amount, reason, receipt, statn, typen, start, resfn, resln, close, notes);
+				list.add(temp);
+			}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return list;
 	}
 	
 	public ArrayList<Reimbursement> getReimbursements() {
@@ -74,22 +139,34 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			Statement statement = conn.createStatement();
-			String procedure = "select * from reimbursement";
+			String procedure = "select r.reimburse_id, su.first_name, su.last_name, r.amount, \r\n" + 
+							   "r.reason, r.receipt, rs.status_name, rt.type_name,\r\n"
+							   + "r.start_date, ru.first_name, ru.last_name, r.resolve_date, r.resolver_notes\r\n"
+							   + "from reimbursement r\r\n" + "left join resort_users su\r\n"
+							   + "on su.user_id = r.requester_id\r\n" + "left join resort_users ru\r\n"
+							   + "on ru.user_id = r.resolver_id\r\n" + "left join reimbursement_status rs\r\n"
+							   + "on rs.status_id = r.status_id\r\n" + "left join reimbursement_type rt\r\n"
+							   + "on rt.type_id = r.type_id";
 			
 			ResultSet rs = statement.executeQuery(procedure);
 			
 			while(rs.next()) {
-				int reimid = rs.getInt(1);
-				int reqid = rs.getInt(2);
-				int resid = rs.getInt(3);
-				int statid = rs.getInt(4);
-				String receipt = rs.getString(5);
-				String reason = rs.getString(6);
-				String rnotes = rs.getString(7);
-				double amount = rs.getDouble(8);
-				int typeid = rs.getInt(9);
+				int reimid      = rs.getInt(1);
+				String reqfn    = rs.getString(2);
+				String reqln    = rs.getString(3);
+				double amount   = rs.getDouble(4);
+				String reason   = rs.getString(5);
+				String receipt  = rs.getString(6);
+				String statn    = rs.getString(7);
+				String typen    = rs.getString(8);
+				Timestamp start = rs.getTimestamp(9);
+				String resfn    = rs.getString(10);
+				String resln    = rs.getString(11);
+				Timestamp close = rs.getTimestamp(12);
+				String notes    = rs.getString(13);
 				
-				Reimbursement temp = new Reimbursement(reimid, reqid, resid, statid, receipt, reason, rnotes, amount, typeid);
+				Reimbursement temp = new Reimbursement(reimid, reqfn, reqln, amount, reason, receipt, statn, typen, start, resfn, resln, close, notes);
+				
 				currentList.add(temp);
 			}
 	} catch (SQLException e) {
@@ -136,6 +213,8 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			conn.setAutoCommit(false);
 			
+			Reimbursement r = new Reimbursement();
+			
 			String sql = "insert into reimbursement (requester_id, reason, amount, type_id) values (?,?,?,?)";
 			String[] key = new String[1];
 			key[0] = "reimbursement_id";
@@ -152,6 +231,58 @@ public class ReimburseDAOImpl implements ReimburseDAO {
 			while(pk.next()) {
 				id = pk.getInt(1);
 			}
+			
+			r.setRequesterId(requester);
+			r.setReason(reason);
+			r.setAmount(amount);
+			r.setType_Id(rtype);
+			r.setStatus_Id(0);
+			
+			conn.commit();
+			return id;
+		
+		//catch has been tested & works
+		} catch (SQLIntegrityConstraintViolationException e) {
+    		System.out.println("A reimbursement with that information already exists.");
+    		System.out.println("Please try again.");
+    	} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	@Override
+	public int addFullReimbursement(int requester, String reason, double amount, String receipt, int rtype) {
+		try(Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			conn.setAutoCommit(false);
+			
+			Reimbursement r = new Reimbursement();
+			
+			String sql = "insert into reimbursement (requester_id, reason, amount, type_id, receipt) values (?,?,?,?,?)";
+			String[] key = new String[1];
+			key[0] = "reimbursement_id";
+			PreparedStatement ps = conn.prepareStatement(sql, key);
+			ps.setInt(1, requester);  //it won't matter what is contained within the String
+			ps.setString(2, reason);
+			ps.setDouble(3, amount);
+			ps.setInt(4, rtype);
+			ps.setString(5, receipt);
+			
+			ps.executeUpdate();
+			
+			int id = 0;
+			ResultSet pk = ps.getGeneratedKeys();
+			while(pk.next()) {
+				id = pk.getInt(1);
+			}
+			
+			r.setRequesterId(requester);
+			r.setReason(reason);
+			r.setAmount(amount);
+			r.setReceipt(receipt);
+			r.setType_Id(rtype);
+			r.setStatus_Id(0);
+			
 			conn.commit();
 			return id;
 		

@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ViewEmployees
+ * Servlet implementation class SubmitReimbursementWithReceipt
  */
-
-@WebServlet("/viewEmployees")
-public class ViewEmployees extends HttpServlet {
+@WebServlet("/submitReimbursementWithReceipt")
+public class SubmitReimbursementWithReceipt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewEmployees() {
+    public SubmitReimbursementWithReceipt() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,15 +26,15 @@ public class ViewEmployees extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("Users.html").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		//String file = list.get(2);
 	}
 
 }

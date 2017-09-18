@@ -2,6 +2,7 @@ package com.resort.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.resort.dao.RSDAOImpl;
 import com.resort.dao.RTDAOImpl;
@@ -14,8 +15,8 @@ public class Service {
 	
 	private UserDAOImpl udao;
 	private ReimburseDAOImpl rdao; 
-	private static RSDAOImpl rsdao;
-	private static RTDAOImpl rtdao;
+	//private static RSDAOImpl rsdao;
+	//private static RTDAOImpl rtdao;
 	
 	//this is known as dependency injection in a constructor
 	public Service(UserDAOImpl udao, ReimburseDAOImpl rdao) {
@@ -48,32 +49,28 @@ public class Service {
 		User u = udao.getUserById(id);
 		System.out.println(pass);
 		System.out.println(u.getPassword());
-		if(u == null) {
-			return null;
-		}
+		
 		if(u.getPassword().equalsIgnoreCase(pass)){
 			return u;
 		}
 		else {return null;}
 	}
 	
-	public User addUser(User u){
-		if(u.getEmail().equals("") || u.getFirstname().equals("") || u.getLastname().equals("") || u.getPassword().equals("")) {
-			return null;
-		}
-		else {
-		int id = udao.addUser(u.getFirstname(), u.getLastname(), u.getEmail(), u.getPassword());
-		u.setUserid(id);
-		return u;
-		}
+	public void addUser(User u){
+		System.out.println(u.toString());
+		udao.addUser(u.getFirstname(), u.getLastname(), u.getEmail(), u.getPassword());
 	}
 	
-	public int addReimbursement(User u, double amount, int rtype){
-		return rdao.addReimbursement(u.getUserid(), amount, rtype);
+	public void addReimbursement(User u, double amount, int rtype){
+		rdao.addReimbursement(u.getUserid(), amount, rtype);
 	}
 	
-	public int addReasonReimbursement(User u, String reason, double amount, int rtype){
-		return rdao.addDetailReimbursement(u.getUserid(), reason, amount, rtype);
+	public void addReasonReimbursement(User u, String reason, double amount, int rtype){
+		rdao.addDetailReimbursement(u.getUserid(), reason, amount, rtype);
+	}
+	
+	public void addFullReimbursement(User u, String reason, double amount, String receipt, int rtype) {
+		rdao.addFullReimbursement(u.getUserid(), reason, amount, receipt, rtype);
 	}
 	
 	public void updateReimbursement(int rid, int nstat, User u) {
@@ -82,6 +79,22 @@ public class Service {
 	
 	public void updateReimbursementNote(int rid, String notes) {
 		rdao.updateReimbursementNotes(rid, notes);
+	}
+	
+	public void updateUserFN(String change, int uid) {
+		udao.updateUserFN(change, uid);
+	}
+	
+	public void updateUserLN(String change, int uid) {
+		udao.updateUserLN(change, uid);
+	}
+	
+	public void updateUserEM(String change, int uid) {
+		udao.updateUserEM(change, uid);
+	}
+	
+	public void updateUserPW(String change, int uid) {
+		udao.updateUserPW(change, uid);
 	}
 	
 	public User getUser(int id) {
@@ -93,10 +106,22 @@ public class Service {
 	}
 
 	public ArrayList<Reimbursement> getUserReimbursements(User u, int uid) {
-		if (u.getIsManager() == 0) {
+		//if (u.getIsManager() == 0) {
 				return rdao.getUserReimbursements(u.getUserid());
-		}
-			return rdao.getUserReimbursements(uid);
+		//}
+			//return rdao.getUserReimbursements(uid);
+	}
+	
+	public ArrayList<Reimbursement> getReimbursementsByStat(int stat) {
+		return rdao.getReimbursementsByStatus(stat);
+	}
+	
+	public ArrayList<Reimbursement> getAllReimbursements() {
+		return rdao.getReimbursements();
+	}
+	
+	/*public HashMap<Integer, String> getRTypes() {
+		return rtdao.getRT();
 	}
 	
 	public String getTypeName(int tid) {
@@ -104,9 +129,13 @@ public class Service {
 		return rtmap.get(tid);
 	}
 	
+	public HashMap<Integer, String> getRStats() {
+		return rsdao.getRS();
+	}
+	
 	public String getStatName(int sid) {
 		HashMap<Integer, String> rsmap = rsdao.getRS();
 		return rsmap.get(sid);
-	}
+	}*/
 	
 }

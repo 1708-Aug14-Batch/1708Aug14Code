@@ -29,8 +29,11 @@ public interface ReimburseDAO {
 	//this adds a reimbursement row to the table and returns the reimbursement id 
 	public int addReimbursement(int requester, double amount, int rtype);
 	
-	//this adds a reimbursement row to the table and returns the reimbursement 
+	//this adds a reimbursement row to the table with a reason and returns the reimbursement id
 	public int addDetailReimbursement(int requester, String reason, double amount, int rtype);
+	
+	//this adds a reimbursement row to the table with a reason & receipt then returns the reimbursement id
+	public int addFullReimbursement(int requester, String reason, double amount, String receipt, int rtype);
 	
 	//this updates the reimbursement status when a manager changes the reimbursement status to approved or denied
 	public void updateReimbursementStatus(int rid, int nstat, int resid);
