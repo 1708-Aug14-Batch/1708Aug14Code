@@ -51,8 +51,7 @@ public class EmployeeSubmitReimbServlet extends HttpServlet {
 		Reimbursement reimb = (Reimbursement) mapper.readValue(jsonString, Reimbursement.class);
 		RUser submitter = (RUser) request.getSession().getAttribute("user");
 		reimb.setSubmitterID(submitter.getRUserID());
-		reimb.setResolverID(1); // TODO Do not hard code resolver ID
-		//DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		reimb.setResolverID(100); // TODO Do not hard code resolver ID
 		Date utilDateSubmitted = new Date();
 		java.sql.Date sqlDateSubmitted = new java.sql.Date(utilDateSubmitted.getTime());
 		reimb.setDateSubmitted(sqlDateSubmitted);
