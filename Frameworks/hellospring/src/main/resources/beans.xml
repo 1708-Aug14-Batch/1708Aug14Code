@@ -11,17 +11,18 @@
 
 	<bean id="revature" class="com.ex.beans.HiRevature">
 		<property name="hello">
-			<bean id="helloWorld" class="com.ex.beans.HelloWorld" 
-				scope="prototype"
+			<bean id="helloWorld" class="com.ex.beans.HelloWorld" scope="prototype"
 				destroy-method="destroy">
 
-				<property name="message" 
-				value="Hello Spring! This is a message!" />
+				<property name="message" value="Hello Spring! This is a message!" />
 
-				<constructor-arg type="java.lang.String"
-				 value="testing injection" />
+				<constructor-arg type="java.lang.String" value="testing injection" />
 			</bean>
 		</property>
+	</bean>
+	<bean id="jon" class="beanlifecycle.ParentBean" scope="singleton"
+		init-method="myCustomInitializationMethod" destroy-method="customDestroyMethod">
+		<property name="secret" value="Hello World.." />
 	</bean>
 
 </beans>
