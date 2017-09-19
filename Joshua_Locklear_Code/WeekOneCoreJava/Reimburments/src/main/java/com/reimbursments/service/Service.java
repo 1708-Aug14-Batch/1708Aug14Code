@@ -16,17 +16,14 @@ public class Service {
 		
 		for(Users t: list){
 			if(t.getEmail().equals(u.getEmail())) {
-				System.out.println("Before ID: " + t.getUserid());
 				u.setUserid(t.getUserid());
 			}
 		}
-		System.out.println("After ID: " + u.getUserid());
-		dao.createReimbursement(u, r.getAmount(), r.getDescription());
-		System.out.println("We got here after the DAO");
+		dao.createReim(u, r.getAmount(), r.getDescription());
 		
 	}
 	public ArrayList<Reimburs> getAllReimbursements(){
-		ArrayList<Reimburs> list = dao.getAllReimbursements();
+		ArrayList<Reimburs> list = dao.getAllReim();
 		return list;
 	}
 	public boolean checkEmail(String email) {
@@ -54,12 +51,6 @@ public class Service {
 		}
 		return false;
 	}
-	
-	//This is used to establish the User to pass through the session.
-	//It uses the same checker as the username/password to set up the user.
-	//When ran through a main method it properly creates the user.
-	
-	//The example used here is username: ctest123@gmail.com and password: ctest123
 	public Users loginUser(String email) {
 		ArrayList<Users> list = dao.getUsers();
 		Users user = new Users();
@@ -78,7 +69,7 @@ public class Service {
 		return null;
 	}
 	public ArrayList<Reimburs> getUserReimbursements(Users u) {
-		ArrayList<Reimburs> list = dao.getAllReimbursements();
+		ArrayList<Reimburs> list = dao.getAllReim();
 		ArrayList<Reimburs> test = new ArrayList<Reimburs>();
 		for(Reimburs r: list) {
 			if(r.getSub_id() == u.getUserid()) {
@@ -89,18 +80,16 @@ public class Service {
 		
 	}
 	public void updateUser(Users u) {
-		System.out.println(u.toString());
 		dao.UpdateUser(u);
 	}
 	
 	public ArrayList<Users> getAllUsers(){
 		ArrayList<Users> list = dao.getUsers();
-		System.out.println("User list: " + list.toString());
 		return list;
 	}
 	
 	public void ApporDeny(int resId, String notes, int r_id, int re_id) {
-		dao.ApproveOrDeny(resId,notes,r_id,re_id);
+		dao.Resolve(resId,notes,r_id,re_id);
 	}
 	
 	public void createUser(String fname, String lname, String email, String password) {

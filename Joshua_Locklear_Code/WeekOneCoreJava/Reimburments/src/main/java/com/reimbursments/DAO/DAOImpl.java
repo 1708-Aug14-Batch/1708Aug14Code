@@ -56,13 +56,9 @@ public class DAOImpl implements DAO {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql = "select firstname, lastname, email from users " + 
 					"where userid = ?";
-			PreparedStatement state = conn.prepareStatement(sql);
-			state.setInt(1, u.getUserid());
-			ResultSet rs = state.executeQuery();
-			while(rs.next()) {
-				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) + "\n"
-				+ "Email: " + rs.getString(3));
-			}
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserid());
+			ResultSet rs = ps.executeQuery();
 			
 			
 		} catch (SQLException e) {
@@ -105,15 +101,15 @@ public class DAOImpl implements DAO {
 					"set firstname = ?, lastname = ?, email = ?, userpassword = ? " + 
 					"where userid = ? ";
 			
-			PreparedStatement state = conn.prepareStatement(sql);
-			state.setInt(5, u.getUserid());
-			state.setString(1, u.getFirstName());
-			state.setString(2, u.getLastName());
-			state.setString(3, u.getEmail());
-			state.setString(4, u.getPassword());
-			state.executeUpdate();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(5, u.getUserid());
+			ps.setString(1, u.getFirstName());
+			ps.setString(2, u.getLastName());
+			ps.setString(3, u.getEmail());
+			ps.setString(4, u.getPassword());
+			ps.executeUpdate();
 			conn.commit();
-			log.debug("Update success?");
+			log.debug("Done");
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -123,10 +119,9 @@ public class DAOImpl implements DAO {
 		
 	}
 	
-	public void createReimbursement(Users u ,double amt, String desc) {
+	public void createReim(Users u ,double amt, String desc) {
 	
-		log.debug("in createReimbursement");
-		//int amount = amt;
+		log.debug("in createReim");
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			conn.setAutoCommit(false);
@@ -138,13 +133,8 @@ public class DAOImpl implements DAO {
 			ps.setInt(1, u.getUserid());
 			
 			ps.setString(2, desc);
-			ps.setDouble(3, amt);
-			int rowsInserted = ps.executeUpdate();
-			
-			log.debug("rowsInserted= "+rowsInserted);
-			
+			ps.setDouble(3, amt);			
 			conn.commit();
-			log.debug("Submittal Successful");
 			
 			
 		} catch (SQLException e) {
@@ -154,7 +144,7 @@ public class DAOImpl implements DAO {
 
 	}
 	
-	public ArrayList<Reimburs> getAllReimbursements(){
+	public ArrayList<Reimburs> getAllReim(){
 		
 		ArrayList<Reimburs> list = new ArrayList<Reimburs>();
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
@@ -189,7 +179,7 @@ public class DAOImpl implements DAO {
 		
 	}
 	
-	public ArrayList<Reimburs> getReimbursement(Users u) {
+	public ArrayList<Reimburs> getAccounts(Users u) {
 		
 		
 		
@@ -200,18 +190,9 @@ public class DAOImpl implements DAO {
 			String sql = "select users.firstname, users.lastname, Reimburse.R_ID, Reimburse.SUBMIT_DATE, Reimburse.DESCRIPTION, Reimburse.AMOUNT, status.name from users " + 
 					"Left Join Reimburse inner join status on Reimburse.STATUS_ID = status.status_id on users.userid = reimburse.submitter_id " + 
 					"Where users.userid = ? ";
-			PreparedStatement state = conn.prepareStatement(sql);
-			state.setInt(1, u.getUserid());
-			ResultSet rs = state.executeQuery();
-			log.debug("Here");
-			while(rs.next()) {
-				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) 
-				+ " ReimbursmentID: " + rs.getInt(3)
-				+ " Date Submitted: " + rs.getDate(4)
-				+ " Description: " + rs.getString(5)
-				+ " Amount: " + rs.getInt(6)
-				+ " Status: " + rs.getString(7) + "\n");
-			}
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, u.getUserid());
+			ResultSet rs = ps.executeQuery();
 			return list;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -219,7 +200,7 @@ public class DAOImpl implements DAO {
 		}
 		return null;
 	}
-	public void getPendingReimbursements() {
+	public void getPending() {
 		
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql = "select users.firstname, users.lastname, Reimburse.R_ID, Reimburse.SUBMIT_DATE, Reimburse.DESCRIPTION, Reimburse.AMOUNT, status.name from users " + 
@@ -243,24 +224,16 @@ public class DAOImpl implements DAO {
 		}
 		
 	}
-	public void getResolvedReimbursements() {
+	public void getResolved() {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			String sql = "select users.firstname, users.lastname, Reimburse.R_ID, Reimburse.SUBMIT_DATE, Reimburse.DESCRIPTION, Reimburse.AMOUNT, status.name from users " + 
 					"Left Join Reimburse inner join status on Reimburse.STATUS_ID = Status.status_id on users.user_id = reimburse.submitter_id " + 
 					"where status.name = ? or status.name = ?";
 			
-			PreparedStatement state = conn.prepareStatement(sql);
-			state.setString(1, "Approved");
-			state.setString(2, "Denied");
-			ResultSet rs = state.executeQuery();
-			while(rs.next()) {
-				System.out.println("Name: " + rs.getString(1) + " " + rs.getString(2) 
-				+ " \nReimbursmentID: " + rs.getInt(3)
-				+ " \nDate Submitted: " + rs.getDate(4)
-				+ " \nDescription: " + rs.getString(5)
-				+ " \nAmount: " + rs.getInt(6)
-				+ " \nStatus: " + rs.getString(7) + "\n\n");
-			}
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, "Approved");
+			ps.setString(2, "Denied");
+			ResultSet rs = ps.executeQuery();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -268,7 +241,7 @@ public class DAOImpl implements DAO {
 		}
 	}
 	
-	public void ApproveOrDeny(int resId, String notes, int r_id, int re_id) {
+	public void Resolve(int resId, String notes, int r_id, int re_id) {
 		try(Connection conn = ConnectionFactory.getInstance().getConnection();){
 			Date date = new Date(Calendar.getInstance().getTime().getTime());
 			String sql = "update reimburse " + 

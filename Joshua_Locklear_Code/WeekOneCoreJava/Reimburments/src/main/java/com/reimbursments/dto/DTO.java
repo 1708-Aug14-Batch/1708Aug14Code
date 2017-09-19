@@ -10,31 +10,40 @@ public class DTO {
 	
 	private Users user;
 	private ArrayList<Reimburs> accounts;
-	private ArrayList<Users> userList;
-	public DTO() {}
-	
-	public DTO(Users user, ArrayList<Reimburs> accounts, ArrayList<Users> userList) {
+	private ArrayList<Users> EmployeeList;
+	public DTO() {
 		super();
-		this.user = user;
-		this.accounts = accounts;
-		this.userList = userList;
 	}
-
-	public ArrayList<Users> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(ArrayList<Users> userList) {
-		this.userList = userList;
-	}
-
+	
 	public DTO(ArrayList<Reimburs> accounts, ArrayList<Users> userList) {
 		super();
 		this.accounts = accounts;
-		this.userList = userList;
+		this.EmployeeList = userList;
+	}
+	
+	public DTO(Users user, ArrayList<Reimburs> accounts, ArrayList<Users> EmployeeList) {
+		super();
+		this.user = user;
+		this.accounts = accounts;
+		this.EmployeeList = EmployeeList;
+	}
+
+	public ArrayList<Users> getUserList() {
+		return EmployeeList;
+	}
+	
+	public ArrayList<Reimburs> getAccounts() {
+		return accounts;
+	}
+
+	public void setUserList(ArrayList<Users> EmployeeList) {
+		this.EmployeeList = EmployeeList;
 	}
 
 
+	public void setAccounts(ArrayList<Reimburs> accounts) {
+		this.accounts = accounts;
+	}
 
 	public DTO(Users user, ArrayList<Reimburs> accounts) {
 		super();
@@ -50,13 +59,7 @@ public class DTO {
 		this.user = user;
 	}
 
-	public ArrayList<Reimburs> getAccounts() {
-		return accounts;
-	}
 
-	public void setAccounts(ArrayList<Reimburs> accounts) {
-		this.accounts = accounts;
-	}
 	
 
 }

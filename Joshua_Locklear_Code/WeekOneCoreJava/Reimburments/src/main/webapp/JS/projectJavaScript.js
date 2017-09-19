@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 var reset = 0;
 
 
@@ -18,10 +21,10 @@ var restriction;
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-			var Employeelist = dto.EmployeeList;
+			var userlist = dto.userList;
 
 			console.log("User: " + user);
-			console.log("EmployeeList: "+ Employeelist);
+			console.log("UserList: "+ userlist);
 			console.log("Accounts: " + accounts)
 			if(accounts.length == 0){
 			document.getElementById("accounts").style.visiblity = "hidden";
@@ -58,26 +61,26 @@ var restriction;
 							}
 							else if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
-								for(var j = 0; j < Employeelist.length; j++){
-									if(EmployeeList[j].userid === accounts[i].res_id){
-										resID.innerHTML = Employeelist[j].firstName +" " +Employeelist[j].lastName;
+								for(var j = 0; j < userlist.length; j++){
+									if(userlist[j].userid === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
 									}
 								}
 							}
 							else if(accounts[i].status_id === 2){
 								status.innerHTML = "Denied";
-								for(var j = 0; j < Employeelist.length; j++){
-									if(Employeelist[j].userid === accounts[i].res_id){
-										resID.innerHTML = EmployeeList[j].firstName +" " +EmployeeList[j].lastName;
+								for(var j = 0; j < userlist.length; j++){
+									if(userlist[j].userid === accounts[i].res_id){
+										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
 									}
 								}
 							}
-						if(EmployeeList != null){
-							for(var j = 0; j < EmployeeList.length; j++){
-							if(EmployeeList[j].userid == accounts[i].sub_id){
-								console.log(EmployeeList[j]);
-								fname.innerHTML = EmployeeList[j].firstName;
-								lname.innerHTML = EmployeeList[j].lastName;
+						if(userlist != null){
+							for(var j = 0; j < userlist.length; j++){
+							if(userlist[j].userid == accounts[i].sub_id){
+								console.log(userlist[j]);
+								fname.innerHTML = userlist[j].firstName;
+								lname.innerHTML = userlist[j].lastName;
 							}
 						}
 						}
@@ -129,12 +132,12 @@ var restriction;
 						$("#modalAmount").val("$" + accounts[i].amount);
 						$("#modalreAmount").val("$" + accounts[i].amount);
 						$("#modalNotes").val(accounts[i].notes);
-						for(var j = 0; j < EmployeeList.length; j++){
-							if(EmployeeList[j].userid === accounts[i].res_id){
-								$("#modalResolved").val(EmployeeList[j].firstName + " " + EmployeeList[j].lastName);
+						for(var j = 0; j < userlist.length; j++){
+							if(userlist[j].userid === accounts[i].res_id){
+								$("#modalResolved").val(userlist[j].firstName + " " + userlist[j].lastName);
 							}
-							if(EmployeeList[j].userid == accounts[i].sub_id){
-								$("#modalSubmitted").val(EmployeeList[j].firstName + " " + EmployeeList[j].lastName);
+							if(userlist[j].userid == accounts[i].sub_id){
+								$("#modalSubmitted").val(userlist[j].firstName + " " + userlist[j].lastName);
 								$("#modalDescription").val(accounts[i].description);
 								$("#reID").val(accounts[i].r_id);
 							}

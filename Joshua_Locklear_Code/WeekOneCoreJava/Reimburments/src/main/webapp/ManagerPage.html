@@ -31,10 +31,7 @@
 
 <h1>Welcome</h1>
 <h1 id = "name"></h1>
-<!--<select class="custom-select" id="selectList">
-	<option value="1" selected>View</option>
-</select>-->
-<button type="button" class="btn btn-primary" id="selectList">View</button>
+<button type="button" class="btn btn-primary" id="View">View</button>
 <input type="text" id="myInput" onkeyup="mySearch()" placeholder="Search Status" title="Type in a name">
 <input type="text" id="myInput2" onkeyup="mySearch2()" placeholder="Employee First name" title="Type in a name">
 <div id = "view">
@@ -44,7 +41,6 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Reimbursement Information</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -66,9 +62,9 @@
 
 
 
-<!-- FOR APPROVING/DENYING REIMBURSEMENTS -->
+<!-- Manager Modal-->
 
-<div class="modal fade" id="pendingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="ManagerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,7 +75,6 @@
       </div>
       <div class="modal-body">
       <div class = "form-group">
-      <!-- CONTINUE HERE! ADD THE REIMBURSEMENT ID -->
       <label for = "from-control-label" class = "form-control-label">Reimbursement ID:</label>
       <input type = "text" class = "form-control" id = "reID" disabled>
       </div>
@@ -88,15 +83,15 @@
             <input type="text" class="form-control" id = "modalreAmount" disabled>
           </div>
           <div class = "form-group">
-          <label class = "form-control-label">Submitted by:</label>
+          <label class = "form-control-label">Employee Name:</label>
           <input type="text" class="form-control" id = "modalSubmitted" disabled>
           </div>
           <div class="form-group">
-            <label for="message-text" class="form-control-label">Description:</label>
+            <label for="message-text" class="form-control-label">Reason:</label>
             <textarea class="form-control" id="modalDescription" disabled></textarea>
           </div>
           <div class = "form-group">
-          <label for="message-text" class="form-contorl-label">Please enter additional notes:</label>
+          <label for="message-text" class="form-contorl-label">Please give notes:</label>
           <textarea class = "form-control" id = "modalGivenNotes"></textarea>
           </div>
         </form>

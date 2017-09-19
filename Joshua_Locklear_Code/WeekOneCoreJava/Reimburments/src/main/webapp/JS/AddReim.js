@@ -12,15 +12,10 @@ function submitRe(){
 	'use strict';
 	log('in submitRe');
 	var xhr = new XMLHttpRequest();
-	
 	var email = document.getElementById("email").value.trim();
-	console.log(email);
 	var password = document.getElementById("password").value;
-	console.log(password);
 	var reason = document.getElementById("reason").value.trim();
-	console.log(reason);
 	var amount = document.getElementById("amount").value;
-	console.log(amount);
 	
 	var tx = [email,password,reason,amount];
 	

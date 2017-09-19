@@ -16,10 +16,10 @@ $(document).ready(function(){
 			
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user
-			var userlist = dto.userList
+			var EmployeeList = dto.EmployeeList
 			
 			
-			for(var i = 0; i < userlist.length; i++){
+			for(var i = 0; i < EmployeeList.length; i++){
 			var table = document.getElementById("list");
 			var row = table.insertRow();
 			var fname = row.insertCell(0);
@@ -34,9 +34,9 @@ $(document).ready(function(){
 				break;
 			}
 			else{
-				fname.innerHTML = userlist[i].firstName;
-				lname.innerHTML = userlist[i].lastName;
-				email.innerHTML = userlist[i].email;
+				fname.innerHTML = EmployeeList[i].firstName;
+				lname.innerHTML = EmployeeList[i].lastName;
+				email.innerHTML = EmployeeList[i].email;
 			}
 				
 			}
@@ -49,7 +49,7 @@ $(document).ready(function(){
 			}
 
 		}
-		$("#create").on("click",function(){
+		$("#cNewUser").on("click",function(){
 			
 			
 			var xhr2 = new XMLHttpRequest();

@@ -10,13 +10,9 @@ $(document).ready(function(){
 function updateInfo(){
 	
 	var fname = document.getElementById("firstname").value;
-	console.log(fname);
 	var lname = document.getElementById("lastname").value;
-	console.log(lname);
 	var email = document.getElementById("email").value;
-	console.log(email);
 	var password = document.getElementById("password").value;
-	console.log(password);
 	var passwordTwo = document.getElementById("passwordtwo").value;
 	console.log(passwordTwo);
 	if(password != passwordTwo){
@@ -28,7 +24,6 @@ function updateInfo(){
 		alert("Please provide a matching password.");
 		}
 	else{
-	console.log("HERE");
 	var tx = [fname,lname,email,password];
 	
 	tx = JSON.stringify(tx);

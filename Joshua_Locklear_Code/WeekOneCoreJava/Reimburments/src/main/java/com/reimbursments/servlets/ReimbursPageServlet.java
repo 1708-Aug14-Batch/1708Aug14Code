@@ -43,7 +43,7 @@ public class ReimbursPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		log.debug("getting user info");
+		log.debug("info");
 		Service service = new Service();
 		
 		HttpSession session = request.getSession();
@@ -66,7 +66,7 @@ public class ReimbursPageServlet extends HttpServlet {
 			dto.setUserList(userLists);
 			log.debug(userLists);
 			
-			log.debug("Converting our user and accounts to dto");
+			log.debug("Going to dto");
 			
 			ObjectMapper mapper = new ObjectMapper();
 			String json = mapper.writeValueAsString(dto);

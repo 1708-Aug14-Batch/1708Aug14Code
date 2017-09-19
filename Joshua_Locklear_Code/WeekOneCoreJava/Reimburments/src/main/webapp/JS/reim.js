@@ -4,20 +4,10 @@ var reset = 0;
 $(document).ready(function(){
 		
 
-$('#selectList').on('click',function(){
+$('#View').on('click',function(){
 	
 	var selection = $("#selectList option:selected").text();
 var restriction;
-//if (selection === "Pending"){
-//	restriction = 0;
-//}
-if(selection === "View"){
-	restriction = 2;
-}
-//else if(selection === "Resolved"){
-//	restriction = 1;
-//}
-	
 	if(reset != 0){
 		$("td").remove();
 	}
@@ -28,10 +18,10 @@ if(selection === "View"){
 			var dto = JSON.parse(xhr.responseText);
 			var user = dto.user;
 			var accounts = dto.accounts;
-			var userlist = dto.userList;
+			var EmployeeList = dto.EmployeeList;
 
 			console.log("User: " + user);
-			console.log("UserList: "+ userlist);
+			console.log("EmployeeList: "+ EmployeeList);
 			console.log("Accounts: " + accounts)
 			if(accounts.length == 0){
 			document.getElementById("accounts").style.visiblity = "hidden";
@@ -68,60 +58,30 @@ if(selection === "View"){
 							}
 							else if(accounts[i].status_id === 1){
 								status.innerHTML = "Approved";
-								for(var j = 0; j < userlist.length; j++){
-									if(userlist[j].userid === accounts[i].res_id){
-										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
+								for(var j = 0; j < EmployeeList.length; j++){
+									if(EmployeeList[j].userid === accounts[i].res_id){
+										resID.innerHTML = EmployeeList[j].firstName +" " +EmployeeList[j].lastName;
 									}
 								}
 							}
 							else if(accounts[i].status_id === 2){
 								status.innerHTML = "Denied";
-								for(var j = 0; j < userlist.length; j++){
-									if(userlist[j].userid === accounts[i].res_id){
-										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
+								for(var j = 0; j < EmployeeList.length; j++){
+									if(EmployeeList[j].userid === accounts[i].res_id){
+										resID.innerHTML = EmployeeList[j].firstName +" " +EmployeeList[j].lastName;
 									}
 								}
 							}
-						else if(selection === "Pending"){
-							if(accounts[i].status_id === 0){
-							status.innerHTML = "Pending"
-							}
-							else
-								continue;
-						}
-						else if(selection === "Resolved"){
-							
-							if(accounts[i].status_id === 1){
-								status.innerHTML = "Approved";
-								for(var j = 0; j < userlist.length; j++){
-									if(userlist[j].userid === accounts[i].res_id){
-										resID.innerHTML = userlist[j].firstName + " " + userlist[j].lastName;
-									}
-								}
-								
-							}
-							else if(accounts[i].status_id === 2){
-								status.innerHTML = "Denied";
-								for(var j = 0; j < userlist.length; j++){
-									if(userlist[j].userid === accounts[i].res_id){
-										resID.innerHTML = userlist[j].firstName +" " +userlist[j].lastName;
-									}
-								}
-							}
-							else if(accounts[i].status_id === 0)
-								continue;
-						}
-						if(userlist != null){
-							for(var j = 0; j < userlist.length; j++){
-							if(userlist[j].userid == accounts[i].sub_id){
-								console.log(userlist[j]);
-								fname.innerHTML = userlist[j].firstName;
-								lname.innerHTML = userlist[j].lastName;
+						if(EmployeeList != null){
+							for(var j = 0; j < EmployeeList.length; j++){
+							if(EmployeeList[j].userid == accounts[i].sub_id){
+								console.log(EmployeeList[j]);
+								fname.innerHTML = EmployeeList[j].firstName;
+								lname.innerHTML = EmployeeList[j].lastName;
 							}
 						}
 						}
 						else{
-							console.log("WE GOT HERE");
 							fname.innerHTML = user.firstName;
 							lname.innerHTML = user.lastName;
 						}
@@ -169,12 +129,12 @@ if(selection === "View"){
 						$("#modalAmount").val("$" + accounts[i].amount);
 						$("#modalreAmount").val("$" + accounts[i].amount);
 						$("#modalNotes").val(accounts[i].notes);
-						for(var j = 0; j < userlist.length; j++){
-							if(userlist[j].userid === accounts[i].res_id){
-								$("#modalResolved").val(userlist[j].firstName + " " + userlist[j].lastName);
+						for(var j = 0; j < EmployeeList.length; j++){
+							if(EmployeeList[j].userid === accounts[i].res_id){
+								$("#modalResolved").val(EmployeeList[j].firstName + " " + EmployeeList[j].lastName);
 							}
-							if(userlist[j].userid == accounts[i].sub_id){
-								$("#modalSubmitted").val(userlist[j].firstName + " " + userlist[j].lastName);
+							if(EmployeeList[j].userid == accounts[i].sub_id){
+								$("#modalSubmitted").val(EmployeeList[j].firstName + " " + EmployeeList[j].lastName);
 								$("#modalDescription").val(accounts[i].description);
 								$("#reID").val(accounts[i].r_id);
 							}
@@ -190,65 +150,6 @@ if(selection === "View"){
 	reset = reset + 1;
 	
 });
-$("#approve").on('click', function(){
-	var xhr3= new XMLHttpRequest();
-	var notes = $("#modalGivenNotes").val();
-	console.log(notes);
-	var appID = "1";
-	var re_id = $("#reID").val();
-	console.log(re_id);
-	var tx = [notes,appID,re_id];
-	
-	tx = JSON.stringify(tx);
-	
-	console.log(tx);
-	xhr3.open("POST", "Reimbursement", true);
-	xhr3.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr3.send(tx);
-	
-	$('#pendingModal').modal("toggle");
-})
-$("#denied").on('click', function(){
-	var xhr4= new XMLHttpRequest();
-	var notes = $("#modalGivenNotes").val();
-	console.log(notes);
-	var appID = "2";
-	var re_id = $("#reID").val();
-	console.log(re_id);
-	var tx = [notes,appID,re_id];
-	
-	tx = JSON.stringify(tx);
-	
-	console.log(tx);
-	xhr4.open("POST", "Reimbursement", true);
-	xhr4.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xhr4.send(tx);
-	
-	$('#pendingModal').modal("toggle");
-})
-
-
-
-})
-function mySearch2() {
-	  var input, filter, table, tr, td, i;
-	  input = document.getElementById("myInput2");
-	  filter = input.value;
-	  table = document.getElementById("list");
-	  tr = table.getElementsByTagName("tr");
-	  for (i = 0; i < tr.length; i++) {
-	    td = tr[i].getElementsByTagName("td")[1];
-	    //td = tr[i].getElementsByTagName("td")[2];
-	    //td = tr[i].getElementsByTagName("td")[3];
-	    if (td) {
-	      if (td.innerHTML.indexOf(filter) > -1) {
-	        tr[i].style.display = "";
-	      } else {
-	        tr[i].style.display = "none";
-	      }
-	    }       
-	  }
-	}
 function mySearch() {
 	  var input, filter, table, tr, td, i;
 	  input = document.getElementById("myInput");
@@ -256,8 +157,7 @@ function mySearch() {
 	  table = document.getElementById("list");
 	  tr = table.getElementsByTagName("tr");
 	  for (i = 0; i < tr.length; i++) {
-	    //td = tr[i].getElementsByTagName("td")[1];
-	    //td = tr[i].getElementsByTagName("td")[2];
+
 	    td = tr[i].getElementsByTagName("td")[3];
 	    if (td) {
 	      if (td.innerHTML.indexOf(filter) > -1) {
@@ -268,3 +168,23 @@ function mySearch() {
 	    }       
 	  }
 	}
+function mySearch2() {
+	  var input, filter, table, tr, td, i;
+	  input = document.getElementById("myInput2");
+	  filter = input.value;
+	  table = document.getElementById("list");
+	  tr = table.getElementsByTagName("tr");
+	  for (i = 0; i < tr.length; i++) {
+	    td = tr[i].getElementsByTagName("td")[1];
+	    if (td) {
+	      if (td.innerHTML.indexOf(filter) > -1) {
+	        tr[i].style.display = "";
+	      } else {
+	        tr[i].style.display = "none";
+	      }
+	    }       
+	  }
+	}
+})
+
+
