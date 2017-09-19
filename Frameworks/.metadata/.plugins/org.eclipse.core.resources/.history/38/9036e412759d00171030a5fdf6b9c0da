@@ -1,0 +1,33 @@
+package com.ex.aspects;
+
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
+
+// Aspect - unit of modularity for crosscutting concerns
+@Aspect
+@Component
+public class Logging {
+	
+	// Advice - the block of code that runs based on the pointcut definition
+	@Before("execution(* com.ex.beans.Student.* (..))")
+	public void logBefore(){
+		System.out.println("log called before");
+	}
+	
+	/*
+	 * pointcut - join point quieries where advice executes
+	 * join point - well-defined points in the program flow
+	 */
+	@Pointcut("execution(* com.ex.beans.*.* (..))")
+	public void everywhere() {}
+	
+	@After("everywhere()")
+	public void logAfter() {
+		System.out.println("log called after");
+	}
+	
+	
+}

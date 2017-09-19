@@ -13,10 +13,10 @@ import org.hibernate.criterion.Restrictions;
 import com.bank.beans.*;
 import com.bank.util.ConnectionUtil;
 
-public class HibernateDao {
+public class HibernateDao<T> {
 
 	// CREATE
-	public <T> Integer create(Class<T> obj) {
+	public Integer create(T obj) {
 		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		Integer id = null;
@@ -39,7 +39,7 @@ public class HibernateDao {
 	}
 	
 	/* UPDATE */
-	public <T> void update(Class <T> obj) {
+	public void update(T obj) {
 		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		try {
@@ -59,13 +59,13 @@ public class HibernateDao {
 	// TODO Update the below code to work for generics as opposed to Employees
 	// TODO Make a READ operation with uniqueResult() instead of list()
 	/* DELETE */
-	public <T> void deleteEmployee(Integer id) {
+	public void deletePerson(Integer id) {
 		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			Object obj = session.get(<T>.getClass(), id);
-			session.delete(obj);
+			Person person = (Person)session.get(Person.class, id);
+			session.delete(person);
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)

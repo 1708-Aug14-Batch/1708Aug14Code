@@ -2,12 +2,16 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.ex"/>
+			<item value="com.ex.spring"/>
 			<item value="com.bank"/>
 			<item value="com.ex.frameworks"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="IntroToAOP"/>
+			<item value="IntroToSpring"/>
 			<item value="BankingAssignment4"/>
 			<item value="Frameworks"/>
 		</list>
@@ -47,6 +51,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Surplus\my_git_repos\Revature projects\Frameworks\BankingAssignment4"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

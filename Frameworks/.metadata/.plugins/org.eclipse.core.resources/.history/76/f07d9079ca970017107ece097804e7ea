@@ -1,7 +1,0 @@
-package com.ex.beans;
-
-@Entity
-@Table(name="COURSES")
-public class Course {
-
-}

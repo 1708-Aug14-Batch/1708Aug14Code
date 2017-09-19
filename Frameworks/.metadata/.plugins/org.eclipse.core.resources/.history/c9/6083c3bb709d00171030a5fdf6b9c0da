@@ -1,0 +1,15 @@
+package com.ex.aspects;
+
+import org.aspectj.lang.annotation.Aspect;
+
+@Aspect
+public class Logging {
+	
+	public void logBefore() {
+		System.out.println("log called before");
+	}
+	
+	public void logAfter() {
+		System.out.println("log called after");
+	}
+}

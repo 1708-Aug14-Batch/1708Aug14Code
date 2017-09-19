@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="init">
+
+	<bean id="encompassing" class="com.ex.beans.EncompassingBean">
+		<property name="hello">
+			<bean id="helloWorld" class="com.ex.beans.HelloWorld" scope="prototype"
+				destroy-method="destroy">
+				<property name="message" value="Hello Spring! This is a message" />
+
+
+				<constructor-arg type="java.lang.String" value="testing injection" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="jon" class="com.ex.beanlifecycle.ParentBean" scope="singleton"
+		init-method="myCustomInitializationMethod" destroy-method="customDestroyMethod">
+		<property name="secret" value="Hello World.." />
+	</bean>
+
+</beans>
+
+<!-- The above is a Bean configuration file, which is an XML file and acts 
+	as a cement that glues the beans, i.e. the classes together. This file needs 
+	to be created under the src directory Usually developers name this file as 
+	Beans.xml, but you can choose any name you like. You have to make sure that 
+	this file is available in CLASSPATH and use the same name in the main application 
+	while creating an application context as shown in MainApp.java file. The 
+	Beans.xml is used to assign unique IDs to different beans and to control 
+	the creation of objects with different values without impacting any of the 
+	Spring source files. For example, using the following file you can pass any 
+	value for "message" variable and you can print different values of message 
+	without impacting HelloWorld.java and MainApp.java files When Spring application 
+	gets loaded into the memory, Framework makes use of the above configuration 
+	file to create all the beans defined and assigns them a unique ID as defined 
+	in <bean> tag. You can use <property> tag to pass the values of different 
+	variables used at the time of object creation. -->

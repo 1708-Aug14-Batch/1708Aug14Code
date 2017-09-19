@@ -1,0 +1,15 @@
+package com.ex.main;
+
+import com.ex.morebeans.*;
+
+public class MainMore {
+	/*
+	 * In the Spring Framework
+	 * 
+	 * byType - This option enables the dependency injection based on bean types. When autowiring a property in bean...
+	 */
+	public static void main(String[] args) {
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+package com.ex.beans;
+
+public class EncompassingBean {
+	
+	private HelloWorld hello;
+	
+	public void setHelloWorld(HelloWorld hello) {
+		this.hello = hello;
+	}
+
+}

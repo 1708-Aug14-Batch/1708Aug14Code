@@ -1,7 +1,0 @@
-package com.ex.beans;
-
-@Entity
-@Table(name="TRANSCRIPTS")
-public class Transcript {
-
-}

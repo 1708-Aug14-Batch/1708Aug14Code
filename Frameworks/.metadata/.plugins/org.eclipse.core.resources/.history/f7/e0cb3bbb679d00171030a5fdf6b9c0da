@@ -1,0 +1,11 @@
+package com.ex.morebeans;
+
+public class Employee {
+	
+	private String name;
+	
+	private Department department;
+	
+	
+
+}

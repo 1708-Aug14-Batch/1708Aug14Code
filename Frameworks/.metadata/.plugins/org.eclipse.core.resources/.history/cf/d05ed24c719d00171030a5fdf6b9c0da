@@ -1,0 +1,21 @@
+package com.ex.aspects;
+
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+
+// Aspect - unit of modularity for crosscutting concerns
+@Aspect
+public class Logging {
+	
+	// Advice - the block of code that runs based on the pointcut definition
+	@Before(value = "")
+	public void logBefore() {
+		System.out.println("log called before");
+	}
+	
+	@After(value = "")
+	public void logAfter() {
+		System.out.println("log called after");
+	}
+}

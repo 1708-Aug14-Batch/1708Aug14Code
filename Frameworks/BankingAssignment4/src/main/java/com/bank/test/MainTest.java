@@ -11,7 +11,7 @@ public class MainTest {
 	
 	public static void main(String[] args) {
 		
-		HibernateDao dao = new HibernateDao();
+		HibernateDao<Object> dao = new HibernateDao<Object>();
 
 		Person per1 = new Person("Mike", "Walter", "mikey@mail.com");
 		Person per2 = new Person("Luana", "Quet", "Louie@mail.com");
