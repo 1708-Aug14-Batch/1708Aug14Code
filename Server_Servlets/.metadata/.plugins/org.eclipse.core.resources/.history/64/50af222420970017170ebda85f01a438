@@ -1,8 +1,0 @@
-package com.reimburse.servlets;
-
-import javax.servlet.annotation.WebServlet;
-
-@WebServlet("/createReimbursement");
-public class CreateReimbursement {
-
-}
