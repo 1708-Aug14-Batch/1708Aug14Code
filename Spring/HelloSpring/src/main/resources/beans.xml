@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Defining our XML namespace -default space for beans.xml xsi: XML Schema 
+	Instance: SchemaLocation is added to our XML file and gives us context sensitive 
+	help inside of our app/ Make sure that we have both well formed and valid 
+	XMl. THe namespace simply acts like a library for the properties that we 
+	can use to create and inject into a bean -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="init" default-destroy-method="destroy">
+	
+	<bean id="revature" class="com.revature.andy.beans.HiRevature">
+		<property name="hello">
+			<bean id="HelloWorld" class="com.revature.andy.beans.HelloWorld"
+				scope="prototype" init-method="init" destroy-method="destroy">
+				<property name="message" value="Hello Spring! Message"></property>
+				<constructor-arg type="String" value="message"></constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	
+	<!-- 
+	<bean id="HelloWorld" class="com.revature.andy.beans.HelloWorld"
+		scope="prototype" init-method="init" destroy-method="destroy">
+		<property name="message" value="Hello Spring! Message"></property>
+		<constructor-arg type="String" value="message"></constructor-arg>
+	</bean>
+
+	<bean id="revature" class="com.revature.andy.beans.HiRevature">
+		<constructor-arg ref="HelloWorld"></constructor-arg>
+	</bean>
+	
+	
+	<bean id="HelloWorld" class="com.revature.andy.beans.HelloWorld"
+		scope="prototype" init-method="init" destroy-method="destroy">
+		<property name="message" value="Hello Spring! Message"></property>
+		<constructor-arg type="String" value="message"></constructor-arg>
+	</bean>
+	 -->
+</beans>
+
+<!-- The above is a Bean configuration file, which is an XML file and acts 
+	as a cement that gives the beans, i.e. the classes together. This file needs 
+	to be created user the src directory. Usually developers name this file as 
+	Beans.xml, but you can choose any name you like. You have to make sure that 
+	this file is available in CLASSPATH and use the same name in the main application 
+	while creating an application context as shown in MainApp.kava file. The 
+	bean.xml is used to assigned unique IDs to different beans and to control 
+	the creation of objects with different values without impacting any of the 
+	Spring source files, For example, using the following file -->
