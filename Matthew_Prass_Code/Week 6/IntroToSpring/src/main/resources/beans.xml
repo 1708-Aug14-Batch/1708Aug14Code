@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+
+
+	<!-- <bean id="revature" class="com.ex.beans.HiRevature">
+		<property name="hello">
+			<bean id="helloWorld" class="com.ex.beans.HelloWorld" scope="prototype">
+				<property name="message" value="hello spring!" />
+				<constructor-arg type="java.lang.String" value="this is test constructor" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id = "employee" class = "com.ex.newpackage.Employee" autowire = "constructor">
+		<constructor-arg type= "java.lang.String" value = "Matt Prass" />
+		<property name = "dpt" ref = "department"/>
+	</bean>
+	
+	<bean id = "department" class = "com.ex.newpackage.Department">
+		<property name = "name" value = "Programming"/>
+	</bean> -->
+	
+	<context:annotation-config/>
+	<context:component-scan base-package = "com.ex.newpackage"/>
+</beans>
