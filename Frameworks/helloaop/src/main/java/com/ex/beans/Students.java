@@ -21,5 +21,10 @@ public class Students {
 		System.out.println("I have been staring at my laptop for 12 hours");
 	}
 	
+	
+	public void taketime(){
+		
+	}
+	
 
 }
