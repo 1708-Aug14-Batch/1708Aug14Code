@@ -57,6 +57,8 @@ public class MainTest {
                  new ClassPathXmlApplicationContext("beans.xml");
           
        Employee employee = (Employee)context.getBean("employee");
+       employee.setName("genesis");
+       employee.getDepartment().setName("tech");
        System.out.println(employee.getName());
        System.out.println(employee.getDepartment().getName());
        

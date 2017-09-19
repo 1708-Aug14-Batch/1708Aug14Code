@@ -1,9 +1,20 @@
 package com.ex.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+/* Stereotype Annotations: 
+@Component - used for any bean 
+@Service - business logic layer. does not stand for web service! 
+@Repository - DAO layer
+*/
+
+@Component
 public class Employee {
 	
 	private String name;
 	
+	@Autowired
 	private Department test;
 
 	public String getName() {
@@ -21,7 +32,8 @@ public class Employee {
 	public void setDept(Department department) {
 		this.test = department;
 	}
-
+	
+	
 
 
 

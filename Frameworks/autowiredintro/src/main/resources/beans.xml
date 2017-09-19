@@ -5,14 +5,19 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
-<bean id="employee" class="com.ex.beans.Employee" autowire="byName">
+<!-- <bean id="employee" class="com.ex.beans.Employee" autowire="byName">
 	<property name="name" value="Genesis Bonds"/>
-<!-- 	<property name="department" ref="department"/> -->
+	<property name="department" ref="department"/>
 </bean>
 
 <bean id="dept" class="com.ex.beans.Department">
 	<property name="name" value="Tech Team"/>
 </bean>
+ -->
 
+
+<!--  Annotations https://www.tutorialspoint.com/spring/spring_annotation_based_configuration.htm -->
+<context:annotation-config/>
+<context:component-scan base-package="com.ex.beans"/>
 
 </beans>
