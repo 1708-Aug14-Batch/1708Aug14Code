@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="init">
+
+<bean id="revature" class="com.ex.beans.HiRevature">
+	<property name="hello">
+		<bean id="helloWorld" class="com.ex.beans.HelloWorld" scope="prototype" destroy-method="destroy">
+			<property name="message" value="Hello Spring! This is a message!"></property>
+	
+			<!-- We can use type="String", type="java.lang.String" or reference the arg to be taken in -->
+			<constructor-arg type="String" value="testing injection"/>
+		</bean>
+	</property>
+</bean>
+
+<!-- A singleton scope does the following: gives each instance the same value -->
+<!-- A protoype scope does the following: keeps track of each instance. --><!-- 
+<bean id="helloWorld" class="com.ex.beans.HelloWorld" scope="prototype" destroy-method="destroy">
+	<property name="message" value="Hello Spring! This is a message!"></property>
+	
+	We can use type="String", type="java.lang.String" or reference the arg to be taken in
+	<constructor-arg type="String" value="testing injection"/>
+</bean> -->
+
+</beans>
