@@ -24,10 +24,8 @@ public class Account
 	@Column
 	private double balance;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID")
 	private User user;
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "TYPE_ID")
+	@ManyToOne(fetch = FetchType.EAGER)
 	private AccountType type;
 	
 	public Account() {};
