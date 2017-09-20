@@ -1,5 +1,7 @@
 package com.banking.pojos;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,10 +11,18 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USER")
-public class User {
+@Table
+public class User implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3844703509232416292L;
+
+
+
+
 	@Id
 	@Column(name = "User_ID")
 	@SequenceGenerator(name = "SEQ_USER_ID", sequenceName = "SEQ_USER_ID")
@@ -20,12 +30,7 @@ public class User {
 	int id; 
 	
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	
 	@Column
 	String firstname;
@@ -47,7 +52,12 @@ public class User {
 		this.password = password;
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getFirstname() {
 		return firstname;
