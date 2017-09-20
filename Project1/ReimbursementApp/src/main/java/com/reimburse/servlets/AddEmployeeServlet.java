@@ -28,7 +28,7 @@ public class AddEmployeeServlet extends HttpServlet{
 	final static Logger logger = Logger.getLogger(AddEmployeeServlet.class);
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException,IOException{
-
+		
 		Service bankService = new Service();
 		PrintWriter writer = res.getWriter();
 
@@ -52,6 +52,7 @@ public class AddEmployeeServlet extends HttpServlet{
 		writer.print(json);
 
 		logger.info("POST added employee: "+user.toString());
+		
 		sendEmail(user);
 	}
 
