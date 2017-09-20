@@ -12,4 +12,5 @@ public interface Dao {
 	public void addType(AccountType at);
 	public List<BankUser> getUsers();
 	public Account addAccount(Account a);
+	public List<String> getEmails();
 }

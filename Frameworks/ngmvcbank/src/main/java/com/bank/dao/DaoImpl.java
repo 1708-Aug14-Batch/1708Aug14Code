@@ -33,11 +33,32 @@ public class DaoImpl implements Dao {
 		
 	}
 	
+	public List<String> getEmails(){
+		List<String> emails = sessionFactory.getCurrentSession()
+				.createQuery("select email from BankUser").list();
+		return emails;
+	}
+	
 	public List<BankUser> getUsers(){
 		Session s = sessionFactory.getCurrentSession();
 		List<BankUser> users = new ArrayList<BankUser>();
 		users = s.createQuery("from BankUser").list();
 		return users;
+	}
+	
+	public List<Account> getAllAccounts(){
+		
+		List<Account> accounts = 
+				sessionFactory.getCurrentSession()
+				.createCriteria(Account.class).list();
+		return accounts;
+	}
+	
+	public List<Account> getAccountsByUser(BankUser u){
+		List<Account> accounts = 
+				(List<Account>) sessionFactory.getCurrentSession()
+				.get(Account.class, u.getId());
+		return accounts;
 	}
 	
 	@Transactional
