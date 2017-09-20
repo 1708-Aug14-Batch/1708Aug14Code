@@ -14,6 +14,10 @@ public class Students {
 	}
 	
 	public void eat(){
+		int x = 1;
+		for(int i = 0; i < 10000; i++){
+			x = x + 10;
+		}
 		System.out.println("today i am eating ramen bc poor");
 	}
 	
@@ -22,8 +26,14 @@ public class Students {
 	}
 	
 	
-	public void taketime(){
-		
+	public void taketime(long time){
+		System.out.println("waiting");
+		try{
+			Thread.sleep(time);
+		}
+		catch(InterruptedException e){
+			e.printStackTrace();
+		}
 	}
 	
 

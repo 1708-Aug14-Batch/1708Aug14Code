@@ -18,8 +18,15 @@ public class Main {
 		
 		students.cry();
 		students.eat();
-		students.exist();
-		students.work();
+		
+		for(int i = 0; i < 10; i ++){
+			long time = (long) (Math.random()*1000);
+			students.taketime(time);
+		}
+		
+		
+		
 	}
+	
 
 }

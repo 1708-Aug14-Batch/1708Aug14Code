@@ -8,7 +8,7 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
 public class ParentBean implements BeanNameAware,
-BeanFactoryAware, InitializingBean,DisposableBean{
+BeanFactoryAware, InitializingBean, DisposableBean{
 
 	private String secret;
 	private String beanName;

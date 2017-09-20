@@ -45,4 +45,35 @@ public class Logging {
 		System.out.println(pjp.getSignature());
 		System.out.println("...4...5");
 	}
+	
+	//Logging example
+	@Around("everywhere()")
+	public void timer(ProceedingJoinPoint pjp){
+		long currTime = System.currentTimeMillis();
+		try{
+			pjp.proceed();
+		}
+		catch(Throwable e){
+			e.printStackTrace();
+		}
+		System.out.println(System.currentTimeMillis() - currTime);
+	}
+	
+	
+	// Steven's take on the logging 
+	@Around("everywhere()")
+	public void timer2(ProceedingJoinPoint pjp){
+		long time = (Long) pjp.getArgs()[0];
+		try{
+			pjp.proceed();
+		}
+		catch(Throwable e){
+			e.printStackTrace();
+		}
+		System.out.println("took " + time + " ms");
+		
+	}
+	
+	
+	
 }
