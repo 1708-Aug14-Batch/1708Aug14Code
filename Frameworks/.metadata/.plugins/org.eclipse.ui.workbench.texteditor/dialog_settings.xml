@@ -2,27 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
-		<item value="false" key="casesensitive"/>
+		<item value="&quot;DOUBLE_PLATINUM&quot;" key="selection"/>
+		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="tudent"/>
-			<item value="jon"/>
-			<item value="bea"/>
-			<item value="beanl"/>
-			<item value="   "/>
-			<item value="    "/>
-			<item value="  "/>
-			<item value="com.ex"/>
+			<item value="&quot;DOUBLE_PLATINUM&quot;"/>
+			<item value="&quot;PLATINUM&quot;"/>
+			<item value="&quot;GOLD&quot;"/>
+			<item value="&quot;SILVER&quot;"/>
+			<item value="&quot;BRONZE&quot;"/>
+			<item value="accountLevel."/>
+			<item value="accountLevel"/>
+			<item value="a"/>
 		</list>
 		<list key="replacehistory">
-			<item value="larry"/>
-			<item value="&#x09;"/>
-			<item value="com.bank"/>
-			<item value="ClerkId"/>
-			<item value="clerkId"/>
+			<item value="doublePlatinum"/>
+			<item value="platinum"/>
+			<item value="gold"/>
+			<item value="silver"/>
+			<item value="bronze"/>
+			<item value="&quot;"/>
+			<item value="level"/>
+			<item value="Level"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

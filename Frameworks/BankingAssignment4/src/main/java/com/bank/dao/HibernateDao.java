@@ -1,16 +1,13 @@
 package com.bank.dao;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
-import com.bank.beans.*;
+import com.bank.beans.Person;
 import com.bank.util.ConnectionUtil;
 
 public class HibernateDao<T> {
@@ -77,17 +74,16 @@ public class HibernateDao<T> {
 	}
 	
 	// READ ALL
-	public void listEmployees() {
+	public List<T> readAll(String str) {
 		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
+		List<T> objects = null;
+		
 		try {
 			tx = session.beginTransaction();
-			List employees = session.createQuery("FROM Employee").list();
-			for (Iterator iterator = employees.iterator(); iterator.hasNext();) {
-				Employee employee = (Employee) iterator.next();
-				System.out.print("First Name: " + employee.getFirstName());
-				System.out.print("  Last Name: " + employee.getLastName());
-				System.out.println("  Salary: " + employee.getSalary());
+			objects = session.createQuery("FROM " + str).list();
+			for (Iterator<T> iterator = objects.iterator(); iterator.hasNext();) {
+				objects.add(iterator.next());
 			}
 			tx.commit();
 		} catch (HibernateException e) {
@@ -97,6 +93,7 @@ public class HibernateDao<T> {
 		} finally {
 			session.close();
 		}
+		
+		return objects;
 	}
-
 }

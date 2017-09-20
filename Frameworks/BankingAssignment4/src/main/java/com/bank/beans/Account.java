@@ -7,6 +7,7 @@ import java.util.TreeMap;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,38 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table
 public class Account {
-
-	public static final Map<accountLevel, Double> rewardsRateMap = new TreeMap<accountLevel, Double>();
-	public static final Map<accountLevel, Double> savingsRateMap = new TreeMap<accountLevel, Double>();
-	public static final Map<accountLevel, Double> creditRateMap = new TreeMap<accountLevel, Double>();
-
-	public void setAccountId(int accountId) {
-		this.accountId = accountId;
-	}
-
-	// Initialization block
-	static {
-		rewardsRateMap.put(accountLevel.BRONZE, (double) 1 / 100);
-		rewardsRateMap.put(accountLevel.SILVER, (double) 2 / 100);
-		rewardsRateMap.put(accountLevel.GOLD, (double) 3 / 100);
-		rewardsRateMap.put(accountLevel.PLATINUM, (double) 5 / 100);
-		rewardsRateMap.put(accountLevel.DOUBLE_PLATINUM, (double) 10 / 100);
-
-		savingsRateMap.put(accountLevel.BRONZE, (double) 3 / 100);
-		savingsRateMap.put(accountLevel.SILVER, (double) 4 / 100);
-		savingsRateMap.put(accountLevel.GOLD, (double) 5 / 100);
-		savingsRateMap.put(accountLevel.PLATINUM, (double) 6 / 100);
-		savingsRateMap.put(accountLevel.DOUBLE_PLATINUM, (double) 8 / 100);
-
-		creditRateMap.put(accountLevel.BRONZE, (double) 25 / 100);
-		creditRateMap.put(accountLevel.SILVER, (double) 23 / 100);
-		creditRateMap.put(accountLevel.GOLD, (double) 20 / 100);
-		creditRateMap.put(accountLevel.PLATINUM, (double) 17 / 100);
-		creditRateMap.put(accountLevel.DOUBLE_PLATINUM, (double) 12 / 100);
-
-	}
 
 	@Id
 	@Column(name = "ACCOUNT_ID")
@@ -68,62 +42,57 @@ public class Account {
 	@Column
 	private boolean deleted = false;
 
-	@Column
-	private accountType type;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private AccountType type;
 
-	@Column
-	private accountLevel level;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	private AccountLevel level;
 
 	// ID of associated user who owns this account
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn
 	private BankUser bankUser;
 
-	/*
-	 * Account type determines interest rate for savings account and the
-	 * percentage of rewards accrued per purchase, and the interest rate for a
-	 * credit account
-	 */
-	public enum accountLevel {
-		NULL, // The database is 1-indexed so I'm throwing out the index 0
-				// element
-		BRONZE, SILVER, GOLD, PLATINUM, DOUBLE_PLATINUM
-	};
+	public static final Map<AccountType, Double> rewardsRateMap = new TreeMap<AccountType, Double>();
+	public static final Map<AccountType, Double> savingsRateMap = new TreeMap<AccountType, Double>();
+	public static final Map<AccountType, Double> creditRateMap = new TreeMap<AccountType, Double>();
 
-	public static void printAccountLevels() {
-		String result = "";
-
-		for (accountLevel level : accountLevel.values())
-			if (level != accountLevel.NULL)
-				result += level.toString() + ", ";
-		result = result.substring(0, result.length() - 2); // Delete the last ",
-															// " from the end
-
-		System.out.println(result);
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
-	public enum accountType {
-		NULL, // The database is 1-indexed so I'm throwing out the index 0
-				// element
-		CHECKING, SAVINGS, CREDIT, REWARD
+	// Initialization block
+	static {
+		AccountType bronze = new AccountType("BRONZE");
+		AccountType silver = new AccountType("SILVER");
+		AccountType gold = new AccountType("GOLD");
+		AccountType platinum = new AccountType("PLATINUM");
+		AccountType doublePlatinum = new AccountType("DOUBLE_PLATINUM");
+
+		rewardsRateMap.put(bronze, (double) 1 / 100);
+		rewardsRateMap.put(silver, (double) 2 / 100);
+		rewardsRateMap.put(gold, (double) 3 / 100);
+		rewardsRateMap.put(platinum, (double) 5 / 100);
+		rewardsRateMap.put(doublePlatinum, (double) 10 / 100);
+
+		savingsRateMap.put(bronze, (double) 3 / 100);
+		savingsRateMap.put(silver, (double) 4 / 100);
+		savingsRateMap.put(gold, (double) 5 / 100);
+		savingsRateMap.put(platinum, (double) 6 / 100);
+		savingsRateMap.put(doublePlatinum, (double) 8 / 100);
+
+		creditRateMap.put(bronze, (double) 25 / 100);
+		creditRateMap.put(silver, (double) 23 / 100);
+		creditRateMap.put(gold, (double) 20 / 100);
+		creditRateMap.put(platinum, (double) 17 / 100);
+		creditRateMap.put(doublePlatinum, (double) 12 / 100);
+
 	}
 
-	public static void printAccountTypes() {
-		String result = "";
-
-		for (accountType type : accountType.values())
-			if (type != accountType.NULL)
-				result += type.toString() + ", ";
-		result = result.substring(0, result.length() - 2); // Delete the last ",
-															// " from the end
-
-		System.out.println(result);
-	}
-
-	public Account(BankUser bankUser, LocalDate accountOpenedDate, BigDecimal balance,
-			boolean deleted, accountType type, accountLevel level) {
+	public Account(BankUser bankUser, LocalDate accountOpenedDate, BigDecimal balance, boolean deleted,
+			AccountType type, AccountLevel level) {
 		super();
-		
+
 		this.bankUser = bankUser;
 		this.accountOpenedDate = accountOpenedDate;
 		this.balance = balance;
@@ -131,15 +100,16 @@ public class Account {
 		this.type = type;
 		this.level = level;
 	}
-	public Account(BankUser bankUser, accountType type) {
+
+	public Account(BankUser bankUser, AccountType type, AccountLevel level) {
 		super();
-		
+
 		this.bankUser = bankUser;
 		this.accountOpenedDate = LocalDate.now();
 		this.balance = new BigDecimal(0);
 		this.deleted = false;
 		this.type = type;
-		this.level = accountLevel.BRONZE;
+		this.level = level;
 	}
 
 	public BigDecimal getBalance() {
@@ -158,27 +128,21 @@ public class Account {
 		this.deleted = deleted;
 	}
 
-	public accountType getType() {
+	public AccountType getType() {
 		return type;
 	}
 
-	public boolean setType(accountType type) {
-		if (type != accountType.NULL)
-			this.type = type;
-		else
-			return false;
+	public boolean setType(AccountType type) {
+		this.type = type;
 		return true;
 	}
 
-	public accountLevel getLevel() {
+	public AccountLevel getLevel() {
 		return level;
 	}
 
-	public boolean setLevel(accountLevel level) {
-		if (level != accountLevel.NULL)
-			this.level = level;
-		else
-			return false;
+	public boolean setLevel(AccountLevel level) {
+		this.level = level;
 		return true;
 	}
 

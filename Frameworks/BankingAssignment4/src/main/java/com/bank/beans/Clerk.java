@@ -3,6 +3,7 @@ package com.bank.beans;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,11 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 // Manages bank account information
 // Has access to every account
 // Cannot own an account
 
+@Entity
+@Table
 public class Clerk extends Person {
 
 	public static transient double MINIMUM_WAGE = 8.85;
