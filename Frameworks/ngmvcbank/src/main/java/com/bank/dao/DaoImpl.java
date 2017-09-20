@@ -54,11 +54,10 @@ public class DaoImpl implements Dao {
 		return accounts;
 	}
 	
-	public List<Account> getAccountsByUser(BankUser u){
-		List<Account> accounts = 
-				(List<Account>) sessionFactory.getCurrentSession()
-				.get(Account.class, u.getId());
-		return accounts;
+	public Account getAccountById(int id){
+		Account account =  (Account) sessionFactory.getCurrentSession()
+				.get(Account.class, id);
+		return account;
 	}
 	
 	@Transactional
