@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="USERS")
 public class User {
+	
 	@Id
 	@Column(name="USER_ID")
 	@SequenceGenerator(name="USERID_SEQ", sequenceName="USERID_SEQ")

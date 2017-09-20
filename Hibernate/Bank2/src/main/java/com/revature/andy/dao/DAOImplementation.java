@@ -1,15 +1,74 @@
 package com.revature.andy.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.andy.beans.Account;
 import com.revature.andy.beans.AccountType;
 import com.revature.andy.beans.User;
 import com.revature.andy.util.ConnectionUtil;
 
-public class DAOImplementation {
+@Transactional
+public class DAOImplementation implements DAOInterface{
 	
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	@Override
+	public User addUser(User u) {
+		Session s = sessionFactory.getCurrentSession();
+		s.save(u);
+		return u;
+	}
+	
+	@Override
+	public AccountType addAccountType(AccountType at) {
+		Session s = sessionFactory.getCurrentSession();
+		s.save(at);
+		return at;
+	}
+	
+	@Override	
+	public List<User> getAllUsers(){
+		Session s = sessionFactory.getCurrentSession();
+		List<User> u = new ArrayList<User>();
+		u = s.createQuery("from User").list();
+		return u;
+	}
+
+	@Override	
+	public List<Account> getAllAccounts(){
+		List<Account> ats = sessionFactory.getCurrentSession().createCriteria(Account.class).list();
+		return ats;
+	}
+
+	/// noooooooooooooooooooooooooooooooooooo???
+	@Override	
+	public List<Account> getAccountsByUser(User u){
+		//List<Account> uats = (List<Account>) sessionFactory.getCurrentSession().get(Account.class, u.getId());
+		List<Account> uats = sessionFactory.getCurrentSession().createCriteria(User.class).add(Restrictions.eq("User", u)).list();
+		return uats;
+	}
+	
+	@Override
+	public Account addAccount(Account a) {
+		Session s = sessionFactory.getCurrentSession();
+		s.saveOrUpdate(a.getU());
+		s.saveOrUpdate(a.getAt());
+		s.save(a);
+		return a;
+	}
+	
+	/*
 	public void addUser(User user) {
 		Session session = ConnectionUtil.getSession();
 		
@@ -87,5 +146,5 @@ public class DAOImplementation {
 		} finally {
 			session.close();
 		}
-	}
+	}*/
 }

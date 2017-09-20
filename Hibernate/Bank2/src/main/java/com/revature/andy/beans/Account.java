@@ -16,6 +16,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ACCOUNTS")
 public class Account {
+	
 	@Id
 	@Column(name="ACCOUNT_ID")
 	@SequenceGenerator(name="ACCOUNTID_SEQ", sequenceName="ACCOUNTID_SEQ")
@@ -23,10 +24,10 @@ public class Account {
 	private int id;
 	@Column(nullable = false)
 	private double balance;
-	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.REMOVE)
 	@JoinColumn(name="USER_ID", nullable = false)
 	private User u;
-	@OneToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.REMOVE)
 	@JoinColumn(name="TYPE_ID", nullable = false)
 	private AccountType at;
 	
