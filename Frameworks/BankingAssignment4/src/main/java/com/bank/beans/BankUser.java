@@ -14,6 +14,10 @@ import javax.persistence.Table;
 // A BankUser can have many acounts
 // Only has access to their own data
 
+// FIXME save password as a hash
+// 		Same for Clerk
+//		When validating, check saved password hash against supplied password hash
+
 @Entity
 @Table
 public class BankUser extends Person {
