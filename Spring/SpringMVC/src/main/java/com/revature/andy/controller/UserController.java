@@ -37,7 +37,6 @@ public class UserController {
 	public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
 		System.out.println("Creating New User");
 		userServiceImpl.createUser(userDto);
-		return new ResponseEntity<UserDto>(userServiceImpl.authenticateUser(userDto), HttpStatus.OK);
-		
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 }

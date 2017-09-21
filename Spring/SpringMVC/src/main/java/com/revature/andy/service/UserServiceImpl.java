@@ -12,15 +12,15 @@ import com.revature.andy.model.User;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao dao;
+	private UserDao userDaoImpl;
 	
 	public void setDao(UserDao dao) {
-		this.dao = dao;
+		this.userDaoImpl = dao;
 	}
 	
 	@Override
 	public UserDto authenticateUser(UserDto userDto) {
-		User user = dao.findUserByUserName(userDto.getUsername());
+		User user = userDaoImpl.findUserByUserName(userDto.getUsername());
 		if(user != null && (user.getPassword().equals(userDto.getPassword()))) {
 			userDto.setAuthenticated(true);
 		}else {
@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setUsername(userDto.getUsername());
 		user.setPassword(userDto.getPassword());
-		
 	}
 
 }

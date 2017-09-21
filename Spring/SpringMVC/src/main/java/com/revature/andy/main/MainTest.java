@@ -12,6 +12,8 @@ public class MainTest {
 		u.setUsername("Tacos");
 		u.setPassword("Hello");
 		
+		dao.createUser(u);
+		
 	}
 	
 }
