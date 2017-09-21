@@ -22,7 +22,7 @@ public class Application implements CommandLineRunner {
         SpringApplication.run(Application.class, args);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public void run(String... args) throws Exception {
 
@@ -31,15 +31,17 @@ public class Application implements CommandLineRunner {
         System.out.println(empRepo.count());
         System.out.println(empRepo.findOne((long) 2));
         System.out.println(empRepo.exists((long) 1));
-        Employee emp = new Employee("Someone", "Something");
-        empRepo.save(emp);
+//        Employee emp = new Employee("Someone", "Something");
+//        empRepo.save(emp);
+        
+        System.out.println(empRepo.count());
         //System.out.println(empRepo.findOne((long) 4));
         System.out.println("\n1.findAll()...");
         for (Employee e : empRepo.findAll()) {
         	System.out.println(e);
         }
         
-        //empRepo.delete((long)4);
+        //empRepo.delete((long)6);
         for (Employee e : empRepo.findAll()) {
         	System.out.println(e);
         }
