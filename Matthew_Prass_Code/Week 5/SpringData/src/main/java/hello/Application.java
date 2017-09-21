@@ -31,8 +31,8 @@ public class Application implements CommandLineRunner {
         System.out.println(empRepo.count());
         System.out.println(empRepo.findOne((long) 2));
         System.out.println(empRepo.exists((long) 1));
-//        Employee emp = new Employee("Someone", "Something");
-//        empRepo.save(emp);
+        Employee emp = new Employee("lekjndewk", "dlkwemndew");
+        empRepo.save(emp);
         
         System.out.println(empRepo.count());
         //System.out.println(empRepo.findOne((long) 4));
@@ -41,7 +41,7 @@ public class Application implements CommandLineRunner {
         	System.out.println(e);
         }
         
-        //empRepo.delete((long)6);
+        empRepo.delete(emp);
         for (Employee e : empRepo.findAll()) {
         	System.out.println(e);
         }
