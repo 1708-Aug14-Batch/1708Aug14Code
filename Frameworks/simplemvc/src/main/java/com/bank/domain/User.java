@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="users")
+@Table(name="Users")
 public class User {
 	
 	@Id
@@ -18,7 +18,8 @@ public class User {
 						sequenceName="users_seq",
 						allocationSize=1)
 	@GeneratedValue(generator="userSeq",strategy=GenerationType.SEQUENCE)
-	private Long id;
+	private int id;
+	
 	@Column(unique=true)
 	private String username;
 	
@@ -27,18 +28,18 @@ public class User {
 	
 	public User() {}
 
-	public User(Long id, String username, String password) {
+	public User(int id, String username, String password) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 	}
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -31,12 +31,14 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void createUser(UserDto userDto) {
+	public UserDto createUser(UserDto userDto) {
 		// need username validation 
 		User user = new User();
 		user.setUsername(userDto.getUsername());
 		user.setPassword(userDto.getPassword());
-		
+		user = userDaoImpl.createUser(user);
+		userDto.setId(user.getId());
+		return userDto ;
 	}
 
 }

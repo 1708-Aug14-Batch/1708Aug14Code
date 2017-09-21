@@ -28,7 +28,9 @@ public class UserController {
 			produces= {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<UserDto> 
 		authenticateUser(@RequestBody UserDto userDto){
+		
 		System.out.println("authenticating user");
+		
 		return new ResponseEntity<UserDto>(userServiceImpl
 				.authenticateUser(userDto),HttpStatus.OK);
 	}

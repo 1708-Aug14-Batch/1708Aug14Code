@@ -6,7 +6,7 @@ public interface UserService {
 
 	public UserDto authenticateUser(UserDto userDto);
 	
-	public void createUser(UserDto userDto);
+	public UserDto createUser(UserDto userDto);
 	
 	
 }

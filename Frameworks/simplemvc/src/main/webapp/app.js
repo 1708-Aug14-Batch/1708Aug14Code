@@ -15,6 +15,7 @@ bankApp.config(function($stateProvider, $urlRouterProvider){
 		controller: "RegisterCtrl as register"
 	});	
 });
+
 /*
  * In AngularJS, a service is a function or object that is 
  * available for, and limited to, your AngularJS application.
@@ -72,6 +73,7 @@ bankApp.controller("RegisterCtrl", function(UserService, $state){
 	
 	var register = this;
 	register.user = UserService.getUser();
+	
 	register.doRegister = function(){
 		var promise = UserService.registerUser();
 		
