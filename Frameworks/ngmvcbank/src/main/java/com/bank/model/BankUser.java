@@ -1,4 +1,4 @@
-package com.bank.beans;
+package com.bank.model;
 
 import java.io.Serializable;
 
@@ -86,6 +86,12 @@ public class BankUser implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "BankUser [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
+				+ ", password=" + password + "]";
 	}
 	
 	

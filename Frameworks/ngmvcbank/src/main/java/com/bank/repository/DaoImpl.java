@@ -1,19 +1,23 @@
-package com.bank.dao;
+package com.bank.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bank.beans.Account;
-import com.bank.beans.AccountType;
-import com.bank.beans.BankUser;
+import com.bank.model.Account;
+import com.bank.model.AccountType;
+import com.bank.model.BankUser;
 
+@Repository
 @Transactional
 public class DaoImpl implements Dao {
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -58,6 +62,14 @@ public class DaoImpl implements Dao {
 		Account account =  (Account) sessionFactory.getCurrentSession()
 				.get(Account.class, id);
 		return account;
+	}
+	
+	public BankUser getUserByUsername(String name){
+		ArrayList<BankUser> list = (ArrayList<BankUser>) sessionFactory.getCurrentSession()
+				.createQuery("from BankUser where lower(email)=?")
+				.setParameter(0, name.toLowerCase()).list();
+		if(list.size()==0)return null;
+		else { return list.get(0);}
 	}
 	
 	@Transactional

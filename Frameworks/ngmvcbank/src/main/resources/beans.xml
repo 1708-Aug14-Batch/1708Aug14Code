@@ -9,10 +9,14 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
+	
+		<!-- MVC annotation driven -->
+	<mvc:annotation-driven />
+	
 	<!-- enable @Transactional -->
 	<tx:annotation-driven />
 
-	<!-- enable autowiring -->
+	<!-- Spring package scanning -->
 	<context:component-scan base-package="com.bank"></context:component-scan>
 
 	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -25,7 +29,7 @@
 	<bean id="mySessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="myDataSource"></property>
-		<property name="packagesToScan" value="com.bank.beans"></property>
+		<property name="packagesToScan" value="com.bank.model"></property>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
@@ -33,7 +37,7 @@
 				</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 			</props>
 
 		</property>
@@ -44,10 +48,12 @@
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="mySessionFactory"></property>
 	</bean>
-
-	<bean id="myDao" class="com.bank.dao.DaoImpl">
+	
+	<mvc:resources location="/" mapping="/**"></mvc:resources>
+	
+	<!-- <bean id="myDao" class="com.bank.repository.DaoImpl">
 		<property name="sessionFactory" ref="mySessionFactory"></property>
-	</bean>
+	</bean> -->
 
 
 
