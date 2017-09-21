@@ -1,17 +1,22 @@
-package com.ex.test;
+package hello;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Employee {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Emp_SEQ")
+    @SequenceGenerator(sequenceName = "employee_seq", allocationSize = 4, name = "Emp_SEQ")
     private Long id;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
 
     protected Employee() {}
