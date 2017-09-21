@@ -3,6 +3,7 @@ package com.bank.dao;
 import java.util.ArrayList;
 
 import com.bank.beans.Account;
+import com.bank.beans.AccountType;
 import com.bank.beans.User;
 
 public interface DAO {
@@ -17,18 +18,19 @@ public interface DAO {
 	 * rewriteUsers - takes list of users and enters all information 
 	 */
 	
-	int addUser(User user);
+	User addUser(User user);
 	User getUser(int id);
 	User getUser(String usr, String pwd);
 	boolean existsUsername(String username);
 	void updateUser(User user);
 	void deleteUser(User user);
 	
-	int addAccount(int userID, int typeID);
+	Account addAccount(Account account);
 	Account getAccount(int accountID);
 	ArrayList<Account> getAccounts(int userID);
 	void updateAccount(Account account);
 	void deleteAccount(Account account);
+	AccountType addType(AccountType type);
 	
 	
 }
