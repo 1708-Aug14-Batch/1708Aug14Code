@@ -12,16 +12,15 @@ public class UserServiceImpl implements UserService{
 
 	
 	@Autowired
-	private UserDao dao;
-	
-	
-	public void setDao(UserDao dao) {
-		this.dao = dao;
+	private UserDao userDaoImpl;
+
+	public void setUserDaoImpl(UserDao userDaoImpl) {
+		this.userDaoImpl = userDaoImpl;
 	}
 
 	@Override
 	public UserDto authenticateUser(UserDto userDto) {
-		User user = dao.findUserByUsername(userDto.getUsername());
+		User user = userDaoImpl.findUserByUsername(userDto.getUsername());
 		if(user != null && 
 				(user.getPassword().equals(userDto.getPassword()))) {
 			userDto.setAuthenticated(true);
