@@ -23,10 +23,12 @@ public class UserServiceImpl implements UserService{
 		User user = userDaoImpl.findUserByUsername(userDto.getUsername());
 		if(user != null && 
 				(user.getPassword().equals(userDto.getPassword()))) {
+			System.out.println("setting userdto to true");
 			userDto.setAuthenticated(true);
 		}else {
 			return null;
 		}
+		System.out.println("---------------------returning user dto" + userDto.toString());
 		return userDto;
 	}
 

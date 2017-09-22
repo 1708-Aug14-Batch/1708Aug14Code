@@ -24,16 +24,20 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User findUserByUsername(String username) {
+		System.out.println("in find by username" + username);
+		if(username == null) return null;
 		ArrayList<User> list = (ArrayList<User>) sessionFactory
 				.getCurrentSession()
 				.createQuery("from User where lower(username)=?")
 				.setParameter(0, username.toLowerCase()).list();
 		if(list.size()==0)return null;
-		else { return list.get(0);}
+		else {System.out.println(list.get(0)); 
+			return list.get(0);}
 	}
 
 	@Override
 	public User createUser(User user) {
+		System.out.println(user.toString());
 		sessionFactory.getCurrentSession().save(user);
 		return user;
 	}
