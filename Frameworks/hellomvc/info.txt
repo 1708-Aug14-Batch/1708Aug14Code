@@ -1,0 +1,6 @@
+some notes:
+
+For one, here's a mini tutorial on understanding maven dependencies
+https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html
+we see the scope tag in one of our dependencies in the pom. 
+Dependency scope is used to limit the transitivity of a dependency, and to affect the classpath used for various build tasks
