@@ -12,6 +12,7 @@ public class MainTest {
 		UserDto u = new UserDto();
 		u.setUsername("test1");
 		u.setPassword("test2");
+		u.setAuthenticated(false);
 		
 		service.createUser(u);
 		
