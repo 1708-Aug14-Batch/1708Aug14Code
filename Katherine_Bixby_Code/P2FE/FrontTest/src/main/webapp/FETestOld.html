@@ -1,0 +1,168 @@
+<!DOCTYPE html-5>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dungeon Crawlers</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Almendra" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Metamorphous" rel="stylesheet">
+
+</head>
+<style>
+body{
+	background-image: url("http://4.bp.blogspot.com/-QFMUEirGm1w/UmpPGElQr3I/AAAAAAAAEx0/BRtMAQW5_xM/s1600/Tileable+marble+floor+tile+texture+(16).jpg");
+}
+::-webkit-scrollbar{
+	background:transparent;
+}
+#sidebar {
+	border:1px solid #000;
+    position:absolute;
+    float:bottom;
+    width:20%;
+    height:90%;
+    overflow-y: scroll;
+    background-image: url("http://i0.wp.com/blogule.com/wp-content/uploads/2017/04/seamless-wood-texture-walnut-by-tarshana-on-deviantart-walnut-texture.png?quality=80&strip=all");
+}
+.panel{
+	border-color:#613219;
+	color:black;
+	border:transparent;
+}
+.panel-default>.panel-heading-custom{
+	color:black;
+	font-family: Metamorphous;
+	background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq_1OAyN6v6YVsT9haz64_184kjgFuNhNWRa5Y2tELCOcG0F9T");
+	border-color:#613219;
+}
+.panel-body{
+	color:black;
+	background-image:url("https://dcrazed.com/wp-content/uploads/2014/05/leather-texture.jpg");
+	font-family: Almendra;
+}
+.li{
+	background-image:url("https://www.sketchuptextureclub.com/public/texture_m/0044-parchment-paper-texture-seamless.jpg");
+	border-color:#613219;
+	font-family: Almendra;
+	color:black;
+}
+#content {
+	border:1px solid #000;
+	float:right;
+	width:78%;
+	height:90%;
+	overflow-y: scroll;
+	background-image:url("http://i0.wp.com/blogule.com/wp-content/uploads/2017/04/seamless-wood-texture-walnut-by-tarshana-on-deviantart-walnut-texture.png?quality=80&strip=all");
+}
+.navbar{
+	background-image:url("https://www.sketchuptextureclub.com/public/texture_m/0028-leather-texture-seamless.jpg");
+}
+.caret{
+	color:ivory;
+}
+
+</style>
+
+<body>
+	
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"><font face="Arya" color="ivory">Home</font></a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Arya" color="ivory">Aaa</font>
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a id="#"><font face="Arya" color="ivory">Aaa</font></a></li>
+						<li><a id="#"><font face="Arya" color="ivory">Aaa</font></a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><font face="Arya" color="ivory">OOO</font>
+					<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a id="#"><font face="Arya" color="ivory">OOO</font></a></li>
+						<li><a id="#"><font face="Arya" color="ivory">OOO</font></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+	
+	<div class="container-fluid">
+	
+		<div id="sidebar">
+			<h3><center><font face="Metamorphous" color="ivory">Locations</font></center></h3>
+			<ul class="list-group" style="padding-left:15px; padding-top:15px" id="sidebarlocations">
+				<li class="list-group-item" draggable="true" id="1">Test 1</li>
+				<li class="list-group-item" draggable="true" id="2">Test 2</li>
+				<li class="list-group-item" draggable="true" id="3">Test 3</li>
+				<li class="list-group-item" draggable="true" id="4">Test 4</li>
+				<li class="list-group-item" draggable="true" id="5">Test 5</li>
+			</ul>
+		</div>
+		<div id="content">
+			<div style="padding-left:15px; padding-top:10px">
+				<div class="panel panel-default" id="chapter1">
+	  				<div class="panel-heading-custom panel-heading heading">Panel Heading</div>
+	  				<div class="panel-body">
+		  				<ul class="list-group" id="ch1locations">
+							<li class="list-group-item" draggable="true" id="6">Test 6</li>
+						  	<li class="list-group-item" draggable="true" id="7">Test 7</li>
+						  	<li class="list-group-item" draggable="true" id="8">Test 8</li>
+						  	<li class="list-group-item" draggable="true" id="9">Test 9</li>
+						  	<li class="list-group-item" draggable="true" id="10">Test 10</li>
+						</ul>
+						This is where the description would go.
+	  				</div>
+				</div>
+			</div>
+			<div style="padding-left:15px; padding-top:10px">
+				<div class="panel panel-default" id="chapter2">
+	  				<div class="panel-heading-custom panel-heading heading">Panel Heading</div>
+		  				<div class="panel-body">
+			  				<ul class="list-group" id="ch2locations">
+								<li class="list-group-item" draggable="true" id="11">Test 11</li>
+							  	<li class="list-group-item" draggable="true" id="12">Test 12</li>
+							  	<li class="list-group-item" draggable="true" id="13">Test 13</li>
+							  	<li class="list-group-item" draggable="true" id="14">Test 14</li>
+							  	<li class="list-group-item" draggable="true" id="15">Test 15</li>
+							</ul>
+							This is where the description would go.
+		  				</div>
+				</div>
+			</div>
+		</div>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<script src="https://www.w3schools.com/lib/w3color.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+	<script src="js/angular-drag-and-drop-lists-min.js"></script>
+	<script src="js/angular-drag-and-drop-lists.js"></script>
+	<script src="js/chjsold.js"></script>
+	
+</body>
+</html>
