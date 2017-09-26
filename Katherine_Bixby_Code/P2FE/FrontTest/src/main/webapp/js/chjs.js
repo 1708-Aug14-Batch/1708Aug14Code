@@ -57,10 +57,10 @@ app.controller("chCtrl",function($scope){
 	 * SO IT'S FINE??
 	 */
 	$scope.addLocal = function(newlocaltitle,newlocalid){
-		console.log("ADDING NEW LOCAL: "+newlocaltitle);
+//		console.log("ADDING NEW LOCAL: "+newlocaltitle);
 		$scope.sidebarlocations.unshift(
 				{"title":newlocaltitle,
-				"id":"l"+newlocalid
+				"id":"l"+newlocalid,
 				}
 		);
 	};
@@ -72,15 +72,15 @@ app.controller("chCtrl",function($scope){
 	
 	$scope.saybye = function(){
 		if(this.isCarry==true){
-			console.log("Being Dragged: "+event.target.id);
-			console.log("Dropped at ID: "+event.relatedTarget.id);
+//			console.log("Being Dragged: "+event.target.id);
+//			console.log("Dropped at ID: "+event.relatedTarget.id);
 			var dropLocType = document.getElementById(event.relatedTarget.id).className;
-			console.log(dropLocType);
+//			console.log(dropLocType);
 			if(dropLocType=="list-group-item ng-binding"){
-				console.log("Dropped on a location!");
-				console.log("Parent Node: "+document.getElementById(event.relatedTarget.parentNode.id));
-				console.log("New Node: "+document.getElementById(event.target.id));
-				console.log("Reference Node: "+document.getElementById(event.relatedTarget.id));
+//				console.log("Dropped on a location!");
+//				console.log("Parent Node: "+document.getElementById(event.relatedTarget.parentNode.id));
+//				console.log("New Node: "+document.getElementById(event.target.id));
+//				console.log("Reference Node: "+document.getElementById(event.relatedTarget.id));
 				var theParent = document.getElementById(event.relatedTarget.parentNode.id);
 				var theNew = document.getElementById(event.target.id);
 				var theRef = document.getElementById(event.relatedTarget.id);
@@ -90,15 +90,70 @@ app.controller("chCtrl",function($scope){
 				
 				//parentNode.insertBefore(newNode,referenceNode);
 			}
-			else if(dropLocType=="panel-body ng-binding"){
-				console.log("Dropped in a chapter!");
-				console.log("Parent Node: "+document.getElementById(event.relatedTarget.firstChild.id));
-				console.log("New Node: "+document.getElementById(event.target.id));
-				console.log("Reference Node: "+document.getElementById(event.relatedTarget.id));
+			else if(dropLocType=="panel-body ng-binding" || dropLocType=="panel-body"){
+//				console.log("Dropped in a chapter!");
+				var dropLoc = document.getElementById(event.relatedTarget.childNodes.item(2).id);
+				if(dropLoc){
+					var dropLocType = dropLoc.className;
+				}
+				else{
+					var dropLocType = "none";
+				}
+				
+				
+				/////////// ALSO DOES NOT WORK FOR EMPTY CHAPTERS
+				if(dropLocType!="none"){
+//					
+					var theParent = document.getElementById(event.relatedTarget.childNodes.item(2).id);
+					var theNew = document.getElementById(event.target.id);
+					var theRef = document.getElementById(event.relatedTarget.childNodes.item(2).childNodes.item(1).id);
+					
+					theParent.insertBefore(theNew,theRef);
+					console.log("Drop Reference: "+event.relatedTarget.id);
+					var dropRef = event.relatedTarget.id;
+					if(dropRef=="loc"){
+						console.log("PLACING IT BACK IN LOCATION");
+					}
+					else{
+						var context = event.relatedTarget.parentNode.parentNode.id;
+						console.log(context);
+						if(context=="sidebar"){
+							console.log("sidebarz");
+							//console.log(event.target.parentNode);
+//							$scope.sidebarlocations.push(
+//								{
+//									"title":event.target.innerHTML,
+//									"id":event.target.id
+//								}
+//							);
+							console.log($scope.sidebarlocations.json);
+							// REMOVE FROM SOURCE
+						}
+					}
+					
+				}
+				else{
+					// Here the dropLocType is none
+					// This means we have to CREATE a list to add our list element to.
+				}
 			}
 			
+			printChapters();
 		}
 		this.isCarry=false;
+		
+	}
+	
+	printChapters = function(){
+		console.log("////////////////////////////////////////////////");
+		console.log("CHAPTERS:");
+		for(var ch=0;ch<$scope.chapters.length;ch++){
+			console.log($scope.chapters[ch]);
+		}
+		console.log("LOCATIONS IN SIDEBAR:");
+		for(var lo=0;lo<$scope.sidebarlocations.length;lo++){
+			console.log($scope.sidebarlocations[lo]);
+		}
 	}
 	
 	/*
@@ -107,12 +162,16 @@ app.controller("chCtrl",function($scope){
 	 * SO IT'S FINE??
 	 */
 	$scope.addChapter = function(newchaptertitle,newchapterid,newchapterdescription){
-		console.log("ADDING NEW CHAPTER: "+newchaptertitle);
+//		console.log("ADDING NEW CHAPTER: "+newchaptertitle);
 		$scope.chapters.unshift(
 				{"title":newchaptertitle,
 				"id":newchapterid,
-				"description":newchapterdescription
-				}
+				"description":newchapterdescription,
+				"locations": [{
+					"title":"new",
+					"id":"new"
+				}]
+			}
 		);
 	};
 	

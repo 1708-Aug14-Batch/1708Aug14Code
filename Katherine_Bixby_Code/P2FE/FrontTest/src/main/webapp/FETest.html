@@ -14,6 +14,7 @@ body{
 }
 ::-webkit-scrollbar{
 	background:transparent;
+	width:0px;
 }
 #sidebar {
 	border:1px solid #000;
@@ -42,6 +43,12 @@ body{
 }
 .li{
 	background-image:url("https://www.sketchuptextureclub.com/public/texture_m/0044-parchment-paper-texture-seamless.jpg");
+	border-color:#613219;
+	font-family: Almendra;
+	color:black;
+}
+.list-group-item{
+	background-image:url("https://i.pinimg.com/236x/fd/87/a1/fd87a1691ea433ba2575ca48e41b9d9c.jpg");
 	border-color:#613219;
 	font-family: Almendra;
 	color:black;
@@ -97,9 +104,13 @@ body{
 	
 		<div id="sidebar">
 			<h3><center><font face="Metamorphous" color="ivory">Locations</font></center></h3>
-			<ul class="list-group" style="padding-left:15px; padding-top:15px" ng-repeat="locals in sidebarlocations" id="sbl">
-				<li class="list-group-item" id={{locals.id}} draggable="true" ng-mousedown="sayhi()" ng-mouseleave="saybye()">{{locals.title}}</li>
-			</ul>
+			<div class="panel panel-default">
+				<div class="panel-body" id="locs">
+					<ul class="list-group" style="padding-left:15px; padding-top:15px" ng-repeat="locals in sidebarlocations" id="sbl">
+						<li class="list-group-item" id={{locals.id}} draggable="true" ng-mousedown="sayhi()" ng-mouseleave="saybye()">{{locals.title}}</li>
+					</ul>
+				</div>
+			</div>
 			<center><input type="text" ng-model="newlocaltitle" style="width:75%" placeholder="Title of Location"/></center>
 			<center><input type="number" ng-model="newlocalid" style="width:75%" placeholder="ID of Location"/></center>
 			<center><button ng-click="addLocal(newlocaltitle,newlocalid)" style="background:transparent;border:transparent"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color:ivory;"></span></button></center>
