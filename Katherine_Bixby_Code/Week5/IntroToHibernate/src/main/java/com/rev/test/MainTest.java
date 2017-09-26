@@ -1,8 +1,5 @@
 package com.rev.test;
 
-import java.util.List;
-
-import com.rev.beans.Student;
 import com.rev.dao.HibDAO;
 
 public class MainTest {

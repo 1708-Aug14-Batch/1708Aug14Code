@@ -25,8 +25,8 @@ public class Course {
 	@Column(name="COURSE_NAME",nullable=false)
 	private String name;
 	
-	// one to many
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	// many to one
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn
 	private Instructor instructor;
 	
