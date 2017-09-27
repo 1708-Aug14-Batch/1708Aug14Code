@@ -9,5 +9,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @ComponentScan("com.revature.andy")
 public class WebConfig extends WebMvcConfigurerAdapter{
-
+	
 }
