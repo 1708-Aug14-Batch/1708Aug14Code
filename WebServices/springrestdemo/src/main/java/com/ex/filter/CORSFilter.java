@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.filter.OncePerRequestFilter;
 
-public class CORSFilter {
+public class CORSFilter extends OncePerRequestFilter{
 	/*
 	 * A common problem while developing single page
 	 *  applications or applications that use AJAX is Cross 

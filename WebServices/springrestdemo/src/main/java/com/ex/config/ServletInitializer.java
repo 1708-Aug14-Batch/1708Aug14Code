@@ -1,6 +1,10 @@
 package com.ex.config;
 
+import javax.servlet.Filter;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import com.ex.filter.CORSFilter;
 
 public class ServletInitializer
 	extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -18,6 +22,10 @@ public class ServletInitializer
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] {"/"};
+	}
+	
+	protected Filter[] getServletFilters(){
+		return new Filter[] {new CORSFilter()};
 	}
 
 }
