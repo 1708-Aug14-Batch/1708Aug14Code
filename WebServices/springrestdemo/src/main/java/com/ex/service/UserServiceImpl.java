@@ -36,20 +36,19 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void create(User user) {
-		// TODO Auto-generated method stub
-		
+		user.setId(counter.incrementAndGet());
+		users.add(user);
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-		
+		int index = users.indexOf(user);
+		users.set(index,user);
 	}
 
 	@Override
 	public void delete(User user) {
-		// TODO Auto-generated method stub
-		
+		users.remove(user);
 	}
 
 	@Override
@@ -59,20 +58,27 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User findById(int id) {
-		// TODO Auto-generated method stub
+		for(User u : users){
+			if(u.getId() == id){
+				return u;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public User findByName(String name) {
-		// TODO Auto-generated method stub
+		for(User user : users){
+			if(user.getUsername().equalsIgnoreCase(name)){
+				return user;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public boolean exists(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		return findByName(user.getUsername()) != null;
 	}
 
 }
