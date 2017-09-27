@@ -17,10 +17,10 @@ import com.bank.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService userServiceImpl;
+	private UserService userService;
 
-	public void setUserServiceImpl(UserService userServiceImpl) {
-		this.userServiceImpl = userServiceImpl;
+	public void setUserServiceImpl(UserService userService) {
+		this.userService = userService;
 	}
 
 	@RequestMapping(value = "/auth", method = { RequestMethod.POST }, consumes = {
@@ -29,14 +29,14 @@ public class UserController {
 
 		System.out.println("authenticating user");
 
-		return new ResponseEntity<UserDto>(userServiceImpl.authenticateUser(userDto), HttpStatus.OK);
+		return new ResponseEntity<UserDto>(userService.authenticateUser(userDto), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/register", method = { RequestMethod.POST }, consumes = {
 			MediaType.APPLICATION_JSON_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto) {
 		System.out.println("creating new user");
-		userServiceImpl.createUser(userDto);
+		userService.createUser(userDto);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 

@@ -11,15 +11,15 @@ import com.bank.dto.UserDto;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao userDaoImpl;
+	private UserDao userDao;
 
-	public void setUserDaoImpl(UserDao userDaoImpl) {
-		this.userDaoImpl = userDaoImpl;
+	public void setUserDaoImpl(UserDao userDao) {
+		this.userDao = userDao;
 	}
 
 	@Override
 	public UserDto authenticateUser(UserDto userDto) {
-		User user = userDaoImpl.findUserByUsername(userDto.getUsername());
+		User user = userDao.findUserByUsername(userDto.getUsername());
 		if (user != null && (user.getPassword().equals(userDto.getPassword()))) {
 			userDto.setAuthenticated(true);
 		} else {
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setUsername(userDto.getUsername());
 		user.setPassword(userDto.getPassword());
-		user = userDaoImpl.createUser(user);
+		user = userDao.createUser(user);
 		userDto.setId(user.getId());
 		return userDto;
 	}

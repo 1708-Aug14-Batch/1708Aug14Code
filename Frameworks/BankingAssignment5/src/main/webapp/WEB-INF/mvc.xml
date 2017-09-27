@@ -41,7 +41,6 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-
 	<bean id="myDao" class="com.bank.dao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>

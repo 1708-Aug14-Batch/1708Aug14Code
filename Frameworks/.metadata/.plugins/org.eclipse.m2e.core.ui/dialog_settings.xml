@@ -2,21 +2,10 @@
 <section name="Workbench">
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="com.bank"/>
-			<item value="com.mvc"/>
-			<item value="com.ex"/>
-			<item value="com.ex.spring"/>
-			<item value="com.ex.frameworks"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="BankingAssignment5"/>
-			<item value="AngularMVC"/>
-			<item value="IntroToAOP"/>
-			<item value="IntroToSpring"/>
-			<item value="BankingAssignment4"/>
-			<item value="Frameworks"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -52,8 +41,14 @@
 			<item value="[name]"/>
 		</list>
 	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.preferences.RemoteArchetypeCatalogDialog">
+		<list key="catalogUrl">
+			<item value="https://repo1.maven.org/maven2/archetype-catalog.xml"/>
+		</list>
+	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\Surplus\my_git_repos\Revature projects\Frameworks\BankingAssignment5\src\main\webapp\WEB-INF\mvc.xml"/>
 			<item value="C:\Users\Surplus\my_git_repos\Revature projects\Frameworks\BankingAssignment5_old"/>
 			<item value="C:\Users\Surplus\my_git_repos\Revature projects\Frameworks\BankingAssignment4"/>
 		</list>
