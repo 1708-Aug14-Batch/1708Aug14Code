@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<!-- Find a way to hide this information from view -->
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.24.min.js"></script>
+<script type="text/javascript">
+    AWS.config.update({
+        accessKeyId : 'AKIAIZZD2JYRAVWSZBSA',
+        secretAccessKey : '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'
+    });
+    AWS.config.region = 'us-east-2';
+</script>
+
+</head>
+<body>
+
+<form id="file-form" action="UploadImage" method="POST" enctype="multipart/form-data">
+	<input id="file-select" type="file" value="dataFile" />
+	<button id="upload-button" type="submit">Upload</button>
+</form>
+
+<img id="IMG" src="https://s3.us-east-2.amazonaws.com/project2bucketforrevatureportfoliostuff/223711" />
+
+<script src="Image.js"></script>
+</body>
+</html>

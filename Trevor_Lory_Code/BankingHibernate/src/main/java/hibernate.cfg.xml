@@ -1,3 +1,4 @@
+<!-- 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
@@ -11,11 +12,13 @@
 		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
 		<property name="hibernate.connection.username">bank</property>
 		<property name="hibernate.connection.password">p4ssw0rd</property>
-		<property name="hibernate.hbm2ddl.auto">update</property> <!-- Default is update -->
+		<property name="hibernate.hbm2ddl.auto">update</property> <- Default is update
 		<property name="show_sql">true</property>
-		<!-- Need to add table inclusion here -->
+		<- Need to add table inclusion here
 		<mapping class="com.bank.beans.Account" />
 		<mapping class="com.bank.beans.AccountType" />
 		<mapping class="com.bank.beans.User" />
 	</session-factory>
 </hibernate-configuration>
+
+ -->

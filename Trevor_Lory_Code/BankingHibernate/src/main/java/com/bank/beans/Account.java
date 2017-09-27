@@ -1,5 +1,6 @@
 package com.bank.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,10 +26,10 @@ public class Account {
 	private double BALANCE; //default 0.0
 	@Column(name="NAME", nullable=false)
 	private String NAME; //not null
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="USERID", nullable=false)
 	private User USERID; //not null FK -> AccountTypes userid
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="TYPEID", nullable=false)
 	private AccountType TYPEID; //not null FK -> Users typeid
 	
