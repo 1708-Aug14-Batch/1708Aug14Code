@@ -13,7 +13,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Emp_SEQ")
     @SequenceGenerator(sequenceName = "employee_seq", allocationSize = 1, name = "Emp_SEQ")
-    private Long id;
+    private int id;
     @Column
     private String firstName;
     @Column
@@ -25,8 +25,34 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+    
+    
 
-    @Override
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Override
     public String toString() {
         return String.format(
                 "Customer[id=%d, firstName='%s', lastName='%s']",
