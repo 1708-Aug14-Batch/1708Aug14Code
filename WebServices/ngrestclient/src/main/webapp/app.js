@@ -1,19 +1,9 @@
 angular.module('app', [])
 
-//app.service("UserService", function($scope, $http){
-//	
-//	service.getAll = function(){
-//		$http.get('http://localhost:8050/springrestservice/users').
-//		then(function(response){
-//			$scope.users = response.data;
-//			console.log(response.data);
-//		});
-//	};
-//	
-//});
+
 .controller('hello', function($scope, $http){
 
-	console.log("hi");
+	console.log("hello");
 	$http.get('http://localhost:8050/springrestservice/users').
 	then(function(response){
 		$scope.users = response.data;
@@ -34,14 +24,18 @@ angular.module('app', [])
 	$scope.addUser = function(){
 		console.log($scope.name);
 
-		var user = { "username" : $scope.name };
+		var user = {"username" : $scope.name };
 		user = JSON.stringify(user);
 		console.log(user);
 
 		$http.post('http://localhost:8050/springrestservice/users',user)
 		.then(function(success){
 			console.log("addedUser");
-			//UserService.getAll();
+			$http.get('http://localhost:8050/springrestservice/users').
+			then(function(response){
+				$scope.users = response.data;
+				console.log(response.data);
+			});
 		});
 	}
 

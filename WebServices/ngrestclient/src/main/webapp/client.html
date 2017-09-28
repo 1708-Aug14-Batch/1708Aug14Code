@@ -35,16 +35,17 @@
 			<button type="submit" class="btn btn-submit">Get User!</button>
 		</form>
 		Your user is: {{user.username}}
-		
+
 		<h3>Get all users</h3>
 		<div ng-repeat="user in users">
 			<p>{{user.id}}: {{user.username}}</p>
 		</div>
-			<h3>Add new User</h3>
-			<form name="add" ng-submit="addUser()">
+
+		<h3>Add new User</h3>
+		<form name="add" ng-submit="addUser()">
 			<input type="text" ng-model="name">
 			<button type="submit" class="btn btn-submit">Add</button>
-			</form> 
+		</form>
 
 
 	</div>
