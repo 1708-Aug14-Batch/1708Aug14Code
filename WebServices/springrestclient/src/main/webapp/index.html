@@ -8,8 +8,10 @@
 
 	<body>
 		<div ng-controller="Hello">
-			<p>The ID is {{greeting.id}}</p>
-			<p>The content is {{greeting.content}}</p>
-		</div>
+		<div ng-repeat="user in users">
+		
+			<p>The ID is {{user.id}}</p>
+			<p>The content is {{user.username}}</p>
+	
 	</body>
 </html>

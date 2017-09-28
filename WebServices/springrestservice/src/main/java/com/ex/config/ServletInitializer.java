@@ -8,7 +8,7 @@ import com.ex.filter.CORSFilter;
 
 
 public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
-	
+	// http://joshlong.com/jl/blogPost/simplified_web_configuration_with_spring.html
 	 protected Class<?>[] getServletConfigClasses() {
 	        return new Class[] { WebConfig.class };
 	    }

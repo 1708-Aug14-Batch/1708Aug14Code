@@ -1,11 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.ex</groupId>
-  <artifactId>springrestclient</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ex</groupId>
+	<artifactId>springrestclient</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<!-- http://memorynotfound.com/spring-mvc-restful-web-service-crud-example/ -->
+
+	<!-- We are returning JSON, so we need the jackson dependency This library 
+		automatically serializes and deserializes Java Objects to and from JSON -->
+
 	<properties>
 		<spring.version>4.2.6.RELEASE</spring.version>
 		<jackson.version>2.7.4</jackson.version>
@@ -57,8 +62,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.2</version>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -70,5 +75,5 @@
 			</plugin>
 		</plugins>
 	</build>
-  
+
 </project>
