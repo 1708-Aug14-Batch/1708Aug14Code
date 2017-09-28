@@ -33,11 +33,23 @@ function loadImg(){
 
 function uploadPic(){
 	var descript = document.getElementById("description").value;
-	var file = document.getElementById("file").value;
+	//var file = document.getElementById("file").value;
+	
+	var file="blob:http://fiddle.jshell.net/fcae7554-b2f2-4e6d-a5cd-52f2d00732bc";
+	/*$('#file').change( function(event) {
+		var tmppath = URL.createObjectURL(event.target.files[0]);
+		    $("img").fadeIn("fast").attr('src',URL.createObjectURL(event.target.files[0]));
+		    $("#disp_tmp_path").html("Temporary Path(Copy it and try pasting it in browser address bar) --> <strong>["+tmppath+"]</strong>");
+			console.log(tmppath);
+			var tx = [descript,tmppath];
+			tx = JSON.stringify(tx);
+			var xhr = new XMLHttpRequest();
+		});
+	*/
+	
 	//var filetho = file.replace("C:\\fakepath\\", "C:\\Users\\1Z4XS\\Desktop\\imgTest\\");
-	var filetho = file.replace("C:\\fakepath\\", "C:\\Users\\*\\");
-	console.log(filetho);
-	var tx = [descript,filetho];
+	//var filetho = file.replace("C:\\fakepath\\", "C:\\Users\\*\\");
+	var tx = [descript,file];
 	tx = JSON.stringify(tx);
 	var xhr = new XMLHttpRequest();
 

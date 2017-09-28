@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="IMAGEURL1")
+@Table(name="IMAGEURL3")
 public class Img {
 	@Id
 	@Column(name="ID")

@@ -22,6 +22,9 @@ public class loadImgServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		ImgDAO imgdao=new ImgDAO();
 		ArrayList<Img> imgs=(ArrayList<Img>) imgdao.getAllImgs();
+		for(int i=0; i<imgs.size(); i++){
+			System.out.println(imgs.get(i).getId());
+		}
 		DTO dto =new DTO(imgs);
 		ObjectMapper mapper= new ObjectMapper();
 		String json=mapper.writeValueAsString(dto);
