@@ -1,7 +1,8 @@
-<!doctype html>
-<html ng-app="demo">
+<!DOCTYPE html>
+<html>
 <head>
-<title>Hello AngularJS</title>
+<meta charset="ISO-8859-1">
+<title>Consuming a Spring RESTful Web Service with AngularJS</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
 
@@ -22,35 +23,31 @@
 	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
 	crossorigin="anonymous">
 
-<script src="hello.js"></script>
+<script src="app.js"></script>
 </head>
+<body ng-app="app">
 
-<body>
+	<div class="jumbotron" ng-controller="hello">
 
-	<div class="jumbotron">
-		<div ng-controller="hello">
-
-			<form name="getId" ng-submit="getUser()">
-				<input type="text" ng-model="id" >
-				<button type="submit" class="btn btn-submit">ID</button>
-				{{user.id}} {{user.username}}
-			</form>
-
-			-----------------------
-
-			<div ng-repeat="user in users">
-
-				<p>The ID is {{user.id}}</p>
-				<p>The content is {{user.username}}</p>
-			</div>
-			
-			----------------------
+		<h3>Find user By ID:</h3>
+		<form name="getId" ng-submit="getUser()">
+			<input type="text" ng-model="id">
+			<button type="submit" class="btn btn-submit">Get User!</button>
+		</form>
+		Your user is: {{user.username}}
+		
+		<h3>Get all users</h3>
+		<div ng-repeat="user in users">
+			<p>{{user.id}}: {{user.username}}</p>
+		</div>
 			<h3>Add new User</h3>
-			<form name="add" ng-submit="add()">
+			<form name="add" ng-submit="addUser()">
 			<input type="text" ng-model="name">
 			<button type="submit" class="btn btn-submit">Add</button>
 			</form> 
-			
-			
+
+
+	</div>
+
 </body>
 </html>
