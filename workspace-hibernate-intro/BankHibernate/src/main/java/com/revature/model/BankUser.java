@@ -1,5 +1,7 @@
 package com.revature.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="bank_user")
-public class BankUser {
+public class BankUser implements Serializable {
 	
+	private static final long serialVersionUID = 2001777075542887341L;
+
 	@Id
 	@Column(name="bank_user_id")
 	@SequenceGenerator(name="bank_user_id_seq", sequenceName="bank_user_id_seq")

@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="$(&apos;#email&apos;).val" key="selection"/>
+		<item value="padding" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="$(&apos;#email&apos;).val"/>
-			<item value="manager-view-request"/>
-			<item value="val()"/>
-			<item value="stringify"/>
-			<item value="employees"/>
+			<item value="padding"/>
+			<item value="table-striped"/>
+			<item value="showsingleemp"/>
 			<item value="populate"/>
-			<item value="user"/>
-			<item value="console.log"/>
-			<item value="btnsubmitr"/>
-			<item value="btnsub"/>
-			<item value="print"/>
-			<item value="editmyinfo"/>
-			<item value="sendrequest"/>
-			<item value="viewMyInfo"/>
-			<item value="sendRequest"/>
+			<item value="viewemprequests"/>
+			<item value="viewrequestpage"/>
+			<item value="manager-view-request"/>
+			<item value="viewreq"/>
+			<item value="btn"/>
+			<item value="btnemprequests"/>
+			<item value="changestatus"/>
+			<item value="edit"/>
+			<item value="singlereimb"/>
+			<item value="viewRequestPage"/>
+			<item value="showrequestpage"/>
 		</list>
 		<list key="replacehistory">
 			<item value="viewMyInfoPage"/>
@@ -34,7 +34,7 @@
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
-		<item value="962" key="DIALOG_X_ORIGIN"/>
-		<item value="198" key="DIALOG_Y_ORIGIN"/>
+		<item value="900" key="DIALOG_X_ORIGIN"/>
+		<item value="160" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

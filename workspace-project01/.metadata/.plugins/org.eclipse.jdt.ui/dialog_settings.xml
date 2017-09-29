@@ -32,7 +32,7 @@
 			<item value="600" key="DIALOG_WIDTH"/>
 			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 			<item value="500" key="DIALOG_HEIGHT"/>
-			<item value="-29" key="DIALOG_X_ORIGIN"/>
+			<item value="-30" key="DIALOG_X_ORIGIN"/>
 			<item value="0" key="DIALOG_Y_ORIGIN"/>
 		</section>
 	</section>
@@ -104,6 +104,23 @@
 	</section>
 	<section name="BuildPathsPropertyPage">
 		<item value="0" key="pageIndex"/>
+	</section>
+	<section name="JavaSearchPage">
+		<item value="1" key="HISTORY_SIZE"/>
+		<item value="false" key="CASE_SENSITIVE"/>
+		<item value="11" key="INCLUDE_MASK"/>
+		<section name="HISTORY0">
+			<item value="false" key="isCaseSensitive"/>
+			<item value="" key="javaElement"/>
+			<item value="0" key="scope"/>
+			<item value="11" key="includeMask"/>
+			<item value="&quot;view-employee-requests&quot;" key="pattern"/>
+			<item value="3" key="limitTo"/>
+			<item value="0" key="matchLocations"/>
+			<item value="4" key="searchFor"/>
+			<list key="workingSets">
+			</list>
+		</section>
 	</section>
 	<section name="completion_proposal_size">
 		<item value="251" key="size.y"/>

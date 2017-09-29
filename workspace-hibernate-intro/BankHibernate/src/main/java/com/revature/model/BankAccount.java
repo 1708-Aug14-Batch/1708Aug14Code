@@ -1,5 +1,8 @@
 package com.revature.model;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,14 +11,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="bank_account")
-public class BankAccount {
+public class BankAccount implements Serializable {
 	
+	private static final long serialVersionUID = 541845863524361450L;
+
 	@Id
 	@Column(name="bank_account_id")
 	@SequenceGenerator(name="bank_account_id_seq", sequenceName="bank_account_id_seq")
@@ -25,11 +29,11 @@ public class BankAccount {
 	@Column(name="balance")
 	private double balance;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=BankUser.class, fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="bank_user_id")
 	private int bankUserID;
 	
-	@OneToMany(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=AccountType.class, fetch=FetchType.EAGER, cascade=CascadeType.REMOVE)
 	@JoinColumn(name="account_type_id")
 	private int accountTypeID;
 
