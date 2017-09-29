@@ -10,7 +10,6 @@ angular.module('app', [])
 		console.log(response.data);
 	});
 	
-
 	$scope.getUser = function(){
 		console.log('in get user function');
 		$http.get('http://localhost:8050/springrestservice/users/' + $scope.id)
@@ -19,7 +18,6 @@ angular.module('app', [])
 		});
 
 	};
-
 
 	$scope.addUser = function(){
 		console.log($scope.name);
