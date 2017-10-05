@@ -1,0 +1,6 @@
+create user bank
+identified by p4ssw0rd;
+GRANT connect to bank;
+grant resource to bank;
+grant create session to bank;
+grant create table to bank;

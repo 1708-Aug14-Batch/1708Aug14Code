@@ -1,0 +1,6 @@
+create user project1YC
+identified by p4ssw0rd;
+grant connect to project1YC;
+grant resource to project1YC;
+grant create session to project1YC;
+grant create table to project1YC;

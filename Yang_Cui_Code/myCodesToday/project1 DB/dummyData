@@ -1,0 +1,44 @@
+insert into Users (userID, firstname, lastname, username, email, password, isManager) values(0,'user1FN','user1LN','u1','user1@revature.com','12345','y');
+insert into Users (userID, firstname, lastname, username, email, password, isManager) values(1,'user2FN','user2LN','u2','user2@revature.com','54321','n');
+insert into Users (userID, firstname, lastname, username, email, password, isManager) values(2,'user3FN','user3LN','u3','user3@revature.com','abcde','y');
+insert into Users (userID, firstname, lastname, username, email, password, isManager) values(3,'user4FN','user4LN','u4','user4@revature.com','abcde','n');
+
+insert into Status (statusID, currentState) values(0,'pending');
+insert into Status (statusID, currentState) values(1,'apporved');
+insert into Status (statusID, currentState) values(2,'rejected');
+
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (0,3,null,to_timestamp('2017-08-20:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1000);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (1,2,null,to_timestamp('2017-08-22:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1000);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (2,1,null,to_timestamp('2017-09-01:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1000);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (3,0,null,to_timestamp('2017-09-02:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1000);
+
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (4,3,null,to_timestamp('2017-08-20:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1010);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (5,2,null,to_timestamp('2017-08-22:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1020);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (6,1,null,to_timestamp('2017-09-01:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1030);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (7,0,null,to_timestamp('2017-09-02:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1040);
+
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (8,3,null,to_timestamp('2017-08-20:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1050);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (9,2,null,to_timestamp('2017-08-22:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1060);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (10,1,null,to_timestamp('2017-09-01:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1070);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (11,0,null,to_timestamp('2017-09-02:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1080);
+
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (12,3,null,to_timestamp('2017-08-20:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1090);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (13,2,null,to_timestamp('2017-08-22:09:30:00', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1100);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (14,1,null,to_timestamp('2017-09-01:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1110);
+insert into Reimbursment (reimID, submitID, resolveID, submitDate, resolveDate, statusID, description, resolveNote, amount)
+values (15,0,null,to_timestamp('2017-09-02:22:45:12', 'YYYY-MM-DD:HH24:MI:SS'),null,0,'Quake Fox Jumped Over The Lazy Dog',null,1120);

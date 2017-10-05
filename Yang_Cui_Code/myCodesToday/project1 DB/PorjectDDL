@@ -1,0 +1,65 @@
+drop table Reimbursment;
+drop table Users;
+drop table Status;
+
+create table Users(
+	userID number primary key,
+	firstname varchar2(50) not null,
+	lastname varchar2(50) not null,
+	username varchar2(50) not null unique,
+	email varchar2(50) not null unique,
+	password varchar2(50) not null,
+	isManager varchar2(1) not null
+);
+
+create table Status(
+	statusID number primary key,
+	CurrentState varchar2(8)
+);
+
+create table Reimbursment(
+	reimID number primary key,
+	submitID number not null,
+	approveID number,
+	submitDate timestamp not null,
+	approveDate timestamp,
+	statusID number not null,
+	description varchar2(200),
+	resolveNote varchar2(200),
+	amount number(12,2) not null,
+	constraint amountNotZero check (amount>0),
+	constraint fk_submitID foreign key(submitID) references Users(userID),
+	constraint fk_approveID foreign key(approveID) references Users(userID),
+	constraint fk_statusID foreign key(statusID) references Status(statusID)
+);
+
+
+create sequence user_seq
+start with 1
+increment by 1;
+
+
+create sequence reim_seq
+start with 1
+increment by 1;
+
+
+create or replace trigger user_seq_trigger
+before insert on Users
+for each row
+begin
+if :new.userID is null then
+select user_seq.nextval into :new.userID from dual;
+end if;
+end;
+/
+
+create or replace trigger remi_seq_trigger
+before insert on Reimbursment
+for each row
+begin
+if :new.reimID is null then
+select reim_seq.nextval into :new.reimID from dual;
+end if;
+end;
+/

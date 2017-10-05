@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {
+    text-shadow: 2px 4px #000000;
+}
+p {
+    font-size: 400%;
+}
+</style>
+  <title>Caleculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+​<div class="jumbotron text-left" style="background-color:green;color:white;border:1px solid black;height:150px">
+
+  <h1>JAVA SCRIPT CALECULATOR DEMO</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+		<input type="number" id="a" placeholder="a"/><br>
+		<button id="add">+</button><br>
+		<input type="number" id="b" placeholder="b"/><br>
+		<b>=<p id="Display1"></p></b>
+		
+				<script src="https://code.jquery.com/jquery-3.2.1.js"
+			        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			        crossorigin="anonymous"></script>
+			    <script>
+			    $('#add').on('click', function(){
+				    var answer1 = Number($('#a').val())+Number($('#b').val());
+					$('#Display1').text(answer1);
+				});
+			    </script>
+	    </div>
+	    
+	    <div class="col-sm-2">
+		<input type="number" id="c" placeholder="c"/><br>
+		<button id="sub">-</button><br>
+		<input type="number" id="d" placeholder="d"/><br>
+		<b>=<p id="Display2"></p></b>
+		
+				<script src="https://code.jquery.com/jquery-3.2.1.js"
+			        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			        crossorigin="anonymous"></script>
+			    <script>
+			    $('#sub').on('click', function(){
+				    var answer2 = Number($('#c').val())-Number($('#d').val());
+					$('#Display2').text(answer2);
+				});
+			    </script>
+	    </div>
+	    
+	    <div class="col-sm-2">
+		<input type="number" id="e" placeholder="e"/><br>
+		<button id="mult">x</button><br>
+		<input type="number" id="f" placeholder="f"/><br>
+		<b>=<p id="Display3"></p></b>
+		
+				<script src="https://code.jquery.com/jquery-3.2.1.js"
+			        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			        crossorigin="anonymous"></script>
+			    <script>
+			    $('#mult').on('click', function(){
+				    var answer3 = Number($('#e').val())*Number($('#f').val());
+					$('#Display3').text(answer3);
+				});
+			    </script>
+	    </div>
+	    
+	    <div class="col-sm-2">
+		<input type="number" id="g" placeholder="g"/><br>
+		<button id="div">/</button><br>
+		<input type="number" id="h" placeholder="h"/><br>
+		<b>=<p id="Display4"></p></b>
+		
+				<script src="https://code.jquery.com/jquery-3.2.1.js"
+			        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+			        crossorigin="anonymous"></script>
+			    <script>
+			    $('#div').on('click', function(){
+				    var answer4 = Number($('#g').val())/Number($('#h').val());
+					$('#Display4').text(answer4);
+				});
+			    </script>
+	    </div>
+	   </div>
+	  </div>
+	    
+</body>
+</html>
