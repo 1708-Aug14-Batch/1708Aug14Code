@@ -1,0 +1,3 @@
+
+update CALIBER_BATCH set END_DATE = '27-Nov-2018';
+COMMIT;
