@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<h3>Using Restful Pokemon API</h3>
+		</div>
+
+		<div class="jumbotron">
+			<div class="well">
+				<input id="pokemonId" placeholder="id" /> <input type="submit"
+					class="btn btn-info" value="Get Pokemon Info" id="pokesubmit" />
+			</div>
+
+			<div class="well">
+				<div class="text-center">
+					<!-- Use API to display information appended to the following elements -->
+
+					<img id="pokemonImg" alt="" src="">
+					
+					<h3 id="pokemonName"></h3>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+
+	<script src="js/Pokemans.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous"></script>
+</body>
+</html>

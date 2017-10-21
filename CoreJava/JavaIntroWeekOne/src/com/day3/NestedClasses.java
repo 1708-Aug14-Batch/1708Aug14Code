@@ -7,6 +7,7 @@ public class NestedClasses {
 	static int c = 9;
 	//Java allows us to write class
 	//Static Nested Classes:
+	//
 	static class StaticClass{
 	
 		void Message() {
@@ -19,9 +20,14 @@ public class NestedClasses {
 	class MemberClass{
 		void message() {
 			System.out.println("I am in my member inner class");
-			System.out.println(b+c);//I can't access a!
+			System.out.println(b+" "+c);//I can't access a!
+		}
+		void doOtherThings() {
+			System.out.println("Doin stuff");
 		}
 	}
+	
+	//static MemberClass memClass = new MemberClass();
 	
 	public static void main(String[] args) {
 		System.out.println("Inside main method");
@@ -45,13 +51,27 @@ public class NestedClasses {
 		StaticClass statClass = new StaticClass();
 		statClass.Message();
 //		LocalClass 
+		LocalClass locClass = new LocalClass();
+		locClass.message();
 	
+	//	memClass.message();
+		myOtherInterface inter = () -> {System.out.println("lambda"); };
+		inter.doIt();
 	}
+
+	
+	
+	
+	
 }
 
 interface myInterface{
 	void doThings();
 	void doStuff();
+}
+
+interface myOtherInterface{
+	void doIt();
 }
 
 class Other{
@@ -70,7 +90,6 @@ class Other{
 		this.message = message;
 	}
 	
-	MemberClass memClass = new MemberClass();
-	memClass.message();
+	
 	
 }

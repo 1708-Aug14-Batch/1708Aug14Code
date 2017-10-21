@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous">
+
+<style>
+button {
+	background: lightslategray;
+	width: 100%;
+	height: 10%;
+	text-align: center;
+	padding-top: 15%;
+	padding-bottom: 20%;
+	border-color: slategray;
+	border-style: none;
+	opacity: 1;
+	border-color: slategray;
+}
+
+button:hover {
+	color: darkslategray;
+}
+
+button:active {
+	color: white;
+}
+
+button:focus {
+	outline: none;
+	color: white;
+}
+
+thead {
+display: block;
+	position: absolute;
+	top:0;
+	right:0;
+}
+
+tbody {
+	display: block;
+	position:absolute;
+	top: 21%;
+	height: 280px;
+	width: 100%;
+	overflow-y: scroll; 
+}
+tr{
+width: 100%;
+}
+
+td {
+	width: 10%;
+	padding-left: 10%;
+	margin-right: 2%;
+}
+
+
+#Reimbursements {
+	width: 100%;
+	background-color: white;
+	opacity: .75;
+	z-index: 2;
+	height: 350px;
+	/* overflow: scroll; */
+}
+
+}
+table {
+	width: 100%;
+}
+
+
+th {
+	width:19%;
+/* 	padding-right: 5%;
+	padding-left: 5%;
+	padding-top: 2%;
+	padding-bottom: 2%; */
+} 
+
+</style>
+
+</head>
+<body style="overflow-x: scroll;">
+	<div id="OptionBar"
+		style="z-index: 0; background: lightslategray; position: fixed; height: 100%; margin-top: 0px; bottom: 0; width: 15%; min-width: 125px; max-width: 240px; padding-bottom: 10%; padding-left: 0px; margin-right: 10%;">
+		<div style="position: relative; top: 20%; left: 0;">
+			<button type="submit" action="SubmitRequest" method="post">
+				<br>Submit a new Reimbursement Request<br>
+			</button>
+			<br>
+			<button type="submit" id="ViewRequests" method="post">
+				<br>View Submitted Requests<br>
+			</button>
+			<br>
+			<button type="submit" id="EditInformation" method="post">
+				<br>Edit personal Information<br>
+			</button>
+		</div>
+
+	</div>
+
+	<div
+		style="z-index: 5; text-align: right; background-color: aliceblue; padding: 2%; height: 10%; margin-bottom: 0px;"
+		id="Welcome">
+		<h2>Welcome Back User!</h2>
+		<br> You work hard for us, let us work hard for you.
+	</div>
+	<div
+		style="z-index: -1; min-width: 800px; width: 85%; height: 100%; position: fixed; bottom: 0; right: 0; opacity: .9; background-image: url(dog-park.jpg); background-size: 100% 90%; background-repeat: no-repeat; background-position: bottom right;">
+
+		<div style="position: relative; top: 20%; right:0; width: 80%; margin: 10%;">
+			<div id = "Reimbursements">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Reason for Request</th>
+							<th>Amount Requested</th>
+							<th>Date Submitted</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Stuff1</td>
+							<td>Stuff2</td>
+							<td>Stuff3</td>
+							<td>Stuff4</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+						<tr>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+							<td>Stuff</td>
+						</tr>
+					</tbody>
+				</table>
+			<div id="information"></div>
+		</div>
+	</div>
+
+
+
+	<script src="js/EmployeeHome.js"></script>
+</body>
+</html>

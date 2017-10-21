@@ -13,8 +13,6 @@ public class RunBank {
 
 	//implementation to actually run bank application
 	public static void main(String[] args) {
-		//		User dummy = new User(0, "firstname", "lastname", "email", "password", new BigDecimal(90));
-		//		bankService.createFirstUser(dummy);
 		Service bankService = new Service();
 		scan = new Scanner(System.in);
 		System.out.println("Hello. Welcome to The Bank. Do you already have an account with us?");
@@ -61,6 +59,7 @@ public class RunBank {
 		System.out.println("To change your password, enter 1");
 		System.out.println("To change your name, enter 2");
 		System.out.println("To change your email address, enter 3");
+		System.out.println("To delete your account, enter 4");
 		Scanner scan = new Scanner(System.in);
 		String input = scan.nextLine();
 		switch(input) {
@@ -73,9 +72,15 @@ public class RunBank {
 		case("3"):
 			changeEmail();
 		break;
+		case("4"):
+			deleteAccount();
+			break;
 		}
 	}
 
+	private static void deleteAccount() {
+		Service.deleteAccount(thisUser);
+	}
 	private static void changeEmail() {
 		//in order to change their unique email, the user must enter password
 		//for security
@@ -146,11 +151,9 @@ public class RunBank {
 
 	static User login() {
 		System.out.println("Please enter email");
-
-		Scanner scan = new Scanner(System.in);
-
-		String email = scan.nextLine();
-		User currentUser = Service.login(email);
+		scan = new Scanner(System.in);
+		String username = scan.nextLine();
+		this.user = Service.login(username);
 		//bankService.login returns the Use associated with this email if it exists
 		//it returns null if it does not exist
 		if(currentUser!=null) {
@@ -216,6 +219,7 @@ public class RunBank {
 		login();
 		return null;
 	}
+	
 	private static void logout() {
 		System.out.println("Thank you, come back soon");
 		thisUser = null;

@@ -88,6 +88,7 @@ public class DAOImpl {
 					+ "values( ? , ? )"; //we could just concantinate with fn & ln, but then this would be just a STATEMENT which is BAD
 			String[] key = new String[1];
 			key[0] = "ex_id";
+			
 			PreparedStatement ps = conn.prepareStatement(sql, key);
 			ps.setString(1, fn);
 			ps.setString(2, ln);

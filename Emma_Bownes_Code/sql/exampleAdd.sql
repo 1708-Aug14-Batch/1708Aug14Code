@@ -17,6 +17,7 @@ CREATE SEQUENCE EX_ID_SEQ
 INCREMENT BY 1
 START WITH 1;
 
+
 --TRIGGER
 CREATE OR REPLACE TRIGGER EX_ID_TRIGGER
 BEFORE INSERT ON EXAMPLE
@@ -41,3 +42,5 @@ VALUES(ex_id_SEQ.nextval, 'Genesis','Bondss', 1);
 
 Insert into example(EX_ID, FIRSTNAME, LASTNAME, fave_song_ID)
 values(ex_id_seq.nextval, 'test', 'testing', 2);
+
+select * from USERS;

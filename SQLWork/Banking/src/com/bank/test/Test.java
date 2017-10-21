@@ -11,7 +11,8 @@ public class Test {
 	public static void main(String[] args) {
 		DAOImpl dao = new DAOImpl();
 		Service serve = new Service();
-		User u = serve.addUser("fn1", "ln1", "username", "pwd");
+		User u = serve.login("ekbo","pwd");
+		System.out.println(u);
 		
 		
 		//System.out.println("user: "+ u);

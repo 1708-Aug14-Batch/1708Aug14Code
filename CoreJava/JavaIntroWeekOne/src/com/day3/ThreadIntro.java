@@ -24,6 +24,7 @@ public class ThreadIntro {
 		
 	};
 	
+	
 	Thread anonThread = new Thread(anonRun);
 //	anonThread.start();
 	

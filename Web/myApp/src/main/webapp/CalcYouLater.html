@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>You push my buttons</title>
+</head>
+<body ng-app="Calc" ng-controller="CCtrl">
+
+	<h1>Welcome to a calculator</h1>
+	<input type="number" ng-model="a" placeholder="Put a number in" />
+	<input type="number" ng-model="b" placeholder="Put another number in" />
+	<button ng-click="Calc()">Calculate</button>
+	<button ng-click="Switch()">Switch</button>
+
+	<br>
+	<h4>What do you want to do with them</h4>
+	<input type="checkbox" ng-model="div"> Division (first /
+	second)
+	</input>
+	<br>
+	<input type="checkbox" ng-model="mult" value="Division">
+	Multiplication
+	</input>
+	<br>
+	<input type="checkbox" ng-model="add" value="Addition">
+	Addition
+	</input>
+	<br>
+	<input type="checkbox" ng-model="sub" value="Division">
+	Subtraction (first - second)
+	</input>
+	<br>
+	<br>
+
+	<table class="table table-striped">
+		<thead>
+			<th ng-hide="items.length == 0">x , y</th>
+			<th ng-hide="!div">Division</th>
+			<th ng-hide="!mult">Multiplication</th>
+			<th ng-hide="!add">Addition</th>
+			<th ng-hide="!sub">Subtraction</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in items">
+				<td>{{item.x}} , {{item.y}}</td>
+				<td ng-hide="!div">{{item.div}}</td>
+				<td ng-hide="!mult">{{item.mult}}</td>
+				<td ng-hide="!add">{{item.add}}</td>
+				<td ng-hide="!sub">{{item.sub}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.2.1.js"
+		integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+		crossorigin="anonymous"></script>
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+		crossorigin="anonymous">
+
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+		crossorigin="anonymous">
+
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+		integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+	<script src="js/CalcUp.js"> </script>
+</body>
+</html>

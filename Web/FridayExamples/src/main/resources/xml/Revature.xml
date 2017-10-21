@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<revature>
+	<employee id="1">
+		<firstname>Genesis</firstname>
+		<lastname>Bonds</lastname>
+		<nickname>gen</nickname>
+		<salary>100000000</salary>
+	</employee>
+	<employee id="2">
+		<firstname>Emma</firstname>
+		<lastname>Bownes</lastname>
+		<nickname>gem</nickname>
+		<salary>1000</salary>
+	</employee>
+</revature>

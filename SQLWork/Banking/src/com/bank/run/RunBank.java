@@ -203,6 +203,7 @@ public class RunBank {
 		user = null;
 		accounts = null;
 		account = null;
+		scanner.close();
 
 	}
 
@@ -215,7 +216,7 @@ public class RunBank {
 			System.out.println("Enter password: ");
 			String pwd = scan.nextLine();
 			u = Service.login(username, pwd);
-			//bankService.login returns the Use associated with this email if it exists
+			//bankService.login returns the User associated with this email if it exists
 			//it returns null if it does not exist
 			if(u!=null) {
 				System.out.println("Welcome back "+ u.getFirstname());
@@ -223,8 +224,7 @@ public class RunBank {
 			}
 			else {
 			System.out.println("Invalid username or password");
-			attempts += 1;
-			return login();
+			attempts ++;
 			}
 		}
 		System.out.println("Too many failed attempts. Try again later");

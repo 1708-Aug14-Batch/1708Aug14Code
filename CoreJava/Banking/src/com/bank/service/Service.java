@@ -79,7 +79,6 @@ public class Service {
 	
 	
 	public static void changeName(User thisUser, String firstname, String lastname) {
-		
 		update(thisUser);
 	}
 
@@ -94,6 +93,16 @@ public class Service {
 			if(theList.get(i).getId()==thisUser.getId()) {
 				theList.remove(i);
 				theList.add(thisUser);
+			}
+		}
+		dao.update(theList);
+	}
+
+	public static void deleteAccount(User thisUser) {
+		theList = (ArrayList<User>) dao.getUser();
+		for(int i=0;i<theList.size(); i++) {
+			if(theList.get(i).getId()==thisUser.getId()) {
+				theList.remove(i);
 			}
 		}
 		dao.update(theList);

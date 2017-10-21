@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Modal</title>
+<style>
+
+#logo{
+	float: right;
+}
+
+.feedback-form-head{
+	background-color: rgb(195,110, 26);
+	color: white;
+	text-align: center;
+/* 	<!- text capitalized->
+	<!- text bold / strong -> */
+}
+
+table.feedback th{
+	background-color: rgb(0,174,247);
+	text-align: center;
+}
+</style>
+
+<script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-app="app" ng-controller="feedbackController">
+<h3> Panel Interview Feedback </h3>
+<div id=“logo”><!-- <img src=“RevLogo”> --></div>
+<div id=“form-content” > 
+	<div id=“interviewDetails”>
+		<div class=“feedback-form-head”>Interview Details</div>
+		<table id= “interview-details”>
+		<tr>
+			<th>Name of the Associate</th>
+			<td> {{trainee.firstName +’ ‘+trainee.lastName}}</td>
+			<th> Interview Date </th>
+			<td> {{panelInterview.date}} </td>
+		</tr>
+		<tr>
+			<th>Panelist Name</th>
+			<td>{{trainer.firstname +’ ‘+trainer.lastname}}</td>
+			<th> Interview Time </th>
+			<td> {{panelInterview.time}} </td>
+		</tr>
+		<tr>
+			<th>Training Track</th>
+			<td> {{trainee.trainingTrack}}</td>
+			<th> Interview Duration </th>
+			<td> {{panelInterview.duration}} </td>
+		</tr>
+		<tr>
+			<th>Panel Round</th>
+			<td> {{panelInterview.round}}</td>
+			<th> Interview Mode </th>
+			<td> {{panelInterview.mode}} </td>
+		</tr>
+		<tr>
+			<th>Recording Consent</th>
+			<td> {{interviewPanel.consent}}</td>
+			<th> Overall Feedback </th>
+			<td> {{panelInterview.overall}} </td>
+		</tr>
+		<tr>
+			<th>Recording Link</th>
+			<td> {{panelInterview.link}}</td>
+			<th> Internet Connectivity </th>
+			<td> {{panelInterview.connectivity}} </td>
+		</tr>
+		</table>
+	</div>
+	<div id=“technical-feedback”>
+		<div class=“feedback-form-head”>Technical Feedback</div>
+		<table class=“feedback”>
+			<tr>
+				<th> Technology </th>
+				<th> Result </th>
+				<th> Repanel </th>
+				<th> Comment </th>
+			</tr>
+			<tr ng-repeat=“item in feedback”>
+				<td>{{item.technology}}</td>
+				<td>{{item.result}}</td>
+				<td>{{item.repanel}}</td>
+				<td>{{item.comment}}</td>
+			</tr>
+		</table>
+	</div>
+	<div id=“general-feedback”>
+		<div class=“feedback-form-head”>General Feedback</div>
+		<table class=“feedback”>
+			<tr>
+				<th>Criteria</th>
+				<th>Comment</th>
+			</tr>
+			<tr>
+				<td><b>Associate Introduction</b></td>
+				<td>{{panelInterview.generalFeedback.introduction.comment}}</td>
+			</tr>
+			<tr>
+				<td><b>Project 1 Explanation</b></td>
+				<td>{{panelInterview.generalFeedback.project1}}</td>
+			</tr>
+			<tr>
+				<td><b>Project 2 Explanation</b></td>
+				<td>{{panelInterview.generalFeedback.project2}}</td>
+			</tr>
+			<tr>
+				<td><b>Project 3 Explanation</b></td>
+				<td>{{panelInterview.generalFeedback.project3}}</td>
+			</tr>
+			<tr>
+				<td><b>Communication Skills</b></td>
+				<td>{{panelInterview.generalFeedback.communication}}</td>
+			</tr>
+			<tr>
+				<td><b>Overall</b></td>
+				<td>{{panelInterview.generalFeedback.overall}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+</body>
+</html>
