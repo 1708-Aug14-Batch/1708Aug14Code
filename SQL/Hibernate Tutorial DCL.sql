@@ -1,0 +1,9 @@
+
+CREATE USER hib_tut
+IDENTIFIED BY somberlain;
+
+GRANT CONNECT TO hib_tut;
+GRANT RESOURCE TO hib_tut;
+GRANT CREATE SESSION TO hib_tut;
+GRANT CREATE TABLE TO hib_tut;
+GRANT CREATE VIEW TO hib_tut;
